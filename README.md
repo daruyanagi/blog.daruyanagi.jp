@@ -1,1 +1,1 @@
-# daruyanagi-net
+go to https://daruyanagi.jp/

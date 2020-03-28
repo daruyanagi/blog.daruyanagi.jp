@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/08/23/230002/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            プロ生ちゃんのボイスで Visual Studio のビルド通知を行う | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="   というわけで、この度、IT系コミュニティ「プログラミング生放送」のキャラクター、プロ生ちゃんこと暮井 慧（くれい けい）のシステムボイスを無償公開します！　PC やスマホの一般的なサウンド設定、そして Visual Studio など開発用ツールのサウンド設定としても使える内容です。 プロ生ちゃんこと暮井 慧（CV 上坂すみれ）のシステムボイス無償公開のお知らせ！ | プログラミング生放送  プロ生ちゃん（CV: 上坂すみれ（https://twitter.com/Uesakasumire）さん）のシステムボイスが公開されました！　個人的にちょっと面白いなぁと思ったのは、「Visual Studio」用のサウンドが用意されていること。これを使うと、プロ生ちゃんがビルド通知してくれるようになるっぽい。
+### 使い方 「Visual Studio 2012」*1がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。  Express エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では  ビルドが取り消されました ビルド失敗 ビルド正常終了 という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。  ### 注意   配布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。  ### 最後に WebMatrix にもプログラム イベントがほしい！  上坂すみれが声を務める“プロ生ちゃん”のシステムボイスが無償公開 - 窓の杜  *1:「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/08/23/230002/" >
+                    <h1 class="entry__header-title-link-text">プロ生ちゃんのボイスで Visual Studio のビルド通知を行う</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/08/23</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    というわけで、この度、IT系コミュニティ「プログラミング生放送」のキャラクター、プロ生ちゃんこと暮井 慧（くれい けい）のシステムボイスを無償公開します！　PC やスマホの一般的なサウンド設定、そして Visual Studio など開発用ツールのサウンド設定としても使える内容です。
+
+    プロ生ちゃんこと暮井 慧（CV 上坂すみれ）のシステムボイス無償公開のお知らせ！ | プログラミング生放送
+</code></pre>
+<p>プロ生ちゃん（CV: 上坂すみれ（<a href="https://twitter.com/Uesakasumire"><a href="https://twitter.com/Uesakasumire">https://twitter.com/Uesakasumire</a></a>）さん）のシステムボイスが公開されました！　個人的にちょっと面白いなぁと思ったのは、「Visual Studio」用のサウンドが用意されていること。これを使うと、プロ生ちゃんがビルド通知してくれるようになるっぽい。</p>
+<div class="section">
+    ### 使い方
+    「Visual Studio 2012」<a href="#f1" name="fn1" title="「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証">*1</a>がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。<figure>
+    <img src="/images/2013/08/23/230002/20130823225537.png"/> 
+</figure>
+Express エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では
+<ul>
+<li>ビルドが取り消されました</li>
+<li>ビルド失敗</li>
+<li>ビルド正常終了</li>
+</ul>という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。
+</div>
+<div class="section">
+    ### 注意
+    <figure>
+    <img src="/images/2013/08/23/230002/20130823225909.png"/> 
+</figure>
+配布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。
+</div>
+<div class="section">
+    ### 最後に
+    WebMatrix にもプログラム イベントがほしい！
+<ul>
+<li><a href="http://www.forest.impress.co.jp/docs/news/20130823_612340.html">上坂すみれが声を務める“プロ生ちゃん”のシステムボイスが無償公開 - 窓の杜</a></li>
+</ul>
+</div><div class="footnote">
+<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-08-23T23:00:02JST">2013/08/23</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%83%97%e3%83%ad%e7%94%9f%e3%81%a1%e3%82%83%e3%82%93%e3%81%ae%e3%83%9c%e3%82%a4%e3%82%b9%e3%81%a7%20Visual%20Studio%20%e3%81%ae%e3%83%93%e3%83%ab%e3%83%89%e9%80%9a%e7%9f%a5%e3%82%92%e8%a1%8c%e3%81%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/08/23/230002/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%83%97%E3%83%AD%E7%94%9F%E3%81%A1%E3%82%83%E3%82%93%E3%81%AE%E3%83%9C%E3%82%A4%E3%82%B9%E3%81%A7&#43;Visual&#43;Studio&#43;%E3%81%AE%E3%83%93%E3%83%AB%E3%83%89%E9%80%9A%E7%9F%A5%E3%82%92%E8%A1%8C%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F23%2F230002%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/08/27/073440/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/08/18/211848/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

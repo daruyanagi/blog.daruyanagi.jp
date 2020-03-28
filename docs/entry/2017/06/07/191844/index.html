@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/06/07/191844/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Tonjiru v1.1.0 ＋ GitHub Flow × GitHub for Windows | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="アイコンを付けた SendMessage と PostMessage を選択できるように 不具合の修正 SendMessage だと相手がメッセージの処理を完了するまで制御が返ってこないので、PostMessage を使う方がいいかなって思った。    ### 関係のない話：GitHub Flow × GitHub for Windows &gt; GitHub Flowとは何だろうか？  masterブランチのものは何であれデプロイ可能である 新しい何かに取り組む際は、説明的な名前のブランチをmasterから作成する（例: new-oauth2-scopes） 作成したブランチにローカルでコミットし、サーバー上の同じ名前のブランチにも定期的に作業内容をpushする フィードバックや助言が欲しい時、ブランチをマージしてもよいと思ったときは、 プルリクエスト を作成する 他の誰かがレビューをして機能にOKを出してくれたら、あなたはコードをmasterへマージすることができる マージをしてmasterへpushしたら、直ちにデプロイをする これがフローのすべてだ。
+ GitHub Flow (Japanese translation) · GitHub  去年ぐらいからこれを実践している（つもり）なのだけど、如何せん、一人でやっているのであまり自信がない。ので、自分のやり方をさらしておく。
+#### 1. 何か改善を思いついたら issue にメモする   この作業が一番面倒くさい……なにかいいアプリ（できればモバイル）があればいいんだけどな。  #### 2. GitHub for Windows を起動して Sync   コマンドだと間違えるマンなので、GUI クライアントを使う。GitHub for Windows（現行安定版）を起動したらこまめに Sync しておく。  #### 3." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/github/">GitHub</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/06/07/191844/" >
+                    <h1 class="entry__header-title-link-text">Tonjiru v1.1.0 ＋ GitHub Flow × GitHub for Windows</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/06/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/06/07/191844/20170607185555.png"/> 
+</figure>
+<br/></p>
+<ul>
+<li>アイコンを付けた</li>
+<li>SendMessage と PostMessage を選択できるように</li>
+<li>不具合の修正</li>
+</ul>SendMessage だと相手がメッセージの処理を完了するまで制御が返ってこないので、PostMessage を使う方がいいかなって思った。
+<div class="github-card" data-user="daruyanagi/Tonjiru/releases/tag" data-repo="v1.1.0" data-width="400" data-height="" data-theme="default"></div>
+<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<br/>
+<div class="section">
+    ### 関係のない話：GitHub Flow × GitHub for Windows
+<pre><code>&gt;
+    GitHub Flowとは何だろうか？
+</code></pre>
+<p>masterブランチのものは何であれデプロイ可能である
+新しい何かに取り組む際は、説明的な名前のブランチをmasterから作成する（例: new-oauth2-scopes）
+作成したブランチにローカルでコミットし、サーバー上の同じ名前のブランチにも定期的に作業内容をpushする
+フィードバックや助言が欲しい時、ブランチをマージしてもよいと思ったときは、 プルリクエスト を作成する
+他の誰かがレビューをして機能にOKを出してくれたら、あなたはコードをmasterへマージすることができる
+マージをしてmasterへpushしたら、直ちにデプロイをする
+これがフローのすべてだ。</p>
+<pre><code>    GitHub Flow (Japanese translation) · GitHub
+</code></pre>
+<p>去年ぐらいからこれを実践している（つもり）なのだけど、如何せん、一人でやっているのであまり自信がない。ので、自分のやり方をさらしておく。</p>
+<div class="section">
+    #### 1. 何か改善を思いついたら issue にメモする
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190042.png"/> 
+</figure>
+この作業が一番面倒くさい……なにかいいアプリ（できればモバイル）があればいいんだけどな。
+</div>
+<div class="section">
+    #### 2. GitHub for Windows を起動して Sync
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190154.png"/> 
+</figure>
+コマンドだと間違えるマンなので、GUI クライアントを使う。GitHub for Windows（現行安定版）を起動したらこまめに Sync しておく。
+</div>
+<div class="section">
+    #### 3. ブランチを切って Visual Studio で実装する
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190318.png"/> 
+</figure>
+ローカルでブランチを切る。名前は……最近は解決する issue の名前を付けている。今回は issue #12 を直したいので、“issue12”と付けた。Visual Studio でしばし開発――中断するときは Sync しておく。
+</div>
+<div class="section">
+    #### 4. コミット
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190501.png"/> 
+</figure>
+終わったらコミットする。コメントを“resolve #”にすると、issue が保管されるのが GitHub for Windows のよいところ。
+<div class="section">
+    ##### 追記（2017/07/08）
+    書き忘れたけど、こうしておくと issue が自動でクローズされて便利。
+</div>
+</div>
+<div class="section">
+    #### 5. プルリクエストを作成
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190639.png"/> 
+</figure>
+画面左上の［Pull request］ボタンを押してプルリクエストを作成する。<figure>
+    <img src="/images/2017/06/07/191844/20170607190714.png"/> 
+</figure>
+送信したら［Visit it on GitHub］をクリック。ブラウザーでプルリクエストの画面を開く。
+</div>
+<div class="section">
+    #### 6. プルリクエストをマージ
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190809.png"/> 
+</figure>
+あまり何も考えずにマージ。<figure>
+    <img src="/images/2017/06/07/191844/20170607190843.png"/> 
+</figure>
+マージが終わったら、ブランチを削除しておく。
+</div>
+<div class="section">
+    #### 7. ローカルを master に切り替えて Sync
+    <figure>
+    <img src="/images/2017/06/07/191844/20170607190925.png"/> 
+</figure>
+GitHub for Windows に戻ってブランチを master に切り替えて、Sync ボタンを押す。プルリクエストがにょきっと表れて、master にむちょちょ～っと追加されるのを眺めて達成感に浸る。→ 3 に戻る。
+</div>
+<div class="section">
+    #### 注意点
+<ul>
+<li>ブランチを切った後に master を更新してしまったら、［Update from master］する。</li>
+<li>とりあえずミスしても落ち着く（master に戻すのを忘れて、サブブランチからブランチを切ったとか）。シンプルに保っていれば、復旧はそんなに難しくない。小幅な変更なら思い切って捨てて、master に戻れ</li>
+<li>master で作業しないようにだけ気を付ける。バージョンのインクリメントとか、しょうもないのはそのまま作業していいことにしてるけど。</li>
+<li>アレしてる間にコレしたくなっても我慢しろ。コレは issue に書いておけ。あとでブランチ切って コレ に取り組め。</li>
+</ul>いろいろ試してみたけどダメだった／(^o^)＼ ってときにブランチごと捨てられるので、昔みたいにプロジェクトをコピペしてサンプルコードを書く（！！）みたいなことはしなくなった。“test”なんちゃらというブランチを切って、試して捨てる。これだけでもだいぶ進歩したのかなって思うけれど、一人でやってるとこれでいいのかさっぱりわかんなくて不安になるネ。
+</div>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-06-07T19:18:44JST">2017/06/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Tonjiru%20v1.1.0%20%ef%bc%8b%20GitHub%20Flow%20%c3%97%20GitHub%20for%20Windows%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/06/07/191844/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Tonjiru&#43;v1.1.0&#43;%EF%BC%8B&#43;GitHub&#43;Flow&#43;%C3%97&#43;GitHub&#43;for&#43;Windows&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F07%2F191844%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/08/195054/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/06/220256/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

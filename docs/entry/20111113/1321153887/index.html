@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111113/1321153887/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Markdown で好みのヘルパーを使えるようにする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="連日プログラミングの話になる。WebMatrix &#43; Markdown …… リファクタリング。 で、
+&gt; Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出している。これについては、また今度。  と書いたと思うんだけど、今日はその話。以下に /App_Code/Daruboard.cshtml の内容を示す。
+	@using System.Text.RegularExpressions @using System.Reflection @functions { private struct FormatHelper { public string Signature; public Type Type; public string Method; public object[] DefaultParams; } private static List&amp;lt;FormatHelper&gt; FormatHelpers = new List&amp;lt;FormatHelper&gt;(); public static void RegisterHelper( string signature, Type type, string method_name, object[] default_params) { if (FormatHelpers.Any(f =&gt; f.Signature == signature)) { throw new Exception(string.Format( &quot;Daruboard.RegisterHelper(): {0} has already exist." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111113/1321153887/" >
+                    <h1 class="entry__header-title-link-text">Markdown で好みのヘルパーを使えるようにする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/11/13</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>連日プログラミングの話になる。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> で、</p>
+<pre><code>&gt;
+    Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出している。これについては、また今度。
+</code></pre>
+<p>と書いたと思うんだけど、今日はその話。以下に <code>/App_Code/Daruboard.cshtml</code> の内容を示す。</p>
+<pre><code>	@using System.Text.RegularExpressions
+	@using System.Reflection
+
+	@functions {
+
+	    private struct FormatHelper
+	    {
+	        public string Signature;
+	        public Type Type;
+	        public string Method;
+	        public object[] DefaultParams;
+	    }
+
+	    private static List&amp;lt;FormatHelper&gt; FormatHelpers = new List&amp;lt;FormatHelper&gt;();
+
+	    public static void RegisterHelper(
+	        string signature, Type type, string method_name, object[] default_params)
+	    {
+	        if (FormatHelpers.Any(f =&gt; f.Signature == signature))
+	        {
+	            throw new Exception(string.Format(
+	                &quot;Daruboard.RegisterHelper(): {0} has already exist.&quot;,
+	                signature));
+	        }
+
+	        MethodInfo method = type.GetMethod(method_name);
+	        if (method == null)
+	        {
+	            throw new Exception(string.Format(
+	                &quot;Daruboard.RegisterHelper(): {0} does not have {1}().&quot;,
+	                type, method_name));
+	        }
+
+	        FormatHelpers.Add(new FormatHelper() {
+	            Signature = signature,
+	            Type = type,
+	            Method = method_name,
+	            DefaultParams = default_params
+	        });
+	    }
+
+	    public static string Transform(string text)
+	    {
+	        var r = new Regex(@&quot;
+	            (&amp;lt;p&gt;)?\[\[
+	                (?&amp;lt;signature&gt;[^\[\]\|]*)(\|(?&amp;lt;params&gt;[^\[\]]*))*
+	            \]\](&amp;lt;/p&gt;)?&quot;,
+	            RegexOptions.Singleline | 
+	            RegexOptions.IgnorePatternWhitespace | 
+	            RegexOptions.Compiled
+	        );
+	        
+	        text = r.Replace(text, m =&gt;
+	        {
+	            var s = m.Groups[&quot;signature&quot;].Value;
+	            var p = m.Groups[&quot;params&quot;].Value.Split(&amp;#39;|&amp;#39;);
+	            var f = FormatHelpers.Find(_ =&gt; _.Signature == s);
+
+	            if (f.Signature == null)
+	            {
+	                return string.Format(&quot;&amp;lt;a href=&amp;#39;/{0}&amp;#39;&gt;{0}&amp;lt;/a&gt;&quot;, s);
+	            }
+	            else
+	            {
+	                try
+	                {
+	                    MethodInfo method = f.Type.GetMethod(f.Method);
+	                    object[] parameter = f.DefaultParams;
+	                    parameter[0] = p[0];
+	                    return method.Invoke(null, parameter).ToString();
+	                }
+	                catch (Exception e)
+	                {
+	                    return string.Format(&quot;[{0}: {1}]&quot;, e.GetType(), e.Message);
+	                }
+	            }
+	        });
+
+	        return text;
+	    }
+	}
+``` &lt;a href=&quot;http://d.hatena.ne.jp/keyword/sigunature%7Cparam1%7Cparam2...&quot;&gt;sigunature|param1|param2...&lt;/a&gt; という書式を見つけたら、指定した Signature をもつヘルパーを登録済みリストから探し出し、登録時に指定した Method をリフレクションで呼び出す。ヘルパーの登録は、&lt;code&gt;＿AppStart.cshtml&lt;/code&gt;あたりで、
+</code></pre><pre><code>Daruboard.RegisterHelper(&quot;twitter&quot;,
+    typeof(BlackbirdPie),
+    &quot;GetHtml&quot;,
+    new object[] { null, false, true, Locale.ja }
+);
+</code></pre>
+<pre><code class="language-などとと書いておく" data-lang="などとと書いておく"></code></pre><pre><code>[[twitter|ツイートへのURL]]
+</code></pre>
+<pre><code class="language-が、" data-lang="が、"></code></pre><pre><code>@BlackbirdPie.GetHtml(ツイートへのURL)
+</code></pre>
+<pre><code class="language-と解釈されてレンダリングされるというわけ。さて、ここまでやっちゃうとだんだん読み込み速度が気になってきた。というわけで、今度はキャッシュの使い方を勉強しようかなぁと思う。これまで作った" data-lang="と解釈されてレンダリングされるというわけ。さて、ここまでやっちゃうとだんだん読み込み速度が気になってきた。というわけで、今度はキャッシュの使い方を勉強しようかなぁと思う。これまで作った">&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;今のところ、パラメーターは一つ、しかも string 型しか渡せない。true/false ならともかく、Location.ja を string 型から変換するのは面倒くさすぎると思った。将来的には、もう少し改善したい&lt;/span&gt;
+&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Markdown の\[URL\](URL)記法の簡略表記として使えるので便利&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-11-13T12:11:27JST">2011/11/13</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Markdown%20%e3%81%a7%e5%a5%bd%e3%81%bf%e3%81%ae%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc%e3%82%92%e4%bd%bf%e3%81%88%e3%82%8b%e3%82%88%e3%81%86%e3%81%ab%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111113/1321153887/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Markdown&#43;%E3%81%A7%E5%A5%BD%E3%81%BF%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%88%E3%82%8B%E3%82%88%E3%81%86%E3%81%AB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321153887%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111121/1362520893/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111113/1321150268/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

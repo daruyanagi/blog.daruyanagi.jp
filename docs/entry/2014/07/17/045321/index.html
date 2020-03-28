@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/07/17/045321/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。  | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix.Data.Database.Open(&#34;MYDB&#34;); ```ローカルと Azure ではイケるのに、ExpressWeb では WebMatrix.Data.DatabaseOpen() が失敗する件について。 &lt;div class=&#34;section&#34;&gt; ### 解決策その一 &gt; New connection string keyword: “File Access Retry Timeout” – will reattempt connection open from 0 – 30 seconds, with a default value of 0. Everything SQL Server Compact: SQL Server Compact 4.0 SP1 CTP1 available SQL Server Compact 4.0 SP1 CTP1 で追加された要素らしいので、それ以前のバージョンを利用する。 &lt;/div&gt; &lt;div class=&#34;section&#34;&gt; ### 解決策その二 ```cs WebMatrix.Data.Database.OpenConnectionString( &#34;Data Source=|DataDirectory|\\MYDB.sdf&#34;, &#34;System.Data.SqlServerCe.4.0&#34; ); ```.NET Framework データ プロバイダーを指定して、接続文字列で開く。 &lt;ul&gt; &lt;li&gt;&lt;a href=&#34;http://stackoverflow." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/07/17/045321/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。 </h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/07/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/07/17/045321/20140717044635.png"/> 
+</figure>
+<br/></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">WebMatrix.Data.Database.Open(<span style="color:#e6db74">&#34;MYDB&#34;</span>);
+
+<span style="color:#960050;background-color:#1e0010">```ローカルと</span> Azure <span style="color:#960050;background-color:#1e0010">ではイケるのに、</span>ExpressWeb <span style="color:#960050;background-color:#1e0010">では</span> WebMatrix.Data.DatabaseOpen() <span style="color:#960050;background-color:#1e0010">が失敗する件について。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">解決策その一</span>
+    
+    &gt;
+        New connection <span style="color:#66d9ef">string</span> keyword: <span style="color:#960050;background-color:#1e0010">“</span>File Access Retry Timeout<span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#960050;background-color:#1e0010">–</span> will reattempt connection open <span style="color:#66d9ef">from</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">–</span> <span style="color:#ae81ff">30</span> seconds, with a <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">value</span> of <span style="color:#ae81ff">0.</span>
+
+        Everything SQL Server Compact: SQL Server Compact <span style="color:#ae81ff">4.0</span> SP1 CTP1 available
+    
+SQL Server Compact <span style="color:#ae81ff">4.0</span> SP1 CTP1 <span style="color:#960050;background-color:#1e0010">で追加された要素らしいので、それ以前のバージョンを利用する。</span>
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">解決策その二</span>
+    <span style="color:#960050;background-color:#1e0010">```</span>cs
+WebMatrix.Data.Database.OpenConnectionString(
+    <span style="color:#e6db74">&#34;Data Source=|DataDirectory|\\MYDB.sdf&#34;</span>,
+    <span style="color:#e6db74">&#34;System.Data.SqlServerCe.4.0&#34;</span>
+);
+
+<span style="color:#960050;background-color:#1e0010">```</span>.NET Framework <span style="color:#960050;background-color:#1e0010">データ</span> <span style="color:#960050;background-color:#1e0010">プロバイダーを指定して、接続文字列で開く。</span>
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://stackoverflow.com/questions/11299263/file-access-retry-timeout-asp-net-webpages-razor-c&#34;</span>&gt;File access retry timeout (ASP.NET WebPages/Razor/C<span style="color:#960050;background-color:#1e0010">#</span>) - Stack Overflow&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-07-17T04:53:21JST">2014/07/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e3%82%ad%e3%83%bc%e3%83%af%e3%83%bc%e3%83%89%20&amp;#39;file%20access%20retry%20timeout&amp;#39;%20%e3%81%af%e3%82%b5%e3%83%9d%e3%83%bc%e3%83%88%e3%81%95%e3%82%8c%e3%81%a6%e3%81%84%e3%81%be%e3%81%9b%e3%82%93%e3%80%82%20%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/07/17/045321/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E3%82%AD%E3%83%BC%E3%83%AF%E3%83%BC%E3%83%89&#43;%26%2339%3Bfile&#43;access&#43;retry&#43;timeout%26%2339%3B&#43;%E3%81%AF%E3%82%B5%E3%83%9D%E3%83%BC%E3%83%88%E3%81%95%E3%82%8C%E3%81%A6%E3%81%84%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F045321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/17/102023/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/17/012107/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

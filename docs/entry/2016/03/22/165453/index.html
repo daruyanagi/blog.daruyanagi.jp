@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/03/22/165453/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Windows 8.x を UWP へ移植しようとするフリだけしてみた。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="かつてこんなアプリを Windows 8.x 向けに作った。閲覧ページのタイトルや URL を指定した書式でクリップボードへコピーするというもので、
+&gt; 簡単に言うと、［共有］チャームから  Create Link - Chrome Web Store Make Link :: Add-ons for Firefoxhttps://addons.mozilla.org/ja/firefox/addon/make-link/ をするアプリです。
+これを Windows 10（UWP）に移植しようかと思う。MADOSMA が W10M になったので、ちょっとやる気が出ているのだ！
+### とりあえず古いアプリをそのまま Windows 10 で実行してみた   Windows 8.x のフルスクリーンを前提に作ってあるので、Windows 10 の Windowed モードには収まりきらず、横スクロールが発生している。そもそも、このアプリを作った時は画面遷移のやり方がよく分かっていなかったので、すべての操作が一枚のページで行えるように設計されている。そのため、要素が若干詰め込み過ぎ。開発者の能力不足のせいで、ユーザーに不便を強いている部分だ。  あと、アプリケーションバーを使ってみたかったという理由でアプリケーションバーを採用したのだけど、初期状態で必要なコマンドが表示されていないのは不親切だと思った。右クリックすれば出てくるんだけど……わかんないよな、普通。というか、初めからこのアプリには、このユーザーインターフェイスは適してなかった。開発者のエゴが、ユーザーに不便を強いている部分だ。  左上には謎のハンバーガーボタンが追加されていて、共有チャームなどのコマンドはここに押し込められている。共有チャームはオワコン。  ### そのまま UWP に移植してみた   新規に UWP プロジェクトを作成し、ほとんどコピペで移植してみた。アプリケーションバーが謎なことになっている以外は、Windows 8.x 時代とほぼ同様に動いているように見える。若干一部の機能がちゃんと動いていないらしいが、それは要調査。それにしても、似ているようで細かい挙動が変わっているのは、本当に面倒くさい。とくに Windows 8.x 向けのサンプルが手元ではそのまま動かなくて、StackOverFlow を歩き回っても解決策が見つからないのにはイライラさせられた。質問はあっても、回答はなかったり。まだまだみんな UWP のノウハウは蓄積できていないみたいなので、自分で頑張るしかない（一部のブログ書いてくれてる開発者には感謝、感謝だなぁ）。ただ、Windows 10 Mobile でも普通に動くのはいいと思った。ユーザーインターフェイスがデスクトップ向けなのですこぶる使いにくいけれど、MADOSMA にデプロイすれば普通に動く。最初はデスクトップとモバイル両対応のユーザーインターフェイスを作り直す苦労を思って気が重くなったが、モバイルファーストで作り直せば、あとはデスクトップはそれをそのまま使えばいいと気づいてからはちょっと気が楽になった。UWP が許す機能の範囲でならば、新しいアプリケーションは UWP で作った方が得だな。今度休みが取れたときに、いろいろ調査を進めようと思う。  ### 個人的なまとめ  ページの遷移を勉強して、ユーザー視点でデザインしなおそう アプリケーションバーはオワコン 共有チャームもデスクトップではオワコンだけど、モバイルではまだまだ出番があると思うので頑張る モバイルでもデスクトップでも動くのはいい。将来的には Xbox でも動くのか。宗篤 ユーザーインターフェイスはモバイルファーストで。デスクトップはあとで考えればいいや UWP のノウハウを貯めるまでは、失敗し続けるしかない（白目   " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows ストア アプリ</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/clipper/">Clipper</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/03/22/165453/" >
+                    <h1 class="entry__header-title-link-text">Windows 8.x を UWP へ移植しようとするフリだけしてみた。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/03/22</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>かつてこんなアプリを Windows 8.x 向けに作った。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2014%2F08%2F19%2F224807" title="Windows ストア アプリを作りました。 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2014%2F08%2F26%2F094110" title="Clipper 2.0.0.0 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>閲覧ページのタイトルや URL を指定した書式でクリップボードへコピーするというもので、</p>
+<pre><code>&gt;
+    簡単に言うと、［共有］チャームから
+</code></pre>
+<p>Create Link - Chrome Web Store
+Make Link :: Add-ons for Firefoxhttps://addons.mozilla.org/ja/firefox/addon/make-link/
+をするアプリです。</p>
+<p>これを Windows 10（UWP）に移植しようかと思う。MADOSMA が W10M になったので、ちょっとやる気が出ているのだ！</p>
+<div class="section">
+    ### とりあえず古いアプリをそのまま Windows 10 で実行してみた
+    <figure>
+    <img src="/images/2016/03/22/165453/20160322162526.png"/> 
+</figure>
+Windows 8.x のフルスクリーンを前提に作ってあるので、Windows 10 の Windowed モードには収まりきらず、横スクロールが発生している。そもそも、このアプリを作った時は画面遷移のやり方がよく分かっていなかったので、すべての操作が一枚のページで行えるように設計されている。そのため、要素が若干詰め込み過ぎ。開発者の能力不足のせいで、ユーザーに不便を強いている部分だ。<figure>
+    <img src="/images/2016/03/22/165453/20160322162837.png"/> 
+</figure>
+あと、アプリケーションバーを使ってみたかったという理由でアプリケーションバーを採用したのだけど、初期状態で必要なコマンドが表示されていないのは不親切だと思った。右クリックすれば出てくるんだけど……わかんないよな、普通。というか、初めからこのアプリには、このユーザーインターフェイスは適してなかった。開発者のエゴが、ユーザーに不便を強いている部分だ。<figure>
+    <img src="/images/2016/03/22/165453/20160322162947.png"/> 
+</figure>
+左上には謎のハンバーガーボタンが追加されていて、共有チャームなどのコマンドはここに押し込められている。共有チャームはオワコン。
+</div>
+<div class="section">
+    ### そのまま UWP に移植してみた
+    <figure>
+    <img src="/images/2016/03/22/165453/20160322163111.png"/> 
+</figure>
+新規に UWP プロジェクトを作成し、ほとんどコピペで移植してみた。アプリケーションバーが謎なことになっている以外は、Windows 8.x 時代とほぼ同様に動いているように見える。若干一部の機能がちゃんと動いていないらしいが、それは要調査。それにしても、似ているようで細かい挙動が変わっているのは、本当に面倒くさい。とくに Windows 8.x 向けのサンプルが手元ではそのまま動かなくて、StackOverFlow を歩き回っても解決策が見つからないのにはイライラさせられた。質問はあっても、回答はなかったり。まだまだみんな UWP のノウハウは蓄積できていないみたいなので、自分で頑張るしかない（一部のブログ書いてくれてる開発者には感謝、感謝だなぁ）。ただ、Windows 10 Mobile でも普通に動くのはいいと思った。ユーザーインターフェイスがデスクトップ向けなのですこぶる使いにくいけれど、MADOSMA にデプロイすれば普通に動く。最初はデスクトップとモバイル両対応のユーザーインターフェイスを作り直す苦労を思って気が重くなったが、モバイルファーストで作り直せば、あとはデスクトップはそれをそのまま使えばいいと気づいてからはちょっと気が楽になった。UWP が許す機能の範囲でならば、新しいアプリケーションは UWP で作った方が得だな。今度休みが取れたときに、いろいろ調査を進めようと思う。
+</div>
+<div class="section">
+    ### 個人的なまとめ
+<ul>
+<li>ページの遷移を勉強して、ユーザー視点でデザインしなおそう</li>
+<li>アプリケーションバーはオワコン</li>
+<li>共有チャームもデスクトップではオワコンだけど、モバイルではまだまだ出番があると思うので頑張る</li>
+<li>モバイルでもデスクトップでも動くのはいい。将来的には Xbox でも動くのか。宗篤</li>
+<li>ユーザーインターフェイスはモバイルファーストで。デスクトップはあとで考えればいいや</li>
+<li>UWP のノウハウを貯めるまでは、失敗し続けるしかない（白目</li>
+</ul>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-03-22T16:54:53JST">2016/03/22</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Windows%208.x%20%e3%82%92%20UWP%20%e3%81%b8%e7%a7%bb%e6%a4%8d%e3%81%97%e3%82%88%e3%81%86%e3%81%a8%e3%81%99%e3%82%8b%e3%83%95%e3%83%aa%e3%81%a0%e3%81%91%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/03/22/165453/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Windows&#43;8.x&#43;%E3%82%92&#43;UWP&#43;%E3%81%B8%E7%A7%BB%E6%A4%8D%E3%81%97%E3%82%88%E3%81%86%E3%81%A8%E3%81%99%E3%82%8B%E3%83%95%E3%83%AA%E3%81%A0%E3%81%91%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F03%2F22%2F165453%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/03/23/151455/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/03/21/083213/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

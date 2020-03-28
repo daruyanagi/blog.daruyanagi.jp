@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/11/060424/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：RESTful？な Web アプリケーション （3）  | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2：RESTful？な Web アプリケーション （2） - だるろぐ の続き。日中戦争、ベトナム戦争並みに泥沼化してきたけど、突き進んでいこう！
+### PUT/DELETE メソッドを扱えるようにする とりあえず、前回の宿題をさっさと終わらせる。 ```cs @{ Layout = &#34;_SiteLayout.cshtml&#34;; // POST で PUT/DELETE を代用 string method = Request.HttpMethod.ToUpper(); if (IsPost &amp;amp;&amp;amp; Request[&quot;_method&quot;] != null) { method = Request[&quot;_method&quot;].ToUpper(); }  }
+```cs @switch (method) { case &quot;GET&quot;: // いろいろ break; case &quot;POST&quot;: // さまざま break; case &quot;PUT&quot;: // ほげほげ break; case &quot;DELETE&quot;: // ふがふが break; default: throw new Exception(&quot;なにいってんだおまえ&quot;); } ```――ダサいな！たまたま今日、北陸の女神様のブログ（&lt;a href=&quot;http://d.hatena.ne.jp/miso_soup3/20130110/1357822008&quot;&gt;ASP.NET WEB API ルーティングについていろいろ - miso_soup3 Blog&lt;/a&gt;）を読んでいたのだけど、ASP." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/11/060424/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション （3） </h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/11</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/01/11/041856">WebMatrix 2：RESTful？な Web アプリケーション （2） - だるろぐ</a> の続き。日中戦争、ベトナム戦争並みに泥沼化してきたけど、突き進んでいこう！</p>
+<div class="section">
+    ### PUT/DELETE メソッドを扱えるようにする
+    とりあえず、前回の宿題をさっさと終わらせる。
+```cs
+@{
+    Layout = "_SiteLayout.cshtml";
+<pre><code>// POST で PUT/DELETE を代用
+string method = Request.HttpMethod.ToUpper();
+if (IsPost &amp;amp;&amp;amp; Request[&quot;_method&quot;] != null) 
+{
+    method = Request[&quot;_method&quot;].ToUpper();
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-こんなのでいいのかな。あとはこれを" data-lang="こんなのでいいのかな。あとはこれを">```cs
+@switch (method)
+{
+    case &quot;GET&quot;:
+        // いろいろ
+        break;
+    case &quot;POST&quot;:
+        // さまざま
+        break;
+    case &quot;PUT&quot;:
+        // ほげほげ
+        break;
+    case &quot;DELETE&quot;:
+        // ふがふが
+        break;
+    default:
+       throw new Exception(&quot;なにいってんだおまえ&quot;);
+}
+
+```――ダサいな！たまたま今日、北陸の女神様のブログ（&lt;a href=&quot;http://d.hatena.ne.jp/miso_soup3/20130110/1357822008&quot;&gt;ASP.NET WEB API ルーティングについていろいろ - miso_soup3 Blog&lt;/a&gt;）を読んでいたのだけど、ASP.NET Web API みたいに
+```cs
+// GET ~/api/values/
+public void Get() { }
+
+// GET ~/api/values/:id
+public void Get(int id) { }
+
+// POST ~/api/values/
+public void Post() { }
+
+// PUT ~/api/values/
+public void Put() { }
+
+```こういうのを勝手にバインディング（っていうのかな？）して呼び出してくれたら、カッコいいのかもしれない。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### メソッドのバインディング
+    というわけで、こういうのを考えてみた。
+```cs
+@using System.Reflection
+
+@{
+    Layout = &quot;_SiteLayout.cshtml&quot;;
+
+    // POST で PUT/DELETE を代用
+    string method = Request.HttpMethod.ToUpper();
+    if (IsPost &amp;amp;&amp;amp; Request[&quot;_method&quot;] != null) 
+    {
+        method = Request[&quot;_method&quot;].ToUpper();
+    }
+
+    Type type = this.GetType();
+    MethodInfo method_info = type.GetMethod(
+        method,
+        UrlData.Select(_ =&gt; _.GetType()).ToArray()
+    );
+
+    // みつからなかったら method_info == null っぽい
+
+    &amp;lt;p&gt;@method_info&amp;lt;/p&gt;
+}
+
+```んでんで、
+```cs
+@functions 
+{
+   public HelperResult GET()
+   {
+       return new HelperResult(_ =&gt; _.WriteLine(&quot;GET()&quot;));
+   }
+
+   public HelperResult GET(int id)
+   {
+       return new HelperResult(_ =&gt; _.WriteLine(&quot;Get(int id)&quot;));
+   }
+
+   public HelperResult GET(string title)
+   {
+       return new HelperResult(_ =&gt; _.WriteLine(&quot;Get(string title)&quot;));
+   }
+
+   public HelperResult GET(string s1, string s2)
+   {
+       return new HelperResult(_ =&gt; _.WriteLine(&quot;Get(string s1, s2)&quot;));
+   }
+
+   public HelperResult POST()
+   {
+       return new HelperResult(_ =&gt; _.WriteLine(&quot;POST()&quot;));
+   }
+}
+
+```こうやって適当に引数の異なるメソッドを用意しておく。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### 結果
+    <figure>
+    <img src="/images/2013/01/11/060424/20130111054006.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/01/11/060424/20130111054007.png"/> 
+</figure>
+なんかいい感じだ。出力を
+```cs
+&amp;lt;p&gt;@method_info.Invoke(this, UrlData.Select(_ =&gt; _ as object).ToArray())&amp;lt;/p&gt;
+
+```に変えてみてもうまくいった（なんか不細工だなーもっといい書き方ある気がする）。<figure>
+    <img src="/images/2013/01/11/060424/20130111055006.png"/> 
+</figure>
+POST も投げてみたけどイケてるみたい（わかりにくくてごめん、まだあんまり使い方がよくわかっていない！）。<figure>
+    <img src="/images/2013/01/11/060424/20130111060244.png"/> 
+</figure>
+あとは、MethodInfo を取得するとき、単に UrlData の type[] を問い合わせるのではなくて
+```cs
+MethodInfo method_info = type.GetMethod(
+    method,
+    UrlData.Select(_ =&gt; _.なるべくintに変換する().GetType()).ToArray()
+);
+
+```みたいなにすれば、GET(int id) でも呼べるはずだよね！　……今日はもう疲れたからやらないけど。ASP.NET MVC/Web API はこういうのをもっとエレガントにやっているんだろうなって思うと、だいぶ尊敬しちゃう。
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-11T06:04:24JST">2013/01/11</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aRESTful%ef%bc%9f%e3%81%aa%20Web%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%20%ef%bc%883%ef%bc%89%20%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/11/060424/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%883%EF%BC%89&#43;&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F060424%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/13/094453/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/11/041856/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

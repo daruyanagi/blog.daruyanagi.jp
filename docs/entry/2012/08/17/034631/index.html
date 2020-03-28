@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/17/034631/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Highlight.js を NuGet パッケージにしてみました | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ と App_Code でサブフォルダーを利用する - だるろぐ で扱った Highlight.js を NuGet パッケージにしてみました。最初は Highlight.js の NuGet パッケージは存在しないと思い込んでいたのですが、ただ検索のやり方が悪かったようで、「Highlight」というパッケージがあったり、似たような機能を実現できそうな「ColorCode」というパッケージもみつけたのですが、見なかったふりをします。 nuget.org はまだちょっと検索機能がイケてないような気がしますね（責任転嫁）。
+### 準備 #### nuget.org のアカウントを作成 NuGet Gallery | Home でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。  アカウントページで API キーが取得できるので、それをローカル環境に登録します。 ``` nuget.exe setApiKey ********-****-****-****-************ nuget.exe push MyPackage.1.0.nupkg ```NuGet.exe を入手（http://nuget.codeplex.com/releases NuGet.exe Command Line）して、1行目を実行すればOKです*1。  #### パッケージに含めるファイルを用意 今回パッケージに含めるファイルは以下のとおりです。 ``` Highlight.js/ Highlight.js.nuspec &amp;lt;-- あとで作りましょう！ content/ （ ~/ 以下に展開されます） App_Code/ Highlight/ Highlight.cs Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/nuget/">NuGet</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/17/034631/" >
+                    <h1 class="entry__header-title-link-text">Highlight.js を NuGet パッケージにしてみました</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2012/08/16/155714">WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ</a> と <a href="https://blog.daruyanagi.jp/entry/2012/08/16/182105">App_Code でサブフォルダーを利用する - だるろぐ</a> で扱った Highlight.js を NuGet パッケージにしてみました。最初は Highlight.js の NuGet パッケージは存在しないと思い込んでいたのですが、ただ検索のやり方が悪かったようで、「Highlight」というパッケージがあったり、似たような機能を実現できそうな「ColorCode」というパッケージもみつけたのですが、見なかったふりをします。 nuget.org はまだちょっと検索機能がイケてないような気がしますね（責任転嫁）。</p>
+<div class="section">
+    ### 準備
+<div class="section">
+    #### nuget.org のアカウントを作成
+    <a href="http://nuget.org">NuGet Gallery | Home</a> でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。<figure>
+    <img src="/images/2012/08/17/034631/20120817024658.png"/> 
+</figure>
+アカウントページで API キーが取得できるので、それをローカル環境に登録します。
+```
+nuget.exe setApiKey ********-****-****-****-************
+nuget.exe push MyPackage.1.0.nupkg
+```NuGet.exe を入手（<a href="http://nuget.codeplex.com/releases">http://nuget.codeplex.com/releases</a> NuGet.exe Command Line）して、1行目を実行すればOKです<a href="#f-f45a0f4e" name="fn-f45a0f4e" title="初回起動時に実行ファイルのアップデートが行われます">*1</a>。
+</div>
+<div class="section">
+    #### パッケージに含めるファイルを用意
+    今回パッケージに含めるファイルは以下のとおりです。
+```
+Highlight.js/
+<pre><code>Highlight.js.nuspec &amp;lt;-- あとで作りましょう！
+
+content/
+    （ ~/ 以下に展開されます）
+    App_Code/
+        Highlight/
+            Highlight.cs
+            Lisence Files
+    Content/
+        Highlight/
+            Theme Skins
+    Scripts/
+        Highlight/
+           hilight.pack.js
+    web.config.transform &amp;lt;-- あとで説明します！
+
+tools/
+    （セットアップなどに利用するスクリプトなどを含めます）
+
+lib/
+    （必要な参照アセンブリを格納しておきます）
+</code></pre>
+<pre><code class="language-今回は" data-lang="今回は">```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+    .web&gt;
+      debug=&quot;false&quot;&gt;
+         &lt;codesubdirectories&gt;&lt;/codesubdirectories&gt;
+           directoryName=&quot;Highlight&quot;/&gt;
+         
+      
+   .web&gt;
+
+
+```.transform という拡張子をつけて content フォルダーに置いておくだけで、勝手にインストール先の Web アプリの web.config とマージしてくれるみたいですね。あらまー、簡単！
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://haacked.com/archive/2010/11/19/nuget-transformation.aspx&quot;&gt;NuGet Package Transformations | You’ve Been Haacked&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### NuGet パッケージ（NuPack）の作成
+    では、 NuGet のパッケージを作成します。手順は NuSpec ファイルに名前やバージョンなどのメタデータを記述して、 NuPack へ Pack（パッケージング）し、 nuget.org へ push （公開）するといった感じ。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### NuSpec の作成
+    <figure>
+    <img src="/images/2012/08/17/034631/20120817031210.png"/> 
+</figure>
+&lt;br/&gt;
+
+</code></pre><p>nuget.exe spec</p>
+<pre><code class="language-で雛形を出力します。内容はこんな感じになっているので、てけとーに編集します。" data-lang="で雛形を出力します。内容はこんな感じになっているので、てけとーに編集します。">```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;package&gt;&lt;/package&gt;
+  &lt;metadata&gt;&lt;/metadata&gt;
+    &lt;id&gt;&lt;/id&gt;Package
+    &lt;version&gt;&lt;/version&gt;1.0.0
+    &lt;authors&gt;&lt;/authors&gt;Hidetoshi Yanagi
+    &lt;owners&gt;&lt;/owners&gt;Hidetoshi Yanagi
+    &lt;licenseurl&gt;&lt;/licenseurl&gt;http://LICENSE_URL_HERE_OR_DELETE_THIS_LINE
+    &lt;projecturl&gt;&lt;/projecturl&gt;http://PROJECT_URL_HERE_OR_DELETE_THIS_LINE
+    &lt;iconurl&gt;&lt;/iconurl&gt;http://ICON_URL_HERE_OR_DELETE_THIS_LINE
+    &lt;requirelicenseacceptance&gt;&lt;/requirelicenseacceptance&gt;false
+    &lt;description&gt;&lt;/description&gt;Package description
+    &lt;releasenotes&gt;&lt;/releasenotes&gt;Summary of changes made in this release of the package.
+    &lt;copyright&gt;&lt;/copyright&gt;Copyright 2012
+    &lt;tags&gt;&lt;/tags&gt;Tag1 Tag2
+    &lt;dependencies&gt;&lt;/dependencies&gt;
+      id=&quot;SampleDependency&quot; version=&quot;1.0&quot; /&gt;
+    
+  
+
+
+```自分の場合はこんな感じになりました（v1.0.4 の場合）。
+```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;package&gt;&lt;/package&gt;
+  &lt;metadata&gt;&lt;/metadata&gt;
+    &lt;id&gt;&lt;/id&gt;Highlight.js
+    &lt;version&gt;&lt;/version&gt;1.0.4
+    &lt;authors&gt;&lt;/authors&gt;Ivan Sagalaev
+    &lt;owners&gt;&lt;/owners&gt;daruyanagi
+    &lt;projecturl&gt;&lt;/projecturl&gt;http://softwaremaniacs.org/soft/highlight/en/
+    &lt;requirelicenseacceptance&gt;&lt;/requirelicenseacceptance&gt;false
+    &lt;description&gt;&lt;/description&gt;Syntax Highlighter written by JavaScript and CSS (and C# Helper)
+    &lt;releasenotes&gt;&lt;/releasenotes&gt;Package for v7.1 release.
+    &lt;copyright&gt;&lt;/copyright&gt;Copyright 2012 Hidetoshi Yanagi (@daruyanagi)
+    &lt;tags&gt;&lt;/tags&gt;webmatrix javascript css syntax asp.net .net40
+  
+
+
+</code></pre></div>
+<div class="section">
+    #### NuPack の作成
+    <figure>
+    <img src="/images/2012/08/17/034631/20120817031339.png"/> 
+</figure>
+コマンドを実行して、 NuPack を作成します。
+```
+nuget.exe pack Highlight.js.nuspec
+```すると、 nuget.exe のフォルダーに（パッケージ名）.（バージョン）.nupaack（今回なら Highlight.js.1.0.4.nupack）が作成されます。解凍ソフトでバラして中身を確認してみると面白いかも。
+</div>
+<div class="section">
+    #### NuPack の公開
+    コマンドを実行して、 NuPack を公開します。
+```
+nuget.exe push Highlight.js.1.0.4.nupack
+```これで、 nuget.org にパッケージが公開されるはず。<figure>
+    <img src="/images/2012/08/17/034631/20120817031425.png"/> 
+</figure>
+<a href="https://nuget.org/packages/Highlight.js">https://nuget.org/packages/Highlight.js</a>もしよかったら使ってみてくださいね！
+</div>
+</div>
+<div class="section">
+    ### パッケージのテスト
+    アップロードしたパッケージは、パッケージマネージャーでインストール・アンインストールしてちゃんと動くか確かめましょう<a href="#f-a0ca43e7" name="fn-a0ca43e7" title="ごめんなさい、今までめんどくさくてだいたい動いていればOKかなって思ってました！">*2</a>。あと、「WebMatrix 2」で動くからといって「Visual Studio」でもそのまま動くかというとそうでもないみたいです。今回躓いたところを何点か補足しておきます。
+<div class="section">
+    #### パッケージが見つからない……
+    <figure>
+    <img src="/images/2012/08/17/034631/20120817032039.png"/> 
+</figure>
+アップロードしたばかりのパッケージは「WebMatrix 2」の検索で引っかかりにくいです。<figure>
+    <img src="/images/2012/08/17/034631/20120817032125.png"/> 
+</figure>
+そんなときは、フルネームでの検索を試みたり、パッケージのソースを変えてみるといいかもしれません。「Visual Studio」で利用する場合もそうですが、既定の検索結果が「ダウンロード数」順になっているみたいで、新参者はなかなか見つけにくい。「Visual Studio」の場合は、 CUI でインストールしてしまうのが手っ取り早いかもしれませんね。「WebMatrix 2」でも簡単に CUI で NuGet パッケージをインストールできるといいのですけど。
+</div>
+<div class="section">
+    #### .NET Framework のターゲット
+    「WebMatrix 2」のプロジェクトを「Visual Studio 2012」で開いたのですが、そのままではヘルパー（自作の静的クラス）がうまく動きませんでした。<figure>
+    <img src="/images/2012/08/17/034631/20120817032540.png"/> 
+</figure>
+「パラメーター初期化子を使うな」だの「System.Web.HtmlString なんてないよ！」だの言われるのでちょっと変だなと思っていたのですが、どうも .NET 2.0 でコンパイルしようとしているみたい。
+```xml
+<!--?-->xml version="1.0"?>
+<configuration></configuration>
+    .web>
+      targetFramework="4.0" debug="false">
+         <codesubdirectories></codesubdirectories>
+           directoryName="Highlight"/>
+<p>.web&gt;</p>
+<pre><code class="language-web.config.transform" data-lang="web.config.transform">
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### おわり！
+    <figure>
+    <img src="/images/2012/08/17/034631/20120817034817.png"/> 
+</figure>
+これまでの3つのエントリー
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/16/043012&quot;&gt;WebMatrix で Markdown を使おう！ - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/16/155714&quot;&gt;WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/16/182105&quot;&gt;App_Code でサブフォルダーを利用する - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;で使ってきたサンプルプロジェクトでも、既存の Highlight.js 関連のコードをバッサリ消して NuGet パッケージに置き換えてみました。入れたり消したり、好き放題だ！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### おまけ
+    <figure>
+    <img src="/images/2012/08/17/034631/20120817033216.png"/> 
+</figure>
+「NuGet Package Explorer」ってなんだよ！　最初から知ってたらこっちを使ってたかもしれない（くっそくっそ！なんかしらんけどプラグインでカスタマったりできるらしいゼ？ 
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://npe.codeplex.com/wikipage?title=How%20to%20write%20a%20plugin%20for%20NuGet%20Package%20Explorer&quot;&gt;CodePlex Archive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;ダウンロードは nuget.exe と同じところから。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-f45a0f4e&quot; name=&quot;f-f45a0f4e&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;初回起動時に実行ファイルのアップデートが行われます&lt;/span&gt;
+&lt;a href=&quot;#fn-a0ca43e7&quot; name=&quot;f-a0ca43e7&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ごめんなさい、今までめんどくさくてだいたい動いていればOKかなって思ってました！&lt;/span&gt;
+&lt;a href=&quot;#fn-b9e55fda&quot; name=&quot;f-b9e55fda&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;周りのパッケージをみていると、そうしているのが多いように思います&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-17T03:46:31JST">2012/08/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Highlight.js%20%e3%82%92%20NuGet%20%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%81%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%be%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/17/034631/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Highlight.js&#43;%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F034631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/17/050707/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/16/182105/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

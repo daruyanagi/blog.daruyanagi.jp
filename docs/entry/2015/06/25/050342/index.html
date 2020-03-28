@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2015/06/25/050342/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：フィードを読み込んでデータベースへつっこむときに System.Data.SqlServerCe.SqlCeException が発生する。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。
+&gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。 データ型    一方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。  SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/sql-ce/">SQL CE</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2015/06/25/050342/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：フィードを読み込んでデータベースへつっこむときに System.Data.SqlServerCe.SqlCeException が発生する。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2015/06/25</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。</p>
+<pre><code>&gt;
+    
+
+### datetime
+300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。
+
+
+    データ型
+</code></pre>
+<p><figure>
+    <img src="/images/2015/06/25/050342/20150625045042.png"/> 
+</figure>
+一方、C# の <code>default(DateTime)</code> は <code>0001/01/01 0:00:00</code>。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、<code>default(DateTime)</code> を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。<figure>
+    <img src="/images/2015/06/25/050342/20150625050249.png"/> 
+</figure>
+SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> min_date = <span style="color:#66d9ef">new</span> DateTime(<span style="color:#ae81ff">1753</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// ほんとは readonly でどこかに
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> updated_at = item.LastUpdatedTime.UtcDateTime &amp;lt; min_date 
+    ? <span style="color:#66d9ef">new</span> DateTimeOffset(DateTime.Now).UtcDateTime 
+    : item.LastUpdatedTime.UtcDateTime;
+
+<span style="color:#75715e">// Database.Execute();
+</span><span style="color:#75715e"></span>
+</code></pre></div><div class="section">
+    ### 教訓
+    ちゃんとマニュアルは読もう。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2015-06-25T05:03:42JST">2015/06/25</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e3%83%95%e3%82%a3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%ad%e3%81%bf%e8%be%bc%e3%82%93%e3%81%a7%e3%83%87%e3%83%bc%e3%82%bf%e3%83%99%e3%83%bc%e3%82%b9%e3%81%b8%e3%81%a4%e3%81%a3%e3%81%93%e3%82%80%e3%81%a8%e3%81%8d%e3%81%ab%20System.Data.SqlServerCe.SqlCeException%20%e3%81%8c%e7%99%ba%e7%94%9f%e3%81%99%e3%82%8b%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2015/06/25/050342/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%93%E3%81%A7%E3%83%87%E3%83%BC%E3%82%BF%E3%83%99%E3%83%BC%E3%82%B9%E3%81%B8%E3%81%A4%E3%81%A3%E3%81%93%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Data.SqlServerCe.SqlCeException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F06%2F25%2F050342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/06/25/200933/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/06/24/054542/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

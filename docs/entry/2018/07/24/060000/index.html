@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/07/24/060000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            7月18日：「Tonjiru」アプリがストアで公開されました（長かったー | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ワンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
+### APPX にパッケージングする   最近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、  アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト） ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト） WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る （必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する） みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、  Tonjiru ソリューション  Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx  という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。  ### 審査 パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日10日ぐらいたってストアを確認すると、起動しないといってリジェクトされていました……orzこの時点でやる気を失ってしまい、ほとんど放置状態だったのですが、忘れかけた頃に Microsoft からメールが届きました。  僕は英語を読めないのでよくわからんのですが、FullTrust 権限を許可するみたいなことが書いてあるみたいです。やる気がちょっと回復したので、申請に手を加えず再投稿。そしてまたリジェクトを食らいました。やる気ダダ下がり……。ただ、これは自分のミスで、ターゲットプラットフォームのチェックに Windows 10 Mobile が入っていたからでした。Win32/WPF アプリは W10M で使えないのでむべなるかな。ってか、それぐらい気を利かして、チェックを外してくれてもよかろうモノですが……まぁ、あっちの審査部門はそういうお役所仕事が役割なわけで、仕方ないですね。そこだけちゃんと修正して再提出してら、ストアに掲載されました。ぉ、わいの Desktop Bridge アプリがストアに上がったぞ。長かったー / “Tonjiru を入手 - Microsoft Store ja-JP” https://t." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/07/24/060000/" >
+                    <h1 class="entry__header-title-link-text">7月18日：「Tonjiru」アプリがストアで公開されました（長かったー</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/07/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2018/07/24/060000/20180724032700.png"/> 
+</figure>
+ワンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。<a href="https://www.microsoft.com/ja-jp/p/tonjiru/9n2qr45vcmp1">Tonjiru を入手 - Microsoft Store ja-JP</a><br/></p>
+<div class="section">
+    ### APPX にパッケージングする
+    <figure>
+    <img src="/images/2018/07/24/060000/20180724032856.png"/> 
+</figure>
+最近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については <a href="https://docs.microsoft.com/ja-jp/windows/uwp/porting/desktop-to-uwp-packaging-dot-net">Microsoft Docs</a> を参照してください。かいつまんで言うと、
+<ul>
+<li>アプリを作る（Tonjiru ソリューション -> Tonjiru プロジェクト）</li>
+<li>ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション -> WindowsAppPackageプロジェクト）</li>
+<li>WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る</li>
+<li>（必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する）</li>
+</ul>みたいな流れです。できあがったパッケージは <code>WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxupload</code>のような名前になります。名前がイマイチですね……できればこれからは、
+<ul>
+<li>Tonjiru ソリューション
+<ul>
+<li>Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe</li>
+<li>Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx</li>
+</ul></li>
+</ul>という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。
+</div>
+<div class="section">
+    ### 審査
+    パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。>自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>10日ぐらいたってストアを確認すると、起動しないといってリジェクトされていました……orzこの時点でやる気を失ってしまい、ほとんど放置状態だったのですが、忘れかけた頃に Microsoft からメールが届きました。<figure>
+    <img src="/images/2018/07/24/060000/20180724034849.png"/> 
+</figure>
+僕は英語を読めないのでよくわからんのですが、FullTrust 権限を許可するみたいなことが書いてあるみたいです。やる気がちょっと回復したので、申請に手を加えず再投稿。そしてまたリジェクトを食らいました。やる気ダダ下がり……。ただ、これは自分のミスで、ターゲットプラットフォームのチェックに Windows 10 Mobile が入っていたからでした。Win32/WPF アプリは W10M で使えないのでむべなるかな。ってか、それぐらい気を利かして、チェックを外してくれてもよかろうモノですが……まぁ、あっちの審査部門はそういうお役所仕事が役割なわけで、仕方ないですね。そこだけちゃんと修正して再提出してら、ストアに掲載されました。>ぉ、わいの Desktop Bridge アプリがストアに上がったぞ。長かったー / “Tonjiru を入手 - Microsoft Store ja-JP” https://t.co/OGgtrbq4dy— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年7月18日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>なんか1カ月以上かかったんですけど、まぁ、最初だし手際が悪いのは仕方ないね。次からはもっとすんなりいけそうな気がするので、またしょうもないアプリを作ってストアを賑わわせようかなって思います。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-07-24T06:00:00JST">2018/07/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?7%e6%9c%8818%e6%97%a5%ef%bc%9a%e3%80%8cTonjiru%e3%80%8d%e3%82%a2%e3%83%97%e3%83%aa%e3%81%8c%e3%82%b9%e3%83%88%e3%82%a2%e3%81%a7%e5%85%ac%e9%96%8b%e3%81%95%e3%82%8c%e3%81%be%e3%81%97%e3%81%9f%ef%bc%88%e9%95%b7%e3%81%8b%e3%81%a3%e3%81%9f%e3%83%bc%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/07/24/060000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=7%E6%9C%8818%E6%97%A5%EF%BC%9A%E3%80%8CTonjiru%E3%80%8D%E3%82%A2%E3%83%97%E3%83%AA%E3%81%8C%E3%82%B9%E3%83%88%E3%82%A2%E3%81%A7%E5%85%AC%E9%96%8B%E3%81%95%E3%82%8C%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88%E9%95%B7%E3%81%8B%E3%81%A3%E3%81%9F%E3%83%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F07%2F24%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/07/26/175449/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/07/23/080802/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/06/20/232113/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  ちょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。
+&gt; Web deployment task failed. (&amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;#39; のタイプ初期化子が例外をスローしました。)  コードはちょっといじったけど、定数値を変えただけで、ロジックは変えていない。Visual Studio のアップデートが原因か、インフラ側で何か変更があったのか。ググってみたけど対処方法がよく分かんなかったので、今は FTP 経由で発行している。発行のたびにポータルでサイトを一時停止しなくちゃいけないのがすごい面倒……セキュリティ的にも褒められたものではないだろうし、なんとかなんないかなぁ。
+### 追記（2018/06/23 19:30） 一旦 Web サイトを停止したら Web Deploy でも配置できるかなぁ、と思ってやってみたんだけど、ダメだった。  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-azure/">Microsoft Azure</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/06/20/232113/" >
+                    <h1 class="entry__header-title-link-text">未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/06/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2018/06/20/232113/20180620231506.png"/> 
+</figure>
+ちょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。</p>
+<pre><code>&gt;
+    Web deployment task failed. (&amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;#39; のタイプ初期化子が例外をスローしました。)
+</code></pre>
+<p>コードはちょっといじったけど、定数値を変えただけで、ロジックは変えていない。Visual Studio のアップデートが原因か、インフラ側で何か変更があったのか。ググってみたけど対処方法がよく分かんなかったので、今は <strong>FTP 経由で発行</strong>している。発行のたびにポータルでサイトを一時停止しなくちゃいけないのがすごい面倒……セキュリティ的にも褒められたものではないだろうし、なんとかなんないかなぁ。</p>
+<div class="section">
+    ### 追記（2018/06/23 19:30）
+    一旦 Web サイトを停止したら Web Deploy でも配置できるかなぁ、と思ってやってみたんだけど、ダメだった。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-06-20T23:21:13JST">2018/06/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e6%9c%aa%e8%a7%a3%e6%b1%ba%ef%bc%9aVisual%20Studio%202017%20%e3%81%8b%e3%82%89%20Azure%20%e3%81%b8%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%8f%e3%81%aa%e3%81%a3%e3%81%9f%ef%bc%88%e5%9b%9e%e9%81%bf%e7%ad%96%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/06/20/232113/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E6%9C%AA%E8%A7%A3%E6%B1%BA%EF%BC%9AVisual&#43;Studio&#43;2017&#43;%E3%81%8B%E3%82%89&#43;Azure&#43;%E3%81%B8%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%8F%E3%81%AA%E3%81%A3%E3%81%9F%EF%BC%88%E5%9B%9E%E9%81%BF%E7%AD%96%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F20%2F232113%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/23/114536/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/19/202122/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

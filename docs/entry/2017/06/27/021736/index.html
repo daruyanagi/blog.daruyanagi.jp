@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/06/27/021736/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ウチの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。
+### 前提条件と大まかな流れ まず Visual Studio 2017 Community の「ASP.NET と Web 開発」というワークロードがインストールされている環境を用意（これだけで足りんかったらごめんな、正直よくわかってないんや）。空のテンプレートを作成し、トップページの Index.cshtml を表示するところまで頑張ります。  ### 実装 #### 空のテンプレートを作成   まず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。  .NET Core .NET Framework の 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。  .NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。  プロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。  #### 空のテンプレートを概観   プロジェクトが作成されたら、さらっと中身を見てみましょう。ファイル構造はこんな感じです  wwwroot フォルダー Program." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-azure/">Microsoft Azure</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/06/27/021736/" >
+                    <h1 class="entry__header-title-link-text">空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/06/27</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/06/27/021736/20170627010541.png"/> 
+</figure>
+ウチの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。</p>
+<div class="section">
+    ### 前提条件と大まかな流れ
+    まず Visual Studio 2017 Community の「ASP.NET と Web 開発」というワークロードがインストールされている環境を用意（これだけで足りんかったらごめんな、正直よくわかってないんや）。空のテンプレートを作成し、トップページの Index.cshtml を表示するところまで頑張ります。
+</div>
+<div class="section">
+    ### 実装
+<div class="section">
+    #### 空のテンプレートを作成
+    <figure>
+    <img src="/images/2017/06/27/021736/20170627011714.png"/> 
+</figure>
+まず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。
+<ul>
+<li>.NET Core</li>
+<li>.NET Framework</li>
+</ul>の 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。<figure>
+    <img src="/images/2017/06/27/021736/20170627022120.png"/> 
+</figure>
+.NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。<figure>
+    <img src="/images/2017/06/27/021736/20170627012047.png"/> 
+</figure>
+プロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。
+</div>
+<div class="section">
+    #### 空のテンプレートを概観
+    <figure>
+    <img src="/images/2017/06/27/021736/20170627012316.png"/> 
+</figure>
+プロジェクトが作成されたら、さらっと中身を見てみましょう。ファイル構造はこんな感じです
+<ul>
+<li>wwwroot フォルダー</li>
+<li>Program.cs</li>
+<li>Startup.cs</li>
+</ul>シンプルでいい感じ。最初に実行される main() 関数は Program.cs に記述されています。
+```cs
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Hosting;
+<p>namespace Sample
+{
+public class Program
+{
+public static void Main(string[] args)
+{
+var host = new WebHostBuilder()
+.UseKestrel()
+.UseContentRoot(Directory.GetCurrentDirectory())
+.UseIISIntegration()
+.UseStartup&lt;Startup&gt;()
+.UseApplicationInsights()
+.Build();</p>
+<pre><code>        host.Run();
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-よくわからんけど、いろんな設定をしてホストを作成し、実行しているみたいですね。素人は触らん方がよさそう。一方の" data-lang="よくわからんけど、いろんな設定をしてホストを作成し、実行しているみたいですね。素人は触らん方がよさそう。一方の">```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Sample
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.Run(async (context) =&gt;
+            {
+                await context.Response.WriteAsync(&quot;Hello World!&quot;);
+            });
+        }
+    }
+}
+
+```ConfigureServices と Configure という二つのメソッドがあり、Configure で Hello World! を出力する（context.Response.WriteAsync）ようになっているみたい。<figure>
+    <img src="/images/2017/06/27/021736/20170627012904.png"/> 
+</figure>
+実際に［F5］キーで実行してみると、Hello World! が出力されました。つまり、どっかにファイルを置いて読み込み、context.Response.WriteAsync() すれば、とりあえずトップページは出力されそう……だけど、後々のことを考えると流石にそれはめんどくさそうなので、フレームワークの力を借りておこうかな。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### ASP.NET Core MVC の導入
+    できれば使い慣れた ASP.NET Web Pages の ASN.NET Core 版のようなのがあればよかったのだけど、今のところ無いのかな？　よくわかんないので、比較的情報の多かった ASN.NET Core MVC を導入してみます。NuGet パッケージで簡単にインストールできるみたいなので、今回はそれを利用してみましょう。アプリを終了して、ソリューションのコンテキストメニューから［ソリューションの NuGet パッケージを管理］コマンドを選択。<figure>
+    <img src="/images/2017/06/27/021736/20170627013555.png"/> 
+</figure>
+「Microsoft.AspNetCore.MVC」を探してインストールします。<figure>
+    <img src="/images/2017/06/27/021736/20170627013752.png"/> 
+</figure>
+パッケージがクソほどあってビビるけど、インストールは一瞬で終わりました。
+</code></pre><p>：
+：
+'Microsoft.Extensions.WebEncoders 1.1.2' が Sample に正常にインストールされました
+NuGet の操作の実行に 2.22 sec かかりました
+経過した時間: 00:00:04.0184836
+========== 終了 ==========</p>
+<p>NuGet パッケージを復元しています&hellip;
+経過した時間: 00:00:01.3445620
+========== 終了 ==========</p>
+<pre><code class="language-最近の" data-lang="最近の">```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
+
+namespace Sample
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+            // MVC を追加
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            loggerFactory.AddConsole();
+
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // 使わないのでコメントアウト
+            // app.Run(async (context) =&gt;
+            // {
+            //     await context.Response.WriteAsync(&quot;Hello World!&quot;);
+            // });
+
+            // ルーティング を追加
+            app.UseMvc(routes =&gt;
+            {
+                routes.MapRoute(
+                name: &quot;default&quot;,
+                template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+            });
+        }
+    }
+}
+
+```ビルドしてエラーがなければ次に進みます。ルーティングのマップは、
+
+&lt;ul&gt;
+&lt;li&gt;/Hoge/Fuga/Piyo&lt;/li&gt;
+&lt;/ul&gt;にアクセスしたら、
+
+&lt;ul&gt;
+&lt;li&gt;HogeController の Fuga() メソッドを叩け（引数は Piyo）&lt;/li&gt;
+&lt;/ul&gt;って感じの意味だと思います。デフォルト引数（？）が設定されているので、ルートへのアクセスで
+
+&lt;ul&gt;
+&lt;li&gt;HomeController の Index() メソッドを叩け&lt;/li&gt;
+&lt;/ul&gt;になります。Index() メソッドでビューを表示できれば今回の目標は完了やね。――というわけで、次はコントローラーと、それを表示するビューの実装です。
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### コントローラーとビューを作成
+    <figure>
+    <img src="/images/2017/06/27/021736/20170627015130.png"/> 
+</figure>
+以下のような構造でコントローラーとビューを作成します。この辺りは MVC の“お約束”なので覚えるしかない。<figure>
+    <img src="/images/2017/06/27/021736/20170627021309.png"/> 
+</figure>
+&lt;br/&gt;
+
+
+&lt;ul&gt;
+&lt;li&gt;**Controllers フォルダー**
+&lt;ul&gt;
+&lt;li&gt;**HomeController.cs**&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;**Views フォルダー**
+&lt;ul&gt;
+&lt;li&gt;**Home フォルダー**
+&lt;ul&gt;
+&lt;li&gt;**Index.cshtml**&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;li&gt;wwwroot フォルダー&lt;/li&gt;
+&lt;li&gt;Program.cs&lt;/li&gt;
+&lt;li&gt;Startup.cs&lt;/li&gt;
+&lt;/ul&gt;ソリューションエクスプローラーのコンテキストメニューには［追加］－［コントローラー］というコマンドがあるのですが、これを使うとなんかエラーが出たので、［新しい項目］コマンドからコントローラーを追加しました。<figure>
+    <img src="/images/2017/06/27/021736/20170627015202.png"/> 
+</figure>
+先程、ルーティングでデフォルトコントローラーの名前を“Home”にしておいたのにはとくに意味はなく、単にこのときの既定の名前が“HomeController.cs”だったからデス。名前はお好みで。
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
+using Microsoft.AspNetCore.Mvc;
+
+// For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+
+namespace Sample.Controllers
+{
+    public class HomeController : Controller
+    {
+        // GET: /&lt;controller&gt;/&lt;/controller&gt;
+        public IActionResult Index()
+        {
+            return View();
+        }
+    }
+}
+
+```Index() も用意されているので、ここで追加のコーディングは不要。なんでも既定（“お約束”）に合わせておくと色々楽ちん。<figure>
+    <img src="/images/2017/06/27/021736/20170627015533.png"/> 
+</figure>
+ビューもおんなじ感じで。作成するやで。ビューは殺風景なので、適当にサンプルを書いてみました。
+```cs
+@{ 
+    var message = &quot;Hello! World&quot;;
+}
+
+&amp;lt;html&gt;
+    &amp;lt;head&gt;
+        &amp;lt;title&gt;@message&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;p&gt;@message&amp;lt;/p&gt;
+
+        &amp;lt;p&gt;@DateTime.Now&amp;lt;/p&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```［F5］で実行します。<figure>
+    <img src="/images/2017/06/27/021736/20170627015831.png"/> 
+</figure>
+フーーーッ！　これでだいたい完了！　あとはビューをしこしこ書いていくだけです。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### 性的静的ファイルを利用
+    けれど、これだけだと CSS や JavaScript を置いて読み込んだりできなくて不便でした。というわけで、以下の設定を Startup.cs の Configure() メソッドに追加しておきました（もうネームスペースやクラスの部分は省いて大丈夫ですよね！）。
+```cs
+public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+    loggerFactory.AddConsole();
+
+    if (env.IsDevelopment())
+    {
+        app.UseDeveloperExceptionPage();
+    }
+
+    // 以下の2行を追加
+    app.UseDefaultFiles();
+    app.UseStaticFiles();
+
+    app.UseMvc(routes =&gt;
+    {
+        routes.MapRoute(
+        name: &quot;default&quot;,
+        template: &quot;{controller=Home}/{action=Index}/{id?}&quot;);
+    });
+}
+
+```これで wwwroot に静的ファイルがあるかどうかをチェックし、あればそっちを先に読み込んでくれます。ビューを cshtml にする必要がなければ、html にして wwwroot に置いておき、この二行を追加するだけでもよかったね。……まぁ、今後のことも考えると無駄ではないけど。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### デプロイ
+    <figure>
+    <img src="/images/2017/06/27/021736/20170627020507.png"/> 
+</figure>
+プロジェクトのコンテキストメニューから［公開］コマンドを選択。あとはそんなに難しくないと思うで、以下省略。ウチの場合はトラブルなく、デプロイまで完了しました。いずれは GitHub 連携でデプロイ……みたいな感じにしたいですね。終わり！
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-06-27T02:17:36JST">2017/06/27</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e7%a9%ba%e3%81%ae%20ASP.NET%20Core%20%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%8b%e3%82%89%e3%81%a8%e3%82%8a%e3%81%82%e3%81%88%e3%81%9a%20Web%20%e3%82%b5%e3%82%a4%e3%83%88%e3%81%ae%e3%83%88%e3%83%83%e3%83%97%e3%83%9a%e3%83%bc%e3%82%b8%e3%82%92%e6%9b%b8%e3%81%84%e3%81%a6%20Azure%20%e3%81%ab%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%99%e3%82%8b%e3%81%be%e3%81%a7%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/06/27/021736/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/29/030457/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/26/004342/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

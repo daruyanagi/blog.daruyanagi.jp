@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/03/13/065552/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」_とコメントを付けてくれました。これは要するに、_「そのやり方をブログに書け」_ということですよね！（違幸い、しばやんが偶然たまたま ASP.NET SignalR で接続中のクライアントを数えてみる - しばやん雑記 という記事を書いてくれましたので、それをコピペ参考にして、昨日のサンプルに追加してみました。
+### ~/_AppStart.cshtml ```cs @using System.Web.Routing @{ RouteTable.Routes.MapHubs(); }
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ~/App_Code/ChatHub.cshtml ```cs using Microsoft.AspNet.SignalR; // 追加 using Microsoft.AspNet.SignalR.Hubs; using System.Collections.Concurrent; using System.Threading.Tasks; [HubName(&quot;chat&quot;)] public class ChatHub : Hub { public void Send(string message) { Clients.All.addMessage(message); } // 以下、追加 private static readonly ConcurrentDictionary&amp;lt;string, bool&gt; _connections = new ConcurrentDictionary&amp;lt;string, bool&gt;(); public override Task OnConnected() { _connections." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/signalr/">SignalR</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/03/13/065552/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/03/13</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>緑タイツの中の人が Facebook で、昨日の記事（<a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613">WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ</a>）に_「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」_とコメントを付けてくれました。これは要するに、_「そのやり方をブログに書け」_ということですよね！（違幸い、しばやんが偶然たまたま <a href="http://shiba-yan.hatenablog.jp/entry/20130312/1363090277">ASP.NET SignalR で接続中のクライアントを数えてみる - しばやん雑記</a> という記事を書いてくれましたので、それを<del>コピペ</del>参考にして、昨日のサンプルに追加してみました。</p>
+<div class="section">
+    ### ~/_AppStart.cshtml
+    ```cs
+@using System.Web.Routing
+<p>@{
+RouteTable.Routes.MapHubs();
+}</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/App_Code/ChatHub.cshtml
+    ```cs
+using Microsoft.AspNet.SignalR;
+
+// 追加
+using Microsoft.AspNet.SignalR.Hubs;
+using System.Collections.Concurrent;
+using System.Threading.Tasks;
+
+[HubName(&quot;chat&quot;)]
+public class ChatHub : Hub 
+{
+    public void Send(string message)
+    {        
+        Clients.All.addMessage(message);
+    }
+    
+    // 以下、追加
+    private static readonly ConcurrentDictionary&amp;lt;string, bool&gt;
+        _connections = new ConcurrentDictionary&amp;lt;string, bool&gt;();
+
+    public override Task OnConnected()
+    {
+        _connections.TryAdd(Context.ConnectionId, true);
+
+        return Clients.All.notify(_connections.Count);
+    }
+
+    public override Task OnDisconnected()
+    {
+        bool value;
+
+        _connections.TryRemove(Context.ConnectionId, out value);
+
+        return Clients.All.notify(_connections.Count);
+    }
+
+    public override Task OnReconnected()
+    {
+        _connections.TryAdd(Context.ConnectionId, true);
+
+        return Clients.All.notify(_connections.Count);
+    }
+}
+
+```Dictionary で 接続ID を管理する処理が追加されています。ConcurrentDictionary は、
+
+    &gt;
+        複数のスレッドから同時にアクセスできるキーと値のペアのスレッド セーフなコレクションを表します。
+
+        http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx
+    
+.NET Framework 4 から使えるのかな？しばやんの記事を読むまでは、単純に接続イベントで int Count をインクリメント・デクリメントしようと思っていたのですが、そんなに簡単なお話ではなかったようです。あと、クラス名を ChatHub に変更しました。ファイル名とクラス名は合わせたいかな、と思ったので。これには追加の名前空間（Microsoft.AspNet.SignalR.Hubs）が必要です。 [HubName(&quot;chat&quot;)] という属性を追加すれば動作に影響はありません。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Default.cshtml
+    ```html
+@{
+    
+}
+
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+
+        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+
+        &amp;lt;script src=&quot;~/Scripts/jquery-1.9.1.min.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script src=&quot;~/Scripts/jquery.signalR-1.0.1.min.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script src=&quot;~/signalr/hubs&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;
+            $(function () {
+                var chat = $.connection.chat;
+
+                chat.client.addMessage = function (message) {
+                    $(&amp;#39;#messages&amp;#39;).append(&amp;#39;&lt;li&gt;&amp;#39;&lt;/li&gt; + message + &amp;#39;&amp;#39;);
+                };
+
+                // notify() を追加
+                chat.client.notify = function (message) {
+                    $(&amp;#39;#count&amp;#39;).html(message)
+                };
+
+                $.connection.hub.start().done(function () {
+                    $(&quot;#broadcast&quot;).click(function () {
+                        chat.server.send($(&amp;#39;#msg&amp;#39;).val());
+                        $(&quot;#msg&quot;).val(&quot;&quot;); // 追加
+                    });
+                });
+            });
+        &amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;div&gt;&lt;!-- 追加 --&gt;
+            現在、&amp;lt;span id=&quot;count&quot;&gt;&amp;lt;/span&gt;人が接続しています。
+        &amp;lt;/div&gt;&lt;!-- ここまで --&gt;
+        &amp;lt;div&gt;
+            &amp;lt;input type=&quot;text&quot; id=&quot;msg&quot; /&gt;
+            &amp;lt;input type=&quot;button&quot; id=&quot;broadcast&quot; value=&quot;broadcast&quot; /&gt;
+
+            &amp;lt;ul id=&quot;messages&quot;&gt;
+            &amp;lt;/ul&gt;
+        &amp;lt;/div&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```ハブが Clients.All.notify(接続数) するので、クライアント側でそれを span#count にセットします。ついでに、ブロードキャストしたときにテキストボックスを空にする処理を加えておきました。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 結果
+    <figure>
+    <img src="/images/2013/03/13/065552/20130313064343.png"/> 
+</figure>
+できました！
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-03-13T06:55:52JST">2013/03/13</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/03/13/065552/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F13%2F065552%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/13/102121/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/12/093613/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

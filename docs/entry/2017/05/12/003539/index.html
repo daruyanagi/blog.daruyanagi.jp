@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/05/12/003539/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            PowerShell：String を String で分割する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。さて、この間こんな感じのコードを書いたんですよ。
+$text = &amp;#39;Microsoft Edge on Windows 10 Version 1511 for x64-based Systems&amp;#39; $text.Split(&amp;#39; on &amp;#39;)[-1]  ```意図としては、文字列を“ on ”で分割して後ろ部分“Windows 10 Version 1511 for x64-based Systems”を取り出したい、みたいな感じだったのですが……結果はこうでした Systems
+```cs text.Split(new char[] { &amp;#39; &amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;n&amp;#39;, &amp;#39; &amp;#39; }) ```が実行されたんですね？（C# ならコンパイルエラーで止まる、というか、IntelliSense が補ってくれるから間違えない）　ためしに &lt;code&gt;| write&lt;/code&gt; と書き足してみたところ、ぐちゃぐちゃに引き裂かれた文字列たちが出力されました(´；ω；`)ｳｯ…でも、これちょっと面白いかも。文字列を文字列で分割したい場合、.NET だと &lt;code&gt;String.Split(string[], StringSplitOptions)&lt;/code&gt; を使えばよいので、PowerShell だとこんな感じになるみたいです。 ```ps1 // text.Split(new string[] { &quot; on &quot; }, StringSplitOptions.None) のつもり $text.Split(@(&quot; on &quot;), &amp;#39;None&amp;#39;)[-1] ```これでいいのかイマイチよくわかっていないのですが、これで意図通りに動きました。 Windows 10 Version 1511 for x64-based Systems" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/05/12/003539/" >
+                    <h1 class="entry__header-title-link-text">PowerShell：String を String で分割する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/05/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。さて、この間こんな感じのコードを書いたんですよ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$text = &amp;<span style="color:#75715e">#39;Microsoft Edge on Windows 10 Version 1511 for x64-based Systems&amp;#39;</span>
+
+$text.Split(&amp;<span style="color:#75715e">#39; on &amp;#39;)[-1] </span>
+
+```意図としては<span style="color:#960050;background-color:#1e0010">、</span>文字列を<span style="color:#960050;background-color:#1e0010">“</span> on <span style="color:#960050;background-color:#1e0010">”</span>で分割して後ろ部分<span style="color:#960050;background-color:#1e0010">“</span>Windows 10 Version 1511 <span style="color:#66d9ef">for</span> x64-based Systems<span style="color:#960050;background-color:#1e0010">”</span>を取り出したい<span style="color:#960050;background-color:#1e0010">、</span>みたいな感じだったのですが<span style="color:#960050;background-color:#1e0010">……</span>結果はこうでした
+</code></pre></div><p>Systems</p>
+<pre><code class="language-そもそも" data-lang="そもそも">```cs
+text.Split(new char[] { &amp;#39; &amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;n&amp;#39;, &amp;#39; &amp;#39; })
+
+```が実行されたんですね？（C# ならコンパイルエラーで止まる、というか、IntelliSense が補ってくれるから間違えない）　ためしに &lt;code&gt;| write&lt;/code&gt; と書き足してみたところ、ぐちゃぐちゃに引き裂かれた文字列たちが出力されました(´；ω；`)ｳｯ…でも、これちょっと面白いかも。文字列を文字列で分割したい場合、.NET だと &lt;code&gt;String.Split(string[], StringSplitOptions)&lt;/code&gt; を使えばよいので、PowerShell だとこんな感じになるみたいです。
+```ps1
+// text.Split(new string[] { &quot; on &quot; }, StringSplitOptions.None) のつもり
+
+$text.Split(@(&quot; on &quot;), &amp;#39;None&amp;#39;)[-1]
+
+```これでいいのかイマイチよくわかっていないのですが、これで意図通りに動きました。
+</code></pre><p>Windows 10 Version 1511 for x64-based Systems</p>
+<pre><code class="language-ちょっと気持ち悪いような、なるほど、みたいな、不思議な感じ。でも、みなさんは" data-lang="ちょっと気持ち悪いような、なるほど、みたいな、不思議な感じ。でも、みなさんは">```ps1
+($text -split &amp;#39; on &amp;#39;)[-1]
+
+```&lt;code&gt;-split&lt;/code&gt; 演算子というのが用意されているので、これを使えばいいでしょう。なんか正規表現も使えるらしいぜ？まだまだ PowerShell がちゃんとしゃべれなくて恥ずかしいですが、少しずつ使いこなせるようになりたいと思います。
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-05-12T00:35:39JST">2017/05/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?PowerShell%ef%bc%9aString%20%e3%82%92%20String%20%e3%81%a7%e5%88%86%e5%89%b2%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/05/12/003539/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=PowerShell%EF%BC%9AString&#43;%E3%82%92&#43;String&#43;%E3%81%A7%E5%88%86%E5%89%B2%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F12%2F003539%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/05/14/213548/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/05/11/175417/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

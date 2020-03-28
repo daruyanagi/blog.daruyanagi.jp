@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/03/18/030810/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            UWP ＋ WebView ＋ XPath でスクレイピングする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。
+public sealed partial class MainPage : Page { public MainPage() { this.InitializeComponent(); Loaded &#43;= MainPage_Loaded; } private void MainPage_Loaded(object sender, RoutedEventArgs e) { var browser = new WebView(); var url = &#34;https://google.co.jp/&#34;; var xpath = &#34;//h1&#34;; var result_type = &#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;; var function = $&#34;document.evaluate(&#34; &#43; &#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34; &#43; &#34;).singleNodeValue.innerHTML;&#34;; browser.NavigationCompleted &#43;= async (s, args) =&gt; { if (!args.IsSuccess) throw new Exception(); var html = await browser." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/03/18/030810/" >
+                    <h1 class="entry__header-title-link-text">UWP ＋ WebView ＋ XPath でスクレイピングする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/03/18</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainPage</span> : Page
+{
+    <span style="color:#66d9ef">public</span> MainPage()
+    {
+        <span style="color:#66d9ef">this</span>.InitializeComponent();
+
+        Loaded += MainPage_Loaded;
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MainPage_Loaded(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
+    {
+        <span style="color:#66d9ef">var</span> browser = <span style="color:#66d9ef">new</span> WebView();
+        <span style="color:#66d9ef">var</span> url = <span style="color:#e6db74">&#34;https://google.co.jp/&#34;</span>;
+        <span style="color:#66d9ef">var</span> xpath = <span style="color:#e6db74">&#34;//h1&#34;</span>;
+        <span style="color:#66d9ef">var</span> result_type = <span style="color:#e6db74">&#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;</span>;
+        <span style="color:#66d9ef">var</span> function = <span style="color:#e6db74">$&#34;document.evaluate(&#34;</span> + 
+            <span style="color:#e6db74">&#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34;</span> + 
+            <span style="color:#e6db74">&#34;).singleNodeValue.innerHTML;&#34;</span>;
+
+        browser.NavigationCompleted += <span style="color:#66d9ef">async</span> (s, args) =&gt;
+        {
+            <span style="color:#66d9ef">if</span> (!args.IsSuccess) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception();
+
+            <span style="color:#66d9ef">var</span> html = <span style="color:#66d9ef">await</span> browser.InvokeScriptAsync(
+                <span style="color:#e6db74">&#34;eval&#34;</span>, 
+                <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>[] { function, }
+            );
+
+            System.Diagnostics.Debug.WriteLine(html);
+        };
+
+        browser.Navigate(<span style="color:#66d9ef">new</span> Uri(url));
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```一応うまくいっているみたい。</span><figure>
+    <img src="/images/2017/03/18/030810/20170318025944.png"/> 
+</figure>
+しかし<span style="color:#960050;background-color:#1e0010">、</span>Windows <span style="color:#960050;background-color:#1e0010">ストアなんかでスクレイピングをやろうとすると、アプリの切り替えダイアログが出てしまう（プロトコルハンドラーとか言うのか？</span>　<span style="color:#960050;background-color:#1e0010">これ）。</span><figure>
+    <img src="/images/2017/03/18/030810/20170318030427.png"/> 
+</figure>
+あと<span style="color:#960050;background-color:#1e0010">、</span>AngularJS <span style="color:#960050;background-color:#1e0010">みたいなサイトでは使えないかもしれない（やり方が悪いだけかもしれない）。また、</span>WebView <span style="color:#960050;background-color:#1e0010">は</span> UI <span style="color:#960050;background-color:#1e0010">スレッドで動作するらしいので、バックグラウンドタスクで利用することもできない。あんまりスジのいい方法ではなさそうだ、というのが今回の結論かも。</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-03-18T03:08:10JST">2017/03/18</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?UWP%20%ef%bc%8b%20WebView%20%ef%bc%8b%20XPath%20%e3%81%a7%e3%82%b9%e3%82%af%e3%83%ac%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/03/18/030810/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=UWP&#43;%EF%BC%8B&#43;WebView&#43;%EF%BC%8B&#43;XPath&#43;%E3%81%A7%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F18%2F030810%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/21/152242/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/15/195839/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

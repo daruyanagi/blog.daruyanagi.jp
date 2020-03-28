@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/11/15/160504/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            テキストエリアの高さをウィンドウサイズに合わせて調節したい | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。  要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。
+&amp;lt;script&gt; $(window).bind(&#34;resize ready&#34;, function(event){ $(&amp;#39;#Content&amp;#39;).height( $(&amp;#39;#Content&amp;#39;).height() &#43; $(window).height() - $(document.body).height() ); }); &amp;lt;/script&gt; ```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。  ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/javascript/">JavaScript </a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/11/15/160504/" >
+                    <h1 class="entry__header-title-link-text">テキストエリアの高さをウィンドウサイズに合わせて調節したい</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/11/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/11/15/160504/20141115155110.png"/> 
+</figure>
+テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。<figure>
+    <img src="/images/2014/11/15/160504/20141115155122.png"/> 
+</figure>
+要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#34;resize ready&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>){
+        <span style="color:#a6e22e">$</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Content</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">height</span>(
+            <span style="color:#a6e22e">$</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Content</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">height</span>()  <span style="color:#f92672">+</span> 
+            <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">height</span>() <span style="color:#f92672">-</span> 
+            <span style="color:#a6e22e">$</span>(document.<span style="color:#a6e22e">body</span>).<span style="color:#a6e22e">height</span>()
+        );
+    });
+<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#960050;background-color:#1e0010">/script&gt;</span>
+
+<span style="color:#e6db74">```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。<figure>
+    <img src="/images/2014/11/15/160504/20141115160100.png"/> 
+</figure>
+ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">
+</span></code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-11-15T16:05:04JST">2014/11/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%83%86%e3%82%ad%e3%82%b9%e3%83%88%e3%82%a8%e3%83%aa%e3%82%a2%e3%81%ae%e9%ab%98%e3%81%95%e3%82%92%e3%82%a6%e3%82%a3%e3%83%b3%e3%83%89%e3%82%a6%e3%82%b5%e3%82%a4%e3%82%ba%e3%81%ab%e5%90%88%e3%82%8f%e3%81%9b%e3%81%a6%e8%aa%bf%e7%af%80%e3%81%97%e3%81%9f%e3%81%84%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/11/15/160504/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%83%86%E3%82%AD%E3%82%B9%E3%83%88%E3%82%A8%E3%83%AA%E3%82%A2%E3%81%AE%E9%AB%98%E3%81%95%E3%82%92%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%B5%E3%82%A4%E3%82%BA%E3%81%AB%E5%90%88%E3%82%8F%E3%81%9B%E3%81%A6%E8%AA%BF%E7%AF%80%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F15%2F160504%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/11/19/181233/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/11/14/194808/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

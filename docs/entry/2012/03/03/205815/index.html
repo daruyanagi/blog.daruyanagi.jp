@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/03/03/205815/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            VHD に Windows 8 Consumer Preview をインストールしてデュアルブートしてみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ウチの環境はパーティションを切らずに Windows 7 をインストールしている。これに Windows 8 CP をインストールしたいのだけど、パーティションを縮めたり切ったりするのはちょっと怖い。なので、今回は VHD へ Windows 8 CP をインストールしてデュアルブートにしてみた。
+### VHD の作成 VHD ファイルの作成 - だるろぐ をみて VHD ファイルを作る。今回は C:\VHD\Win8cp.vhd というファイルを作ってみた。  ### インストールメディアの作成  Windows 8 Consumer Preview を DVD-R からインストール……失敗 - だるろぐ Windows 8 Consumer Preview （途中までインストールした） - だるろぐ Windows 8 Consumer Preview のインストールUSBメモリを作ってみた - だるろぐ DVD-R でも USBメモリでもいいので作る。今回はUSBメモリを使った。  ### Windows 8 CP のインストール カスタム設定を選択。インストールするパーティションを選択する画面で、［Shift］＋［F10］キーを押す。するとコマンドプロンプトが起動するので、ここで VHD を接続（Attach）する。```  DISKPART
+DISKPART&gt;SELECT VDISK FILE=&quot;E:\VHD\Win8cp.vhd&rdquo;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/03/03/205815/" >
+                    <h1 class="entry__header-title-link-text">VHD に Windows 8 Consumer Preview をインストールしてデュアルブートしてみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/03/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>ウチの環境はパーティションを切らずに Windows 7 をインストールしている。これに Windows 8 CP をインストールしたいのだけど、パーティションを縮めたり切ったりするのはちょっと怖い。なので、今回は VHD へ Windows 8 CP をインストールしてデュアルブートにしてみた。</p>
+<div class="section">
+    ### VHD の作成
+    <a href="http://daruyanagi.hatenablog.com/entry/2012/03/03/183312">VHD ファイルの作成 - だるろぐ</a> をみて VHD ファイルを作る。今回は C:\VHD\Win8cp.vhd というファイルを作ってみた。
+</div>
+<div class="section">
+    ### インストールメディアの作成
+<ul>
+<li><a href="http://daruyanagi.hatenablog.com/entry/2012/03/01/065626">Windows 8 Consumer Preview を DVD-R からインストール……失敗 - だるろぐ</a></li>
+<li><a href="http://daruyanagi.hatenablog.com/entry/2012/03/01/053229">Windows 8 Consumer Preview （途中までインストールした） - だるろぐ</a></li>
+<li><a href="http://daruyanagi.hatenablog.com/entry/2012/03/02/120740">Windows 8 Consumer Preview のインストールUSBメモリを作ってみた - だるろぐ</a></li>
+</ul>DVD-R でも USBメモリでもいいので作る。今回はUSBメモリを使った。
+</div>
+<div class="section">
+    ### Windows 8 CP のインストール
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120303/20120303203955.png" alt="f:id:daruyanagi:20120303203955p:plain" title="f:id:daruyanagi:20120303203955p:plain" class="hatena-fotolife"/>カスタム設定を選択。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120303/20120303204021.png" alt="f:id:daruyanagi:20120303204021p:plain" title="f:id:daruyanagi:20120303204021p:plain" class="hatena-fotolife"/>インストールするパーティションを選択する画面で、［Shift］＋［F10］キーを押す。するとコマンドプロンプトが起動するので、ここで VHD を接続（Attach）する。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302191323.jpg" alt="f:id:daruyanagi:20120302191323j:plain" title="f:id:daruyanagi:20120302191323j:plain" class="hatena-fotolife"/>
+<pre><code>```
+</code></pre>
+<p>DISKPART</p>
+<p>DISKPART&gt;SELECT VDISK FILE=&quot;E:\VHD\Win8cp.vhd&rdquo;</p>
+<p>DISKPART&gt;ATTACH VDISK</p>
+<p>DISKPART&gt;EXIT</p>
+<p>EXIT</p>
+<pre><code>ドライブレターがズレてしまうので、あらかじめ VHD ファイルのパスを再確認しておこう。ウチの場合は、Eドライブにあった。VHD を接続して［最新の状態に更新］すると、接続したVHDがパーティションの一覧に現れる。あとはそれを選択してインストール作業を進めればよい。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302192540.jpg&quot; alt=&quot;f:id:daruyanagi:20120302192540j:plain&quot; title=&quot;f:id:daruyanagi:20120302192540j:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;できたよー ＼(^o^)／
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### トラブルシューティング
+    
+&lt;div class=&quot;section&quot;&gt;
+    #### このディスクには Windows をインストールできません、と言われる
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302191413.jpg&quot; alt=&quot;f:id:daruyanagi:20120302191413j:plain&quot; title=&quot;f:id:daruyanagi:20120302191413j:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;実際にはインストールが可能。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### スキャンディスクが……
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302192147.jpg&quot; alt=&quot;f:id:daruyanagi:20120302192147j:plain&quot; title=&quot;f:id:daruyanagi:20120302192147j:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;見てみないふりする。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### スタートアップの修復が必要だと言われる
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302194751.jpg&quot; alt=&quot;f:id:daruyanagi:20120302194751j:plain&quot; title=&quot;f:id:daruyanagi:20120302194751j:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;まず落ち着く。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120302/20120302194850.jpg&quot; alt=&quot;f:id:daruyanagi:20120302194850j:plain&quot; title=&quot;f:id:daruyanagi:20120302194850j:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;PC叩いて再起動でもすりゃ直る。
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-03-03T20:58:15JST">2012/03/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?VHD%20%e3%81%ab%20Windows%208%20Consumer%20Preview%20%e3%82%92%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%97%e3%81%a6%e3%83%87%e3%83%a5%e3%82%a2%e3%83%ab%e3%83%96%e3%83%bc%e3%83%88%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/03/03/205815/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=VHD&#43;%E3%81%AB&#43;Windows&#43;8&#43;Consumer&#43;Preview&#43;%E3%82%92%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%97%E3%81%A6%E3%83%87%E3%83%A5%E3%82%A2%E3%83%AB%E3%83%96%E3%83%BC%E3%83%88%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F205815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/03/225037/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/03/184238/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

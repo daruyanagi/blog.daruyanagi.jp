@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/06/051815/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2 / Razor：switch と RenderPage() | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="たとえば、
+ ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。  ~/Posts/Default.cshtml を作成して、  UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ページの表示 という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() = 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。 ```cs @{ var db = Database.Open(&#34;db&#34;); var query = &#34;SELECT * FROM Post ORDER BY CreatedAt DESC&#34;; var posts = db.Query(query); } @switch (UrlData.Count) { case 0: foreach (var post in posts) { @RenderPage(&quot;_Single." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/06/051815/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2 / Razor：switch と RenderPage()</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/01/06/051815/20130106043226.png"/> 
+</figure>
+たとえば、</p>
+<ul>
+<li>~/Posts/ …… ページリストの表示</li>
+<li>~/Posts/:id …… 個別ページの表示</li>
+</ul>というのをやってみたいとき。
+<ul>
+<li>~/Posts/Default.cshtml</li>
+</ul>を作成して、
+<ul>
+<li>UrlData.Count() == 0 ……ページリストの表示</li>
+<li>UrlData.Count() == 1 ……個別ページの表示</li>
+</ul>という処理を書けばいいよね（<a href="https://blog.daruyanagi.jp/entry/2012/07/06/174414">WebMatrix のルーティング - だるろぐ</a>）。こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() >= 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。
+```cs
+@{
+    var db = Database.Open("db");
+    var query = "SELECT * FROM Post ORDER BY CreatedAt DESC";
+    var posts = db.Query(query);
+}
+<p>@switch (UrlData.Count)
+{
+case 0:
+foreach (var post in posts)
+{
+@RenderPage(&quot;_Single.cshtml&rdquo;, post)
+}
+break;
+default:
+@RenderPage(&quot;_Single.cshtml&rdquo;, posts.First())
+break;
+}</p>
+<pre><code class="language-……と思ったけど普通に書いて動いた。<figure>
+    <img src="/images/2013/01/06/051815/20130106050950.png"/> 
+</figure>
+リストの時は" data-lang="……と思ったけど普通に書いて動いた。<figure>
+    <img src="/images/2013/01/06/051815/20130106050950.png"/> 
+</figure>
+リストの時は">```cs
+@{
+    var post = PageData.First().Value;
+}
+
+&amp;lt;div&gt;
+    &amp;lt;header&gt;
+        &amp;lt;h1&gt;@post.Title&amp;lt;/h1&gt;
+        &amp;lt;p&gt;@post.CreatedAt&amp;lt;/p&gt;
+    &amp;lt;/header&gt;
+    &amp;lt;article&gt;
+        @post.Body
+    &amp;lt;/article&gt;
+    &amp;lt;footer&gt;
+        &amp;lt;ul&gt;
+            &amp;lt;li&gt;&amp;lt;a href=&quot;@post.Id&quot;&gt;Show&amp;lt;/a&gt;&amp;lt;/li&gt;
+            &amp;lt;li&gt;&amp;lt;a href=&quot;Edit/@post.Id&quot;&gt;Edit&amp;lt;/a&gt;&amp;lt;/li&gt;
+            &amp;lt;li&gt;&amp;lt;a href=&quot;Delete/@post.Id&quot;&gt;Delete&amp;lt;/a&gt;&amp;lt;/li&gt;
+        &amp;lt;/ul&gt;
+    &amp;lt;/footer&gt;
+&amp;lt;/div&gt;
+
+```RenderPage() を使ったデータの受け渡しがいまいちよくわからなかったのだけど、PostData を介しているみたいで、PageData.First() と書いたらなんとなく動いた。とはいえ、PageData / Page はいろんなところで便利に使っちゃったりする。上書きなどの汚染がちょっと怖いかもしれない。念のため Visual Studio でなかをのぞいてみた。<figure>
+    <img src="/images/2013/01/06/051815/20130106050116.png"/> 
+</figure>
+RenderPage(…, post, 1, 2) と渡してみたのだけど、params の key は順に 0、1、2 とふられるみたい。なので、Page.Title = &quot;hoge&quot;; といった感じで使う分には問題がなさそう。PageData[0] で post がとれるはず。まぁ、わざわざ上書きしたらこの限りではないと思うけれど。
+
+&lt;div class=&quot;section&quot;&gt;
+    ### 注意
+    ```cs
+@switch (UrlData.Count)
+{
+    case 0:
+        foreach (var post in posts)
+        {
+            RenderPage(&quot;_Single.cshtml&quot;, post);
+        }
+        break;
+    default:
+        RenderPage(&quot;_Single.cshtml&quot;, posts.First());
+        break;
+}
+
+```一応これでもコンパイルは通るのだけど、RenderPage() は動かない。@RenderPage() って書かなきゃいけないんだね&lt;a href=&quot;#f-4e69f321&quot; name=&quot;fn-4e69f321&quot; title=&quot;文末の ; は不要になる&quot;&gt;*1&lt;/a&gt;。ここら辺はまだわかるようでよくわかっていないところ。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-4e69f321&quot; name=&quot;f-4e69f321&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;文末の ; は不要になる&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-06T05:18:15JST">2013/01/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%20/%20Razor%ef%bc%9aswitch%20%e3%81%a8%20RenderPage%28%29%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/06/051815/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2&#43;%2F&#43;Razor%EF%BC%9Aswitch&#43;%E3%81%A8&#43;RenderPage%28%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F06%2F051815%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/06/220216/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/05/050056/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

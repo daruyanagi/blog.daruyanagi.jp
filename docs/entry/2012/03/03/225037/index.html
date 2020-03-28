@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/03/03/225037/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Flickr の URL を画像タグへ変換する（oEmbed） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を  サードパーティ上で、写真自体の埋め込みに変換したいときに、 埋め込みに必要なパラメータを取得するためのプロトコルみたいです。
+ URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World  前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。
+```  using System; using System.Collections.Generic; using System.Linq; using System.Web;
+using Codeplex.Data; using System.Net;
+public static class FlickrHelper { private static readonly string Endpoint = @&ldquo;http://www.flickr.com/services/oembed&quot;; public static string FORMAT_URL = @&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;; public static string FORMAT_HTML_TAG = @&rdquo; &lt;blockquote&gt; &lt;p&gt;&lt;img src=&#39;{0}&#39; alt=&#39;{1}&#39; /&gt;&lt;p&gt; &lt;p&gt;&lt;small&gt;{1} by &lt;a href=&#39;{3}&#39;&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt; &lt;/blockquote&gt; &ldquo;; public static string FORMAT_ERROR = @&quot;&lt;p class=&#39;error&#39;&gt;{0}&lt;/p&gt;&rdquo;;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.NET</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/03/03/225037/" >
+                    <h1 class="entry__header-title-link-text">Flickr の URL を画像タグへ変換する（oEmbed）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/03/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を
+</code></pre>
+<p>サードパーティ上で、写真自体の埋め込みに変換したいときに、
+埋め込みに必要なパラメータを取得するためのプロトコルみたいです。</p>
+<pre><code>     URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World
+</code></pre>
+<p>前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。</p>
+<pre><code>```
+</code></pre>
+<p>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;</p>
+<p>using Codeplex.Data;
+using System.Net;</p>
+<p>public static class FlickrHelper
+{
+private static readonly string Endpoint =
+@&ldquo;<a href="http://www.flickr.com/services/oembed%22;">http://www.flickr.com/services/oembed&quot;;</a>
+public static string FORMAT_URL =
+@&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;;
+public static string FORMAT_HTML_TAG = @&rdquo;
+&lt;blockquote&gt;
+&lt;p&gt;&lt;img src='{0}' alt='{1}' /&gt;&lt;p&gt;
+&lt;p&gt;&lt;small&gt;{1} by &lt;a href='{3}'&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
+&lt;/blockquote&gt;
+&ldquo;;
+public static string FORMAT_ERROR =
+@&quot;&lt;p class='error'&gt;{0}&lt;/p&gt;&rdquo;;</p>
+<pre><code>public static string GetHtml(string url,
+    string max_width = &quot;500&quot;, string max_height = &quot;500&quot;)
+{
+    try
+    {
+        return GetHtml(url, 
+            int.Parse(max_width), int.Parse(max_height));
+    }
+    catch (Exception e)
+    {
+        return string.Format(FORMAT_ERROR, e.Message);
+    }
+}
+
+public static string GetHtml(
+    string url, int max_width, int max_height)
+{
+    var format = &quot;json&quot;;
+
+    var address = string.Format(FORMAT_URL,
+        Endpoint, url, max_width, max_height, format);
+
+    using (var client = new WebClient())
+    {
+        try
+        {
+            var response = client.DownloadString(address);
+            var info = DynamicJson.Parse(response);
+
+            return string.Format(FORMAT_HTML_TAG,
+                info.url, info.title,
+                info.author_name, info.author_url);
+        }
+        catch (Exception e)
+        {
+            return string.Format(FORMAT_ERROR, e.Message);
+        }
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code>&lt;br/&gt;
+&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120303/20120303222856.png&quot; alt=&quot;f:id:daruyanagi:20120303222856p:plain&quot; title=&quot;f:id:daruyanagi:20120303222856p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;できた。けど、これだと短縮URL（flic.kr）は使えないみたい。自分で Base58 のデコード処理&lt;a href=&quot;#f1&quot; name=&quot;fn1&quot; title=&quot;短縮URLはPhoto IDをBase58でエンコードしてある&quot;&gt;*1&lt;/a&gt;なり、URLを展開する処理なりを追加する必要がある。 Base58 のデコード処理では Photo ID しか取得できず、結局 API が必要になるので、今回は汎用の短縮URL展開処理を使った。
+
+    ```
+public static Uri ExpandUrl(this Uri input)
+{
+    var req = (HttpWebRequest)WebRequest.Create(input);
+    WebResponse res = req.GetResponse();
+    return res.ResponseUri;
+}
+</code></pre><p>みたいな拡張メソッドを用意して、</p>
+<pre><code>```
+</code></pre>
+<p>if (url.StartsWith(&ldquo;<a href="http://flic.kr/p/%22">http://flic.kr/p/&quot;</a>))
+{
+url = new Uri(url).ExpandUrl().ToString();
+}</p>
+<pre><code>短縮URLを展開してあげる。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;短縮URLはPhoto IDをBase58でエンコードしてある&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-03-03T22:50:37JST">2012/03/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Flickr%20%e3%81%ae%20URL%20%e3%82%92%e7%94%bb%e5%83%8f%e3%82%bf%e3%82%b0%e3%81%b8%e5%a4%89%e6%8f%9b%e3%81%99%e3%82%8b%ef%bc%88oEmbed%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/03/03/225037/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Flickr&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E7%94%BB%E5%83%8F%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F03%2F225037%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/05/220912/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/03/205815/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

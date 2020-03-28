@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2015/01/04/000000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            去年 Amazonで使った金額を計算してみた。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="以下の記事を参考に、「Firefox」で集計。
+ bookmarklet - Amazonで一年間に使った金額と、注文履歴のTSVを出力するブックマークレット【2015年版】 - Qiita まず、［F12］キーを押し、［コンソール］タブを開く。次に、  https://gist.githubusercontent.com/polamjag/866a8af775c44b3c1a6d/raw/9607877660bd04ea06d65328e2eb53d0134b6572/amazon-calc.js に掲載されているコードをコピーして、［コンソール］タブ下部のテキストボックスへペースト。［Enter］キーで実行すると、以下のようなダイアログが表示される。  調べたい年を入力して処理を継続すると、最後にその年に Amazon で使った金額の合計が出力される。  なんかエラーたくさん出たけど気にしないことにした。 google.load(&#34;visualization&#34;, &#34;1.1&#34;, {packages:[&#34;bar&#34;]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([ [&#39;Year&#39;, &#39;合計金額&#39;], [&#39;2006&#39;, 71180 ], [&#39;2007&#39;, 283066 ], [&#39;2008&#39;, 66638 ], [&#39;2009&#39;, 35289 ], [&#39;2010&#39;, 93949 ], [&#39;2010&#39;, 93949 ], [&#39;2011&#39;, 258747 ], [&#39;2012&#39;, 277831 ], [&#39;2013&#39;, 186103 ], [&#39;2014&#39;, 258747 ], ]); var options = { chart: { title: &#39;Amazon 年間消費金額&#39;, subtitle: &#39;2006-2014&#39;, } }; var chart = new google." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/amazon/">Amazon</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2015/01/04/000000/" >
+                    <h1 class="entry__header-title-link-text">去年 Amazonで使った金額を計算してみた。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2015/01/04</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>以下の記事を参考に、「Firefox」で集計。</p>
+<ul>
+<li><a href="http://qiita.com/kyproject/items/d8b259f1eb75a01d3a0b">bookmarklet - Amazonで一年間に使った金額と、注文履歴のTSVを出力するブックマークレット【2015年版】 - Qiita</a></li>
+</ul>まず、［F12］キーを押し、［コンソール］タブを開く。次に、
+<ul>
+<li><a href="https://gist.githubusercontent.com/polamjag/866a8af775c44b3c1a6d/raw/9607877660bd04ea06d65328e2eb53d0134b6572/amazon-calc.js">https://gist.githubusercontent.com/polamjag/866a8af775c44b3c1a6d/raw/9607877660bd04ea06d65328e2eb53d0134b6572/amazon-calc.js</a></li>
+</ul>に掲載されているコードをコピーして、［コンソール］タブ下部のテキストボックスへペースト。［Enter］キーで実行すると、以下のようなダイアログが表示される。<figure>
+    <img src="/images/2015/01/04/000000/20150103093252.png"/> 
+</figure>
+調べたい年を入力して処理を継続すると、最後にその年に Amazon で使った金額の合計が出力される。<figure>
+    <img src="/images/2015/01/04/000000/20150103093344.png"/> 
+</figure>
+なんかエラーたくさん出たけど気にしないことにした。<script type="text/javascript" src="https://www.google.com/jsapi"></script><br/>
+<script type="text/javascript">
+	google.load("visualization", "1.1", {packages:["bar"]});
+	google.setOnLoadCallback(drawChart);
+<pre><code>function drawChart() {
+    var data = google.visualization.arrayToDataTable([
+        ['Year', '合計金額'],
+        ['2006', 71180 ],
+        ['2007', 283066 ],
+        ['2008', 66638 ],
+        ['2009', 35289 ],
+        ['2010', 93949 ],
+        ['2010', 93949 ],
+        ['2011', 258747 ],
+        ['2012', 277831 ],
+        ['2013', 186103  ],
+        ['2014', 258747 ],
+    ]);
+
+    var options = {
+        chart: {
+            title: 'Amazon 年間消費金額',
+            subtitle: '2006-2014',
+        }
+    };
+
+    var chart = new google.charts.Bar(document.getElementById('chart_div'));
+    chart.draw(data, options);
+}
+</code></pre>
+<p></script><br/></p>
+<div id="chart_div" style="width: 540px; height: 360px;"></div>
+<table>
+    <tbody><tr>
+    <td>2014</td>
+    <td>258747 円</td>
+    </tr>
+    <tr>
+    <td>2013</td>
+    <td>186103 円</td>
+    </tr>
+    <tr>
+    <td>2012</td>
+    <td>277831 円</td>
+    </tr>
+    <tr>
+    <td>2011</td>
+    <td>258747 円</td>
+    </tr>
+    <tr>
+    <td>2010</td>
+    <td> 93949 円</td>
+    </tr>
+    <tr>
+    <td>2009</td>
+    <td> 35289 円</td>
+    </tr>
+    <tr>
+    <td>2008</td>
+    <td> 66638 円</td>
+    </tr>
+    <tr>
+    <td>2007</td>
+    <td>283066 円</td>
+    </tr>
+    <tr>
+    <td>2006</td>
+    <td> 71180 円</td>
+    </tr>
+</tbody></table>2010年ぐらいまでは本と CD しか買っておらず、年間10万円を突破することがなかったが<a href="#f-9efef2cc" name="fn-9efef2cc" title="2007 年の消費が異常に多いのは、実家の会社で使うソフト（Windows Vista/Office 2007）やビジネスプリンターを代わりに買ってあげたからのようだ（総額15万ほど）。ほかに実家＆親戚へのクリスマスプレゼントに Wii を2台買ってあげたようだ">*1</a>、2011年からは家具なども買うようになり激増。最近ではビールや食べ物まで買うようになっている<a href="#f-229c37ca" name="fn-229c37ca" title="とくにビールは年に5万ぐらい使っているらしい（憤死">*2</a>。最近は Kindle で本を読むようになったので、ますます Amazon での消費が増えそうだ。
+<div class="section">
+    ### 追記
+<pre><code>&gt;
+    　米アマゾンや楽天のカナダ子会社「コボ」など海外に本店を置くインターネット業者から日本国内に配信された電子書籍や音楽データの取引に、２０１５年１０月から消費税が課税されることになった。
+</code></pre>
+<p>　現在は、海外業者からの電子データ配信には課税されておらず、国内の書店などから不公平だとの批判が出ていた。</p>
+<pre><code>    海外ネット配信に消費税課税へ…電子書籍など : ＩＴ＆メディア : 読売新聞（YOMIURI ONLINE）
+</code></pre>
+<p>まぁ、相変わらずだけど、対応が遅いね。実務的な問題はいろいろあるんだろうけど、前々から指摘されていたことなのだから、さっさとやればいいのにと思う。</p>
+</div><div class="footnote">
+<a href="#fn-9efef2cc" name="f-9efef2cc" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">2007 年の消費が異常に多いのは、実家の会社で使うソフト（Windows Vista/Office 2007）やビジネスプリンターを代わりに買ってあげたからのようだ（総額15万ほど）。ほかに実家＆親戚へのクリスマスプレゼントに Wii を2台買ってあげたようだ</span>
+<a href="#fn-229c37ca" name="f-229c37ca" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">とくにビールは年に5万ぐらい使っているらしい（憤死</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2015-01-04T00:00:00JST">2015/01/04</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%8e%bb%e5%b9%b4%20Amazon%e3%81%a7%e4%bd%bf%e3%81%a3%e3%81%9f%e9%87%91%e9%a1%8d%e3%82%92%e8%a8%88%e7%ae%97%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2015/01/04/000000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%8E%BB%E5%B9%B4&#43;Amazon%E3%81%A7%E4%BD%BF%E3%81%A3%E3%81%9F%E9%87%91%E9%A1%8D%E3%82%92%E8%A8%88%E7%AE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F04%2F000000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/04/134625/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/03/085304/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/03/08/123936/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Windows 8 のセキュリティ機能 ―― Windows XP 以降と比較して | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="「Windows 8 イラネ！」の大合唱に悲しくなる今日この頃ですが、皆様いかがお過ごしでしょうか。まぁ、知ってて「要らねぇ」と言っているのだったら、かなりたいしたものだと思うのですけど。たとえばセキュリティ機能だけみても、Windows 7 から Windows 8 へアップデートする意味はあると思うのですよ。
+ Visual C&#43;&#43; コンパイラの改良（enhanced /GS） ASLR の強化（実行時ランダム化） ヒープ保護の強化 カーネル内部の強化 マルウェアによる攻撃手法と OS による防御機能は共進化している。OS への出費をケチっても、結局おカネを出してサードパーティ製ソフトを導入するか、自分で保護と注意を徹底するか（できるものならな）、長年の怠慢の対価を支払うか、でしかないわけで。ちなみに、セキュリティ機能を Windows XP 以降と比較。実に多くの機能が追加されているのがわかる。    Win XP XP SP2 Vista, 7 Win 8   DEP（ソフトウェア） × ○ ○ ○   DEP（ハードウェア） × ○ ○ ○   ASLR（スタック） × × ○ ◎   ASLR（モジュール） × × ○ ◎   ASLR（ヒープ） × × × ○   ヒープ保護 × × △ ○   カーネル保護（ASLR） × × △ ○   カーネル保護（DEP） × × △ ○   カーネル保護（NULL dereferences） × × × ○   カーネル保護（SMEP/PXN） × × × ○  あと、32bit よりも 64bit の方が強化された ASLR の恩恵が大きい。ただし、いかにシステムを強化しようと  メンテナンスされていない古いプログラムを狙う セキュリティの甘い“人間”を狙う といった攻撃は依然有効。緩和することはできるけれどネ。以下は参考資料。とくにひとつ目の PDF が日本語でありがたい。  http://www." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-8/">Windows 8</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/03/08/123936/" >
+                    <h1 class="entry__header-title-link-text">Windows 8 のセキュリティ機能 ―― Windows XP 以降と比較して</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/03/08</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/03/08/123936/20130610230039.png"/> 
+</figure>
+「Windows 8 イラネ！」の大合唱に悲しくなる今日この頃ですが、皆様いかがお過ごしでしょうか。まぁ、知ってて「要らねぇ」と言っているのだったら、かなりたいしたものだと思うのですけど。たとえばセキュリティ機能だけみても、Windows 7 から Windows 8 へアップデートする意味はあると思うのですよ。</p>
+<ul>
+<li>Visual C++ コンパイラの改良（enhanced /GS）</li>
+<li>ASLR の強化（実行時ランダム化）</li>
+<li>ヒープ保護の強化</li>
+<li>カーネル内部の強化</li>
+</ul>マルウェアによる攻撃手法と OS による防御機能は共進化している。OS への出費をケチっても、結局おカネを出してサードパーティ製ソフトを導入するか、自分で保護と注意を徹底するか（できるものならな）、長年の怠慢の対価を支払うか、でしかないわけで。ちなみに、セキュリティ機能を Windows XP 以降と比較。実に多くの機能が追加されているのがわかる。
+<table>
+    <tbody><tr>
+    <td></td>
+    <td>Win XP</td>
+    <td>XP SP2</td>
+    <td>Vista, 7</td>
+    <td>Win 8</td>
+    </tr>
+    <tr>
+    <td>DEP（ソフトウェア）</td>
+    <td>×</td>
+    <td>○</td>
+    <td>○</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>DEP（ハードウェア）</td>
+    <td>×</td>
+    <td>○</td>
+    <td>○</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>ASLR（スタック）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>○</td>
+    <td>◎</td>
+    </tr>
+    <tr>
+    <td>ASLR（モジュール）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>○</td>
+    <td>◎</td>
+    </tr>
+    <tr>
+    <td>ASLR（ヒープ）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>×</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>ヒープ保護</td>
+    <td>×</td>
+    <td>×</td>
+    <td>△</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>カーネル保護（ASLR）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>△</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>カーネル保護（DEP）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>△</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>カーネル保護（NULL dereferences）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>×</td>
+    <td>○</td>
+    </tr>
+    <tr>
+    <td>カーネル保護（SMEP/PXN）</td>
+    <td>×</td>
+    <td>×</td>
+    <td>×</td>
+    <td>○</td>
+    </tr>
+</tbody></table>あと、32bit よりも 64bit の方が強化された ASLR の恩恵が大きい。ただし、いかにシステムを強化しようと
+<ul>
+<li>メンテナンスされていない古いプログラムを狙う</li>
+<li>セキュリティの甘い“人間”を狙う</li>
+</ul>といった攻撃は依然有効。緩和することはできるけれどネ。以下は参考資料。とくにひとつ目の PDF が日本語でありがたい。
+<ul>
+<li><a href="http://www.fourteenforty.jp/assets/files/monthly_research/MR201209_Windows8_Exploit_Mitigation.pdf">http://www.fourteenforty.jp/assets/files/monthly_research/MR201209_Windows8_Exploit_Mitigation.pdf</a></li>
+<li><a href="http://ensiwiki.ensimag.fr/images/e/e8/GreHack-2012-talk-Kostya_Kortchinsky_Crypt0ad_-10_years_later_which_in_memory_vulnerabilities_still_matter.pdf">http://ensiwiki.ensimag.fr/images/e/e8/GreHack-2012-talk-Kostya_Kortchinsky_Crypt0ad_-10_years_later_which_in_memory_vulnerabilities_still_matter.pdf</a></li>
+<li><a href="http://media.blackhat.com/bh-us-12/Briefings/M_Miller/BH_US_12_Miller_Exploit_Mitigation_Slides.pdf">http://media.blackhat.com/bh-us-12/Briefings/M_Miller/BH_US_12_Miller_Exploit_Mitigation_Slides.pdf</a></li>
+</ul>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-03-08T12:39:36JST">2013/03/08</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Windows%208%20%e3%81%ae%e3%82%bb%e3%82%ad%e3%83%a5%e3%83%aa%e3%83%86%e3%82%a3%e6%a9%9f%e8%83%bd%20%e2%80%95%e2%80%95%20Windows%20XP%20%e4%bb%a5%e9%99%8d%e3%81%a8%e6%af%94%e8%bc%83%e3%81%97%e3%81%a6%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/03/08/123936/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Windows&#43;8&#43;%E3%81%AE%E3%82%BB%E3%82%AD%E3%83%A5%E3%83%AA%E3%83%86%E3%82%A3%E6%A9%9F%E8%83%BD&#43;%E2%80%95%E2%80%95&#43;Windows&#43;XP&#43;%E4%BB%A5%E9%99%8D%E3%81%A8%E6%AF%94%E8%BC%83%E3%81%97%E3%81%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F08%2F123936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/09/083510/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/08/091158/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

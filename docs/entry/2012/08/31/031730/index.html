@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/31/031730/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="仕事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせずにすんだよ（ぉ Video streaming by Ustream興味ある人は USTREAM をご覧あれ。わしもよくわからんけど、とりあえず SignalR （http://signalr.net/）というのは、
+ ASP.NET テクノロジをベースとした 非同期でリアルタイムな サーバーとクライアントの双方向通信 を実現するライブラリ、ってことでいいのかな。サーバーとクライアントの通信で利用される技術は、 SignalR が勝手にチョイスしてくれるみたい（モダンな環境なら WebSocket を、クラシカルな環境だったらポーリングを、ってな感じ）。詳しくはエロいひと、じゃなくて偉いひとに聞いて欲しい。ともあれ、忘れないうちにこれを WebMatrix で使ってみる。 ### サーバー側のコード ```cs # ~/App_Code/SampleHub.cs using SignalR.Hubs; // &lt;&ndash; NuGet でインストールしる！
+[HubName(&ldquo;sample&rdquo;)] // &lt;&ndash; あとで createProxy(&ldquo;sample&rdquo;) と使う public class SampleHub : Hub { private static string _message = &ldquo;&quot;;
+private string Message { get { return _message; } set { _message = value; // 接続中のクライアントすべてに Echo() 命令を送る Clients." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/31/031730/" >
+                    <h1 class="entry__header-title-link-text">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/31</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/08/31/031730/20120830191311.jpg"/> 
+</figure>
+仕事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせずにすんだよ（ぉ<iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/25059062?wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe><br/>
+<br/><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Video streaming by Ustream</a>興味ある人は USTREAM をご覧あれ。わしもよくわからんけど、とりあえず SignalR （<a href="http://signalr.net/"><a href="http://signalr.net/">http://signalr.net/</a></a>）というのは、</p>
+<ul>
+<li>ASP.NET テクノロジをベースとした</li>
+<li>非同期でリアルタイムな</li>
+<li>サーバーとクライアントの双方向通信</li>
+</ul>を実現するライブラリ、ってことでいいのかな。サーバーとクライアントの通信で利用される技術は、 SignalR が勝手にチョイスしてくれるみたい（モダンな環境なら WebSocket を、クラシカルな環境だったらポーリングを、ってな感じ）。詳しくはエロいひと、じゃなくて偉いひとに聞いて欲しい。ともあれ、忘れないうちにこれを WebMatrix で使ってみる。
+<div class="section">
+    ### サーバー側のコード
+    ```cs
+# ~/App_Code/SampleHub.cs
+<p>using SignalR.Hubs; // &lt;&ndash; NuGet でインストールしる！</p>
+<p>[HubName(&ldquo;sample&rdquo;)] // &lt;&ndash; あとで createProxy(&ldquo;sample&rdquo;) と使う
+public class SampleHub : Hub
+{
+private static string _message = &ldquo;&quot;;</p>
+<pre><code>private string Message
+{
+    get { return _message; }
+    set
+    {
+        _message = value;
+
+        // 接続中のクライアントすべてに Echo() 命令を送る
+        Clients.Echo(_message);
+
+        // そのほかにも
+        // Caller.Echo(); 呼び出したクライアントに命令
+        // Groups[&quot;Hoge&quot;].Echo(); クライアントグループに命令
+        // がある
+    }
+}
+
+public void Add(string s)// &amp;lt;-- ちゃんと公開しろよ
+{
+    Message += s;
+}
+
+public void Clear()
+{
+    Message = &quot;&quot;;
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-まずは、" data-lang="まずは、">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### クライアント側のコード
+    ```html
+# Default.cshtml
+
+
+
+@{
+    
+}
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;
+                src=&quot;Scripts/jquery-1.6.4.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;
+                src=&quot;Scripts/jquery.signalR-0.5.3.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;
+            // 接続を取得
+            var connection = $.hubConnection();
+
+            // sample ハブ（のプロキシ）を取得
+            var sample = connection.createProxy(&quot;sample&quot;);
+
+            // 接続開始（忘れたらしばやんみたいにエラー出るで）
+            connection.start();
+
+            // sample ハブの Echo() 命令を受け取ったら……
+            sample.on(&quot;Echo&quot;, function (value) {
+                $(&quot;#value&quot;).html(value);
+            });
+        &amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;p id=&quot;value&quot;&gt;&amp;lt;/p&gt;
+        &amp;lt;input type=&quot;button&quot;
+               onclick=&quot;sample.invoke(&amp;#39;Add&amp;#39;, &amp;#39;foobar&amp;#39;);&quot;
+               id=&quot;add&quot; name=&quot;add&quot; value=&quot;add&quot; /&gt;
+        &amp;lt;input type=&quot;button&quot;
+               onclick=&quot;sample.invoke(&amp;#39;clear&amp;#39;);&quot;
+               id=&quot;clear&quot; name=&quot;clear&quot; value=&quot;clear&quot; /&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```クライアント側の処理は次のような感じ。［クライアント］ボタンクリックで sample ハブの Add/Clear を呼ぶ&lt;br/&gt;
+→ ［サーバー］sample ハブが接続中のクライアントへ Echo() をブロードキャスト&lt;br/&gt;
+→ ［すべてのクライアント］#value が更新されるというカラクリ。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 結果
+    <figure>
+    <img src="/images/2012/08/31/031730/20120831025740.png"/> 
+</figure>
+3つブラウザーを起動し、そのうち1つのブラウザーでボタンを押すと、ほかも全部いっぺんに更新される！　これはちょっと楽しいな。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20120823/1345724524&quot;&gt;SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/04/081647&quot;&gt;SignalR のデモがちょっとかっこいい - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-31T03:17:30JST">2012/08/31</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?SignalR%20Deep%20Dive%20!%20%e3%81%ab%e5%8f%82%e5%8a%a0%e3%81%97%e3%81%a6%e3%81%8d%e3%81%9f%ef%bc%8bWebMatrix%20%e3%81%a7%20SignalR%20%e5%8b%95%e3%81%8b%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/31/031730/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=SignalR&#43;Deep&#43;Dive&#43;%21&#43;%E3%81%AB%E5%8F%82%E5%8A%A0%E3%81%97%E3%81%A6%E3%81%8D%E3%81%9F%EF%BC%8BWebMatrix&#43;%E3%81%A7&#43;SignalR&#43;%E5%8B%95%E3%81%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F031730%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/31/112958/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/30/040609/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

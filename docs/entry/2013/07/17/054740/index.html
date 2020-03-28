@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/07/17/054740/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 で Wiki クローンを作る vol.0 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="&gt; Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。 http://tam.qmix.org/wiki/Minki00.html  昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります*1。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（WebMatrix 3 で Wiki クローンを作る）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。
+### 必要なもの  Microsoft Developer これだけです。できれば http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web があるといろいろ便利。フレームワークには ASP.NET Web Pages 2 | Microsoft Docs を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。  ### プロジェクトの新規作成   テンプレートギャラリーから……  ASP." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix 3 で Wiki クローンを作る</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/07/17/054740/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3 で Wiki クローンを作る vol.0</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/07/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/07/17/054740/20130717051313.png"/> 
+</figure>
+<br/></p>
+<pre><code>&gt;
+    Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。
+
+    http://tam.qmix.org/wiki/Minki00.html
+</code></pre>
+<p>昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります<a href="#f-f61de386" name="fn-f61de386" title="ほかにもできるけど、そっちを推すのはほかの人に任せる">*1</a>。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（<a href="https://blog.daruyanagi.jp/category/WebMatrix%203%20%E3%81%A7%20Wiki%20%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B">WebMatrix 3 で Wiki クローンを作る</a>）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。</p>
+<div class="section">
+    ### 必要なもの
+<ul>
+<li><a href="http://www.microsoft.com/web/webmatrix/">Microsoft Developer</a></li>
+</ul>これだけです。できれば <a href="http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web">http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web</a> があるといろいろ便利。フレームワークには <a href="http://msdn.microsoft.com/ja-jp/library/hh396384(v=vs.111).aspx">ASP.NET Web Pages 2 | Microsoft Docs</a> を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。
+</div>
+<div class="section">
+    ### プロジェクトの新規作成
+    <figure>
+    <img src="/images/2013/07/17/054740/20130717053248.png"/> 
+</figure>
+テンプレートギャラリーから……<figure>
+    <img src="/images/2013/07/17/054740/20130717053316.png"/> 
+</figure>
+ASP.NET の“空のサイト”を選択。今回は @Webmatxirxman（<a href="https://twitter.com/WebMatrixMan">https://twitter.com/WebMatrixMan</a>）に敬意を表して**「Green Tights」**としました。_“C:\Users\***\Documents\My Web Sites\Green Tights”_がプロジェクトフォルダーになります。<figure>
+    <img src="/images/2013/07/17/054740/20130717053725.png"/> 
+</figure>
+まず、適当に Default.cshtml を編集しましょう。今回は冒頭の **@{}** コードブロックで **App.Name** に“Green Tights”という文字列を代入し、HTML で **@App.Name** のように記述して埋め込んでいます（2ケ所）。
+```html
+@{
+    App.Name = "Green Tights";
+}
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&rdquo; content=&quot;text/html; charset=utf-8&rdquo;/&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;@App.Name&lt;/title&gt;
+&lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p&gt;Welcome to @App.Name!&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-［実行］ボタンを押し……<figure>
+    <img src="/images/2013/07/17/054740/20130717053731.png"/> 
+</figure>
+ブラウザーでなにか表示されたら成功。ちゃんと動いてますね。この" data-lang="［実行］ボタンを押し……<figure>
+    <img src="/images/2013/07/17/054740/20130717053731.png"/> 
+</figure>
+ブラウザーでなにか表示されたら成功。ちゃんと動いてますね。この">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ソースコード
+    
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://greentights.codeplex.com/SourceControl/changeset/97f8b9647ae928e4fc375bbb7d9914d81e9dd314&quot;&gt;CodePlex Archive&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-f61de386&quot; name=&quot;f-f61de386&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ほかにもできるけど、そっちを推すのはほかの人に任せる&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-07-17T05:47:40JST">2013/07/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%e3%81%a7%20Wiki%20%e3%82%af%e3%83%ad%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b%20vol.0%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/07/17/054740/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F17%2F054740%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/07/17/073637/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/07/16/000517/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

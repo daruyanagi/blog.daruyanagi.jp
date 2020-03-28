@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/02/28/012843/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+             ASP.NET MVC 3 で Dropbox の OAuth 認証を使う | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="今回は Sharpbox を使って、Webサイトに Dropbox を利用したログイン機能を追加します。まず、 SessionController というコントローラを作成して、Create()、AuthorizationCallBack()、Delete() の3つのメソッドを作成しました。/Session/Create が /LogOn に、/Session/Delete が /LogOff にあたります*1。ビューへ適当に @Request.IsAuthenticated を埋め込んでいるのでわかりにくいですけど、今は False 、つまりログインしていない状態です。では、 Create() から。
+### /Session/Create ```  // // GET: /Session/Create -&gt; map route /LogOn
+public ActionResult Create() { string app_key = &ldquo;&quot;; string app_secret = &ldquo;&quot;;
+// 0. load the config DropBoxConfiguration config = DropBoxConfiguration .GetStandardConfiguration(); config.AuthorizationCallBack = new Uri( Request.Url, &quot;AuthorizationCallBack&quot;); // 1. get the request token from dropbox DropBoxRequestToken requestToken = DropBoxStorageProviderTools ." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.NET</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/02/28/012843/" >
+                    <h1 class="entry__header-title-link-text"> ASP.NET MVC 3 で Dropbox の OAuth 認証を使う</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/02/28</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>今回は Sharpbox を使って、Webサイトに Dropbox を利用したログイン機能を追加します。まず、 SessionController というコントローラを作成して、Create()、AuthorizationCallBack()、Delete() の3つのメソッドを作成しました。/Session/Create が /LogOn に、/Session/Delete が /LogOff にあたります<a href="#f1" name="fn1" title="あとでルーティングを追加すればいいでしょう">*1</a>。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120228/20120228010839.png" alt="f:id:daruyanagi:20120228010839p:plain" title="f:id:daruyanagi:20120228010839p:plain" class="hatena-fotolife"/>ビューへ適当に @Request.IsAuthenticated を埋め込んでいるのでわかりにくいですけど、今は False 、つまりログインしていない状態です。では、 Create() から。</p>
+<div class="section">
+    ### /Session/Create
+<pre><code>```
+</code></pre>
+<p>//
+// GET: /Session/Create -&gt; map route /LogOn</p>
+<p>public ActionResult Create()
+{
+string app_key = &ldquo;<em><strong>&quot;;
+string app_secret = &ldquo;</strong></em>&quot;;</p>
+<pre><code>// 0. load the config
+DropBoxConfiguration config = DropBoxConfiguration
+    .GetStandardConfiguration();
+config.AuthorizationCallBack = new Uri(
+    Request.Url, &quot;AuthorizationCallBack&quot;);
+
+// 1. get the request token from dropbox
+DropBoxRequestToken requestToken = DropBoxStorageProviderTools
+    .GetDropBoxRequestToken(config, app_key, app_secret);
+
+// 2. build the authorization url based on request token
+string url = DropBoxStorageProviderTools
+    .GetDropBoxAuthorizationUrl(config, requestToken);
+
+// 3. Redirect to the authorization page on dropbox
+return Redirect(url);
+</code></pre>
+<p>}</p>
+<pre><code>面倒くさい RequestToken の作成や Callback Url の生成は DropBoxStorageProviderTools がやってくれるので簡単。あとは 生成した Callback Url へリダイレクトしてやればいいです。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120228/20120228011600.png&quot; alt=&quot;f:id:daruyanagi:20120228011600p:plain&quot; title=&quot;f:id:daruyanagi:20120228011600p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### /Session/AuthorizationCallBack
+    Dropbox の認証画面でのログインが完了すると、0. で設定した config.AuthorizationCallBack つまり AuthorizationCallBack() にリダイレクトがかかります。
+
+    ```
+public ActionResult AuthorizationCallBack()
+{
+    // 4. Get oauth token and uid from Request.Form[]
+    var oauth_token = Request[&quot;oauth_token&quot;];
+    var uid = Request[&quot;uid&quot;];
+
+    // 5. Set auth cookie
+    if (oauth_token != null &amp;amp;&amp;amp; uid != null)
+    {
+        FormsAuthentication.SetAuthCookie(uid, true);
+    }
+
+    return Redirect(&quot;/&quot;);
+}
+</code></pre><p>AuthorizationCallBack() では、まずリクエストに含まれる OAuth Token と UID を取り出します。ちゃんとこれらが取得できていれば、クッキーをセットしてログインが終了。今回はログインの成功・失敗に関わらず、&quot;/&rdquo; へリダイレクトしています。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120228/20120228011752.png" alt="f:id:daruyanagi:20120228011752p:plain" title="f:id:daruyanagi:20120228011752p:plain" class="hatena-fotolife"/>@Request.IsAuthenticated が true に。これまたわかりにくいですが @User.Identity.Name には UID がセットされました。</p>
+</div>
+<div class="section">
+    ### /Session/Delete
+<pre><code>```
+</code></pre>
+<p>//
+// GET: /Session/Delete -&gt; map route /LogOff</p>
+<p>public ActionResult Delete()
+{
+FormsAuthentication.SignOut();</p>
+<pre><code>return Redirect(&quot;/&quot;);
+</code></pre>
+<p>}</p>
+<pre><code>ついでに Delete() も実装して、ログアウトできるようにしておきましょう。こんな感じでいいのかな？
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/02/25/084211&quot;&gt; ASP.net MVC 3 で Dropbox を利用する - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;あとでルーティングを追加すればいいでしょう&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-02-28T01:28:43JST">2012/02/28</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%20ASP.NET%20MVC%203%20%e3%81%a7%20Dropbox%20%e3%81%ae%20OAuth%20%e8%aa%8d%e8%a8%bc%e3%82%92%e4%bd%bf%e3%81%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/02/28/012843/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=&#43;ASP.NET&#43;MVC&#43;3&#43;%E3%81%A7&#43;Dropbox&#43;%E3%81%AE&#43;OAuth&#43;%E8%AA%8D%E8%A8%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F28%2F012843%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/28/211909/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/27/231155/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

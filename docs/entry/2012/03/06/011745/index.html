@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/03/06/011745/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            YouTube の URL を動画タグへ変換する（oEmbed） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、Flickr の写真の場合と少し違うところ&lt;a href=&rdquo;#f1&rdquo; name=&quot;fn1&rdquo; title=&quot;Flickr も動画に対応しているのだけど、type==&rdquo; video&quot;=&rdquo;&rdquo; の場合はやっぱり=&rdquo;&rdquo; url=&rdquo;&rdquo; ではなく=&rdquo;&rdquo; html=&rdquo;&rdquo; を使う&quot;=&quot;&ldquo;&gt;*1。type には、ほかに rich だの link だのがあるっぽい。詳しくは oEmbed に全部書いてあるので参照のこと。
+```  private static readonly string SERVICE_ENDPOINT = @&ldquo;http://www.youtube.com/oembed&quot;; private static readonly string FORMAT_URL = @&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;;
+public static string FORMAT_HTML_VIDEO_TAG = @&rdquo; &lt;blockquote class=&#39;youtube youtube-video&#39;&gt; &lt;p&gt;{0}&lt;p&gt; &lt;p&gt;&lt;small&gt;{1} by &lt;a href=&#39;{3}&#39;&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt; &lt;/blockquote&gt; &ldquo;; public static string FORMAT_ERROR = @&quot;&lt;p class=&#39;error&#39;&gt;{0}&lt;/p&gt;&rdquo;;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.NET</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/03/06/011745/" >
+                    <h1 class="entry__header-title-link-text">YouTube の URL を動画タグへ変換する（oEmbed）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/03/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://daruyanagi.hatenablog.com/entry/2012/03/03/225037">Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ</a> のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、Flickr の写真の場合と少し違うところ&lt;a href=&rdquo;#f1&rdquo; name=&quot;fn1&rdquo; title=&quot;Flickr も動画に対応しているのだけど、type==&rdquo; video&quot;=&rdquo;&rdquo; の場合はやっぱり=&rdquo;&rdquo; url=&rdquo;&rdquo; ではなく=&rdquo;&rdquo; html=&rdquo;&rdquo; を使う&quot;=&quot;&ldquo;&gt;*1</a>。type には、ほかに rich だの link だのがあるっぽい。詳しくは <a href="http://oembed.com/">oEmbed</a> に全部書いてあるので参照のこと。</p>
+<pre><code>```
+</code></pre>
+<p>private static readonly string SERVICE_ENDPOINT =
+@&ldquo;<a href="http://www.youtube.com/oembed%22;">http://www.youtube.com/oembed&quot;;</a>
+private static readonly string FORMAT_URL =
+@&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;;</p>
+<p>public static string FORMAT_HTML_VIDEO_TAG = @&rdquo;
+&lt;blockquote class='youtube youtube-video'&gt;
+&lt;p&gt;{0}&lt;p&gt;
+&lt;p&gt;&lt;small&gt;{1} by &lt;a href='{3}'&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
+&lt;/blockquote&gt;
+&ldquo;;
+public static string FORMAT_ERROR = @&quot;&lt;p class='error'&gt;{0}&lt;/p&gt;&rdquo;;</p>
+<p>public static string GetHtml(string url,
+string max_width = &ldquo;500&rdquo;, string max_height = &ldquo;500&rdquo;)
+{
+try
+{
+return GetHtml(url,
+int.Parse(max_width), int.Parse(max_height));
+}
+catch (Exception e)
+{
+return string.Format(FORMAT_ERROR, e.Message);
+}
+}</p>
+<p>public static string GetHtml(
+string url, int max_width, int max_height)
+{
+try
+{
+if (url.StartsWith(&ldquo;<a href="http://youtu.be/%22">http://youtu.be/&quot;</a>))
+url = url.Replace(
+&ldquo;<a href="http://youtu.be/%22,">http://youtu.be/&quot;,</a>
+&ldquo;<a href="http://www.youtube.com/watch?v=%22);">http://www.youtube.com/watch?v=&quot;);</a></p>
+<pre><code>    var format = &quot;json&quot;;
+
+    var address = string.Format(
+        FORMAT_URL, SERVICE_ENDPOINT, url,
+        max_width, max_height, format);
+
+    using (var client = new WebClient())
+    {
+        var response = client.DownloadString(address);
+        var info = DynamicJson.Parse(response);
+
+        switch (info.type as string)
+        {
+            case &quot;video&quot;:
+                return string.Format(FORMAT_HTML_VIDEO_TAG,
+                    info.html, info.title,
+                    info.author_name, info.author_url);
+
+            default:
+                throw new Exception(&quot;Unknown media type.&quot;);
+        }
+    }
+}
+catch (Exception e)
+{
+    return string.Format(FORMAT_ERROR, e.Message);
+}
+</code></pre>
+<p>}</p>
+<pre><code>YouTube の短縮URLはドメイン部分を置換しただけみたい。実装も楽だし、開発者も楽だし、多少リンクが長くなる以外はなかなかイケていると思う。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Flickr も動画に対応しているのだけど、type==&quot;video&quot; の場合はやっぱり url ではなく html を使う&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-03-06T01:17:45JST">2012/03/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?YouTube%20%e3%81%ae%20URL%20%e3%82%92%e5%8b%95%e7%94%bb%e3%82%bf%e3%82%b0%e3%81%b8%e5%a4%89%e6%8f%9b%e3%81%99%e3%82%8b%ef%bc%88oEmbed%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/03/06/011745/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=YouTube&#43;%E3%81%AE&#43;URL&#43;%E3%82%92%E5%8B%95%E7%94%BB%E3%82%BF%E3%82%B0%E3%81%B8%E5%A4%89%E6%8F%9B%E3%81%99%E3%82%8B%EF%BC%88oEmbed%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F06%2F011745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/06/210609/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/05/233750/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/14/074439/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2 でレスポンシブな CSS グリッドを作ってみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。
+### CSS グリッド 最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステムないかな、と思っていたのだけど、こういうのを見つけた。  http://webdesignrecipes.com/css-grid-system-layout/  Complex Grid Example - JSFiddle いい感じかもしれない。 ```css .container { width: 940px; margin: 0 auto;} .grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11 { float: left; display: inline; margin-left: 20px; } .grid1 {width: 60px;} .grid2 {width: 140px;} .grid3 {width: 220px;} .grid4 {width: 300px;} .grid5 {width: 380px;} .grid6 {width: 460px;} .grid7 {width: 540px;} ." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/14/074439/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2 でレスポンシブな CSS グリッドを作ってみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/14</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/14/074439/20120914073223.png"/> 
+</figure>
+WebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。</p>
+<div class="section">
+    ### CSS グリッド
+    最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステムないかな、と思っていたのだけど、こういうのを見つけた。
+<ul>
+<li><a href="http://webdesignrecipes.com/css-grid-system-layout/">http://webdesignrecipes.com/css-grid-system-layout/</a> </li>
+<li><a href="http://jsfiddle.net/ernestohs/nQpSj/">Complex Grid Example - JSFiddle</a></li>
+</ul>いい感じかもしれない。
+```css
+.container { width: 940px; margin: 0 auto;}
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11 {
+  float: left;
+  display: inline;
+  margin-left: 20px;
+}
+.grid1 {width: 60px;}
+.grid2 {width: 140px;}
+.grid3 {width: 220px;}
+.grid4 {width: 300px;}
+.grid5 {width: 380px;}
+.grid6 {width: 460px;}
+.grid7 {width: 540px;}
+.grid8 {width: 620px;}
+.grid9 {width: 700px;}
+.grid10 {width: 780px;}
+.grid11 {width: 860px;}
+.first {margin-left: 0;clear: left;}
+<p>/* clearfix */
+.clearfix:after {
+visibility: hidden;
+display: block;
+font-size: 0;
+content: &quot; &ldquo;;
+clear: both;
+height: 0;
+}
+/* IE6 */</p>
+<ul>
+<li>html .clearfix { zoom: 1;}
+/* IE7 */
+*:first-child+html .clearfix {zoom: 1;}</li>
+</ul>
+<pre><code class="language-で、grid*" data-lang="で、grid*">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### More responsible！
+    でも、それだと一つ問題がある。レスポンシブじゃない。今回はブラウザー幅に応じて並び替えもやってほしいと思っていたのだけれど、このやり方だと先頭になるグリッドを決めなきゃいけない。でも、ブラウザー幅に応じて並び替えが前提だと、事前にどのグリッドが先頭であるかを指定することができない。<figure>
+    <img src="/images/2012/09/14/074439/20120914072338.png"/> 
+</figure>
+640px ぐらいの幅を……<figure>
+    <img src="/images/2012/09/14/074439/20120914072341.png"/> 
+</figure>
+ちょっと大きく……<figure>
+    <img src="/images/2012/09/14/074439/20120914072345.png"/> 
+</figure>
+もっと大きく！というわけで、少しだけ手直しをした（ダミーイメージには &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/11/070914&quot;&gt;DummyImage 1.0.0 - だるろぐ&lt;/a&gt; を使っています（ステマ））。
+```css
+.container {
+    overflow: auto;
+    margin: 0 auto 2em auto;
+    
+    * {
+        max-width: 100%;  // &amp;lt;-- 画像とかがはみ出ないように
+    }
+}
+
+.grid1, .grid2, .grid3, .grid4, .grid5, .grid6,
+.grid7, .grid8, .grid9, .grid10, .grid11, .grid12 {
+    float: left;
+    display: inline;
+    margin-left: 20px;
+    position: relative; // &amp;lt;-- 追加
+    left: -20px;        // &amp;lt;-- 追加
+}
+.grid1  { width: 60px;  }
+.grid2  { width: 140px; }
+.grid3  { width: 220px; }
+.grid4  { width: 300px; }
+.grid5  { width: 380px; }
+.grid6  { width: 460px; }
+.grid7  { width: 540px; }
+.grid8  { width: 620px; }
+.grid9  { width: 700px; }
+.grid10 { width: 780px; }
+.grid11 { width: 860px; }
+.grid12 { width: 940px; } // &amp;lt;-- 追加
+
+/*.first {margin-left: 0;clear: left;}*/
+
+.claerfix {
+    &amp;amp;:after {
+        visibility: hidden;
+        display: block;
+        font-size: 0;
+        content: &quot; &quot;;
+        clear: both;
+        height: 0;
+    }
+    /* IE6 */
+    * html &amp;amp; {
+        zoom: 1;
+    }
+    /* IE7 */
+    *:first-child + html &amp;amp; {
+        zoom: 1;
+    }
+}
+
+```全体に左マージンをつけて、その分左にずらす。これで first は要らなくなった（というか使えなくなった）。 clearfix も LESS で書いておけば意味的にまとめられていい感じ。
+```css
+@media (min-width: 981px) {
+    .container {
+        width: 960px;
+    }
+}
+
+@media (max-width: 980px) {
+    .container {
+        width: 640px;
+    }
+}
+
+@media (max-width: 640px) {
+    .container {
+        width: 300px;
+    }
+}
+
+```ここら辺は適当だけど、あとは MediaQuery でコンテナの幅を変えてやると、さっきみたいなレスポンシブなデザインになる。WebMatrix 2 の LESS とモバイルテスト機能があれば、こういう CSS の作成も結構楽になる！　Razor や Node.js がわかんない人でも、WebMatrix は便利やな（ステマ）。あとはこういうのをどんどん NuGet にしてもらえれば……Web 開発はバラ色や！
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/15/161932&quot;&gt;WebMatrix で LESS を使おう！ - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/09/172243&quot;&gt;WebMatrix で LESS を使おう！（2） - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/16/011825&quot;&gt;「WebMatrix 2」のアップデート - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-14T07:44:39JST">2012/09/14</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%20%e3%81%a7%e3%83%ac%e3%82%b9%e3%83%9d%e3%83%b3%e3%82%b7%e3%83%96%e3%81%aa%20CSS%20%e3%82%b0%e3%83%aa%e3%83%83%e3%83%89%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/14/074439/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2&#43;%E3%81%A7%E3%83%AC%E3%82%B9%E3%83%9D%E3%83%B3%E3%82%B7%E3%83%96%E3%81%AA&#43;CSS&#43;%E3%82%B0%E3%83%AA%E3%83%83%E3%83%89%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F14%2F074439%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/14/083312/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/13/095654/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

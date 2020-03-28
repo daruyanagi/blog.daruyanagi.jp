@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/07/212936/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Twitter の埋め込みタイムラインを WebMatrix で利用する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="&gt; サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。 http://blog.jp.twitter.com/2012/09/blog-post.html    さっそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
+### ちょっとした注意   **ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、 ``` @@daruyanagi // - &#34;@daruyanagi&#34; ```と @ を重ねて書けばいい。  ### もちろんヘルパーにしてみる…… と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。 ```cs # ~/App_Code/Twitter.EmbededTimeline.chtml @helper GetHtml( string id, string url, string text = null, int? width = null, int? height = null, string lang = null, string theme = null, string link_color = null, string[] related = null, string aria_polite = null) { if (string." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/twitter/">Twitter</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/07/212936/" >
+                    <h1 class="entry__header-title-link-text">Twitter の埋め込みタイムラインを WebMatrix で利用する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/07/212936/20120907205420.png"/> 
+</figure>
+<br/></p>
+<pre><code>&gt;
+    サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。
+
+    http://blog.jp.twitter.com/2012/09/blog-post.html
+</code></pre>
+<p><figure>
+    <img src="/images/2012/09/07/212936/20120907205552.png"/> 
+</figure>
+さっそく WebMatrix 2 RC版（！）で試してみよう。<a href="https://twitter.com/settings/widgets">Login on Twitter</a> でウィジェットを作って cshtml へ貼り付けてみる。</p>
+<div class="section">
+    ### ちょっとした注意
+    <figure>
+    <img src="/images/2012/09/07/212936/20120907205557.png"/> 
+</figure>
+**ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
+```
+@@daruyanagi    // -> "@daruyanagi" 
+```と @ を重ねて書けばいい。
+</div>
+<div class="section">
+    ### もちろんヘルパーにしてみる……
+    と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。
+```cs
+# ~/App_Code/Twitter.EmbededTimeline.chtml
+<p>@helper GetHtml(
+string id, string url, string text = null,
+int? width = null, int? height = null, string lang = null,
+string theme = null, string link_color = null,
+string[] related = null, string aria_polite = null)
+{
+if (string.IsNullOrEmpty(text))
+{
+// URL を解析して適当なテキストを生成する処理
+// たとえば、
+// twitter.com/daruyanagi -&gt; @daruyanagi からのツイート
+}</p>
+<pre><code>&amp;lt;a class=&quot;twitter-timeline&quot; href=&quot;@url&quot;
+   data-widget-id=&quot;@id&quot;
+   data-theme=&quot;@theme&quot;
+   data-link-color=@link_color
+   data-related=&quot;@string.Join(&quot;, @related)&quot;
+   data-aria-polite=&quot;@aria_polite&quot;
+   width=&quot;@width&quot; height=&quot;@height&quot; lang=&quot;@lang&quot;&gt;@text&amp;lt;/a&gt;
+</code></pre>
+<p>}</p>
+<pre><code class="language-こんな感じで書いておいて、" data-lang="こんな感じで書いておいて、">```html
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+
+        // これを挿入しておく
+        // Assets か RenderSection() でやるとよいけどこれはまた後ほど
+        &amp;lt;script id=&quot;twitter-wjs&quot;
+                src=&quot;//platform.twitter.com/widgets.js&quot;&gt;&amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @Twitter_EmbededTimeline.GetHtml(
+            &quot;244022447123333120&quot;,
+            @&quot;http://twitter.com/daruyanagi&quot;)
+        @Twitter_EmbededTimeline.GetHtml(
+            &quot;244027379142492160&quot;,
+            @&quot;http://twitter.com/daruyanagi/favorites&quot;)
+        @Twitter_EmbededTimeline.GetHtml(
+            &quot;244027809108987904&quot;,
+            @&quot;http://twitter.com/search?q=#corgi&quot;)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```と使うんだけど、まぁ、結構微妙だよね。ウィジェット ID と URL の最低2つをコピってこなければならない。それだったら、何も考えずに&lt;a href=&quot;#f-934456ce&quot; name=&quot;fn-934456ce&quot; title=&quot;@ のエスケープはしなきゃだけど&quot;&gt;*1&lt;/a&gt;吐かれた公式のコードを張ったほうがマシだ。<figure>
+    <img src="/images/2012/09/07/212936/20120907212725.png"/> 
+</figure>
+試しにウィジェット ID を使いまわしていろんなパラメーターを入れると、 IE がなにかお世話をしてくれるみたい。このメッセージは初めてみたかも。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### おまけ
+    ちなみに Twitter.EmbededTimeline.chtml のクラス名は、 . が _ に置き換えられて Twitter_EmbededTimeline になる。Visual Studio なんかの IntelliSense でみてみればわかるけど、これはほかの WebPage クラス（cshtml ファイル）でも同じみたい。
+```cs
+@Twitter_EmbededTimeline.GetHtml()
+
+```これをちゃんと（？）
+```cs
+@Twitter.EmbededTimeline.GetHtml()
+
+```みたいに呼びたい場合は、 ~/App_Code/Twitter/EmbededTimeline.chtml ってな感じにサブフォルダーへ分けてしまえば OK 。一手間かかるからちょっと面倒だけどね。
+```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+    .web&gt;
+      &lt;compilation&gt;&lt;/compilation&gt;
+         &lt;codesubdirectories&gt;&lt;/codesubdirectories&gt;
+           directoryName=&quot;Twitter&quot;/&gt;
+         
+      
+   .web&gt;
+
+
+```試してはないけど、こんな感じで動くんじゃないかな。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/16/182105&quot;&gt;App_Code でサブフォルダーを利用する - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-934456ce&quot; name=&quot;f-934456ce&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;@ のエスケープはしなきゃだけど&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-07T21:29:36JST">2012/09/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Twitter%20%e3%81%ae%e5%9f%8b%e3%82%81%e8%be%bc%e3%81%bf%e3%82%bf%e3%82%a4%e3%83%a0%e3%83%a9%e3%82%a4%e3%83%b3%e3%82%92%20WebMatrix%20%e3%81%a7%e5%88%a9%e7%94%a8%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/07/212936/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Twitter&#43;%E3%81%AE%E5%9F%8B%E3%82%81%E8%BE%BC%E3%81%BF%E3%82%BF%E3%82%A4%E3%83%A0%E3%83%A9%E3%82%A4%E3%83%B3%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F07%2F212936%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/07/221315/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/07/102100/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

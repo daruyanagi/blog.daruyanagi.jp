@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111113/1321150268/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Page のものは Page に、App のものは App に | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。WebMatrix &#43; Markdown …… リファクタリング。 のコードで言えばこんな感じ。
+	@functions { string ReadTextFile(string path) { path = string.Format(&quot;/Pages/{0}.txt&quot;, path); path = Server.MapPath(path); if (!File.Exists(path)) { throw new HttpException(404, path &#43; &quot;is not found.&quot;); } Page.CreatedAt = File.GetCreationTime(path); Page.UpdatedAt = File.GetLastWriteTime(path); // あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！ return File.ReadAllText(path); } } ```&lt;code&gt;Page&lt;/code&gt; は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、&lt;code&gt;App&lt;/code&gt; を使えばいいらしい。たとえば、&lt;code&gt;App.Title&lt;/code&gt; にWebサイト名、&lt;code&gt;Page.Title&lt;/code&gt;にページタイトルに突っ込んでおけば、__&amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;__ という風にレイアウトファイルでタイトルをセットできる。僕は初めこの作法を知らなかったから、 &lt;code&gt;App_Code&lt;/code&gt; にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね......orz " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111113/1321150268/" >
+                    <h1 class="entry__header-title-link-text">Page のものは Page に、App のものは App に</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/11/13</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> のコードで言えばこんな感じ。</p>
+<pre><code>	@functions {
+	    string ReadTextFile(string path)
+	    {
+	        path = string.Format(&quot;/Pages/{0}.txt&quot;, path);
+	        path = Server.MapPath(path);
+
+	        if (!File.Exists(path))
+	        {
+	            throw new HttpException(404, path + &quot;is not found.&quot;);
+	        }
+	        
+	        Page.CreatedAt = File.GetCreationTime(path);
+	        Page.UpdatedAt = File.GetLastWriteTime(path);
+	        // あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！
+
+	        return File.ReadAllText(path);
+	    }
+	}
+```&lt;code&gt;Page&lt;/code&gt; は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、&lt;code&gt;App&lt;/code&gt; を使えばいいらしい。たとえば、&lt;code&gt;App.Title&lt;/code&gt; にWebサイト名、&lt;code&gt;Page.Title&lt;/code&gt;にページタイトルに突っ込んでおけば、__&amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;__ という風にレイアウトファイルでタイトルをセットできる。僕は初めこの作法を知らなかったから、 &lt;code&gt;App_Code&lt;/code&gt; にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね......orz
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-11-13T11:11:08JST">2011/11/13</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Page%20%e3%81%ae%e3%82%82%e3%81%ae%e3%81%af%20Page%20%e3%81%ab%e3%80%81App%20%e3%81%ae%e3%82%82%e3%81%ae%e3%81%af%20App%20%e3%81%ab%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111113/1321150268/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Page&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;Page&#43;%E3%81%AB%E3%80%81App&#43;%E3%81%AE%E3%82%82%E3%81%AE%E3%81%AF&#43;App&#43;%E3%81%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111113%2F1321150268%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111113/1321153887/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111111/1362520875/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

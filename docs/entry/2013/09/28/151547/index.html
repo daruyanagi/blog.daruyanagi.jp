@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/09/28/151547/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Mozilla Firefox 26 の Immersive モード | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="   「Firefox 26」は、「Windows 8」から導入されている“Immersive”モードをサポート。このモードはタッチ操作に適した“タイル”や、余分なユーザーインターフェイス要素を極力廃したコンテンツ重視のデザインが特長で、ストアアプリが動作するサンドボックス環境“AppContainer”によるセキュリティの恩恵も受けられる。 Mozilla、「Windows 8」のタッチUIに最適化された「Firefox Aurora」を公開 - 窓の杜  この後半がウソだという指摘を受けたので検証。結論的には――_間違ってた／(＾o＾)＼　_おそらくそのうち修正されると思う。  Mozilla Firefox の Immersive モードは AppContainer ではなく、整合性レベル Medium で動作する。ちなみに Google Chrome も調べてみた。  整合性レベル Medium で動作する親プロセスの下に Untrusted な複数のプロセスがある。しかし、これだったら Internet Explorer を使った方が安全なような気もする。また、仮に Microsoft のせいでサードパーティ製ブラウザーが Medium で動作することを強いられているならば、あんまりよい状況ではないと思う。
+### 追記 URL 整合性レベルMediumで動作する親プロセスと，サンドボックス内で動く子プロセスという構成はIEもChromeも今のところ同じですかね．OS上の制約は特になくて，提供したい機能から単にそういうデザインになる，という感じかと．2013-09-29 01:44:44 via web  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/mozilla-firefox/">Mozilla Firefox</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/google-chrome/">Google Chrome </a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-8/">Windows 8</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/09/28/151547/" >
+                    <h1 class="entry__header-title-link-text">Mozilla Firefox 26 の Immersive モード</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/09/28</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    「Firefox 26」は、「Windows 8」から導入されている“Immersive”モードをサポート。このモードはタッチ操作に適した“タイル”や、余分なユーザーインターフェイス要素を極力廃したコンテンツ重視のデザインが特長で、ストアアプリが動作するサンドボックス環境“AppContainer”によるセキュリティの恩恵も受けられる。
+
+    Mozilla、「Windows 8」のタッチUIに最適化された「Firefox Aurora」を公開 - 窓の杜
+</code></pre>
+<p>この後半がウソだという指摘を受けたので検証。結論的には――_間違ってた／(＾o＾)＼　_おそらくそのうち修正されると思う。<figure>
+    <img src="/images/2013/09/28/151547/20130928151034.png"/> 
+</figure>
+Mozilla Firefox の Immersive モードは AppContainer ではなく、整合性レベル Medium で動作する。ちなみに Google Chrome も調べてみた。<figure>
+    <img src="/images/2013/09/28/151547/20130928151118.png"/> 
+</figure>
+整合性レベル Medium で動作する親プロセスの下に Untrusted な複数のプロセスがある。しかし、これだったら Internet Explorer を使った方が安全なような気もする。また、仮に Microsoft のせいでサードパーティ製ブラウザーが Medium で動作することを強いられているならば、あんまりよい状況ではないと思う。</p>
+<div class="section">
+    ### 追記
+    <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/NyaRuRu"><img src="http://a0.twimg.com/profile_images/21112762/Pelican_normal.png" alt="NyaRuRu" height="48" width="48"/></a></div><div class="twitter-detail-tweet"><a class="twitter-tweet-url" href="http://t.co/m2ANqmBhyu" target="_top"><span>URL</span></a> 整合性レベルMediumで動作する親プロセスと，サンドボックス内で動く子プロセスという構成はIEもChromeも今のところ同じですかね．OS上の制約は特になくて，提供したい機能から単にそういうデザインになる，という感じかと．<a href="http://twitter.com/NyaRuRu/status/383995701056643072" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-09-29</span> <span class="twitter-detail-info-time">01:44:44</span></a> <span class="twitter-detail-info-source">via web</span></div></div>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-09-28T15:15:47JST">2013/09/28</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Mozilla%20Firefox%2026%20%e3%81%ae%20Immersive%20%e3%83%a2%e3%83%bc%e3%83%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/09/28/151547/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Mozilla&#43;Firefox&#43;26&#43;%E3%81%AE&#43;Immersive&#43;%E3%83%A2%E3%83%BC%E3%83%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F28%2F151547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/28/152204/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/27/090634/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

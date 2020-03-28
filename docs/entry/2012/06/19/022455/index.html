@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/06/19/022455/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            デスクトップ全体を一時的に暗転させたい (2) | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="デスクトップ全体を一時的に暗転させたい - だるろぐ がなぜか動かんなぁ、と思っていろいろ試していた（08式机上撮影機 v1.5.0 - だるろぐ）のだけど、原因は FormWindowState.Maximized だったっぽい。これをコメントアウトすると動いた。
+public const int AW_HIDE = 0x10000; public const int AW_ACTIVATE = 0x20000; public const int AW_SLIDE = 0x40000; public const int AW_BLEND = 0x80000; public const int AW_HOR_POSITIVE = 0x00000001; public const int AW_HOR_NEGATIVE = 0x00000002; public const int AW_VER_POSITIVE = 0x00000004; public const int AW_VER_NEGATIVE = 0x00000008; public const int AW_CENTER = 0x00000010; [DllImport(&#34;user32.dll&#34;, CharSet = CharSet.Auto, SetLastError = true)] public static extern int AnimateWindow( IntPtr hWnd, int dwTime, int dwFlags); using (var form = new Form() { BackColor = Color." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/06/19/022455/" >
+                    <h1 class="entry__header-title-link-text">デスクトップ全体を一時的に暗転させたい (2)</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/06/19</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://daruyanagi.hatenablog.com/entry/2012/05/27/155731">デスクトップ全体を一時的に暗転させたい - だるろぐ</a> がなぜか動かんなぁ、と思っていろいろ試していた（<a href="http://daruyanagi.hatenablog.com/entry/2012/06/18/202158">08式机上撮影機 v1.5.0 - だるろぐ</a>）のだけど、原因は FormWindowState.Maximized だったっぽい。これをコメントアウトすると動いた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HIDE = <span style="color:#ae81ff">0</span>x10000;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_ACTIVATE = <span style="color:#ae81ff">0</span>x20000;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_SLIDE = <span style="color:#ae81ff">0</span>x40000;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_BLEND = <span style="color:#ae81ff">0</span>x80000;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HOR_POSITIVE = <span style="color:#ae81ff">0</span>x00000001;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HOR_NEGATIVE = <span style="color:#ae81ff">0</span>x00000002;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_VER_POSITIVE = <span style="color:#ae81ff">0</span>x00000004;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_VER_NEGATIVE = <span style="color:#ae81ff">0</span>x00000008;
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_CENTER = <span style="color:#ae81ff">0</span>x00000010;
+<span style="color:#a6e22e">
+</span><span style="color:#a6e22e">[DllImport(&#34;user32.dll&#34;, CharSet = CharSet.Auto, SetLastError = true)]</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">int</span> AnimateWindow(
+    IntPtr hWnd, <span style="color:#66d9ef">int</span> dwTime, <span style="color:#66d9ef">int</span> dwFlags);
+
+<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> form = <span style="color:#66d9ef">new</span> Form()
+{
+	BackColor = Color.Black,
+	ShowInTaskbar = <span style="color:#66d9ef">false</span>,
+	TopMost = <span style="color:#66d9ef">true</span>,
+	<span style="color:#75715e">// WindowState = FormWindowState.Maximized, &amp;lt;- 諸悪の根源！
+</span><span style="color:#75715e"></span>	Left = <span style="color:#ae81ff">0</span>,
+	Top = <span style="color:#ae81ff">0</span>,
+	Width = Screen.PrimaryScreen.Bounds.Width,
+	Height = Screen.PrimaryScreen.Bounds.Height,
+	FormBorderStyle = FormBorderStyle.None,
+})
+{
+	<span style="color:#66d9ef">int</span> result = <span style="color:#ae81ff">0</span>;
+	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> interval = <span style="color:#ae81ff">200</span>;
+
+	result = AnimateWindow(form.Handle,
+            interval, AW_BLEND | AW_ACTIVATE);
+	<span style="color:#66d9ef">if</span> (result != <span style="color:#ae81ff">0</span>) Debug.WriteLine(
+            Marshal.GetLastWin32Error());
+	form.Show();
+
+	<span style="color:#66d9ef">if</span> (settings.SoundEnabled &amp;amp;&amp;amp;
+            File.Exists(<span style="color:#e6db74">&#34;PrintScreen.wav&#34;</span>))
+	    <span style="color:#66d9ef">new</span> SoundPlayer(<span style="color:#e6db74">&#34;PrintScreen.wav&#34;</span>).Play();
+
+	result = AnimateWindow(form.Handle, interval,
+            AW_BLEND | AW_HIDE);
+	<span style="color:#66d9ef">if</span> (result != <span style="color:#ae81ff">0</span>) Debug.WriteLine(
+            Marshal.GetLastWin32Error());
+	form.Hide();
+}
+
+<span style="color:#960050;background-color:#1e0010">```調べてる時に知ったのだけど、</span>Wind32 API <span style="color:#960050;background-color:#1e0010">を</span> DllImport <span style="color:#960050;background-color:#1e0010">するときに</span> SetLastError = <span style="color:#66d9ef">true</span> <span style="color:#960050;background-color:#1e0010">を指定しておけば、</span>GetLastError() <span style="color:#960050;background-color:#1e0010">を利用しなくてもマネージドな</span> Marshal.GetLastWin32Error() <span style="color:#960050;background-color:#1e0010">でエラーの内容が取得できるのだそうだ。一つ賢くなった。</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-06-19T02:24:55JST">2012/06/19</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%83%87%e3%82%b9%e3%82%af%e3%83%88%e3%83%83%e3%83%97%e5%85%a8%e4%bd%93%e3%82%92%e4%b8%80%e6%99%82%e7%9a%84%e3%81%ab%e6%9a%97%e8%bb%a2%e3%81%95%e3%81%9b%e3%81%9f%e3%81%84%20%282%29%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/06/19/022455/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E5%85%A8%E4%BD%93%E3%82%92%E4%B8%80%E6%99%82%E7%9A%84%E3%81%AB%E6%9A%97%E8%BB%A2%E3%81%95%E3%81%9B%E3%81%9F%E3%81%84&#43;%282%29&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F06%2F19%2F022455%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/06/19/034613/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/06/18/213500/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

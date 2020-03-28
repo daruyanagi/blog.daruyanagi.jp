@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/10/20/213231/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で女の子を落とす | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="wget http://localhost/onnnanoko.zip で女の子落とせる
+&mdash; Be玉🥀🐝🐈🖤🦔 (@BeMarble) October 19, 2012  これは羨ましい！　わしも女の子落としたい！――できれば、WebMatrix で。
+### ヤりたいこと まぁ、あらかじめ女の子を Zip で固めておいてアクセスし、「ほら、落ちてきました！」でもいいんだけど、せっかく WebMatrix でやるんだから圧縮ぐらいはオンデマンドでやってみたい。というわけで、  http:// localhost: **** へアクセスすると Grirls フォルダに入っている女の子たちが Zip でまるごと圧縮されて 落ちてくる！（onnanoko.zip） が今回の目標。  ### 何も考えずに書いてみる ```cs #Default.cshtml /* 全部消して以下のコードに置き換える */ @using System.IO @using System.IO.Compression
+@{ string dir = Server.MapPath(&ldquo;~/Girls&rdquo;); string zip = Server.MapPath(&ldquo;~/Onnanoko.zip&rdquo;);
+// ~/Girls を ~/Onnanoko.zip へ圧縮 ZipFile.CreateFromDirectory(dir, zip); // ~/Onnanoko.zip をダウンロード Response.Redirect(&quot;~/Onnanoko.zip&quot;);  }
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### .NET Framework 4." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/10/20/213231/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で女の子を落とす</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/10/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">wget http://localhost/onnnanoko.zip で女の子落とせる</p>&mdash; Be玉🥀🐝🐈🖤🦔 (@BeMarble) <a href="https://twitter.com/BeMarble/status/259173405063000064?ref_src=twsrc%5Etfw">October 19, 2012</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+これは羨ましい！　わしも女の子落としたい！――できれば、WebMatrix で。</p>
+<div class="section">
+    ### ヤりたいこと
+    まぁ、あらかじめ女の子を Zip で固めておいてアクセスし、「ほら、落ちてきました！」でもいいんだけど、せっかく WebMatrix でやるんだから圧縮ぐらいはオンデマンドでやってみたい。というわけで、
+<ul>
+<li>http:// localhost: **** へアクセスすると</li>
+<li>Grirls フォルダに入っている女の子たちが</li>
+<li>Zip でまるごと圧縮されて</li>
+<li>落ちてくる！（onnanoko.zip）</li>
+</ul>が今回の目標。
+</div>
+<div class="section">
+    ### 何も考えずに書いてみる
+    ```cs
+#Default.cshtml /* 全部消して以下のコードに置き換える */
+<p>@using System.IO
+@using System.IO.Compression</p>
+<p>@{
+string dir = Server.MapPath(&ldquo;~/Girls&rdquo;);
+string zip = Server.MapPath(&ldquo;~/Onnanoko.zip&rdquo;);</p>
+<pre><code>// ~/Girls を ~/Onnanoko.zip へ圧縮
+ZipFile.CreateFromDirectory(dir, zip);
+
+// ~/Onnanoko.zip をダウンロード
+Response.Redirect(&quot;~/Onnanoko.zip&quot;);
+</code></pre>
+<p>}</p>
+<pre><code class="language-もちろん、これは動かない。WebMatrix" data-lang="もちろん、これは動かない。WebMatrix">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### .NET Framework 4.5 で動作させる
+    まず初めに考えたのは、Web.config の書き換え。
+```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+  .web&gt;
+    // 4.0 を 4.5 に書き換え
+    debug=&quot;true&quot; targetFramework=&quot;4.5&quot;&gt;
+  .web&gt;
+
+
+```しかし、これだけでは動かん。System.IO.Compression.FileSystem.dll を参照に追加せねばならないらしい……。くそぅ、どうやればいいんだ……WebMatrix には参照追加のためのユーザーインターフェイスがない……。ここでオレの、オレたちの夢は途絶えてしまうのか！？
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### お兄ちゃん！　助けて！
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020211304.png&quot; alt=&quot;f:id:daruyanagi:20121020211304p:plain&quot; title=&quot;f:id:daruyanagi:20121020211304p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;そこで思い出したのが、「Visual Studio」。そう、&lt;del&gt;ターンエー&lt;/del&gt;の「WebMatrix」のお兄さんだ！　まぁ、WebMatrix でもたいていのことはできるけど、やっぱり Visual Studio のほうが便利なところも多い。困ったときはサクッと切り替えるのも一つの手だぞ！&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020211409.png&quot; alt=&quot;f:id:daruyanagi:20121020211409p:plain&quot; title=&quot;f:id:daruyanagi:20121020211409p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;というわけで、参照マネージャーで DLL への参照を追加。すると、Web.config はこんな風に書き換わる。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020212000.png&quot; alt=&quot;f:id:daruyanagi:20121020212000p:plain&quot; title=&quot;f:id:daruyanagi:20121020212000p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+  &lt;!----&gt;
+    .NET 4.5 対応のための web.config の変更点の説明については、http://go.microsoft.com/fwlink/?LinkId=235367 を参照してください。
+
+    次の属性を &lt;httpruntime&gt; タグに設定できます。&lt;/httpruntime&gt;
+      &lt;system.web&gt;&lt;/system.web&gt;
+        &lt;httpruntime targetframework=&quot;4.5&quot;&gt;&lt;/httpruntime&gt;
+      
+  --&gt;
+  .web&gt;
+    debug=&quot;true&quot; targetFramework=&quot;4.5&quot;&gt;
+      &lt;assemblies&gt;&lt;/assemblies&gt;
+        assembly=&quot;System.IO.Compression.FileSystem, Version=4.0.0.0, Culture=neutral, PublicKeyToken=B77A5C561934E089&quot;/&gt;
+      
+    
+    controlRenderingCompatibilityVersion=&quot;4.0&quot;/&gt;
+  .web&gt;
+
+
+```さすが、&lt;del&gt;ターンエー&lt;/del&gt;の「WebMatrix」のお兄さん！　っていうか、こんなの手で書いてられるかよ！ ＞ｗ＜あとはこれを実行するだけだ！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 親方！　空から女の子が！
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020211631.png&quot; alt=&quot;f:id:daruyanagi:20121020211631p:plain&quot; title=&quot;f:id:daruyanagi:20121020211631p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;てぃーてぃーりりりー♪　てぃてぃーりりりー♬&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020212011.png&quot; alt=&quot;f:id:daruyanagi:20121020212011p:plain&quot; title=&quot;f:id:daruyanagi:20121020212011p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;うおおお！　ちゃんと女の子が落せた！　万歳……っ！……万歳っ……！&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020211812.png&quot; alt=&quot;f:id:daruyanagi:20121020211812p:plain&quot; title=&quot;f:id:daruyanagi:20121020211812p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;でも、リロードしたらエラーが発生したので、ちゃんとファイルの存在チェック＆削除のロジックを入れておかねばならぬ。
+```cs
+@using System.IO
+@using System.IO.Compression
+
+@{
+    string dir = Server.MapPath(&quot;~/Girls&quot;);
+    string zip = Server.MapPath(&quot;~/Onnanoko.zip&quot;);
+
+    if (File.Exists(zip))
+    {
+        File.Delete(zip);
+    }
+    
+    ZipFile.CreateFromDirectory(dir, zip);
+
+    Response.Redirect(&quot;~/Onnanoko.zip&quot;);
+}
+
+</code></pre></div>
+<div class="section">
+    ### がちゆりさんを足してみた
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020212113.png" alt="f:id:daruyanagi:20121020212113p:plain" title="f:id:daruyanagi:20121020212113p:plain" class="hatena-fotolife"/>初回テストでは、Girls フォルダに向日葵ちゃんしか入っていなかったけれど、これはちょっと寂しい。というわけで、複数ファイルも行けるかどうかのテストを兼ねて、Girls フォルダにがちゆりさん（<a href="http://dic.nicovideo.jp/a/%E8%B5%A4%E5%BA%A7%E3%81%82%E3%81%8B%E3%81%AD">赤座あかねとは (アカザアカネとは) [単語記事] - ニコニコ大百科</a>）を追加。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020212247.png" alt="f:id:daruyanagi:20121020212247p:plain" title="f:id:daruyanagi:20121020212247p:plain" class="hatena-fotolife"/>結果はもちろん成功！……というわけで、本日のネタは Web サイト/アプリに「Zipでくれ」機能を付ける、でした！<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121020/20121020212225.png" alt="f:id:daruyanagi:20121020212225p:plain" title="f:id:daruyanagi:20121020212225p:plain" class="hatena-fotolife"/>ちなみに、WebMatrix で画像のプレビューをするには「ImageViewer」拡張機能をインストールするんだよ。
+</div>
+<div class="section">
+    ### おまけ：これ、デプロイできんの？
+    ローカルで動くのはわかったけど、これリモートでも動くんだろうか。答えは「やれないことはないけれど、もう少し待て」。そのうち Azure Web Sites が .NET 4.5 に対応してくれるみたいだから、それを使えば楽にできそう。 Express Web のほうも対応してくれたらありがたいのだけどね。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-10-20T21:32:31JST">2012/10/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e5%a5%b3%e3%81%ae%e5%ad%90%e3%82%92%e8%90%bd%e3%81%a8%e3%81%99%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/10/20/213231/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E5%A5%B3%E3%81%AE%E5%AD%90%E3%82%92%E8%90%BD%E3%81%A8%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F20%2F213231%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/21/035318/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/20/151617/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

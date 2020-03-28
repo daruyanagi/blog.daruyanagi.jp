@@ -1,0 +1,323 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/09/11/025615/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ で未解決だった問題を解決しておく。
+### AppxManifest.xml を読んで DisplayName などを取得する とりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。 ```cs namespace WinRTAppsUpdateChecker { using System.IO; using System.Xml.Linq; using Windows.Management.Deployment; /// &amp;lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); var manager = new PackageManager(); var packages = manager .FindPackagesForUser(string.Empty) .Select(_ =&gt; { dynamic result = new System.Dynamic.ExpandoObject(); result.Id = _.Id; try { var path = _." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/09/11/025615/" >
+                    <h1 class="entry__header-title-link-text">WinRT：システムにインストールされた Windows ストア アプリを列挙する（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/09/11</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2014/09/10/021908">WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ</a> で未解決だった問題を解決しておく。</p>
+<div class="section">
+    ### AppxManifest.xml を読んで DisplayName などを取得する
+    とりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。
+```cs
+namespace WinRTAppsUpdateChecker
+{
+    using System.IO;
+    using System.Xml.Linq;
+    using Windows.Management.Deployment;
+<pre><code>/// &amp;lt;summary&gt;
+/// MainWindow.xaml の相互作用ロジック
+/// &amp;lt;/summary&gt;
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+
+        var manager = new PackageManager();
+        var packages = manager
+            .FindPackagesForUser(string.Empty)
+            .Select(_ =&gt; 
+            {
+                dynamic result = new System.Dynamic.ExpandoObject();
+                result.Id = _.Id;
+
+                try
+                {
+                    var path = _.InstalledLocation.Path; // -&gt; exception
+                    var xml = File.ReadAllText(Path.Combine(path, &quot;AppxManifest.xml&quot;));
+                    var doc = XDocument.Parse(xml);
+                    XNamespace ns = &quot;http://schemas.microsoft.com/appx/2010/manifest&quot;;
+
+                    result.InstalledLocation = path;
+                    result.DisplayName = doc.Descendants(ns + &quot;DisplayName&quot;).First().Value;
+                    // result.Description = doc.Descendants(ns + &quot;Description&quot;).First().Value;
+                    result.PublisherDisplayName = doc.Descendants(ns + &quot;PublisherDisplayName&quot;).First().Value;
+                    result.Logo = doc.Descendants(ns + &quot;Logo&quot;).First().Value;
+                    result.OSMinVersion = doc.Descendants(ns + &quot;OSMinVersion&quot;).First().Value;
+                    result.OSMaxVersionTested = doc.Descendants(ns + &quot;OSMaxVersionTested&quot;).First().Value;
+                    // result.BackgroundColor = doc.Descendants(ns + &quot;VisualElements&quot;).First().Attributes(&quot;BackgroundColor&quot;).First().Value;
+                }
+                catch (Exception e)
+                {
+                    result.Error = e.Message; 
+                }
+                return result;
+            }).ToList();
+
+        DataContext = new
+        {
+            Packages = packages,
+        };
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-相変わらずダックタイピングでコーディングしてるので汚いけど、基本的に" data-lang="相変わらずダックタイピングでコーディングしてるので汚いけど、基本的に">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### resources.pri を読んでリソース文字列を取得する
+    <figure>
+    <img src="/images/2014/09/11/025615/20140911023541.png"/> 
+</figure>
+さっきのでだいたいうまくいったかなと思ったのだけど、DisplayName は（おそらく多言語対応のため）ms-resource で指定されている場合がある。ガッデム！
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx&quot;&gt;Resource Management System | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;これを読むには、&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/windows/desktop/bb759919(v=vs.85).aspx&quot;&gt;SHLoadIndirectString function | Microsoft Docs&lt;/a&gt; を利用する。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.pinvoke.net/default.aspx/shlwapi.shloadindirectstring&quot;&gt;pinvoke.net: shloadindirectstring (shlwapi)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;```cs
+namespace WinRTAppsUpdateChecker
+{
+    using System.IO;
+    using System.Runtime.InteropServices;
+    using System.Xml.Linq;
+    using Windows.Management.Deployment;
+
+    /// &amp;lt;summary&gt;
+    /// MainWindow.xaml の相互作用ロジック
+    /// &amp;lt;/summary&gt;
+    public partial class MainWindow : Window
+    {
+        [DllImport(&quot;shlwapi.dll&quot;, BestFitMapping = false, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false, ThrowOnUnmappableChar = true)]
+        public static extern int SHLoadIndirectString(string pszSource, StringBuilder pszOutBuf, int cchOutBuf, IntPtr ppvReserved);
+
+        public MainWindow()
+        {
+            InitializeComponent();
+
+            var manager = new PackageManager();
+            var packages = manager
+                .FindPackagesForUser(string.Empty)
+                .Select(_ =&gt; 
+                {
+                    dynamic result = new System.Dynamic.ExpandoObject();
+                    result.Id = _.Id;
+
+                    try
+                    {
+                        var path = _.InstalledLocation.Path; // -&gt; exception
+                        var xml = File.ReadAllText(Path.Combine(path, &quot;AppxManifest.xml&quot;));
+                        var doc = XDocument.Parse(xml);
+                        XNamespace ns = &quot;http://schemas.microsoft.com/appx/2010/manifest&quot;;
+
+                        result.InstalledLocation = path;
+                        result.DisplayName = doc.Descendants(ns + &quot;DisplayName&quot;).First().Value;
+                        // ここから
+                        if ((result.DisplayName as string).StartsWith(&quot;ms-resource&quot;))
+                        {
+                            var pri = Path.Combine(path, &quot;resources.pri&quot;);
+                            var resourceKey = (result.DisplayName as string).Split(&amp;#39;:&amp;#39;).Last();
+                            var resourcePath = string.Format(&quot;@{{{0}? ms-resource://{1}/resources/{2}}}&quot;, pri, _.Id.Name, resourceKey);
+                            var buffer = new StringBuilder(1024);
+                            SHLoadIndirectString(resourcePath, buffer, buffer.Capacity, IntPtr.Zero);
+                            result.DisplayName = buffer.ToString();
+                        }
+                        // ここまで
+                        // result.Description = doc.Descendants(ns + &quot;Description&quot;).First().Value;
+                        result.PublisherDisplayName = doc.Descendants(ns + &quot;PublisherDisplayName&quot;).First().Value;
+                        result.Logo = doc.Descendants(ns + &quot;Logo&quot;).First().Value;
+                        result.OSMinVersion = doc.Descendants(ns + &quot;OSMinVersion&quot;).First().Value;
+                        result.OSMaxVersionTested = doc.Descendants(ns + &quot;OSMaxVersionTested&quot;).First().Value;
+                        // result.BackgroundColor = doc.Descendants(ns + &quot;VisualElements&quot;).First().Attributes(&quot;BackgroundColor&quot;).First().Value;
+                    }
+                    catch (Exception e)
+                    {
+                        result.Error = e.Message; 
+                    }
+                    return result;
+                }).ToList();
+
+            DataContext = new
+            {
+                Packages = packages,
+            };
+        }
+    }
+}
+
+```リソースのパスの指定がよくわかんなかったのだけど、いろいろ試した結果、これでイケている感じ。ms-resource の読み込み処理はべた書きしたけど、ViewModel をちゃんとクラス化するときに関数にパッケージングして、Description などがリソースで指定されているときにも対応できるようにしておけばいいと思う。<figure>
+    <img src="/images/2014/09/11/025615/20140911025259.png"/> 
+</figure>
+ちゃんと名前もとれている感じ。よくみたら WinJS の名前が取れてないケド、見ないことにした。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 追記（2014/09/11 03:08）
+    <figure>
+    <img src="/images/2014/09/11/025615/20140911030830.png"/> 
+</figure>
+リソースパスの指定方法をちょっと変えたら、WinJS にも対応できた。
+```cs
+var resourceKey = (result.DisplayName as string).Split(&amp;#39;:&amp;#39;).Last();
+if (!resourceKey.StartsWith(&quot;/&quot;)) resourceKey = &quot;/resources/&quot; + resourceKey;
+var resourcePath = string.Format(&quot;@{{{0}? ms-resource://{1}{2}}}&quot;, pri, _.Id.Name, resourceKey);
+
+```だたキーが指定されているときは /resources/* で、階層付きで指定されているときはそれをそのまま渡してやればいいみたい。ドキュメントちゃんと読んでないから知らんけど。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-09-11T02:56:15JST">2014/09/11</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT%ef%bc%9a%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%ab%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%95%e3%82%8c%e3%81%9f%20Windows%20%e3%82%b9%e3%83%88%e3%82%a2%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e5%88%97%e6%8c%99%e3%81%99%e3%82%8b%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/09/11/025615/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F11%2F025615%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/13/202504/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/10/030408/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

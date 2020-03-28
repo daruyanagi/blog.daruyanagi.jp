@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/07/06/031903/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Packets larger than max_allowed_packet are not allowed | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="昨日（XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた - だるろぐ、XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！ - だるろぐ）は XREA でホスティングしていた WordPress を WebMatrix で
+&gt; （XREA → ）Windows 8（WebMatrix） → Azure  することに成功したので、今日は
+&gt; Azure → Windows 7（WebMatrix）  を試してみることにした。 Windows 8 環境はよくフリーズするので、あまりサーバーをイジる作業をしたくない。すると、なんとまた失敗。「Packets larger than max_allowed_packet are not allowed」という見覚えのあるエラーが。
+ERROR: リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください 2:25:59: リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください 2:25:59: 発行済みサイトをダウンロードできません。 リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください 2:25:59: エラーの詳細: 2:25:59: An error occurred during execution of the database script." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/mysql/">MySQL</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/07/06/031903/" >
+                    <h1 class="entry__header-title-link-text">Packets larger than max_allowed_packet are not allowed</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/07/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>昨日（<a href="http://daruyanagi.hatenablog.com/entry/2012/07/05/015015">XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた - だるろぐ</a>、<a href="http://daruyanagi.hatenablog.com/entry/2012/07/05/022927">XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！ - だるろぐ</a>）は XREA でホスティングしていた WordPress を WebMatrix で</p>
+<pre><code>&gt;
+    （XREA → ）Windows 8（WebMatrix） → Azure
+</code></pre>
+<p>することに成功したので、今日は</p>
+<pre><code>&gt;
+    Azure → Windows 7（WebMatrix）
+</code></pre>
+<p>を試してみることにした。 Windows 8 環境はよくフリーズするので、あまりサーバーをイジる作業をしたくない。すると、なんとまた失敗。「Packets larger than max_allowed_packet are not allowed」という見覚えのあるエラーが。</p>
+<pre><code>ERROR: リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください
+2:25:59: リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください
+2:25:59: 発行済みサイトをダウンロードできません。 リモート データベースをダウンロードできません。詳細については、&quot;http://go.microsoft.com/fwlink/?LinkId=205387&quot; を参照してください
+2:25:59: エラーの詳細:
+2:25:59: An error occurred during execution of the database script. The error occurred between the following lines of the script: &quot;199&quot; and &quot;211&quot;. The verbose log might have more information about the error. The command started with the following:
+2:25:59: &quot;--
+-- Dumping data for table `wp_postmeta`
+--
+
+LOC&quot;
+2:25:59:  Packets larger than max_allowed_packet are not allowed. http://go.microsoft.com/fwlink/?LinkId=178587  Learn more at: http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE.
+:
+:
+```昨日（&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/07/05/022927&quot;&gt;XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！ - だるろぐ&lt;/a&gt;）は不要なテーブルを削除して回避したのだけど、今回はその手が使えない&lt;a href=&quot;#f1&quot; name=&quot;fn1&quot; title=&quot;wp_postmeta を消したらいろいろ吹っ飛びそうだ&quot;&gt;*1&lt;/a&gt;。まぁ、今回は Azure → ローカル の話なので、ローカルにある MySQL の設定を直接イジって max_allowed_packet を増やしてあげればよさそうだ。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706031259.png&quot; alt=&quot;f:id:daruyanagi:20120706031259p:plain&quot; title=&quot;f:id:daruyanagi:20120706031259p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;初期状態では 1MB となっていたので、これを 16MB 程度に増やしてあげる。インストールフォルダにある“my.ini”の [mysqld] セクションに以下のように追記する&lt;a href=&quot;#f2&quot; name=&quot;fn2&quot; title=&quot;設定ファイルのバックアップとっとけよ？&quot;&gt;*2&lt;/a&gt;。
+</code></pre><p>[mysqld]
+max_allowed_packet=16MB</p>
+<pre><code class="language-んで、" data-lang="んで、">&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;wp_postmeta を消したらいろいろ吹っ飛びそうだ&lt;/span&gt;
+&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;設定ファイルのバックアップとっとけよ？&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-07-06T03:19:03JST">2012/07/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Packets%20larger%20than%20max_allowed_packet%20are%20not%20allowed%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/07/06/031903/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Packets&#43;larger&#43;than&#43;max_allowed_packet&#43;are&#43;not&#43;allowed&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F06%2F031903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/06/040304/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/05/022927/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/04/26/075329/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            UX ってのがなんだかイマイチ理解しきれてないけど、自分なりに考えてみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WDD の話の続きのようなもの。これに関する話題をあちこちで読んでみたけど、 小野和俊のブログ:Metro UIは「UXアプリ養成ギプス」 が言い得て妙でわかりやすいなぁ、と思った。メトロデザインで必要とされることの一つに「全体のデザインの統一性」が挙げられると思う。「統一されたデザイン」は、使いやすい。ネガティブにとらえるならそれは「制限」に過ぎないのだけど、その分「凝縮」されており、よく練られた「UX思想の土台」になっている。メトロをみると、今までの（Windows）アプリって、自由すぎて無駄が多く、開発者＆ユーザーの思考・試行・空間・時間が知らず知らずのうちに浪費・発散してしまっていたのではないかな、と感じてしまう。iPhone が登場し、あの迫っ苦しい画面と貧弱なリソースでもデスクトップと同等またはそれ以上の「凝縮された体験」が楽しめるということが実証された。そしてそれが、今度はタブレットへと拡張されつつある。メトロはそれの追随だと思うけれど、iOS がやった以上の「凝縮」を成し遂げているように見えるし、たんなるスマフォからタブレットへのスケールアップにとどまらない機能を提供していると思う*1。まぁ、それはともかく。今、僕は簡単な Markdown エディターを作っているのだけど、 WWD いってきたよ！ - だるろぐ でいろいろ学んだおかげもあって、ちょっといろいろ改造したくなってきた。メトロをアレだけ見ちゃうと、今作ってるヤツは「コレジャナイーイ」感が半端ない。どーせならWDDで得た成果を活かして、UX（ユーザーエクスペリエンス）を考えたモノに改造したい。WDDでもらったでっかいメモ帳に、適当にアイデアをまとめていくよ！
+### 編集とプレビュー このアプリでやりたい・実現したいユーザー体験は、Markdownテキストの編集とHTMLのプレビュー。だから、それを全面に押し出すよ！　全画面フルに使って編集＆プレビューしてください。  ### 検索・履歴 もうひとつ実現したいのは、以前に書いたテキストを簡単に呼び出せるということ。Windows フォームだったら、検索や履歴機能は小さなメニューへ押し込まれているのが普通だけど、せっかくのメトロスタイルアプリなんだから、その体験はぜひもっとアクセスしやすく、楽しく使えるようにしたい。たとえば、検索機能はチャームから。ストレージに溜め込まれたドキュメントから目的の物を探し出し、サムネイルで並べる。履歴機能はAppバーから。Internet Explorer 10 のタブみたいな感じにしたい。このアプリにタブという概念はないけれど、強いて言えば“過去の履歴＝タブ”みたいな感じに見えるようにしたい。もうひとつ考えたのは、左右フリックでの［戻る］［進む］操作。履歴機能のほとんどって、［戻る］［進む］じゃない？　だったら、フリック（またはキーボードショートカット）で手軽に使えたらすごく便利だぞ。ちょっとリッチな書式をもつメモ帳のようにも使ってほしいから、ページをめくるように使えたらいい。しかも、このメモ帳にはページがほとんど無限大にある！（あー、ページ内検索機能はどうしよう……メトロ版IE10での実装を今度参考にしてみるか）  ### イメージピッカー HTMLドキュメントに画像を埋め込む作業も少し考えないと。デスクトップと違ってドラッグ＆ドロップというわけにもいかないし。とりあえず、このアプリに画像を埋め込むときは SkyDrive （決め打ち！）を使うようにしてみればどうだろうか。ローカルイメージを選択したら、それを SkyDrive へアップロードして短縮URLを取得し、Markdown の書式として挿入する。もとから SkyDrive や Flickr といったオンラインストレージに保存されているイメージなら、そのままURLを取得すればイイ。けれど、オフラインの時困るかな……とりあえずローカルパスを埋め込んで、オンラインの際にそれをクラウドへアップロード・置換するというので何とかなりそうだけど。  ### 保存・共有 最後はエクスポート。これはチャームの［共有］から行う。XML-RPCでブログへ送ったり、SkyDrive なんかにファイルとして吐き出したり、メールで送ったり。エディットモードで共有したときはテキスト形式で、プレビューモードで共有したときはHTML形式で共有。ここはメニューを増やさず（テキストとして共有とかHTMLとして共有とか）、なるべく規約ベースで機能を表現したい。となると困るのはエディット＆リアルタイムプレビューモード（エディット画面とプレビュー画面が半々）の場合だけど……まぁ、あとで考えよう。それにしても「ファイルとして保存」機能は必要かなぁ……できれば削りたいけど、デスクトップアプリとの連携を考えれば必要かな。あと、複数の環境で設定をローミングできるようにもしたい。とりあえずは基本的な設定を、できれば分離ストレージの保存してあるドキュメントも全部同期させたいけど、さすがにそれは審査で怒られるかも。===以上、こんな感じ。実現するのがいつになるのかはわかんないけど、妄想するだけでも楽しいよね（ぁ 最近は WPF に対する理解も少し高まってきたので、メトロスタイルアプリも頑張ればいけるんじゃないかなぁ……そうだったらいいなぁ……みた感じ簡単そうなんだけどなぁ……WDD にいくまでは Markdown エディターのUXを考えようだなんて、思いつきもしなかった……。それも、メトロという「制限」にして「UX思想の土台」があったればこそだと思う。 *1:セマンティックズームとか  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/04/26/075329/" >
+                    <h1 class="entry__header-title-link-text">UX ってのがなんだかイマイチ理解しきれてないけど、自分なりに考えてみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/04/26</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>WDD の話の続きのようなもの。これに関する話題をあちこちで読んでみたけど、 <a href="http://blog.livedoor.jp/lalha/archives/50444177.html">小野和俊のブログ:Metro UIは「UXアプリ養成ギプス」</a> が言い得て妙でわかりやすいなぁ、と思った。メトロデザインで必要とされることの一つに「全体のデザインの統一性」が挙げられると思う。「統一されたデザイン」は、使いやすい。ネガティブにとらえるならそれは「制限」に過ぎないのだけど、その分「凝縮」されており、よく練られた「UX思想の土台」になっている。メトロをみると、今までの（Windows）アプリって、自由すぎて無駄が多く、開発者＆ユーザーの思考・試行・空間・時間が知らず知らずのうちに浪費・発散してしまっていたのではないかな、と感じてしまう。iPhone が登場し、あの迫っ苦しい画面と貧弱なリソースでもデスクトップと同等またはそれ以上の「凝縮された体験」が楽しめるということが実証された。そしてそれが、今度はタブレットへと拡張されつつある。メトロはそれの追随だと思うけれど、iOS がやった以上の「凝縮」を成し遂げているように見えるし、たんなるスマフォからタブレットへのスケールアップにとどまらない機能を提供していると思う<a href="#f1" name="fn1" title="セマンティックズームとか">*1</a>。まぁ、それはともかく。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426070427.png" alt="f:id:daruyanagi:20120426070427p:plain" title="f:id:daruyanagi:20120426070427p:plain" class="hatena-fotolife"/>今、僕は簡単な Markdown エディターを作っているのだけど、 <a href="http://daruyanagi.hatenablog.com/entry/2012/04/26/050929">WWD いってきたよ！ - だるろぐ</a> でいろいろ学んだおかげもあって、ちょっといろいろ改造したくなってきた。メトロをアレだけ見ちゃうと、今作ってるヤツは「コレジャナイーイ」感が半端ない。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426062406.jpg" alt="f:id:daruyanagi:20120426062406j:plain" title="f:id:daruyanagi:20120426062406j:plain" class="hatena-fotolife"/>どーせならWDDで得た成果を活かして、UX（ユーザーエクスペリエンス）を考えたモノに改造したい。WDDでもらったでっかいメモ帳に、適当にアイデアをまとめていくよ！</p>
+<div class="section">
+    ### 編集とプレビュー
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426062750.jpg" alt="f:id:daruyanagi:20120426062750j:plain" title="f:id:daruyanagi:20120426062750j:plain" class="hatena-fotolife"/>このアプリでやりたい・実現したいユーザー体験は、Markdownテキストの編集とHTMLのプレビュー。だから、それを全面に押し出すよ！　全画面フルに使って編集＆プレビューしてください。
+</div>
+<div class="section">
+    ### 検索・履歴
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426063356.jpg" alt="f:id:daruyanagi:20120426063356j:plain" title="f:id:daruyanagi:20120426063356j:plain" class="hatena-fotolife"/>もうひとつ実現したいのは、以前に書いたテキストを簡単に呼び出せるということ。Windows フォームだったら、検索や履歴機能は小さなメニューへ押し込まれているのが普通だけど、せっかくのメトロスタイルアプリなんだから、その体験はぜひもっとアクセスしやすく、楽しく使えるようにしたい。たとえば、検索機能はチャームから。ストレージに溜め込まれたドキュメントから目的の物を探し出し、サムネイルで並べる。履歴機能はAppバーから。Internet Explorer 10 のタブみたいな感じにしたい。このアプリにタブという概念はないけれど、強いて言えば“過去の履歴＝タブ”みたいな感じに見えるようにしたい。もうひとつ考えたのは、左右フリックでの［戻る］［進む］操作。履歴機能のほとんどって、［戻る］［進む］じゃない？　だったら、フリック（またはキーボードショートカット）で手軽に使えたらすごく便利だぞ。ちょっとリッチな書式をもつメモ帳のようにも使ってほしいから、ページをめくるように使えたらいい。しかも、このメモ帳にはページがほとんど無限大にある！（あー、ページ内検索機能はどうしよう……メトロ版IE10での実装を今度参考にしてみるか）
+</div>
+<div class="section">
+    ### イメージピッカー
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426064348.jpg" alt="f:id:daruyanagi:20120426064348j:plain" title="f:id:daruyanagi:20120426064348j:plain" class="hatena-fotolife"/>HTMLドキュメントに画像を埋め込む作業も少し考えないと。デスクトップと違ってドラッグ＆ドロップというわけにもいかないし。とりあえず、このアプリに画像を埋め込むときは SkyDrive （決め打ち！）を使うようにしてみればどうだろうか。ローカルイメージを選択したら、それを SkyDrive へアップロードして短縮URLを取得し、Markdown の書式として挿入する。もとから SkyDrive や Flickr といったオンラインストレージに保存されているイメージなら、そのままURLを取得すればイイ。けれど、オフラインの時困るかな……とりあえずローカルパスを埋め込んで、オンラインの際にそれをクラウドへアップロード・置換するというので何とかなりそうだけど。
+</div>
+<div class="section">
+    ### 保存・共有
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120426/20120426063821.jpg" alt="f:id:daruyanagi:20120426063821j:plain" title="f:id:daruyanagi:20120426063821j:plain" class="hatena-fotolife"/>最後はエクスポート。これはチャームの［共有］から行う。XML-RPCでブログへ送ったり、SkyDrive なんかにファイルとして吐き出したり、メールで送ったり。エディットモードで共有したときはテキスト形式で、プレビューモードで共有したときはHTML形式で共有。ここはメニューを増やさず（テキストとして共有とかHTMLとして共有とか）、なるべく規約ベースで機能を表現したい。となると困るのはエディット＆リアルタイムプレビューモード（エディット画面とプレビュー画面が半々）の場合だけど……まぁ、あとで考えよう。それにしても「ファイルとして保存」機能は必要かなぁ……できれば削りたいけど、デスクトップアプリとの連携を考えれば必要かな。あと、複数の環境で設定をローミングできるようにもしたい。とりあえずは基本的な設定を、できれば分離ストレージの保存してあるドキュメントも全部同期させたいけど、さすがにそれは審査で怒られるかも。===以上、こんな感じ。実現するのがいつになるのかはわかんないけど、妄想するだけでも楽しいよね（ぁ<br/>
+最近は WPF に対する理解も少し高まってきたので、メトロスタイルアプリも頑張ればいけるんじゃないかなぁ……そうだったらいいなぁ……みた感じ簡単そうなんだけどなぁ……WDD にいくまでは Markdown エディターのUXを考えようだなんて、思いつきもしなかった……。それも、メトロという「制限」にして「UX思想の土台」があったればこそだと思う。
+</div><div class="footnote">
+<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">セマンティックズームとか</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-04-26T07:53:29JST">2012/04/26</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?UX%20%e3%81%a3%e3%81%a6%e3%81%ae%e3%81%8c%e3%81%aa%e3%82%93%e3%81%a0%e3%81%8b%e3%82%a4%e3%83%9e%e3%82%a4%e3%83%81%e7%90%86%e8%a7%a3%e3%81%97%e3%81%8d%e3%82%8c%e3%81%a6%e3%81%aa%e3%81%84%e3%81%91%e3%81%a9%e3%80%81%e8%87%aa%e5%88%86%e3%81%aa%e3%82%8a%e3%81%ab%e8%80%83%e3%81%88%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/04/26/075329/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=UX&#43;%E3%81%A3%E3%81%A6%E3%81%AE%E3%81%8C%E3%81%AA%E3%82%93%E3%81%A0%E3%81%8B%E3%82%A4%E3%83%9E%E3%82%A4%E3%83%81%E7%90%86%E8%A7%A3%E3%81%97%E3%81%8D%E3%82%8C%E3%81%A6%E3%81%AA%E3%81%84%E3%81%91%E3%81%A9%E3%80%81%E8%87%AA%E5%88%86%E3%81%AA%E3%82%8A%E3%81%AB%E8%80%83%E3%81%88%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F04%2F26%2F075329%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/04/27/061743/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/04/26/050929/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

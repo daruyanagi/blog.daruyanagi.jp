@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/08/10/155243/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 で Wiki クローンを作る vol.1 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="前回（WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では SQL Server Compact Edition（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。SQL CE というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。
+### データベースの作成   WebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。  では、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。  今回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。  PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ［ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。  コードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。 ```cs @{ if (IsPost) // POST 要求だけを受け付けましょう { // Request[&#34;name&#34;] で送られてきた名前を取得。 // POST データなら Request." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix 3 で Wiki クローンを作る</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/08/10/155243/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3 で Wiki クローンを作る vol.1</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/08/10</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>前回（<a href="https://blog.daruyanagi.jp/entry/2013/07/17/054740">WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ</a>）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では <strong>SQL Server Compact Edition</strong>（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。<strong>SQL CE</strong> というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。</p>
+<div class="section">
+    ### データベースの作成
+    <figure>
+    <img src="/images/2013/08/10/155243/20130810152905.png"/> 
+</figure>
+WebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。<figure>
+    <img src="/images/2013/08/10/155243/20130810152957.png"/> 
+</figure>
+では、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。<figure>
+    <img src="/images/2013/08/10/155243/20130810153138.png"/> 
+</figure>
+今回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。
+<ul>
+<li>PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。</li>
+<li>Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。</li>
+<li>RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？</li>
+<li>CreatedAt：datetime（日時）型。その名の通り作成日時です。</li>
+<li>UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。</li>
+</ul>これを“Post”という名前で作っておきます。
+</div>
+<div class="section">
+    ### データの入力画面の作成
+    <figure>
+    <img src="/images/2013/08/10/155243/20130810153956.png"/> 
+</figure>
+［ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、<a href="http://***/NewPost">http://***/NewPost</a> でアクセスできます。<figure>
+    <img src="/images/2013/08/10/155243/20130810154059.png"/> 
+</figure>
+コードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
+```cs
+@{
+    if (IsPost) // POST 要求だけを受け付けましょう
+    {
+        // Request["name"] で送られてきた名前を取得。
+        // POST データなら Request.Form["name"] の方がフォーマルな書き方かな
+        var title = Request["title"];
+        var raw_text = Request["raw-text"];
+        var now = DateTime.Now;
+<pre><code>    // データベースを開く。拡張子はいらない
+    using (var db = Database.Open(&quot;Green Tights&quot;))
+    {
+        const string query = @&quot;
+            INSERT INTO Post(Title, CreatedAt, UpdatedAt, RawText)
+            VALUES(@0, @1, @2, @3)
+            &quot;;
+        db.Query(query, title, now, now, raw_text);
+    }
+}
+</code></pre>
+<p>}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;form method=&quot;post&quot;&gt; &lt;!&ndash; Submit すると自分を POST で呼ぶ &ndash;&gt;
+&lt;p&gt;&lt;input type=&quot;text&rdquo; id=&quot;title&rdquo; name=&quot;title&rdquo; /&gt;&lt;/p&gt;
+&lt;p&gt;&lt;textarea id=&quot;raw-text&rdquo; name=&quot;raw-text&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;
+&lt;p&gt;&lt;input type=&quot;submit&rdquo; /&gt;&lt;/p&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-試しに実行し、［データ］ワークペースでデータを確認してみましょう。表示モードを［定義］から［データ］に切り替えてね！<figure>
+    <img src="/images/2013/08/10/155243/20130810154452.png"/> 
+</figure>
+なにか……入ってますね？　成功！　次回はこれを取り出して表示して見ることにしましょう。おつかれさまです。<a" data-lang="試しに実行し、［データ］ワークペースでデータを確認してみましょう。表示モードを［定義］から［データ］に切り替えてね！<figure>
+    <img src="/images/2013/08/10/155243/20130810154452.png"/> 
+</figure>
+なにか……入ってますね？　成功！　次回はこれを取り出して表示して見ることにしましょう。おつかれさまです。<a">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-08-10T15:52:43JST">2013/08/10</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%e3%81%a7%20Wiki%20%e3%82%af%e3%83%ad%e3%83%bc%e3%83%b3%e3%82%92%e4%bd%9c%e3%82%8b%20vol.1%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/08/10/155243/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%E3%81%A7&#43;Wiki&#43;%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#43;vol.1&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F08%2F10%2F155243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/08/11/021644/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/08/09/224243/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

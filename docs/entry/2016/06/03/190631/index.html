@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/06/03/190631/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：フィードを読み込むときに System.Xml.XmlException が発生する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ASP.NET Web Pages 製の BOT が、ある日を境に突然、System.Xml.XmlException エラーを吐くようになった。
+&gt; The element with name &amp;#39;RDF&amp;#39; and namespace &amp;#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&amp;#39; is not an allowed feed format.  某サイトのリニューアルで、RSS 2.0 が RSS 1.0 になったせいでフィードが読めなくなったらしい／(^o^)＼
+&gt; Classes That Model Syndication Feeds and Items  SyndicationFeed - represents a syndication feed. Has properties like Title, Description, Links, and Items. The Items property represents the collection of content items expressed in the feed. SyndicationItem - represents a specific syndication feed item and includes properties like Title, Summary, PublishDate, Authors, and so on." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/06/03/190631/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：フィードを読み込むときに System.Xml.XmlException が発生する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/06/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>ASP.NET Web Pages 製の BOT が、ある日を境に突然、System.Xml.XmlException エラーを吐くようになった。</p>
+<pre><code>&gt;
+    The element with name &amp;#39;RDF&amp;#39; and namespace &amp;#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&amp;#39; is not an allowed feed format. 
+</code></pre>
+<p>某サイトのリニューアルで、RSS 2.0 が RSS 1.0 になったせいでフィードが読めなくなったらしい／(^o^)＼</p>
+<pre><code>&gt;
+    Classes That Model Syndication Feeds and Items
+</code></pre>
+<p><strong>SyndicationFeed</strong> - represents a syndication feed. Has properties like Title, Description, Links, and Items. The Items property represents the collection of content items expressed in the feed.
+<strong>SyndicationItem</strong> - represents a specific syndication feed item and includes properties like Title, Summary, PublishDate, Authors, and so on.
+Classes That Transform Syndication Feeds To/From XML</p>
+<p><strong>Rss20FeedFormatter</strong> - can take a SyndicationFeed object and turn it into XML that conforms to the RSS 2.0 specification. Also, can be used to consume a properly-formatted RSS 2.0 feed, turning the XML into a SyndicationFeed object with its properties set based on the data in the consumed XML.
+<strong>Atom10FeedFormatter</strong> - same as the Rss20FeedFormatter, but uses the Atom 1.0 standard.</p>
+<pre><code>    Syndicating and Consuming RSS 1.0 (RDF) Feeds in ASP.NET 3.5 - 4GuysFromRolla.com
+</code></pre>
+<p><strong>Rss10FeedFormatter</strong> は標準で用意されていないみたいなので、自分で実装する必要がある。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fmono0926%2FReactivePinboard%2Fblob%2Fmaster%2FReactivePinboard.PCL%2FRss10FeedFormatter.cs" title="mono0926/ReactivePinboard" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>幸い、コードが GitHub に転がっていたので拝借（見覚えのあるアイコンの人だなぁ……）。おおきにさんきゅーやで！<figure>
+    <img src="/images/2016/06/03/190631/20160603190721.png"/> 
+</figure>
+これを以下のように呼び出してやれば、解決。めでたしめでたし。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">try</span>
+{
+    feed = SyndicationFeed.Load(reader);
+}
+<span style="color:#66d9ef">catch</span>
+{
+    <span style="color:#75715e">// エラーがでたら RSS 1.0 ってことにしておく
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> formatter = <span style="color:#66d9ef">new</span> Rss10FeedFormatter();
+    formatter.ReadFrom(reader);
+    feed = formatter.Feed;
+}
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-06-03T19:06:31JST">2016/06/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e3%83%95%e3%82%a3%e3%83%bc%e3%83%89%e3%82%92%e8%aa%ad%e3%81%bf%e8%be%bc%e3%82%80%e3%81%a8%e3%81%8d%e3%81%ab%20System.Xml.XmlException%20%e3%81%8c%e7%99%ba%e7%94%9f%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/06/03/190631/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%82%92%E8%AA%AD%E3%81%BF%E8%BE%BC%E3%82%80%E3%81%A8%E3%81%8D%E3%81%AB&#43;System.Xml.XmlException&#43;%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F06%2F03%2F190631%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/06/04/054343/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/06/02/113845/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

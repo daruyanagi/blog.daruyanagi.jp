@@ -1,0 +1,188 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/08/16/184814/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Surface Laptop を買ったので、簡単な Diff ツールを作って公開した | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  Surface Laptop がほしくなったので、近所のエディオンまでバイクをかっ飛ばして買ってきました。Windows 10 S を実機で使ってみたかったのダ！それにしても、Windows 10 S 縛りはキツいですね。最近はストアも充実してきたのだけど、まだまだ圧倒的にアプリが足りない。でも、アレもない、コレもないと愚痴ってるだけってのもアレなので、とりあえず急場しのぎでほしかった Diff ツールをサクッと作ってみました（秀丸のは使いにくいなぁ……orz）。  基本的に2つのテキストファイルを開いて比較し、変更箇所を色分けするだけです。フォルダーボタンを押すとファイルピッカーが現れるので、比較したいファイルを指定してください。色分けの意味は以下の通り。
+ 黄色：変更（変更された段落は薄い黄色） 赤色：削除 緑色：追加（挿入された段落は薄い緑色） 内部的には色のカスタマイズは打ち消し線・下線などの追加が可能になっているので、将来バージョンがでることがあれば設定画面から変更できるようになるはずです（現バージョンはテーマの変更機能のみを実装）。  ファイルのドラッグ＆ドロップも一応対応しています。ターゲットはフォルダーボタンが無難です（あとで気が付いたんだけど、バグってて他の部分ではドラッグが受け付けてもらえない）。  単一ファイルの場合：ドロップしたポイントで判定して、左右どちらかで開くようになってます 複数ファイルの場合：1つは左側、もう1つは右側で開くようになってます（3つ目以降は無視） Diff のアルゴリズムは、以下から拝借しました。[2007/3/15 (木)](http://d.hatena.ne.jp/siokoshou/20070315)ほかにも Google が作った Diff ライブラリが有名みたいです。  Google Code Archive - Long-term storage for Google Code Project Hosting. こっちは人間に読みやすいよう、ごちゃごちゃしてくれる機能なんかがついているようですが、行単位の比較がないのかな？　使うだけなら割と簡単でしたが。 ### ダウンロード [Sabun を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/sabun/9pdrdtvdp8fm)Windows 10 Mobile でも利用できるようですが、ユーザーインターフェイスのテストをまったくしていないので、おそらく使い物にならないでしょう。  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/sabun/">Sabun</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/08/16/184814/" >
+                    <h1 class="entry__header-title-link-text">Surface Laptop を買ったので、簡単な Diff ツールを作って公開した</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/08/16</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/08/16/184814/20170813174708.jpg"/> 
+</figure>
+Surface Laptop がほしくなったので、近所のエディオンまでバイクをかっ飛ばして買ってきました。Windows 10 S を実機で使ってみたかったのダ！それにしても、Windows 10 S 縛りはキツいですね。最近はストアも充実してきたのだけど、まだまだ圧倒的にアプリが足りない。でも、アレもない、コレもないと愚痴ってるだけってのもアレなので、とりあえず急場しのぎでほしかった Diff ツールをサクッと作ってみました（秀丸のは使いにくいなぁ……orz）。<figure>
+    <img src="/images/2017/08/16/184814/20170816183256.png"/> 
+</figure>
+基本的に2つのテキストファイルを開いて比較し、変更箇所を色分けするだけです。フォルダーボタンを押すとファイルピッカーが現れるので、比較したいファイルを指定してください。色分けの意味は以下の通り。</p>
+<ul>
+<li>黄色：変更（変更された段落は薄い黄色）</li>
+<li>赤色：削除</li>
+<li>緑色：追加（挿入された段落は薄い緑色）</li>
+</ul>内部的には色のカスタマイズは打ち消し線・下線などの追加が可能になっているので、将来バージョンがでることがあれば設定画面から変更できるようになるはずです（現バージョンはテーマの変更機能のみを実装）。<figure>
+    <img src="/images/2017/08/16/184814/20170816184131.png"/> 
+</figure>
+ファイルのドラッグ＆ドロップも一応対応しています。ターゲットはフォルダーボタンが無難です（あとで気が付いたんだけど、バグってて他の部分ではドラッグが受け付けてもらえない）。
+<ul>
+<li>単一ファイルの場合：ドロップしたポイントで判定して、左右どちらかで開くようになってます</li>
+<li>複数ファイルの場合：1つは左側、もう1つは右側で開くようになってます（3つ目以降は無視）</li>
+</ul>Diff のアルゴリズムは、以下から拝借しました。[2007/3/15 (木)](http://d.hatena.ne.jp/siokoshou/20070315)ほかにも Google が作った Diff ライブラリが有名みたいです。
+<ul>
+<li><a href="https://code.google.com/archive/p/google-diff-match-patch/">Google Code Archive - Long-term storage for Google Code Project Hosting.</a></li>
+</ul>こっちは人間に読みやすいよう、ごちゃごちゃしてくれる機能なんかがついているようですが、行単位の比較がないのかな？　使うだけなら割と簡単でしたが。
+<div class="section">
+    ### ダウンロード
+    [Sabun を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/sabun/9pdrdtvdp8fm)Windows 10 Mobile でも利用できるようですが、ユーザーインターフェイスのテストをまったくしていないので、おそらく使い物にならないでしょう。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-08-16T18:48:14JST">2017/08/16</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Surface%20Laptop%20%e3%82%92%e8%b2%b7%e3%81%a3%e3%81%9f%e3%81%ae%e3%81%a7%e3%80%81%e7%b0%a1%e5%8d%98%e3%81%aa%20Diff%20%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e5%85%ac%e9%96%8b%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/08/16/184814/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Surface&#43;Laptop&#43;%E3%82%92%E8%B2%B7%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Diff&#43;%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E5%85%AC%E9%96%8B%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F16%2F184814%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/20/144645/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/194636/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

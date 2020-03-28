@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/10/17/224555/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で PDF を出力 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="RazorPDFはASP.NET MVCのRazor ViewEngineを利用してPDFファイルを出力します。  ViewにはiTextXMLというXMLをPDFに変換するライブラリーを使用します。 もともとSparkというViewEngineにあった機能を移植したものになります。 ぱっと探してみましたけど、ソースコードがどうやら公開されていないですね。
+ ASP.NET MVCでPDFを出力する（RazorPDF） « 84zume Works  Razor と XML の組み合わせで PDF ドキュメントを出力できる。素敵だなぁ。ASP.NET MVC 向けなので、WebMatrix（ASP.NET Web Page）ではちょっと使えなさそうなのが残念だけど。でも、PDF を吐くだけだったら WebMatrix でもできるよ！（対抗意識調べてみると、「iTextSharp」というライブラリを使えばよさそう。ラッキーなことに NuGet も用意されていて、ライブラリのインストール自体は簡単。いつも通り、ASP.NET の「空のサイト」テンプレートでごにょごにょとサンプルを書いてみた。
+# Default.cshtml @using iTextSharp.text @using iTextSharp.text.pdf @{ // ドキュメントを作成  Document doc = new Document(); // 作成したドキュメントと Response.OutputStream を  // 結び付ける Writer オブジェクトを取得  PdfWriter.GetInstance(doc, Response.OutputStream); // 開け、ゴマ！  doc.Open(); // あとは、チャプターを追加してみたり……  var p1 = new Paragraph(&#34;Chapter 1." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/10/17/224555/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で PDF を出力</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/10/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    RazorPDFはASP.NET MVCのRazor ViewEngineを利用してPDFファイルを出力します。
+</code></pre>
+<p>ViewにはiTextXMLというXMLをPDFに変換するライブラリーを使用します。
+もともとSparkというViewEngineにあった機能を移植したものになります。
+ぱっと探してみましたけど、ソースコードがどうやら公開されていないですね。</p>
+<pre><code>    ASP.NET MVCでPDFを出力する（RazorPDF） « 84zume Works
+</code></pre>
+<p>Razor と XML の組み合わせで PDF ドキュメントを出力できる。素敵だなぁ。ASP.NET MVC 向けなので、WebMatrix（ASP.NET Web Page）ではちょっと使えなさそうなのが残念だけど。でも、PDF を吐くだけだったら WebMatrix でもできるよ！（対抗意識調べてみると、「iTextSharp」というライブラリを使えばよさそう。ラッキーなことに NuGet も用意されていて、ライブラリのインストール自体は簡単。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121017/20121017222440.png" alt="f:id:daruyanagi:20121017222440p:plain" title="f:id:daruyanagi:20121017222440p:plain" class="hatena-fotolife"/>いつも通り、ASP.NET の「空のサイト」テンプレートでごにょごにょとサンプルを書いてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> Default.cshtml
+
+@using iTextSharp.text
+@using iTextSharp.text.pdf
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#75715e">// ドキュメントを作成
+</span><span style="color:#75715e"></span>    Document doc = <span style="color:#66d9ef">new</span> Document();
+
+    <span style="color:#75715e">// 作成したドキュメントと Response.OutputStream を
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// 結び付ける Writer オブジェクトを取得
+</span><span style="color:#75715e"></span>    PdfWriter.GetInstance(doc, Response.OutputStream);
+
+    <span style="color:#75715e">// 開け、ゴマ！
+</span><span style="color:#75715e"></span>    doc.Open();
+
+    <span style="color:#75715e">// あとは、チャプターを追加してみたり……
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> p1 = <span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;Chapter 1. Hello, PDF&#34;</span>)
+    {
+        SpacingBefore = <span style="color:#ae81ff">20</span>,
+        SpacingAfter = <span style="color:#ae81ff">20</span>,
+    };
+
+    <span style="color:#66d9ef">var</span> chapter = <span style="color:#66d9ef">new</span> Chapter(p1, <span style="color:#ae81ff">0</span>)
+    {
+        NumberDepth = <span style="color:#ae81ff">0</span>,
+        Indentation = <span style="color:#ae81ff">16</span>,
+    };
+        
+    chapter.Add(
+        <span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;This is first paragraph.&#34;</span>.Times(<span style="color:#ae81ff">20</span>))
+    );
+
+    <span style="color:#75715e">// セクションを追加してみたり……
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#66d9ef">var</span> p2 = <span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;Section 1. iText Sharp is GREAT!&#34;</span>)
+        {
+            SpacingBefore = <span style="color:#ae81ff">20</span>,
+            SpacingAfter = <span style="color:#ae81ff">20</span>,
+        };
+
+        <span style="color:#66d9ef">var</span> section = chapter.AddSection(p2, <span style="color:#ae81ff">0</span>);
+        section.Indentation = <span style="color:#ae81ff">16</span>;
+
+        section.Add(
+            <span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;This is second paragraph.&#34;</span>.Times(<span style="color:#ae81ff">20</span>))
+        );
+    }
+    doc.Add(chapter);
+
+    <span style="color:#75715e">// パラグラフを追加してみたり……
+</span><span style="color:#75715e"></span>    doc.Add(<span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;Hello iTextSharp&#34;</span>)
+        {
+            SpacingBefore = <span style="color:#ae81ff">20</span>,
+            SpacingAfter = <span style="color:#ae81ff">20</span>,
+        }
+    );
+
+    <span style="color:#75715e">// 日本語フォントを用意
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> base_font = BaseFont.CreateFont(
+        <span style="color:#e6db74">@&#34;c:\windows\fonts\msmincho.ttc,0&#34;</span>,
+        BaseFont.IDENTITY_H, <span style="color:#66d9ef">true</span>
+    );
+    <span style="color:#66d9ef">var</span> font = <span style="color:#66d9ef">new</span> Font(base_font, <span style="color:#ae81ff">16</span>);
+
+    doc.Add(
+        <span style="color:#66d9ef">new</span> Paragraph(<span style="color:#e6db74">&#34;日本語はどうかな&#34;</span>, font)
+        {
+            SpacingBefore = <span style="color:#ae81ff">20</span>,
+            SpacingAfter = <span style="color:#ae81ff">20</span>,
+        }
+    );
+
+    <span style="color:#75715e">// ほかにも、リストとかテーブルが作れる
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> list = <span style="color:#66d9ef">new</span> List(<span style="color:#66d9ef">true</span>, <span style="color:#ae81ff">10</span>)
+    {
+        IndentationLeft = <span style="color:#ae81ff">20</span>,
+    };
+
+    list.Add(<span style="color:#66d9ef">new</span> ListItem(<span style="color:#e6db74">&#34;あいうえお&#34;</span>.Times(<span style="color:#ae81ff">10</span>), font));
+    list.Add(<span style="color:#66d9ef">new</span> ListItem(<span style="color:#e6db74">&#34;さしすせそ&#34;</span>.Times(<span style="color:#ae81ff">10</span>), font));
+
+    doc.Add(list);
+
+    doc.Close(); <span style="color:#75715e">// &amp;lt;- 便所の扉と一緒。開けたら閉める！
+</span><span style="color:#75715e"></span>
+    Response.ContentType = <span style="color:#e6db74">&#34;application/pdf&#34;</span>;
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121017/20121017223840.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20121017223840p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20121017223840p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;<span style="color:#960050;background-color:#1e0010">できてるみたい。有志によるリファレンス</span> &lt;a href=<span style="color:#e6db74">&#34;http://www.vector.co.jp/soft/winnt/writing/se462217.html&#34;</span>&gt;iTextSharp <span style="color:#960050;background-color:#1e0010">クラスライブラリリファレンスの詳細情報</span> : Vector <span style="color:#960050;background-color:#1e0010">ソフトを探す！</span>&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">は必須だなぁ。こういうのがあると、ほんとありがたいよ。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追記</span>
+    <span style="color:#960050;background-color:#1e0010">書き忘れたけど、サンプルテキストのコピペでコードが長くなるのが嫌だったので、ちょっとした拡張メソッドを作って使っている。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">StringExtension</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Times(
+        <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> target, <span style="color:#66d9ef">int</span> times)
+    {
+        <span style="color:#66d9ef">string</span> result = <span style="color:#66d9ef">string</span>.Empty;
+
+        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">int</span> i = <span style="color:#ae81ff">0</span>; i &amp;lt; times; i++)
+            result += target.ToString();
+
+        <span style="color:#66d9ef">return</span> result;
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span><span style="color:#e6db74">&#34;a&#34;</span>.Times(<span style="color:#ae81ff">3</span>) <span style="color:#960050;background-color:#1e0010">で</span> <span style="color:#e6db74">&#34;aaa&#34;</span> <span style="color:#960050;background-color:#1e0010">になればうれしい。</span>
+
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-10-17T22:45:55JST">2012/10/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%20PDF%20%e3%82%92%e5%87%ba%e5%8a%9b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/10/17/224555/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7&#43;PDF&#43;%E3%82%92%E5%87%BA%E5%8A%9B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F17%2F224555%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/20/134909/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/16/204027/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

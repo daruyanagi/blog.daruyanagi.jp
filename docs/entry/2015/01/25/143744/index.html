@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2015/01/25/143744/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="密かに待ってました。人身事故ってのがちょっと胸痛むけれど。すみません。でも、これで運行に遅延が発生した時にどんなコードが吐かれるのかわかったやで。
+ ＪＲ四国列車運行情報 遅れがないとき。 ```html &lt;div ID=&#34;delay_info&#34; &lt;div class=&#34;no_delay&#34;◇現在、遅れ等の情報はありません。&lt;/div &lt;/div ```html &amp;lt;div ID=&quot;delay_info&quot;&gt; &amp;lt;p&gt;◇現在、以下のエリアで影響が出ています（*:**更新）。&amp;lt;/p&gt; &amp;lt;h4&gt;徳島線&amp;lt;/h4&gt; &amp;lt;h5&gt;徳島線（牛島駅構内）　運転再開&amp;lt;/h5&gt; &amp;lt;p&gt;徳島線では……&amp;lt;br&gt;※高徳線の列車は……&amp;lt;/p&gt; &amp;lt;/div&gt; ```同じ路線で複数の遅延情報があるケースも考えられるだろうので、タグはこんな感じになるんだろう（と思う）。 p
+h4 h5 p
+h5 p :  h4 h5 p
+h5 p :  ```cs public class DelayInfo { public string Line { get; set; } public string Status { get; set; } public string Message { get; set; } } public static List&amp;lt;DelayInfo&gt; GetJRShikoku() { const string key = &quot;jrshikoku&quot;; const string url = &quot;http://www." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2015/01/25/143744/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2015/01/25</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2015/01/25/143744/20150125141900.png"/> 
+</figure>
+密かに待ってました。人身事故ってのがちょっと胸痛むけれど。すみません。でも、これで運行に遅延が発生した時にどんなコードが吐かれるのかわかったやで。</p>
+<ul>
+<li><a href="http://www.jr-shikoku.co.jp/info/">ＪＲ四国列車運行情報</a></li>
+</ul>遅れがないとき。
+```html
+&lt;div ID="delay_info">
+    &lt;div class="no_delay">◇現在、遅れ等の情報はありません。&lt;/div>
+&lt;/div>
+<pre><code class="language-遅れがあるとき。" data-lang="遅れがあるとき。">```html
+&amp;lt;div ID=&quot;delay_info&quot;&gt;
+    &amp;lt;p&gt;◇現在、以下のエリアで影響が出ています（*:**更新）。&amp;lt;/p&gt;
+
+    &amp;lt;h4&gt;徳島線&amp;lt;/h4&gt;
+    &amp;lt;h5&gt;徳島線（牛島駅構内）　運転再開&amp;lt;/h5&gt;
+    &amp;lt;p&gt;徳島線では……&amp;lt;br&gt;※高徳線の列車は……&amp;lt;/p&gt;
+&amp;lt;/div&gt;
+
+```同じ路線で複数の遅延情報があるケースも考えられるだろうので、タグはこんな感じになるんだろう（と思う）。
+</code></pre><p>p</p>
+<p>h4
+h5
+p</p>
+<pre><code>h5
+p
+:
+</code></pre>
+<p>h4
+h5
+p</p>
+<pre><code>h5
+p
+:
+</code></pre>
+<pre><code class="language-というわけで、これをいい感じにデータオブジェクトに変換していくわけれだけれど、どうしよう。とりあえず" data-lang="というわけで、これをいい感じにデータオブジェクトに変換していくわけれだけれど、どうしよう。とりあえず">```cs
+public class DelayInfo
+{
+    public string Line { get; set; }
+    public string Status { get; set; }
+    public string Message { get; set; }
+}
+
+public static List&amp;lt;DelayInfo&gt; GetJRShikoku()
+{
+    const string key = &quot;jrshikoku&quot;;
+    const string url = &quot;http://www.jr-shikoku.co.jp/info/&quot;;
+
+    // キャッシュを探す
+    var result = WebCache.Get(key) as List&amp;lt;DelayInfo&gt;;
+
+    // キャッシュがヒットしなければ、情報の取得
+    if (result == null)
+    {
+        using (var client = new WebClient())
+        {
+            // !!
+            client.Encoding = Encoding.GetEncoding(&quot;Shift_JIS&quot;);
+
+            var doc = new HtmlAgilityPack.HtmlDocument();
+            var src = client.DownloadString(url);
+
+            doc.LoadHtml(src);
+
+            var nodes = doc.DocumentNode
+                // div#delay_info タグを探す
+                .SelectSingleNode(@&quot;//div[@id=&quot;&quot;delay_info&quot;&quot;]&quot;)
+                // 直下のノードを列挙
+                .ChildNodes
+                // 改行・コメントなどのノードは読み飛ばす
+                .Where(_ =&gt; _.NodeType == HtmlNodeType.Element)
+                // 最初の div#no_delay や p は読み飛ばす
+                .Skip(1); 
+
+            var line = string.Empty;
+            var status = string.Empty;
+
+            result = new List&amp;lt;DelayInfo&gt;();
+
+            foreach (var node in nodes)
+            {
+                switch (node.Name)
+                {
+                    case &quot;h4&quot;: // 線名を記憶
+                        line = node.InnerText;
+                        continue;
+                    case &quot;h5&quot;: // &quot;徳島線（牛島駅構内）　運転再開&quot;を記憶
+                        status = node.InnerText;
+                        continue;
+                    case &quot;p&quot;:  // p タグを見つけたらデータをプッシュ
+                        result.Add(new DelayInfo()
+                        {
+                            Line = line,
+                            Status = status,
+                            Message = node.InnerText,
+                        }); 
+                        break;
+                    default:
+                        // Do Nothing
+                        break;
+                }
+            }
+            
+            // 遅延情報が見つからなかった場合、全線正常のデータをプッシュ
+            if (result.Count == 0)
+            {
+                result.Add(new DelayInfo()
+                {
+                    Line = &quot;全線&quot;,
+                    Status = &quot;正常運行&quot;,
+                    Message = &quot;現在通常通り運行しております。&quot;,
+                });
+            }
+        }
+    }
+
+    return result;
+}
+
+```<figure>
+    <img src="/images/2015/01/25/143744/20150125143551.png"/> 
+</figure>
+ビューでこのデータを適当にレンダリング。まぁ、まぁ、いい感じかもしれない。もっといろんなケースを見てみたかったけれど、とりあえずこれが正しいとして、Twitter BOT でも実装してみるかな。
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2015-01-25T14:37:44JST">2015/01/25</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%20JR%e5%9b%9b%e5%9b%bd%e3%81%8c%e6%ad%a2%e3%81%be%e3%81%a3%e3%81%9f%e3%81%ae%e3%81%a7%e3%80%81%e9%81%8b%e8%a1%8c%e6%83%85%e5%a0%b1%e3%81%ae%e5%8f%96%e5%be%97%e3%83%97%e3%83%ad%e3%82%b0%e3%83%a9%e3%83%a0%e4%bd%9c%e3%82%8b%e3%81%ae%e3%81%8c%e6%8d%97%e3%81%a3%e3%81%9f%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2015/01/25/143744/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A&#43;JR%E5%9B%9B%E5%9B%BD%E3%81%8C%E6%AD%A2%E3%81%BE%E3%81%A3%E3%81%9F%E3%81%AE%E3%81%A7%E3%80%81%E9%81%8B%E8%A1%8C%E6%83%85%E5%A0%B1%E3%81%AE%E5%8F%96%E5%BE%97%E3%83%97%E3%83%AD%E3%82%B0%E3%83%A9%E3%83%A0%E4%BD%9C%E3%82%8B%E3%81%AE%E3%81%8C%E6%8D%97%E3%81%A3%E3%81%9F%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F25%2F143744%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/26/104215/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/24/173023/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

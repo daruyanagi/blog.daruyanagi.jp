@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/07/02/204626/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            ASP.NET Core なるものを Visual Studio Code でしてみむとするなり（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="### .NET Core SDK for Windows のインストール   .NET Core SDK Installer をダウンロードしてインストールする。  GitHub - dotnet/cli: This repo contains the .NET Core command-line (CLI) tools, used for building .NET Core apps and libraries through your development flow (compiling, NuGet package management, running, testing, ...). これで dotnet コマンドが利用できるようになる。    ### プロジェクトの作成と実行 今回は %USERPROFILE%\Projects にサンプルというプロジェクトを作成する。 #### プロジェクトフォルダーの作成と移動 ``` C:\Users\Hidetoshi\Projectsmkdir Sample C:\Users\Hidetoshi\Projects&gt;cd Sample
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### プロジェクトの作成　dotnet new -t web ``` C:\Users\Hidetoshi\Projects\Sample&gt;dotnet new -t web Created new C# project in C:\Users\Hidetoshi\Projects\Sample." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio-code/">Visual Studio Code</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/07/02/204626/" >
+                    <h1 class="entry__header-title-link-text">ASP.NET Core なるものを Visual Studio Code でしてみむとするなり（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/07/02</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <div class="section">
+    ### .NET Core SDK for Windows のインストール
+    <figure>
+    <img src="/images/2016/07/02/204626/20160702200239.png"/> 
+</figure>
+.NET Core SDK Installer をダウンロードしてインストールする。
+<ul>
+<li><a href="https://github.com/dotnet/cli">GitHub - dotnet/cli: This repo contains the .NET Core command-line (CLI) tools, used for building .NET Core apps and libraries through your development flow (compiling, NuGet package management, running, testing, ...).</a></li>
+</ul>これで dotnet コマンドが利用できるようになる。<figure>
+    <img src="/images/2016/07/02/204626/20160702200540.png"/> 
+</figure>
+<br/>
+</div>
+<div class="section">
+    ### プロジェクトの作成と実行
+    今回は %USERPROFILE%\Projects にサンプルというプロジェクトを作成する。
+<div class="section">
+    #### プロジェクトフォルダーの作成と移動
+    ```
+C:\Users\Hidetoshi\Projects>mkdir Sample
+<p>C:\Users\Hidetoshi\Projects&gt;cd Sample</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### プロジェクトの作成　dotnet new -t web
+    ```
+C:\Users\Hidetoshi\Projects\Sample&gt;dotnet new -t web
+Created new C# project in C:\Users\Hidetoshi\Projects\Sample.
+```これで generator-aspnet で言うところの Web Application -&gt; Bootstrap に相当するものが作成されるみたい。ちなみに dotnet new のオプションを指定しないと、コンソールアプリのひな型が作成されるのかな？　ほかのオプションはこんな感じ。
+
+    &gt;
+        
+
+    #### Options
+    
+
+    ##### -l, --lang [C#|F#]
+    Language of the project. Defaults to C#. csharp (fsharp) or cs (fs) are also valid options.
+
+
+
+    ##### -t, --type
+    Type of the project. Valid values are console, web, lib and xunittest.
+
+
+
+        dotnet new コマンド | Microsoft Docs
+    
+言語とかも指定できるんだなぁ。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### プロジェクトの復元　dotnet restore
+    足りないパッケージを取得する。
+</code></pre><p>C:\Users\Hidetoshi\Projects\Sample&gt;dotnet restore
+log  : Restoring packages for C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Restoring packages for tool 'Microsoft.AspNetCore.Razor.Tools' in C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Restoring packages for tool 'Microsoft.AspNetCore.Server.IISIntegration.Tools' in C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Restoring packages for tool 'Microsoft.EntityFrameworkCore.Tools' in C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Restoring packages for tool 'Microsoft.Extensions.SecretManager.Tools' in C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Restoring packages for tool 'Microsoft.VisualStudio.Web.CodeGeneration.Tools' in C:\Users\Hidetoshi\Projects\Sample\project.json&hellip;
+log  : Writing lock file to disk. Path: C:\Users\Hidetoshi\Projects\Sample\project.lock.json
+log  : C:\Users\Hidetoshi\Projects\Sample\project.json
+log  : Restore completed in 25830ms.</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### プロジェクトの実行　dotnet run
+    ```
+C:\Users\Hidetoshi\Projects\Sample&gt;dotnet run
+Project Sample (.NETCoreApp,Version=v1.0) will be compiled because expected outputs are missing
+Compiling Sample for .NETCoreApp,Version=v1.0
+
+Compilation succeeded.
+    0 Warning(s)
+    0 Error(s)
+
+Time elapsed 00:00:02.6031974
+```&lt;a href=&quot;http://localhost:5000&quot;&gt;http://localhost:5000&lt;/a&gt; へアクセスするとアプリケーションが表示される。<figure>
+    <img src="/images/2016/07/02/204626/20160702201227.png"/> 
+</figure>
+［Ctrl］＋［C］キーで中断できる。<figure>
+    <img src="/images/2016/07/02/204626/20160702204321.png"/> 
+</figure>
+Visual Studio Code だとプロジェクトフォルダーを開いてターミナル画面を開き、dotnet コマンドをポポンと打てば実行できる。Git もそのまま使える。ぃぇーい！&lt;iframe src=&quot;https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F07%2F02%2F142117&quot; title=&quot;ASP.NET Core なるものを Visual Studio Code でしてみむとするなり - だるろぐ&quot; class=&quot;embed-card embed-blogcard&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;/iframe&gt;前回より簡単な感じなので、こっち使おうかな？
+
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-07-02T20:46:26JST">2016/07/02</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Core%20%e3%81%aa%e3%82%8b%e3%82%82%e3%81%ae%e3%82%92%20Visual%20Studio%20Code%20%e3%81%a7%e3%81%97%e3%81%a6%e3%81%bf%e3%82%80%e3%81%a8%e3%81%99%e3%82%8b%e3%81%aa%e3%82%8a%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/07/02/204626/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F204626%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/07/09/031216/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/07/02/142117/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

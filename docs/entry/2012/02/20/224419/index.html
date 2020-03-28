@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/02/20/224419/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+             認証機能付きの新規アプリケーションを ExpressWeb へ発行してみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ASP.net MVC 3 の新規アプリケーション（認証つき）を、Visual Studio 2010 から Web配置 で ExpressWeb へ発行してみたのだけど、やたら手間取ったので、備忘録としてメモしておく。
+&gt; 追記：データベースは **SQL Server 2008** を使いました。メイド好きなヒト（「メイド MVC」でググれ）によると、SQL CE の方がよっぽど簡単とのこと。でも、SQL CE は格納できる文字数に制限があるのよねぇ......（4,000文字）  ### とりあえずデプロイする とりあえず何も考えずに、新規アプリケーションを ExpressWeb へ発行してみる。ASP.net MVC 3 アプリケーションを作成。何の変哲もないタダのWebサイトが現れる。daruyanagi.net に発行するので、［サービス URL］［サイト/アプリケーション］欄に daruyanagi.net と記入。資格情報には、Webサイトのリモート管理のIDとパスを入力しておく。この時、［信頼しない証明書を許可する］にチェックを入れておくのを忘れずに。［発行］ボタンを押して暫し待つ。できた！  ### エラーの内容が表示されない しかしこのままではログイン関係の機能が動かない。ユーザーの登録が行えない。それどころか、エラーの内容が表示されない。とりあえずエラーを特定しないことにはどうしようもないので、Web.confug にカスタムエラーを無効化する設定を記述。 ```xml  ： &lt;system.web&gt; &lt;customErrors mode=&quot;Off&rdquo;/&gt; ：
+もう一度発行して、ユーザーの登録画面でリロード。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### フォルダに書き込み権限がない &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220453.png&quot; alt=&quot;f:id:daruyanagi:20120220220453p:plain&quot; title=&quot;f:id:daruyanagi:20120220220453p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;エラーの内容が表示された。フォルダに書き込み権限がなかったため、App_Data フォルダが作成できなかったらしい。ファイルマネージャーで、/wwwroot いかに権限を与えて解決。リロード。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### データベースに接続できない &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220454.png&quot; alt=&quot;f:id:daruyanagi:20120220220454p:plain&quot; title=&quot;f:id:daruyanagi:20120220220454p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;次はデータベースに接続できないようだ。そりゃそうだ、ローカル用の設定だもの。 Web." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-mvc-3/">ASP.net MVC 3</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/02/20/224419/" >
+                    <h1 class="entry__header-title-link-text"> 認証機能付きの新規アプリケーションを ExpressWeb へ発行してみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/02/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>ASP.net MVC 3 の新規アプリケーション（認証つき）を、Visual Studio 2010 から Web配置 で ExpressWeb へ発行してみたのだけど、やたら手間取ったので、備忘録としてメモしておく。</p>
+<pre><code>&gt;
+    追記：データベースは **SQL Server 2008** を使いました。メイド好きなヒト（「メイド MVC」でググれ）によると、SQL CE の方がよっぽど簡単とのこと。でも、SQL CE は格納できる文字数に制限があるのよねぇ......（4,000文字）
+</code></pre>
+<div class="section">
+    ### とりあえずデプロイする
+    とりあえず何も考えずに、新規アプリケーションを ExpressWeb へ発行してみる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215322.png" alt="f:id:daruyanagi:20120220215322p:plain" title="f:id:daruyanagi:20120220215322p:plain" class="hatena-fotolife"/>ASP.net MVC 3 アプリケーションを作成。何の変哲もないタダのWebサイトが現れる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215326.png" alt="f:id:daruyanagi:20120220215326p:plain" title="f:id:daruyanagi:20120220215326p:plain" class="hatena-fotolife"/>daruyanagi.net に発行するので、［サービス URL］［サイト/アプリケーション］欄に daruyanagi.net と記入。資格情報には、Webサイトのリモート管理のIDとパスを入力しておく。この時、［信頼しない証明書を許可する］にチェックを入れておくのを忘れずに。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215330.png" alt="f:id:daruyanagi:20120220215330p:plain" title="f:id:daruyanagi:20120220215330p:plain" class="hatena-fotolife"/>［発行］ボタンを押して暫し待つ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215328.png" alt="f:id:daruyanagi:20120220215328p:plain" title="f:id:daruyanagi:20120220215328p:plain" class="hatena-fotolife"/>できた！
+</div>
+<div class="section">
+    ### エラーの内容が表示されない
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215356.png" alt="f:id:daruyanagi:20120220215356p:plain" title="f:id:daruyanagi:20120220215356p:plain" class="hatena-fotolife"/>しかしこのままではログイン関係の機能が動かない。ユーザーの登録が行えない。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220048.png" alt="f:id:daruyanagi:20120220220048p:plain" title="f:id:daruyanagi:20120220220048p:plain" class="hatena-fotolife"/>それどころか、エラーの内容が表示されない。とりあえずエラーを特定しないことにはどうしようもないので、Web.confug にカスタムエラーを無効化する設定を記述。
+<pre><code>```xml
+</code></pre>
+<p>：
+&lt;system.web&gt;
+&lt;customErrors mode=&quot;Off&rdquo;/&gt;
+：</p>
+<pre><code>もう一度発行して、ユーザーの登録画面でリロード。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### フォルダに書き込み権限がない
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220453.png&quot; alt=&quot;f:id:daruyanagi:20120220220453p:plain&quot; title=&quot;f:id:daruyanagi:20120220220453p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;エラーの内容が表示された。フォルダに書き込み権限がなかったため、App_Data フォルダが作成できなかったらしい。ファイルマネージャーで、/wwwroot いかに権限を与えて解決。リロード。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### データベースに接続できない
+    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220454.png&quot; alt=&quot;f:id:daruyanagi:20120220220454p:plain&quot; title=&quot;f:id:daruyanagi:20120220220454p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;次はデータベースに接続できないようだ。そりゃそうだ、ローカル用の設定だもの。 Web.confug.Release にリモート用の接続文字列を設定してやる。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215347.png&quot; alt=&quot;f:id:daruyanagi:20120220215347p:plain&quot; title=&quot;f:id:daruyanagi:20120220215347p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+
+    ```xml
+&amp;lt;configuration xmlns:xdt=&quot;http://schemas.microsoft.com/XML-Document-Transform&quot;&gt;
+    &amp;lt;connectionStrings&gt;
+      &amp;lt;add name=&quot;ApplicationServices&quot;
+        connectionString=&quot;Server=mssql01.dataweb-ad.jp;***&quot;
+        xdt:Transform=&quot;SetAttributes&quot; xdt:Locator=&quot;Match(name)&quot;/&gt;
+    &amp;lt;/connectionStrings&gt;
+  &amp;lt;system.web&gt;
+：
+</code></pre><p>リロード。</p>
+</div>
+<div class="section">
+    ### 資格情報を保存するデータベースに書き込みができない
+<div class="section">
+    #### スキーマがない
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215348.png" alt="f:id:daruyanagi:20120220215348p:plain" title="f:id:daruyanagi:20120220215348p:plain" class="hatena-fotolife"/>ストアドプロシージャがない！とな。よくわからないので、リモートのデータベースの中身を見てみた。すっからかんだった！ どうにかしてデータを作成してあげないといけない。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220224518.png" alt="f:id:daruyanagi:20120220224518p:plain" title="f:id:daruyanagi:20120220224518p:plain" class="hatena-fotolife"/>アプリケーションのプロパティ画面にある、［SQL のパッケージ化/発行］タブを開いて、［Web.configからインポート］ボタンを押す。すると、でろでろっと補完されるはずなので、［対象データベースの接続文字］欄にリモートデータベースの接続文字列を入れる。＼デップローイ！／ 
+</div>
+<div class="section">
+    #### データがない
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215353.png" alt="f:id:daruyanagi:20120220215353p:plain" title="f:id:daruyanagi:20120220215353p:plain" class="hatena-fotolife"/>checkShemeVersion の値が1じゃないと言われる。色々解決策を教えてくれているけど、どれも正解ではない。実はさきほど作ったのはスキーマのみで、データが入っていないということだったらしい。データも入れてあげればよう。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220221907.png" alt="f:id:daruyanagi:20120220221907p:plain" title="f:id:daruyanagi:20120220221907p:plain" class="hatena-fotolife"/>［データベーススクリプトのオプション］を［スキーマのみ］から［データのみ］に変更。ここをはじめから［スキーマとデータ］にしておけば、最後のエラーに悩まされずに済んだかもしれない。（次回発行時には Web.config からインポートしたデータベースエントリの設定のチェックを外しておくこと。すでにあるスキーマを二十二作ろうとしてエラーが発生する）<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220215352.png" alt="f:id:daruyanagi:20120220215352p:plain" title="f:id:daruyanagi:20120220215352p:plain" class="hatena-fotolife"/>リモートでもちゃんとデータができてる！　無事にユーザーの作成にも成功しました。めでたしめでたし。
+</div>
+</div>
+<div class="section">
+    ### まとめ
+    新規 Asp.net MVC 3 アプリケーションを ExpressWeb へ配置する際は、以下の点に気をつけよう。
+<ul>
+<li><s>Webサイトの［エクステンション］設定が APS.net 4.0（統合）モードになっているかチェックしよう。</s>（最近はデフォルト設定が修正されたので大丈夫なはず）</li>
+<li>Webサイトのユーザーにフォルダの書き込み権限を与えておこう。（ファイルマネージャー）</li>
+<li>リモートDBと接続できるように、正しい接続文字列を設定しよう。（Web.config.Release）</li>
+<li>データベースのスキーマとデータをリモートDBに書きこもう。（SQL のパッケージ化/発行）</li>
+</ul>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-02-20T22:44:19JST">2012/02/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%20%e8%aa%8d%e8%a8%bc%e6%a9%9f%e8%83%bd%e4%bb%98%e3%81%8d%e3%81%ae%e6%96%b0%e8%a6%8f%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%82%92%20ExpressWeb%20%e3%81%b8%e7%99%ba%e8%a1%8c%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/02/20/224419/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=&#43;%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%E4%BB%98%E3%81%8D%E3%81%AE%E6%96%B0%E8%A6%8F%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%82%92&#43;ExpressWeb&#43;%E3%81%B8%E7%99%BA%E8%A1%8C%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F20%2F224419%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/20/231717/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/19/022206/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

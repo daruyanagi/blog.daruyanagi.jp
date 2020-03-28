@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/04/30/155040/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ以前に作った PowerShell が動作しなくなった。
+$urls =@( &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34; ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url $body = $request.ParsedHtml $price_node = $body.getElementsByTagName(&#34;s&#34;) | where { $_.getAttributeNode(&#34;class&#34;).Value -eq &#34;srv_saleprice&#34; }　#&amp;lt;-- ここで例外 ```――結果。 HRESULT からの例外:0x800A01B6
+&lt;div class=&quot;section&quot;&gt; ### 解決 &lt;code&gt;getElementsByTagName()&lt;/code&gt; のかわりに &lt;code&gt;IHTMLDocument3_getElementsByTagName()&lt;/code&gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。 getElementsByTagName -&gt; IHTMLDocument3_getElementsByTagName
+getElementsByName -&gt; IHTMLDocument3_getElementsByName
+getElementByID -&gt; IHTMLDocument3_getElementByID
+&lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname&quot;&gt;PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### なぞ   PowerShell スクリプトからではなく、PowerShell のシェルから &lt;code&gt;getElementsByTagName()&lt;/code&gt; を使うとそのまま通った。よくわからんな……。 &lt;/div&gt; " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/04/30/155040/" >
+                    <h1 class="entry__header-title-link-text">PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/04/30</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、<a href="http://blog.daruyanagi.jp/entry/2017/03/04/220000">PowerShell：ストアアプリのセール情報を取得する - だるろぐ</a>以前に作った PowerShell が動作しなくなった。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$urls =@(
+  <span style="color:#e6db74">&#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34;</span>
+)
+
+<span style="color:#66d9ef">foreach</span> ($url <span style="color:#66d9ef">in</span> $urls)
+{
+    <span style="color:#66d9ef">try</span>
+    {
+        $request = Invoke-WebRequest $url
+        
+        $body = $request.ParsedHtml
+        $price_node = $body.getElementsByTagName(<span style="color:#e6db74">&#34;s&#34;</span>) | where { 
+            $_.getAttributeNode(<span style="color:#e6db74">&#34;class&#34;</span>).Value  <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;srv_saleprice&#34;</span>
+        }　<span style="color:#75715e">#&amp;lt;-- ここで例外</span>
+
+```<span style="color:#960050;background-color:#1e0010">――</span>結果<span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p>HRESULT からの例外:0x800A01B6</p>
+<pre><code class="language-Internet" data-lang="Internet">
+&lt;div class=&quot;section&quot;&gt;
+    ### 解決
+    &lt;code&gt;getElementsByTagName()&lt;/code&gt; のかわりに &lt;code&gt;IHTMLDocument3_getElementsByTagName()&lt;/code&gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。
+</code></pre><p>getElementsByTagName -&gt;
+IHTMLDocument3_getElementsByTagName</p>
+<p>getElementsByName -&gt;
+IHTMLDocument3_getElementsByName</p>
+<p>getElementByID -&gt;
+IHTMLDocument3_getElementByID</p>
+<pre><code>&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname&quot;&gt;PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### なぞ
+    <figure>
+    <img src="/images/2017/04/30/155040/20170430154724.png"/> 
+</figure>
+PowerShell スクリプトからではなく、PowerShell のシェルから &lt;code&gt;getElementsByTagName()&lt;/code&gt; を使うとそのまま通った。よくわからんな……。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-04-30T15:50:40JST">2017/04/30</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?PowerShell%ef%bc%9a%e3%82%b9%e3%82%af%e3%83%ac%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b%e3%81%a8%e2%80%9cHRESULT%20%e3%81%8b%e3%82%89%e3%81%ae%e4%be%8b%e5%a4%96:0x800A01B6%e2%80%9d%e3%81%8c%e7%99%ba%e7%94%9f%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/04/30/155040/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=PowerShell%EF%BC%9A%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%E3%81%A8%E2%80%9CHRESULT&#43;%E3%81%8B%E3%82%89%E3%81%AE%E4%BE%8B%E5%A4%96%3A0x800A01B6%E2%80%9D%E3%81%8C%E7%99%BA%E7%94%9F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F30%2F155040%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/05/01/134744/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/23/233723/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

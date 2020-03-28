@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/09/01/060000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="この前、GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布してみたが、実は不完全だった。 &gt; ### How long does the CDN cache files? How can I make it refresh my file? The CDN caches files permanently based on their path. It ignores query strings. This is done to improve performance and to make it possible for the CDN to handle massive amounts of traffic without causing excessive load on RawGit or GitHub&amp;#39;s servers.To ensure that the CDN always serves the version of the file you want, use a git tag or commit hash in the file&amp;#39;s path instead of a branch name, and update the URL if you push a new version of the file." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/clickonce/">ClickOnce</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/09/01/060000/" >
+                    <h1 class="entry__header-title-link-text">GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/09/01</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F08%2F30%2F051929" title="GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>この前、GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布してみたが、実は不完全だった。
+<pre><code>&gt;
+    
+
+### How long does the CDN cache files? How can I make it refresh my file?
+The CDN caches files permanently based on their path. It ignores query strings. This is done to improve performance and to make it possible for the CDN to handle massive amounts of traffic without causing excessive load on RawGit or GitHub&amp;#39;s servers.To ensure that the CDN always serves the version of the file you want, use a git tag or commit hash in the file&amp;#39;s path instead of a branch name, and update the URL if you push a new version of the file.So, instead of a URL like https://cdn.rawgit.com/user/repo/branch/file, use a URL like https://cdn.rawgit.com/user/repo/tag/file or https://cdn.rawgit.com/user/repo/commit/file.
+
+
+    Frequently Asked Questions · rgrove/rawgit Wiki · GitHub
+</code></pre>
+<p>つまり、一度 cdn.rawgit.com にキャッシュされてしまうと、その URL の内容は書き換えることができなくなる。うちの場合、v1.3.0.7 を github の master にマージした時点でその内容が cdn.rawgit.com にキャッシュされたので、そのあといくら github の master のバージョンをあげても、cdn.rawgit.com からダウンロードできるのは v1.3.0.7 のままだ。これではアップデートを配布することができない。しまったしまった、島倉千代子。というわけで、一工夫必要。今回は tag を使って新しい URL を作成し、それを ClickOnce のインストール フォルダーの URL に割り当ててみた。<figure>
+    <img src="/images/2016/09/01/060000/20160831224040.png"/> 
+</figure>
+まず、公開予定のバージョンを決める。そして、ClickOnce のインストール フォルダーの URL を master ではなくそのバージョン名にする。旧：</p>
+<ul>
+<li><a href="https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/">https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/</a></li>
+</ul>新：
+<ul>
+<li><a href="https://cdn.rawgit.com/daruyanagi/Aoba/v1.4.3/Aoba/Aoba/publish/">https://cdn.rawgit.com/daruyanagi/Aoba/v1.4.3/Aoba/Aoba/publish/</a></li>
+</ul>この状態で ClickOnce を発行し、git にコミットして、GitHub と同期する。<figure>
+    <img src="/images/2016/09/01/060000/20160831224359.png"/> 
+</figure>
+次に、GitHub でリリースを作成する。このとき、タグはさっき決めた公開バージョン（v1.4.3）にしておく。これで完成(/・ω・)/すると、ClickOnce の setup.exe が新しく CDN にキャッシュされた .Application を読みに行くため、最新版がダウンロードされる。<figure>
+    <img src="/images/2016/09/01/060000/20160831233640.png"/> 
+</figure>
+誰かが .Application を読む前に tag を作っておかないと、404 Not found でキャッシュされてしまう（？）ので最初からやり直しになるorz<figure>
+    <img src="/images/2016/09/01/060000/20160831224533.png"/> 
+</figure>
+ちなみに、外部に公開するダウンロード URL は GitHub の raw ファイルにしておけば、毎回変更する必要がなくていい。インストール フォルダーの URL を書き換えるたびに setup.exe も新しくなるので。
+<ul>
+<li><a href="https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true">https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true</a></li>
+</ul>アップデートはうまくいかないかもだけど、ダウンロード・インストールによる手動更新は一応うまくいった感じなので、この状態で運用してみることにする。
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-09-01T06:00:00JST">2016/09/01</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?GitHub%20%e3%81%ab%e3%83%9b%e3%82%b9%e3%83%88%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%20Windows%20%e3%83%87%e3%82%b9%e3%82%af%e3%83%88%e3%83%83%e3%83%97%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%20ClickOnce%20%e3%81%a7%e9%85%8d%e5%b8%83%e3%81%99%e3%82%8b%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/09/01/060000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=GitHub&#43;%E3%81%AB%E3%83%9B%E3%82%B9%E3%83%88%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B&#43;Windows&#43;%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E5%B8%83%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F060000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/09/01/204619/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/08/31/180255/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

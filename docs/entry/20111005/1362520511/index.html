@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111005/1362520511/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            BlackbirdPie 1.4, StringSupport 1.4, DateTimeSupport 1.2 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="気に入らない所があったので、修正・更新しました。ちょっとは使ってくれている人がいるみたいなのに、自分勝手にコロコロ仕様変更してごめんなさいデス。
+#### [DateTimeSupport - 1.2](http://nuget.org/List/Packages/DateTimeSupport) 1. enum Locale を追加。BlackbirdPie のLocalesはこちらに移しました。仕様がコロコロ変わってごめんなさい。  #### [StringSupport - 1.4](http://nuget.org/List/Packages/StringSupport) 1. ExpandUrl() を追加。短縮URLを引数に与えると、それを展開して返します。簡単なエラー処理も追加。2. Linkfy() で mailto: にもリンクを貼るように変更。メールアドレスの正規表現はふいんき（なぜか変換できない）であって、正確な正規表現は Perl の偉い人に聞くのがいいと思います。 ftp:// にも一応対応。3. 一部メソッド名の変更。すみません、もうしません。  #### [BlackBirdPie - 1.4](http://nuget.org/List/Packages/BlackbirdPie) 1. DateTimeSupport (1) を参照。2. StringSupport (3) に対応。  #### NuGet 公開用のバッチファイル バッチファイルとか苦手なんですけど、こんな感じにしてみました。	for /r %%x in (*.nuspec) do nuget pack &#34;%%x&#34; for /r %%y in (*.nupkg) do nuget push -source http://packages.nuget.org/v1/ %%y {Hash} for /r %%z in (*.nupkg) do del %%zNuGet." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111005/1362520511/" >
+                    <h1 class="entry__header-title-link-text">BlackbirdPie 1.4, StringSupport 1.4, DateTimeSupport 1.2</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/10/05</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>気に入らない所があったので、修正・更新しました。ちょっとは使ってくれている人がいるみたいなのに、自分勝手にコロコロ仕様変更してごめんなさいデス。</p>
+<div class="section">
+    #### [DateTimeSupport - 1.2](http://nuget.org/List/Packages/DateTimeSupport)
+    1.  enum Locale を追加。BlackbirdPie のLocalesはこちらに移しました。仕様がコロコロ変わってごめんなさい。
+</div>
+<div class="section">
+    #### [StringSupport - 1.4](http://nuget.org/List/Packages/StringSupport)
+    1.  ExpandUrl() を追加。短縮URLを引数に与えると、それを展開して返します。簡単なエラー処理も追加。2.  Linkfy() で mailto: にもリンクを貼るように変更。メールアドレスの正規表現はふいんき（なぜか変換できない）であって、正確な正規表現は Perl の偉い人に聞くのがいいと思います。 ftp:// にも一応対応。3.  一部メソッド名の変更。すみません、もうしません。
+</div>
+<div class="section">
+    #### [BlackBirdPie - 1.4](http://nuget.org/List/Packages/BlackbirdPie)
+    1.  DateTimeSupport (1) を参照。2.  StringSupport (3) に対応。
+</div>
+<div class="section">
+    #### NuGet 公開用のバッチファイル
+    バッチファイルとか苦手なんですけど、こんな感じにしてみました。	for /r %%x in (*.nuspec) do nuget pack "%%x"<br/>
+	for /r %%y in (*.nupkg) do nuget push -source <a href="http://packages.nuget.org/v1/">http://packages.nuget.org/v1/</a> %%y {Hash}<br/>
+	for /r %%z in (*.nupkg) do del %%z<code>NuGet.exe</code> と <code>*.nuspec</code> （1つだけ！）を同じフォルダにおいてバッチファイルを叩くと、いい感じに更新できました。
+</div>
+<div class="section">
+    #### オープンソース
+    <a href="http://blog.daruyanagi.net/archives/280/sshot-3" rel="attachment wp-att-283"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-3-500x378.png" alt="" title="sshot-3" width="500" height="378" class="alignnone size-medium wp-image-283"/></a>[daruyanagi&#39;s Profile - GitHub](<a href="https://github.com/daruyanagi">https://github.com/daruyanagi</a>)Github のアカウントを取りました。ソースコードを自由に閲覧できます。「おめえ、なにこのくっせえコード！」と思う人は自由に直してください。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-10-05T06:55:11JST">2011/10/05</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?BlackbirdPie%201.4,%20StringSupport%201.4,%20DateTimeSupport%201.2%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111005/1362520511/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=BlackbirdPie&#43;1.4%2C&#43;StringSupport&#43;1.4%2C&#43;DateTimeSupport&#43;1.2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111005%2F1362520511%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111009/1318115413/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111005/1362520505/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

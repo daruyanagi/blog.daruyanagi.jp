@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/04/17/065153/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（RSS 2.0 を実装する - だるろぐ）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。
+@using System.IO @using System.Xml @using System.ServiceModel.Syndication @{ var url = new Uri(Request.Url.Scheme &#43; &#34;://&#34; &#43; Request.Url.Authority); // ココらへんはあんまり気にしないで  var files = Directory.GetFiles(Server.MapPath(&#34;~/App_Text/&#34;)) .Select(_ =&gt; new FileInfo(_)) .Where(_ =&gt; !_.Name.StartsWith(&#34;_&#34;)) .OrderByDescending(_ =&gt; _.LastWriteTime) .Take(10); var feed = new SyndicationFeed(App.Title, App.Description, new Uri(url, &#34;Feed&#34;)) { Copyright = new TextSyndicationContent(App.Copyright.ToString()), Items = files.Select(file =&gt; { var name = Path.GetFileNameWithoutExtension(file.FullName); // ファイルの内容を読み込んで自作の Markdown エンジンにかけている  var content = TextFormatEngine." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/04/17/065153/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/04/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（<a href="https://blog.daruyanagi.jp/entry/2012/02/02/225759">RSS 2.0 を実装する - だるろぐ</a>）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.IO
+@using System.Xml
+@using System.ServiceModel.Syndication
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">var</span> url = <span style="color:#66d9ef">new</span> Uri(Request.Url.Scheme + <span style="color:#e6db74">&#34;://&#34;</span> + Request.Url.Authority);
+
+    <span style="color:#75715e">// ココらへんはあんまり気にしないで
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> files = Directory.GetFiles(Server.MapPath(<span style="color:#e6db74">&#34;~/App_Text/&#34;</span>))
+        .Select(_ =&gt; <span style="color:#66d9ef">new</span> FileInfo(_))
+        .Where(_ =&gt; !_.Name.StartsWith(<span style="color:#e6db74">&#34;_&#34;</span>))
+        .OrderByDescending(_ =&gt; _.LastWriteTime)
+        .Take(<span style="color:#ae81ff">10</span>);
+
+    <span style="color:#66d9ef">var</span> feed = <span style="color:#66d9ef">new</span> SyndicationFeed(App.Title, App.Description, <span style="color:#66d9ef">new</span> Uri(url, <span style="color:#e6db74">&#34;Feed&#34;</span>))
+        {
+            Copyright = <span style="color:#66d9ef">new</span> TextSyndicationContent(App.Copyright.ToString()),
+            Items = files.Select(file =&gt;
+            {
+                <span style="color:#66d9ef">var</span> name = Path.GetFileNameWithoutExtension(file.FullName);
+                
+                <span style="color:#75715e">// ファイルの内容を読み込んで自作の Markdown エンジンにかけている
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> content = TextFormatEngine.Transform(File.ReadAllText(file.FullName));
+                
+                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SyndicationItem(
+                    name, content.ToString(), <span style="color:#66d9ef">new</span> Uri(url, name), name, file.LastWriteTime
+                );
+            }),
+        };
+
+    Response.Clear();
+    Response.ContentType = <span style="color:#e6db74">&#34;application/xml&#34;</span>;
+    <span style="color:#66d9ef">var</span> writer = XmlWriter.Create(Response.Output);
+    feed.SaveAsRss20(writer);
+    Response.End();
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span><figure>
+    <img src="/images/2013/04/17/065153/20130417064514.png"/> 
+</figure>
+できた<span style="color:#960050;background-color:#1e0010">！</span><figure>
+    <img src="/images/2013/04/17/065153/20130417064526.png"/> 
+</figure>
+と思ったけど<span style="color:#960050;background-color:#1e0010">、</span>Internet Explorer <span style="color:#960050;background-color:#1e0010">ではちゃんと表示できない。なんか</span> XML <span style="color:#960050;background-color:#1e0010">が尻切れトンボで出力されておる……</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-04-17T06:51:53JST">2013/04/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/04/17/065153/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F04%2F17%2F065153%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/04/17/081501/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/04/14/113400/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

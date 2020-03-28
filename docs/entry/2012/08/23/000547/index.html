@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/23/000547/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            なぜ var d = new Dictionary&amp;lt;string, string&amp;gt; { { &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; }, { &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot; } } と書けるのか ―― コレクション初期化子 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Dictionary ってその場で初期化できるんだね。  private Dictionary&lt;string, string=&#34;&#34;&gt; AllowedFileType = new Dictionary&lt;string, string=&#34;&#34;&gt;() { { &#34;image/jpeg&#34;, &#34;jpg&#34; }, { &#34;image/png&#34; , &#34;png&#34; }, { &#34;image/gif&#34; , &#34;gif&#34; }, }; ```こっちのほうがいいや。 これまでのサンプルを NuGet パッケージにしてみました - だるろぐ &lt;/string,&gt;&lt;/string,&gt; 簡単に書けるのはとっても素晴らしいのだけれど、イマイチこうやって書ける理由がわからなかったので調べてみました。 &lt;div class=&#34;section&#34;&gt; ### C# 3.0 のコレクション初期化子*1 とりあえず、基本となるコレクション初期化子（配列初期化子）の復習から。 &gt; List は、次のように作成して初期化することができます。 ```cs var contacts = new List&lt;contact&gt; { new Contact { Name = &#34;Chris Smith&#34;, PhoneNumbers = { &#34;206-555-0101&#34;, &#34;425-882-8080&#34; } }, new Contact { Name = &#34;Bob Harris&#34;, PhoneNumbers = { &#34;650-555-0199&#34; } } }; ```これは、以下と同じ効果を持ちます。 ```cs var contacts = new List&lt;contact&gt;(); var __c1 = new Contact(); __c1." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/23/000547/" >
+                    <h1 class="entry__header-title-link-text">なぜ var d = new Dictionary&amp;lt;string, string&amp;gt; { { &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; }, { &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot; } } と書けるのか ―― コレクション初期化子</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/23</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    Dictionary ってその場で初期化できるんだね。
+</code></pre>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">private</span> Dictionary&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>=<span style="color:#e6db74">&#34;&#34;</span>&gt; AllowedFileType =
+    <span style="color:#66d9ef">new</span> Dictionary&lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>=<span style="color:#e6db74">&#34;&#34;</span>&gt;()
+{
+    { <span style="color:#e6db74">&#34;image/jpeg&#34;</span>, <span style="color:#e6db74">&#34;jpg&#34;</span> },
+    { <span style="color:#e6db74">&#34;image/png&#34;</span> , <span style="color:#e6db74">&#34;png&#34;</span> },
+    { <span style="color:#e6db74">&#34;image/gif&#34;</span> , <span style="color:#e6db74">&#34;gif&#34;</span> },
+};
+
+<span style="color:#960050;background-color:#1e0010">```こっちのほうがいいや。</span>
+
+        <span style="color:#960050;background-color:#1e0010">これまでのサンプルを</span> NuGet <span style="color:#960050;background-color:#1e0010">パッケージにしてみました</span> - <span style="color:#960050;background-color:#1e0010">だるろぐ</span>
+    &lt;/<span style="color:#66d9ef">string</span>,&gt;&lt;/<span style="color:#66d9ef">string</span>,&gt;
+<span style="color:#960050;background-color:#1e0010">簡単に書けるのはとっても素晴らしいのだけれど、イマイチこうやって書ける理由がわからなかったので調べてみました。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> C<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">3.0</span> <span style="color:#960050;background-color:#1e0010">のコレクション初期化子</span>*<span style="color:#ae81ff">1</span>
+    <span style="color:#960050;background-color:#1e0010">とりあえず、基本となるコレクション初期化子（配列初期化子）の復習から。</span>
+
+    &gt;
+        List <span style="color:#960050;background-color:#1e0010">は、次のように作成して初期化することができます。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> contacts = <span style="color:#66d9ef">new</span> List&lt;contact&gt; {
+   <span style="color:#66d9ef">new</span> Contact {
+      Name = <span style="color:#e6db74">&#34;Chris Smith&#34;</span>,
+      PhoneNumbers = { <span style="color:#e6db74">&#34;206-555-0101&#34;</span>, <span style="color:#e6db74">&#34;425-882-8080&#34;</span> }
+   },
+   <span style="color:#66d9ef">new</span> Contact {
+      Name = <span style="color:#e6db74">&#34;Bob Harris&#34;</span>,
+      PhoneNumbers = { <span style="color:#e6db74">&#34;650-555-0199&#34;</span> }
+   }
+};
+
+<span style="color:#960050;background-color:#1e0010">```これは、以下と同じ効果を持ちます。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> contacts = <span style="color:#66d9ef">new</span> List&lt;contact&gt;();
+<span style="color:#66d9ef">var</span> __c1 = <span style="color:#66d9ef">new</span> Contact();
+__c1.Name = <span style="color:#e6db74">&#34;Chris Smith&#34;</span>;
+__c1.PhoneNumbers.Add(<span style="color:#e6db74">&#34;206-555-0101&#34;</span>);
+__c1.PhoneNumbers.Add(<span style="color:#e6db74">&#34;425-882-8080&#34;</span>);
+contacts.Add(__c1);
+<span style="color:#66d9ef">var</span> __c2 = <span style="color:#66d9ef">new</span> Contact();
+__c2.Name = <span style="color:#e6db74">&#34;Bob Harris&#34;</span>;
+__c2.PhoneNumbers.Add(<span style="color:#e6db74">&#34;650-555-0199&#34;</span>);
+contacts.Add(__c2);
+
+<span style="color:#960050;background-color:#1e0010">```</span>__c1 <span style="color:#960050;background-color:#1e0010">と</span> __c2 <span style="color:#960050;background-color:#1e0010">は、このような方法を使用しなければ隠蔽されアクセスできないテンポラリ変数です。</span>
+
+        Overview of C<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#ae81ff">3.0</span> | Microsoft Docs
+    &lt;/contact&gt;&lt;/contact&gt;
+<span style="color:#960050;background-color:#1e0010">つまり、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> x = List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> };
+
+<span style="color:#960050;background-color:#1e0010">```は、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> x = List&amp;lt;<span style="color:#66d9ef">string</span>&gt;();
+x.Add(<span style="color:#e6db74">&#34;a&#34;</span>);
+x.Add(<span style="color:#e6db74">&#34;b&#34;</span>);
+
+<span style="color:#960050;background-color:#1e0010">```とほぼ同じ。ただし、配列初期化子を利用して初期化できるクラスは、</span> **IEnumerable <span style="color:#960050;background-color:#1e0010">が実装されている</span>**<span style="color:#960050;background-color:#1e0010">こと、メンバーとして</span> **Add() <span style="color:#960050;background-color:#1e0010">が実装されていること</span>**<span style="color:#960050;background-color:#1e0010">の二つが条件となります。逆に言えば、それさえ満たしていれば内容は問われません（後述）。</span>
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">足りない条件</span>
+    <span style="color:#960050;background-color:#1e0010">さて、</span> List <span style="color:#960050;background-color:#1e0010">の場合はだいたいわかりました。けれど、</span> Dictionary <span style="color:#960050;background-color:#1e0010">の場合はそれではまだ説明が足りないと思います。</span>&gt;@aetos382 @Grabacr07 <span style="color:#960050;background-color:#1e0010">そうなんですよね。たとえば</span> IEnumerable <span style="color:#960050;background-color:#1e0010">実装してて、</span>Add(arg1, arg2) <span style="color:#960050;background-color:#1e0010">ってシグネチャがあってれば</span>OK  <span style="color:#960050;background-color:#1e0010">とか、そういうルールあるのかなって—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;<span style="color:#960050;background-color:#1e0010">以下のコードで言えば、なぜ</span> { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> } <span style="color:#960050;background-color:#1e0010">なんて書けるのか、ちょっとわかりません。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> Dictionary&amp;lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;
+{ 
+    { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> }, <span style="color:#75715e">// &amp;lt;-- この {} って何さ！
+</span><span style="color:#75715e"></span>    { <span style="color:#e6db74">&#34;c&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span> }
+} 
+
+<span style="color:#960050;background-color:#1e0010">```すると、こんな助言をいただくなど。</span>&gt;@okazuki <span style="color:#960050;background-color:#1e0010">なるほどー</span> <span style="color:#960050;background-color:#1e0010">パラメーターはいくつでもいいのか—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;<span style="color:#960050;background-color:#1e0010">そういうわけで少し試してみました。</span><figure>
+    <img src="/images/2012/08/23/000547/20120822235621.png"/> 
+</figure>
+&lt;br/&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.Collections.Generic;
+<span style="color:#66d9ef">using</span> System.Linq;
+<span style="color:#66d9ef">using</span> System.Text;
+<span style="color:#66d9ef">using</span> System.Threading.Tasks;
+
+<span style="color:#66d9ef">namespace</span> ConsoleApplication1
+{
+    <span style="color:#66d9ef">using</span> System.Collections;
+    <span style="color:#66d9ef">using</span> System.Diagnostics;
+
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleClass</span> : IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt;
+    {
+        <span style="color:#66d9ef">public</span> IEnumerator&amp;lt;<span style="color:#66d9ef">string</span>&gt; GetEnumerator()
+        { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+
+        IEnumerator GetEnumerator()
+        { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Add(<span style="color:#66d9ef">string</span> arg1, <span style="color:#66d9ef">string</span> arg2)
+        { Debug.WriteLine(<span style="color:#e6db74">&#34;{0}, {1}&#34;</span>, arg1, arg2); }
+    }
+
+    <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Program</span>
+    {
+        <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Main(<span style="color:#66d9ef">string</span>[] args)
+        {
+            <span style="color:#66d9ef">var</span> a = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> };
+            a.ForEach((_) =&gt; Debug.WriteLine(_));
+
+            <span style="color:#66d9ef">var</span> b = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { { <span style="color:#e6db74">&#34;c&#34;</span> }, { <span style="color:#e6db74">&#34;d&#34;</span> } };
+            b.ForEach((_) =&gt; Debug.WriteLine(_));
+
+            <span style="color:#75715e">// var c = { 1 };
+</span><span style="color:#75715e"></span>
+            <span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass() {
+                { <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span> }, { <span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span> }
+            };
+
+            Console.WriteLine(<span style="color:#e6db74">&#34;何かキーを押してください。&#34;</span>);
+            Console.ReadLine();
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span><figure>
+    <img src="/images/2012/08/23/000547/20120822235856.png"/> 
+</figure>
+少しずつカラクリが見えてきました<span style="color:#960050;background-color:#1e0010">。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">####</span> { x } <span style="color:#960050;background-color:#1e0010">で</span> Add(x) <span style="color:#960050;background-color:#1e0010">が呼ばれる</span>
+    <span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> b = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { { <span style="color:#e6db74">&#34;c&#34;</span> }, { <span style="color:#e6db74">&#34;d&#34;</span> } };
+
+<span style="color:#960050;background-color:#1e0010">```全然知らなかったのだけれど、こんな書き方もいけるのですね。つまり、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> a = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> };
+
+<span style="color:#960050;background-color:#1e0010">```において、</span> <span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#960050;background-color:#1e0010">は</span> { <span style="color:#e6db74">&#34;a&#34;</span> } <span style="color:#960050;background-color:#1e0010">の省略記法と見なせそう。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> c = { <span style="color:#ae81ff">1</span> };
+
+<span style="color:#960050;background-color:#1e0010">```さすがにこれはダメですね。</span> { } <span style="color:#960050;background-color:#1e0010">ではなく</span> ( ) <span style="color:#960050;background-color:#1e0010">ならばそのままコンパイルできるのですが。</span><figure>
+    <img src="/images/2012/08/23/000547/20120822235244.png"/> 
+</figure>
+ゴメンナサイ<span style="color:#960050;background-color:#1e0010">。</span>
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">####</span> <span style="color:#960050;background-color:#1e0010">中身はどうでもいい。とりあえず</span> IEnumerable <span style="color:#960050;background-color:#1e0010">を実装して</span> Add() <span style="color:#960050;background-color:#1e0010">書いとけ</span>
+    SampleClass <span style="color:#960050;background-color:#1e0010">は</span> IEnumerable&lt;<span style="color:#66d9ef">string</span>&gt; <span style="color:#960050;background-color:#1e0010">の出来損ないです。しかも、要素に一つの値しか取れないくせに</span> Add() <span style="color:#960050;background-color:#1e0010">の引数は二つもある！</span>&lt;/<span style="color:#66d9ef">string</span>&gt;
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleClass</span> : IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt;
+{
+    <span style="color:#66d9ef">public</span> IEnumerator&amp;lt;<span style="color:#66d9ef">string</span>&gt; GetEnumerator()
+    { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+
+    IEnumerator GetEnumerator()
+    { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Add(<span style="color:#66d9ef">string</span> arg1, <span style="color:#66d9ef">string</span> arg2)
+    { Debug.WriteLine(<span style="color:#e6db74">&#34;{0}, {1}&#34;</span>, arg1, arg2); }
+}
+
+<span style="color:#960050;background-color:#1e0010">```それでも、これが動くんですね。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass() {
+    { <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span> }, { <span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span> }
+};
+
+<span style="color:#960050;background-color:#1e0010">```ただ単に</span> Add() <span style="color:#960050;background-color:#1e0010">してるのを簡易記法で隠蔽しているだけだとわかれば、何も難しくありません。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass();
+d.Add(<span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span>); <span style="color:#75715e">// &amp;lt;-- 実際にはコレクションに値を追加していない！
+</span><span style="color:#75715e"></span>d.Add(<span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+
+<span style="color:#960050;background-color:#1e0010">```こういうのを糖衣構文（シンタックスシュガー）というのですね。ちなみに、引数の数を間違えると静的にチェックされ、さすがにコンパイルエラーになります。</span><figure>
+    <img src="/images/2012/08/23/000547/20120822235203.png"/> 
+</figure>
+&lt;br/&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass() {
+    { <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span> }, { <span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, <span style="color:#e6db74">&#34;s&#34;</span> } <span style="color:#75715e">// &amp;lt;-- アウチ！
+</span><span style="color:#75715e"></span>};
+
+<span style="color:#960050;background-color:#1e0010">```ちょっと興味深かったのでまとめてみました。</span>
+
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-a4390923&#34;</span> name=<span style="color:#e6db74">&#34;f-a4390923&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;.NET Framework <span style="color:#ae81ff">3.5</span>&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-23T00:05:47JST">2012/08/23</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%aa%e3%81%9c%20var%20d%20=%20new%20Dictionary&amp;lt;string,%20string&amp;gt;%20%7b%20%7b%20&amp;quot;a&amp;quot;,%20&amp;quot;b&amp;quot;%20%7d,%20%7b%20&amp;quot;c&amp;quot;,%20&amp;quot;d&amp;quot;%20%7d%20%7d%20%e3%81%a8%e6%9b%b8%e3%81%91%e3%82%8b%e3%81%ae%e3%81%8b%20%e2%80%95%e2%80%95%20%e3%82%b3%e3%83%ac%e3%82%af%e3%82%b7%e3%83%a7%e3%83%b3%e5%88%9d%e6%9c%9f%e5%8c%96%e5%ad%90%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/23/000547/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%AA%E3%81%9C&#43;var&#43;d&#43;%3D&#43;new&#43;Dictionary%26lt%3Bstring%2C&#43;string%26gt%3B&#43;%7B&#43;%7B&#43;%26quot%3Ba%26quot%3B%2C&#43;%26quot%3Bb%26quot%3B&#43;%7D%2C&#43;%7B&#43;%26quot%3Bc%26quot%3B%2C&#43;%26quot%3Bd%26quot%3B&#43;%7D&#43;%7D&#43;%E3%81%A8%E6%9B%B8%E3%81%91%E3%82%8B%E3%81%AE%E3%81%8B&#43;%E2%80%95%E2%80%95&#43;%E3%82%B3%E3%83%AC%E3%82%AF%E3%82%B7%E3%83%A7%E3%83%B3%E5%88%9D%E6%9C%9F%E5%8C%96%E5%AD%90&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F23%2F000547%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/23/010454/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/22/090520/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

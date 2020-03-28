@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/22/073342/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            これまでのサンプルを NuGet パッケージにしてみました | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix でファイルのアップロード - だるろぐ WebMatrix でファイルのアップロード（2） - だるろぐ WebMatrix でファイルのアップロード（2） の補足 - だるろぐ WebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う - だるろぐ 以上の内容を NuGet パッケージ（https://nuget.org/packages/DADIU/1.1.0）にしてみました*1。記事では端折った JavaScript なんかも含まれているので*2、もし興味があればみていただければと。 ### インストール方法   ［テンプレート］ボタンを押す。  テンプレートを選択。好きなモノを選んでいいですが、試すだけなら“Empty Site”が無難ですね。  ［ファイル］タブを選択。そうしないと［NuGet］ボタンが出てこないみたい*3。  ［NuGet］ボタンを押す。  パッケージの検索。検索結果はダウンロード数順になっているのかな？　かなり下の方にスクロールしないとでてこないです。もし検索されない場合はパッケージのソースも変えてみてください。コマンドラインでインストールできる方法も用意されたらいいですね*4。  無事パッケージを発見できたらインストール。パッケージ名いいのが思いつかなかったので、頭文字を並べただけです。  今回は依存パッケージのインストールも使ってみました（jQuery と HttpFileCollectionBaseExtension）。もしインストールされていない場合は自動で依存性が解決され、ダウンロード・セットアップされます。  インストールが成功（するといいな）！　いろいろファイルが追加されているはずです。  サンプルは“DADIU.sample”にあるので、ブラウザーで実行してフォルダへアクセスしてください。対応ブラウザーは Google Chrome / FireFox （Opera/IE10？）です。「WebMatrix 2」ではインストール済みのブラウザーのなかから好きなブラウザーを選んで実行できるのが便利ですねぇ。  ### これまでの記事のウソポイント ぶっちゃけこのブログは結構ウソも書いています（ごめんなさい！）*5。あんまり完成度を意識してたら、アウトプットなんかできませんからね！*6　とはいえ、ほんとごめんなさい的な記述もあるので、気付いたところだけ直しておきます*7。 #### NuGet Package Explorer    &gt; あと、公開（push）の終了がわかりづらい。まぁ、重複して公開するとエラーになる（実害はない）のでわかるのだけれど。 NuGet Package Explorer で NuGet パッケージを作ってみた - だるろぐ  公開が終わったらちゃんとメッセージでてたがな！（見落とし" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/nuget/">NuGet</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/22/073342/" >
+                    <h1 class="entry__header-title-link-text">これまでのサンプルを NuGet パッケージにしてみました</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/22</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <ul>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/19/130606">WebMatrix でファイルのアップロード - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/20/020355">WebMatrix でファイルのアップロード（2） - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/20/210729">WebMatrix でファイルのアップロード（2） の補足 - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/20/202253">WebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う - だるろぐ</a></li>
+</ul>以上の内容を NuGet パッケージ（<a href="https://nuget.org/packages/DADIU/1.1.0">https://nuget.org/packages/DADIU/1.1.0</a>）にしてみました<a href="#f-a0a43786" name="fn-a0a43786" title="ZIPで配ってもよかったのだけど、こっちのほうが楽……かなぁ？">*1</a>。記事では端折った JavaScript なんかも含まれているので<a href="#f-3f729695" name="fn-3f729695" title="正直初心者レベルのソースコードで恥ずかしいです">*2</a>、もし興味があればみていただければと。
+<div class="section">
+    ### インストール方法
+    <figure>
+    <img src="/images/2012/08/22/073342/20120822065902.png"/> 
+</figure>
+［テンプレート］ボタンを押す。<figure>
+    <img src="/images/2012/08/22/073342/20120822065906.png"/> 
+</figure>
+テンプレートを選択。好きなモノを選んでいいですが、試すだけなら“Empty Site”が無難ですね。<figure>
+    <img src="/images/2012/08/22/073342/20120822065911.png"/> 
+</figure>
+［ファイル］タブを選択。そうしないと［NuGet］ボタンが出てこないみたい<a href="#f-3448857f" name="fn-3448857f" title="たまに押しても出てこなくね？">*3</a>。<figure>
+    <img src="/images/2012/08/22/073342/20120822065916.png"/> 
+</figure>
+［NuGet］ボタンを押す。<figure>
+    <img src="/images/2012/08/22/073342/20120822065921.png"/> 
+</figure>
+パッケージの検索。検索結果はダウンロード数順になっているのかな？　かなり下の方にスクロールしないとでてこないです。もし検索されない場合はパッケージのソースも変えてみてください。コマンドラインでインストールできる方法も用意されたらいいですね<a href="#f-8f123b19" name="fn-8f123b19" title="できないことはないんだと思うけど、アホでもわかるようにしていただければありがたし">*4</a>。<figure>
+    <img src="/images/2012/08/22/073342/20120822065924.png"/> 
+</figure>
+無事パッケージを発見できたらインストール。パッケージ名いいのが思いつかなかったので、頭文字を並べただけです。<figure>
+    <img src="/images/2012/08/22/073342/20120822065928.png"/> 
+</figure>
+今回は依存パッケージのインストールも使ってみました（jQuery と HttpFileCollectionBaseExtension）。もしインストールされていない場合は自動で依存性が解決され、ダウンロード・セットアップされます。<figure>
+    <img src="/images/2012/08/22/073342/20120822065933.png"/> 
+</figure>
+インストールが成功（するといいな）！　いろいろファイルが追加されているはずです。<figure>
+    <img src="/images/2012/08/22/073342/20120822065937.png"/> 
+</figure>
+サンプルは“DADIU.sample”にあるので、ブラウザーで実行してフォルダへアクセスしてください。対応ブラウザーは Google Chrome / FireFox （Opera/IE10？）です。「WebMatrix 2」ではインストール済みのブラウザーのなかから好きなブラウザーを選んで実行できるのが便利ですねぇ。
+</div>
+<div class="section">
+    ### これまでの記事のウソポイント
+    ぶっちゃけこのブログは結構ウソも書いています（ごめんなさい！）<a href="#f-0592dd72" name="fn-0592dd72" title="だって、誰かに「教える」ために書いているのではないもの……あくまでも自分の勉強のためなんです">*5</a>。あんまり完成度を意識してたら、アウトプットなんかできませんからね！<a href="#f-bbad959f" name="fn-bbad959f" title="アウトプットしなければ身につきませんよ？">*6</a>　とはいえ、ほんとごめんなさい的な記述もあるので、気付いたところだけ直しておきます<a href="#f-1b6cba12" name="fn-1b6cba12" title="遡って直すのは面倒だからしない。ブログってこういうところがダメね。はてなブログの場合は過去記事に関連リンクもつかないからなおさらダメだ">*7</a>。
+<div class="section">
+    #### NuGet Package Explorer
+    <figure>
+    <img src="/images/2012/08/22/073342/20120821221424.png"/> 
+</figure>
+<br/>
+<pre><code>&gt;
+    あと、公開（push）の終了がわかりづらい。まぁ、重複して公開するとエラーになる（実害はない）のでわかるのだけれど。
+
+    NuGet Package Explorer で NuGet パッケージを作ってみた - だるろぐ
+</code></pre>
+<p>公開が終わったらちゃんとメッセージでてたがな！（見落とし</p>
+<pre><code>&gt;
+    （･･････）というフォルダー階層にして .nuspec を開いたら、  を書いてなくてちゃんと Contentが読み込まれた。なるほど。
+</code></pre>
+<p>今回のパッケージを作るときは出てこなかった。なんでだろ。まぁ、手動で追加すればいい。</p>
+</div>
+<div class="section">
+    #### Dictionary の初期化
+    ```cs
+private Dictionary&lt;string, string> AllowedFileType =
+    new Dictionary&lt;string, string>();
+<pre><code class="language-Dictionary" data-lang="Dictionary">```cs
+private Dictionary&amp;lt;string, string&gt; AllowedFileType =
+    new Dictionary&amp;lt;string, string&gt;()
+{
+    { &quot;image/jpeg&quot;, &quot;jpg&quot; },
+    { &quot;image/png&quot; , &quot;png&quot; },
+    { &quot;image/gif&quot; , &quot;gif&quot; },
+};
+
+```こっちのほうがいいや。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### .NET Framework のターゲット指定
+    ```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+    .web&gt;
+      targetFramework=&quot;4.0&quot; debug=&quot;false&quot;&gt;
+         &lt;codesubdirectories&gt;&lt;/codesubdirectories&gt;
+           directoryName=&quot;Highlight&quot;/&gt;
+         
+      
+   .web&gt;
+
+
+</code></pre><pre><code>&gt;
+    web.config.transform を少し書き換えて、 .NET 4 を利用するようにしてみたら（targetFramework=&quot;4.0&quot;）ちゃんと動きました。ついでに、 NuSpec のタグに「.net 40」を追加して「.NET 4 用ですよ！」とわかるようにしておくと*3いいんじゃないでしょうか。
+
+    Highlight.js を NuGet パッケージにしてみました - だるろぐ
+</code></pre>
+<p>これはよくないかもしれない。<figure>
+    <img src="/images/2012/08/22/073342/20120822072048.png"/> 
+</figure>
+Visual Studio で開いてデバッグするとき、 compilation 要素がダブってエラーになることがあった。もっとよい作法がありそうな気がする。</p>
+</div>
+<div class="section">
+    #### App_Code フォルダのサブフォルダで cshtml を使う
+<pre><code>&gt;
+    でも、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。
+
+    App_Code でサブフォルダーを利用する - だるろぐ
+</code></pre>
+<p>もしかしたらされるっぽい。前回は動かなかったのだけれど、今回試したら動作した<a href="#f-c2293cdd" name="fn-c2293cdd" title="前回は別の理由で動かなかったのかもしれない">*8</a>。ただ、フォルダ名が namespace として扱われるので、呼び出すための記述が長くなる。けれども、場合によってはなかなか使えるのかもしれない。</p>
+</div>
+</div><div class="footnote">
+<a href="#fn-a0a43786" name="f-a0a43786" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ZIPで配ってもよかったのだけど、こっちのほうが楽……かなぁ？</span>
+<a href="#fn-3f729695" name="f-3f729695" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">正直初心者レベルのソースコードで恥ずかしいです</span>
+<a href="#fn-3448857f" name="f-3448857f" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">たまに押しても出てこなくね？</span>
+<a href="#fn-8f123b19" name="f-8f123b19" class="footnote-number">*4</a><span class="footnote-delimiter">:</span><span class="footnote-text">できないことはないんだと思うけど、アホでもわかるようにしていただければありがたし</span>
+<a href="#fn-0592dd72" name="f-0592dd72" class="footnote-number">*5</a><span class="footnote-delimiter">:</span><span class="footnote-text">だって、誰かに「教える」ために書いているのではないもの……あくまでも自分の勉強のためなんです</span>
+<a href="#fn-bbad959f" name="f-bbad959f" class="footnote-number">*6</a><span class="footnote-delimiter">:</span><span class="footnote-text">アウトプットしなければ身につきませんよ？</span>
+<a href="#fn-1b6cba12" name="f-1b6cba12" class="footnote-number">*7</a><span class="footnote-delimiter">:</span><span class="footnote-text">遡って直すのは面倒だからしない。ブログってこういうところがダメね。はてなブログの場合は過去記事に関連リンクもつかないからなおさらダメだ</span>
+<a href="#fn-c2293cdd" name="f-c2293cdd" class="footnote-number">*8</a><span class="footnote-delimiter">:</span><span class="footnote-text">前回は別の理由で動かなかったのかもしれない</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-22T07:33:42JST">2012/08/22</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%93%e3%82%8c%e3%81%be%e3%81%a7%e3%81%ae%e3%82%b5%e3%83%b3%e3%83%97%e3%83%ab%e3%82%92%20NuGet%20%e3%83%91%e3%83%83%e3%82%b1%e3%83%bc%e3%82%b8%e3%81%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%be%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/22/073342/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%93%E3%82%8C%E3%81%BE%E3%81%A7%E3%81%AE%E3%82%B5%E3%83%B3%E3%83%97%E3%83%AB%E3%82%92&#43;NuGet&#43;%E3%83%91%E3%83%83%E3%82%B1%E3%83%BC%E3%82%B8%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F22%2F073342%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/22/090520/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/21/222147/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

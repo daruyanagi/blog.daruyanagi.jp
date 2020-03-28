@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/07/17/012107/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：Web.config の appSettings を使いこなす | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。
+### 基本    #### Default.cshtml ```html @using System.Configuration
+&lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;/head&gt; &lt;body&gt; @ObjectInfo.Print(ConfigurationManager.AppSettings) &lt;/body&gt; &lt;/html&gt;
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### Web.config ```xml &lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt; .web&gt; file=&quot;Web2.config&quot;&gt; key=&quot;A&quot; value=&quot;a&quot;/&gt; key=&quot;B&quot; value=&quot;b&quot;/&gt; key=&quot;C&quot; value=&quot;c&quot;/&gt; key=&quot;D&quot; value=&quot;d&quot;/&gt; key=&quot;E&quot; value=&quot;e&quot;/&gt; key=&quot;F&quot; value=&quot;f&quot;/&gt; key=&quot;G&quot; value=&quot;g&quot;/&gt; ```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### 結果   たとえば、 ```cs var a = System." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/07/17/012107/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：Web.config の appSettings を使いこなす</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/07/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2014/07/15/224549">WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ</a> でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。</p>
+<div class="section">
+    ### 基本
+    <figure>
+    <img src="/images/2014/07/17/012107/20140717005913.png"/> 
+</figure>
+<br/>
+<div class="section">
+    #### Default.cshtml
+    ```html
+<p>@using System.Configuration</p>
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@ObjectInfo.Print(ConfigurationManager.AppSettings)
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-Web.config" data-lang="Web.config">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Web.config
+    ```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;configuration&gt;&lt;/configuration&gt;
+  .web&gt;
+    debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt;
+  .web&gt;
+
+    file=&quot;Web2.config&quot;&gt;
+        key=&quot;A&quot; value=&quot;a&quot;/&gt;
+        key=&quot;B&quot; value=&quot;b&quot;/&gt;
+        key=&quot;C&quot; value=&quot;c&quot;/&gt;
+        key=&quot;D&quot; value=&quot;d&quot;/&gt;
+        key=&quot;E&quot; value=&quot;e&quot;/&gt;
+        key=&quot;F&quot; value=&quot;f&quot;/&gt;
+        key=&quot;G&quot; value=&quot;g&quot;/&gt;
+    
+
+
+```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### 結果
+    <figure>
+    <img src="/images/2014/07/17/012107/20140717011748.png"/> 
+</figure>
+たとえば、
+```cs
+var a = System.Configuration.ConfigurationManager.AppSettings[&quot;A&quot;];
+
+```などとすることで、Web.config の appSettings セクションに記述したアプリケーション設定が得られる。ちょっとめんどくさいけれど、API キーなどの静的値はなるべくハードコードせず、appSettings に書いておくべき。
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 外部 .config ファイルを利用したアプリケーション設定のオーバーライド
+    <figure>
+    <img src="/images/2014/07/17/012107/20140717011257.png"/> 
+</figure>
+以下のような Web2.config ファイルを追加。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### Web2.config
+    ```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;appsettings&gt;&lt;/appsettings&gt;
+    key=&quot;E&quot; value=&quot;1&quot;/&gt;
+    key=&quot;F&quot; value=&quot;2&quot;/&gt;
+    key=&quot;G&quot; value=&quot;3&quot;/&gt;
+
+
+</code></pre></div>
+<div class="section">
+    #### 結果
+    <figure>
+    <img src="/images/2014/07/17/012107/20140717010123.png"/> 
+</figure>
+ConfigurationManager.AppSettings["E"] 以降の値が Web2.config の内容によって書き換えられる。Web.config の file 属性で指定した外部 .config ファイルが存在しない場合は、読み込み処理がスキップされる。
+</div>
+</div>
+<div class="section">
+    ### 外部 .config ファイルを利用したアプリケーション設定の強制削除
+    ちょっと Web2.config をイジってみる。
+<div class="section">
+    #### Web2.config
+    ```xml
+<!--?-->xml version="1.0" encoding="utf-8"?>
+<p><appsettings></appsettings>
+<clear></clear> // &lt;- 追加
+&lt;add key=&quot;E&rdquo; value=&quot;1&rdquo;/&gt;
+key=&quot;F&rdquo; value=&quot;2&rdquo;/&gt;
+key=&quot;G&rdquo; value=&quot;3&rdquo;/&gt;</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### 結果
+    <figure>
+    <img src="/images/2014/07/17/012107/20140717010556.png"/> 
+</figure>
+Web.config で記述したアプリケーション設定がクリアされる。要するに、ASP.NET は .config を読んで、appSettings セクションに書かれた add や clear といったコマンドを AppSettings（Dictionary 型）に対して行っているだけ。なので、
+```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+&lt;appsettings&gt;&lt;/appsettings&gt;
+    key=&quot;A&quot; /&gt;
+
+
+```とすれば、特定のキーだけを消すことも可能。これを使えば、Web.config で行ったアプリケーション設定を Web2.config から自由にイジれる。使い方間違うとハマるかもだけど。
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 外部 .config ファイルを隠しファイルにする
+    結論を先に言うと、Web2.config を隠しファイルにしても、appSettings はちゃんと読み込まれる。なので &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2014/07/17/004650&quot;&gt;WebMatrix：特定のファイルを発行対象に含まない - だるろぐ&lt;/a&gt; と組み合わせることで、
+
+&lt;ul&gt;
+&lt;li&gt;Web.config&lt;/li&gt;
+&lt;li&gt;Web2.config（隠しファイル、リモートに発行されない）&lt;/li&gt;
+&lt;/ul&gt;という構成にすれば、
+
+&lt;ul&gt;
+&lt;li&gt;ローカル：Web.config ＋ Web2.config のアプリケーション設定で動作&lt;/li&gt;
+&lt;li&gt;リモート：Web.config のアプリケーション設定で動作&lt;/li&gt;
+&lt;/ul&gt;という風に運用できる（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2014/07/15/224549&quot;&gt;WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ&lt;/a&gt; は発想を逆にすればよかった！）。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-07-17T01:21:07JST">2014/07/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9aWeb.config%20%e3%81%ae%20appSettings%20%e3%82%92%e4%bd%bf%e3%81%84%e3%81%93%e3%81%aa%e3%81%99%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/07/17/012107/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9AWeb.config&#43;%E3%81%AE&#43;appSettings&#43;%E3%82%92%E4%BD%BF%E3%81%84%E3%81%93%E3%81%AA%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F17%2F012107%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/17/045321/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/17/004650/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

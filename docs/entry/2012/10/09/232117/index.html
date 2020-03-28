@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/10/09/232117/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix/ASP.NET Web Pages で Jekyll っぽいものを | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="GitHub - jekyll/jekyll: Jekyll is a blog-aware static site generator in Ruby というのは、Markdown ドキュメントを置いておくとそれを HTML に変換しておいてくれる静的コンテンツの生成システムらしい。Jekyll ドキュメントはこんなかんじ。
+--- layout: post title: テスト投稿タイトル date: 2012-04-01 09:00:00 category : サンプル tags : [intro, 初心者, jekyll, tutorial] --- テスト投稿本文 - a - b - c [http://daruyanagi.net](http://daruyanagi.net/) ```Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/27/213159&quot;&gt;SignalR &#43; WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ&lt;/a&gt; などと組み合わせたら面白いものができそうな気がする。 &lt;div class=&quot;section&quot;&gt; ### 必要なライブラリ &lt;ul&gt; &lt;li&gt;MarkdownSharp&lt;/li&gt; &lt;li&gt;YamlSerializer for .NET（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/10/07/113945&quot;&gt;WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ&lt;/a&gt;）&lt;/li&gt; &lt;/ul&gt;どちらも NuGet で取得できる。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### サンプルコード 先ほどの Jekyll ドキュメントを ~/Default." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/10/09/232117/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix/ASP.NET Web Pages で Jekyll っぽいものを</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/10/09</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://github.com/mojombo/jekyll">GitHub - jekyll/jekyll: Jekyll is a blog-aware static site generator in Ruby</a> というのは、Markdown ドキュメントを置いておくとそれを HTML に変換しておいてくれる静的コンテンツの生成システムらしい。Jekyll ドキュメントはこんなかんじ。</p>
+<pre><code>---
+layout: post
+title: テスト投稿タイトル
+date: 2012-04-01 09:00:00
+category : サンプル
+tags : [intro, 初心者, jekyll, tutorial]
+---
+
+テスト投稿本文
+
+- a
+- b
+- c
+
+[http://daruyanagi.net](http://daruyanagi.net/)
+```Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/27/213159&quot;&gt;SignalR + WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ&lt;/a&gt; などと組み合わせたら面白いものができそうな気がする。
+
+&lt;div class=&quot;section&quot;&gt;
+    ### 必要なライブラリ
+    
+&lt;ul&gt;
+&lt;li&gt;MarkdownSharp&lt;/li&gt;
+&lt;li&gt;YamlSerializer for .NET（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/10/07/113945&quot;&gt;WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ&lt;/a&gt;）&lt;/li&gt;
+&lt;/ul&gt;どちらも NuGet で取得できる。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### サンプルコード
+    先ほどの Jekyll ドキュメントを ~/Default.md としておき、これを ~/Default.cshtml で読み込んで変換・表示してみる。あくまでもサンプルなので、汚いところ、あからさまにダメなところは無視してほしいかな（笑
+```cs
+@using System.Text.RegularExpressions
+@using System.Yaml
+
+@{
+    var path = Server.MapPath(&quot;~/Default.md&quot;);
+
+    var s = System.IO.File.ReadAllText(path);
+
+    // YAML Front-Matter を抽出する適当な正規表現
+    var r = new Regex(&quot;---.+---&quot;, RegexOptions.Singleline);
+
+    // YAML Front-Matter を取得（エラー処理なし！）
+
+    /* 配列として受け取る → 先頭はマッピング（ハッシュ）のはず */
+    var node = YamlNode.FromYaml(r.Match(s).ToString())[0]
+            as YamlMapping;
+
+    //YAML Front-Matter の値を変数に格納する
+
+    /* スカラ（値）の場合 */
+    var title = (node[&quot;title&quot;] as YamlScalar)
+        .Value; // &amp;lt;- 生テキスト！
+    var date = (node[&quot;date&quot;] as YamlScalar)
+        .NativeObject; // &amp;lt;- DateTime!
+    var category = (node[&quot;category&quot;] as YamlScalar).Value;
+    var layout = (node[&quot;layout&quot;] as YamlScalar).Value;
+
+    /* シーケンス（配列）の場合 */
+    var tags = (node[&quot;tags&quot;] as YamlSequence)
+        .Select(_ =&gt; (_ as YamlScalar).Value);
+
+    // YAML Front-Matter を除去（危険が危ないデシ！）
+    s = r.Replace(s, string.Empty);
+
+    // 残りは Markdown ドキュメントです
+    var m = new MarkdownSharp.Markdown();
+    var text = m.Transform(s);
+}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;@title&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;h1&gt;@title&amp;lt;/h1&gt;
+
+        @Html.Raw(text)
+
+        &amp;lt;h2&gt;Posted at&amp;lt;/h2&gt;
+        &amp;lt;p&gt;@date&amp;lt;/p&gt;
+
+        &amp;lt;h2&gt;Category&amp;lt;/h2&gt;
+        &amp;lt;p&gt;&amp;lt;a href=&quot;~/Category/@category&quot;&gt;@category&amp;lt;/a&gt;&amp;lt;/p&gt;
+
+        &amp;lt;h2&gt;Tags&amp;lt;/h2&gt;
+        &amp;lt;ul&gt;
+        @foreach(var tag in tags)
+        {
+            &amp;lt;li&gt;&amp;lt;a href=&quot;~/Tag/@tag&quot;&gt;@tag&amp;lt;/a&gt;&amp;lt;/li&gt;
+        }
+        &amp;lt;/ul&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```<figure>
+    <img src="/images/2012/10/09/232117/20121009231737.png"/> 
+</figure>
+なんとなく動いてるっぽい。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-10-09T23:21:17JST">2012/10/09</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix/ASP.NET%20Web%20Pages%20%e3%81%a7%20Jekyll%20%e3%81%a3%e3%81%bd%e3%81%84%e3%82%82%e3%81%ae%e3%82%92%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/10/09/232117/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;Jekyll&#43;%E3%81%A3%E3%81%BD%E3%81%84%E3%82%82%E3%81%AE%E3%82%92&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F09%2F232117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/10/234811/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/09/215150/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

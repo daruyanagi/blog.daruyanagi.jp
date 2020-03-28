@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/11/14/194808/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix： 型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  
+#### 問題 WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、 &gt; 型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。  というエラーが出てコンパイルできない。
+ #### 解決策 Web.config で明示的にターゲットフレームワークを指定する。WebMatrix はこれがなくても動くのだけど、Visual Studio の方はちゃんと書いておかないと動かない。 ```xml xml version=&#34;1.0&#34;?  .web targetFramework=&#34;4.0&#34; debug=&#34;true&#34;/ .web &lt;/div&gt; " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/11/14/194808/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix： 型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/11/14</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/11/14/194808/20141114193956.png"/> 
+</figure>
+<br/></p>
+<div class="section">
+    #### 問題
+    WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、
+<pre><code>&gt;
+    型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。
+</code></pre>
+<p>というエラーが出てコンパイルできない。</p>
+</div>
+<div class="section">
+    #### 解決策
+    Web.config で明示的にターゲットフレームワークを指定する。WebMatrix はこれがなくても動くのだけど、Visual Studio の方はちゃんと書いておかないと動かない。
+```xml
+<!--?-->xml version="1.0"?>
+<configuration></configuration>
+  .web>
+    targetFramework="4.0" debug="true"/>
+  .web>
+<pre><code class="language-このエラーが出るたびに「あぁ、あれか」と思うのだけど、いつも具体的なコードが思い出せなくて、結局ググってたりする。" data-lang="このエラーが出るたびに「あぁ、あれか」と思うのだけど、いつも具体的なコードが思い出せなくて、結局ググってたりする。">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-11-14T19:48:08JST">2014/11/14</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%20%e5%9e%8b%e3%81%be%e3%81%9f%e3%81%af%e5%90%8d%e5%89%8d%e7%a9%ba%e9%96%93%20&amp;#39;Linq&amp;#39;%20%e3%81%af%e5%90%8d%e5%89%8d%e7%a9%ba%e9%96%93%20&amp;#39;System&amp;#39;%20%e3%81%ab%e5%ad%98%e5%9c%a8%e3%81%97%e3%81%be%e3%81%9b%e3%82%93%e3%80%82%e3%82%a2%e3%82%bb%e3%83%b3%e3%83%96%e3%83%aa%e5%8f%82%e7%85%a7%e3%81%8c%e4%b8%8d%e8%b6%b3%e3%81%97%e3%81%a6%e3%81%84%e3%81%be%e3%81%99%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/11/14/194808/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A&#43;%E5%9E%8B%E3%81%BE%E3%81%9F%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BLinq%26%2339%3B&#43;%E3%81%AF%E5%90%8D%E5%89%8D%E7%A9%BA%E9%96%93&#43;%26%2339%3BSystem%26%2339%3B&#43;%E3%81%AB%E5%AD%98%E5%9C%A8%E3%81%97%E3%81%BE%E3%81%9B%E3%82%93%E3%80%82%E3%82%A2%E3%82%BB%E3%83%B3%E3%83%96%E3%83%AA%E5%8F%82%E7%85%A7%E3%81%8C%E4%B8%8D%E8%B6%B3%E3%81%97%E3%81%A6%E3%81%84%E3%81%BE%E3%81%99%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F14%2F194808%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/11/15/160504/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/11/14/055041/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

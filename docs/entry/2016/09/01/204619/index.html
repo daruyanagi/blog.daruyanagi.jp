@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/09/01/204619/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Aoba 1.4.4：艦これキャプチャーツールに CoreTweet で Twitter 投稿機能をつけた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  おじさんでも簡単に Twitter を組み込めると人気の CoreTweet で投稿機能を組み込んだよ。メッセージの文字数制限チェックが甘いとか、細部でダメなところも多いけど、気を付けていれば問題ない（ぁCoreTweet については酢酸先生のまとめを参考にするとよいかも。必要なことはすべて酢酸先生（たち）が教えてくれた。あと、Tokens.Create() で作成したトークンがログイン可能なのかを調べる手段がわからなかったのだけど、以下のサイトが参考になった。Tokens.Create() はいろいろ組み立てるだけ。検証は Account.VerifyCredentials() を使う、と（頭にメモメモほかには
+ Properties.Default.Settings を書き込んだら Save() しなきゃ保存されない。すっかり忘れてて悩んだ Twitter から取得したトークンを Properties.Default.Settings に書き込んだら設定ファイルを .gitignore しとかないと GitHub で全裸公開しちゃうことになる（キーをリセットしたよ ViewModel からウィンドウを閉じる方法はいろいろあるが、ボタンに CommandParameter={Binding Window1} して Command 側で (Window1 as Window).Close() するのが一番簡単っぽい というあたりが今回の気付き。マイナーバージョンがインクリメントされているのは、GitHub に置いたファイルを ClickOnce で配布できないかを試したから。結論的には、「自動更新機能は使えないかもだけど、インストーラーで配布することはできる。毎回 ZIP を作るのよりはマシだし、使う側も便利かな」って感じ。自動更新機能は次回からは削除する。ちなみに、今回からは ZIP での配布はない。ほしいかな？　この前のプロ生＋わんくま大阪で PowerShell を少し学んだので、パッケージするスクリプトでも書いてみるか。アプリのダウンロードは【こちら】から。 ### 主な変更点  Twitter投稿機能を付けた ClickOnce での配布 ちょっとコードを整理した（今度真面目にやる） タブレットモードで利用したときのちょっとした不具合を修正 GIF キャプチャー機能をつけたら、だいたいやりたいことは終わりだな。  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/aoba/">Aoba</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/09/01/204619/" >
+                    <h1 class="entry__header-title-link-text">Aoba 1.4.4：艦これキャプチャーツールに CoreTweet で Twitter 投稿機能をつけた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/09/01</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2016/09/01/204619/20160901202537.png"/> 
+</figure>
+おじさんでも簡単に Twitter を組み込めると人気の CoreTweet で投稿機能を組み込んだよ。メッセージの文字数制限チェックが甘いとか、細部でダメなところも多いけど、気を付けていれば問題ない（ぁCoreTweet については酢酸先生のまとめを参考にするとよいかも。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.ch3cooh.jp%2Fentry%2Fcoretweet" title=".NET向けのTwitterライブラリ「CoreTweet」の使い方まとめ - 酢ろぐ！" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>必要なことはすべて酢酸先生（たち）が教えてくれた。あと、Tokens.Create() で作成したトークンがログイン可能なのかを調べる手段がわからなかったのだけど、以下のサイトが参考になった。<iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2F01647.hateblo.jp%2Fentry%2F2014%2F10%2F12%2F132505" title="CoreTweet.Tokens.Account.VerifyCredentials()とTwitter OAuth2それぞれの調査記録 - 01647" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>Tokens.Create() はいろいろ組み立てるだけ。検証は Account.VerifyCredentials() を使う、と（頭にメモメモほかには</p>
+<ul>
+<li>Properties.Default.Settings を書き込んだら Save() しなきゃ保存されない。すっかり忘れてて悩んだ</li>
+<li>Twitter から取得したトークンを Properties.Default.Settings に書き込んだら設定ファイルを .gitignore しとかないと GitHub で全裸公開しちゃうことになる（キーをリセットしたよ</li>
+<li>ViewModel からウィンドウを閉じる方法はいろいろあるが、ボタンに CommandParameter={Binding Window1} して Command 側で (Window1 as Window).Close() するのが一番簡単っぽい</li>
+</ul>というあたりが今回の気付き。マイナーバージョンがインクリメントされているのは、GitHub に置いたファイルを ClickOnce で配布できないかを試したから。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F08%2F30%2F051929" title="GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F09%2F01%2F060000" title="GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する（2） - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>結論的には、「自動更新機能は使えないかもだけど、インストーラーで配布することはできる。毎回 ZIP を作るのよりはマシだし、使う側も便利かな」って感じ。自動更新機能は次回からは削除する。ちなみに、今回からは ZIP での配布はない。ほしいかな？　この前のプロ生＋わんくま大阪で PowerShell を少し学んだので、パッケージするスクリプトでも書いてみるか。アプリのダウンロードは【<a href="https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true">こちら</a>】から。
+<div class="section">
+    ### 主な変更点
+<ul>
+<li>Twitter投稿機能を付けた</li>
+<li>ClickOnce での配布</li>
+<li>ちょっとコードを整理した（今度真面目にやる）</li>
+<li>タブレットモードで利用したときのちょっとした不具合を修正</li>
+</ul>GIF キャプチャー機能をつけたら、だいたいやりたいことは終わりだな。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-09-01T20:46:19JST">2016/09/01</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Aoba%201.4.4%ef%bc%9a%e8%89%a6%e3%81%93%e3%82%8c%e3%82%ad%e3%83%a3%e3%83%97%e3%83%81%e3%83%a3%e3%83%bc%e3%83%84%e3%83%bc%e3%83%ab%e3%81%ab%20CoreTweet%20%e3%81%a7%20Twitter%20%e6%8a%95%e7%a8%bf%e6%a9%9f%e8%83%bd%e3%82%92%e3%81%a4%e3%81%91%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/09/01/204619/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Aoba&#43;1.4.4%EF%BC%9A%E8%89%A6%E3%81%93%E3%82%8C%E3%82%AD%E3%83%A3%E3%83%97%E3%83%81%E3%83%A3%E3%83%BC%E3%83%84%E3%83%BC%E3%83%AB%E3%81%AB&#43;CoreTweet&#43;%E3%81%A7&#43;Twitter&#43;%E6%8A%95%E7%A8%BF%E6%A9%9F%E8%83%BD%E3%82%92%E3%81%A4%E3%81%91%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F01%2F204619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/09/02/180638/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/09/01/060000/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

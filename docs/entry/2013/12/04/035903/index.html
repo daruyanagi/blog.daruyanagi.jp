@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/12/04/035903/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Razor で組まれた CMS「razorC.net CMS」 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。
+ Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動かすとこんな感じ。    機能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。 ```cs // _AppStart.cshtml @using System.Web.Routing
+@{ RouteTable.Routes.MapWebPageRoute( &ldquo;{rcPageName}/{rc0}/{rc1}&quot;, &ldquo;~/Default.cshtml&rdquo;, new { rcPageName = &ldquo;default&rdquo;, rc0=-1, rc1=-1 } ); }
+&lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&quot;&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/12/04/035903/" >
+                    <h1 class="entry__header-title-link-text">Razor で組まれた CMS「razorC.net CMS」</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/12/04</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/12/04/035903/20131204034929.png"/> 
+</figure>
+ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。</p>
+<ul>
+<li><a href="http://www.razorc.net/">Open Source ASP.net CMS for WebMatrix - razorC.net</a></li>
+</ul>実際に WebMatrix で動かすとこんな感じ。<figure>
+    <img src="/images/2013/12/04/035903/20131204035825.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/12/04/035903/20131204035237.png"/> 
+</figure>
+機能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。
+```cs
+// _AppStart.cshtml
+<p>@using System.Web.Routing</p>
+<p>@{ <br>
+RouteTable.Routes.MapWebPageRoute(
+&ldquo;{rcPageName}/{rc0}/{rc1}&quot;,
+&ldquo;~/Default.cshtml&rdquo;,
+new {
+rcPageName = &ldquo;default&rdquo;,
+rc0=-1,
+rc1=-1
+}
+);
+}</p>
+<pre><code class="language-別に<a" data-lang="別に<a">
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&quot;&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-12-04T03:59:03JST">2013/12/04</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Razor%20%e3%81%a7%e7%b5%84%e3%81%be%e3%82%8c%e3%81%9f%20CMS%e3%80%8crazorC.net%20CMS%e3%80%8d%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/12/04/035903/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Razor&#43;%E3%81%A7%E7%B5%84%E3%81%BE%E3%82%8C%E3%81%9F&#43;CMS%E3%80%8CrazorC.net&#43;CMS%E3%80%8D&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F04%2F035903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/04/205535/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/04/033536/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

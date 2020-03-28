@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/03/21/195845/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WPF ＋ PhantomJS で Web ページの内容を取得してみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。
+### PhantomJS とは ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。  http://phantomjs.org/ スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。  ### 使い方 まず NuGet で PhantomJS をとってきます。  すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。  次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。 ```javascript console.log(&#39;Hello, world!&#39;); phantom.exit(); ```cs public MainWindow() { InitializeComponent(); Loaded &#43;= MainWindow_Loaded; } private void MainWindow_Loaded(object sender, RoutedEventArgs e) { var result = ProcessScript(&quot;hello.js&quot;); System.Diagnostics.Debug.WriteLine(result); } private string ProcessScript(string script, params string[] args) { using (var process = new System." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/javascript/">JavaScript</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/03/21/195845/" >
+                    <h1 class="entry__header-title-link-text">WPF ＋ PhantomJS で Web ページの内容を取得してみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/03/21</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。</p>
+<div class="section">
+    ### PhantomJS とは
+    ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない<a href="#f-32b25991" name="fn-32b25991" title="ヘッドレスっていうらしい">*1</a>やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。
+<ul>
+<li><a href="http://phantomjs.org/">http://phantomjs.org/</a></li>
+</ul>スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。
+</div>
+<div class="section">
+    ### 使い方
+    まず NuGet で PhantomJS をとってきます。<figure>
+    <img src="/images/2017/03/21/195845/20170321192456.png"/> 
+</figure>
+すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。<figure>
+    <img src="/images/2017/03/21/195845/20170321193813.png"/> 
+</figure>
+次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。
+```javascript
+console.log(&#39;Hello, world!&#39;);
+phantom.exit();
+<pre><code class="language-最初なので、動作確認をするだけです。これも" data-lang="最初なので、動作確認をするだけです。これも">```cs
+public MainWindow()
+{
+    InitializeComponent();
+
+    Loaded += MainWindow_Loaded;
+}
+
+private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    var result = ProcessScript(&quot;hello.js&quot;);
+
+    System.Diagnostics.Debug.WriteLine(result);
+}
+
+private string ProcessScript(string script, params string[] args)
+{
+    using (var process = new System.Diagnostics.Process())
+    {
+        process.StartInfo.CreateNoWindow = true;
+        process.StartInfo.UseShellExecute = false;
+        process.StartInfo.RedirectStandardOutput = true;
+        process.StartInfo.RedirectStandardInput = false;
+        process.StartInfo.FileName = &quot;phantomjs.exe&quot;;
+        process.StartInfo.Arguments = $&quot;{script} {string.Join(&quot; &quot;, args)}&quot;;
+
+        process.Start();
+        var result = process.StandardOutput.ReadToEnd();
+        process.WaitForExit();
+
+        System.Diagnostics.Debug.WriteLine($&quot;ProcessScript() -&gt; Code {process.ExitCode}: {process.ExitTime - process.StartTime} has elapsed.&quot;);
+
+        return result;
+    }
+}
+
+```本当はパスの管理とかもう少し何とかしないとだめかもしれませんけど、まぁ、いいや。とりあえず、実行してみましょう。<figure>
+    <img src="/images/2017/03/21/195845/20170321194934.png"/> 
+</figure>
+&lt;br/&gt;
+
+```ps1
+&gt; ProcessScript() -&gt; Code 0: 00:00:01.7818442 has elapsed.
+&gt; Hello, world!
+
+```いい感じになってる気がします。今度はちょっと複雑にしてみます。といっても、a.href の値を配列で受け取るだけです。
+```cs
+// MainWindow.cs
+
+private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+{
+    var result = ProcessScript(&quot;hello.js&quot;, &quot;なんか URL&quot;);
+
+    System.Diagnostics.Debug.WriteLine(result);
+}
+
+``````javascript
+// hello.js
+
+var system = require(&amp;#39;system&amp;#39;);
+
+// 引数のチェック
+switch(system.args.length) {
+    case 2:
+        var url = system.args[1];
+        break;
+    default:
+        console.log(&amp;#39;error: invalid argument&amp;#39;);
+        phantom.exit(1);
+        break;
+}
+
+var page = require(&amp;#39;webpage&amp;#39;).create();
+
+// Web Page を開く
+page.open(url, function (status) {
+    switch (status) {
+        case &amp;#39;success&amp;#39;:
+            var links = page.evaluate(function () {
+                return [].map.call(document.querySelectorAll(&amp;#39;a&amp;#39;), function (link) { return link.getAttribute(&amp;#39;href&amp;#39;); });
+            });
+            console.log(JSON.stringify(links));
+            phantom.exit(0);
+            break;
+        default:
+            console.log(&amp;#39;error: page.open() &amp;#39; + status);
+            phantom.exit(1);
+            break;
+    }
+});
+
+```<figure>
+    <img src="/images/2017/03/21/195845/20170321195239.png"/> 
+</figure>
+とりあえず動いている気がします。JavaScript がよくわからないのが困ったちゃんですが、まぁ、おいおいマスターしていけばいいよね。これでいろんなことに使える気がしてきました。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-32b25991&quot; name=&quot;f-32b25991&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ヘッドレスっていうらしい&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-03-21T19:58:45JST">2017/03/21</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WPF%20%ef%bc%8b%20PhantomJS%20%e3%81%a7%20Web%20%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%ae%e5%86%85%e5%ae%b9%e3%82%92%e5%8f%96%e5%be%97%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/03/21/195845/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WPF&#43;%EF%BC%8B&#43;PhantomJS&#43;%E3%81%A7&#43;Web&#43;%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E5%86%85%E5%AE%B9%E3%82%92%E5%8F%96%E5%BE%97%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F21%2F195845%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/24/193845/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/21/152242/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

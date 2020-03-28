@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/09/05/070245/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ちょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、WebMatrix 2：OAuth でログインする（２） - だるろぐ を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。
+### 下準備   まず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。  次に https://dev.twitter.com/apps/ でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。  Name: アプリの名前 Description: title Website: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる） Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい） Allow this application to be used to Sign in with Twitter: 無効化 アプリを登録したら、  Consumer key Consumer secret を取得し、~/_AppStart.cshtml で初期化を行う。 ```cs @{ // DB名: kenzo-memo." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/twitter/">Twitter</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows開発</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/09/05/070245/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/09/05</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/09/05/070245/20130905061149.png"/> 
+</figure>
+ちょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、<a href="https://blog.daruyanagi.jp/entry/2013/02/03/160915">WebMatrix 2：OAuth でログインする（２） - だるろぐ</a> を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。</p>
+<div class="section">
+    ### 下準備
+    <figure>
+    <img src="/images/2013/09/05/070245/20130905063705.png"/> 
+</figure>
+まず NuGet で <a href="http://www.nuget.org/packages/Microsoft.AspNet.WebPages.OAuth/">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。これで“スターター サイト”テンプレートでも使われている <a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx">OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a> が使えるようになる。<figure>
+    <img src="/images/2013/09/05/070245/20130905062911.png"/> 
+</figure>
+次に <a href="https://dev.twitter.com/apps/">https://dev.twitter.com/apps/</a> でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
+<ul>
+<li>Name: アプリの名前</li>
+<li>Description: title</li>
+<li>Website: <a href="http://127.0.0.1:****/">http://127.0.0.1:****/</a> （localhost は無効な URL として蹴られる）</li>
+<li>Callback URL: <a href="http://127.0.0.1:****/">http://127.0.0.1:****/</a> （空っぽだと動かないっぽい）</li>
+<li>Allow this application to be used to Sign in with Twitter: 無効化</li>
+</ul>アプリを登録したら、
+<ul>
+<li>Consumer key</li>
+<li>Consumer secret</li>
+</ul>を取得し、~/_AppStart.cshtml で初期化を行う。
+```cs
+@{
+    // DB名: kenzo-memo.sdf
+    WebSecurity.InitializeDatabaseConnection("kenzou-memo", "Users", "UserId", "Name", true);  
+<pre><code>OAuthWebSecurity.RegisterTwitterClient(
+    &quot;kFe1j**********LTcSizQ&quot;,
+    &quot;aKz6C**********Qzws06agyxRXImPk9sfETNQeg&quot;
+);
+</code></pre>
+<p>}</p>
+<pre><code class="language-これで" data-lang="これで">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Default.cshtml
+    <figure>
+    <img src="/images/2013/09/05/070245/20130905061617.png"/> 
+</figure>
+ログインしていない場合はログインボタンを、ログインしている場合はログオフのリンクを表示するだけの簡単なコード。
+```cs
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=&quot;en&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+    @if (User.Identity.IsAuthenticated)
+    {
+        &amp;lt;p&gt;@User.Identity.Name&amp;lt;/p&gt;
+        &amp;lt;p&gt;&amp;lt;a href=&quot;Logout.cshtml&quot;&gt;Logout&amp;lt;/a&gt;&amp;lt;/p&gt;
+    }
+    else
+    {
+        &amp;lt;a href=&quot;~/Login.cshtml&quot;&gt;
+            &amp;lt;img src=&quot;Twitter ボタンを用意する&quot; /&gt;
+        &amp;lt;/a&gt;
+    }
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```資格関連の情報は User.Identity （&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/system.web.httpcontext.user.aspx&quot;&gt;HttpContext.User Property (System.Web) | Microsoft Docs&lt;/a&gt;）でとれる。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Login.cshtml
+    ```cs
+@{
+    var returnUrl = Request.UrlReferrer.ToString();
+
+    OAuthWebSecurity.RequestAuthentication(
+        &quot;twitter&quot;, // プロバイダー名は文字列で指定
+        Href(&quot;~/LoginCallback&quot;, new { returnUrl })
+    );
+}
+
+```**OAuthWebSecurity.RequestAuthentication** で Twitter へリクエストを投げる。<figure>
+    <img src="/images/2013/09/05/070245/20130905064446.png"/> 
+</figure>
+おなじみのこの画面へ飛ばされる。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/LoginCallback
+    Twitter で認証処理を行うと、~/LoginCallback にリダイレクトされてくるので、**OAuthWebSecurity.VerifyAuthentication** で検証し、成否を得る（今回で言えば result 変数）。Twitter でのログインが成功していたら、その資格情報（OAuth なのでパスワードはないけど）をデータベースに格納し（**OAuthWebSecurity.CreateOrUpdateAccount**）、アプリにログインさせる（**OAuthWebSecurity.Login**）。
+```cs
+@{
+    var returnUrl = Request[&quot;returnUrl&quot;];
+
+    // ログインの検証
+    var result = OAuthWebSecurity.VerifyAuthentication(  
+         Href(&quot;LogonCallBack&quot;, new { ReturnUrl = returnUrl })
+    );
+
+    if (result.IsSuccessful)
+    {
+        // ログインが成功すると、
+        // - provider: twitter
+        // - ProviderUserId: twitter の ID
+        // - UserName: twitter のスクリーンネーム
+        // の3つが得られる。自動補完が効かないので変数に入れとく
+        var provider = result.Provider;
+        var providerUserId = result.ProviderUserId;
+        var userName = result.UserName;
+
+        // ユーザー名が Users テーブルに存在しない場合、
+        // あらかじめユーザー名を追加しておく。
+        // でないと CreateOrUpdateAccount() でコケる
+        using (var db = Database.Open(&quot;kenzou-memo&quot;))
+        {
+            const string SELECT = &quot;SELECT * FROM USERS WHERE Name=@0&quot;;
+            const string INSERT = &quot;INSERT INTO Users (Name) VALUES (@0)&quot;;
+
+            if (db.QuerySingle(SELECT, userName) == null)
+            {
+                db.Execute(INSERT, userName);
+            }
+        }
+
+        // CreateOrUpdate とか言ってるけど、
+        // やってることは Users テーブルと内部管理テーブルの紐づけ
+        OAuthWebSecurity.CreateOrUpdateAccount(
+            provider,
+            providerUserId,
+            userName);
+
+        // ログインチケットの発行
+        OAuthWebSecurity.Login(
+            provider,
+            providerUserId,
+            createPersistentCookie: true);
+
+        Response.Redirect(returnUrl);        
+    }
+    else
+    {
+        // ログインに失敗したときの処理
+    }
+}
+
+```<figure>
+    <img src="/images/2013/09/05/070245/20130905064840.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/09/05/070245/20130905064842.png"/> 
+</figure>
+成功するとこんなかんじにユーザーがデータベースに追加される。ちなみに result の中身はこんな感じ。<figure>
+    <img src="/images/2013/09/05/070245/20130905064941.png"/> 
+</figure>
+ObjectInfo.Print() はデバッグにとっても便利なヘルパーなのでぜひ覚えておいてね！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Logout.cshtml
+    最後にログアウトの処理も書いておく。
+```cs
+@{
+    var returnUrl = Request.UrlReferrer.ToString();
+
+    WebSecurity.Logout();
+
+    Response.Redirect(returnUrl);
+}
+
+```ログインの時はもっぱら &lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx&quot;&gt;OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt; を使っていたけれど、ログアウトはいつもどおり &lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/webmatrix.webdata.websecurity(v=vs.111).aspx&quot;&gt;WebSecurity Class (WebMatrix.WebData) | Microsoft Docs&lt;/a&gt; が使える。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### まとめ
+    
+&lt;ol&gt;
+&lt;li&gt;OAuthWebSecurity.RegisterTwitterClient で twitter プロバイダーを有効化&lt;/li&gt;
+&lt;li&gt;OAuthWebSecurity.RequestAuthentication で Twitter の認証画面へ飛ばす&lt;/li&gt;
+&lt;li&gt;OAuthWebSecurity.VerifyAuthentication で Twitter での認証がうまく言ったか確認&lt;/li&gt;
+&lt;li&gt;OAuthWebSecurity.CreateOrUpdateAccount でアプリのアカウントと紐付ける&lt;/li&gt;
+&lt;li&gt;OAuthWebSecurity.Login でアプリにログインする&lt;/li&gt;
+&lt;/ol&gt;“スターター サイト”テンプレートは手広い実装になっていて、その分複雑になっているけれど、アプリのアカウント＝ Twitter アカウントという運用でよいのならば、このように比較的簡単に実装できる。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-09-05T07:02:45JST">2013/09/05</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/09/05/070245/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/07/045632/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/05/025249/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

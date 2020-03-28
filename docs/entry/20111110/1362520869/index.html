@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111110/1362520869/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で URL 書き換え | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="前回 1 の宿題。 WebMatrix で URL Rewrite をやりたいなぁーと言ってそのまま言いっ放しだったのでやってみた。とはいえ、WebMatrix は APS.NET 技術をベースにしているので、そのやり方がそのまま使える。まぁ、わしは ASP.NET とかあまりわからないので、Google さまに聞きながら書いたのだけど。ともかく、http://sample.com/Pages/Hoge (http://sample.com/Pages.cshtml/Hoge) を __http://sample.com/Hoge__に飛ばしたい場合は、Web.comfig 2 へ以下のように記述するだけでよい。
+	&amp;lt;?xml version=&quot;1.0&quot;?&gt; &amp;lt;configuration&gt; &amp;lt;system.webServer&gt; &amp;lt;rewrite&gt; &amp;lt;rules&gt; &amp;lt;rule name=&quot;Daruboard&quot; stopProcessing=&quot;true&quot;&gt; &amp;lt;match url=&quot;^(.*)$&quot; ignoreCase=&quot;false&quot; /&gt; &amp;lt;conditions&gt; &amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt; &amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsDirectory&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt; &amp;lt;/conditions&gt; &amp;lt;action type=&quot;Rewrite&quot; url=&quot;Pages.cshtml/{R:1}&quot; /&gt; &amp;lt;/rule&gt; &amp;lt;/rules&gt; &amp;lt;/rewrite&gt; &amp;lt;/system.webServer&gt; &amp;lt;/configuration&gt; ```とても簡単だった。さっそく、 daruyanagi.net をこのアプリケーションで置き換えてみた。 &lt;div class=&quot;footnote&quot;&gt; &lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;&lt;a href=&quot;http://blog.daruyanagi.net/archives/388&quot;&gt;WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る - blog." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111110/1362520869/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で URL 書き換え</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/11/10</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-12.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-12-500x379.png" alt="" title="sshot-12" width="500" height="379" class="alignnone size-medium wp-image-420"/></a>前回 <a href="#f1" name="fn1" title="WebMatrix + Markdown で手軽に更新できる（？）Webサイトを作る - blog.daruyanagi.net"><em>1</a> の宿題。 WebMatrix で URL Rewrite をやりたいなぁーと言ってそのまま言いっ放しだったのでやってみた。とはいえ、WebMatrix は APS.NET 技術をベースにしているので、そのやり方がそのまま使える。まぁ、わしは ASP.NET とかあまりわからないので、Google さまに聞きながら書いたのだけど。ともかく、<strong><a href="http://sample.com/Pages/Hoge"><a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a></a> (<a href="http://sample.com/Pages.cshtml/Hoge"><a href="http://sample.com/Pages.cshtml/Hoge">http://sample.com/Pages.cshtml/Hoge</a></a>)</strong> を __<a href="http://sample.com/Hoge"><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></a>__に飛ばしたい場合は、Web.comfig <a href="#f2" name="fn2" title="Apacheで言えは .htaccess"></em>2</a> へ以下のように記述するだけでよい。</p>
+<pre><code>	&amp;lt;?xml version=&quot;1.0&quot;?&gt;
+	&amp;lt;configuration&gt;
+	    &amp;lt;system.webServer&gt;
+	        &amp;lt;rewrite&gt;
+	            &amp;lt;rules&gt;
+	                &amp;lt;rule name=&quot;Daruboard&quot; stopProcessing=&quot;true&quot;&gt;
+	                    &amp;lt;match url=&quot;^(.*)$&quot; ignoreCase=&quot;false&quot; /&gt;
+	                    &amp;lt;conditions&gt;
+	                         &amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;
+	                    	 &amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsDirectory&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;
+	                    &amp;lt;/conditions&gt;
+	                    &amp;lt;action type=&quot;Rewrite&quot; url=&quot;Pages.cshtml/{R:1}&quot; /&gt;
+	                &amp;lt;/rule&gt;
+	            &amp;lt;/rules&gt;
+	        &amp;lt;/rewrite&gt;
+	    &amp;lt;/system.webServer&gt;
+	&amp;lt;/configuration&gt;
+```とても簡単だった。さっそく、 daruyanagi.net をこのアプリケーションで置き換えてみた。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;&lt;a href=&quot;http://blog.daruyanagi.net/archives/388&quot;&gt;WebMatrix + Markdown で手軽に更新できる（？）Webサイトを作る - blog.daruyanagi.net&lt;/a&gt;&lt;/span&gt;
+&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Apacheで言えは .htaccess&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-11-10T07:01:09JST">2011/11/10</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%20URL%20%e6%9b%b8%e3%81%8d%e6%8f%9b%e3%81%88%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111110/1362520869/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7&#43;URL&#43;%E6%9B%B8%E3%81%8D%E6%8F%9B%E3%81%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111110%2F1362520869%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111111/1362520875/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111107/1362520864/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

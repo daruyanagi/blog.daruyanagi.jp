@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/05/07/111848/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Windows 10 April 2018 Update 環境で Explorer.exe が頻繁にフリーズ・クラッシュする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Dropbox ローカルフォルダーでファイル操作を行うと Explorer をクラッシュさせるようだ。しばらく待っていればファイル操作は完了するが、CPU を1コア使い切ったりするので、OS 全体のパフォーマンスに影響が出る（追記：コラボレーションに利用していると相手側のファイル操作でもこちら側の OS が半分フリーズしてつらい！！）。    Dropbox クライアントのバージョンは 48.4.58。Qt を使ってるみたいだけど、管理 UI の HiDPI 対応もイマイチだし、しょうもない機能を追加するぐらいならばネイティブで作り直してほしい感じする。  Windows 10 April 2018 Update ではそのほかにも Google Chrome や Mozilla Firefox で互換性問題が出ているようだが（Firefox はマイナーアップデートで修正済み、Chrome はウチの環境では問題ない）、これらはかならずしも OS のせいとは言えない。OS の仕様変更がアプリの実装不備を顕在化させるケースもあるわけで、要するにテスト不足だ。Insider Preview でもっとサードパーティー製アプリのテストをしてもらうにはどうすればいいか、もう少し考えないといけないかもしれない。わいの仕事ではないけど。
+### 追記（2018/06/07 19:00） Dropbox をアンインストールして、ビルトインの OneDrive を代わりに利用したところ（OneDrive にも他のユーザーとフォルダーを共有する機能あるんだな！）、少しだけ状況はましになった……けれど、やはり全体的にもっさりしているし、ときどき Explorer が「応答なし」になっているようだ。これは海外でも報告があるらしい。[Windows 10 April 2018 Update Bug Causes Explorer.exe to Crash Repeatedly](https://news.softpedia.com/news/windows-10-april-2018-update-bug-causes-explorer-exe-to-crash-repeatedly-520995.shtml)ワークアラウンドとして &gt; According to some users, fixing this bug comes down to disabling Windows Timeline." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/dropbox/">Dropbox</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-10/">Windows 10</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/05/07/111848/" >
+                    <h1 class="entry__header-title-link-text">Windows 10 April 2018 Update 環境で Explorer.exe が頻繁にフリーズ・クラッシュする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/05/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>Dropbox ローカルフォルダーでファイル操作を行うと Explorer をクラッシュさせるようだ。しばらく待っていればファイル操作は完了するが、CPU を1コア使い切ったりするので、OS 全体のパフォーマンスに影響が出る（追記：コラボレーションに利用していると相手側のファイル操作でもこちら側の OS が半分フリーズしてつらい！！）。<figure>
+    <img src="/images/2018/05/07/111848/20180507111025.png"/> 
+</figure>
+<figure>
+    <img src="/images/2018/05/07/111848/20180507111055.png"/> 
+</figure>
+Dropbox クライアントのバージョンは 48.4.58。Qt を使ってるみたいだけど、管理 UI の HiDPI 対応もイマイチだし、しょうもない機能を追加するぐらいならばネイティブで作り直してほしい感じする。<figure>
+    <img src="/images/2018/05/07/111848/20180507111102.png"/> 
+</figure>
+Windows 10 April 2018 Update ではそのほかにも Google Chrome や Mozilla Firefox で互換性問題が出ているようだが（Firefox はマイナーアップデートで修正済み、Chrome はウチの環境では問題ない）、これらはかならずしも OS のせいとは言えない。OS の仕様変更がアプリの実装不備を顕在化させるケースもあるわけで、要するにテスト不足だ。Insider Preview でもっとサードパーティー製アプリのテストをしてもらうにはどうすればいいか、もう少し考えないといけないかもしれない。わいの仕事ではないけど。</p>
+<div class="section">
+    ### 追記（2018/06/07 19:00）
+    Dropbox をアンインストールして、ビルトインの OneDrive を代わりに利用したところ（OneDrive にも他のユーザーとフォルダーを共有する機能あるんだな！）、少しだけ状況はましになった……けれど、やはり全体的にもっさりしているし、ときどき Explorer が「応答なし」になっているようだ。これは海外でも報告があるらしい。[Windows 10 April 2018 Update Bug Causes Explorer.exe to Crash Repeatedly](https://news.softpedia.com/news/windows-10-april-2018-update-bug-causes-explorer-exe-to-crash-repeatedly-520995.shtml)ワークアラウンドとして
+<pre><code>&gt;
+    According to some users, fixing this bug comes down to disabling Windows Timeline. To do this, go to Settings &gt; Privacy &gt; Activity History and set the option called Let Windows sync my activities from this PC to the cloud to off.
+</code></pre>
+<p>などと書かれているが、うちの環境ではもともとオフだった。<figure>
+    <img src="/images/2018/05/07/111848/20180507184848.png"/> 
+</figure>
+あとはユーザーアカウントデータが壊れているから作り直したら、GPU ドライバーのせいじゃねえのっていう話があるみたいだけど、Insider Preview のときも OneDrive がクラッシュする問題はあったし、リパースポイントなんか、ファイルシステム周りで仕様変更があったんではないかって個人的には想像してるが……どうだろ。</p>
+</div>
+<div class="section">
+    ### 追記（2018/06/07 22:30）
+    <figure>
+    <img src="/images/2018/05/07/111848/20180507223320.png"/> 
+</figure>
+<code>CDPUserSvc_****</code> という名前のサービスがあれば止めてみる → あまり効果はないように思えるが、これで直ったという人もいる。<figure>
+    <img src="/images/2018/05/07/111848/20180507223650.png"/> 
+</figure>
+<code>C:\Users\（ユーザー名）\AppData\Local\Microsoft\Windows\（数字四桁）\StructuredQuerySchema.bin</code> というファイルをリネームして再起動する → うちの環境ではこれで直ったように思える。だんだん当初の問題から離れてきたので、記事を改題。
+</div>
+<div class="section">
+    ### 追記（2018/06/08 02:30）
+    Build 2018 を観ながら仕事をしていたけど、また問題が再発したようだ……あと、OneDrive フォルダー以外でもフリーズが激しくなった。「フィードバック Hub」で問題を報告したけど、ロールバックも検討しなきゃいけないな？
+</div>
+<div class="section">
+    ### 追記（2018/06/08 13:30）
+    ふと［アクティビティ履歴］の設定を確認すると、いつの間にかチェックが入っていたので外し、念のため再起動して再度無効化されていることを確認してしばらく使っていたが、まぁまぁ、快調に動いている。またぶり返すかもしれないけれど、とりあえずは様子見。
+</div>
+<div class="section">
+    ### 追記（2018/06/09 04:30）
+    症状は相変わらず。StructuredQuerySchema.bin をリネームした直後だけなのかな、調子いいのは。<figure>
+    <img src="/images/2018/05/07/111848/20180509042524.png"/> 
+</figure>
+あと、Insider Preview を入れてる Surface 3 でタイムラインがぶっ壊れちゃったことに気づいた……もしかすると Insider Build と Release Build でアクティビティをクラウド同期してたのがまずかったのかなぁ
+</div>
+<div class="section">
+    ### 追記（2018/06/15 18:00）
+    5月の定例アップデートを当ててからは症状は治まった。快適快適
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-05-07T11:18:48JST">2018/05/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Windows%2010%20April%202018%20Update%20%e7%92%b0%e5%a2%83%e3%81%a7%20Explorer.exe%20%e3%81%8c%e9%a0%bb%e7%b9%81%e3%81%ab%e3%83%95%e3%83%aa%e3%83%bc%e3%82%ba%e3%83%bb%e3%82%af%e3%83%a9%e3%83%83%e3%82%b7%e3%83%a5%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/05/07/111848/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Windows&#43;10&#43;April&#43;2018&#43;Update&#43;%E7%92%B0%E5%A2%83%E3%81%A7&#43;Explorer.exe&#43;%E3%81%8C%E9%A0%BB%E7%B9%81%E3%81%AB%E3%83%95%E3%83%AA%E3%83%BC%E3%82%BA%E3%83%BB%E3%82%AF%E3%83%A9%E3%83%83%E3%82%B7%E3%83%A5%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F05%2F07%2F111848%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/05/15/180320/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/05/06/100851/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

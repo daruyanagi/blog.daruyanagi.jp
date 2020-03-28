@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/12/27/070246/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：ASP.NET と PHP（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。
+@Code Dim s = &#34;Hello! World&#34; &amp;#39; 追加 End Code &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @s &amp;lt;!-- 追加 --&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは &lt;a href=&#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&#34;&gt;VB Razor構文 基礎文法 総まとめ - ＠IT&lt;/a&gt; でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。あと、前回は言わなかったけれど &amp;lt;% … %&gt; という ASP." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/php/">PHP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/12/27/070246/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：ASP.NET と PHP（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/12/27</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2012/12/11/085125">WebMatrix 2：ASP.NET と PHP - だるろぐ</a> あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#960050;background-color:#1e0010">@</span>Code
+    <span style="color:#66d9ef">Dim</span> s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello! World&#34;</span> <span style="color:#f92672">&amp;</span>#39<span style="color:#960050;background-color:#1e0010">;</span> 追加
+<span style="color:#66d9ef">End</span> Code
+
+<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>!DOCTYPE html<span style="color:#f92672">&gt;</span>
+
+<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>html lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>head<span style="color:#f92672">&gt;</span>
+        <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>meta charset<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span> <span style="color:#f92672">/&gt;</span>
+        <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>title<span style="color:#f92672">&gt;&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>title<span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>head<span style="color:#f92672">&gt;</span>
+    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>body<span style="color:#f92672">&gt;</span>
+        <span style="color:#960050;background-color:#1e0010">@</span>s <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>!<span style="color:#f92672">--</span> 追加 <span style="color:#f92672">--&gt;</span>
+    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>body<span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>html<span style="color:#f92672">&gt;</span>
+
+<span style="color:#960050;background-color:#1e0010">```</span>C# の <span style="color:#960050;background-color:#1e0010">@</span>{ <span style="color:#960050;background-color:#1e0010">…</span> } が <span style="color:#960050;background-color:#1e0010">@</span>Code <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#66d9ef">End</span> Code に置き換わったぐらいかな<span style="color:#960050;background-color:#1e0010">。</span><span style="color:#66d9ef">For</span> 文の書き方なんかも VB 風に書けます<span style="color:#960050;background-color:#1e0010">。</span>詳しいことは <span style="color:#f92672">&lt;</span>a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&#34;</span><span style="color:#f92672">&gt;</span>VB Razor構文 基礎文法 総まとめ <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">＠</span>IT<span style="color:#f92672">&lt;/</span>a<span style="color:#f92672">&gt;</span> でも参照してください<span style="color:#960050;background-color:#1e0010">。</span>個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います<span style="color:#960050;background-color:#1e0010">。</span>XML の処理などは簡単なんだそうですけど<span style="color:#960050;background-color:#1e0010">。</span>あと<span style="color:#960050;background-color:#1e0010">、</span>前回は言わなかったけれど <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;%</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span> という ASP.NET の古い記法<span style="color:#960050;background-color:#1e0010">（</span>ASPX<span style="color:#960050;background-color:#1e0010">、</span>C# または Visual Basic<span style="color:#960050;background-color:#1e0010">）</span>を利用することもできます<span style="color:#960050;background-color:#1e0010">。</span> まぁ<span style="color:#960050;background-color:#1e0010">、</span>それはともかく<span style="color:#960050;background-color:#1e0010">。</span>こんなにいっぱいあるんだったら<span style="color:#960050;background-color:#1e0010">、</span>どれが一番いいのかって気になりますよね<span style="color:#960050;background-color:#1e0010">。</span>前にも言った通り<span style="color:#960050;background-color:#1e0010">、</span>ぶっちゃけ好きなものを選べばいいと思うんですけど<span style="color:#960050;background-color:#1e0010">（</span>Razor<span style="color:#f92672">/</span>C# を推しますけどね<span style="color:#960050;background-color:#1e0010">）、</span>今回は簡単なプログラム<span style="color:#960050;background-color:#1e0010">（</span>0から10,000までの2乗をリスト表記<span style="color:#960050;background-color:#1e0010">）</span>で速さを計測してみました<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
+    ### PHP
+    PHP はあんまり知らないのでこれでいいのか多少不安ですけど<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;ul&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.007682秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.004367秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.003787秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.003856秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.003891秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;/ul&gt;</span>最初だけ時間を食いましたが<span style="color:#960050;background-color:#1e0010">、</span>こんな感じ<span style="color:#960050;background-color:#1e0010">。</span>以下<span style="color:#960050;background-color:#1e0010">、</span>初回計測時にはサーバーを一度再起動させています<span style="color:#960050;background-color:#1e0010">。</span>PHP の結果を見ると<span style="color:#960050;background-color:#1e0010">、</span>初回起動時はちょっと時間がかかるのかなと感じたので<span style="color:#960050;background-color:#1e0010">。</span>念のためもう一度計測したら<span style="color:#960050;background-color:#1e0010">、</span>サーバー再起動後で 0.0035609999999999秒 でした<span style="color:#960050;background-color:#1e0010">。</span>0.007秒というのは<span style="color:#960050;background-color:#1e0010">、</span>異常値として処理しちゃってもいいレベルかな<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;/div&gt;</span>
+<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
+    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (ASPX<span style="color:#f92672">/</span>C#)
+    <span style="color:#f92672">&lt;</span>br<span style="color:#f92672">/&gt;</span>
+
+
+<span style="color:#a6e22e">&lt;ul&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0029692秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0025189秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0024252秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0024489秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0024761秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;/ul&gt;</span>安定して速かったです<span style="color:#960050;background-color:#1e0010">。</span>ただ<span style="color:#960050;background-color:#1e0010">、</span>これで書こうかという気は起こらないのですけど<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;/div&gt;</span>
+<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
+    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (Razor<span style="color:#f92672">/</span>C#)
+    <span style="color:#f92672">&lt;</span>br<span style="color:#f92672">/&gt;</span>
+
+
+<span style="color:#a6e22e">&lt;ul&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0028398秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0024506秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0024667秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0025609秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0026207秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;/ul&gt;</span>ASPX よりはわずかながら遅いような<span style="color:#960050;background-color:#1e0010">（</span>ほとんど誤差レベルですが<span style="color:#960050;background-color:#1e0010">）。</span>PHP よりは速かった<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;/div&gt;</span>
+<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
+    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (Razor<span style="color:#f92672">/</span>Visual Basic)
+    <span style="color:#f92672">&lt;</span>br<span style="color:#f92672">/&gt;</span>
+
+
+<span style="color:#a6e22e">&lt;ul&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0046345秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0039607秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0036215秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0036577秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;li&gt;</span>0.0038143秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
+<span style="color:#a6e22e">&lt;/ul&gt;</span>ついでに Razor だけ VB でも試してみました<span style="color:#960050;background-color:#1e0010">。</span>PHP よりはマシという感じの速さですね<span style="color:#960050;background-color:#1e0010">。</span>まぁ<span style="color:#960050;background-color:#1e0010">、</span>簡単すぎてあんまり参考にならないレベルですけどちょっと興味がわいたので試してみました<span style="color:#960050;background-color:#1e0010">。</span>著しく不公平なところがあれば<span style="color:#960050;background-color:#1e0010">、</span>ぜひ教えてください<span style="color:#960050;background-color:#1e0010">。</span>正直あんまり自信ない<span style="color:#960050;background-color:#1e0010">。</span>
+
+<span style="color:#a6e22e">&lt;/div&gt;</span>
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-12-27T07:02:46JST">2012/12/27</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aASP.NET%20%e3%81%a8%20PHP%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/12/27/070246/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F27%2F070246%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/12/28/153507/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/12/26/230719/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/10/29/193849/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Surface Laptop で  Acer の MR ヘッドセットを動かすまでの苦労（物理 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="手持ちの Surface Laptop で Acer の MR ヘッドセットが動かなかった話の続き。6万円出して Acer の MR ヘッドセット＋コントローラーを買ったんだけど、残念ながら動かなかった件について（追記 - だるろぐ今は東京に滞在している関係で手持ちのデバイスが少なく、何が原因か十分に調査するのは半ばあきらめていたのですが、アキバのヨドバシカメラさんのご協力もあっていろいろ調査できました（後述）。ヨドバシカメラさん、ありがとうございます！　Book 2 を買うときはヨドバシにします。みんなもヨドバシでもっと買おうぜ！（回し者さて、結論から言うと、Mini DisplayPort → HDMI アダプターを HDMI 2.0 に対応したアダプターに取り換えるのが正解。Surface Laptop でも Acer の MR ヘッドセットが動きました。なぜか Surface 純正のアダプターでは動かなかったのですが（後述）、ダメ元で互換リストに載っていた他のアダプター（Club3D）を取り寄せたところ、ちゃんと動きました。今、Amazon のセール中でちょっと安いので、確保しておくといいかもしれない。Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)出版社/メーカー: CLUB3Dメディア: Personal Computersこの商品を含むブログを見るここからは時系列順にグダグダ書くので、興味がない人は読まなくてもいいデス。まずちゃんと復習しておくと、Windows Mixed Reality には2つのスペックがある。
+ Windows Mixed Reality Ultra Windows Mixed Reality（無印）   Windows Mixed Reality minimum PC hardware compatibility guidelinesUltra の方がいろいろできるけど、とりあえず無印でも十分楽しめる感じ。Surface Laptop の場合、GPU の関係で Ultra を満たすことはできないけど、i5/8GB モデルなら無印に対応するはずです。ただし、Mini DisplayPort を HDMI へ変換する必要があります。  Recommended adapters for Windows Mixed Reality Capable PCsSurface Laptop の場合はビルトインの Mini DisplayPort と USB-A があるので、&#34;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-mixed-reality/">Windows Mixed Reality</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/surface-laptop/">Surface Laptop</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/10/29/193849/" >
+                    <h1 class="entry__header-title-link-text">Surface Laptop で  Acer の MR ヘッドセットを動かすまでの苦労（物理</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/11/02</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/10/29/193849/20171027182718.jpg"/> 
+</figure>
+手持ちの Surface Laptop で Acer の MR ヘッドセットが動かなかった話の続き。<a href="http://blog.daruyanagi.jp/entry/2017/10/24/180917">6万円出して Acer の MR ヘッドセット＋コントローラーを買ったんだけど、残念ながら動かなかった件について（追記 - だるろぐ</a>今は東京に滞在している関係で手持ちのデバイスが少なく、何が原因か十分に調査するのは半ばあきらめていたのですが、アキバのヨドバシカメラさんのご協力もあっていろいろ調査できました（後述）。ヨドバシカメラさん、ありがとうございます！　Book 2 を買うときはヨドバシにします。みんなもヨドバシでもっと買おうぜ！（回し者さて、結論から言うと、Mini DisplayPort → HDMI アダプターを HDMI 2.0 に対応したアダプターに取り換えるのが正解。Surface Laptop でも Acer の MR ヘッドセットが動きました。なぜか Surface 純正のアダプターでは動かなかったのですが（後述）、ダメ元で互換リストに載っていた他のアダプター（Club3D）を取り寄せたところ、ちゃんと動きました。今、Amazon のセール中でちょっと安いので、確保しておくといいかもしれない。<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017BQCUGW/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/41mclWfSdfL._SL160_.jpg" class="hatena-asin-detail-image" alt="Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)" title="Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)"/></a><div class="hatena-asin-detail-info"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017BQCUGW/bestylesnet-22/">Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)</a><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> CLUB3D</li><li><span class="hatena-asin-detail-label">メディア:</span> Personal Computers</li><li><a href="http://d.hatena.ne.jp/asin/B017BQCUGW/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div>ここからは時系列順にグダグダ書くので、興味がない人は読まなくてもいいデス。<hr/>まずちゃんと復習しておくと、Windows Mixed Reality には2つのスペックがある。</p>
+<ul>
+<li>Windows Mixed Reality Ultra</li>
+<li>Windows Mixed Reality（無印）</li>
+</ul><figure>
+    <img src="/images/2017/10/29/193849/20171029185610.png"/> 
+</figure>
+<a href="https://developer.microsoft.com/en-us/windows/mixed-reality/windows_mixed_reality_minimum_pc_hardware_compatibility_guidelines">Windows Mixed Reality minimum PC hardware compatibility guidelines</a>Ultra の方がいろいろできるけど、とりあえず無印でも十分楽しめる感じ。Surface Laptop の場合、GPU の関係で Ultra を満たすことはできないけど、i5/8GB モデルなら無印に対応するはずです。ただし、Mini DisplayPort を HDMI へ変換する必要があります。<figure>
+    <img src="/images/2017/10/29/193849/20171029185213.png"/> 
+</figure>
+<a href="https://developer.microsoft.com/en-us/windows/mixed-reality/recommended_adapters_for_windows_mixed_reality_capable_pcs">Recommended adapters for Windows Mixed Reality Capable PCs</a>Surface Laptop の場合はビルトインの Mini DisplayPort と USB-A があるので、"DisplayPort 1.x to **HDMI 2.0**"が必要。<figure>
+    <img src="/images/2017/10/29/193849/20171029184941.png"/> 
+</figure>
+ヨドバシカメラ（秋葉原店）でアダプターを探したところ、2F で売ってるアダプターはことごとく HDMI 1.4 準拠だったので、Amazon で取り寄せるのがよさげです。HDMI のバージョンを書いてない商品があったので、封を切って持ち込みの機材（Surface Laptop＋MR ヘッドセット）で試させてもらったのですが、どれも動きませんでした。<figure>
+    <img src="/images/2017/10/29/193849/20171029193352.png"/> 
+</figure>
+（値段の安さに惑わされず、"HDMI 2.0"とか"アクティブ"とか書いてあるやつを選ぶんだぜ？）互換リストにあるアダプターでは、唯一 Microsoft Surface 純正のものが1階の Surface コーナーで手に入ります。<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B074FG1HZS/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/41T%2BAcYIkcL._SL160_.jpg" class="hatena-asin-detail-image" alt="マイクロソフト Surface Mini Display Port HD AVアダプター（HDMI出力アダプター）ミニディスプレイポート EJT-00007(HDAVアダプタ" title="マイクロソフト Surface Mini Display Port HD AVアダプター（HDMI出力アダプター）ミニディスプレイポート EJT-00007(HDAVアダプタ"/></a><div class="hatena-asin-detail-info"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B074FG1HZS/bestylesnet-22/">マイクロソフト Surface Mini Display Port HD AVアダプター（HDMI出力アダプター）ミニディスプレイポート EJT-00007(HDAVアダプタ</a><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> マイクロソフト</li><li><span class="hatena-asin-detail-label">メディア:</span> エレクトロニクス</li><li><a href="http://d.hatena.ne.jp/asin/B074FG1HZS/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div>こいつは他の類似品より2,000円以上高いですが、まぁ、純正なので安心ではないかと思……うじゃろ？しかーし！念のため実機で試させてほしいと頼み込んで、展示機からアダプターをブッコ抜いて自分の機材で試させてもらったところ、HDMI 2.0 ではないアダプターのときと同様、画面が明滅して**うまく動きませんでした**。純正アダプターでもダメとなると、そもそも MR デバイスがダメなのか？気になったので、店員さんに頼み込んで展示機で片っ端から試させてもらいました。Surface Book（初代）は盗難防止器が HDMI コネクターに接続するタイプだったので、主に Surface Pro や Surface Laptop が対象です。
+<ul>
+<li>Surface Pro：**Fall Creators Update にアップデートしていない**端末が多かった（動かない）。CPU は基準をクリアしていても、**メインメモリが足りない（4GB）モデルも**あって、試せる範囲では動作する端末が一台もなかった（お客さんが触ってるのまでどけて試すわけにはいかないので、一部だけど）。</li>
+<li>Surface Laptop：よく考えたら売ってる状態の Surface Laptop は **Windows S なので Mixed Reality は動かなかった**。</li>
+</ul>最後に盗難防止器をわざわざ外してもらって、Surface Book（初代）で試したところ……
+<ul>
+<li>Surface Book: **WDDM のドライバーが対応していなかった**</li>
+</ul>そういえば @mitsuba_yu がそんなこと言ってましたっけね……忘れてたorzとにかく、あれだけ Surface だらけな空間なのに動く端末が一台もなくて、結局何が悪いのかよくわからなかったです。アダプターも購入せずじまいだったし、お店の人だけ散々振り回して大変申し訳なかった……。しかも、冒頭で記述した通り、結局は Amazon から取り寄せた Club3D のアダプターでちゃんと動いたので Surface Laptop や MR デバイスの問題ではなかった模様。コントローラーをシャンシャンしながら一通りバーチャルなデスクトップを堪能したのち、「また、面白そうなゲームでも出たら遊ぶか」とヘッドセットとコントローラーは箱にしまいました。めでたしめでたし。Windows MR 対応な Surface は、今度発売の Book 2 が本命になるのかなぁ？　これも実際に試してみないことには何とも言えないけど。
+<div class="section">
+    ### 追伸
+    最初に USB を挿したときにエラーになる原因もわかってないですが、それは抜き差しで直るので別にいいかなって感じです。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-11-02T14:53:18JST">2017/11/02</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Surface%20Laptop%20%e3%81%a7%20%20Acer%20%e3%81%ae%20MR%20%e3%83%98%e3%83%83%e3%83%89%e3%82%bb%e3%83%83%e3%83%88%e3%82%92%e5%8b%95%e3%81%8b%e3%81%99%e3%81%be%e3%81%a7%e3%81%ae%e8%8b%a6%e5%8a%b4%ef%bc%88%e7%89%a9%e7%90%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/10/29/193849/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Surface&#43;Laptop&#43;%E3%81%A7&#43;&#43;Acer&#43;%E3%81%AE&#43;MR&#43;%E3%83%98%E3%83%83%E3%83%89%E3%82%BB%E3%83%83%E3%83%88%E3%82%92%E5%8B%95%E3%81%8B%E3%81%99%E3%81%BE%E3%81%A7%E3%81%AE%E8%8B%A6%E5%8A%B4%EF%BC%88%E7%89%A9%E7%90%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F29%2F193849%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/11/09/032323/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/10/25/171621/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111106/1320520298/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="指定したフォルダに Markdown 形式のプレーンテキストを配置して、 http://sample.com/Hoge にアクセスしたら、 Hoge.txt がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。
+ Markdown Deep （最近気に入っている Markdown パーサ。MVC3 向けのサンプルもある） Razor Engine （ちょっとあとで面白い機能を付けるために入れておく） んで、 _Pages.cshtml_ に以下のコードを追加。 ``` @using System.IO @{ // Layout = &quot;_SiteLayout.cshtml&quot;; レイアウトを使うならコメントアウト // http://sample.com/Pages/Hoge のうち、Hoge を取得 string id = UrlData[0]; if (string.IsNullOrEmpty(id)) { id = &quot;Home&quot;; } Page.Title = id; // IDをページタイトルにセット。レイアウトで使う // サーバー上の /Pages/Hoge.txt をロード string path = Server.MapPath(string.Format(&quot;/Pages/{0}.txt&quot;, id)); if (!File.Exists(path)) // ファイルあらへん =&gt; 404を投げる { throw new HttpException(404, path &#43; &quot;is not found." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111106/1320520298/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/11/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10-500x379.png" alt="" title="sshot-10" width="500" height="379" class="alignnone size-medium wp-image-389"/></a>指定したフォルダに Markdown 形式のプレーンテキストを配置して、 <em><a href="http://sample.com/Hoge"><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></a></em> にアクセスしたら、 <em>Hoge.txt</em> がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。</p>
+<ul>
+<li>Markdown Deep （最近気に入っている Markdown パーサ。MVC3 向けのサンプルもある）</li>
+<li>Razor Engine （ちょっとあとで面白い機能を付けるために入れておく）</li>
+</ul>んで、 _Pages.cshtml_ に以下のコードを追加。
+```
+	@using System.IO
+<pre><code>@{
+    // Layout = &quot;_SiteLayout.cshtml&quot;; レイアウトを使うならコメントアウト
+
+    // http://sample.com/Pages/Hoge のうち、Hoge を取得
+    string id = UrlData[0];
+    if (string.IsNullOrEmpty(id)) { id = &quot;Home&quot;; }
+
+    Page.Title = id; // IDをページタイトルにセット。レイアウトで使う
+
+    // サーバー上の /Pages/Hoge.txt をロード
+    string path = Server.MapPath(string.Format(&quot;/Pages/{0}.txt&quot;, id));
+
+    if (!File.Exists(path)) // ファイルあらへん =&gt; 404を投げる
+    {
+        throw new HttpException(404, path + &quot;is not found.&quot;);
+    }
+    
+    var content = File.ReadAllText(path);
+
+    // Markdown エンジン を用意
+    var markdown = new MarkdownDeep.Markdown()
+    {
+        ExtraMode = true,
+    };
+
+    // HTML へ変換
+    var body = content;
+    body = RazorEngine.Razor.Parse(body); // ※
+    body = markdown.Transform(body);
+}
+
+@Html.Raw(body) 
+</code></pre>
+<pre><code class="language-※" data-lang="※">
+&lt;ul&gt;
+&lt;li&gt;
+&lt;ul&gt;
+&lt;li&gt;-&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;ほんとは Pages ってのも消したいのだけど、そこもわからなかった。 ASP.NET MVC3 ならば Routing をいじってって感じなのだけど、WebMatrix だとどうやればいいのかなぁ。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;たとえば、@DateTime.Now とか&lt;/span&gt;
+&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ファイル名として使えない文字が渡された場合など&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-11-06T04:11:38JST">2011/11/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20&#43;%20Markdown%20%e3%81%a7%e6%89%8b%e8%bb%bd%e3%81%ab%e6%9b%b4%e6%96%b0%e3%81%a7%e3%81%8d%e3%82%8b%ef%bc%88%ef%bc%9f%ef%bc%89Web%e3%82%b5%e3%82%a4%e3%83%88%e3%82%92%e4%bd%9c%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111106/1320520298/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%2B&#43;Markdown&#43;%E3%81%A7%E6%89%8B%E8%BB%BD%E3%81%AB%E6%9B%B4%E6%96%B0%E3%81%A7%E3%81%8D%E3%82%8B%EF%BC%88%EF%BC%9F%EF%BC%89Web%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111106%2F1320520298%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111106/1320538301/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111104/1320365491/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

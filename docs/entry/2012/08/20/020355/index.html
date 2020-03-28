@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/20/020355/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix でファイルのアップロード（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="まずはお詫びを。
+&gt; あと、最初から複数ファイルのアップデートに対応できるように記述している。 WebMatrix でファイルのアップロード - だるろぐWebMatrix でファイルのアップロード - だるろぐ  あれはウソだ。いや、複数ファイルのアップロード自体はできるのだけれど、結果を返す処理が単体ファイルを前提としていたので最後のファイルの結果しか得られない。正しくは、
+var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように Upload.cshtml はめでたく複数ファイルのアップロードに対応できたし、 Ajax には Json で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。  初期状態。  ファイルをドラッグ＆ドロップ。これにはもちろん、 Drag &amp;amp; Drop の API を利用する。画像のプレビューは HTML5 の File Reader API を利用して実装してある。JavaScript は見よう見まねで書いてみたけれどなかなか難しい……けれど、 cshtml ならば自動補完機能の恩恵をうけることができるのでまだマシ。jQuery だと $.event.props.push(&#39;dataTransfer&#39;);
+ Ajax&#34; data-lang=&#34;という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。  Ajax&#34;```cs # Upload.cs @using System.IO @functions { private enum Result { Success = 0, Error = -1, }; private const string OUTPUT_DIR = &quot;~/Files/&quot;; private Dictionary&amp;lt;string, string&gt; AllowedFileType = new Dictionary&amp;lt;string, string&gt;(); private void VerifyOutputDir(string path) { if (!" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-mvc-3/">ASP.net MVC 3</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/20/020355/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix でファイルのアップロード（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>まずはお詫びを。</p>
+<pre><code>&gt;
+    あと、最初から複数ファイルのアップデートに対応できるように記述している。
+
+    WebMatrix でファイルのアップロード - だるろぐWebMatrix でファイルのアップロード - だるろぐ
+</code></pre>
+<p>あれはウソだ。いや、複数ファイルのアップロード自体はできるのだけれど、結果を返す処理が単体ファイルを前提としていたので最後のファイルの結果しか得られない。正しくは、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> model = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">dynamic</span>&gt;();
+
+<span style="color:#960050;background-color:#1e0010">```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように</span> Upload.cshtml <span style="color:#960050;background-color:#1e0010">はめでたく複数ファイルのアップロードに対応できたし、</span> Ajax <span style="color:#960050;background-color:#1e0010">には</span> Json <span style="color:#960050;background-color:#1e0010">で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。</span><figure>
+    <img src="/images/2012/08/20/020355/20120820014053.png"/> 
+</figure>
+初期状態<span style="color:#960050;background-color:#1e0010">。</span><figure>
+    <img src="/images/2012/08/20/020355/20120820014058.png"/> 
+</figure>
+ファイルをドラッグ<span style="color:#960050;background-color:#1e0010">＆ドロップ。これにはもちろん、</span> Drag &amp;amp; Drop <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用する。画像のプレビューは</span> HTML5 <span style="color:#960050;background-color:#1e0010">の</span> File Reader API <span style="color:#960050;background-color:#1e0010">を利用して実装してある。</span>JavaScript <span style="color:#960050;background-color:#1e0010">は見よう見まねで書いてみたけれどなかなか難しい……けれど、</span> cshtml <span style="color:#960050;background-color:#1e0010">ならば自動補完機能の恩恵をうけることができるのでまだマシ。</span>jQuery <span style="color:#960050;background-color:#1e0010">だと</span>
+</code></pre></div><p>$.event.props.push('dataTransfer');</p>
+<pre><code class="language-という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
+    <img src="/images/2012/08/20/020355/20120820014101.png"/> 
+</figure>
+Ajax" data-lang="という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
+    <img src="/images/2012/08/20/020355/20120820014101.png"/> 
+</figure>
+Ajax">```cs
+# Upload.cs
+
+@using System.IO
+
+@functions 
+{
+    private enum Result
+    {
+        Success = 0,
+        Error   = -1,
+    };
+
+    private const string OUTPUT_DIR = &quot;~/Files/&quot;;
+    private Dictionary&amp;lt;string, string&gt; AllowedFileType = new Dictionary&amp;lt;string, string&gt;();
+
+    private void VerifyOutputDir(string path)
+    {
+        if (!Directory.Exists(path))
+        {
+            throw new DirectoryNotFoundException(
+                string.Format(&quot;{0} does not exists.&quot;, path)
+            );
+        }
+    }
+
+    private void VerifyPostedFile(HttpPostedFileBase file)
+    {
+        if (file.ContentLength == 0)
+        {
+            throw new ArgumentException(&quot;File is null.&quot;);
+        }
+                
+        if (!AllowedFileType.ContainsKey(file.ContentType))
+        {
+            throw new ArgumentException(
+                string.Format(
+                    &quot;{0} is not allowed format&quot;,
+                    file.ContentType
+                )
+            );
+        }
+    }
+
+    private string GetOutputFilename(HttpPostedFileBase file)
+    {
+        return string.Format(
+            &quot;{0:yyyyMMdd-HHmmssfff}.{1}&quot;,
+            DateTime.Now,
+            AllowedFileType[file.ContentType].ToLower()
+        );
+    }
+}
+
+@{
+    var model = new List&amp;lt;dynamic&gt;();
+
+    AllowedFileType.Add(&quot;image/jpeg&quot;, &quot;jpg&quot;);
+    AllowedFileType.Add(&quot;image/png&quot; , &quot;png&quot;);
+    AllowedFileType.Add(&quot;image/gif&quot; , &quot;gif&quot;);
+    
+    var dir = Server.MapPath(OUTPUT_DIR);
+
+    try
+    {
+        if (IsPost) // &amp;lt;-- ここでもエラーが発生しうるので try…catcgh せざるを得ない
+        {
+            foreach (var file in Request.Files.ToEnumerable())
+            {
+                try
+                {
+                    VerifyOutputDir(dir);
+                    VerifyPostedFile(file);
+                
+                    var src = Path.GetFileName(file.FileName);
+                    var dst = GetOutputFilename(file);
+                
+                    file.SaveAs(Path.Combine(dir, dst));
+
+                    model.Add( new {
+                        Result = Result.Success,
+                        Message = string.Format(&quot;{0} is uploaded as {1}.&quot;, src, dst),
+                        Link = VirtualPathUtility.ToAbsolute(Path.Combine(OUTPUT_DIR, dst)),
+                    });
+                }
+                catch (Exception e)
+                {
+                    model.Add(new
+                    {
+                        Result = Result.Error,
+                        Message = e.Message,
+                        Link = string.Empty,
+                    });
+                }
+            }
+        }
+        else
+        {
+            model.Add (new {
+                Result = Result.Error,
+                Message = &quot;You can use only POST method.&quot;,
+                Link = string.Empty,
+            });
+        }
+        
+        if (IsAjax)
+        {
+            Response.ContentType = &quot;application/json&quot;;
+            Response.Write(Json.Encode(model));
+            return;
+        }
+    }
+    catch (Exception e)
+    {
+        model.Add( new {
+            Result = Result.Error,
+            Message = e.Message,
+            Link = string.Empty,
+        });
+
+        Response.ContentType = &quot;application/json&quot;;
+        Response.Write(Json.Encode(model));
+        return; // &amp;lt;-- IsAjax が使えない（エラーが起こりうる）ので出力先を分岐できない
+    }
+}
+
+&amp;lt;h1&gt;Uploading Result&amp;lt;/h1&gt;
+
+@foreach (var item in model)
+{
+    &amp;lt;h2&gt;@item.Result&amp;lt;/h2&gt;
+    &amp;lt;p&gt;@item.Message&amp;lt;/p&gt;
+    if (!string.IsNullOrEmpty(item.Link))
+    {
+        &amp;lt;p&gt;&amp;lt;img src=&quot;@item.Link&quot; /&gt;&amp;lt;/p&gt;
+    }
+}
+
+&amp;lt;p&gt;&amp;amp;raquo; Back to &amp;lt;a href=&quot;~/&quot;&gt;home&amp;lt;/a&gt;&amp;lt;/p&gt;
+
+```とりあえず動くけど、ブラウザーからアクセスした時にリクエストサイズ超過のエラーが出てもそれをユーザーに知らせることができない（Json で返せるのみ）。やっぱりこういうのは Json のみを返す API として作って、ビューは完全に分離したほうがいいなと思った。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-b7512c63&quot; name=&quot;f-b7512c63&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;例外自体は IIS のリクエストのサイズ制限を緩和すれば抑制できるはず&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-20T02:03:55JST">2012/08/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e3%82%a2%e3%83%83%e3%83%97%e3%83%ad%e3%83%bc%e3%83%89%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/20/020355/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/202253/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/19/130606/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

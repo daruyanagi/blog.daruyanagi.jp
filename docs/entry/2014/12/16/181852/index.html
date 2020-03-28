@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/12/16/181852/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：　@nakaji のコードをパクって「えひめFreeWi-Fi」スポットを Google Map へマッピング | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記 を読んで存在を知った。
+&gt; 産学官で構成する愛媛県公衆無線LAN推進協議会では、外国人観光客や県内外の旅行者、地域住民等が無料で利用できるWi-Fiスポットの整備を民設民営で進めることにより、その利便性を確保し、愛媛県内の地域活性化を図る「えひめFreeWi-Fiプロジェクト」を推進しています。 愛媛県庁／えひめFree Wi-Fiサービス提供箇所等のお知らせ  “利便性を確保し”とか“地域活性化を図る”とかいってる割りには、クソ不便なテーブルデータしか用意してないのって、ほんとお役所だなーと思いますね。というわけで、なかじが作ってくれたコードをまるパクリして、それを Google Map へマッピングしてみた。これで、ちょっとは利便性が向上するんじゃないだろうか。マッピングのライブラリは、
+ サンプル１ - 「googleマップで複数住所を一括表示」の作り方 - 緑里庵 をもらってきた。ちょっとコードが古いので、TypeScript で書き直したりしてみたい。Web ページのコードはこんな感じ（spotList あたりのコードとか汚いけど）。WebMatrix（ASP.NET Web Pages）はこういう“ペライチ”のページを作るときに便利よね。 ```cs # ~/Default.cshtml @using System.Xml.Linq @using Sgml
+@{ var urlString = &ldquo;http://www.pref.ehime.jp/h12600/wifi/osirase260822.html&quot;;
+XDocument xml; using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd = true }) { xml = XDocument.Load(sgml); } var ns = xml.Root.Name.Namespace; var spots = xml.Descendants(ns &#43; &quot;table&quot;) ." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/12/16/181852/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：　@nakaji のコードをパクって「えひめFreeWi-Fi」スポットを Google Map へマッピング</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/12/16</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/12/16/181852/20140728155412.jpg"/> 
+</figure>
+<a href="http://nakaji.hatenablog.com/entry/2014/12/16/090000">SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記</a> を読んで存在を知った。</p>
+<pre><code>&gt;
+    産学官で構成する愛媛県公衆無線LAN推進協議会では、外国人観光客や県内外の旅行者、地域住民等が無料で利用できるWi-Fiスポットの整備を民設民営で進めることにより、その利便性を確保し、愛媛県内の地域活性化を図る「えひめFreeWi-Fiプロジェクト」を推進しています。
+
+    愛媛県庁／えひめFree Wi-Fiサービス提供箇所等のお知らせ
+</code></pre>
+<p>“利便性を確保し”とか“地域活性化を図る”とかいってる割りには、クソ不便なテーブルデータしか用意してないのって、ほんとお役所だなーと思いますね。というわけで、なかじが作ってくれたコードをまるパクリして、それを Google Map へマッピングしてみた。これで、ちょっとは利便性が向上するんじゃないだろうか。マッピングのライブラリは、</p>
+<ul>
+<li><a href="http://www.ryokurian.jp/atelier/google/maps_sample1.html">サンプル１ - 「googleマップで複数住所を一括表示」の作り方 - 緑里庵</a></li>
+</ul>をもらってきた。ちょっとコードが古いので、TypeScript で書き直したりしてみたい。Web ページのコードはこんな感じ（spotList あたりのコードとか汚いけど）。WebMatrix（ASP.NET Web Pages）はこういう“ペライチ”のページを作るときに便利よね。
+```cs
+# ~/Default.cshtml
+<p>@using System.Xml.Linq
+@using Sgml</p>
+<p>@{
+var urlString = &ldquo;<a href="http://www.pref.ehime.jp/h12600/wifi/osirase260822.html%22;">http://www.pref.ehime.jp/h12600/wifi/osirase260822.html&quot;;</a></p>
+<pre><code>XDocument xml;
+using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd = true })
+{
+    xml = XDocument.Load(sgml);
+}
+
+var ns = xml.Root.Name.Namespace;
+var spots = xml.Descendants(ns + &quot;table&quot;)
+    .Last()
+    .Descendants(ns + &quot;tr&quot;)
+    .Skip(1) // タイトルをスキップ
+    .Select(e =&gt; e.Elements(ns + &quot;td&quot;).ToList())
+    .Select(x =&gt; new
+    {
+        Place = x[1].Value,
+        Address = x[2].Value,
+        ServiceProvider = x[3].Value
+    });
+
+var spotList = string.Join(&quot;\r\n&quot;, spots.Select(_ =&gt; _.Address.Replace(&quot;−&quot;, &quot;-&quot;)).ToArray());
+</code></pre>
+<p>}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&rdquo; content=&quot;text/html; charset=utf-8&rdquo;/&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt;
+&lt;script src=&quot;http://maps.google.com/maps/api/js?sensor=false&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;http://ajax.googleapis.com/ajax/libs/jquery/1.10.0/jquery.min.js&quot;&gt;&lt;/script&gt;
+&lt;script src=&quot;~/Scripts/sirusiizu.js&quot;&gt;
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;</p>
+<pre><code>    &amp;lt;textarea id=&quot;addressList&quot; style=&quot;width: 80%; height: 120px;&quot;&gt;@spotList&amp;lt;/textarea&gt;
+
+    &amp;lt;div id=&quot;map&quot; style=&quot;width: 80%; height: 360px;&quot;&gt;
+    
+    &amp;lt;/div&gt;
+
+    &amp;lt;script&gt;     
+        sirusiizu.initialize(&quot;map&quot;);
+        sirusiizu.marking(document.getElementById(&quot;addressList&quot;).value);
+    &amp;lt;/script&gt;
+&amp;lt;/body&gt;
+</code></pre>
+<p>&lt;/html&gt;</p>
+<pre><code class="language-<figure>
+    <img src="/images/2014/12/16/181852/20141216181643.png"/> 
+</figure>
+割とたくさんあるんやなー。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> 俺かやろうとしてたことを・・・(ToT)</p>&mdash; なかじ@儲からないサービス担当 (@nakaji) <a href="https://twitter.com/nakaji/status/544782999317778434?ref_src=twsrc%5Etfw">December 16, 2014</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+まじ申し訳ないけど、割とやっつけ仕事なので、キレイに仕上げてくれていいのよ？" data-lang="<figure>
+    <img src="/images/2014/12/16/181852/20141216181643.png"/> 
+</figure>
+割とたくさんあるんやなー。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> 俺かやろうとしてたことを・・・(ToT)</p>&mdash; なかじ@儲からないサービス担当 (@nakaji) <a href="https://twitter.com/nakaji/status/544782999317778434?ref_src=twsrc%5Etfw">December 16, 2014</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+まじ申し訳ないけど、割とやっつけ仕事なので、キレイに仕上げてくれていいのよ？">
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://ehime-wifi.azurewebsites.net/&quot;&gt;http://ehime-wifi.azurewebsites.net/&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-12-16T18:18:52JST">2014/12/16</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e3%80%80@nakaji%20%e3%81%ae%e3%82%b3%e3%83%bc%e3%83%89%e3%82%92%e3%83%91%e3%82%af%e3%81%a3%e3%81%a6%e3%80%8c%e3%81%88%e3%81%b2%e3%82%81FreeWi-Fi%e3%80%8d%e3%82%b9%e3%83%9d%e3%83%83%e3%83%88%e3%82%92%20Google%20Map%20%e3%81%b8%e3%83%9e%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/12/16/181852/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E3%80%80%40nakaji&#43;%E3%81%AE%E3%82%B3%E3%83%BC%E3%83%89%E3%82%92%E3%83%91%E3%82%AF%E3%81%A3%E3%81%A6%E3%80%8C%E3%81%88%E3%81%B2%E3%82%81FreeWi-Fi%E3%80%8D%E3%82%B9%E3%83%9D%E3%83%83%E3%83%88%E3%82%92&#43;Google&#43;Map&#43;%E3%81%B8%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F12%2F16%2F181852%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/12/17/194006/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/12/16/161819/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

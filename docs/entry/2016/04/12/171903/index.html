@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/04/12/171903/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            UWP：ユーザーコントロールを作ってみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="今回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。
+x:Class=&#34;Hateboo.UserControls.TextBoxWithCounter&#34; xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; xmlns:local=&#34;using:Hateboo.UserControls&#34; xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34; xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34; mc:Ignorable=&#34;d&#34; d:DesignHeight=&#34;300&#34; d:DesignWidth=&#34;400&#34;&gt; &lt;stackpanel&gt;&lt;/stackpanel&gt; x:Name=&#34;textBox&#34; TextChanged=&#34;textBox_TextChanged&#34; /&gt; Orientation=&#34;Horizontal&#34; HorizontalAlignment=&#34;Right&#34;&gt; x:Name=&#34;textBlockCurrent&#34;&gt;0 &lt;textblock&gt;&lt;/textblock&gt;/ x:Name=&#34;textBlockMax&#34;&gt;0 ```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、 &lt;ul&gt; &lt;li&gt;Text：TextBox の内容&lt;/li&gt; &lt;li&gt;Current：現在の TextBox 文字数&lt;/li&gt; &lt;li&gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&lt;/li&gt; &lt;/ul&gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。 ```cs // 依存関係プロパティ public static readonly DependencyProperty MaxProperty = DependencyProperty.Register( &#34;Max&#34;,　// Max という名前の…… typeof(int),　// int 型の CLR プロパティを…… typeof(TextBoxWithCounter), // クラスに登録するやで― new PropertyMetadata(0)); // CLR プロパティ public int Max { get { return (int)GetValue(MaxProperty); } set { SetValue(MaxProperty, value); textBlockMax." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows開発</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/04/12/171903/" >
+                    <h1 class="entry__header-title-link-text">UWP：ユーザーコントロールを作ってみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/04/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2016/04/12/171903/20160412165802.png"/> 
+</figure>
+今回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml">
+    x:Class=&#34;Hateboo.UserControls.TextBoxWithCounter&#34;
+    xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;
+    xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;
+    xmlns:local=&#34;using:Hateboo.UserControls&#34;
+    xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34;
+    xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34;
+    mc:Ignorable=&#34;d&#34;
+    d:DesignHeight=&#34;300&#34;
+    d:DesignWidth=&#34;400&#34;&gt;
+
+    <span style="color:#f92672">&lt;stackpanel&gt;&lt;/stackpanel&gt;</span>
+        x:Name=&#34;textBox&#34; TextChanged=&#34;textBox_TextChanged&#34; /&gt;
+
+        Orientation=&#34;Horizontal&#34; HorizontalAlignment=&#34;Right&#34;&gt;
+            x:Name=&#34;textBlockCurrent&#34;&gt;0
+            <span style="color:#f92672">&lt;textblock&gt;&lt;/textblock&gt;</span>/
+            x:Name=&#34;textBlockMax&#34;&gt;0
+        
+    
+
+
+```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、
+
+<span style="color:#f92672">&lt;ul&gt;</span>
+<span style="color:#f92672">&lt;li&gt;</span>Text：TextBox の内容<span style="color:#f92672">&lt;/li&gt;</span>
+<span style="color:#f92672">&lt;li&gt;</span>Current：現在の TextBox 文字数<span style="color:#f92672">&lt;/li&gt;</span>
+<span style="color:#f92672">&lt;li&gt;</span>Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる<span style="color:#f92672">&lt;/li&gt;</span>
+<span style="color:#f92672">&lt;/ul&gt;</span>ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。
+```cs
+// 依存関係プロパティ
+public static readonly DependencyProperty MaxProperty = DependencyProperty.Register(
+    &#34;Max&#34;,　// Max という名前の……
+    typeof(int),　// int 型の CLR プロパティを……
+    typeof(TextBoxWithCounter), // クラスに登録するやで―
+new PropertyMetadata(0));
+
+// CLR プロパティ
+public int Max
+{
+    get { return (int)GetValue(MaxProperty); }
+    set
+    {
+        SetValue(MaxProperty, value);
+        textBlockMax.Text = value.ToString();
+    }
+}
+
+```だいたいはこれでいいのだけど、今回の Text プロパティだけは値が変わったときにいろいろごちゃごちゃしなきゃいけないので、コールバックを設定する。
+```cs
+public static readonly DependencyProperty TextProperty = DependencyProperty.Register(
+    &#34;Text&#34;,
+    typeof(string),
+    typeof(TextBoxWithCounter),
+    // コールバックの追加
+    new PropertyMetadata(string.Empty, new PropertyChangedCallback(TextPropertyChanged))
+);
+
+private static void TextPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+{
+    var self = d as TextBoxWithCounter;
+    var value = e.NewValue as string;
+
+    // テキストボックスとラベルの値を更新しとく
+    self.textBox.Text = value;
+    self.Current = value.Length;
+
+    // アカんときはアカくする
+    if (self.Current &gt; self.Max)
+    {
+        self.IsOverflow = true;
+        self.textBlockCurrent.Foreground = new SolidColorBrush(Colors.Red);
+    }
+    else
+    {
+        self.IsOverflow = false;
+        self.textBlockCurrent.Foreground = （デフォのブラシ）;
+    }
+}
+
+```かずきさんのおかげで、案外簡単に実装できた……WPF と UWP の違いでちょっとハマったけど。<span style="color:#f92672">&lt;iframe</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://blog.okazuki.jp/embed/2014/09/08/203943&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;WPF4.5入門 その53 「ユーザーコントロール」 - かずきのBlog@hatena&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;embed-card embed-blogcard&#34;</span> <span style="color:#a6e22e">scrolling=</span><span style="color:#e6db74">&#34;no&#34;</span> <span style="color:#a6e22e">frameborder=</span><span style="color:#e6db74">&#34;0&#34;</span> <span style="color:#a6e22e">style=</span><span style="color:#e6db74">&#34;display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;&#34;</span><span style="color:#f92672">&gt;&lt;/iframe&gt;</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-04-12T17:19:03JST">2016/04/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?UWP%ef%bc%9a%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%82%b3%e3%83%b3%e3%83%88%e3%83%ad%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/04/12/171903/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=UWP%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%B3%E3%83%B3%E3%83%88%E3%83%AD%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F04%2F12%2F171903%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/04/13/050000/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/04/11/181901/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/08/035745/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="あと、 @RenderPage(&quot;_Footer.cshtml&quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。  
+### 拡張メソッド まずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。 ```cs using System.Web.WebPages; static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data); } }
+```html : : &amp;lt;div id=&quot;site-content&quot;&gt; &amp;lt;article id=&quot;site-body&quot;&gt; @RenderBody() &amp;lt;/article&gt; &amp;lt;aside id=&quot;site-sidebar&quot;&gt; @RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt; &amp;lt;/aside&gt; &amp;lt;/div&gt; &amp;lt;footer id=&quot;site-footer&quot;&gt; @this." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/08/035745/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/08</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    あと、 @RenderPage(&quot;_Footer.cshtml&quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。
+
+    WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ
+</code></pre>
+<p>これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。<figure>
+    <img src="/images/2012/08/08/035745/20120808030122.png"/> 
+</figure>
+<br/></p>
+<div class="section">
+    ### 拡張メソッド
+    まずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。
+```cs
+using System.Web.WebPages;
+<p>static public class WebPageExtensions
+{
+static public HelperResult RenderFooter(
+this WebPage target, params object[] data)
+{
+return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data);
+}
+}</p>
+<pre><code class="language-すると、" data-lang="すると、">```html
+:
+:
+        &amp;lt;div id=&quot;site-content&quot;&gt;
+            &amp;lt;article id=&quot;site-body&quot;&gt;
+@RenderBody()
+            &amp;lt;/article&gt;
+            &amp;lt;aside id=&quot;site-sidebar&quot;&gt;
+@RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt;
+            &amp;lt;/aside&gt;
+        &amp;lt;/div&gt;
+
+        &amp;lt;footer id=&quot;site-footer&quot;&gt;
+@this.RenderFooter() &lt;!-- 新しい書き方 --&gt;
+        &amp;lt;/footer&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```そうなんだ、** this が要るんだ**。 @RenderBody() みたいに this を使わずに呼びたかったけれど、これはどうしようもないっぽい。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### Func&lt;helperresult&gt;&lt;/helperresult&gt;
+    次に考えたのは、 Func&amp;lt;HelperResult&gt; を使うこと。最初の @{……} セクションで RenderFooter を定義しておけば、 this なしの @RenderFooter() で使えるはず。
+```cs
+&amp;lt;!DOCTYPE html&gt;
+
+@{
+    App.Title = App.Title ?? &quot;Untitled Application&quot;;
+    App.Language = App.Language ?? &quot;en&quot;;
+    App.Encoding = App.Encoding ?? &quot;utf-8&quot;;
+    Page.Title = Page.Title ?? &quot;Untitled Page&quot;;
+
+    Func&amp;lt;HelperResult&gt; RenderFooter =
+        () =&gt; RenderPage(&quot;_Footer.cshtml&quot;);
+}
+
+&amp;lt;html lang=&quot;@App.Language&quot;&gt;
+    &amp;lt;head&gt;
+:
+:
+
+```cshtml ファイルはこんなかんじになる。
+```html
+:
+:
+        &amp;lt;div id=&quot;site-content&quot;&gt;
+            &amp;lt;article id=&quot;site-body&quot;&gt;
+@RenderBody()
+            &amp;lt;/article&gt;
+            &amp;lt;aside id=&quot;site-sidebar&quot;&gt;
+@RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt;
+            &amp;lt;/aside&gt;
+        &amp;lt;/div&gt;
+
+        &amp;lt;footer id=&quot;site-footer&quot;&gt;
+@RenderFooter() &lt;!-- 新しい書き方 --&gt;
+        &amp;lt;/footer&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```目的は達成したけれど、これはこれでどうなんだろう。とりあえず今のところ単純なラムダ式でなんとかなっているけれど、たとえばRenderFooter でエラー処理を追加する場合（“_Footer.cshtml”がない場合がありえる）を考えると、「レイアウトファイルを簡潔にしたい」という目的からはだいぶ外れてくる。RenderFooter をページの初期化に使う“_PageStart.cshtml”へ逃がそうかと思ったけれど、それもダメそうだし。結局、“_PageStart.cshtml”へ退避できるものだけ退避させて、あとはこんな感じにした。
+```cs
+&amp;lt;!DOCTYPE html&gt;
+
+@{
+    Func&amp;lt;HelperResult&gt; RenderHeader =
+        () =&gt; RenderPage(&quot;_Header.cshtml&quot;);
+    Func&amp;lt;HelperResult&gt; RenderNavigation =
+        () =&gt; RenderPage(&quot;_Navigation.cshtml&quot;);
+    Func&amp;lt;HelperResult&gt; RenderSideBar =
+        () =&gt; RenderPage(&quot;_SideBar.cshtml&quot;);
+    Func&amp;lt;HelperResult&gt; RenderFooter =
+        () =&gt; RenderPage(&quot;_Footer.cshtml&quot;);
+}
+
+&amp;lt;html lang=&quot;@App.Language&quot;&gt;
+    &amp;lt;head&gt;
+:
+:
+
+```マジックワードを一元管理できるだけでも、まぁ、いいかな。ちなみに @{……} を DOCTYPE 宣言のあとに書くように変えたのは、 XML ドキュメントを返すときとの統一性を考えて。むかし、 DOCTYPE 宣言の前に @{……} を書いて無駄な改行が入ってしまい、ちゃんと解釈してもらえなかったことがあったので。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### おまけ
+    調べている途中でみつけたのだけれど、これおもしろいな。
+```cs
+@{
+    Func&amp;lt;dynamic, object&gt; b = @&amp;lt;strong&gt;@item&amp;lt;/strong&gt;;
+}
+&amp;lt;span&gt;This sentence is @b(&quot;In Bold&quot;).&amp;lt;/span&gt;
+
+```手元で試したらちゃんと動いたし。
+
+    &gt;
+        Note that the delegate that’s generated is a Func. Also, the @item parameter is a special magic parameter. These delegates are only allowed one such parameter, but the template can call into that parameter as many times as it needs.
+
+        Templated Razor Delegates | You’ve Been Haacked
+    
+なんでこうなるのかイマイチよくわからんけど……。 @ って結局なんなんだ（＠ｗ＠！
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20110423/1303562559&quot;&gt;Templated Razor Delegates が面白い - しばやん雑記&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-08T03:57:45JST">2012/08/08</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20&#43;%20ASP.NET%20Web%20Pages%20%e3%81%a7%e3%82%ad%e3%83%ac%e3%82%a4%e3%81%ab%e3%82%b3%e3%83%bc%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%97%e3%81%9f%e3%81%84%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/08/035745/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F08%2F035745%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/08/043041/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/07/054832/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

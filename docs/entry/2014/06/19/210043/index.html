@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/06/19/210043/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            オープン拡張辞書を Windows Runtime アプリで読み書きする（1） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="オープン拡張辞書は、Microsoft IMEの追加辞書を作成、共有する機能です。簡単にインストールができるので、Webページや共有フォルダーに置いたり、メールに添付して配布したり、シーンに応じて多様な方法で共有と配布ができます。 Microsoft IME オープン拡張辞書について  Windows 8 以降だと OS 標準の IME で使えるのに、割りと流行ってない感じ。もっと使われないともったいなーと思ったので、こいつが編集できる Windows ストア アプリでも作ろうと思い立った。オープン拡張辞書には二種類ある。
+ .dctx：　UTF-8 でエンコードされた XML ファイル .dctxc：　.dctx を ZIP で圧縮したもの あと署名を付けると収録できる単語数が増えるとか（署名されていない場合は1万語まで）いろいろあるのだけど、これはまぁ、今のところどうでもいい。今回はとりあえず .dctx が読めることを目標にする。ZIP うんぬんは、まぁ、.NET Framework 4.5 でごにょごにょすれば割と簡単にできるのだろう（慢心とりあえずはクラス作りから。 ```cs public class OpenExtendedDictionary { public OpenExtendedDictionary() { DictionaryInfo = new OpenExtendedDictionaryInfo(); } public string DictionaryGuid { get; set; } public string DictionaryLanguage { get; set; } public string DictionaryVersion { get; set; } public bool CommentInsertion { get; set; } public OpenExtendedDictionaryInfo DictionaryInfo { get; set; } public ObservableCollection&amp;lt;OpenExtendedDictionaryEntry&gt; DictionaryEntries { get; set; }  }" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/06/19/210043/" >
+                    <h1 class="entry__header-title-link-text">オープン拡張辞書を Windows Runtime アプリで読み書きする（1）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/06/19</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    オープン拡張辞書は、Microsoft IMEの追加辞書を作成、共有する機能です。簡単にインストールができるので、Webページや共有フォルダーに置いたり、メールに添付して配布したり、シーンに応じて多様な方法で共有と配布ができます。
+
+    Microsoft IME オープン拡張辞書について
+</code></pre>
+<p>Windows 8 以降だと OS 標準の IME で使えるのに、割りと流行ってない感じ。もっと使われないともったいなーと思ったので、こいつが編集できる Windows ストア アプリでも作ろうと思い立った。オープン拡張辞書には二種類ある。</p>
+<ul>
+<li>.dctx：　UTF-8 でエンコードされた XML ファイル</li>
+<li>.dctxc：　.dctx を ZIP で圧縮したもの</li>
+</ul>あと署名を付けると収録できる単語数が増えるとか（署名されていない場合は1万語まで）いろいろあるのだけど、これはまぁ、今のところどうでもいい。今回はとりあえず .dctx が読めることを目標にする。ZIP うんぬんは、まぁ、.NET Framework 4.5 でごにょごにょすれば割と簡単にできるのだろう（慢心とりあえずはクラス作りから。
+```cs
+public class OpenExtendedDictionary
+{
+    public OpenExtendedDictionary()
+    {
+        DictionaryInfo = new OpenExtendedDictionaryInfo();
+    }
+<pre><code>public string DictionaryGuid { get; set; }
+public string DictionaryLanguage { get; set; }
+public string DictionaryVersion { get; set; }
+public bool CommentInsertion { get; set; }
+public OpenExtendedDictionaryInfo DictionaryInfo { get; set; }
+public ObservableCollection&amp;lt;OpenExtendedDictionaryEntry&gt; DictionaryEntries { get; set; }
+</code></pre>
+<p>}</p>
+<p>public class OpenExtendedDictionaryInfo
+{
+public string ShortName { get; set; }
+public string LongName { get; set; }
+public string Description { get; set; }
+public string Copyright { get; set; }
+public string Language { get; set; }
+}</p>
+<p>public class OpenExtendedDictionaryEntry
+{
+public string PartOfSpeech { get; set; }
+public string OutputString { get; set; }
+public string InputString { get; set; }
+public int Priority { get; set; }
+public bool ReverseConversion { get; set; }
+public bool CommonWord { get; set; }
+}</p>
+<pre><code class="language-こんな感じだろうか。ほんとは" data-lang="こんな感じだろうか。ほんとは">
+&lt;div class=&quot;section&quot;&gt;
+    ### 次回
+    XML を読み書きする方法は3つほどある。
+
+&lt;ol&gt;
+&lt;li&gt;XmlDocument を使う。あまり使ったことがないから知らん&lt;/li&gt;
+&lt;li&gt;XDocument を使う。LINQ と相性がいい&lt;/li&gt;
+&lt;li&gt;シリアライズする。どうやるのかわからんが、一番かっこよさそうな実装&lt;/li&gt;
+&lt;/ol&gt;気が向いたら続きを書く。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-06-19T21:00:43JST">2014/06/19</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e6%8b%a1%e5%bc%b5%e8%be%9e%e6%9b%b8%e3%82%92%20Windows%20Runtime%20%e3%82%a2%e3%83%97%e3%83%aa%e3%81%a7%e8%aa%ad%e3%81%bf%e6%9b%b8%e3%81%8d%e3%81%99%e3%82%8b%ef%bc%881%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/06/19/210043/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%881%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F19%2F210043%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/19/235241/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/17/022857/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

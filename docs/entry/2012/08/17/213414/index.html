@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/17/213414/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            HTML5 &#43; jQuery &#43; PHP 製の D&amp;amp;D 対応画像アップローダーを WebMatrix で試す | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTMLドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒ですよね。フロントエンドは HTML5 &#43; jQuery なので Web ブラウザーだけで動きますけど、バックエンドはたいてい PHP スクリプトなので Web サーバーが必要です。つまり、
+ Web サーバーを動かす PHP のセットアップ なんてことを、わざわざしなきゃいけないんですよ！　ちょっと試したいだけなのにね。そんなときは「WebMatrix 2」を使ってください（窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加）。デフォルトで PHP が有効で、サーバーだって IIS Express が利用できる。めっちゃ簡単ですよ！ ### 準備 「Empty Site」テンプレートで Web サイトを作成します。画像アップロード先が“Images”フォルダなので、あらかじめ作成しておきましょう。そして、アップローダーをダウンロードして展開し、 Web サイトのルートにまるっとコピーします。これだけ。  ### 使ってみよう！ Web サイトを実行して、画像ファイルをブラウザーにドラッグ＆ドロップしてください。なお、 Web ブラウザーは IE 以外で。 IE9 でもゴニョゴニョすれば使えるはず（HTML5Labs - Home）だけど、初期状態では残念ながら利用できません。ちゃんとアップロードされ……あれ？　複数ファイルのアップロードにも対応してるはずだけど、2つ目以降がちゃんとアップロードされていない。まぁ、いいや。こんな感じで簡単にお試しできるので入れておいて損はないんじゃないかな？  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/php/">PHP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/17/213414/" >
+                    <h1 class="entry__header-title-link-text">HTML5 &#43; jQuery &#43; PHP 製の D&amp;amp;D 対応画像アップローダーを WebMatrix で試す</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/17</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212329.png" alt="f:id:daruyanagi:20120817212329p:plain" title="f:id:daruyanagi:20120817212329p:plain" class="hatena-fotolife"/><a href="http://www.inserthtml.com/2012/08/file-uploader/">Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTML</a>ドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒ですよね。フロントエンドは HTML5 + jQuery なので Web ブラウザーだけで動きますけど、バックエンドはたいてい PHP スクリプトなので Web サーバーが必要です。つまり、</p>
+<ul>
+<li>Web サーバーを動かす</li>
+<li>PHP のセットアップ</li>
+</ul>なんてことを、わざわざしなきゃいけないんですよ！　ちょっと試したいだけなのにね。そんなときは「WebMatrix 2」を使ってください（<a href="http://www.forest.impress.co.jp/docs/news/20120608_538907.html">窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加</a>）。デフォルトで PHP が有効で、サーバーだって IIS Express が利用できる。めっちゃ簡単ですよ！
+<div class="section">
+    ### 準備
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212936.png" alt="f:id:daruyanagi:20120817212936p:plain" title="f:id:daruyanagi:20120817212936p:plain" class="hatena-fotolife"/>「Empty Site」テンプレートで Web サイトを作成します。画像アップロード先が“Images”フォルダなので、あらかじめ作成しておきましょう。そして、アップローダーをダウンロードして展開し、 Web サイトのルートにまるっとコピーします。これだけ。
+</div>
+<div class="section">
+    ### 使ってみよう！
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212957.png" alt="f:id:daruyanagi:20120817212957p:plain" title="f:id:daruyanagi:20120817212957p:plain" class="hatena-fotolife"/>Web サイトを実行して、画像ファイルをブラウザーにドラッグ＆ドロップしてください。なお、 Web ブラウザーは IE 以外で。 IE9 でもゴニョゴニョすれば使えるはず（<a href="http://html5labs.interoperabilitybridges.com/">HTML5Labs - Home</a>）だけど、初期状態では残念ながら利用できません。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817213139.png" alt="f:id:daruyanagi:20120817213139p:plain" title="f:id:daruyanagi:20120817213139p:plain" class="hatena-fotolife"/>ちゃんとアップロードされ……あれ？　複数ファイルのアップロードにも対応してるはずだけど、2つ目以降がちゃんとアップロードされていない。まぁ、いいや。こんな感じで簡単にお試しできるので入れておいて損はないんじゃないかな？
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-17T21:34:14JST">2012/08/17</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?HTML5%20&#43;%20jQuery%20&#43;%20PHP%20%e8%a3%bd%e3%81%ae%20D&amp;amp;D%20%e5%af%be%e5%bf%9c%e7%94%bb%e5%83%8f%e3%82%a2%e3%83%83%e3%83%97%e3%83%ad%e3%83%bc%e3%83%80%e3%83%bc%e3%82%92%20WebMatrix%20%e3%81%a7%e8%a9%a6%e3%81%99%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/17/213414/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=HTML5&#43;%2B&#43;jQuery&#43;%2B&#43;PHP&#43;%E8%A3%BD%E3%81%AE&#43;D%26amp%3BD&#43;%E5%AF%BE%E5%BF%9C%E7%94%BB%E5%83%8F%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%80%E3%83%BC%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E8%A9%A6%E3%81%99&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F17%2F213414%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/18/000747/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/17/050707/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/09/24/101737/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            なぜ iOS のアップデートより Windows のアップデートは鬱陶しい・面倒くさいのか？ | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="iOS のアップデートもたいがい鬱陶しいと思うのだけど、巷では Windows のアップデートほど嫌われていない気がする（独断と偏見）。これはなぜなんだろう――と常々思っていたのだけど、単に思うだけではいつまで経っても答えが出ないので、現時点での考えをまとめておこうと思う。本当はなぜ鬱陶しい・面倒くさいのかもきっちり分析するべき（プロセスが悪い、頻度が高すぎる、アップデート後のトラブルが怖い）なのだろうけど、今回はそういうのもひっくるめて、ざっくり3つの視点でまとめてみた。
+### OS の使い方 iOS デバイスをシャットダウンするのは、相当稀なことだろう。実際、シャットダウンのやり方を知らずに iPhone を使っている人は相当数いる（シャットダウン方法を解説して PV を稼ぐブログの数を見よ）。なかにはシャットダウンができると知らない――シャットダウンはバッテリーが尽きたときだけに行われると思い込んでいるヒトだっているかもしれない。それだけ iOS はスリープ主体の使い方が根付いている。電源につないでおけば深夜にアップデートされて終わり。一方、Windows はそういう使い方が根付いていない。PC を利用しない深夜は OS がシャットダウンされていて、アップデートが行えない。自然、どうしても作業中の時間からアップデートの時間を捻出してもらう必要があるのだが……まぁ、そういうところが嫌われるのはわかる。帰ろうと思って会社の PC をシャットダウンしたらアップデート始まったりね（まぁ、放置でいいんだが）。Win8 いれようとシャットダウンしたらこれやで pic.twitter.com/FI4eI2PV— だるやなぎ准将 (@daruyanagi) 2012年3月2日あと、「作業中なのに勝手に再起動された！！」とかね。一応 Windows 10 には「アクティブ時間」っていう概念があってそれをコントロールしたら防げたりするんだけど、それを理解して設定できるほど人類の知能は発達していないし、またそれほど規則正しく暮らしている人類もけっして多くはない。そもそも最近の Windows を「わざわざシャットダウンする」必要はないと思ってるんだけど、その点に関しては5年以上前になんか書いてたからそっちでも読んで。[Windows 8 のシャットダウン - だるろぐ](https://blog.daruyanagi.jp/entry/2013/04/09/080844) #### 対策  勝手に再起動される、作業を中断しないで  「アクティブ時間」をちゃんと設定する Windows Update のコントロールをしたいなら Pro を買う（ここだけの話、Home ユーザーはアップデートによるトラブルあぶり出しのための生贄なので） こまめに作業内容を保存する、またはモダンなアプリ（後述）を使うようにする  寝てるときにアップデートしといてほしい：（自分の場合）PC の電源を切らない、モニターの OFF だけにしとく（あまりお勧めはしない） 業務 PC なのにコンシューマー（Home）OS つかってるヤツは、文句を言う相手が間違ってると思う 個人的には「勝手に（？）アップデートされる」よりも iOS みたいに「アップデートしなきゃダイアログが鬱陶しい」方が結果としてはヘイトが溜まらないのかなとも感じる。作業を失った恨みは、ダイアログの鬱陶しさ（しかも、その通りにすれば1回で済む）より深いだろうしね。   ### アプリが邪魔をする iOS のアプリは OS に厳重に管理されていて、自由度が低い。OS が「アップデートのために再起動するよ」といえば、それに逆らえない。一方、Windows はもともとアプリの裁量が大きくて、基本的に何でもできる。OS が「アップデートのために再起動するよ」といっても、「ちょっと待って」と言える。  Windows の歴史は、「アプリに好き勝手させない、とくに危ないことをさせない」ようにしてきた（失敗の）歴史とみることもできる。Microsoft の互換性維持にかける情熱は気違いじみてるけど、ときどきヘマをやらかすのはだいたい「セキュリティを厳しくした」ときだ。OS も悪いけど、好き勝手やってるアプリもだいぶ悪い（でも、そういうアプリに限って改修されない）。そういうアプリがあると、アップデートのプロセスは複雑になるし、アップデート後に不具合が出ることも多くなる。また、アプリの文化も iOS とはかなり異なる。iOS アプリには基本的に「保存する」という概念がない――いつ中断されてもいいように常に備えている。けれど、Windows のアプリはそうなっているものがまだまだ少ない*1。OS の管理よりもアプリの都合の方が優先されているのが当たり前な世界なので、アップデートの再起動はそれを阻む悪者になりやすい。 #### 対策  アクティブにメンテナンスされているアプリを使う セキュリティとリソース節約に優れたモダンなアプリに移行する よくわかんないソフトは入れない、セキュリティソフトは Windows Defender（OS 標準のヤツ）だけでいいよ Windows S とかでもいいんじゃないかな、自分は PowerShell とか使えないの痛すぎてイヤだけど    ### ユーザーの利用頻度 以前、「Windows はアップデートばっかり」という感想を Twitter で耳にしたのだけど、そのあとに続いていたのはこんな言葉だった――「まぁ、Windows マシンなんて月に数回しか電源入れないんだけどｗ」。そりゃ、「アップデートばかり」という感想にもなりますわね。Windows のアップデートは基本的に月1回なので（がんばってそういう運用を守ってほしい＞Microsoft）、月に3回しか Windows マシンを使わない人は、3回に1回は Windows をアップデートしている計算になる。その点、iOS は（スマホ中毒者の場合）24時間365日使ってるわけで……しかも、アップデートの頻度も Windows より少ない。月に数回しか Windows を使わない人にとって、iOS のアップデートは体感ベースでは1/10以下に感じるはずだ。 #### 対策  用事がなくてもたまには電源を入れてあげて。最近の OS なら「シャットダウンの開始 → アップデート適用 → シャットダウン（昔の OS はここまで）→ 起動 → アップデートの適用 → ロック画面」 まで一度行って、そこでシャットダウンするはず。次回起動したらすぐに OS を使い始められるはずだよ OS のアップデートにかかる時間は、バージョンを経るごとに削減されている。次期バージョンへの搭載はキャンセルされるらしいけど、機械学習（？）を使って邪魔にならないタイミングでのアップデートを試みる機能なんかも追加されるらしい。アップデートを楽にするためにアップデートするってのもなんか変な話だけど、OS は新しいに越したことはないよ ほかにもいろいろありそうだけど、今回は「3つに絞る」と約束したのでこの程度にしておく。  *1:最近は少し変わってきて、たとえば Word は OneDrive のドキュメントを扱っていると自動で保存してくれるようになってる。UWP は既存のアプリとライフサイクルが違って&#34;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/09/24/101737/" >
+                    <h1 class="entry__header-title-link-text">なぜ iOS のアップデートより Windows のアップデートは鬱陶しい・面倒くさいのか？</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/09/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2018/09/24/101737/20180924090221.png"/> 
+</figure>
+iOS のアップデートもたいがい鬱陶しいと思うのだけど、巷では Windows のアップデートほど嫌われていない気がする（独断と偏見）。これはなぜなんだろう――と常々思っていたのだけど、単に思うだけではいつまで経っても答えが出ないので、現時点での考えをまとめておこうと思う。本当はなぜ鬱陶しい・面倒くさいのかもきっちり分析するべき（プロセスが悪い、頻度が高すぎる、アップデート後のトラブルが怖い）なのだろうけど、今回はそういうのもひっくるめて、ざっくり3つの視点でまとめてみた。</p>
+<div class="section">
+    ### OS の使い方
+    iOS デバイスをシャットダウンするのは、相当稀なことだろう。実際、シャットダウンのやり方を知らずに iPhone を使っている人は相当数いる（シャットダウン方法を解説して PV を稼ぐブログの数を見よ）。なかにはシャットダウンができると知らない――シャットダウンはバッテリーが尽きたときだけに行われると思い込んでいるヒトだっているかもしれない。それだけ iOS はスリープ主体の使い方が根付いている。電源につないでおけば深夜にアップデートされて終わり。一方、Windows はそういう使い方が根付いていない。PC を利用しない深夜は OS がシャットダウンされていて、アップデートが行えない。自然、どうしても作業中の時間からアップデートの時間を捻出してもらう必要があるのだが……まぁ、そういうところが嫌われるのはわかる。帰ろうと思って会社の PC をシャットダウンしたらアップデート始まったりね（まぁ、放置でいいんだが）。>Win8 いれようとシャットダウンしたらこれやで pic.twitter.com/FI4eI2PV— だるやなぎ准将 (@daruyanagi) 2012年3月2日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>あと、「作業中なのに勝手に再起動された！！」とかね。一応 Windows 10 には「アクティブ時間」っていう概念があってそれをコントロールしたら防げたりするんだけど、それを理解して設定できるほど人類の知能は発達していないし、またそれほど規則正しく暮らしている人類もけっして多くはない。そもそも最近の Windows を「わざわざシャットダウンする」必要はないと思ってるんだけど、その点に関しては5年以上前になんか書いてたからそっちでも読んで。[Windows 8 のシャットダウン - だるろぐ](https://blog.daruyanagi.jp/entry/2013/04/09/080844)<br/>
+<div class="section">
+    #### 対策
+<ul>
+<li>勝手に再起動される、作業を中断しないで
+<ul>
+<li>「アクティブ時間」をちゃんと設定する</li>
+<li>Windows Update のコントロールをしたいなら Pro を買う（ここだけの話、Home ユーザーはアップデートによるトラブルあぶり出しのための生贄なので）</li>
+<li>こまめに作業内容を保存する、またはモダンなアプリ（後述）を使うようにする</li>
+</ul></li>
+<li>寝てるときにアップデートしといてほしい：（自分の場合）PC の電源を切らない、モニターの OFF だけにしとく（あまりお勧めはしない）</li>
+<li>業務 PC なのにコンシューマー（Home）OS つかってるヤツは、文句を言う相手が間違ってると思う</li>
+</ul>個人的には「勝手に（？）アップデートされる」よりも iOS みたいに「アップデートしなきゃダイアログが鬱陶しい」方が結果としてはヘイトが溜まらないのかなとも感じる。作業を失った恨みは、ダイアログの鬱陶しさ（しかも、その通りにすれば1回で済む）より深いだろうしね。
+</div>
+</div>
+<div class="section">
+    ### アプリが邪魔をする
+    iOS のアプリは OS に厳重に管理されていて、自由度が低い。OS が「アップデートのために再起動するよ」といえば、それに逆らえない。一方、Windows はもともとアプリの裁量が大きくて、基本的に何でもできる。OS が「アップデートのために再起動するよ」といっても、「ちょっと待って」と言える。<figure>
+    <img src="/images/2018/09/24/101737/20180924094200.png"/> 
+</figure>
+Windows の歴史は、「アプリに好き勝手させない、とくに危ないことをさせない」ようにしてきた（失敗の）歴史とみることもできる。Microsoft の互換性維持にかける情熱は気違いじみてるけど、ときどきヘマをやらかすのはだいたい「セキュリティを厳しくした」ときだ。OS も悪いけど、好き勝手やってるアプリもだいぶ悪い（でも、そういうアプリに限って改修されない）。そういうアプリがあると、アップデートのプロセスは複雑になるし、アップデート後に不具合が出ることも多くなる。また、アプリの文化も iOS とはかなり異なる。iOS アプリには基本的に「保存する」という概念がない――いつ中断されてもいいように常に備えている。けれど、Windows のアプリはそうなっているものがまだまだ少ない<a href="#f-1861fb4d" name="fn-1861fb4d" title="最近は少し変わってきて、たとえば Word は OneDrive のドキュメントを扱っていると自動で保存してくれるようになってる。UWP は既存のアプリとライフサイクルが違って" サスペンド”という概念がある"="">*1</a>。OS の管理よりもアプリの都合の方が優先されているのが当たり前な世界なので、アップデートの再起動はそれを阻む悪者になりやすい。
+<div class="section">
+    #### 対策
+<ul>
+<li>アクティブにメンテナンスされているアプリを使う</li>
+<li>セキュリティとリソース節約に優れたモダンなアプリに移行する</li>
+<li>よくわかんないソフトは入れない、セキュリティソフトは Windows Defender（OS 標準のヤツ）だけでいいよ</li>
+<li>Windows S とかでもいいんじゃないかな、自分は PowerShell とか使えないの痛すぎてイヤだけど</li>
+</ul>
+</div>
+</div>
+<div class="section">
+    ### ユーザーの利用頻度
+    以前、「Windows はアップデートばっかり」という感想を Twitter で耳にしたのだけど、そのあとに続いていたのはこんな言葉だった――「まぁ、Windows マシンなんて月に数回しか電源入れないんだけどｗ」。そりゃ、「アップデートばかり」という感想にもなりますわね。Windows のアップデートは基本的に月1回なので（がんばってそういう運用を守ってほしい＞Microsoft）、月に3回しか Windows マシンを使わない人は、3回に1回は Windows をアップデートしている計算になる。その点、iOS は（スマホ中毒者の場合）24時間365日使ってるわけで……しかも、アップデートの頻度も Windows より少ない。月に数回しか Windows を使わない人にとって、iOS のアップデートは体感ベースでは1/10以下に感じるはずだ。
+<div class="section">
+    #### 対策
+<ul>
+<li>用事がなくてもたまには電源を入れてあげて。最近の OS なら「シャットダウンの開始 → アップデート適用 → シャットダウン（昔の OS はここまで）→ 起動 → アップデートの適用 → ロック画面」 まで一度行って、そこでシャットダウンするはず。次回起動したらすぐに OS を使い始められるはずだよ</li>
+<li>OS のアップデートにかかる時間は、バージョンを経るごとに削減されている。次期バージョンへの搭載はキャンセルされるらしいけど、機械学習（？）を使って邪魔にならないタイミングでのアップデートを試みる機能なんかも追加されるらしい。アップデートを楽にするためにアップデートするってのもなんか変な話だけど、OS は新しいに越したことはないよ</li>
+</ul>ほかにもいろいろありそうだけど、今回は「3つに絞る」と約束したのでこの程度にしておく。
+</div>
+</div><div class="footnote">
+<a href="#fn-1861fb4d" name="f-1861fb4d" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">最近は少し変わってきて、たとえば Word は OneDrive のドキュメントを扱っていると自動で保存してくれるようになってる。UWP は既存のアプリとライフサイクルが違って"サスペンド”という概念がある</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-09-24T10:17:37JST">2018/09/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%aa%e3%81%9c%20iOS%20%e3%81%ae%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%82%88%e3%82%8a%20Windows%20%e3%81%ae%e3%82%a2%e3%83%83%e3%83%97%e3%83%87%e3%83%bc%e3%83%88%e3%81%af%e9%ac%b1%e9%99%b6%e3%81%97%e3%81%84%e3%83%bb%e9%9d%a2%e5%80%92%e3%81%8f%e3%81%95%e3%81%84%e3%81%ae%e3%81%8b%ef%bc%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/09/24/101737/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%AA%E3%81%9C&#43;iOS&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%82%88%E3%82%8A&#43;Windows&#43;%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%87%E3%83%BC%E3%83%88%E3%81%AF%E9%AC%B1%E9%99%B6%E3%81%97%E3%81%84%E3%83%BB%E9%9D%A2%E5%80%92%E3%81%8F%E3%81%95%E3%81%84%E3%81%AE%E3%81%8B%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F101737%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/24/134516/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/23/134815/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

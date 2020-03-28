@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/08/28/155619/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            艦これのスクリーンショットを撮れるツールを自作した | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  お休み中にオンラインストレージの掃除やツールのアップデートをやっていたのだけど、愛用していた艦これのキャプチャーツールが動かなくなったので、WPF で自作した。一応自分ところでは動いているのだけど（Windows 10 version 1607＋Visual Studio 2015 Update 3で動作確認）、参照の不足なんかで動かないことがあるかもしれない。使い方は
+ 一番左の検知ボタンを押してゲーム画面の範囲を検出する 検出に成功すると、キャプチャーボタンが有効化される キャプチャーボタンを押す だけ。キャプチャーが成功すると、トーストが出る（なので、Windows 8 以降じゃないと動かないと思う）。  トーストをクリックすると、キャプチャーした画像にアクセスできる。  一応、頑張った点としては  マルチモニター対応（自分が Surface 3 or サブディスプレイで遊んでるので スケーリングとか拡大表示にも対応してるかも（大きさは決め打ちにしていない  ゲーム画面の左上ピクセルかなーって感じのピクセルを探して、そこからある程度デカい矩形を検出 そんな感じで割と適当なのと、ちょっと処理が遅いかなって感じなので、気が向いたら改善するかも  みたいな感じ。簡易なロジック自体は割と簡単にできたけど、UI を整えたりなんだかんだで（WPF でトーストのだしかたわかんねぇ……ぐちゃぐちゃ参照を追加したけど、ここでちょっと間違ってる気がする）、半日ぐらいかかった（  #### 追伸 Visual Studio の GitHub 拡張を使ってみたけど、やっぱり自分には GitHub アプリの方が使いやすいかな……。  #### 追記 タブレットモードでも最前面表示されるように改修。  WindowStyle を ToolWindow にする ShowTaskbar を false にする でいけるっぽい。  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/aoba/">Aoba</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/08/28/155619/" >
+                    <h1 class="entry__header-title-link-text">艦これのスクリーンショットを撮れるツールを自作した</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/08/28</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2016/08/28/155619/20160828154228.png"/> 
+</figure>
+お休み中にオンラインストレージの掃除やツールのアップデートをやっていたのだけど、愛用していた艦これのキャプチャーツールが動かなくなったので、WPF で自作した。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.0.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>一応自分ところでは動いているのだけど（Windows 10 version 1607＋Visual Studio 2015 Update 3で動作確認）、参照の不足なんかで動かないことがあるかもしれない。使い方は</p>
+<ul>
+<li>一番左の検知ボタンを押してゲーム画面の範囲を検出する</li>
+<li>検出に成功すると、キャプチャーボタンが有効化される</li>
+<li>キャプチャーボタンを押す</li>
+</ul>だけ。キャプチャーが成功すると、トーストが出る（なので、Windows 8 以降じゃないと動かないと思う）。<figure>
+    <img src="/images/2016/08/28/155619/20160828154639.png"/> 
+</figure>
+トーストをクリックすると、キャプチャーした画像にアクセスできる。<figure>
+    <img src="/images/2016/08/28/155619/20160828154704.png"/> 
+</figure>
+一応、頑張った点としては
+<ul>
+<li>マルチモニター対応（自分が Surface 3 or サブディスプレイで遊んでるので</li>
+<li>スケーリングとか拡大表示にも対応してるかも（大きさは決め打ちにしていない
+<ul>
+<li>ゲーム画面の左上ピクセルかなーって感じのピクセルを探して、そこからある程度デカい矩形を検出</li>
+<li>そんな感じで割と適当なのと、ちょっと処理が遅いかなって感じなので、気が向いたら改善するかも</li>
+</ul></li>
+</ul>みたいな感じ。簡易なロジック自体は割と簡単にできたけど、UI を整えたりなんだかんだで（WPF でトーストのだしかたわかんねぇ……ぐちゃぐちゃ参照を追加したけど、ここでちょっと間違ってる気がする）、半日ぐらいかかった（<br/>
+<br/>
+<div class="section">
+    #### 追伸
+    Visual Studio の GitHub 拡張を使ってみたけど、やっぱり自分には GitHub アプリの方が使いやすいかな……。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1015913.html" title="GitHub、「GitHub Extension for Visual Studio 2.0」をリリース" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><br/>
+</div>
+<div class="section">
+    #### 追記
+    <iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.1.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>タブレットモードでも最前面表示されるように改修。
+<ul>
+<li>WindowStyle を ToolWindow にする</li>
+<li>ShowTaskbar を false にする</li>
+</ul>でいけるっぽい。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-08-28T15:56:19JST">2016/08/28</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e8%89%a6%e3%81%93%e3%82%8c%e3%81%ae%e3%82%b9%e3%82%af%e3%83%aa%e3%83%bc%e3%83%b3%e3%82%b7%e3%83%a7%e3%83%83%e3%83%88%e3%82%92%e6%92%ae%e3%82%8c%e3%82%8b%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e8%87%aa%e4%bd%9c%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/08/28/155619/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E8%89%A6%E3%81%93%E3%82%8C%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AA%E3%83%BC%E3%83%B3%E3%82%B7%E3%83%A7%E3%83%83%E3%83%88%E3%82%92%E6%92%AE%E3%82%8C%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E8%87%AA%E4%BD%9C%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F08%2F28%2F155619%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/08/28/200000/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/08/26/163559/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

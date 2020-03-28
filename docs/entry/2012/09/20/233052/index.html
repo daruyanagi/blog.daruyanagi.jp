@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/20/233052/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WinRT/XAML のお勉強 ―― 4つの表示状態 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Windows ストアアプリには4つの状態（VisualState）がある
+ **FullScreenLandscape**：全画面表示（横） **FullScreenPortrait**：全画面表示（縦） **Snapped**：端に寄せる（幅300px） **Filled**：ほかのアプリを Snap した残りの領域に表示 これを一つのデザインで対応しようとするととても難しい、という話が前回（WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する - だるろぐ）だった。あれからいろいろ試したんだけれど、ひとつのデザインですべてをカバーしようとするより、4つの VisualState にそれぞれ個別にデザインを作って割り当てたほうがよさそうだ*1。じゃぁ、VisualState によってビューを切り替えるのってどうすればいいんだ？　ってのが今日の主題。 ```xml Style=&#34;{StaticResource LayoutRootStyle}&#34; .RowDefinitions Height=&#34;140&#34;/ Height=&#34;*&#34;/ .RowDefinitions &lt;!-- Back button and page title --&gt; &lt;grid&gt;&lt;/grid&gt; （ヘッダー。内容省略） x:Name=&quot;FullScreenLandscapeGrid&quot; Grid.Row=&quot;1&quot; Background=&quot;Blue&quot; /&gt; x:Name=&quot;FullScreenPortraitGrid&quot; Grid.Row=&quot;1&quot; Background=&quot;Yellow&quot; Visibility=&quot;Collapsed&quot; /&gt; x:Name=&quot;SnappedGrid&quot; Grid.Row=&quot;1&quot; Background=&quot;Green&quot; Visibility=&quot;Collapsed&quot; /&gt; x:Name=&quot;FilledGrid&quot; Grid.Row=&quot;1&quot; Background=&quot;Red&quot; Visibility=&quot;Collapsed&quot; /&gt;  ```xml .VisualStateGroups&gt; &lt;!-- Visual states reflect the application&#39;s view state --&gt; x:Name=&quot;ApplicationViewStates&quot;&gt; x:Name=&quot;FullScreenLandscape&quot;&gt; （初期表示なので別に何もしないでいい感じ） &lt;!-- The entire page respects the narrower 100-pixel margin convention for portrait --&gt; // 全画面（横向きになったら……） x:Name=&quot;FullScreenPortrait&quot;&gt; &lt;storyboard&gt;&lt;/storyboard&gt; （関係のないところ省略） // FullScreenLandscapeGrid を非表示に Storyboard." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/winrt/">WinRT</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/20/233052/" >
+                    <h1 class="entry__header-title-link-text">WinRT/XAML のお勉強 ―― 4つの表示状態</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>Windows ストアアプリには4つの状態（VisualState）がある</p>
+<ul>
+<li>**FullScreenLandscape**：全画面表示（横）</li>
+<li>**FullScreenPortrait**：全画面表示（縦）</li>
+<li>**Snapped**：端に寄せる（幅300px）</li>
+<li>**Filled**：ほかのアプリを Snap した残りの領域に表示</li>
+</ul>これを一つのデザインで対応しようとするととても難しい、という話が前回（<a href="https://blog.daruyanagi.jp/entry/2012/09/20/022735">WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する - だるろぐ</a>）だった。あれからいろいろ試したんだけれど、ひとつのデザインですべてをカバーしようとするより、4つの VisualState にそれぞれ個別にデザインを作って割り当てたほうがよさそうだ<a href="#f-d1bfc3d2" name="fn-d1bfc3d2" title="ただ、FullScreenLandscape と Filled はとてもよく似ているので、分ける必要はないかもしれない">*1</a>。じゃぁ、VisualState によってビューを切り替えるのってどうすればいいんだ？　ってのが今日の主題。
+```xml
+Style="{StaticResource LayoutRootStyle}">
+    .RowDefinitions>
+        Height="140"/>
+        Height="*"/>
+    .RowDefinitions>
+<pre><code>&lt;!-- Back button and page title --&gt;
+&lt;grid&gt;&lt;/grid&gt;
+    （ヘッダー。内容省略）
+
+
+x:Name=&quot;FullScreenLandscapeGrid&quot; 
+      Grid.Row=&quot;1&quot; Background=&quot;Blue&quot; /&gt;
+x:Name=&quot;FullScreenPortraitGrid&quot;
+      Grid.Row=&quot;1&quot; Background=&quot;Yellow&quot; Visibility=&quot;Collapsed&quot; /&gt;
+x:Name=&quot;SnappedGrid&quot;
+      Grid.Row=&quot;1&quot; Background=&quot;Green&quot; Visibility=&quot;Collapsed&quot; /&gt;
+x:Name=&quot;FilledGrid&quot;
+      Grid.Row=&quot;1&quot; Background=&quot;Red&quot; Visibility=&quot;Collapsed&quot; /&gt;
+</code></pre>
+<pre><code class="language-こうやって" data-lang="こうやって">```xml
+.VisualStateGroups&gt;
+    &lt;!-- Visual states reflect the application's view state --&gt;
+    x:Name=&quot;ApplicationViewStates&quot;&gt;
+        x:Name=&quot;FullScreenLandscape&quot;&gt;
+             （初期表示なので別に何もしないでいい感じ）
+        
+
+        &lt;!-- The entire page respects the narrower 100-pixel margin convention for portrait --&gt;
+        // 全画面（横向きになったら……）
+        x:Name=&quot;FullScreenPortrait&quot;&gt;
+            &lt;storyboard&gt;&lt;/storyboard&gt;
+                （関係のないところ省略）
+
+                // FullScreenLandscapeGrid を非表示に
+                
+                    Storyboard.TargetName=&quot;FullScreenLandscapeGrid&quot;
+                    Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
+                    
+                        KeyTime=&quot;0&quot; Value=&quot;Collapsed&quot;/&gt;
+                
+
+                // FullScreenPortraitGrid を表示に
+                
+                    Storyboard.TargetName=&quot;FullScreenPortraitGrid&quot;
+                    Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
+                    
+                        KeyTime=&quot;0&quot; Value=&quot;Visible&quot;/&gt;
+                
+            
+        
+
+        // Filled になったら……
+        x:Name=&quot;Filled&quot;&gt;
+        :
+        : （以下略）
+
+```結果はこんな感じ。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### FullScreenLandscape
+    <figure>
+    <img src="/images/2012/09/20/233052/20120920231821.png"/> 
+</figure>
+&lt;br/&gt;
+
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### FullScreenPortrait
+    <figure>
+    <img src="/images/2012/09/20/233052/20120920231828.png"/> 
+</figure>
+FullScreenLandscapeGrid.Visibility -&gt; Collapsed&lt;br/&gt;
+FullScreenPortraitGrid.Visibility -&gt; Visible
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Snapped
+    <figure>
+    <img src="/images/2012/09/20/233052/20120920231839.png"/> 
+</figure>
+FullScreenLandscapeGrid.Visibility -&gt; Collapsed&lt;br/&gt;
+SnappedGrid.Visibility -&gt; Visible
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Filled
+    <figure>
+    <img src="/images/2012/09/20/233052/20120920231848.png"/> 
+</figure>
+FullScreenLandscapeGrid.Visibility -&gt; Collapsed&lt;br/&gt;
+FilledGrid.Visibility -&gt; Visibleあとはそれぞれ、解像度が変わる場合をよく考えながらデザインしていけばいいと思う。まぁ、なるべくテンプレ使うのがよさそうだけど、ちょっと試してみたところ、自分の目的には合わない気がしたのでやっぱこれで行こうと思う。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 余談
+    ここまでやるのはそんなに難しくなかったけど、途中、シミュレーターの回転に異様に時間がかかり、いろんなエラーをはいてしまってちょっと躓いた。再起動でなおったけど……。最初は自分のソースが悪かったのかなぁと思ってあちこち直してたのだけど、結局新規にページを作ってもエラーが出るので、やっとシミュレーターがおかしいんだってわかった。まぁ、そんなこともあるよね。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-d1bfc3d2&quot; name=&quot;f-d1bfc3d2&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ただ、FullScreenLandscape と Filled はとてもよく似ているので、分ける必要はないかもしれない&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-20T23:30:52JST">2012/09/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT/XAML%20%e3%81%ae%e3%81%8a%e5%8b%89%e5%bc%b7%20%e2%80%95%e2%80%95%204%e3%81%a4%e3%81%ae%e8%a1%a8%e7%a4%ba%e7%8a%b6%e6%85%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/20/233052/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;4%E3%81%A4%E3%81%AE%E8%A1%A8%E7%A4%BA%E7%8A%B6%E6%85%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F233052%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/21/230552/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/20/022735/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

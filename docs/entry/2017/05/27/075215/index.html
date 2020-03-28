@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/05/27/075215/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            はてなブログ：カテゴリーページにフィードへのリンクを追加する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  
+&gt; はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブログPro」利用者向けにリリースしました。特定のカテゴリーを目立たせたり、おすすめ記事を冒頭に表示したりといったリッチな表現が、カテゴリー別記事一覧ページで可能になります。どうぞご利用ください。 カテゴリー別記事一覧で、ページのタイトルや説明文をカスタマイズできるようにしました（はてなブログPro） - はてなブログ開発ブログ  リクエストしていた機能なのでとってもうれしいです。ありがとう！　中の人！  というわけで、さっそくウチでも使ってみましょう。例は……どうしようかな、軽いカテゴリーの説明と、フィードへのリンクを追加してみましょうか。ウチのような“雑記”だと、ノイズが多いですからね。特定のカテゴリーのみを購読したいという要望は3年に1回ぐらいもらいます。カテゴリーの説明には HTML が使えるようなので、こんな感じでしょうでしょうか。
+最強の Web 開発環境「WebMatrix」に関するエントリーです。 購読は&amp;lt;a href=&#34;http://blog.daruyanagi.jp/feed/category/WebMatrix&#34;&gt;こちら&amp;lt;/a&gt;からどうぞ！ ```結果はこんな感じ。  割といい気がします。現在利用しているテーマがこの新しい機能を考慮していないのでスタイルシートを当てた方がよさそうですけど、このままでも十分使えそう。できれば、すべてのカテゴリーにわざわざこんな説明を追加していくのは面倒なので、**“すべてのカテゴリーに共通の説明”**をつける機能がほしいかも。変数でカテゴリータイトル（エンコードあり・なし）や URL などを埋め込める感じにしてくれれば、カスタマイズの幅が広がりそうです。気が向いたら今度フィードバックを送ってみよう。 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/05/27/075215/" >
+                    <h1 class="entry__header-title-link-text">はてなブログ：カテゴリーページにフィードへのリンクを追加する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/05/27</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/05/27/075215/20170527074352.png"/> 
+</figure>
+<br/></p>
+<pre><code>&gt;
+    はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブログPro」利用者向けにリリースしました。特定のカテゴリーを目立たせたり、おすすめ記事を冒頭に表示したりといったリッチな表現が、カテゴリー別記事一覧ページで可能になります。どうぞご利用ください。
+
+    カテゴリー別記事一覧で、ページのタイトルや説明文をカスタマイズできるようにしました（はてなブログPro） - はてなブログ開発ブログ
+</code></pre>
+<p>リクエストしていた機能なのでとってもうれしいです。ありがとう！　中の人！<figure>
+    <img src="/images/2017/05/27/075215/20170527074349.png"/> 
+</figure>
+というわけで、さっそくウチでも使ってみましょう。例は……どうしようかな、軽いカテゴリーの説明と、フィードへのリンクを追加してみましょうか。ウチのような“雑記”だと、ノイズが多いですからね。特定のカテゴリーのみを購読したいという要望は3年に1回ぐらいもらいます。カテゴリーの説明には HTML が使えるようなので、こんな感じでしょうでしょうか。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">最強の Web 開発環境「WebMatrix」に関するエントリーです。
+
+購読は&amp;lt;a href=&#34;http://blog.daruyanagi.jp/feed/category/WebMatrix&#34;&gt;こちら&amp;lt;/a&gt;からどうぞ！
+
+```結果はこんな感じ。<figure>
+    <img src="/images/2017/05/27/075215/20170527074333.png"/> 
+</figure>
+割といい気がします。現在利用しているテーマがこの新しい機能を考慮していないのでスタイルシートを当てた方がよさそうですけど、このままでも十分使えそう。できれば、すべてのカテゴリーにわざわざこんな説明を追加していくのは面倒なので、**“すべてのカテゴリーに共通の説明”**をつける機能がほしいかも。変数でカテゴリータイトル（エンコードあり・なし）や URL などを埋め込める感じにしてくれれば、カスタマイズの幅が広がりそうです。気が向いたら今度フィードバックを送ってみよう。
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-05-27T07:52:15JST">2017/05/27</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%af%e3%81%a6%e3%81%aa%e3%83%96%e3%83%ad%e3%82%b0%ef%bc%9a%e3%82%ab%e3%83%86%e3%82%b4%e3%83%aa%e3%83%bc%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%ab%e3%83%95%e3%82%a3%e3%83%bc%e3%83%89%e3%81%b8%e3%81%ae%e3%83%aa%e3%83%b3%e3%82%af%e3%82%92%e8%bf%bd%e5%8a%a0%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/05/27/075215/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%EF%BC%9A%E3%82%AB%E3%83%86%E3%82%B4%E3%83%AA%E3%83%BC%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AB%E3%83%95%E3%82%A3%E3%83%BC%E3%83%89%E3%81%B8%E3%81%AE%E3%83%AA%E3%83%B3%E3%82%AF%E3%82%92%E8%BF%BD%E5%8A%A0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F05%2F27%2F075215%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/05/29/165009/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/05/25/183633/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

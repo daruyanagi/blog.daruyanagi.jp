@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/08/08/185357/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3：oEmbed ヘルパーを作ってみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly. oEmbed  要はこういうのです。
+# はてな記法の場合 https://twitter.com/daruyanagi/status/497645195769298944:embed ```&gt;乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。 &lt;ul&gt; &lt;li&gt;API Endpoint があらかじめ公開されており、それを叩く&lt;/li&gt; &lt;li&gt;link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く&lt;/li&gt; &lt;/ul&gt;両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、&lt;a href=&quot;https://dev." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/08/08/185357/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3：oEmbed ヘルパーを作ってみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/08/08</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly.
+
+    oEmbed
+</code></pre>
+<p>要はこういうのです。</p>
+<pre><code># はてな記法の場合
+https://twitter.com/daruyanagi/status/497645195769298944:embed
+```&gt;乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。
+
+&lt;ul&gt;
+&lt;li&gt;API Endpoint があらかじめ公開されており、それを叩く&lt;/li&gt;
+&lt;li&gt;link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く&lt;/li&gt;
+&lt;/ul&gt;両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、&lt;a href=&quot;https://dev.twitter.com/docs/api/1/get/statuses/oembed&quot;&gt;一応公開されています&lt;/a&gt;が一般的な API に比べてちょっとめんどいので link タグ探した方がいい）もします。今回は後者だけ実装してみました。前者については、
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2013/07/18/033539&quot;&gt;WebMatrix 3: Windows Store oEmbed API を利用する - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;で一度やったことがあります。URL パターンとエンドポイントのディクショナリでももっておいて、URL がパターンにマッチした時はエンドポイントを叩く……みたいに実装すれば汎用的になるかと。
+
+&lt;div class=&quot;section&quot;&gt;
+    ### 準備
+    <figure>
+    <img src="/images/2014/08/08/185357/20140808184043.png"/> 
+</figure>
+HTML から 
+```html
+&amp;lt;link rel=&quot;alternate&quot; type=&quot;application/json+oembed&quot; href=&quot;***&quot; title=&quot;***&quot;&gt;
+
+```みたいなのを探してとってくる必要があるので、スクレイパー御用達の &lt;a href=&quot;http://htmlagilitypack.codeplex.com/&quot;&gt;CodePlex Archive&lt;/a&gt; を NuGet で追加しておきます。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### コード
+    んじゃ、ガリガリ書いていきます。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### ~/App_Code/OEmbed.cshtml
+    まずは、ヘルパー部分を書き書き。
+```cs
+@using HtmlAgilityPack
+
+@helper GetHtml(string url){
+    try
+    {
+        using (var downloader = new WebClient())
+        {
+            var html = downloader.DownloadString(url);
+
+            var document = new HtmlDocument();
+            document.LoadHtml(html);
+
+            url = document.DocumentNode.Descendants(&quot;link&quot;)
+                .Where(_ =&gt; _.GetAttributeValue(&quot;type&quot;, string.Empty) == &quot;application/json+oembed&quot;)
+                .Select(_ =&gt; _.GetAttributeValue(&quot;href&quot;, string.Empty))
+                .First();
+
+            var oembed_data = downloader.DownloadString(url);
+            var oembed_json = Json.Decode(oembed_data);
+
+            @Html.Raw(oembed_json.html)
+        }
+    }
+    catch (Exception e)
+    {
+        &amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @e.Message&amp;lt;/p&gt;
+    }
+}
+
+```oEmbed は XML 形式か JSON 形式でレスポンスを返すのですが、Twitter は JSON のみをサポートします。どのサービスも JSON には対応していることが多いので、JSON だけ処理すればたいていは十分です。あと、oembed_json.html を直接使うのは怖い。サニタイズしておいた方がいいかも。ほんとはキャッシュの仕組みとかも入れておきたいですね。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### ~/Default.cshtml
+    次にテスト用のページを書きかき。
+```html
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/497645195769298944&quot;)
+        @OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/49764519576929894&quot;)
+        @OEmbed.GetHtml(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div>
+<div class="section">
+    #### 結果
+    <figure>
+    <img src="/images/2014/08/08/185357/20140808184012.png"/> 
+</figure>
+2番目は URL を間違ってみた。3番目は oEmbed 対応だけど link タグ形式ではないサービス（Flickr）で試してみた。Flickr については、API Endpoint を叩いてーという処理が必要になりますね。
+</div>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-08-08T18:53:57JST">2014/08/08</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%ef%bc%9aoEmbed%20%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/08/08/185357/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F08%2F185357%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/09/134217/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/08/081907/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

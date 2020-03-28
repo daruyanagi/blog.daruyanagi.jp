@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/11/03/202417/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            PowerShall：VPN 接続をセットアップする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、AuthenticationMethod に Maximum を指定。
+$PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod MSChapv2 ` -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```これであっさり VPN を追加できたのだけど、うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい。ここのチェックボックスね。  GUI ではできないのかなぁ、と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど、どうにもかっこ悪いので Twitter で聞いてみたら、幸い返事がいただけた。&gt;もうお試しかもしれませんが、-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます。 pic.twitter.com/4LsYAR7Ulv— のらねこ！ C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=&#34;&#34; src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt; ぉ、`AuthenticationMethod` って複数設定できるのか！　ってことでちょい修正。 ```ps1 $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;テスト&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod Chap,MSChapv2 ` # ここ -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```確かめてみたところ、意図したとおりにチェックボックスがオンになっていた。やったねー！ちなみに ID とパスワードを設定するコマンドレットはないとのこと。 $RasExec = &ldquo;C:\windows\system32\rasdial." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/11/03/202417/" >
+                    <h1 class="entry__header-title-link-text">PowerShall：VPN 接続をセットアップする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/11/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。<a href="https://nasunoblog.blogspot.com/2016/03/howto-add-vpn-adaptor-using-powershell.html">PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記</a>必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、<code>AuthenticationMethod</code> に <code>Maximum</code> を指定。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
+
+$VpnUrl = <span style="color:#e6db74">&#34;***&#34;</span>
+$VpnName = <span style="color:#e6db74">&#34;***&#34;</span>
+
+Add-VpnConnection -Name $VpnName `
+                  -ServerAddress $VpnUrl `
+                  -RememberCredential -L2tpPsk $PreKey `
+                  -AuthenticationMethod MSChapv2 `
+                  -EncryptionLevel Maximum `
+                  -TunnelType L2tp `
+                  -Force
+
+```これであっさり VPN を追加できたのだけど<span style="color:#960050;background-color:#1e0010">、</span>うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい<span style="color:#960050;background-color:#1e0010">。</span>ここのチェックボックスね<span style="color:#960050;background-color:#1e0010">。</span><figure>
+    <img src="/images/2018/11/03/202417/20181103200617.png"/> 
+</figure>
+GUI ではできないのかなぁ<span style="color:#960050;background-color:#1e0010">、</span>と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど<span style="color:#960050;background-color:#1e0010">、</span>どうにもかっこ悪いので Twitter で聞いてみたら<span style="color:#960050;background-color:#1e0010">、</span>幸い返事がいただけた<span style="color:#960050;background-color:#1e0010">。</span>&gt;もうお試しかもしれませんが<span style="color:#960050;background-color:#1e0010">、</span>-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます<span style="color:#960050;background-color:#1e0010">。</span> pic.twitter.com/4LsYAR7Ulv<span style="color:#960050;background-color:#1e0010">—</span> のらねこ<span style="color:#960050;background-color:#1e0010">！</span> C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt; ぉ<span style="color:#960050;background-color:#1e0010">、</span>`AuthenticationMethod` って複数設定できるのか<span style="color:#960050;background-color:#1e0010">！</span>　ってことでちょい修正<span style="color:#960050;background-color:#1e0010">。</span>
+```ps1
+$PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
+
+$VpnUrl = <span style="color:#e6db74">&#34;***&#34;</span>
+$VpnName = <span style="color:#e6db74">&#34;テスト&#34;</span>
+
+Add-VpnConnection -Name $VpnName `
+                  -ServerAddress $VpnUrl `
+                  -RememberCredential -L2tpPsk $PreKey `
+                  -AuthenticationMethod Chap,MSChapv2 ` <span style="color:#75715e"># ここ</span>
+                  -EncryptionLevel Maximum `
+                  -TunnelType L2tp `
+                  -Force
+
+```確かめてみたところ<span style="color:#960050;background-color:#1e0010">、</span>意図したとおりにチェックボックスがオンになっていた<span style="color:#960050;background-color:#1e0010">。</span>やったねー<span style="color:#960050;background-color:#1e0010">！</span>ちなみに ID とパスワードを設定するコマンドレットはないとのこと<span style="color:#960050;background-color:#1e0010">。</span>
+</code></pre></div><p>$RasExec = &ldquo;C:\windows\system32\rasdial.exe&rdquo;
+$VpnUser  = &ldquo;<em><strong>&rdquo;
+$VpnPass = &ldquo;</strong></em>&rdquo;</p>
+<p>#Add User &amp; Pass
+cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
+<pre><code class="language-上記サイトでは" data-lang="上記サイトでは">
+&lt;div class=&quot;section&quot;&gt;
+    ### 追伸
+    &gt;（もうめんどいからいいや）— だるやなぎ准将 (@daruyanagi) November 3, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt; 
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-11-03T20:24:17JST">2018/11/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?PowerShall%ef%bc%9aVPN%20%e6%8e%a5%e7%b6%9a%e3%82%92%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/11/03/202417/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/04/031210/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/02/041440/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

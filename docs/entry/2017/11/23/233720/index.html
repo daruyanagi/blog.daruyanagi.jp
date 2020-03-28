@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/11/23/233720/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            ASP.NET Core 2.0 なサイトを放置してたら死んでた → 復旧 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="今日見たら daruyanagi.jp が死んでた。
+&gt; HTTP Error 502.5 - Process Failure  Common causes of this issue:
+The application process failed to start The application process started but then stopped The application process started but failed to listen on the configured port Troubleshooting steps:
+Check the system event log for error messages Enable logging the application process&#39; stdout messages Attach a debugger to the application process and inspect
+昨日あたりまでは生きていた気がするんだが……彼に何が起こったのか。&gt;せやな— しばやん (@shibayan) 2017年11月23日赤い帽子のヤツは助けてくれないし（役立たずめ！）、とりあえずソースコードを探して Visual Studio で開いて実行してみたけど、とくに問題はないみたい。念のため、NuGet を確認してみたら ASP." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/11/23/233720/" >
+                    <h1 class="entry__header-title-link-text">ASP.NET Core 2.0 なサイトを放置してたら死んでた → 復旧</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/11/23</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/11/23/233720/20171123232731.png"/> 
+</figure>
+今日見たら daruyanagi.jp が死んでた。</p>
+<pre><code>&gt;
+    HTTP Error 502.5 - Process Failure 
+</code></pre>
+<p>Common causes of this issue:</p>
+<p>The application process failed to start
+The application process started but then stopped
+The application process started but failed to listen on the configured port
+Troubleshooting steps:</p>
+<p>Check the system event log for error messages
+Enable logging the application process' stdout messages
+Attach a debugger to the application process and inspect</p>
+<p>昨日あたりまでは生きていた気がするんだが……彼に何が起こったのか。&gt;せやな— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>赤い帽子のヤツは助けてくれないし（役立たずめ！）、とりあえずソースコードを探して Visual Studio で開いて実行してみたけど、とくに問題はないみたい。念のため、NuGet を確認してみたら ASP.NET Core 2.0.0 のプレビュー版みたいなやつが入っていたのでアップデート（→ 2.0.3）して再ビルド、発行。<figure>
+    <img src="/images/2017/11/23/233720/20171123233457.png"/> 
+</figure>
+そしたら普通に動いた。ﾌｧｯｷﾝ！&gt;(・д・)ﾁｯ ばれたか— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>知ってるなら教えろ、ﾌｧｯｷﾝ！</p>
+<div class="section">
+    ### 追記
+    >https://t.co/N11NqxSBkC / “https://t.co/9vTmtCukjr Core 2.0 なサイトを放置してたら死んでた → 復旧 - だるろぐ” https://t.co/Vy42aMkqxu— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br/>
+<pre><code>&gt;
+    Now that Core 2.0 has been release, App Service will remove support for 2.0 preview runtimes and SDK. This will happen starting in early October 2017.Action item: make sure that you upgrade all your 2.0 Preview apps to the official 2.0 bits.See also #27 for a similar announcement relating to prerelease Core 1.x bits.Please use Azure/app-service-announcements-discussions#12 for discussions about this change.
+
+    Deprecation of Prerelease .NET Core 2.0 runtimes and SDK from App Service · Issue #35 · Azure/app-service-announcements · GitHub
+</code></pre>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-11-23T23:37:20JST">2017/11/23</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Core%202.0%20%e3%81%aa%e3%82%b5%e3%82%a4%e3%83%88%e3%82%92%e6%94%be%e7%bd%ae%e3%81%97%e3%81%a6%e3%81%9f%e3%82%89%e6%ad%bb%e3%82%93%e3%81%a7%e3%81%9f%20%e2%86%92%20%e5%be%a9%e6%97%a7%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/11/23/233720/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Core&#43;2.0&#43;%E3%81%AA%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E6%94%BE%E7%BD%AE%E3%81%97%E3%81%A6%E3%81%9F%E3%82%89%E6%AD%BB%E3%82%93%E3%81%A7%E3%81%9F&#43;%E2%86%92&#43;%E5%BE%A9%E6%97%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F11%2F23%2F233720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/11/28/165126/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/11/23/203927/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

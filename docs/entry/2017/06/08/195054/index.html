@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/06/08/195054/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Tonjiru v1.2.0 ＋ WPF での起動オプション、ジャンプリスト、トースト | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式） ウィンドウ情報のファイル保存（JSON 形式） 通知機能 安定性の向上     ### WPF と起動オプション 起動時に［Shift］キーが押されていたら GUI を起動するという挙動は  App.xaml の StartupUri を削除 App.Startup でキーの押し下げ確認と MainWindow の自前生成 という感じで実現していたんだけど、起動オプションを付けたら破綻したので、  App.xaml の StartupUri を元に戻す App.xaml のビルドアクションを Page にして、main 関数を自分で書く という感じに変えた。 ```cs [System.STAThreadAttribute()] public static void Main() { var args = Environment.GetCommandLineArgs(); if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift) { var app = new Tonjiru." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/06/08/195054/" >
+                    <h1 class="entry__header-title-link-text">Tonjiru v1.2.0 ＋ WPF での起動オプション、ジャンプリスト、トースト</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/06/08</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/06/08/195054/20170608192727.png"/> 
+</figure>
+<br/></p>
+<ul>
+<li>起動オプションの追加（/g で GUI 付きの起動）</li>
+<li>ジャンプリストへの対応（GUI 付きの起動を追加）</li>
+<li>ウィンドウ情報のクリップボードコピー（JSON 形式）</li>
+<li>ウィンドウ情報のファイル保存（JSON 形式）</li>
+<li>通知機能</li>
+<li>安定性の向上</li>
+</ul>
+<div class="github-card" data-user="daruyanagi/Tonjiru/releases/tag" data-repo="v1.2.0" data-width="400" data-height="" data-theme="default"></div>
+<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<br/>
+<div class="section">
+    ### WPF と起動オプション
+    起動時に［Shift］キーが押されていたら GUI を起動するという挙動は
+<ul>
+<li>App.xaml の StartupUri を削除</li>
+<li>App.Startup でキーの押し下げ確認と MainWindow の自前生成</li>
+</ul>という感じで実現していたんだけど、起動オプションを付けたら破綻したので、
+<ul>
+<li>App.xaml の StartupUri を元に戻す</li>
+<li>App.xaml のビルドアクションを Page にして、main 関数を自分で書く</li>
+</ul>という感じに変えた。
+```cs
+[System.STAThreadAttribute()]
+public static void Main()
+{
+    var args = Environment.GetCommandLineArgs();
+<pre><code>if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift)
+{
+    var app = new Tonjiru.App();
+    app.InitializeComponent();
+    app.Run();
+}
+else // UI less mode
+{
+    CloseAllWindowsAndExit();
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-/h" data-lang="/h">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ジャンプリスト
+    起動オプションを付けた副産物として、ジャンプリストへの対応が簡単になった。App.xaml に以下のように記述。
+```xml
+x:Class=&quot;Tonjiru.App&quot;
+             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
+             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
+             xmlns:local=&quot;clr-namespace:Tonjiru&quot;
+             StartupUri=&quot;Views\MainWindow.xaml&quot;&gt;
+    .Resources&gt;
+         
+    .Resources&gt;
+
+    .JumpList&gt;
+        &lt;jumplist&gt;&lt;/jumplist&gt;
+            Title=&quot;Launch with GUI&quot;
+                Description=&quot;Launch with GUI&quot; 
+                Arguments=&quot;/g&quot; /&gt;
+        
+    .JumpList&gt;
+
+
+```ジャンプリストは最近忘れられてる気がするけど、割かし便利だと思う。対応アプリが増えるといいな。なお、ジャンプリストから起動するとワーキングディレクトリが System フォルダーになった気がする。設定ファイルなどをロードするとき、パス検索をいい加減にしていると痛い目にあう（あった）。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ValueTupple と DataContractJsonSerializer
+    ウィンドウ情報の保存は手抜きで DataContractJsonSerializer を使ったんだけど、Model をそのままシリアライズするとサイズがすごく大きくなってしまった。そこで情報を間引いたんだが、ここでタプルが使えるのではないかと気づいた。
+```cs
+list.Select(_ =&gt; (title: _.Title, process: _.ProcessName)); // これをシリアライズ
+
+```試しにこれを
+```cs
+DataContractJsonSerializer(typeof(ValueTupple&amp;lt;string, string&gt;));
+
+DataContractJsonSerializer(typeof((string title, string process)));
+
+```みたいに使ってみたところ――とりあえずコンパイルは通り、普通に使えた。けれど、出力される JSON がどっちも
+</code></pre><p>[{ &ldquo;Item1&rdquo;: &ldquo;hoge&rdquo;, &ldquo;Item2&rdquo;: &ldquo;fuga&rdquo; }]</p>
+<pre><code class="language-みたいな感じになる（ほんとは" data-lang="みたいな感じになる（ほんとは">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 通知
+    WPF でトーストを出そうと思うと WindowsRuntime を使わなくちゃーってなりがちだけど、ただ出したいだけであれば NotifyIcon で ShowBalloonTip() するのが楽でいい。Windows 7 だとバルーンだが、Windows 10 ではトーストになる。
+```cs
+using (var notify_icon = new System.Windows.Forms.NotifyIcon())
+{
+    notify_icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().Location);
+    notify_icon.Visible = true;
+
+    notify_icon.BalloonTipTitle = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+    notify_icon.BalloonTipText = message;
+    notify_icon.ShowBalloonTip(3000);
+}
+
+```簡単だね！<figure>
+    <img src="/images/2017/06/08/195054/20170608194803.png"/> 
+</figure>
+ポイントは Visible を true にしておくこと（じゃないとトーストが出てこない）、最後に Visible を False にするか Dispose() すること（でないとトレイにアイコンがゾンビ）ぐらい。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-06-08T19:50:54JST">2017/06/08</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Tonjiru%20v1.2.0%20%ef%bc%8b%20WPF%20%e3%81%a7%e3%81%ae%e8%b5%b7%e5%8b%95%e3%82%aa%e3%83%97%e3%82%b7%e3%83%a7%e3%83%b3%e3%80%81%e3%82%b8%e3%83%a3%e3%83%b3%e3%83%97%e3%83%aa%e3%82%b9%e3%83%88%e3%80%81%e3%83%88%e3%83%bc%e3%82%b9%e3%83%88%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/06/08/195054/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Tonjiru&#43;v1.2.0&#43;%EF%BC%8B&#43;WPF&#43;%E3%81%A7%E3%81%AE%E8%B5%B7%E5%8B%95%E3%82%AA%E3%83%97%E3%82%B7%E3%83%A7%E3%83%B3%E3%80%81%E3%82%B8%E3%83%A3%E3%83%B3%E3%83%97%E3%83%AA%E3%82%B9%E3%83%88%E3%80%81%E3%83%88%E3%83%BC%E3%82%B9%E3%83%88&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F08%2F195054%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/09/175700/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/07/191844/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/10/14/004317/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="動的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。
+@using System.Drawing @{ var text = UrlData[0] == string.Empty ? &#34;Sample&#34; : UrlData[0]; try { var bitmap = new Bitmap(600, 480); using (var g = Graphics.FromImage(bitmap)) { using (var font = newFont(&#34;Meiryo&#34;, 24)) { var rect = new RectangleF(0, 0, 600, 480); var format = StringFormat.GenericDefault; format.Alignment = StringAlignment.Center; format.LineAlignment = StringAlignment.Center; g.FillRectangle( Brushes.CornflowerBlue, rect ); g.DrawString( text, font, Brushes.AntiqueWhite, rect, format ); } } bitmap.Save( Response.OutputStream, Imaging." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/10/14/004317/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/10/14</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/10/14/004317/20131014003724.png"/> 
+</figure>
+動的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.Drawing
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">var</span> text = UrlData[<span style="color:#ae81ff">0</span>] == <span style="color:#66d9ef">string</span>.Empty ? <span style="color:#e6db74">&#34;Sample&#34;</span> : UrlData[<span style="color:#ae81ff">0</span>];
+
+    <span style="color:#66d9ef">try</span>
+    {
+        <span style="color:#66d9ef">var</span> bitmap = <span style="color:#66d9ef">new</span> Bitmap(<span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">480</span>);
+
+        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> g = Graphics.FromImage(bitmap)) {
+        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> font = newFont(<span style="color:#e6db74">&#34;Meiryo&#34;</span>, <span style="color:#ae81ff">24</span>)) 
+        {
+            <span style="color:#66d9ef">var</span> rect = <span style="color:#66d9ef">new</span> RectangleF(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">480</span>);
+            <span style="color:#66d9ef">var</span> format = StringFormat.GenericDefault;
+            format.Alignment = StringAlignment.Center;
+            format.LineAlignment = StringAlignment.Center;
+
+            g.FillRectangle(
+                Brushes.CornflowerBlue,
+                rect
+            );
+
+            g.DrawString(
+                text, font, 
+                Brushes.AntiqueWhite,
+                rect, format
+            );
+        } }
+
+        bitmap.Save(
+            Response.OutputStream,
+            Imaging.ImageFormat.Png
+        );
+
+        Response.ContentType = <span style="color:#e6db74">&#34;image/png&#34;</span>;
+        Response.Flush();
+        Response.End();
+    }
+    <span style="color:#66d9ef">catch</span> (Exception e)
+    {
+        Response.ContentType = <span style="color:#e6db74">&#34;text/plain&#34;</span>;
+        Response.Write(e);
+        Response.End();
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span><figure>
+    <img src="/images/2013/10/14/004317/20131014003819.png"/> 
+</figure>
+関係ないけれど<span style="color:#960050;background-color:#1e0010">、</span>Razor <span style="color:#960050;background-color:#1e0010">だと</span> <span style="color:#66d9ef">using</span> <span style="color:#960050;background-color:#1e0010">句の {} が省略できない（</span>if <span style="color:#960050;background-color:#1e0010">などのほかの制御文でも同じ）なので、</span><span style="color:#66d9ef">using</span> <span style="color:#960050;background-color:#1e0010">句を連続して使う場合はネストが深くなる。仕方ないけれど、気持ち悪い。</span>
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-10-14T00:43:17JST">2013/10/14</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/10/14/004317/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F14%2F004317%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/10/14/141550/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/10/14/001050/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

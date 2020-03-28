@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/07/02/142117/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            ASP.NET Core なるものを Visual Studio Code でしてみむとするなり | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は
+ Introduction to ASP.NET Core — ASP.NET documentation にほぼ書かれているので、そっちを読む方がよい。 ### .NET Core SDK for Windows のインストール   まずはこれが必要らしい。“Preview 2”とか書いてあるけど気にせずインストールした。  .NET - Powerful Open Source Development セットアップは一瞬で終わる。 #### 追記   これをインストールすると dnvm（DotNet Version Manager）コマンドが利用できるようになるのかな？   ### Chocolatey のインストール   ここからは node.js や npm のセットアップに入るのだが、コマンドラインでやってしまいたいので、Chocolatey をインストールする。  Chocolatey Chocolatey というのは Linux で言うところの yum や apt-get みたいなもの（Linux はあんまり知らんけど）。管理者権限で「コマンド プロンプト」を起動し、Chocolatery の公式サイトに書いてある呪文を入力する。 ``` Microsoft Windows [Version 10." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio-code/">Visual Studio Code</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/07/02/142117/" >
+                    <h1 class="entry__header-title-link-text">ASP.NET Core なるものを Visual Studio Code でしてみむとするなり</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/07/02</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は</p>
+<ul>
+<li><a href="https://docs.asp.net/en/latest/intro.html">Introduction to ASP.NET Core — ASP.NET documentation</a></li>
+</ul>にほぼ書かれているので、そっちを読む方がよい。
+<div class="section">
+    ### .NET Core SDK for Windows のインストール
+    <figure>
+    <img src="/images/2016/07/02/142117/20160702133715.png"/> 
+</figure>
+まずはこれが必要らしい。“Preview 2”とか書いてあるけど気にせずインストールした。
+<ul>
+<li><a href="https://www.microsoft.com/net/core#windows">.NET - Powerful Open Source Development</a></li>
+</ul>セットアップは一瞬で終わる。
+<div class="section">
+    #### 追記
+    <figure>
+    <img src="/images/2016/07/02/142117/20160702194913.png"/> 
+</figure>
+これをインストールすると dnvm（DotNet Version Manager）コマンドが利用できるようになるのかな？
+</div>
+</div>
+<div class="section">
+    ### Chocolatey のインストール
+    <figure>
+    <img src="/images/2016/07/02/142117/20160702134422.png"/> 
+</figure>
+ここからは node.js や npm のセットアップに入るのだが、コマンドラインでやってしまいたいので、Chocolatey をインストールする。
+<ul>
+<li><a href="https://chocolatey.org/">Chocolatey</a></li>
+</ul>Chocolatey というのは Linux で言うところの yum や apt-get みたいなもの（Linux はあんまり知らんけど）。管理者権限で「コマンド プロンプト」を起動し、Chocolatery の公式サイトに書いてある呪文を入力する。
+```
+Microsoft Windows [Version 10.0.10586]
+(c) 2015 Microsoft Corporation. All rights reserved.
+<p>C:\Windows\system32&gt;@powershell -NoProfile -ExecutionPolicy Bypass -Command &ldquo;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&rdquo; &amp;&amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin</p>
+<p>Mode                LastWriteTime         Length Name</p>
+<hr>
+<p>d&mdash;&ndash;       2016/07/02     13:19                chocInstall
+Downloading <a href="https://packages.chocolatey.org/chocolatey.0.9.10.3.nupkg">https://packages.chocolatey.org/chocolatey.0.9.10.3.nupkg</a> to C:\Users\HIDETO~1\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip
+Download 7Zip commandline tool
+Downloading <a href="https://chocolatey.org/7za.exe">https://chocolatey.org/7za.exe</a> to C:\Users\HIDETO~1\AppData\Local\Temp\chocolatey\chocInstall\7za.exe
+Extracting C:\Users\HIDETO~1\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip to C:\Users\HIDETO~1\AppData\Local\Temp\chocolatey\chocInstall&hellip;</p>
+<p>7-Zip (A) 9.20  Copyright (c) 1999-2010 Igor Pavlov  2010-11-18</p>
+<p>Processing archive: C:\Users\HIDETO~1\AppData\Local\Temp\chocolatey\chocInstall\chocolatey.zip</p>
+<p>Extracting  _rels.rels
+Extracting  chocolatey.nuspec
+Extracting  tools\chocolateyInstall.ps1
+:
+:
+Extracting  tools\chocolateyInstall\tools\shimgen.license.txt
+Extracting  package\services\metadata\core-properties\1a0b5bbf338444a596bb1ebebba80b77.psmdcp
+Extracting  [Content_Types].xml</p>
+<p>Everything is Ok</p>
+<p>Files: 87
+Size:       11891084
+Compressed: 7214019
+Installing chocolatey on this machine
+Creating ChocolateyInstall as an environment variable (targeting 'Machine')
+Setting ChocolateyInstall to 'C:\ProgramData\chocolatey'
+WARNING: It's very likely you will need to close and reopen your shell
+before you can use choco.
+Restricting write permissions to Administrators
+We are setting up the Chocolatey package repository.
+The packages themselves go to 'C:\ProgramData\chocolatey\lib'
+(i.e. C:\ProgramData\chocolatey\lib\yourPackageName).
+A shim file for the command line goes to 'C:\ProgramData\chocolatey\bin'
+and points to an executable in 'C:\ProgramData\chocolatey\lib\yourPackageName'.</p>
+<p>Creating Chocolatey folders if they do not already exist.</p>
+<p>WARNING: You can safely ignore errors related to missing log files when
+upgrading from a version of Chocolatey less than 0.9.9.
+'Batch file could not be found' is also safe to ignore.
+'The system cannot find the file specified' - also safe.
+chocolatey.nupkg file not installed in lib.
+Attempting to locate it from bootstrapper.
+PATH environment variable does not have C:\ProgramData\chocolatey\bin in it. Adding&hellip;
+Adding Chocolatey to the profile. This will provide tab completion, refreshenv, etc.
+WARNING: Chocolatey profile installed. Reload your profile - type . $profile
+Chocolatey (choco.exe) is now ready.
+You can call choco from anywhere, command line or powershell by typing choco.
+Run choco /? for a list of functions.
+You may need to shut down and restart powershell and/or consoles
+first prior to using choco.
+Ensuring chocolatey commands are on the path
+Ensuring chocolatey.nupkg is in the lib folder</p>
+<pre><code class="language-これで" data-lang="これで">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### node.js と npm のインストール
+    次に nodejs パッケージと npm パッケージを Chocolatey でインストール。
+</code></pre><p>C:\Windows\system32&gt;choco
+Chocolatey v0.9.10.3</p>
+<p>C:\Windows\system32&gt;choco install npm
+Installing the following packages:
+npm
+By installing you accept licenses for the packages.</p>
+<p>npm v1.4.9.20150213 [Approved]
+：
+：</p>
+<p>C:\Windows\system32&gt;choco install nodejs
+Installing the following packages:
+nodejs
+By installing you accept licenses for the packages.</p>
+<p>nodejs.install v6.2.2 [Approved]
+：
+：</p>
+<p>Chocolatey installed 2/2 packages. 0 packages failed.
+See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).</p>
+<pre><code class="language-簡単だな。refreshenv" data-lang="簡単だな。refreshenv"></code></pre><p>C:\Windows\system32&gt;refreshenv
+Reading environment variables from registry. Please wait&hellip; Done.</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### yo bower grunt-cli gulp を npm でインストール
+    次に yoeman をインストールする。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://yeoman.io/&quot;&gt;The web&amp;#39;s scaffolding tool for modern webapps | Yeoman&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;Yoeman（ヨーマン）というのはアプリケーションのテンプレートジェネレーターらしい。JavaScript や CSS のパッケージマネージャー bower やビルドツール grunt が必要になるので、一緒にインストールしておく。
+</code></pre><p>C:\Windows\system32&gt;npm install -g yo bower grunt-cli gulp
+npm http GET <a href="https://registry.npmjs.org/yo">https://registry.npmjs.org/yo</a>
+npm http GET <a href="https://registry.npmjs.org/gulp">https://registry.npmjs.org/gulp</a>
+npm http GET <a href="https://registry.npmjs.org/bower">https://registry.npmjs.org/bower</a>
+：
+：
+npm http 200 <a href="https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz">https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz</a>
+npm http GET <a href="https://registry.npmjs.org/buffer-shims">https://registry.npmjs.org/buffer-shims</a>
+npm http 304 <a href="https://registry.npmjs.org/buffer-shims">https://registry.npmjs.org/buffer-shims</a></p>
+<blockquote>
+<p><a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\tabtab\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
+node postinstall</p>
+</blockquote>
+<blockquote>
+<p><a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\yeoman-environment\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
+node postinstall</p>
+</blockquote>
+<p>C:\Program Files\nodejs\yo -&gt; C:\Program Files\nodejs\node_modules\yo\lib\cli.js
+C:\Program Files\nodejs\yo-complete -&gt; C:\Program Files\nodejs\node_modules\yo\lib\completion\index.js</p>
+<blockquote>
+<p><a href="mailto:yo@1.8.4">yo@1.8.4</a> postinstall C:\Program Files\nodejs\node_modules\yo
+yodoctor</p>
+</blockquote>
+<p>Yeoman Doctor
+Running sanity checks on your system</p>
+<p>√ Global configuration file is valid
+√ NODE_PATH matches the npm root
+√ Node.js version
+√ No .bowerrc file in home directory
+√ No .yo-rc.json file in home directory
+√ npm version</p>
+<p>Everything looks all right!
+C:\Program Files\nodejs\bower -&gt; C:\Program Files\nodejs\node_modules\bower\bin\bower
+<a href="mailto:grunt-cli@1.2.0">grunt-cli@1.2.0</a> C:\Program Files\nodejs\node_modules\grunt-cli
+├── <a href="mailto:grunt-known-options@1.1.0">grunt-known-options@1.1.0</a>
+├── <a href="mailto:nopt@3.0.6">nopt@3.0.6</a> (<a href="mailto:abbrev@1.0.9">abbrev@1.0.9</a>)
+├── <a href="mailto:resolve@1.1.7">resolve@1.1.7</a>
+└── <a href="mailto:findup-sync@0.3.0">findup-sync@0.3.0</a> (<a href="mailto:glob@5.0.15">glob@5.0.15</a>)</p>
+<p><a href="mailto:gulp@3.9.1">gulp@3.9.1</a> C:\Program Files\nodejs\node_modules\gulp
+├── <a href="mailto:interpret@1.0.1">interpret@1.0.1</a>
+├── <a href="mailto:pretty-hrtime@1.0.2">pretty-hrtime@1.0.2</a>
+├── <a href="mailto:deprecated@0.0.1">deprecated@0.0.1</a>
+├── <a href="mailto:archy@1.0.0">archy@1.0.0</a>
+├── <a href="mailto:minimist@1.2.0">minimist@1.2.0</a>
+├── <a href="mailto:semver@4.3.6">semver@4.3.6</a>
+├── <a href="mailto:v8flags@2.0.11">v8flags@2.0.11</a> (<a href="mailto:user-home@1.1.1">user-home@1.1.1</a>)
+├── <a href="mailto:tildify@1.2.0">tildify@1.2.0</a> (<a href="mailto:os-homedir@1.0.1">os-homedir@1.0.1</a>)
+├── <a href="mailto:chalk@1.1.3">chalk@1.1.3</a> (<a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:supports-color@2.0.0">supports-color@2.0.0</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:has-ansi@2.0.0">has-ansi@2.0.0</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>)
+├── <a href="mailto:orchestrator@0.3.7">orchestrator@0.3.7</a> (<a href="mailto:stream-consume@0.1.0">stream-consume@0.1.0</a>, <a href="mailto:sequencify@0.0.7">sequencify@0.0.7</a>, <a href="mailto:end-of-stream@0.1.5">end-of-stream@0.1.5</a>)
+├── <a href="mailto:liftoff@2.2.4">liftoff@2.2.4</a> (<a href="mailto:rechoir@0.6.2">rechoir@0.6.2</a>, <a href="mailto:extend@3.0.0">extend@3.0.0</a>, <a href="mailto:flagged-respawn@0.3.2">flagged-respawn@0.3.2</a>, <a href="mailto:resolve@1.1.7">resolve@1.1.7</a>, <a href="mailto:findup-sync@0.3.0">findup-sync@0.3.0</a>)
+├── <a href="mailto:vinyl-fs@0.3.14">vinyl-fs@0.3.14</a> (<a href="mailto:graceful-fs@3.0.8">graceful-fs@3.0.8</a>, <a href="mailto:strip-bom@1.0.0">strip-bom@1.0.0</a>, <a href="mailto:vinyl@0.4.6">vinyl@0.4.6</a>, <a href="mailto:defaults@1.0.3">defaults@1.0.3</a>, <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a>, <a href="mailto:through2@0.6.5">through2@0.6.5</a>, <a href="mailto:glob-stream@3.1.18">glob-stream@3.1.18</a>, <a href="mailto:glob-watcher@0.0.6">glob-watcher@0.0.6</a>)
+└── <a href="mailto:gulp-util@3.0.7">gulp-util@3.0.7</a> (<a href="mailto:array-differ@1.0.0">array-differ@1.0.0</a>, <a href="mailto:lodash._reevaluate@3.0.0">lodash._reevaluate@3.0.0</a>, <a href="mailto:lodash._reinterpolate@3.0.0">lodash._reinterpolate@3.0.0</a>, <a href="mailto:lodash._reescape@3.0.0">lodash._reescape@3.0.0</a>, <a href="mailto:beeper@1.1.0">beeper@1.1.0</a>, <a href="mailto:object-assign@3.0.0">object-assign@3.0.0</a>, <a href="mailto:array-uniq@1.0.3">array-uniq@1.0.3</a>, <a href="mailto:replace-ext@0.0.1">replace-ext@0.0.1</a>, <a href="mailto:has-gulplog@0.1.0">has-gulplog@0.1.0</a>, <a href="mailto:fancy-log@1.2.0">fancy-log@1.2.0</a>, <a href="mailto:gulplog@1.0.0">gulplog@1.0.0</a>, <a href="mailto:vinyl@0.5.3">vinyl@0.5.3</a>, <a href="mailto:lodash.template@3.6.2">lodash.template@3.6.2</a>, <a href="mailto:through2@2.0.1">through2@2.0.1</a>, <a href="mailto:multipipe@0.1.2">multipipe@0.1.2</a>, <a href="mailto:dateformat@1.0.12">dateformat@1.0.12</a>)</p>
+<p><a href="mailto:yo@1.8.4">yo@1.8.4</a> C:\Program Files\nodejs\node_modules\yo
+├── <a href="mailto:cli-list@0.1.8">cli-list@0.1.8</a>
+├── <a href="mailto:titleize@1.0.0">titleize@1.0.0</a>
+├── <a href="mailto:async@1.5.2">async@1.5.2</a>
+├── <a href="mailto:humanize-string@1.0.1">humanize-string@1.0.1</a> (<a href="mailto:decamelize@1.2.0">decamelize@1.2.0</a>)
+├── <a href="mailto:figures@1.7.0">figures@1.7.0</a> (<a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>)
+├── <a href="mailto:user-home@2.0.0">user-home@2.0.0</a> (<a href="mailto:os-homedir@1.0.1">os-homedir@1.0.1</a>)
+├── <a href="mailto:repeating@2.0.1">repeating@2.0.1</a> (<a href="mailto:is-finite@1.0.1">is-finite@1.0.1</a>)
+├── <a href="mailto:opn@3.0.3">opn@3.0.3</a> (<a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>)
+├── <a href="mailto:string-length@1.0.1">string-length@1.0.1</a> (<a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>)
+├── <a href="mailto:chalk@1.1.3">chalk@1.1.3</a> (<a href="mailto:supports-color@2.0.0">supports-color@2.0.0</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:has-ansi@2.0.0">has-ansi@2.0.0</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>)
+├── <a href="mailto:root-check@1.0.0">root-check@1.0.0</a> (<a href="mailto:downgrade-root@1.2.2">downgrade-root@1.2.2</a>, <a href="mailto:sudo-block@1.2.0">sudo-block@1.2.0</a>)
+├── <a href="mailto:sort-on@1.3.0">sort-on@1.3.0</a> (<a href="mailto:arrify@1.0.1">arrify@1.0.1</a>, <a href="mailto:dot-prop@2.4.0">dot-prop@2.4.0</a>)
+├── <a href="mailto:yeoman-character@1.1.0">yeoman-character@1.1.0</a> (<a href="mailto:supports-color@3.1.2">supports-color@3.1.2</a>)
+├── <a href="mailto:parse-help@0.1.1">parse-help@0.1.1</a> (<a href="mailto:execall@1.0.0">execall@1.0.0</a>)
+├── <a href="mailto:yosay@1.2.0">yosay@1.2.0</a> (<a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:wrap-ansi@2.0.0">wrap-ansi@2.0.0</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:cli-boxes@1.0.0">cli-boxes@1.0.0</a>, <a href="mailto:pad-component@0.0.1">pad-component@0.0.1</a>, <a href="mailto:ansi-regex@2.0.0">ansi-regex@2.0.0</a>, <a href="mailto:taketalk@1.0.0">taketalk@1.0.0</a>, <a href="mailto:string-width@1.0.1">string-width@1.0.1</a>)
+├── <a href="mailto:cross-spawn@3.0.1">cross-spawn@3.0.1</a> (<a href="mailto:lru-cache@4.0.1">lru-cache@4.0.1</a>, <a href="mailto:which@1.2.10">which@1.2.10</a>)
+├── <a href="mailto:got@5.6.0">got@5.6.0</a> (<a href="mailto:lowercase-keys@1.0.0">lowercase-keys@1.0.0</a>, <a href="mailto:timed-out@2.0.0">timed-out@2.0.0</a>, <a href="mailto:is-redirect@1.0.0">is-redirect@1.0.0</a>, <a href="mailto:is-retry-allowed@1.0.0">is-retry-allowed@1.0.0</a>, <a href="mailto:is-plain-obj@1.1.0">is-plain-obj@1.1.0</a>, <a href="mailto:unzip-response@1.0.0">unzip-response@1.0.0</a>, <a href="mailto:duplexer2@0.1.4">duplexer2@0.1.4</a>, <a href="mailto:node-status-codes@1.0.0">node-status-codes@1.0.0</a>, <a href="mailto:is-stream@1.1.0">is-stream@1.1.0</a>, <a href="mailto:read-all-stream@3.1.0">read-all-stream@3.1.0</a>, <a href="mailto:create-error-class@3.0.2">create-error-class@3.0.2</a>, <a href="mailto:pinkie-promise@2.0.1">pinkie-promise@2.0.1</a>, <a href="mailto:url-parse-lax@1.0.0">url-parse-lax@1.0.0</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:parse-json@2.2.0">parse-json@2.2.0</a>, <a href="mailto:readable-stream@2.1.4">readable-stream@2.1.4</a>)
+├── <a href="mailto:meow@3.7.0">meow@3.7.0</a> (<a href="mailto:trim-newlines@1.0.0">trim-newlines@1.0.0</a>, <a href="mailto:map-obj@1.0.1">map-obj@1.0.1</a>, <a href="mailto:decamelize@1.2.0">decamelize@1.2.0</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:camelcase-keys@2.1.0">camelcase-keys@2.1.0</a>, <a href="mailto:minimist@1.2.0">minimist@1.2.0</a>, <a href="mailto:loud-rejection@1.5.0">loud-rejection@1.5.0</a>, <a href="mailto:redent@1.0.0">redent@1.0.0</a>, <a href="mailto:normalize-package-data@2.3.5">normalize-package-data@2.3.5</a>)
+├── <a href="mailto:update-notifier@0.6.3">update-notifier@0.6.3</a> (<a href="mailto:is-npm@1.0.0">is-npm@1.0.0</a>, <a href="mailto:latest-version@2.0.0">latest-version@2.0.0</a>, <a href="mailto:semver-diff@2.1.0">semver-diff@2.1.0</a>, <a href="mailto:configstore@2.0.0">configstore@2.0.0</a>, <a href="mailto:boxen@0.3.1">boxen@0.3.1</a>)
+├── <a href="mailto:package-json@2.3.2">package-json@2.3.2</a> (<a href="mailto:registry-url@3.1.0">registry-url@3.1.0</a>, <a href="mailto:semver@5.2.0">semver@5.2.0</a>, <a href="mailto:rc@1.1.6">rc@1.1.6</a>)
+├── <a href="mailto:npm-keyword@4.2.0">npm-keyword@4.2.0</a> (<a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:pinkie-promise@2.0.1">pinkie-promise@2.0.1</a>, <a href="mailto:registry-url@3.1.0">registry-url@3.1.0</a>)
+├── <a href="mailto:inquirer@0.11.4">inquirer@0.11.4</a> (<a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:ansi-regex@2.0.0">ansi-regex@2.0.0</a>, <a href="mailto:ansi-escapes@1.4.0">ansi-escapes@1.4.0</a>, <a href="mailto:rx-lite@3.1.2">rx-lite@3.1.2</a>, <a href="mailto:through@2.3.8">through@2.3.8</a>, <a href="mailto:cli-width@1.1.1">cli-width@1.1.1</a>, <a href="mailto:run-async@0.1.0">run-async@0.1.0</a>, <a href="mailto:string-width@1.0.1">string-width@1.0.1</a>, <a href="mailto:cli-cursor@1.0.2">cli-cursor@1.0.2</a>, <a href="mailto:readline2@1.0.1">readline2@1.0.1</a>)
+├── <a href="mailto:configstore@1.4.0">configstore@1.4.0</a> (<a href="mailto:os-tmpdir@1.0.1">os-tmpdir@1.0.1</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:xdg-basedir@2.0.0">xdg-basedir@2.0.0</a>, <a href="mailto:graceful-fs@4.1.4">graceful-fs@4.1.4</a>, <a href="mailto:osenv@0.1.3">osenv@0.1.3</a>, <a href="mailto:uuid@2.0.2">uuid@2.0.2</a>, <a href="mailto:write-file-atomic@1.1.4">write-file-atomic@1.1.4</a>, <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a>)
+├── <a href="mailto:read-pkg-up@1.0.1">read-pkg-up@1.0.1</a> (<a href="mailto:find-up@1.1.2">find-up@1.1.2</a>, <a href="mailto:read-pkg@1.1.0">read-pkg@1.1.0</a>)
+├── <a href="mailto:fullname@2.1.0">fullname@2.1.0</a> (<a href="mailto:pify@2.3.0">pify@2.3.0</a>, <a href="mailto:pinkie-promise@2.0.1">pinkie-promise@2.0.1</a>, <a href="mailto:npmconf@2.1.2">npmconf@2.1.2</a>)
+├── <a href="mailto:yeoman-doctor@2.1.0">yeoman-doctor@2.1.0</a> (<a href="mailto:object-values@1.0.0">object-values@1.0.0</a>, <a href="mailto:log-symbols@1.0.2">log-symbols@1.0.2</a>, <a href="mailto:semver@5.2.0">semver@5.2.0</a>, <a href="mailto:each-async@1.1.1">each-async@1.1.1</a>, <a href="mailto:bin-version-check@2.1.0">bin-version-check@2.1.0</a>, <a href="mailto:twig@0.8.9">twig@0.8.9</a>)
+├── <a href="mailto:lodash@3.10.1">lodash@3.10.1</a>
+├── <a href="mailto:insight@0.7.0">insight@0.7.0</a> (<a href="mailto:tough-cookie@2.2.2">tough-cookie@2.2.2</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:lodash.debounce@3.1.1">lodash.debounce@3.1.1</a>, <a href="mailto:inquirer@0.10.1">inquirer@0.10.1</a>, <a href="mailto:os-name@1.0.3">os-name@1.0.3</a>, <a href="mailto:request@2.72.0">request@2.72.0</a>)
+├── <a href="mailto:yeoman-environment@1.6.1">yeoman-environment@1.6.1</a> (<a href="mailto:log-symbols@1.0.2">log-symbols@1.0.2</a>, <a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:untildify@2.1.0">untildify@2.1.0</a>, <a href="mailto:text-table@0.2.0">text-table@0.2.0</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:diff@2.2.3">diff@2.2.3</a>, <a href="mailto:globby@4.1.0">globby@4.1.0</a>, <a href="mailto:mem-fs@1.1.3">mem-fs@1.1.3</a>, <a href="mailto:grouped-queue@0.3.2">grouped-queue@0.3.2</a>, <a href="mailto:inquirer@1.1.0">inquirer@1.1.0</a>, <a href="mailto:lodash@4.13.1">lodash@4.13.1</a>)
+└── <a href="mailto:tabtab@1.3.2">tabtab@1.3.2</a> (<a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:minimist@1.2.0">minimist@1.2.0</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a>, <a href="mailto:npmlog@2.0.4">npmlog@2.0.4</a>, <a href="mailto:inquirer@1.1.0">inquirer@1.1.0</a>)</p>
+<p><a href="mailto:bower@1.7.9">bower@1.7.9</a> C:\Program Files\nodejs\node_modules\bower</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### generator-aspnet を npm でインストール
+    最後に generator-aspnet をインストール。これをインストールすると yo aspnet でアプリケーションのひな形が作れるみたい。
+</code></pre><p>C:\Windows\system32&gt;npm install -g generator-aspnet
+npm http GET <a href="https://registry.npmjs.org/generator-aspnet">https://registry.npmjs.org/generator-aspnet</a>
+npm http 200 <a href="https://registry.npmjs.org/generator-aspnet">https://registry.npmjs.org/generator-aspnet</a>
+npm http GET <a href="https://registry.npmjs.org/generator-aspnet/-/generator-aspnet-0.2.0.tgz">https://registry.npmjs.org/generator-aspnet/-/generator-aspnet-0.2.0.tgz</a>
+：
+：
+npm http 304 <a href="https://registry.npmjs.org/escape-string-regexp">https://registry.npmjs.org/escape-string-regexp</a>
+npm http 200 <a href="https://registry.npmjs.org/strip-ansi/-/strip-ansi-2.0.1.tgz">https://registry.npmjs.org/strip-ansi/-/strip-ansi-2.0.1.tgz</a>
+npm http 200 <a href="https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz">https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz</a>
+<a href="mailto:generator-aspnet@0.2.0">generator-aspnet@0.2.0</a> C:\Program Files\nodejs\node_modules\generator-aspnet
+├── <a href="mailto:vs_projectname@1.0.2">vs_projectname@1.0.2</a>
+├── <a href="mailto:uuid@2.0.2">uuid@2.0.2</a>
+├── <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a> (<a href="mailto:minimist@0.0.8">minimist@0.0.8</a>)
+├── <a href="mailto:chalk@1.1.3">chalk@1.1.3</a> (<a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:supports-color@2.0.0">supports-color@2.0.0</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:has-ansi@2.0.0">has-ansi@2.0.0</a>)
+├── <a href="mailto:yosay@1.2.0">yosay@1.2.0</a> (<a href="mailto:ansi-regex@2.0.0">ansi-regex@2.0.0</a>, <a href="mailto:wrap-ansi@2.0.0">wrap-ansi@2.0.0</a>, <a href="mailto:cli-boxes@1.0.0">cli-boxes@1.0.0</a>, <a href="mailto:pad-component@0.0.1">pad-component@0.0.1</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:taketalk@1.0.0">taketalk@1.0.0</a>, <a href="mailto:string-width@1.0.1">string-width@1.0.1</a>, <a href="mailto:repeating@2.0.1">repeating@2.0.1</a>)
+├── <a href="mailto:chai@3.5.0">chai@3.5.0</a> (<a href="mailto:assertion-error@1.0.2">assertion-error@1.0.2</a>, <a href="mailto:type-detect@1.0.0">type-detect@1.0.0</a>, <a href="mailto:deep-eql@0.1.3">deep-eql@0.1.3</a>)
+├── <a href="mailto:findup-sync@0.3.0">findup-sync@0.3.0</a> (<a href="mailto:glob@5.0.15">glob@5.0.15</a>)
+├── <a href="mailto:nconf@0.8.4">nconf@0.8.4</a> (<a href="mailto:ini@1.3.4">ini@1.3.4</a>, <a href="mailto:secure-keys@1.0.0">secure-keys@1.0.0</a>, <a href="mailto:async@1.5.2">async@1.5.2</a>, <a href="mailto:yargs@3.32.0">yargs@3.32.0</a>)
+└── <a href="mailto:yeoman-generator@0.19.2">yeoman-generator@0.19.2</a> (<a href="mailto:detect-conflict@1.0.0">detect-conflict@1.0.0</a>, <a href="mailto:read-chunk@1.0.1">read-chunk@1.0.1</a>, <a href="mailto:diff@1.4.0">diff@1.4.0</a>, <a href="mailto:yeoman-welcome@1.0.1">yeoman-welcome@1.0.1</a>, <a href="mailto:xdg-basedir@1.0.1">xdg-basedir@1.0.1</a>, <a href="mailto:user-home@1.1.1">user-home@1.1.1</a>, <a href="mailto:async@0.9.2">async@0.9.2</a>, <a href="mailto:mime@1.3.4">mime@1.3.4</a>, <a href="mailto:dargs@4.1.0">dargs@4.1.0</a>, <a href="mailto:text-table@0.2.0">text-table@0.2.0</a>, <a href="mailto:nopt@3.0.6">nopt@3.0.6</a>, <a href="mailto:class-extend@0.1.2">class-extend@0.1.2</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:cross-spawn@0.2.9">cross-spawn@0.2.9</a>, <a href="mailto:istextorbinary@1.0.2">istextorbinary@1.0.2</a>, <a href="mailto:shelljs@0.4.0">shelljs@0.4.0</a>, <a href="mailto:mem-fs-editor@1.2.3">mem-fs-editor@1.2.3</a>, <a href="mailto:through2@0.6.5">through2@0.6.5</a>, <a href="mailto:glob@5.0.15">glob@5.0.15</a>, <a href="mailto:run-async@0.1.0">run-async@0.1.0</a>, <a href="mailto:cli-table@0.3.1">cli-table@0.3.1</a>, <a href="mailto:findup-sync@0.2.1">findup-sync@0.2.1</a>, <a href="mailto:yeoman-assert@1.0.0">yeoman-assert@1.0.0</a>, <a href="mailto:rimraf@2.5.2">rimraf@2.5.2</a>, <a href="mailto:pretty-bytes@1.0.4">pretty-bytes@1.0.4</a>, <a href="mailto:github-username@1.1.1">github-username@1.1.1</a>, <a href="mailto:underscore.string@3.3.4">underscore.string@3.3.4</a>, <a href="mailto:dateformat@1.0.12">dateformat@1.0.12</a>, <a href="mailto:sinon@1.17.4">sinon@1.17.4</a>, <a href="mailto:download@4.4.3">download@4.4.3</a>, <a href="mailto:html-wiring@1.2.0">html-wiring@1.2.0</a>, <a href="mailto:lodash@3.10.1">lodash@3.10.1</a>, <a href="mailto:inquirer@0.8.5">inquirer@0.8.5</a>, <a href="mailto:yeoman-environment@1.6.1">yeoman-environment@1.6.1</a>, <a href="mailto:gruntfile-editor@1.2.0">gruntfile-editor@1.2.0</a>)</p>
+<pre><code class="language-<br/>" data-lang="<br/>">これでようやく準備が完成。ここまでの作業が必要なのは最初だけで、次回からは yo aspnet だけでアプリケーションのスケルトンを作成できる……のだと思う。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ASP.NET プロジェクトの作成
+    <figure>
+    <img src="/images/2016/07/02/142117/20160702141051.png"/> 
+</figure>
+ここからは Visual Studio Code 内蔵のシェルでやろうと思ったんだけど、いろいろ動きがヤバかったので、引き続き「コマンド プロンプト」で。
+
+&lt;ol&gt;
+&lt;li&gt;プロジェクト管理フォルダーへ移動（今回は %USERPROFILE%\Projects にした）&lt;/li&gt;
+&lt;li&gt;yo aspnet
+&lt;ol&gt;
+&lt;li&gt;プロジェクトタイプを選択&lt;/li&gt;
+&lt;li&gt;プロジェクト名を指定&lt;/li&gt;
+&lt;li&gt;（管理フォルダーの下にプロジェクトフォルダーが生成される）&lt;/li&gt;
+&lt;/ol&gt;&lt;/li&gt;
+&lt;li&gt;プロジェクトフォルダーへ移動&lt;/li&gt;
+&lt;li&gt;そこで Visual Studio Code を起動する（code .）&lt;/li&gt;
+&lt;/ol&gt;みたいなのが大まかな流れ。最初試したときは先に mkdir してプロジェクトフォルダーを作成してコマンドを使ったのだけど、その下にまたプロジェクトフォルダーを掘られてしまった。あわあわ
+</code></pre><p>C:\Windows\system32&gt;cd %USERPROFILE%</p>
+<p>C:\Windows\system32&gt;cd Projects</p>
+<p>C:\Users\Hidetoshi\Projects&gt;yo aspnet</p>
+<pre><code> _-----_     ╭──────────────────────────╮
+|       |    │      Welcome to the      │
+|--(o)--|    │  marvellous ASP.NET Core │
+</code></pre>
+<p><code>---------´   │        generator!        │ ( _´U</code>_ )    ╰──────────────────────────╯
+/___A___\   /
+|  ~  |
+__'.___.'__
+´   <code> |° ´ Y</code></p>
+<p>? What type of application do you want to create? Empty Web Application
+? What's the name of your ASP.NET application? Empty
+create Empty.gitignore
+create Empty\Program.cs
+create Empty\Startup.cs
+create Empty\project.json
+create Empty\web.config
+create Empty\Dockerfile
+create Empty\Properties\launchSettings.json
+create Empty\README.md</p>
+<p>Your project is now created, you can use the following commands to get going
+cd &ldquo;Empty&rdquo;
+dotnet restore
+dotnet build (optional, build will also happen when it's run)
+dotnet run</p>
+<pre><code class="language-あとはプロジェクトフォルダーに移動して" data-lang="あとはプロジェクトフォルダーに移動して">
+&lt;ol&gt;
+&lt;li&gt;dotnet restore&lt;/li&gt;
+&lt;li&gt;dotnet run&lt;/li&gt;
+&lt;/ol&gt;でいいみたい。new、restore、run ね。ハイハイ。restore は足りないものをいろいろもってきてくれるコマンドかな？
+</code></pre><p>C:\Users\Hidetoshi\Projects&gt;cd Empty</p>
+<p>C:\Users\Hidetoshi\Projects\Empty&gt;dotnet restore
+log  : Restoring packages for C:\Users\Hidetoshi\Projects\Empty\project.json&hellip;
+log  : Installing System.Net.WebSockets 4.0.0.
+log  : Installing System.Diagnostics.Contracts 4.0.1.
+：
+：
+log  : Writing lock file to disk. Path: C:\Users\Hidetoshi\Projects\Empty\project.lock.json
+log  : C:\Users\Hidetoshi\Projects\Empty\project.json
+log  : Restore completed in 18618ms.</p>
+<p>C:\Users\Hidetoshi\Projects\Empty&gt;dotnet run
+Project Empty (.NETCoreApp,Version=v1.0) will be compiled because expected outputs are missing
+Compiling Empty for .NETCoreApp,Version=v1.0</p>
+<p>Compilation succeeded.
+0 Warning(s)
+0 Error(s)</p>
+<p>Time elapsed 00:00:01.7059179</p>
+<p>Hosting environment: Production
+Content root path: C:\Users\Hidetoshi\Projects\Empty
+Now listening on: http://localhost:5000
+Application started. Press Ctrl+C to shut down.
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
+Request starting HTTP/1.1 GET http://localhost:5000/
+info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
+Request finished in 90.0779ms 200</p>
+<pre><code class="language-<figure>
+    <img src="/images/2016/07/02/142117/20160702140311.png"/> 
+</figure>
+<a" data-lang="<figure>
+    <img src="/images/2016/07/02/142117/20160702140311.png"/> 
+</figure>
+<a">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 追記
+    [ERROR:OmniSharp.Dnx.DnxPaths] The specified runtime path &amp;#39;default&amp;#39; does not exist. というエラーは、「コマンド プロンプト」で dnvm upgrade をかけると解消された。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/dotBunny/VSCode/issues/23&quot;&gt;The specified runtime path &amp;#39;default&amp;#39; does not exist. · Issue #23 · dotBunny/VSCode · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;Error while installing .NET Core Debugger というエラーは放置。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://github.com/OmniSharp/omnisharp-vscode/issues/96&quot;&gt;Error while Downloading and configuring the .NET Core Debugger · Issue #96 · OmniSharp/omnisharp-vscode · GitHub&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;なんかバージョンの齟齬があるっぽいけど（？）、Preview だし、多少はね？　って感じ。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-07-02T14:21:17JST">2016/07/02</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Core%20%e3%81%aa%e3%82%8b%e3%82%82%e3%81%ae%e3%82%92%20Visual%20Studio%20Code%20%e3%81%a7%e3%81%97%e3%81%a6%e3%81%bf%e3%82%80%e3%81%a8%e3%81%99%e3%82%8b%e3%81%aa%e3%82%8a%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/07/02/142117/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Core&#43;%E3%81%AA%E3%82%8B%E3%82%82%E3%81%AE%E3%82%92&#43;Visual&#43;Studio&#43;Code&#43;%E3%81%A7%E3%81%97%E3%81%A6%E3%81%BF%E3%82%80%E3%81%A8%E3%81%99%E3%82%8B%E3%81%AA%E3%82%8A&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F07%2F02%2F142117%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/07/02/204626/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/07/01/181803/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,320 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/09/12/001254/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 3: Twitter でログインする - だるろぐ でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。  AccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。  まず、これ。アプリが Twitter へアクセスするために必要。
+ ConsumerKey ConsumerSecret 次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。  AccessKey AccessKeySecret アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。  通信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。 ```cs // ~/App_Code/TwitterClient.cs using DotNetOpenAuth.AspNet; using DotNetOpenAuth.AspNet.Clients; using DotNetOpenAuth.Messaging; using DotNetOpenAuth.OAuth; using DotNetOpenAuth.OAuth.ChannelElements; using DotNetOpenAuth." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows開発</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/09/12/001254/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/09/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/09/05/070245">WebMatrix 3: Twitter でログインする - だるろぐ</a> でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。<figure>
+    <img src="/images/2013/09/12/001254/20130905064941.png"/> 
+</figure>
+AccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。<figure>
+    <img src="/images/2013/09/12/001254/20130911233354.png"/> 
+</figure>
+まず、これ。アプリが Twitter へアクセスするために必要。</p>
+<ul>
+<li>ConsumerKey</li>
+<li>ConsumerSecret</li>
+</ul>次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。
+<ul>
+<li>AccessKey</li>
+<li>AccessKeySecret</li>
+</ul>アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。<figure>
+    <img src="/images/2013/09/12/001254/20130912000225.png"/> 
+</figure>
+通信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
+```cs
+// ~/App_Code/TwitterClient.cs
+<p>using DotNetOpenAuth.AspNet;
+using DotNetOpenAuth.AspNet.Clients;
+using DotNetOpenAuth.Messaging;
+using DotNetOpenAuth.OAuth;
+using DotNetOpenAuth.OAuth.ChannelElements;
+using DotNetOpenAuth.OAuth.Messages;
+using System.Collections.Generic;</p>
+<p>// <a href="http://stackoverflow.com/questions/12198734/getting-twitter-access-secret-using-dotnetopenauth-in-mvc4">http://stackoverflow.com/questions/12198734/getting-twitter-access-secret-using-dotnetopenauth-in-mvc4</a></p>
+<p>public class TwitterClient : OAuthClient
+{
+/// &lt;summary&gt;
+/// The description of Twitter's OAuth protocol URIs for use with their &ldquo;Sign in with Twitter&rdquo; feature.
+/// &lt;/summary&gt;
+public static readonly ServiceProviderDescription TwitterServiceDescription = new ServiceProviderDescription
+{
+RequestTokenEndpoint =
+new MessageReceivingEndpoint(
+&ldquo;<a href="https://api.twitter.com/oauth/request_token%22,">https://api.twitter.com/oauth/request_token&quot;,</a>
+HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+UserAuthorizationEndpoint =
+new MessageReceivingEndpoint(
+&ldquo;<a href="https://api.twitter.com/oauth/authenticate%22,">https://api.twitter.com/oauth/authenticate&quot;,</a>
+HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+AccessTokenEndpoint =
+new MessageReceivingEndpoint(
+&ldquo;<a href="https://api.twitter.com/oauth/access_token%22,">https://api.twitter.com/oauth/access_token&quot;,</a>
+HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+TamperProtectionElements = new ITamperProtectionChannelBindingElement[] { new HmacSha1SigningBindingElement() },
+};</p>
+<pre><code>public TwitterClient(string consumerKey, string consumerSecret) :
+    base(&quot;twitter&quot;, TwitterServiceDescription, consumerKey, consumerSecret) { }
+protected override AuthenticationResult VerifyAuthenticationCore(AuthorizedTokenResponse response)
+{
+    string accessToken = response.AccessToken;
+    string accessSecret = (response as ITokenSecretContainingMessage).TokenSecret;
+    string userId = response.ExtraData[&quot;user_id&quot;];
+    string userName = response.ExtraData[&quot;screen_name&quot;];
+
+    var extraData = new Dictionary&amp;lt;string, string&gt;()
+                        {
+                            {&quot;accesstoken&quot;, accessToken},
+                            {&quot;accesssecret&quot;, accessSecret}
+                        };
+    return new AuthenticationResult(
+        isSuccessful: true,
+        provider: ProviderName,
+        providerUserId: userId,
+        userName: userName,
+        extraData: extraData);
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-結果はこんな感じ。いつもどおり" data-lang="結果はこんな感じ。いつもどおり">```cs
+@{
+    var returnUrl = Request[&quot;returnUrl&quot;];
+
+    // ログインの検証
+    var result = OAuthWebSecurity.VerifyAuthentication(  
+         Href(&quot;LogonCallBack&quot;, new { ReturnUrl = returnUrl })
+    );
+
+    if (result.IsSuccessful)
+    {
+        // ログインが成功すると、
+        // - provider: twitter
+        // - ProviderUserId: twitter の ID
+        // - UserName: twitter のスクリーンネーム
+        // の3つが得られる。自動補完が効かないので変数に入れとく
+        var provider = result.Provider;
+        var providerUserId = result.ProviderUserId;
+        var userName = result.UserName;
+        var accessToken = result.ExtraData[&quot;accesstoken&quot;];
+        var accessTokenSecret = result.ExtraData[&quot;accesssecret&quot;];
+
+        &amp;lt;p&gt;@ObjectInfo.Print(result.ExtraData)&amp;lt;/p&gt;
+
+        // ユーザー名が Users テーブルに存在しない場合、
+        // あらかじめユーザー名を追加しておく。
+        // でないと CreateOrUpdateAccount() でコケる
+        using (var db = Database.Open(&quot;kenzou-memo&quot;))
+        {
+            const string SELECT = &quot;SELECT * FROM USERS WHERE Name=@0&quot;;
+            const string INSERT = &quot;INSERT INTO Users (Name, AccessToken, AccessTokenSecret) VALUES (@0, @1, @2)&quot;;
+            const string UPDATE = &quot;UPDATE Users SET AccessToken=@1, AccessTokenSecret=@2 WHERE Name=@0&quot;;
+
+            if (db.QuerySingle(SELECT, userName) == null) // この処理を追加してみました
+            {
+                db.Execute(INSERT, userName, accessToken, accessTokenSecret);
+            }
+            else
+            {
+                db.Execute(UPDATE, userName, accessToken, accessTokenSecret);
+            }
+        }
+
+        // CreateOrUpdate とか言ってるけど、
+        // やってることは Users テーブルと内部管理テーブルの紐づけ
+        OAuthWebSecurity.CreateOrUpdateAccount(
+            provider,
+            providerUserId,
+            userName);
+
+        // ログインチケットの発行
+        OAuthWebSecurity.Login(
+            provider,
+            providerUserId,
+            createPersistentCookie: true);
+
+        Response.Redirect(returnUrl);        
+    }
+    else
+    {
+        // ログインに失敗したときの処理
+    }
+}
+
+```自分でプロバイダーを実装するのはそこはかとなくめんどくさいけれど、丸コピで動くのでまぁ、よし。プロバイダーをどうやって実装するのかも少し分かったし。練習として、ほかのサービスを実装してみるのもよいかもしれない。最近なんかだと GitHub なんかが需要ありそうだ。&lt;br/&gt;
+&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007236440428544');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007236440428544',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007236440428544&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007426748600320');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007426748600320',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007426748600320&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007600665415680');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007600665415680',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007600665415680&quot;&gt;&lt;/div&gt;
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-09-12T00:12:54JST">2013/09/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/09/12/001254/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F12%2F001254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/12/015252/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/10/080230/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

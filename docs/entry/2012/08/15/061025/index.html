@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/15/061025/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（5） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（4） - だるろぐ  さっそくやってみた。まず、 App_Code フォルダに Theme.cs を作成して、以下のようにコーディング。前回のと内容的には殆ど変わらない。
+using System.Web; public static class Theme { const string ThemeBaseDir = &#34;~/Themes/&#34;; const string ThemeLayoutFile = &#34;_Layout.cshtml&#34;; public static void Load(string name) { Name = name; } public static string Name { get; private set; } public static string Path { get { return VirtualPathUtility." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/15/061025/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（5）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。
+
+    WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（4） - だるろぐ
+</code></pre>
+<p>さっそくやってみた。まず、 App_Code フォルダに Theme.cs を作成して、以下のようにコーディング。前回のと内容的には殆ど変わらない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Web;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Theme</span>
+{
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> ThemeBaseDir = <span style="color:#e6db74">&#34;~/Themes/&#34;</span>;
+    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> ThemeLayoutFile = <span style="color:#e6db74">&#34;_Layout.cshtml&#34;</span>;
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Load(<span style="color:#66d9ef">string</span> name) { Name = name; }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">set</span>; }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Path
+    { 
+        <span style="color:#66d9ef">get</span> 
+        { 
+            <span style="color:#66d9ef">return</span> VirtualPathUtility.ToAbsolute(
+                System.IO.Path.Combine(ThemeBaseDir, Name)
+            );
+        }
+    }
+    
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Layout
+    {
+        <span style="color:#66d9ef">get</span>
+        {
+            <span style="color:#66d9ef">return</span> VirtualPathUtility.ToAbsolute(
+                System.IO.Path.Combine(ThemeBaseDir, Name, ThemeLayoutFile)
+            );
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```“</span>_AppStart.cshtml<span style="color:#960050;background-color:#1e0010">”も書き換えておく。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#75715e">// App.Theme = &#34;Default&#34;;
+</span><span style="color:#75715e"></span>    Theme.Load(<span style="color:#e6db74">&#34;Default&#34;</span>);
+}
+
+<span style="color:#960050;background-color:#1e0010">```最初は</span> Theme.Name <span style="color:#960050;background-color:#1e0010">を</span> <span style="color:#66d9ef">public</span> <span style="color:#960050;background-color:#1e0010">にして</span> Theme.Name = <span style="color:#e6db74">&#34;Default&#34;</span> <span style="color:#960050;background-color:#1e0010">みたいな感じで使うようにしていたけれど、</span> Theme.Load() <span style="color:#960050;background-color:#1e0010">の方が意図が明確になると思った。さてはて、レイアウトファイルの方も書き換えよう。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>html
+&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;~/Content/Reset.css&#34;</span> /&gt;
+&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;~/Content/Common.css&#34;</span> /&gt;
+&lt;!-- &lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@App.GetThemePath()/Styles/Main.css&#34;</span> /&gt; --&gt;
+&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@Theme.Path/Styles/Main.css&#34;</span> /&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span><figure>
+    <img src="/images/2012/08/15/061025/20120815053803.png"/> 
+</figure>
+dynamic <span style="color:#960050;background-color:#1e0010">型にしたら入力補完されないけれど、ちゃんとクラスにしたら……ほら！</span>　<span style="color:#960050;background-color:#1e0010">クラスの責務も明確になるし、断然こっちのほうがいいなと自己満足した。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">閑話休題</span>
+    WebMatrix <span style="color:#ae81ff">2</span> RC <span style="color:#960050;background-color:#1e0010">版はなかなか完成度が高いと思うけれど、テキストのコピーにやたら時間がかかったり</span>&lt;a href=<span style="color:#e6db74">&#34;#f-76078fae&#34;</span> name=<span style="color:#e6db74">&#34;fn-76078fae&#34;</span> title=<span style="color:#e6db74">&#34;とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">、まれにコピー＆ペーストそのものができなくなってしまう。</span> NuGet <span style="color:#960050;background-color:#1e0010">のリボンボタンが行方不明になるのもたまに困る。</span><figure>
+    <img src="/images/2012/08/15/061025/20120815054857.png"/> 
+</figure>
+あと<span style="color:#960050;background-color:#1e0010">、［</span>Alt<span style="color:#960050;background-color:#1e0010">］キーでメニューのナビゲーションが出るのだけれど、そっちにフォーカスがとられて矩形選択や</span> IME <span style="color:#960050;background-color:#1e0010">の切り替え</span>&lt;a href=<span style="color:#e6db74">&#34;#f-52b40b4a&#34;</span> name=<span style="color:#e6db74">&#34;fn-52b40b4a&#34;</span> title=<span style="color:#e6db74">&#34;英語配列だと［Alt］＋［~］キーが標準&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">に支障が出るのもなおしてほしいところかな。［</span>Alt<span style="color:#960050;background-color:#1e0010">］キー</span> <span style="color:#960050;background-color:#1e0010">＝</span> <span style="color:#960050;background-color:#1e0010">メニュー操作</span> <span style="color:#960050;background-color:#1e0010">というのは確かにわかりやすいのだけれど。不具合のいくつかはすでに報告済み。</span> RTM <span style="color:#960050;background-color:#1e0010">でちゃんとなおればいいなぁ、と思った。</span>
+
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-76078fae&#34;</span> name=<span style="color:#e6db74">&#34;f-76078fae&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">とくに［テキストを折り返す］を</span> ON <span style="color:#960050;background-color:#1e0010">にすると絶望的に遅いことがある</span>&lt;/span&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-52b40b4a&#34;</span> name=<span style="color:#e6db74">&#34;f-52b40b4a&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">英語配列だと［</span>Alt<span style="color:#960050;background-color:#1e0010">］＋［</span>~<span style="color:#960050;background-color:#1e0010">］キーが標準</span>&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-15T06:10:25JST">2012/08/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20&#43;%20ASP.NET%20Web%20Pages%20%e3%81%a7%e3%82%ad%e3%83%ac%e3%82%a4%e3%81%ab%e3%82%b3%e3%83%bc%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%97%e3%81%9f%e3%81%84%ef%bc%885%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/15/061025/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F15%2F061025%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/15/071026/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/15/051237/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

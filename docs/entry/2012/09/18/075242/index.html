@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/18/075242/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            初めての Windows ストアアプリを提出してみました | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="メトロっぽいカスタムボタンを XAML で作る - だるろぐ の記事を書くためのサンプルを作ろうと、 StandardStyles.xaml をパースしてバインディングして……ということをしていたのですが、だったらアプリにしてしまえばええやん、と思いついたのでサクッと作ってみました。    AppBarButtonStyle のボタンを一覧表示できます。XAML コードを AppBar からクリップボードへコピー可能。また、一応、習作として検索コントラクト・共有コントラクトにも対応してみました。ところどころ満足が行っていない部分もあるし、そもそもあんまり実用性がない気がするのが残念ですけど、まぁ、ほかのアプリ開発に役立てていきたいです。      最初は XElement をそのままバインディングしていたのですが、ちゃんと Model と ViewModel を作るとあとあとのデザインが楽に。Windows フォームの時はどちらかというと見た目を作ってからイベントハンドラを足しながら機能が増えていくという感じだけれども、WinRT はちっぽけでもいいからまず Model をキッチリ作って、それを表現するために ViewModel を作り、バインドすれば見栄えは完成！　といった感じに作るのがいいみたい。まだよくわかってなくてデザイン用のデータの作り方を知らず、必然的にデザインではなくデータから作っていくしかないというのもあるんですけど。 ふぅ、とりあえずこれで「9月中に1本」という目標は達成。本命のアプリにゆっくりとりかかれる。" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows/">Windows ストア アプリ</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/18/075242/" >
+                    <h1 class="entry__header-title-link-text">初めての Windows ストアアプリを提出してみました</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/18</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/18/075242/20120918074041.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2012/09/18/002231">メトロっぽいカスタムボタンを XAML で作る - だるろぐ</a> の記事を書くためのサンプルを作ろうと、 StandardStyles.xaml をパースしてバインディングして……ということをしていたのですが、<strong>だったらアプリにしてしまえばええやん</strong>、と思いついたのでサクッと作ってみました。<figure>
+    <img src="/images/2012/09/18/075242/20120918074053.png"/> 
+</figure>
+<figure>
+    <img src="/images/2012/09/18/075242/20120918074056.png"/> 
+</figure>
+AppBarButtonStyle のボタンを一覧表示できます。XAML コードを AppBar からクリップボードへコピー可能。また、一応、習作として検索コントラクト・共有コントラクトにも対応してみました。ところどころ満足が行っていない部分もあるし、そもそもあんまり実用性がない気がするのが残念ですけど、まぁ、ほかのアプリ開発に役立てていきたいです。<figure>
+    <img src="/images/2012/09/18/075242/20120918074408.png"/> 
+</figure>
+<figure>
+    <img src="/images/2012/09/18/075242/20120918074413.png"/> 
+</figure>
+<figure>
+    <img src="/images/2012/09/18/075242/20120918074053.png"/> 
+</figure>
+最初は XElement をそのままバインディングしていたのですが、ちゃんと Model と ViewModel を作るとあとあとのデザインが楽に。Windows フォームの時はどちらかというと見た目を作ってからイベントハンドラを足しながら機能が増えていくという感じだけれども、WinRT はちっぽけでもいいからまず Model をキッチリ作って、それを表現するために ViewModel を作り、バインドすれば見栄えは完成！　といった感じに作るのがいいみたい。まだよくわかってなくてデザイン用のデータの作り方を知らず、必然的にデザインではなくデータから作っていくしかないというのもあるんですけど。 ふぅ、とりあえずこれで「9月中に1本」という目標は達成。本命のアプリにゆっくりとりかかれる。</p>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-18T07:52:42JST">2012/09/18</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%88%9d%e3%82%81%e3%81%a6%e3%81%ae%20Windows%20%e3%82%b9%e3%83%88%e3%82%a2%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e6%8f%90%e5%87%ba%e3%81%97%e3%81%a6%e3%81%bf%e3%81%be%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/18/075242/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%88%9D%E3%82%81%E3%81%A6%E3%81%AE&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E6%8F%90%E5%87%BA%E3%81%97%E3%81%A6%E3%81%BF%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F18%2F075242%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/19/062135/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/18/002231/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

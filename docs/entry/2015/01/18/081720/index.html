@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2015/01/18/081720/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：愛媛のニュースだけ読みたいので、Google ニュースから引っ張ってくる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="地元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。
+# ~/App_Code/GoogleNews.cshtml @using System.ServiceModel.Syndication @using System.Xml @helper Get(string query) { var url = string.Format( &#34;http://news.google.com/news?q={0}&amp;amp;output=rss&#34;, query ); using (var reader = XmlReader.Create(url)) { var feed = SyndicationFeed.Load(reader); // @ObjectInfo.Print(feed);  var data = feed.Items.Select(_ =&gt; new { Title = _.Title.Text, Summary = _.Summary.Text, PublishDate = _.PublishDate, Url = _.Links.First().Uri.ToString().Split(&amp;#39;=&amp;#39;).Last(), }); // @ObjectInfo.Print(data);  foreach (var d in data) { // &lt;h2&gt;&lt;a href=&#34;@d.Url&#34;&gt;@d.Title&lt;/a&gt;&lt;/h2&gt;  &amp;lt;p&gt;@Html." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/google/">Google</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2015/01/18/081720/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：愛媛のニュースだけ読みたいので、Google ニュースから引っ張ってくる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2015/01/18</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2015/01/18/081720/20150118081201.png"/> 
+</figure>
+地元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/GoogleNews.cshtml
+
+@using System.ServiceModel.Syndication
+@using System.Xml
+
+@helper Get(<span style="color:#66d9ef">string</span> query)
+{
+    <span style="color:#66d9ef">var</span> url = <span style="color:#66d9ef">string</span>.Format(
+        <span style="color:#e6db74">&#34;http://news.google.com/news?q={0}&amp;amp;output=rss&#34;</span>,
+        query
+    );
+
+    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> reader = XmlReader.Create(url))
+    {
+        <span style="color:#66d9ef">var</span> feed = SyndicationFeed.Load(reader);
+
+        <span style="color:#75715e">// @ObjectInfo.Print(feed);
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">var</span> data = feed.Items.Select(_ =&gt; <span style="color:#66d9ef">new</span> {
+            Title = _.Title.Text,
+            Summary = _.Summary.Text,
+            PublishDate = _.PublishDate,
+            Url = _.Links.First().Uri.ToString().Split(&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;=&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).Last(),
+        });
+
+        <span style="color:#75715e">// @ObjectInfo.Print(data);
+</span><span style="color:#75715e"></span>
+        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> d <span style="color:#66d9ef">in</span> data)
+        {
+            <span style="color:#75715e">// &lt;h2&gt;&lt;a href=&#34;@d.Url&#34;&gt;@d.Title&lt;/a&gt;&lt;/h2&gt;
+</span><span style="color:#75715e"></span>            &amp;lt;p&gt;@Html.Raw(d.Summary)&amp;lt;/p&gt;
+            <span style="color:#75715e">// &lt;p&gt;@d.PublishDate&lt;/p&gt;
+</span><span style="color:#75715e"></span>        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```パラメーターに</span> output=rss <span style="color:#960050;background-color:#1e0010">をくっつけると</span> RSS <span style="color:#960050;background-color:#1e0010">形式でデータを取得できるので</span> XmlReader <span style="color:#960050;background-color:#1e0010">と</span> SyndicationFeed <span style="color:#960050;background-color:#1e0010">で読み込み・整形してやるとよさげ。残念なのでは地域ごとに絞れないこと</span>&lt;a href=<span style="color:#e6db74">&#34;#f-68c7e51c&#34;</span> name=<span style="color:#e6db74">&#34;fn-68c7e51c&#34;</span> title=<span style="color:#e6db74">&#34;本当はパラメーターに ned=jp を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の Google ニュースでは利用できないようだ。&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。そのため「松山」で検索すると台湾の松山のニュースも引っかかるが……まぁ、これは仕方ないかな。</span>JavaScript <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用すれば、ちゃんと制御できるようなので、</span>JavaScript <span style="color:#960050;background-color:#1e0010">ができる人はそちらで書けばいいと思う。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">結果</span>
+    <figure>
+    <img src="/images/2015/01/18/081720/20150118080353.png"/> 
+</figure>
+&lt;br/&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> ~/Default.cshtml
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+        &amp;lt;style&gt;
+            * {
+                font-family: Meiryo, sans-serif;
+            }
+        &amp;lt;/style&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @GoogleNews.Get(<span style="color:#e6db74">&#34;愛媛 OR 松山 -秀樹 -ゴルフ&#34;</span>)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```天気予報機能も付けて（「☀時々☁、最高</span><span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">度最低</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">度、西風後南西風海上後南西風稍強、波</span><span style="color:#ae81ff">0.5</span><span style="color:#960050;background-color:#1e0010">米後</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">米」）、</span>Twitter BOT <span style="color:#960050;background-color:#1e0010">にでもしようかな。</span>
+
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-68c7e51c&#34;</span> name=<span style="color:#e6db74">&#34;f-68c7e51c&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">本当はパラメーターに</span> ned=jp <span style="color:#960050;background-color:#1e0010">を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の</span> Google <span style="color:#960050;background-color:#1e0010">ニュースでは利用できないようだ。</span>&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2015-01-18T08:17:20JST">2015/01/18</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e6%84%9b%e5%aa%9b%e3%81%ae%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%b9%e3%81%a0%e3%81%91%e8%aa%ad%e3%81%bf%e3%81%9f%e3%81%84%e3%81%ae%e3%81%a7%e3%80%81Google%20%e3%83%8b%e3%83%a5%e3%83%bc%e3%82%b9%e3%81%8b%e3%82%89%e5%bc%95%e3%81%a3%e5%bc%b5%e3%81%a3%e3%81%a6%e3%81%8f%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2015/01/18/081720/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E6%84%9B%E5%AA%9B%E3%81%AE%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%A0%E3%81%91%E8%AA%AD%E3%81%BF%E3%81%9F%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81Google&#43;%E3%83%8B%E3%83%A5%E3%83%BC%E3%82%B9%E3%81%8B%E3%82%89%E5%BC%95%E3%81%A3%E5%BC%B5%E3%81%A3%E3%81%A6%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F18%2F081720%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/20/033210/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/17/121022/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

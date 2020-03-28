@@ -1,0 +1,293 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/02/03/160915/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：OAuth でログインする（２） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2：OAuth でログインする - だるろぐ の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。
+### NuGet で必要なものをインストール   MuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。  これをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。  ### ~/_AppStart.cshtml Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。 ```cs @{ // いろんなところで使うので、グローバルにアクセスできるようにしとくか App.Database = &#34;Database&#34;; // ユーザー管理用のテーブルを初期化・作成 WebSecurity.InitializeDatabaseConnection( App.Database, &quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;, autoCreateTables: true); // Google の OAuth を使います！ OAuthWebSecurity.RegisterGoogleClient();  }
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ~/Account/Login." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/02/03/160915/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：OAuth でログインする（２）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/02/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/01/27/102043">WebMatrix 2：OAuth でログインする - だるろぐ</a> の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。</p>
+<div class="section">
+    ### NuGet で必要なものをインストール
+    <figure>
+    <img src="/images/2013/02/03/160915/20130203152828.png"/> 
+</figure>
+MuGet で <a href="http://nuget.org/packages/Microsoft.AspNet.WebPages.OAuth">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。まえにやったとき（<a href="https://blog.daruyanagi.jp/entry/2012/09/04/023414">さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ</a>）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。<figure>
+    <img src="/images/2013/02/03/160915/20130203153208.png"/> 
+</figure>
+これをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。
+</div>
+<div class="section">
+    ### ~/_AppStart.cshtml
+    Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。
+```cs
+@{
+    // いろんなところで使うので、グローバルにアクセスできるようにしとくか
+    App.Database = "Database";
+<pre><code>// ユーザー管理用のテーブルを初期化・作成
+WebSecurity.InitializeDatabaseConnection(
+    App.Database,
+    &quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;,
+    autoCreateTables: true);
+
+// Google の OAuth を使います！
+OAuthWebSecurity.RegisterGoogleClient();
+</code></pre>
+<p>}</p>
+<pre><code class="language-WebSecurity.InitializeDatabaseConnection" data-lang="WebSecurity.InitializeDatabaseConnection">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Account/Login.cshtml
+    お次はログインフォーム。
+```cs
+@{
+    Page.Title = &quot;ログイン&quot;;
+
+    var provider = Request.Form[&quot;provider&quot;];
+}
+
+@{  // POST のときは外部サイトの認証ページへ飛ばす
+
+    if (!provider.IsEmpty() &amp;amp;&amp;amp; IsPost)
+    {
+        AntiForgery.Validate(); // CSRF 対策
+
+        // 外部認証サービスでの認証を行う
+        // 成功したら ~/Account/RegisterService.cshtml を開く
+        OAuthWebSecurity.RequestAuthentication(
+            provider,
+            Href(&quot;~/Account/RegisterService&quot;)
+        );
+
+        return;
+    }
+}
+
+@{  // GET のとき（だけじゃないけど）は、
+    // 外部認証サービスを選択するフォームを表示する
+
+    if (OAuthWebSecurity.RegisteredClientData.Count == 0)
+    {
+        &amp;lt;p&gt;外部認証サービスが構成されていません。&amp;lt;/p&gt;
+    }
+    else
+    {
+        &amp;lt;form method=&quot;post&quot;&gt;
+            @AntiForgery.GetHtml()
+            &amp;lt;p&gt;
+            @foreach (var client in OAuthWebSecurity.RegisteredClientData)
+            {
+                &amp;lt;button type=&quot;submit&quot; name=&quot;provider&quot;
+                    value=&quot;@client.AuthenticationClient.ProviderName&quot;
+                    title=&quot;@client.DisplayName アカウントを使用してログイン&quot;&gt;
+                    @client.DisplayName
+                &amp;lt;/button&gt;
+            }
+            &amp;lt;/p&gt;
+        &amp;lt;/form&gt;
+    }
+}
+
+```<figure>
+    <img src="/images/2013/02/03/160915/20130203155104.png"/> 
+</figure>
+このボタンを押すと、<figure>
+    <img src="/images/2013/02/03/160915/20130203155926.png"/> 
+</figure>
+Google の認証ページに飛ぶはず。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Account/RegisterService.cshtml
+    Google での認証が成功すると、このページに着地する。まぁ、名前は好きにすればいいと思う。
+```cs
+@{
+    Page.Title = &quot;登録&quot;;
+}
+
+&amp;lt;dl&gt;
+@foreach (var key in Request.Params.Keys)
+{
+    &amp;lt;dt&gt;@key&amp;lt;/dt&gt;
+    &amp;lt;dd&gt;@Request.Params[key.ToString()]&amp;lt;/dd&gt;
+}
+&amp;lt;/dl&gt;
+
+```<figure>
+    <img src="/images/2013/02/03/160915/20130203160114.png"/> 
+</figure>
+今回はパラメーターを列挙するだけにしておいた。ほんとはここから
+
+&lt;ul&gt;
+&lt;li&gt;認証がうまくいったか&lt;/li&gt;
+&lt;li&gt;認証データの取り出し&lt;/li&gt;
+&lt;li&gt;このサイトでの認証とデータベースへの登録&lt;/li&gt;
+&lt;/ul&gt;などを行わないといけない。外部認証サービスによって返ってくるデータは微妙に違うけれど、
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/jj158354(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.VerifyAuthentication Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trydeserializeprovideruserid(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.TryDeserializeProviderUserId(String, String, String) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trygetoauthclientdata(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.TryGetOAuthClientData(String, AuthenticationClientData) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;などを使うことによって、統一的に扱えるようなので安心……という感じのようだ。知らんけど。今日のところは、ここまで。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-02-03T16:09:15JST">2013/02/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aOAuth%20%e3%81%a7%e3%83%ad%e3%82%b0%e3%82%a4%e3%83%b3%e3%81%99%e3%82%8b%ef%bc%88%ef%bc%92%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/02/03/160915/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F03%2F160915%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/02/03/214620/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/02/03/111946/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

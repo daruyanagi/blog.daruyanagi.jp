@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/01/08/153033/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            日記：2018年1月8日～ASP.NET Core MVC で読書管理アプリを作って遊ぶ | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="お正月は ASP.NET Core MVC で読書管理アプリを作って遊んでいた。最初は Razor Page で作っていたのだけど、CRUD 処理やるんだったら MVC の方がスキャフォールド使えて楽かなーと。
+### Entity Framework Core モデルは Entity Framework Core の Code First で作ったけど、相変わらず簡単だった。基本的には  モデルクラスを作り、 Add-Migration {Migration Name} して、（なぜか NuGet パッケージコンソールで！） Update-Database する だけで、モデルクラス通りにデータベーススキーマを作ってくれる。はるか昔、Rails 2.0 を触ってた時に rake db:migrate とかやってた気がするけど、あの時代からあまり変わってない感じがする。  けれど、ちょっと困ったのがコレ。モデルクラスを変更したときにたまに Build failed. と言われて詰まってしまう。カラムを消したときとかによくなるんだけど、どうやって解消すればいいのかな。エラーメッセージがシンプル過ぎて、とっかかりがない感じがつらい。おかげで、エラーで詰まるたびに新規プロジェクトを作る感じで、ちょっとげんなりしてる。まぁ、趣味で遊んでるだけなのでそれでもいいんだけど……Include() の使い方とかはネットをうろうろしてるうちに身につけられたけど、ちゃんと Entity Framework Core の本を一冊（日本語で）読んで系統だって理解したいなって思った。  ### Tag Helper   enum で表したデータをそのまま表示すると味気ない（上の表示）ので、少しリッチにしたい（下の表示）のだけど、Razor でごてごて分岐を書くのは面倒だし管理が大変だ。そこで今回は Tag Helper というのを使ってみた。これが超便利……。たとえば、こんな感じに ```html &lt;reading-status@Mode.Status&lt;/reading-status ```html &amp;lt;span class=&quot;reading-status&quot;&gt;{日本語表記}&amp;lt;/span&gt; ```みたいに展開できる（スクリーンショットの部分は、もともと &lt;reading-status&gt;@Mode.Status&lt;/reading-status&gt; という簡素な記述だった）。Web Components みたいなのをサーバーサイドで処理できるイメージかな？  公式ドキュメントに &amp;lt;email&gt; を &amp;lt;a&gt; に書き換えるサンプルがあるので、それを見ながら作るといい感じ。[ASP." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/01/08/153033/" >
+                    <h1 class="entry__header-title-link-text">日記：2018年1月8日～ASP.NET Core MVC で読書管理アプリを作って遊ぶ</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/01/08</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2018/01/08/153033/20180108145800.png"/> 
+</figure>
+お正月は ASP.NET Core MVC で読書管理アプリを作って遊んでいた。最初は Razor Page で作っていたのだけど、CRUD 処理やるんだったら MVC の方がスキャフォールド使えて楽かなーと。</p>
+<div class="section">
+    ### Entity Framework Core
+    モデルは Entity Framework Core の Code First で作ったけど、相変わらず簡単だった。基本的には
+<ul>
+<li>モデルクラスを作り、</li>
+<li>Add-Migration {Migration Name} して、（なぜか NuGet パッケージコンソールで！）</li>
+<li>Update-Database する</li>
+</ul>だけで、モデルクラス通りにデータベーススキーマを作ってくれる。はるか昔、Rails 2.0 を触ってた時に rake db:migrate とかやってた気がするけど、あの時代からあまり変わってない感じがする。<figure>
+    <img src="/images/2018/01/08/153033/20180108150516.png"/> 
+</figure>
+けれど、ちょっと困ったのがコレ。モデルクラスを変更したときにたまに Build failed. と言われて詰まってしまう。カラムを消したときとかによくなるんだけど、どうやって解消すればいいのかな。エラーメッセージがシンプル過ぎて、とっかかりがない感じがつらい。おかげで、エラーで詰まるたびに新規プロジェクトを作る感じで、ちょっとげんなりしてる。まぁ、趣味で遊んでるだけなのでそれでもいいんだけど……Include() の使い方とかはネットをうろうろしてるうちに身につけられたけど、ちゃんと Entity Framework Core の本を一冊（日本語で）読んで系統だって理解したいなって思った。
+</div>
+<div class="section">
+    ### Tag Helper
+    <figure>
+    <img src="/images/2018/01/08/153033/20180108150956.png"/> 
+</figure>
+enum で表したデータをそのまま表示すると味気ない（上の表示）ので、少しリッチにしたい（下の表示）のだけど、Razor でごてごて分岐を書くのは面倒だし管理が大変だ。そこで今回は Tag Helper というのを使ってみた。これが超便利……。たとえば、こんな感じに
+```html
+&lt;reading-status>@Mode.Status&lt;/reading-status>
+<pre><code class="language-独自定義したタグを、" data-lang="独自定義したタグを、">```html
+&amp;lt;span class=&quot;reading-status&quot;&gt;{日本語表記}&amp;lt;/span&gt;
+
+```みたいに展開できる（スクリーンショットの部分は、もともと &lt;reading-status&gt;@Mode.Status&lt;/reading-status&gt; という簡素な記述だった）。Web Components みたいなのをサーバーサイドで処理できるイメージかな？<figure>
+    <img src="/images/2018/01/08/153033/20180108151613.png"/> 
+</figure>
+公式ドキュメントに &amp;lt;email&gt; を &amp;lt;a&gt; に書き換えるサンプルがあるので、それを見ながら作るといい感じ。[ASP.NET Core のタグ ヘルパー](https://docs.microsoft.com/ja-jp/aspnet/core/mvc/views/tag-helpers/intro)ただ、独自定義したタグを閉じて書く（&amp;lt;foo /&gt;）と、SetContent() でタグの中身を設定できなくてちょっとハマった。開いて書く（&amp;lt;foo&gt;&amp;lt;/foo&gt;）と期待通りに動く。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### Tag Helper と Select
+    あと Tag Helper 関連で――enum を含むデータをスキャフォールドすると slect タグが出力されるんだけど、そのアイテムが空なので少し困った。これは Html.GetEnumSelectList&amp;lt;***&gt;()&quot; で解決できる。
+```html
+&amp;lt;select asp-for=&quot;***&quot; asp-items=&quot;Html.GetEnumSelectList&amp;lt;***&gt;()&quot;&gt;&amp;lt;/select&gt;
+
+```まぁ、このアプリは完成しないと思うけど、たまに目標決めていろいろ組んでみるのは楽しい。楽しみでやっているから、バックエンドを作るのが面倒になったらインターフェイスを、インターフェイスで不都合が出たらバックエンドを、みたいな感じでちょろちょろ齧って、最終的には訳が分からなくなって、また最初から作り直す――というのを繰り返しているだけだから、たいして技術力はつかないんだけどね。“楽しくないこと（≒めんどうくさいこと、むずかしくてわかんないこと）”を乗り越えていかないから、その下でウロウロしてるだけ。お仕事でやる人と趣味でやる人の差って、こういうのでつくんだろうな。趣味は趣味でも、謎のモチベーションで困難を乗り越えてしまうタイプも、前者に属するんだろうと思う。ウチは下手の横好きなので、底辺でちょろちょろして遊んでるだけだけど、すごい人の言うことがなんとなくわかるレベルは保っていきたい。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-01-08T15:30:33JST">2018/01/08</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e6%97%a5%e8%a8%98%ef%bc%9a2018%e5%b9%b41%e6%9c%888%e6%97%a5%ef%bd%9eASP.NET%20Core%20MVC%20%e3%81%a7%e8%aa%ad%e6%9b%b8%e7%ae%a1%e7%90%86%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e9%81%8a%e3%81%b6%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/01/08/153033/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E6%97%A5%E8%A8%98%EF%BC%9A2018%E5%B9%B41%E6%9C%888%E6%97%A5%EF%BD%9EASP.NET&#43;Core&#43;MVC&#43;%E3%81%A7%E8%AA%AD%E6%9B%B8%E7%AE%A1%E7%90%86%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E9%81%8A%E3%81%B6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F08%2F153033%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/10/025302/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/06/153601/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

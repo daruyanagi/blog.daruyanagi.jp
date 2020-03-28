@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2019/02/04/040627/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Connected Devices プラットフォーム というサービスが CPU を浪費する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  Windows 19H1（Fast、Build 18323）で Connected Devices プラットフォーム というサービスがずっと CPU を食っていたので対処。Connected Devices Platform: Excessive CPU UsageMicrosoft Community でそれらしき解決策が載っていたので、今回はその通りにした。  Cmd.exe を管理者権限で起動し、以下のコマンドを入力（大文字小文字は関係ない）。
+Sfc.exe /ScanNow Dism.exe /Online /Cleanup-Image /StartComponentCleanup Dism.exe /Online /Cleanup-Image /RestoreHealth ```んで、一応 OS を再起動する。  とりあえず収まった気がする。 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-10/">Windows 10</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2019/02/04/040627/" >
+                    <h1 class="entry__header-title-link-text">Connected Devices プラットフォーム というサービスが CPU を浪費する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2019/02/04</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2019/02/04/040627/20190204035848.jpg"/> 
+</figure>
+Windows 19H1（Fast、Build 18323）で Connected Devices プラットフォーム というサービスがずっと CPU を食っていたので対処。<a href="https://answers.microsoft.com/en-us/windows/forum/all/connected-devices-platform-excessive-cpu-usage/4e4093f7-1790-4277-bc19-07f01871c246?auth=1">Connected Devices Platform: Excessive CPU Usage</a>Microsoft Community でそれらしき解決策が載っていたので、今回はその通りにした。<figure>
+    <img src="/images/2019/02/04/040627/20190204040212.png"/> 
+</figure>
+Cmd.exe を<strong>管理者権限で</strong>起動し、以下のコマンドを入力（大文字小文字は関係ない）。</p>
+<pre><code>Sfc.exe /ScanNow
+Dism.exe /Online /Cleanup-Image /StartComponentCleanup
+Dism.exe /Online /Cleanup-Image /RestoreHealth
+```んで、一応 OS を再起動する。<figure>
+    <img src="/images/2019/02/04/040627/20190204040319.png"/> 
+</figure>
+とりあえず収まった気がする。
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2019-02-04T04:06:27JST">2019/02/04</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Connected%20Devices%20%e3%83%97%e3%83%a9%e3%83%83%e3%83%88%e3%83%95%e3%82%a9%e3%83%bc%e3%83%a0%20%e3%81%a8%e3%81%84%e3%81%86%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%81%8c%20CPU%20%e3%82%92%e6%b5%aa%e8%b2%bb%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2019/02/04/040627/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Connected&#43;Devices&#43;%E3%83%97%E3%83%A9%E3%83%83%E3%83%88%E3%83%95%E3%82%A9%E3%83%BC%E3%83%A0&#43;%E3%81%A8%E3%81%84%E3%81%86%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%81%8C&#43;CPU&#43;%E3%82%92%E6%B5%AA%E8%B2%BB%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2019%2F02%2F04%2F040627%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2019/02/04/195508/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2019/02/03/005114/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

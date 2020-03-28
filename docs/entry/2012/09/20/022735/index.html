@@ -1,0 +1,195 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/20/022735/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  今作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
+### 回転と解像度   たとえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。  ### スナップ   Windows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。 ```xml x:Name=&#34;Snapped&#34;  Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/  Storyboard.TargetName=&quot;pageTitle&quot; Storyboard.TargetProperty=&quot;Style&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;{StaticResource SnappedPageHeaderTextStyle}&quot;/&gt; Storyboard.TargetName=&quot;contentGrid&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;Collapsed&quot;/&gt; Storyboard.TargetName=&quot;logListView&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;Visible&quot;/&gt;  &lt;/div&gt; " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/winrt/">WinRT</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/20/022735/" >
+                    <h1 class="entry__header-title-link-text">WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/20/022735/20120917220924.png"/> 
+</figure>
+今作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……</p>
+<div class="section">
+    ### 回転と解像度
+    <figure>
+    <img src="/images/2012/09/20/022735/20120920020106.png"/> 
+</figure>
+たとえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。
+</div>
+<div class="section">
+    ### スナップ
+    <figure>
+    <img src="/images/2012/09/20/022735/20120917220217.png"/> 
+</figure>
+Windows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも <del>ViewState（どっかで聞いたような名前だけど気にしない）</del> VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。
+```xml
+<!-- The back button and title have different styles when snapped -->
+x:Name="Snapped">
+    <storyboard></storyboard>
+        Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
+            KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
+<pre><code>    Storyboard.TargetName=&quot;pageTitle&quot; Storyboard.TargetProperty=&quot;Style&quot;&gt;
+        KeyTime=&quot;0&quot; Value=&quot;{StaticResource SnappedPageHeaderTextStyle}&quot;/&gt;
+    
+                    
+    Storyboard.TargetName=&quot;contentGrid&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
+        KeyTime=&quot;0&quot; Value=&quot;Collapsed&quot;/&gt;
+    
+    Storyboard.TargetName=&quot;logListView&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
+        KeyTime=&quot;0&quot; Value=&quot;Visible&quot;/&gt;
+</code></pre>
+<pre><code class="language-下の二つの" data-lang="下の二つの">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-20T02:27:35JST">2012/09/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT/XAML%20%e3%81%ae%e3%81%8a%e5%8b%89%e5%bc%b7%20%e2%80%95%e2%80%95%20%e3%81%95%e3%81%be%e3%81%96%e3%81%be%e3%81%aa%e5%88%a9%e7%94%a8%e3%82%b7%e3%83%bc%e3%83%b3%e3%81%ab%e5%af%be%e5%bf%9c%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/20/022735/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%81%95%E3%81%BE%E3%81%96%E3%81%BE%E3%81%AA%E5%88%A9%E7%94%A8%E3%82%B7%E3%83%BC%E3%83%B3%E3%81%AB%E5%AF%BE%E5%BF%9C%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F022735%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/20/233052/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/20/002538/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

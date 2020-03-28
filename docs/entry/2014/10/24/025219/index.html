@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/10/24/025219/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            VirusTotal API を使ってみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
+### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。  ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/virustoral/">VirusToral </a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/10/24/025219/" >
+                    <h1 class="entry__header-title-link-text">VirusTotal API を使ってみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/10/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。</p>
+<div class="section">
+    ### VirusTotal とは
+    指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。<iframe src="http://hatenablog.com/embed?url=https%3A%2F%2Fwww.virustotal.com%2F" title="VirusTotal - Free Online Virus, Malware and URL Scanner" scrolling="no" frameborder="0" style="width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="https://www.virustotal.com/">VirusTotal - Free Online Virus, Malware and URL Scanner</a></iframe>結構利用制限はきついのですが、一応 API も用意されています。
+<ul>
+<li><a href="https://www.virustotal.com/ja/documentation/public-api/">Public API version 2.0 - VirusTotal</a></li>
+</ul>これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。
+</div>
+<div class="section">
+    ### 準備
+    <figure>
+    <img src="/images/2014/10/24/025219/20141024021938.png"/> 
+</figure>
+まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
+</div>
+<div class="section">
+    ### VirusToral にファイルのスキャンをお願いする
+    VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。
+```
+https://www.virustotal.com/vtapi/v2/file/scan
+```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。
+```cs
+public async Task&lt;dynamic> RequestFileScan(string filename)
+{
+    using (var http = new HttpClient())
+    {
+        var uri = "https://www.virustotal.com/vtapi/v2/file/scan";
+        var multipart = new MultipartFormDataContent();
+        multipart.Add(new StringContent(APIKey), "apikey");
+        multipart.Add(new ByteArrayContent(File.ReadAllBytes(filename)), "file", Path.GetFileName(filename));
+        var response = await http.PostAsync(uri, multipart);
+        var content = await response.Content.ReadAsStringAsync();
+        var json = DynamicJson.Parse(content);
+<pre><code>    return json;
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-HttpClient" data-lang="HttpClient"></code></pre><p>{&ldquo;response_code&rdquo;: 1,
+&ldquo;verbose_msg&rdquo;: &ldquo;Scan request successfully queued, come back later for the report&rdquo;,
+&ldquo;resource&rdquo;: &ldquo;999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0&rdquo;,
+&ldquo;scan_id&rdquo;: &ldquo;999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0-1324376258&rdquo;,
+&ldquo;permalink&rdquo;: &ldquo;<a href="https://www.virustotal.com/file/999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0/analysis/1324376258/%22,">https://www.virustotal.com/file/999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0/analysis/1324376258/&quot;,</a>
+&ldquo;sha256&rdquo;: &ldquo;999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0&rdquo;,
+&ldquo;sha1&rdquo;: &ldquo;2cc875bca8030d745adfd14388b8c001471c2474&rdquo;,
+&ldquo;md5&rdquo;: &ldquo;4a00e1a3a14e4fec6f2b353b4f20bb73&rdquo;}</p>
+<pre><code class="language-response_code" data-lang="response_code">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### VirusToral のスキャンレポートを取得する
+    お次はスキャンレポートの取得です。
+</code></pre><p><a href="https://www.virustotal.com/vtapi/v2/file/repor">https://www.virustotal.com/vtapi/v2/file/repor</a></p>
+<pre><code class="language-さっきの要領で、この" data-lang="さっきの要領で、この">```cs
+public async Task&amp;lt;dynamic&gt; GetFileScanResults(string id)
+{
+    using (var http = new HttpClient())
+    {
+        var uri = &quot;https://www.virustotal.com/vtapi/v2/file/report&quot;;
+        var parameters = new Dictionary&amp;lt;string, string&gt;
+        {
+            { &quot;resource&quot;, id },
+            { &quot;apikey&quot;, APIKey },
+        };
+        var response = await http.PostAsync(uri, new FormUrlEncodedContent(parameters));
+        var content = await response.Content.ReadAsStringAsync();
+        var json = DynamicJson.Parse(content);
+
+        return json;
+    }
+}
+
+```スキャンのリクエスト処理よりも簡単でした。成功すると、こんな Json が返ってきます。
+</code></pre><p>{
+&ldquo;response_code&rdquo;: 1,
+&ldquo;verbose_msg&rdquo;: &ldquo;Scan finished, scan information embedded in this object&rdquo;,</p>
+<p>&ldquo;resource&rdquo;: &ldquo;99017f6eebbac24f351415dd410d522d&rdquo;,
+&ldquo;scan_id&rdquo;: &ldquo;52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c-1273894724&rdquo;,
+&ldquo;md5&rdquo;: &ldquo;99017f6eebbac24f351415dd410d522d&rdquo;,
+&ldquo;sha1&rdquo;: &ldquo;4d1740485713a2ab3a4f5822a01f645fe8387f92&rdquo;,
+&ldquo;sha256&rdquo;: &ldquo;52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c&rdquo;,</p>
+<p>&ldquo;scan_date&rdquo;: &ldquo;2010-05-15 03:38:44&rdquo;,</p>
+<p>&ldquo;positives&rdquo;: 40,
+&ldquo;total&rdquo;: 40,</p>
+<p>&ldquo;scans&rdquo;: {&ldquo;nProtect&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;2010-05-14.01&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.Generic.3611249&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;CAT-QuickHeal&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;10.00&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.VB.acgy&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;McAfee&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;5.400.0.1158&rdquo;, &ldquo;result&rdquo;: &ldquo;Generic.dx!rkx&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;TheHacker&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;6.5.2.0.280&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan/VB.gen&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;VirusBuster&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;5.0.27.0&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.VB.JFDE&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;NOD32&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;5115&rdquo;, &ldquo;result&rdquo;: &ldquo;a variant of Win32/Qhost.NTY&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;F-Prot&rdquo;: {&ldquo;detected&rdquo;: false, &ldquo;version&rdquo;: &ldquo;4.5.1.85&rdquo;, &ldquo;result&rdquo;: null, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;Symantec&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;20101.1.0.89&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.KillAV&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;Norman&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;6.04.12&rdquo;, &ldquo;result&rdquo;: &ldquo;W32/Smalltroj.YFHZ&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;TrendMicro-HouseCall&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;9.120.0.1004&rdquo;, &ldquo;result&rdquo;: &ldquo;TROJ_VB.JVJ&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;Avast&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;4.8.1351.0&rdquo;, &ldquo;result&rdquo;: &ldquo;Win32:Malware-gen&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;eSafe&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;7.0.17.0&rdquo;, &ldquo;result&rdquo;: &ldquo;Win32.TRVB.Acgy&rdquo;, &ldquo;update&rdquo;: &ldquo;20100513&rdquo;},
+&ldquo;ClamAV&rdquo;: {&ldquo;detected&rdquo;: false, &ldquo;version&rdquo;: &ldquo;0.96.0.3-git&rdquo;, &ldquo;result&rdquo;: null, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;Kaspersky&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;7.0.0.125&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.Win32.VB.acgy&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;BitDefender&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;7.2&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.Generic.3611249&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;Comodo&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;4842&rdquo;, &ldquo;result&rdquo;: &ldquo;Heur.Suspicious&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;F-Secure&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;9.0.15370.0&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.Generic.3611249&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;DrWeb&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;5.0.2.03300&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan.Hosts.37&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;AntiVir&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;8.2.1.242&rdquo;, &ldquo;result&rdquo;: &ldquo;TR/VB.acgy.1&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;TrendMicro&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;9.120.0.1004&rdquo;, &ldquo;result&rdquo;: &ldquo;TROJ_VB.JVJ&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;McAfee-GW-Edition&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;2010.1&rdquo;, &ldquo;result&rdquo;: &ldquo;Generic.dx!rkx&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;Sophos&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;4.53.0&rdquo;, &ldquo;result&rdquo;: &ldquo;Troj/VBHost-A&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;eTrust-Vet&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;35.2.7490&rdquo;, &ldquo;result&rdquo;: &ldquo;Win32/ASuspect.HDBBD&rdquo;, &ldquo;update&rdquo;: &ldquo;20100515&rdquo;},
+&ldquo;Authentium&rdquo;: {&ldquo;detected&rdquo;: false, &ldquo;version&rdquo;: &ldquo;5.2.0.5&rdquo;, &ldquo;result&rdquo;: null, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;},
+&ldquo;Jiangmin&rdquo;: {&ldquo;detected&rdquo;: true, &ldquo;version&rdquo;: &ldquo;13.0.900&rdquo;, &ldquo;result&rdquo;: &ldquo;Trojan/VB.yqh&rdquo;, &ldquo;update&rdquo;: &ldquo;20100514&rdquo;}, [&hellip;] },</p>
+<p>&ldquo;permalink&rdquo;: &ldquo;<a href="https://www.virustotal.com/file/52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c/analysis/1273894724/%22">https://www.virustotal.com/file/52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c/analysis/1273894724/&quot;</a>
+}</p>
+<pre><code class="language-permalink" data-lang="permalink">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### だるやなぎはマスコットアプリ文化祭 2014を応援しています
+    &lt;iframe src=&quot;http://hatenablog.com/embed?url=http%3A%2F%2Fpronama.github.io%2Fmascot-apps-contest%2F2014%2F&quot; title=&quot;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;a href=&quot;http://pronama.github.io/mascot-apps-contest/2014/&quot;&gt;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&lt;/a&gt;&lt;/iframe&gt;謎の「だるやなぎ部門」には素敵なプレゼントを用意しています。ぜひ参加してみてくださいね。<figure>
+    <img src="/images/2014/10/24/025219/20141024024829.png"/> 
+</figure>
+
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-10-24T02:52:19JST">2014/10/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?VirusTotal%20API%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/10/24/025219/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=VirusTotal&#43;API&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F24%2F025219%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/10/24/045957/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/10/20/213054/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

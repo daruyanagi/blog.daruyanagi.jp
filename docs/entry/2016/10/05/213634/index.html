@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/10/05/213634/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Macbook でサクッと Task View が呼べたらいいのになぁ、という話。 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Macbook（macOS）だと三本（指の）スワイプで Mission Control 呼んだりデスクトップ切り替えたりできるじゃないですか。Surface でも Task View が呼べるよね。そういうのを Bootcamp で Windows 10 をいれた Macbook でもやりたいんだけど（Surface で慣れちゃったし！）、Apple のタッチパッドのドライバーはウンコで、三本スワイプをサポートしていない。そんなわけで Trackpad&#43;&#43; というのを試してみたんだけど……Trackpad&#43;&#43; Driver: alternate Windows driver with multi-touch gesture support for Macbook trackpads in Boot Camp environment. Now with Force Touch trackpads support.こいつ、要らん変なアプリ入れなきゃいけないし（バッテリーセーバーらしいが）、Windows 10 がテストモード（署名なしドライバーを入れるためのモード）になるし、かなりイマイチ。おカネ払ってもいいから、署名付きのドライバーほしいなぁ。仕方ないので、次善の策として Autohotkey を試してみた。AutoHotkey［Fn］＋［→］キーとか［Fn］＋［←］キーで仮想デスクトップを切り替えられれば、まぁ、三本スワイプと大して変わらない使い勝手にはなるかもしれない。ほとんど隣同士だし。というわけで、キーコードを調べてみたんだけど
+ ［Fn］＋［←］キー：［Home］キー ［Fn］＋［→］キー：［End］キー なんだな。他のも調べてみると、  ［Fn］＋［↑］キー：［PageUp］キー ［Fn］＋［↓］キー：［PageDown］キー ［Fn］＋［Enter］キー：［Insert］キー みたいな感じらしい。デスクトップならともかく、ラップトップでは［Home］だの［End］だのはあまり使わないので（コンビネーションしてまで使うキーではないよね）、こいつらにショートカットを割り当てることにした。 ``` End::Send, #^{Right} &#39;右のデスクトップに移動 Home::Send, #^{Left} &#39;左のデスクトップに移動 PgUp::Send, #{Tab} &#39;Task View PgDn::Send, #{Tab} &#39;Task View" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/macbook/">Macbook</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/autohotkey/">AutoHotkey</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/10/05/213634/" >
+                    <h1 class="entry__header-title-link-text">Macbook でサクッと Task View が呼べたらいいのになぁ、という話。</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/10/05</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2016/10/05/213634/20160423132942.jpg"/> 
+</figure>
+Macbook（macOS）だと三本（指の）スワイプで Mission Control 呼んだりデスクトップ切り替えたりできるじゃないですか。Surface でも Task View が呼べるよね。そういうのを Bootcamp で Windows 10 をいれた Macbook でもやりたいんだけど（Surface で慣れちゃったし！）、Apple のタッチパッドのドライバーはウンコで、三本スワイプをサポートしていない。そんなわけで Trackpad++ というのを試してみたんだけど……<a href="http://trackpad.powerplan7.com/">Trackpad++ Driver: alternate Windows driver with multi-touch gesture support for Macbook trackpads in Boot Camp environment. Now with Force Touch trackpads support.</a>こいつ、要らん変なアプリ入れなきゃいけないし（バッテリーセーバーらしいが）、Windows 10 がテストモード（署名なしドライバーを入れるためのモード）になるし、かなりイマイチ。おカネ払ってもいいから、署名付きのドライバーほしいなぁ。仕方ないので、次善の策として Autohotkey を試してみた。<a href="http://ahkscript.org/">AutoHotkey</a>［Fn］＋［→］キーとか［Fn］＋［←］キーで仮想デスクトップを切り替えられれば、まぁ、三本スワイプと大して変わらない使い勝手にはなるかもしれない。ほとんど隣同士だし。というわけで、キーコードを調べてみたんだけど</p>
+<ul>
+<li>［Fn］＋［←］キー：［Home］キー</li>
+<li>［Fn］＋［→］キー：［End］キー</li>
+</ul>なんだな。他のも調べてみると、
+<ul>
+<li>［Fn］＋［↑］キー：［PageUp］キー</li>
+<li>［Fn］＋［↓］キー：［PageDown］キー</li>
+<li>［Fn］＋［Enter］キー：［Insert］キー</li>
+</ul>みたいな感じらしい。デスクトップならともかく、ラップトップでは［Home］だの［End］だのはあまり使わないので（コンビネーションしてまで使うキーではないよね）、こいつらにショートカットを割り当てることにした。
+```
+End::Send, #^{Right}    &#39;右のデスクトップに移動
+Home::Send, #^{Left}    &#39;左のデスクトップに移動
+<p>PgUp::Send, #{Tab}    'Task View
+PgDn::Send, #{Tab}    'Task View</p>
+<p>$RWin::Send, {AppsKey}    '右［Win］キーはアプリキーに</p>
+<p>Ins::Send, {PrintScreen}    '［Fn］＋［Enter］でキャプチャー</p>
+<pre><code class="language-Autohotkey" data-lang="Autohotkey">
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://dl.dropboxusercontent.com/u/129878/TaskView.exe&quot;&gt;https://dl.dropboxusercontent.com/u/129878/TaskView.exe&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-10-05T21:36:34JST">2016/10/05</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Macbook%20%e3%81%a7%e3%82%b5%e3%82%af%e3%83%83%e3%81%a8%20Task%20View%20%e3%81%8c%e5%91%bc%e3%81%b9%e3%81%9f%e3%82%89%e3%81%84%e3%81%84%e3%81%ae%e3%81%ab%e3%81%aa%e3%81%81%e3%80%81%e3%81%a8%e3%81%84%e3%81%86%e8%a9%b1%e3%80%82%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/10/05/213634/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Macbook&#43;%E3%81%A7%E3%82%B5%E3%82%AF%E3%83%83%E3%81%A8&#43;Task&#43;View&#43;%E3%81%8C%E5%91%BC%E3%81%B9%E3%81%9F%E3%82%89%E3%81%84%E3%81%84%E3%81%AE%E3%81%AB%E3%81%AA%E3%81%81%E3%80%81%E3%81%A8%E3%81%84%E3%81%86%E8%A9%B1%E3%80%82&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F10%2F05%2F213634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/10/07/172125/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/10/05/060000/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

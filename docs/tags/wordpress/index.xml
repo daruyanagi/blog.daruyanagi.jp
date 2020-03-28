@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>WordPress on だるやなぎ</title>
+    <link>http://daruyanagi.net/tags/wordpress/</link>
+    <description>Recent content in WordPress on だるやなぎ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 12 Dec 2013 00:34:23 +0000</lastBuildDate>
+    
+	<atom:link href="http://daruyanagi.net/tags/wordpress/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WordPress 日本語版を WebMatrix で利用する</title>
+      <link>http://daruyanagi.net/entry/2013/12/12/003423/</link>
+      <pubDate>Thu, 12 Dec 2013 00:34:23 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2013/12/12/003423/</guid>
+      <description>  ※ One ASP.NET Advent Calendar 2013 - Adventar が埋まらなかったら使おうと思っていたちょっとヘチョいネタです。WebMatrix のアプリケーション ギャラリーからインストールできる WordPress は英語版のようだ。まぁ、英語版に言語パッチをいれれば同等になるものと思われるが、今回は日本語サイトから WordPress の日本語版をダウンロードして WebMatrix で起動させてみることにする。
+### WordPress 日本語版のダウンロード   WordPress › 日本語 からダウンロード。  ちょっと笑ってしまったのだけど、ブラウザーの横幅が足りないと英語版の WordPress がダウンロードされてしまうようだ*1。ファイル名が wordpress-3.7.1-ja.zip であることを確認しよう（3.7.1 はバージョン）。  次にアーカイブを展開して、フォルダのコンテキストメニューから［Microsoft WebMatrix で Web サイトとして開く］を選択する。  ### WebMatrix の設定   WordPress 日本語版を WebMatrix で開くと、PHP などの欠けている必要モジュールが検出され、ダウンロードが始まる。MySQL も検出されると思われるが、ウチの環境では既にセットアップ済みだったので追加インストールは不要だった。  次いで現れる Windows Azure Websites の作成画面はスキップしてよい。  これでセットアップは完了。とりあえず［実行］ボタンを押してみる。  ［さぁ、始めましょう！］をクリックして続行。  My SQL のユーザー名とパスワードを入力して［送信］。ユーザー名は通常 root で、パスワードは WebMatrix で MySQL をセットアップしたときに指定するアレだ。  失敗。データベースを作成するのを忘れていた。  ### MySQL のデータベースを作成   ワークスペースを［データベース］に切り替え、ルートフォルダーのコンテキストメニューから［新しい MySQL データベース］を選択。  今回、データベース名は wordpress_jp_sample とした。［新しい MySQL 接続］メニューで既存の WordPress データベースと接続させれば、そのデータを利用して WordPress を構築することもできるはず。  無事、空っぽのデータベースが作成された。  ### 再度セットアップに挑戦   もう一度セットアップ画面に戻ってやり直すと、今度はデータベースに接続できるはず。  あとは必要な項目を入力して――  終わり。  試しにログインしてみると――  管理画面にアクセスできる。おぉ、ユーザーインターフェイスが日本語化されておるぞ！ *1:ダメなモバイル対応の典型のような例ですね！  </description>
+    </item>
+    
+    <item>
+      <title>XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！</title>
+      <link>http://daruyanagi.net/entry/2012/07/05/022927/</link>
+      <pubDate>Thu, 05 Jul 2012 02:29:27 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2012/07/05/022927/</guid>
+      <description>（Windows 8 の Metro アプリ「黒板」で書いてみました*1）前回（XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた - だるろぐ）は、XREA/CoreServer の WordPress 環境をローカルに保存して、 WebMatrix で動作可能な状態までメンテナンスし、 Windows Azure Websites へアップロードするというフローで、 WordPress の引っ越しを目論んだ……が最後の最後で失敗した。そのときのエラーログの一部がこれ。
+0:30:02: エラーの詳細: 0:30:02: An error occurred during execution of the database script. The error occurred between the following lines of the script: &amp;quot;145&amp;quot; and &amp;quot;255&amp;quot;. The verbose log might have more information about the error. The command started with the following: 0:30:02: &amp;quot;-- -- Dumping data for table `wp_morpheme` ```**wp_morpheme** テーブルってなんだろう。調べてみると、どうやら &amp;lt;a href=&amp;quot;http://wordpress.</description>
+    </item>
+    
+    <item>
+      <title>XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた</title>
+      <link>http://daruyanagi.net/entry/2012/07/05/015015/</link>
+      <pubDate>Thu, 05 Jul 2012 01:50:15 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2012/07/05/015015/</guid>
+      <description>近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。
+### XREA/CoreServer からデータをバックアップ FTP 接続でファイルをローカルに保存。と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。  ### Windows Azure Websites で WordPress サイトを作成・ダウンロード ふつーに Windows Azure Websites で WordPress サイトを作成する。初期設定まで Azure 上でやっておいた。あとは WebMatrix でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の WordPress がローカルで動作する。  ### ファイルのコピーとデータベースのインポート、ローカルで WordPress を動作させる 先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。``` mysql -u root -p DB_NAME &amp;lt; DUMP_FILE_NAME ```WebMatrix のデータベースを開いて、旧Webサイトのドメインを“http://localhost:****”（テスト環境のIPアドレス）に書き換えておこう*1。この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。ちゃんと動いた！　WebMatrix では URL Rewrite が動かないようで、パーマリンクをカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。  ### Azure へ発行……失敗 あとは Windows Azure Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。 ``` 2012/07/05 0:12 0:18:17: Using ID &amp;#39;d4c71007-****&amp;#39; for connections to the remote server.</description>
+    </item>
+    
+    <item>
+      <title>Windows Azure Web Sites と WebMatrix 2 の組み合わせはマーベラス！</title>
+      <link>http://daruyanagi.net/entry/2012/06/27/005203/</link>
+      <pubDate>Wed, 27 Jun 2012 00:52:03 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2012/06/27/005203/</guid>
+      <description>今日は、 Windows Azure Web Sites でサクッと WordPress をセットアップしてみた - だるろぐ をローカルにダウンロード・管理する。やっと「WebMatrix 2」の登場だ！　またインストールしていない人はしておくように。窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加
+### リモートサイトへの接続 まず起動。［リモートサイト］を選択する。……とその前に、 Azure の管理ポータルで公開プロファイルをダウンロードしておく。なぜかというと……次で使うからだ。公開プロファイルを読み込めば、それだけで設定完了！　これすんごい楽チンじゃなイカ！ #### ちょっとトラブル…… しかし、うちの環境ではここで「WebMatrix 2」がフリーズ。原因は「Git for WebMatrix」だった。未導入の場合は問題なく作業を進められるんじゃいかな。うちの場合も、再起動すればそのまま作業を進めることができた。窓の杜 - 【REVIEW】バージョン管理システム「Git」を「WebMatrix 2」へ統合「Git for WebMatrix」話は変わるけど、拡張機能がクラッシュしたら次回起動時に無効化してくれるのは親切な設計だと思う。当たり前のことかもしれないけれど、当たり前にやってくれるアプリは少ない。まだリリース候補版だけど、なかなか完成度は高い。   ### Webサイトのダウンロード 気を取り直して作業再開。リモート接続が完了したら、［ダウンロード］ボタンを押してWebサイトをローカルへダウンロード。「Web配置」を利用しているので、データベースの内容もダウンロードできるのがうれしい。本番（リモート）環境とローカル環境のデータが同期できるため、より近い状態でテストできる。リモートへのデータ反映も［発行］（アップロード）で行える。ダウンロードの際は、必要なパッケージのインストール（依存性解決）も勝手にやってくれる。多少時間がかかる場合があるけれども、ちょっと我慢しよう。今回はそんなに時間がかからなかった。  ### Webサイトの管理と再発行 完成！　管理画面へのリンクがリボンに追加されている。あと、「WordPress」の独自関数を入力補完できるのも「WebMatrix 2」ならではといった感じ。今回は、 Azure でセットアップした「WordPress」のバージョンが少し古かったので、プラグイン・テーマともどもローカルでアップデートして、それを［発行］しておいた。リモートで直接アップデートするより、ローカルで一度相性を確認しておいたほうが安全だよね！  </description>
+    </item>
+    
+    <item>
+      <title>Windows Azure Web Sites でサクッと WordPress をセットアップしてみた</title>
+      <link>http://daruyanagi.net/entry/2012/06/25/214555/</link>
+      <pubDate>Mon, 25 Jun 2012 21:45:55 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2012/06/25/214555/</guid>
+      <description>Windows Azure Web Sites でサクッと WordPress をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 Windows Live ID 1 とクレジットカード 2 が必要になるので、あらかじめ用意しておくこと。 Windows Azure: Microsoft&#39;s Cloud Platform | Cloud Hosting | Cloud Services  
+### 3ヶ月無償評価版の登録 Windows Azure は3ヶ月無償で利用できるのだそうな。本番ではいくらかかるんだろう……この3ヶ月のうちにシミュレートできるといいのだけど。本人確認のためにクレジットカードがいるんだって。ここは素直に登録登録。設定はこれだけ。さっそく［管理］っていうところをクリックしてみる。  ### HTML5 で作成された Windows Azure の新しいポータル画面 以前までは Silverlight で作られていたという話だけど、新しいプレピューポータルは HTML5 で制作されている。クロスブラウザーでヌルヌル動くのが気持ちいいですね。ウィザードでチュートリアルが表示される。だいたいの使い方をこれで把握できる感じ。まぁ、実際に使ったほうが覚えるのは早いと思う。ぱっと見わかりやすいしね。  ### WordPress の設置 さっきのチュートリアルで、新規プロジェクトは左下の［New］アイコンから、と書いてあった気がするのでそれを選択。まずは［Web Sites］を選択し……次に［From Gallery］と続き……ギャラリーの中から WordPress をチョイス。 C# しかわかんないし Orchard CMS も考えたのだけど、まぁ、最初はやはり実績のある WordPress かなぁ、と。ほかにもいっぱいありそうだ。サブドメインとリージョンの選択。まだアジアのリージョンはないんだな……アメリカ西海岸が無難そうだ。MySQL サーバーの設定。データベース名は……ほかとかぶらなければなんでもいいんじゃないかな。できたっぽい。デプロイは1分もかからなかったと思う。あとは管理者アカウントの設定をすれば、見慣れた WordPress のサイトが現れる。ぶっちゃけ、裏が Windows Azure だってことを意識しなければ、ユーザーインターフェイスがカッコいい普通のレンタルサーバーって感じだ。 *1:Microsoft ID になるんだっけ？ *2:いきなり課金されることはないはず……  </description>
+    </item>
+    
+  </channel>
+</rss>

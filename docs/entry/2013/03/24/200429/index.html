@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/03/24/200429/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            メモ：Request でつまづく | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="### Request &gt; QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。 HttpRequest クラス (System.Web)  Default.cshtml?Hoge=Fuga というリクエストがあった時、
+Request[&#34;Hoge&#34;] =&gt; &#34;Fuga&#34; ```が得られる。つまり、 ```cs Request.QueryString[&#34;Hoge&#34;] =&gt; &#34;Fuga&#34; ```これと同様。ちなみに、存在しないキーを指定すると ```cs Request[&#34;HogeHoge&#34;] =&gt; string.Empty ```が返る。null じゃないのか！ null だったら、 ```cs var text = Request[&#34;Hoge&#34;] ?? &#34;初期値&#34;; ```って書けるのになぁ。まぁ、いろいろ大人の事情があるんだろう。 &lt;/div&gt; &lt;div class=&#34;section&#34;&gt; ### Request.QueryString と Request.Form QueryString でも Form でも &#34;Hoge&#34; というキーが含まれているとき、Request[&#34;Hoge&#34;] では Request.QueryString[&#34;Hoge&#34;] の値が返る。つまり、優先度は ```cs QueryString &gt; Form ```であるらしい。QueryString 、Form、Cookies、ServerVariables がどの順番で優先されるのかは知らないけれど、まぁ、この順番なんだろうなって気はしてる（試してない）。ついつい Form[] を多用するのだけれど、こういうのが分かってないとたまにハマるみたい orz &lt;/div&gt; &lt;div class=&#34;section&#34;&gt; ### Request.QueryString[] におけるキーの重複 では、 Default." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/03/24/200429/" >
+                    <h1 class="entry__header-title-link-text">メモ：Request でつまづく</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/03/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <div class="section">
+    ### Request
+<pre><code>&gt;
+    QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。
+
+    HttpRequest クラス (System.Web)
+</code></pre>
+<p>Default.cshtml?Hoge=Fuga というリクエストがあった時、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">Request[<span style="color:#e6db74">&#34;Hoge&#34;</span>]  =&gt; <span style="color:#e6db74">&#34;Fuga&#34;</span> 
+
+<span style="color:#960050;background-color:#1e0010">```が得られる。つまり、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+Request.QueryString[<span style="color:#e6db74">&#34;Hoge&#34;</span>]  =&gt; <span style="color:#e6db74">&#34;Fuga&#34;</span> 
+
+<span style="color:#960050;background-color:#1e0010">```これと同様。ちなみに、存在しないキーを指定すると</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+Request[<span style="color:#e6db74">&#34;HogeHoge&#34;</span>]  =&gt; <span style="color:#66d9ef">string</span>.Empty
+
+<span style="color:#960050;background-color:#1e0010">```が返る。</span><span style="color:#66d9ef">null</span> <span style="color:#960050;background-color:#1e0010">じゃないのか！</span> <span style="color:#66d9ef">null</span> <span style="color:#960050;background-color:#1e0010">だったら、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">var</span> text = Request[<span style="color:#e6db74">&#34;Hoge&#34;</span>] ?? <span style="color:#e6db74">&#34;初期値&#34;</span>;
+
+<span style="color:#960050;background-color:#1e0010">```って書けるのになぁ。まぁ、いろいろ大人の事情があるんだろう。</span>
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> Request.QueryString <span style="color:#960050;background-color:#1e0010">と</span> Request.Form
+    QueryString <span style="color:#960050;background-color:#1e0010">でも</span> Form <span style="color:#960050;background-color:#1e0010">でも</span> <span style="color:#e6db74">&#34;Hoge&#34;</span> <span style="color:#960050;background-color:#1e0010">というキーが含まれているとき、</span>Request[<span style="color:#e6db74">&#34;Hoge&#34;</span>] <span style="color:#960050;background-color:#1e0010">では</span> Request.QueryString[<span style="color:#e6db74">&#34;Hoge&#34;</span>]  <span style="color:#960050;background-color:#1e0010">の値が返る。つまり、優先度は</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+QueryString &gt; Form
+
+<span style="color:#960050;background-color:#1e0010">```であるらしい。</span>QueryString <span style="color:#960050;background-color:#1e0010">、</span>Form<span style="color:#960050;background-color:#1e0010">、</span>Cookies<span style="color:#960050;background-color:#1e0010">、</span>ServerVariables <span style="color:#960050;background-color:#1e0010">がどの順番で優先されるのかは知らないけれど、まぁ、この順番なんだろうなって気はしてる（試してない）。ついつい</span> Form[] <span style="color:#960050;background-color:#1e0010">を多用するのだけれど、こういうのが分かってないとたまにハマるみたい</span> orz
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> Request.QueryString[] <span style="color:#960050;background-color:#1e0010">におけるキーの重複</span>
+    <span style="color:#960050;background-color:#1e0010">では、</span>
+</code></pre></div><p>Default.cshtml?Hoge=1&amp;Hoge=2&amp;Hoge=3</p>
+<pre><code class="language-で" data-lang="で">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-03-24T20:04:29JST">2013/03/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%83%a1%e3%83%a2%ef%bc%9aRequest%20%e3%81%a7%e3%81%a4%e3%81%be%e3%81%a5%e3%81%8f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/03/24/200429/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%83%A1%E3%83%A2%EF%BC%9ARequest&#43;%E3%81%A7%E3%81%A4%E3%81%BE%E3%81%A5%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F24%2F200429%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/26/060901/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/23/084711/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

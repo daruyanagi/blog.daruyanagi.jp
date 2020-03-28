@@ -1,0 +1,266 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/08/12/194954/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3：oEmbed ヘルパーを作ってみた（２） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ の続き。今回は Flickr の埋め込みをやってみようかと思う。
+### ~/App_Code/OEmbed.cshtml ```cs @helper Flickr(string url) { const string API_ENDPOINT = &#34;http://www.flickr.com/services/oembed/&#34;; using (var downloader = new WebClient()) { try { // URL を組み立てて JSON の oEmbed データを取得 var request = string.Format(&quot;{0}?url={1}&amp;amp;format={2}&quot;, API_ENDPOINT, url, &quot;json&quot;); var oembed_data = downloader.DownloadString(request); var oembed_json = Json.Decode(oembed_data); @ObjectInfo.Print(oembed_json) // デバッグのため var embed_type = oembed_json.type as string; switch (embed_type) // photo と video の二種類がある { case &quot;photo&quot;:  &lt;figure&gt; &lt;img src=&#39;@oembed_json." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/08/12/194954/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3：oEmbed ヘルパーを作ってみた（２）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/08/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2014/08/08/185357">WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ</a> の続き。今回は Flickr の埋め込みをやってみようかと思う。</p>
+<div class="section">
+    ### ~/App_Code/OEmbed.cshtml
+    ```cs
+@helper Flickr(string url) {
+    const string API_ENDPOINT = "http://www.flickr.com/services/oembed/";
+<pre><code>using (var downloader = new WebClient())
+{
+    try
+    {
+        // URL を組み立てて JSON の oEmbed データを取得
+        var request = string.Format(&quot;{0}?url={1}&amp;amp;format={2}&quot;, API_ENDPOINT, url, &quot;json&quot;);
+        var oembed_data = downloader.DownloadString(request);
+        var oembed_json = Json.Decode(oembed_data);
+
+        @ObjectInfo.Print(oembed_json) // デバッグのため
+
+        var embed_type = oembed_json.type as string;
+
+        switch (embed_type) // photo と video の二種類がある
+        {
+            case &quot;photo&quot;:
+</code></pre>
+<p>&lt;figure&gt;
+&lt;img src='@oembed_json.url' alt='@oembed_json.title'&gt;
+&lt;figcaption&gt;
+&lt;img src='http://favicon.qfor.info/f/@oembed_json.provider_url' /&gt;
+&lt;a href='@oembed_json.web_page'&gt;@oembed_json.title&lt;/a&gt;
+by &lt;a href='@oembed_json.author_url'&gt;@oembed_json.author_name&lt;/a&gt;
+&lt;/figcaption&gt;
+&lt;/figure&gt;
+break;
+case &ldquo;video&rdquo;:
+&lt;figure&gt;
+@Html.Raw(oembed_json.html)
+&lt;/figure&gt;
+break;
+default:
+break;</p>
+<pre><code>        }
+    }
+    catch (Exception exception)
+    {
+        &amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @exception.Message&amp;lt;/p&gt;
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code>&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ~/Default.cshtml
+    ```html
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @OEmbed.Flickr(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
+        @OEmbed.Flickr(&quot;https://www.flickr.com/photos/dmartinie/5760711397/&quot;)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div>
+<div class="section">
+    ### 結果
+    たとえば Photo の場合。Twitter のときみたいに html を返してくれないので、自分で組み立てる。<figure>
+    <img src="/images/2014/08/12/194954/20140812194342.png"/> 
+</figure>
+<br/>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;figure&gt;
+    &amp;lt;img src=&amp;#39;https://farm7.staticflickr.com/6162/6219334657_ba91a4498d_z.jpg&amp;#39; alt=&amp;#39;SMSはやく使えるようになりたい&amp;#39;&gt;
+    &amp;lt;figcaption&gt;
+        &amp;lt;img src=&amp;#39;http://favicon.qfor.info/f/https://www.flickr.com/&amp;#39; /&gt;
+        &amp;lt;a href=&amp;#39;https://www.flickr.com/photos/daruyanagi/6219334657/&amp;#39;&gt;SMSはやく使えるようになりたい&amp;lt;/a&gt;
+        by &amp;lt;a href=&amp;#39;https://www.flickr.com/photos/daruyanagi/&amp;#39;&gt;daruyanagi&amp;lt;/a&gt;
+    &amp;lt;/figcaption&gt;
+&amp;lt;/figure&gt;
+
+```Video の場合。これは html があるのでそれを使う。<figure>
+    <img src="/images/2014/08/12/194954/20140812194506.png"/> 
+</figure>
+&lt;<span style="color:#f92672">br</span>/&gt;
+
+```html
+&amp;lt;figure&gt;
+    &amp;lt;object type=&#34;application/x-shockwave-flash&#34; width=&#34;500&#34; height=&#34;281&#34; data=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34; classid=&#34;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&#34;&gt; &amp;lt;param name=&#34;flashvars&#34; value=&#34;intl_lang=en-us&amp;amp;photo_secret=5f7c3bff83&amp;amp;photo_id=5760711397&amp;amp;flickr_show_info_box=true&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;movie&#34; value=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;bgcolor&#34; value=&#34;#000000&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;allowFullScreen&#34; value=&#34;true&#34;&gt;&amp;lt;/param&gt;&amp;lt;embed type=&#34;application/x-shockwave-flash&#34; src=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34; bgcolor=&#34;#000000&#34; allowfullscreen=&#34;true&#34; flashvars=&#34;intl_lang=en-us&amp;amp;photo_secret=5f7c3bff83&amp;amp;photo_id=5760711397&amp;amp;flickr_show_info_box=true&#34; height=&#34;281&#34; width=&#34;500&#34;&gt;&amp;lt;/embed&gt;&amp;lt;/object&gt;
+&amp;lt;/figure&gt;
+
+```<figure>
+    <img src="/images/2014/08/12/194954/20140812194912.png"/> 
+</figure>
+写真の方は CSS でいい感じにデコってみた。なかなかいいかも。
+
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-08-12T19:49:54JST">2014/08/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%ef%bc%9aoEmbed%20%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f%ef%bc%88%ef%bc%92%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/08/12/194954/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3%EF%BC%9AoEmbed&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%88%EF%BC%92%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F12%2F194954%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/13/222321/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/12/164137/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

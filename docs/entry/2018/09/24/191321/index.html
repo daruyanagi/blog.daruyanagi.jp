@@ -1,0 +1,204 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2018/09/24/191321/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Amaguri をストアに申請しました（Desktop Bridge で2点躓きました…… | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="「Amaguri」v1.0.0.0 - だるろぐWPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！
+### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018  最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――  なんだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。  ### &#34;プロセス起動&#34; に関連した System.Diagnostics.Process.Start への参照があります んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018  Desktop Bridge アプリは System." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/amaguri/">Amaguri</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2018/09/24/191321/" >
+                    <h1 class="entry__header-title-link-text">Amaguri をストアに申請しました（Desktop Bridge で2点躓きました……</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2018/09/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2018/08/26/224927">「Amaguri」v1.0.0.0 - だるろぐ</a>WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！</p>
+<div class="section">
+    ### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした
+    Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。>プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――<figure>
+    <img src="/images/2018/09/24/191321/20180924190106.png"/> 
+</figure>
+なんだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。
+</div>
+<div class="section">
+    ### "プロセス起動" に関連した System.Diagnostics.Process.Start への参照があります
+    >んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> Desktop Bridge アプリは System.Diagnostics.Process.Start() で外部アプリを起動することができないらしい。ハイパーリンクをクリックしたらウチのサイトにジャンプするというだけの処理なのだけど……うーん。
+```cs
+private void Hyperlink_Click(object sender, RoutedEventArgs e)
+{
+    System.Diagnostics.Process.Start("https://blog.daruyanagi.jp/");
+}
+<pre><code class="language-最初はこの処理を削るしかないのかなと思っていたのですが、DesktopBridge.Helpers" data-lang="最初はこの処理を削るしかないのかなと思っていたのですが、DesktopBridge.Helpers">```cs
+private void Hyperlink_Click(object sender, RoutedEventArgs e)
+{
+    if (!IsRunningAsUwp())
+    {
+        System.Diagnostics.Process.Start(&quot;https://blog.daruyanagi.jp/&quot;);
+    }
+}
+
+public bool IsRunningAsUwp()
+{
+    DesktopBridge.Helpers helpers = new DesktopBridge.Helpers();
+    return helpers.IsRunningAsUwp();
+}
+
+```IsRunningAsUwp() は公式サイトにあるサンプルコードそのままです。ソースコードをのぞいてみたのですが、GetCurrentPackageFullName() という API を呼んでみてエラーが出るかどうかで判別してるようですね。なるほでぃうす。
+&lt;div class=&quot;github-card&quot; data-user=&quot;qmatteoq&quot; data-repo=&quot;DesktopBridgeHelpers&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div&gt;
+&lt;script src=&quot;https://cdn.jsdelivr.net/github-cards/latest/widget.js&quot;&gt;&lt;/script&gt;
+さてはて、S Mode でテストしてないので「クリップボードの画像をデスクトップに保存する」機能あたりでクラッシュしそうな気もするのですが、そのままストアに通ってくれるとありがたいなぁ。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2018-09-24T19:13:21JST">2018/09/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Amaguri%20%e3%82%92%e3%82%b9%e3%83%88%e3%82%a2%e3%81%ab%e7%94%b3%e8%ab%8b%e3%81%97%e3%81%be%e3%81%97%e3%81%9f%ef%bc%88Desktop%20Bridge%20%e3%81%a72%e7%82%b9%e8%ba%93%e3%81%8d%e3%81%be%e3%81%97%e3%81%9f%e2%80%a6%e2%80%a6%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/09/24/191321/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Amaguri&#43;%E3%82%92%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AB%E7%94%B3%E8%AB%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F%EF%BC%88Desktop&#43;Bridge&#43;%E3%81%A72%E7%82%B9%E8%BA%93%E3%81%8D%E3%81%BE%E3%81%97%E3%81%9F%E2%80%A6%E2%80%A6&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F09%2F24%2F191321%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/25/163814/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/24/134516/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

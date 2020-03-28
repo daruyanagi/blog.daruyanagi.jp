@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/03/093520/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix でユーザー認証機能（5） ―― ロール | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ WebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐ とりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。 ### System.Web.Security.Roles ロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。 #### Roles.RoleExists() / Roles.CreateRole() まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。 ```cs @{ App.DATABASE = &#34;database&#34;; // &lt;-- カッコ悪いし、 App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめて App.ROLE_ADMIN = &#34;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/03/093520/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix でユーザー認証機能（5） ―― ロール</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/03/093520/20120829200628.png"/> 
+</figure>
+<br/></p>
+<ul>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/25/003421">WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/28/191129">WebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐ</a></li>
+</ul>とりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。
+<div class="section">
+    ### System.Web.Security.Roles
+    ロールの作成方法については、ここらあたり（<a href="http://www.asp.net/web-pages/tutorials/security/16-adding-security-and-membership">Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs</a>）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた<a href="#f-f17309a6" name="fn-f17309a6" title="公式ドキュメントでデータベースを直接イジっていたのには、なにか理由があるのだろうか">*1</a>。<a href="http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspx">http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspx</a>とりあえずさらっと目を通しておくとよさげ。
+<div class="section">
+    #### Roles.RoleExists() / Roles.CreateRole()
+    まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。
+```cs
+@{
+    App.DATABASE = "database"; // &lt;-- カッコ悪いし、
+    App.TABLE_USERS = "Users"; //     あとで静的クラスにまとめて
+    App.ROLE_ADMIN = "admin";  //     リードオンリーにしておくべき
+<pre><code>WebSecurity.InitializeDatabaseConnection(
+    App.DATABASE, App.TABLE_USERS, &quot;UserId&quot;, &quot;Name&quot;, true);
+
+if (!Roles.RoleExists(App.ROLE_ADMIN)) // &amp;lt;-- ココ！
+{
+    Roles.CreateRole(App.ROLE_ADMIN);
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-<figure>
+    <img src="/images/2012/09/03/093520/20120903091135.png"/> 
+</figure>
+できたっぽい。拍子抜けしたぞなもし。" data-lang="<figure>
+    <img src="/images/2012/09/03/093520/20120903091135.png"/> 
+</figure>
+できたっぽい。拍子抜けしたぞなもし。">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Roles.AddUserToRole()
+    つぎに、“初めて登録されたユーザーは管理者にする”ということにしてみようか。
+```cs
+# ~/Account/Register.cshtml
+
+try
+{
+    WebSecurity.CreateUserAndAccount(
+        name, password, new { Name = name });
+    WebSecurity.Login(name, password);
+
+    // 最初のユーザーには管理者権限を付与
+    if (App.GetUserCount() &amp;lt;= 1)
+    {
+        Roles.AddUserToRole(name, App.ROLE_ADMIN);
+    }
+
+    Response.Redirect(&quot;~/&quot;);
+}
+catch (Exception e)
+{
+    ModelState.AddFormError(e.Message);
+}
+
+```<figure>
+    <img src="/images/2012/09/03/093520/20120903091712.png"/> 
+</figure>
+ちゃんと UserId 1 に RoleId 1（admin）が紐付けられた。ちなみに、複数のユーザーを一度にロールへ突っ込むためのメソッドもある。ちなみに、残念ながらユーザーの数を数えるメソッドは用意されていないみたいなので、これは SQL で書かないといけない。
+```cs
+@{
+    App.GetUserCount = (Func&amp;lt;int&gt;)GetUserCount; // &amp;lt;-- 個人的趣味
+}
+
+@functions
+{
+    int GetUserCount()
+    {
+        const string sql = &quot;SELECT COUNT(*) FROM {0}&quot;;
+        return Database
+            .Open(App.DATABASE)
+            .QueryValue(string.Format(sql, App.TABLE_USERS));
+    }
+}
+
+```でも、もしかしたらメソッドが用意されていない≒あんまりよくない実装 なのかもしれない。よく利用する処理なら、標準でメソッドが用意されているよね？&lt;a href=&quot;#f-ad523936&quot; name=&quot;fn-ad523936&quot; title=&quot;まぁ、案外そうとも限らないわけだけど&quot;&gt;*2&lt;/a&gt;　まぁ、それはまた今度考えよう。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Roles.IsUserInRole() / WebSecurity.RequireRoles()
+    んで、ロールが必要な処理には一行このように書き加えておく。この場合は、 Register.cshtml だね。 _PageStart.cshtml に書けば、フォルダ内の cshtml すべてに適用することもできる（はず、確かそうだった）。
+```cs
+@{
+    WebSecurity.RequireRoles(App.ROLE_ADMIN);
+}
+
+```<figure>
+    <img src="/images/2012/09/03/093520/20120903091955.png"/> 
+</figure>
+必要なロールをもたなければ、ログインページにリダイレクトされる&lt;a href=&quot;#f-6b31afe3&quot; name=&quot;fn-6b31afe3&quot; title=&quot;今気付いたけど、 Log in to ってなんやねんｗ&quot;&gt;*3&lt;/a&gt;ようだ&lt;a href=&quot;#f-f34e9562&quot; name=&quot;fn-f34e9562&quot; title=&quot;既定では ~/Account/LogIn みたい&quot;&gt;*4&lt;/a&gt;。
+```cs
+@{
+    if (!Roles.IsUserInRole(App.ROLE_ADMIN))
+    {
+        :
+        :
+
+```もちろん、ロールをもつかどうかの判定のみを行うこともできる。 &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/29/201834&quot;&gt;寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ&lt;/a&gt; などを使ってユーザーにメッセージを通知したい場合など、いきなりリダイレクトされると困る場合はこっちを使ったほうがよさげだな。
+
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-f17309a6&quot; name=&quot;f-f17309a6&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;公式ドキュメントでデータベースを直接イジっていたのには、なにか理由があるのだろうか&lt;/span&gt;
+&lt;a href=&quot;#fn-ad523936&quot; name=&quot;f-ad523936&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;まぁ、案外そうとも限らないわけだけど&lt;/span&gt;
+&lt;a href=&quot;#fn-6b31afe3&quot; name=&quot;f-6b31afe3&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;今気付いたけど、 Log in to ってなんやねんｗ&lt;/span&gt;
+&lt;a href=&quot;#fn-f34e9562&quot; name=&quot;f-f34e9562&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;既定では ~/Account/LogIn みたい&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-03T09:35:20JST">2012/09/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e8%aa%8d%e8%a8%bc%e6%a9%9f%e8%83%bd%ef%bc%885%ef%bc%89%20%e2%80%95%e2%80%95%20%e3%83%ad%e3%83%bc%e3%83%ab%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/03/093520/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%885%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%E3%83%AD%E3%83%BC%E3%83%AB&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F03%2F093520%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/04/023414/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/02/202138/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

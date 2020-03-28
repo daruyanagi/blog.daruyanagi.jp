@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/31/112958/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            SignalR を .NET（WPF）からも使ってみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="（SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。 SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記  そういえば、前回（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。
+public partial class MainWindow : Window { HubConnection connection; IHubProxy sample; public MainWindow() { InitializeComponent(); // サーバーに接続して sample ハブをげっと  connection = new HubConnection(&#34;http://localhost:63112/&#34;); sample = connection.CreateProxy(&#34;sample&#34;); connection.Start(); /* この3つは順番を守ること！ */ // sample ハブで Echo() が呼ばれたら……  sample." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/31/112958/" >
+                    <h1 class="entry__header-title-link-text">SignalR を .NET（WPF）からも使ってみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/31</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    （SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。
+
+    SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記
+</code></pre>
+<p>そういえば、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainWindow</span> : Window
+{
+    HubConnection connection;
+    IHubProxy sample;
+
+    <span style="color:#66d9ef">public</span> MainWindow()
+    {
+        InitializeComponent();
+
+        <span style="color:#75715e">// サーバーに接続して sample ハブをげっと
+</span><span style="color:#75715e"></span>        connection = <span style="color:#66d9ef">new</span> HubConnection(<span style="color:#e6db74">&#34;http://localhost:63112/&#34;</span>);
+        sample = connection.CreateProxy(<span style="color:#e6db74">&#34;sample&#34;</span>);
+        connection.Start(); <span style="color:#75715e">/* この3つは順番を守ること！ */</span>
+
+        <span style="color:#75715e">// sample ハブで Echo() が呼ばれたら……
+</span><span style="color:#75715e"></span>        sample.On(<span style="color:#e6db74">&#34;Echo&#34;</span>, data =&gt; 
+            <span style="color:#75715e">// 返り値をもらって UI スレッドで textBox につっこむ
+</span><span style="color:#75715e"></span>            Dispatcher.BeginInvoke(
+                <span style="color:#66d9ef">new</span> Action(() =&gt; { textBox.Text = data; })
+            )
+        );
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> buttonAdd_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
+    {
+        <span style="color:#75715e">// sample Hub の Add() を呼ぶ
+</span><span style="color:#75715e"></span>        sample.Invoke(<span style="color:#e6db74">&#34;Add&#34;</span>, <span style="color:#e6db74">&#34;.NET! &#34;</span>);
+    }
+
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> buttonClear_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
+    {
+        <span style="color:#75715e">// sample Hub の Clear() を呼ぶ
+</span><span style="color:#75715e"></span>        sample.Invoke(<span style="color:#e6db74">&#34;Clear&#34;</span>);
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>XAML <span style="color:#960050;background-color:#1e0010">は省略。ほんまに</span> JavaScript <span style="color:#960050;background-color:#1e0010">の時と変わらないな。ただ、プロキシの取得と接続のスタートを逆にすると例外が発生する（</span>JavaScript <span style="color:#960050;background-color:#1e0010">の場合は呼び出し順序はどっちでもいいみたい）。</span><figure>
+    <img src="/images/2012/08/31/112958/20120831112128.png"/> 
+</figure>
+
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-31T11:29:58JST">2012/08/31</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?SignalR%20%e3%82%92%20.NET%ef%bc%88WPF%ef%bc%89%e3%81%8b%e3%82%89%e3%82%82%e4%bd%bf%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/31/112958/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=SignalR&#43;%E3%82%92&#43;.NET%EF%BC%88WPF%EF%BC%89%E3%81%8B%E3%82%89%E3%82%82%E4%BD%BF%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F31%2F112958%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/01/060527/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/31/031730/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

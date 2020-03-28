@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/02/05/170000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="こういうのは別に WebMatrix でやる必要はないのだけど……慣れているので。あと、もっときれいに書き直そうかと思ったけど、面倒くさくなってやめた。
+@using System.Text @using System.Text.RegularExpressions @{ // 2008年まではシステムが旧かったので、  // http://www.forest.impress.co.jp/article/ 以下に過去ログがある  var archives = new List&amp;lt;string&gt;() { &#34;http://www.forest.impress.co.jp/article/200704.html&#34;, &#34;http://www.forest.impress.co.jp/article/200705.html&#34;, &#34;http://www.forest.impress.co.jp/article/200706.html&#34;, &#34;http://www.forest.impress.co.jp/article/200707.html&#34;, &#34;http://www.forest.impress.co.jp/article/200708.html&#34;, &#34;http://www.forest.impress.co.jp/article/200709.html&#34;, &#34;http://www.forest.impress.co.jp/article/200710.html&#34;, &#34;http://www.forest.impress.co.jp/article/200711.html&#34;, &#34;http://www.forest.impress.co.jp/article/200712.html&#34;, &#34;http://www.forest.impress.co.jp/article/200801.html&#34;, &#34;http://www.forest.impress.co.jp/article/200802.html&#34;, &#34;http://www.forest.impress.co.jp/article/200803.html&#34;, &#34;http://www.forest.impress.co.jp/article/200804.html&#34;, &#34;http://www.forest.impress.co.jp/article/200805.html&#34;, &#34;http://www.forest.impress.co.jp/article/200806.html&#34;, &#34;http://www.forest.impress.co.jp/article/200807.html&#34;, &#34;http://www.forest.impress.co.jp/article/200808.html&#34;, &#34;http://www.forest.impress.co.jp/article/200809.html&#34;, &#34;http://www.forest.impress.co.jp/article/200810.html&#34;, &#34;http://www.forest.impress.co.jp/article/200811.html&#34;, &#34;http://www.forest.impress.co.jp/article/200812.html&#34;, }; // おニューなシステムの過去ログの URL を足す  var d = new DateTime(2009, 1, 1); while (d &amp;lt; DateTime.Today) { archives.Add(string.Format(&#34;http://www.forest.impress.co.jp/backno/top/index{0:0000}{1:00}.html&#34;, d.Year, d.Month)); d = d.AddMonths(1); } // システム変更時に UTF-8 にすべきって主張しておけばよかった  var encoding = Encoding." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/02/05/170000/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/02/05</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/02/05/170000/20140205163749.png"/> 
+</figure>
+こういうのは別に WebMatrix でやる必要はないのだけど……慣れているので。あと、もっときれいに書き直そうかと思ったけど、面倒くさくなってやめた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.Text
+@using System.Text.RegularExpressions
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#75715e">// 2008年まではシステムが旧かったので、
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">// http://www.forest.impress.co.jp/article/ 以下に過去ログがある
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> archives = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;()
+    {
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200704.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200705.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200706.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200707.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200708.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200709.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200710.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200711.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200712.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200801.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200802.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200803.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200804.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200805.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200806.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200807.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200808.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200809.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200810.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200811.html&#34;</span>,
+        <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/article/200812.html&#34;</span>,
+    };
+
+    <span style="color:#75715e">// おニューなシステムの過去ログの URL を足す
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> DateTime(<span style="color:#ae81ff">2009</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>);
+    <span style="color:#66d9ef">while</span> (d &amp;lt; DateTime.Today)
+    {
+        archives.Add(<span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/backno/top/index{0:0000}{1:00}.html&#34;</span>, d.Year, d.Month));
+        d = d.AddMonths(<span style="color:#ae81ff">1</span>);
+    }
+
+    <span style="color:#75715e">// システム変更時に UTF-8 にすべきって主張しておけばよかった
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> encoding = Encoding.GetEncoding(<span style="color:#e6db74">&#34;Shift_JIS&#34;</span>);
+
+    <span style="color:#75715e">// 自分の記事を保持しておくリスト
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> my_articles = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;();
+}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @foreach (<span style="color:#66d9ef">var</span> archive <span style="color:#66d9ef">in</span> archives)
+        {
+            <span style="color:#75715e">// 過去ログページの解析
+</span><span style="color:#75715e"></span>            <span style="color:#66d9ef">var</span> month = <span style="color:#66d9ef">new</span> WebClient(){ Encoding = encoding, }.DownloadString(archive);
+            <span style="color:#66d9ef">var</span> regex = <span style="color:#66d9ef">new</span> Regex(<span style="color:#e6db74">@&#34;&#34;&#34;(\/[^&#34;&#34;]+\.html)&#34;&#34;&#34;</span>);
+            <span style="color:#66d9ef">var</span> links = regex.Matches(month).Cast&amp;lt;Match&gt;();
+    
+            <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> link <span style="color:#66d9ef">in</span> links)
+            {
+                <span style="color:#66d9ef">var</span> l = <span style="color:#e6db74">&#34;http://www.forest.impress.co.jp&#34;</span> + link.Groups[<span style="color:#ae81ff">1</span>];
+
+                <span style="color:#75715e">// ダイジェストニュース、アップデート、バックナンバーは読み飛ばす
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">if</span> (l.IndexOf(<span style="color:#e6db74">&#34;digest&#34;</span>) &gt;= <span style="color:#ae81ff">0</span>)
+                {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+
+                <span style="color:#66d9ef">if</span> (l.IndexOf(<span style="color:#e6db74">&#34;update&#34;</span>) &gt;= <span style="color:#ae81ff">0</span>)
+                {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+
+                <span style="color:#66d9ef">if</span> (l.IndexOf(<span style="color:#e6db74">&#34;backno&#34;</span>) &gt;= <span style="color:#ae81ff">0</span>)
+                {
+                    <span style="color:#66d9ef">continue</span>;
+                }
+
+                <span style="color:#75715e">// ニュースやレビュー記事の場合、著者名を拾う
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">try</span>
+                {
+                    <span style="color:#66d9ef">var</span> article = <span style="color:#66d9ef">new</span> WebClient(){ Encoding = encoding, }.DownloadString(l);
+                    <span style="color:#66d9ef">if</span> (article.IndexOf(<span style="color:#e6db74">&#34;柳 英俊&#34;</span>) &gt;= <span style="color:#ae81ff">0</span>)
+                    {
+                        my_articles.Add(l); <span style="color:#75715e">// おれのだー！
+</span><span style="color:#75715e"></span>                    }
+                }
+                <span style="color:#66d9ef">catch</span>
+                {
+                    <span style="color:#75715e">// リンク切れとかあるかもしれん
+</span><span style="color:#75715e"></span>                }
+            }
+        }
+
+        &amp;lt;ul&gt;
+            @foreach(<span style="color:#66d9ef">var</span> my_article <span style="color:#66d9ef">in</span> my_articles.Distinct())
+            {
+                &amp;lt;li&gt;&amp;lt;a href=<span style="color:#e6db74">&#34;@my_article&#34;</span>&gt;@my_article&amp;lt;/a&gt;&amp;lt;/li&gt;
+            }
+        &amp;lt;/ul&gt;
+
+        &amp;lt;p&gt;@my_articles.Distinct().Count() <span style="color:#960050;background-color:#1e0010">件の記事が見つかりました。</span>&amp;lt;/p&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span>Distinct() <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">回呼んでたりするし、見る人が見たら殺されかねないコードだけど、まぁ、使い捨てだし！</span>　<span style="color:#960050;background-color:#1e0010">たぶんちゃんとカウントできてる気がする。</span><figure>
+    <img src="/images/2014/02/05/170000/20140205165911.png"/> 
+</figure>
+ただ<span style="color:#960050;background-color:#1e0010">、時間は割とかかる。ローカルで動かすだけなら問題ないみたいだけど。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追記</span>
+    <span style="color:#960050;background-color:#1e0010">なかじ様が面白いことをしていた。</span>
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://nakaji.hatenablog.com/entry/2014/02/06/013046&#34;</span>&gt;PowerShell<span style="color:#960050;background-color:#1e0010">：だるやなぎ様が書いた記事の数を数えてみた</span> - <span style="color:#960050;background-color:#1e0010">なか日記</span>&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-02-05T17:00:00JST">2014/02/05</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/02/05/170000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F02%2F05%2F170000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/02/08/182407/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/02/04/084637/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/07/025136/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：RESTful？な Web アプリケーション | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="&gt; たとえば、  ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。
+~/Posts/Default.cshtml を作成して、
+UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ページの表示 という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。
+ WebMatrix 2 / Razor：switch と RenderPage() - だるろぐ  _これはウソだ。_申し訳ない。まぁ、別に正しいことを書いているブログではないので、いいと言えばいいんだけど。正しくは、
+ ~/Posts.cshtml を作成するだね。ほかにもウソがあるのだけど、それはまた別のエントリーでフォローするから！――なにはともあれ。この ~/Posts.cshtml をガリガリ書いていけば、いわゆる RESTful な Web アプリケーションが書けるのではないかと思いついた。RESTful の厳密な定義は知らないけど、だいたい  Lists：GET /Posts Show：GET /Posts/:id New： POST /Posts Edit：PUT /Posts/:id Remove：DELETE /Posts/:id みたいな感じだよね。だったら、下のような感じで書けばいいんじゃないか（本質に関係ない部分は削ってる）。 ```cs @try{ switch (Request.HttpMethod.ToUpper()) { case &#34;GET&#34;: switch (UrlData.Count) { case 0: // GET Posts/ @List() break; case 1: switch (UrlData[0]." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/07/025136/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/01/07/025136/20130106043226.png"/> 
+</figure>
+<br/></p>
+<pre><code>&gt;
+    たとえば、
+</code></pre>
+<p>~/Posts/ …… ページリストの表示
+~/Posts/:id …… 個別ページの表示
+というのをやってみたいとき。</p>
+<p>~/Posts/Default.cshtml
+を作成して、</p>
+<p>UrlData.Count() == 0 ……ページリストの表示
+UrlData.Count() == 1 ……個別ページの表示
+という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。</p>
+<pre><code>    WebMatrix 2 / Razor：switch と RenderPage() - だるろぐ
+</code></pre>
+<p>_これはウソだ。_申し訳ない。まぁ、別に正しいことを書いているブログではないので、いいと言えばいいんだけど。正しくは、</p>
+<ul>
+<li>~/Posts.cshtml</li>
+</ul>を作成するだね。ほかにもウソがあるのだけど、それはまた別のエントリーでフォローするから！――なにはともあれ。この ~/Posts.cshtml をガリガリ書いていけば、いわゆる RESTful な Web アプリケーションが書けるのではないかと思いついた。RESTful の厳密な定義は知らないけど、だいたい
+<ul>
+<li>Lists：GET /Posts</li>
+<li>Show：GET /Posts/:id</li>
+<li>New： POST /Posts</li>
+<li>Edit：PUT /Posts/:id</li>
+<li>Remove：DELETE /Posts/:id</li>
+</ul>みたいな感じだよね。だったら、下のような感じで書けばいいんじゃないか（本質に関係ない部分は削ってる）。
+```cs
+@try{
+    switch (Request.HttpMethod.ToUpper())
+    {
+        case "GET":
+            switch (UrlData.Count)
+            {
+                case 0: // GET Posts/ 
+                    @List()
+                    break;
+                case 1:
+                    switch (UrlData[0].ToUpper())
+                    {
+                        case "NEW": // GET Posts/New
+                            @New()
+                            break;
+                        default:    // GET Posts/1, Posts/Title
+                            @Show(UrlData[0])
+                            break;
+                    }
+                    break;
+                case 2:
+                    switch (UrlData[0].ToUpper())
+                    {
+                        case "EDIT":    // GET Posts/Edit/1
+                            @Edit(UrlData[1])
+                            break;
+                        case "REMOVE":  // GET Posts/Delete/1
+                            @Remove(UrlData[1])
+                            break;
+                    }
+                    break;
+            }
+            break;
+        case "POST":
+            Create();
+            break;
+        case "PUT":
+            Update(UrlData[0].AsInt());
+            break;
+        case "DELETE":
+            Delete(UrlData[0].AsInt());
+            break;
+    }    
+}
+catch (Exception e)
+{
+    &lt;p>&lt;span class="badge error">Error&lt;/span> @e.Message&lt;/p>
+}
+<pre><code class="language-@List()" data-lang="@List()">```cs
+@functions
+{
+    HelperResult List()
+    {
+        var query = &quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;;
+
+        using (var db = Database.Open(&quot;db&quot;))
+        {
+            var posts = db.Query(query);
+            return RenderPage(&quot;~/Views/Posts/_ListPosts.cshtml&quot;, posts);
+        }
+    }
+}
+
+```HelperResult を返す関数にして @ をつけて呼べば、ちゃんと部分ビューがレンダリングされる。POST/PUT/DELETE のところで使う関数は、どうせ Response.Redirect() するから void でいいし、@Delete() なんて書く必要もない。で。Create() は動くのだけど、なぜか Update() と Delete() だけが動かない。ちゃんとビューで method も指定したのになぁ……
+```cs
+#Delete() → RenderPage()  ~/Views/Posts/_RemovePost.cshtml&quot;
+
+@{
+    var model = PageData.First().Value;
+}
+
+&amp;lt;form method=&quot;delete&quot; action=&quot;~/Posts/@model.Id&quot;&gt;
+    &amp;lt;div&gt;
+        &amp;lt;label&gt;Title&amp;lt;/label&gt;
+        &amp;lt;input type=&quot;text&quot; name=&quot;Title&quot; value=&quot;@model.Title&quot; disabled /&gt;
+    &amp;lt;/div&gt;
+    &amp;lt;div&gt;
+        &amp;lt;label&gt;Body&amp;lt;/label&gt;
+        &amp;lt;textarea name=&quot;Body&quot; disabled&gt;@model.Body&amp;lt;/textarea&gt;
+    &amp;lt;/div&gt;
+    &amp;lt;div&gt;
+        &amp;lt;input type=&quot;submit&quot; /&gt;
+    &amp;lt;/div&gt;
+&amp;lt;/form&gt;
+
+```なぜかこれを Submit すると GET での呼び出しになってしまう。よく知らんけど、ブラウザーは GET と POST しかサポートしていないらしい&lt;a href=&quot;#f-df2a93f7&quot; name=&quot;fn-df2a93f7&quot; title=&quot;そういえば、Rails でも _method=&quot; delete&quot;=&quot;&quot; みたいな感じにして、ここら辺の問題を回避していた気がする&quot;=&quot;&quot;&gt;*1&lt;/a&gt;。あと、サーバー側にも設定がいるのかな。とりあえず、GET と POST しか使えない。道理で、IsPost() なんていうのがお役に立つ訳だわ。なんで IsGet()、IsPut()、IsDelete() しかないのかなって思ってた。こういうのって、たぶん Web 開発者にとっては基本的な知識なんだろうな。やっぱりなにごとも経験しないとだめだねぇ。というわけで、GET と POST だけ使っていろいろ書き直したのだけど、それはまた今度。一足先に感想を言えば、こういうのは「ASP.NET MVC」使った方が賢い（ぉ
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-df2a93f7&quot; name=&quot;f-df2a93f7&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;そういえば、Rails でも _method=&quot;delete&quot; みたいな感じにして、ここら辺の問題を回避していた気がする&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-07T02:51:36JST">2013/01/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aRESTful%ef%bc%9f%e3%81%aa%20Web%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/07/025136/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F07%2F025136%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/08/055341/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/06/220216/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

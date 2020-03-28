@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2020/01/06/172012/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            UWP：SoftwareBitmap を縮小する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。
+ ［共有］コマンドに対応（必須） シンプル。ブログへのアップロードに使いそうな機能しか追加しない  画像の縮小（できた） 画像の回転（すぐできそうだけどやってない） 顔認識して隠す（進捗半分） 画像のクロップ（優先度低）  UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。 ### Win2D を使う そういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。 ```cs // https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmap public static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight) { using (var resourceCreator = CanvasDevice.GetSharedDevice()) using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap)) using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi)) using (var drawingSession = canvasRenderTarget." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2020/01/06/172012/" >
+                    <h1 class="entry__header-title-link-text">UWP：SoftwareBitmap を縮小する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2020/01/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。<a href="https://blog.daruyanagi.jp/entry/2020/01/02/100000">スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ</a>――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。</p>
+<ul>
+<li>［共有］コマンドに対応（必須）</li>
+<li>シンプル。ブログへのアップロードに使いそうな機能しか追加しない
+<ul>
+<li>画像の縮小（できた）</li>
+<li>画像の回転（すぐできそうだけどやってない）</li>
+<li>顔認識して隠す（進捗半分）</li>
+<li>画像のクロップ（優先度低）</li>
+</ul></li>
+</ul>UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。
+<div class="section">
+    ### Win2D を使う
+    そういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。
+```cs
+// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmap
+<p>public static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight)
+{
+using (var resourceCreator = CanvasDevice.GetSharedDevice())
+using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap))
+using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi))
+using (var drawingSession = canvasRenderTarget.CreateDrawingSession())
+using (var scaleEffect = new ScaleEffect())
+{
+scaleEffect.Source = canvasBitmap;
+scaleEffect.Scale = new System.Numerics.Vector2(newWidth / softwareBitmap.PixelWidth, newHeight / softwareBitmap.PixelHeight);
+drawingSession.DrawImage(scaleEffect);
+drawingSession.Flush();
+return SoftwareBitmap.CreateCopyFromBuffer(canvasRenderTarget.GetPixelBytes().AsBuffer(), BitmapPixelFormat.Bgra8, (int)newWidth, (int)newHeight, BitmapAlphaMode.Premultiplied);
+}
+}</p>
+<pre><code class="language-おおむね快適に動作するが、特定のサイズ（縦×横）の組み合わせで画像が乱れる問題が見つかったのが問題（割ったり、int" data-lang="おおむね快適に動作するが、特定のサイズ（縦×横）の組み合わせで画像が乱れる問題が見つかったのが問題（割ったり、int">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### BitmapEncoder を用いる（WrietableBitmap 経由）
+    というわけで、基本に戻ることにした。BitmapEncoder を生成し、SoftwareBitmap を割り当てて、Transform してもらう。&lt;a href=&quot;http://c5d5e5.asablo.jp/blog/2017/08/08/8642588&quot;&gt;http://c5d5e5.asablo.jp/blog/2017/08/08/8642588&lt;/a&gt; で提示されていたサンプルコードをベースに、SoftwareBitmap の拡張メソッドにしてみた。&lt;br/&gt;
+&lt;br/&gt;
+
+```cs
+// http://c5d5e5.asablo.jp/blog/2017/08/08/8642588
+
+public static async Task&amp;lt;SoftwareBitmap&gt; ResizeAsync(this SoftwareBitmap source, float newWidth, float newHeight)
+{
+    if (source == null) return null;
+
+    using (var memory = new InMemoryRandomAccessStream())
+    {
+        // BitmapEncoder を用いメモリ上で source をリサイズ
+        var id = BitmapEncoder.PngEncoderId;
+        BitmapEncoder encoder = await BitmapEncoder.CreateAsync(id, memory);
+        encoder.BitmapTransform.ScaledHeight = (uint)newHeight;
+        encoder.BitmapTransform.ScaledWidth = (uint)newWidth;
+        encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
+        encoder.SetSoftwareBitmap(source);
+        await encoder.FlushAsync();
+
+        // リサイズしたメモリを WriteableBitmap に複写
+        var writeableBitmap = new WriteableBitmap((int)newWidth, (int)newHeight);
+        await writeableBitmap.SetSourceAsync(memory);
+
+        // dest（XAML の Image コントロール互換）を作成し、WriteableBitmap から複写
+        var dest = new SoftwareBitmap(BitmapPixelFormat.Bgra8, (int)newWidth, (int)newHeight, BitmapAlphaMode.Premultiplied);
+        dest.CopyFromBuffer(writeableBitmap.PixelBuffer);
+
+        return dest;
+    }
+}
+
+```Encoder から SoftwareBitmap を得るのに WrietableBitmap を経由しているのがあまりしっくりこないけど、こっちは問題なく動作した。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### BitmapEncoder ＋ BitmapDecorder
+    他人の力ばかり借りるのも何なので、自分でも考えてみたのはこちら。基本的にはさっきのやり方と変わらないけれど、WrietableBitmap ではなく、BitmapDecorder を利用している。
+```cs
+public static async Task&amp;lt;SoftwareBitmap&gt; ResizeAsync2(this SoftwareBitmap source, float newWidth, float newHeight)
+{
+    if (source == null) return null;
+
+    using (var memory = new InMemoryRandomAccessStream())
+    {
+        var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, memory);
+        encoder.SetSoftwareBitmap(source);
+        await encoder.FlushAsync();
+
+        var decoder = await BitmapDecoder.CreateAsync(memory);
+
+        var transform = new BitmapTransform()
+        {
+            ScaledHeight = (uint)newHeight,
+            ScaledWidth = (uint)newWidth,
+            InterpolationMode = BitmapInterpolationMode.Fant,
+        };
+
+        var dest = await decoder.GetSoftwareBitmapAsync(
+            BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied, 
+            transform, 
+            ExifOrientationMode.IgnoreExifOrientation, ColorManagementMode.DoNotColorManage
+        );
+
+        return dest;
+    }
+}
+
+```これも問題なく動いたが、どうも WrietableBitmap バージョンと比べると動作が遅い。Encoder/Decorder の生成にかなりコストがかかるようだ。となると、そもそも Encoder/Decorder は毎回生成せず、使いまわしたほうが良いのかもしれない（拡張メソッドにするのもあまりよくない、もしくは拡張メソッドに Encoder を渡すようにする）。とりあえず、これで基本的な使い方はわかったような気がするので、画像の回転などは簡単に作れそう（Transform するだけ）。作るうちにペン対応なんかもやりだして、なかなか完成しないけれど、開発中のアプリはなかなかよく動いており、「ブログ、また書こうかな」っていう気がわいてきた。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2020-01-06T17:20:12JST">2020/01/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?UWP%ef%bc%9aSoftwareBitmap%20%e3%82%92%e7%b8%ae%e5%b0%8f%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2020/01/06/172012/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=UWP%EF%BC%9ASoftwareBitmap&#43;%E3%82%92%E7%B8%AE%E5%B0%8F%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2020%2F01%2F06%2F172012%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2020/01/14/170540/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2020/01/02/100000/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

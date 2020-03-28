@@ -1,0 +1,343 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/04/15/170659/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Azure Web App＋Job＋Table Storage ：Twitter の位置情報を拾ってマッピングする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
+ Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   Twitter の位置情報は  Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-azure/">Microsoft Azure</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.NET Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/04/15/170659/" >
+                    <h1 class="entry__header-title-link-text">Azure Web App＋Job＋Table Storage ：Twitter の位置情報を拾ってマッピングする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/04/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/04/15/170659/20170415163622.png"/> 
+</figure>
+以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。</p>
+<ul>
+<li><a href="http://api.daruyanagi.jp/map">Daruyanagi API : Check-ins</a></li>
+</ul>ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ
+<div class="section">
+    ### Twitter の位置情報
+    <figure>
+    <img src="/images/2017/04/15/170659/20170415163522.png"/> 
+</figure>
+Twitter の位置情報は
+<ul>
+<li>Place：大まかな位置を共有（矩形）</li>
+<li>Coordinates：経度・緯度を正確に共有（点）</li>
+</ul>の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。
+```cs
+public static void CollectCheckIns()
+{
+    // CONNECTION_STRING は Azure Table Storage の接続文字列
+    //
+    // Web Jobs プロジェクトを作成
+    // ・単なるコンソールアプリみたい
+    //
+    // NuGet で
+    // ・CoreTweet：Twitter のライブラリ
+    // ・WindowsAzure.Storage
+    // なんかをインストールしておく
+<pre><code>try
+{
+    var account = CloudStorageAccount.Parse(CONNECTION_STRING);
+    var client = account.CreateCloudTableClient();
+    var table = client.GetTableReference(&quot;checkins&quot;);
+    table.CreateIfNotExists();
+
+    // めいいっぱいツイートをかき集めてくる
+    var tweets = tokens.Statuses
+        .UserTimeline(count: 200)
+        .Where(_ =&gt; _.Coordinates != null);
+
+    foreach (var tweet in tweets)
+    {
+        var entity = new CheckinEntity(tweet);
+
+        var operation = TableOperation.InsertOrReplace(entity);
+
+        table.Execute(operation);
+
+        Console.WriteLine($&quot;{entity.Url} is collected&quot;);
+    }
+}
+catch (Exception exception)
+{
+    System.Diagnostics.Debug.WriteLine(exception.Message);
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-基本的な流れは簡単だと思った。Table" data-lang="基本的な流れは簡単だと思った。Table">```cs
+public class CheckinEntity : TableEntity
+{
+    public CheckinEntity() { }
+
+    public CheckinEntity(Status status)
+    {
+        this.PartitionKey = status.Id.ToString();
+        // RowKey にスラッシュは含められない
+        this.RowKey = status.CreatedAt.UtcDateTime.ToString(&quot;u&quot;);
+
+        Id = status.Id;
+        Text = status.Text;
+        ScreenName = status.User.ScreenName;
+        Latitude = status.Coordinates.Latitude;
+        Longitude = status.Coordinates.Longitude;
+        CreatedAt = status.CreatedAt.UtcDateTime;
+    }
+
+    public long Id { get; set; }
+
+    public string Text { get; set; }
+
+    public string ScreenName { get; set; }
+
+    public double Latitude { get; set; }
+
+    public double Longitude { get; set; }
+
+    public DateTime CreatedAt { get; set; }
+
+    public string Url { get { return $&quot;https://twitter.com/{ScreenName}/status/{Id}&quot;; } }
+}
+
+```ちょっとハマったのは、RowKey にスラッシュを含められないこと。table.Execute() が 400 という HTTP ステータスコードを返して失敗するときは、このあたりを疑ってみるといいのかも。今回はスラッシュを含まず、並び替えにも使える書式 &quot;u&quot; で ToString() しておいた。成功すると、こんな感じで Table Storage にデータが格納される。<figure>
+    <img src="/images/2017/04/15/170659/20170415165656.png"/> 
+</figure>
+データを読み出す場合は、こんな感じ。
+```cs
+public static IEnumerable&amp;lt;CheckinEntity&gt; Get()
+{
+    var account = CloudStorageAccount.Parse(CONNECTION_STRING);
+        
+    var client = account.CreateCloudTableClient();
+
+    var table = client.GetTableReference(&quot;checkins&quot;);
+
+    var rangeQuery = new TableQuery&amp;lt;CheckinEntity&gt;();
+        
+    return table.ExecuteQuery(rangeQuery).OrderByDescending(_ =&gt; _.CreatedAt);
+}
+
+```データが多くなってきたら、ちゃんと範囲を絞ってクエリしたほうがいいのかもしれない。<figure>
+    <img src="/images/2017/04/15/170659/20170415170111.png"/> 
+</figure>
+あとはこれを JSON で吐くようにして――
+```javascript
+var map_element = document.getElementById(&quot;daru_map&quot;);
+var map;
+    
+var markerData;
+
+var xhr = new XMLHttpRequest();
+
+xhr.open(&quot;get&quot;, &quot;/map/checkins&quot;, false);
+xhr.onload = function(){
+    markerData = JSON.parse(this.responseText);
+}
+xhr.send(null);
+
+function initMap() {
+    map = new google.maps.Map(map_element, { center: markerData[0], zoom: 15, });
+
+    for (var i = 0; i &amp;lt; markerData.length; i++) {
+        (function () {
+            //マーカーの設定と作成
+            var marker = new google.maps.Marker({
+                position: {
+                    lat: markerData[i].lat,
+                    lng: markerData[i].lng
+                },
+                // title: markerData[i].title,
+                icon: &quot;/Assets/Marker.png&quot;,
+                map: map
+            });
+
+            //情報ウインドウの設定と作成
+            var infoWindow = new google.maps.InfoWindow({
+                content: markerData[i].content
+            });
+                        
+            //情報ウインドウのオープンをマーカーのクリックイベントに登録
+            marker.addListener(&amp;#39;click&amp;#39;, function () {
+                infoWindow.open(map, marker);
+                setTimeout(function () { infoWindow.close(); }, 1000 * 3)
+            });
+        }());
+    }
+}
+
+```Google マップにプロットしてみた（情報ウィンドウは一つ開いたら一つ閉じるようにしたかったけど、なんかうまくいかんのでタイマーで閉じた）。<figure>
+    <img src="/images/2017/04/15/170659/20170415170311.png"/> 
+</figure>
+テキトーだけど、今回はこのぐらいで。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 追伸
+    Web Job の話をするのを忘れたけど、単に作った Job をアップロードしてスケジューリング実行するだけなので割愛。今は 3 時間おきにデータを収集するようにしている。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-04-15T17:06:59JST">2017/04/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Azure%20Web%20App%ef%bc%8bJob%ef%bc%8bTable%20Storage%20%ef%bc%9aTwitter%20%e3%81%ae%e4%bd%8d%e7%bd%ae%e6%83%85%e5%a0%b1%e3%82%92%e6%8b%be%e3%81%a3%e3%81%a6%e3%83%9e%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/04/15/170659/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/16/202111/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/13/215309/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

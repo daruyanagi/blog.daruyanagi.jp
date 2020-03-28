@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/04/01/004609/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Microsoft Flow × だるやなぎ API で俺さまの年齢をつぶやく | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Microsoft Flow は
+ API にアクセスして データを解析し それをツイートする といったこと（ロジックフローの連鎖）を簡単に実現できるサービスです。“あーして、こうして、そんでもってこうする！”みたいなのをダイアグラム的に書けるわけですね。あとでスクリーンショットをのせておくので見てほしいのですが、割とビジュアルでわかりやすいです。この Microsoft Flow はスタンドアロンで  定期的に フィードが配信されたら みたいなトリガー（処理のきっかけ）を使うこともできますが、モバイルアプリを利用すれば**「このボタンを押すと」**をトリガーにすることができます。今回は だるやなぎ API を利用してモバイルアプリから年齢をつぶやく例を紹介します。毎日、僕の年齢を Twitter につぶやけて、とても便利です。 ### だるやなぎ API だるやなぎ API http://api.daruyanagi.jp/ は、だるやなぎのさまざまな情報を取得できる API です。たとえば、http://api.daruyanagi.jp/?format=xml を叩くと、 ```xml  YANAGI, Hidetoshi daruyanagi 1980-04-20T09:00:00 1998-04-20T09:00:00  5679936000000000 6574 0 0 0 0 6574 157776 567993600000 9466560 567993600 18 18 19 false Oil King  https://onedrive.live.com/?authkey=%21ALMyzgcuZ67AAng&amp;amp;id=2260696B6A4680D7%2118945&amp;amp;cid=2260696B6A4680D7
+ 愛媛 松山市  33.687285 132.491125
+ 34.073779 132.926666
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ざっとした使い方   ますは &lt;a href=&quot;https://flow." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-flow/">Microsoft Flow</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/04/01/004609/" >
+                    <h1 class="entry__header-title-link-text">Microsoft Flow × だるやなぎ API で俺さまの年齢をつぶやく</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/04/01</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>Microsoft Flow は</p>
+<ul>
+<li>API にアクセスして</li>
+<li>データを解析し</li>
+<li>それをツイートする</li>
+</ul>といったこと（ロジックフローの連鎖）を簡単に実現できるサービスです。“あーして、こうして、そんでもってこうする！”みたいなのをダイアグラム的に書けるわけですね。あとでスクリーンショットをのせておくので見てほしいのですが、割とビジュアルでわかりやすいです。この Microsoft Flow はスタンドアロンで
+<ul>
+<li>定期的に</li>
+<li>フィードが配信されたら</li>
+</ul>みたいなトリガー（処理のきっかけ）を使うこともできますが、モバイルアプリを利用すれば**「このボタンを押すと」**をトリガーにすることができます。今回は だるやなぎ API を利用してモバイルアプリから年齢をつぶやく例を紹介します。毎日、僕の年齢を Twitter につぶやけて、とても便利です。
+<div class="section">
+    ### だるやなぎ API
+    だるやなぎ API <a href="http://api.daruyanagi.jp/">http://api.daruyanagi.jp/</a> は、だるやなぎのさまざまな情報を取得できる API です。たとえば、<a href="http://api.daruyanagi.jp/?format=xml">http://api.daruyanagi.jp/?format=xml</a> を叩くと、
+```xml
+<object></object>
+<name></name>YANAGI, Hidetoshi
+<nickname></nickname>daruyanagi
+<birth></birth>1980-04-20T09:00:00
+<datetime></datetime>1998-04-20T09:00:00
+<elapsed></elapsed>
+<ticks></ticks>5679936000000000
+<days></days>6574
+<hours></hours>0
+<milliseconds></milliseconds>0
+<minutes></minutes>0
+<seconds></seconds>0
+<totaldays></totaldays>6574
+<totalhours></totalhours>157776
+<totalmilliseconds></totalmilliseconds>567993600000
+<totalminutes></totalminutes>9466560
+<totalseconds></totalseconds>567993600
+<p><age></age>18
+<ageatlastbirthday></ageatlastbirthday>18
+<agebycalendaryear></agebycalendaryear>19
+<married></married>false
+<job></job>Oil King
+<photos></photos>
+<a href="https://onedrive.live.com/?authkey=%21ALMyzgcuZ67AAng&amp;amp;id=2260696B6A4680D7%2118945&amp;amp;cid=2260696B6A4680D7">https://onedrive.live.com/?authkey=%21ALMyzgcuZ67AAng&amp;amp;id=2260696B6A4680D7%2118945&amp;amp;cid=2260696B6A4680D7</a></p>
+<p><place></place>
+<name></name>愛媛 松山市
+<southwest></southwest>
+<latitude></latitude>33.687285
+<longitude></longitude>132.491125</p>
+<p><northeast></northeast>
+<latitude></latitude>34.073779
+<longitude></longitude>132.926666</p>
+<pre><code class="language-というデータが返ってきます。年齢や職業も一発ですね！　JSON" data-lang="というデータが返ってきます。年齢や職業も一発ですね！　JSON">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ざっとした使い方
+    <figure>
+    <img src="/images/2017/04/01/004609/20170401003108.png"/> 
+</figure>
+ますは &lt;a href=&quot;https://flow.microsoft.com/ja-jp/&quot;&gt;https://flow.microsoft.com/ja-jp/&lt;/a&gt; からアプリをダウンロードします。iOS 版と Android 版があります。Windows 10 Mobile？……知らない子ですね。<figure>
+    <img src="/images/2017/04/01/004609/20170401002713.png" width="320px"/> 
+</figure>
+ <figure>
+    <img src="/images/2017/04/01/004609/20170401002815.png" width="320px"/> 
+</figure>
+ダウンロードしたら、まずなにかフローを作成してみてください。わかんなかったらテンプレートがいっぱいあるので、なにか選んでみましょう。たとえばこの**“上司に今日は在宅勤務にするというメールを送信する”**なんて便利じゃないでしょうか。これを改造すれば、遅刻メールがワンボタンで送れるようになります。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### Microsoft Flow に API を食わせる
+    フローはモバイルアプリでも作れますが、個人的にはオンラインで作る方が好きです。画面がでかいので。<figure>
+    <img src="/images/2017/04/01/004609/20170401003551.png"/> 
+</figure>
+今回作ったフローはこんな感じです。シンプルですね！　ほんとうは API が 200（成功）以外のレスポンスを返すことも考慮した方がよいでしょう。失敗したらメールで通知、みたいなのとか、どうでしょう？ポイントとなるのは、HTTP アクセスと――<figure>
+    <img src="/images/2017/04/01/004609/20170401003718.png"/> 
+</figure>
+JSON の解析でしょうか。<figure>
+    <img src="/images/2017/04/01/004609/20170401003739.png"/> 
+</figure>
+JSON の解析は一見難しそうですけど、サンプルの JSON データを一度食べさせると、それを解析し、他の処理に使いまわせるようにしてくれます。めっちゃ簡単ですね。<figure>
+    <img src="/images/2017/04/01/004609/20170401003854.png"/> 
+</figure>
+だいたいこんな感じです。変数がビジュアルな感じで、わかりやすいと思います。<figure>
+    <img src="/images/2017/04/01/004609/20170401003944.png" width="320px"/> 
+</figure>
+ <figure>
+    <img src="/images/2017/04/01/004609/20170401003958.png" width="320px"/> 
+</figure>
+フローを保存するとアプリにボタンが現れるので、さっそく押してみましょう。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">daruyanagi は 18 歳無職独身男性です。今日まで 6574 日生きてきました。ごめんなさい。 <a href="https://t.co/5FcERn6wgP">https://t.co/5FcERn6wgP</a></p>&mdash; 言われなくても家にいるやなぎ ♨🍊🐟🇯🇵 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/847829505712336897?ref_src=twsrc%5Etfw">March 31, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+ちゃんと 18歳 とツイートされました！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 補足
+    
+&lt;ul&gt;
+&lt;li&gt;JSON データの解析・変数化は、階層まで考慮してくれません。異なる階層で同じ名前の変数があるとちょっと厄介（見分けがつかない&lt;/li&gt;
+&lt;li&gt;Twitter に紐づけられるアカウントの数は 2 つまでのようです。無料アカウントで3つ目を登録するとエラーがでます（言い忘れていましたが、**MicrosoftFlow は基本タダ**です。ただし、回数などに制限があります……が、個人利用ならそんなに気にしなくていいかな）&lt;/li&gt;
+&lt;li&gt;Twitter でつぶやくテキストは自由に編集できますが
+&lt;ul&gt;
+&lt;li&gt;スパム防止のために @ は削除されます（メンションできません&lt;/li&gt;
+&lt;li&gt;そもそも @ を使うとフローが壊れるっぽい&lt;/li&gt;
+&lt;/ul&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### P.S.
+    この記事は 4月1日の午前中 に作成されました。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-04-01T00:46:09JST">2017/04/01</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Microsoft%20Flow%20%c3%97%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e%20API%20%e3%81%a7%e4%bf%ba%e3%81%95%e3%81%be%e3%81%ae%e5%b9%b4%e9%bd%a2%e3%82%92%e3%81%a4%e3%81%b6%e3%82%84%e3%81%8f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/04/01/004609/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Microsoft&#43;Flow&#43;%C3%97&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&#43;API&#43;%E3%81%A7%E4%BF%BA%E3%81%95%E3%81%BE%E3%81%AE%E5%B9%B4%E9%BD%A2%E3%82%92%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F01%2F004609%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/02/013553/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/30/202505/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

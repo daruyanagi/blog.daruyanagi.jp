@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/29/201834/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、
+&gt;  ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。 コントローラでflashメッセージを設定し、ビューで表示する。 flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。 設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。 普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。
+ flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション  というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。
+# Logout.cshtml @{ WebSecurity.Logout(); Session[&#34;flash&#34;] = &#34;Good bye!&#34;; // &amp;lt;-- ココ！  Response.Redirect(Request[&#34;ReturnUrl&#34;] ?? &#34;~/&#34;); } ```実装には Session を利用した。 Session[&#34;flash&#34;] にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。 ```cs # ＿SiteLayout.cshtml &amp;lt;body&gt; @if (Session[&#34;flash&#34;] != null) { &amp;lt;div class=&#34;message info&#34;&gt; &amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt; // &amp;lt;-- 読みだして……  &amp;lt;/div&gt; Session[&#34;flash&#34;] = null; // &amp;lt;-- 消す！……  } @RenderBody() &amp;lt;/body&gt; ```表示する側では、かならず Session[&#34;flash&#34;] をクリアしておく。これで Session[&#34;flash&#34;] の内容が表示されるのは一度きりになるはず。&lt;img src=&#34;http://cdn-ak." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/29/201834/" >
+                    <h1 class="entry__header-title-link-text">寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/29</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、</p>
+<pre><code>&gt;
+</code></pre>
+<p>ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。
+コントローラでflashメッセージを設定し、ビューで表示する。
+flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。
+設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。
+普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。</p>
+<pre><code>    flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション
+</code></pre>
+<p>というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> Logout.cshtml
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    WebSecurity.Logout();
+    Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#e6db74">&#34;Good bye!&#34;</span>; <span style="color:#75715e">// &amp;lt;-- ココ！
+</span><span style="color:#75715e"></span>    Response.Redirect(Request[<span style="color:#e6db74">&#34;ReturnUrl&#34;</span>] ?? <span style="color:#e6db74">&#34;~/&#34;</span>);
+}
+
+<span style="color:#960050;background-color:#1e0010">```実装には</span> Session <span style="color:#960050;background-color:#1e0010">を利用した。</span> Session[<span style="color:#e6db74">&#34;flash&#34;</span>] <span style="color:#960050;background-color:#1e0010">にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">＿</span>SiteLayout.cshtml
+
+&amp;lt;body&gt;
+    @if (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] != <span style="color:#66d9ef">null</span>)
+    {
+        &amp;lt;div class=<span style="color:#e6db74">&#34;message info&#34;</span>&gt;
+            &amp;lt;p&gt;@Session[<span style="color:#e6db74">&#34;flash&#34;</span>]&amp;lt;/p&gt; <span style="color:#75715e">// &amp;lt;-- 読みだして……
+</span><span style="color:#75715e"></span>        &amp;lt;/div&gt;
+        Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>; <span style="color:#75715e">// &amp;lt;-- 消す！……
+</span><span style="color:#75715e"></span>    }
+
+    @RenderBody()
+&amp;lt;/body&gt;
+
+<span style="color:#960050;background-color:#1e0010">```表示する側では、かならず</span> Session[<span style="color:#e6db74">&#34;flash&#34;</span>] <span style="color:#960050;background-color:#1e0010">をクリアしておく。これで</span> Session[<span style="color:#e6db74">&#34;flash&#34;</span>] <span style="color:#960050;background-color:#1e0010">の内容が表示されるのは一度きりになるはず。</span>&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120829/20120829200628.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120829200628p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120829200628p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;<span style="color:#960050;background-color:#1e0010">これでいいのかは自信がないのだけれど、うまくいったのではないかな。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">ステップアップ</span>
+    <span style="color:#960050;background-color:#1e0010">ビューでぐちゃぐちゃコード書くのはあまり格好よくないから、これはぜひカプセル化しておきたいよね。ヘルパーにしておくとよさそうだ。というわけで、</span> Flash <span style="color:#960050;background-color:#1e0010">ヘルパーを作ってみた。インターフェイスは単純で、</span> Write(<span style="color:#66d9ef">string</span>) <span style="color:#960050;background-color:#1e0010">で書き込んで、</span> Read() <span style="color:#960050;background-color:#1e0010">で読むだけ。読むと内容が破棄される。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/Flash.cshtml
+
+@helper Read()
+{
+    <span style="color:#66d9ef">if</span> (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] != <span style="color:#66d9ef">null</span>)
+    {
+        &amp;lt;div class=<span style="color:#e6db74">&#34;message info&#34;</span>&gt;&amp;lt;p&gt;@Session[<span style="color:#e6db74">&#34;flash&#34;</span>]&amp;lt;/p&gt;&amp;lt;/div&gt;
+    }
+    Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>;
+}
+
+@functions
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Write(<span style="color:#66d9ef">string</span> <span style="color:#66d9ef">value</span>)
+    {
+        Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">value</span>;
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>Helper <span style="color:#960050;background-color:#1e0010">はインスタンス作って使うわけじゃないから、</span> <span style="color:#66d9ef">static</span> <span style="color:#960050;background-color:#1e0010">で宣言せえへんだら外から使えへんで。で、これを使うと、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> Logout.cshtml
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    WebSecurity.Logout();
+    Flash.Write(<span style="color:#e6db74">&#34;Good bye!&#34;</span>); <span style="color:#75715e">// &amp;lt;-- ココ！
+</span><span style="color:#75715e"></span>    Response.Redirect(Request[<span style="color:#e6db74">&#34;ReturnUrl&#34;</span>] ?? <span style="color:#e6db74">&#34;~/&#34;</span>);
+}
+
+<span style="color:#960050;background-color:#1e0010">```で書いて、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">＿</span>SiteLayout.cshtml
+
+&amp;lt;body&gt;
+    @Flash.Read() <span style="color:#75715e">// &amp;lt;-- これ！
+</span><span style="color:#75715e"></span>
+    @RenderBody()
+&amp;lt;/body&gt;
+
+<span style="color:#960050;background-color:#1e0010">```で、読むって感じになる。結構簡単だったから、少し手を加えて</span> Dictionary <span style="color:#960050;background-color:#1e0010">へ拡張してもいいかも。</span>
+
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-29T20:18:34JST">2012/08/29</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%af%84%e3%82%8a%e9%81%93%ef%bc%9a%20Rails%20%e3%81%ae%20Flash%20%e3%81%a3%e3%81%bd%e3%81%84%e6%a9%9f%e8%83%bd%e3%82%92%20WebMatrix%20%e3%81%a7%e4%bd%bf%e3%81%84%e3%81%9f%e3%81%84%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/29/201834/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F29%2F201834%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/30/040609/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/29/033503/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

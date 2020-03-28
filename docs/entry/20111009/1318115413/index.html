@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111009/1318115413/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で FizzBuzz | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="&gt; それで、そういった類の開発者を見分けるための質問を作り始め、私が｢Fizz-Buzz問題｣と呼んでいる問題のクラスを考え出した。これはイギリスの学校の子供たちがよくやっている遊び(というかやらされている遊び)にちなんで名付けた。Fizz-Buzz問題の例はこんな感じだ。1から100までの数をプリントするプログラムを書け。ただし3の倍数のときは数の代わりに｢Fizz｣と、5の倍数のときは｢Buzz｣とプリントし、3と5両方の倍数の場合には｢FizzBuzz｣とプリントすること。ちゃんとしたプログラマであれば、これを実行するプログラムを2分とかからずに紙に書き出せるはずだ。怖い事実を聞きたい? コンピュータサイエンス学科卒業生の過半数にはそれができないのだ。自称上級プログラマが答えを書くのに10-15分もかかっているのを見たこともある。 どうしてプログラマに・・・プログラムが書けないのか?  手元にWebMatrixがあったので、試しに FizzBuzz をプリントアウトするコードを書いてみた。
+#### 本能のおもむくままに ``` # /App_Code/FizzBuzz.cshtml @helper Print(int count = 100) { foreach (var i in Enumerable.Range(1, count)) { var s = string.Empty; if (i % 3 == 0) { s &#43;= &quot;Fizz&quot;; } if (i % 5 == 0) { s &#43;= &quot;Buzz&quot;; } if (s == string.Empty) { s &#43;= i.ToString(); } &amp;lt;p&gt;@s&amp;lt;/p&gt; } }  @FizzBuzz.Print()&#34; data-lang=&#34;何も考えずに、自分なりの素直なコード。@FizzBuzz.Print()&#34; &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### 自己採点 &amp;amp; 反省 そのあと、いろいろぐぐってみた。普通はだいたいこのように書くみたいだ。 @helper Print2(int count = 100) { for (int i = 1; i &amp;lt;= count; i&#43;&#43;) { var fizz = (i % 3 == 0); var buzz = (i % 5 == 0); if (fizz &amp;amp;&amp;amp; !" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111009/1318115413/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で FizzBuzz</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/10/09</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://www.flickr.com/photos/mjm1977/4440551183/" title="Nomi Licking the Canon cat by MJM1977, on Flickr"><img src="http://farm5.static.flickr.com/4009/4440551183_3629c6a16e.jpg" width="500" height="375" alt="Nomi Licking the Canon cat"/></a></p>
+<pre><code>&gt;
+    それで、そういった類の開発者を見分けるための質問を作り始め、私が｢Fizz-Buzz問題｣と呼んでいる問題のクラスを考え出した。これはイギリスの学校の子供たちがよくやっている遊び(というかやらされている遊び)にちなんで名付けた。Fizz-Buzz問題の例はこんな感じだ。1から100までの数をプリントするプログラムを書け。ただし3の倍数のときは数の代わりに｢Fizz｣と、5の倍数のときは｢Buzz｣とプリントし、3と5両方の倍数の場合には｢FizzBuzz｣とプリントすること。ちゃんとしたプログラマであれば、これを実行するプログラムを2分とかからずに紙に書き出せるはずだ。怖い事実を聞きたい?  コンピュータサイエンス学科卒業生の過半数にはそれができないのだ。自称上級プログラマが答えを書くのに10-15分もかかっているのを見たこともある。
+
+    どうしてプログラマに・・・プログラムが書けないのか?
+</code></pre>
+<p>手元にWebMatrixがあったので、試しに FizzBuzz をプリントアウトするコードを書いてみた。</p>
+<div class="section">
+    #### 本能のおもむくままに
+    ```
+    # /App_Code/FizzBuzz.cshtml
+<pre><code>@helper Print(int count = 100)
+{
+    foreach (var i in Enumerable.Range(1, count))
+    {
+        var s = string.Empty;
+
+        if (i % 3 == 0) { s += &quot;Fizz&quot;; }
+        if (i % 5 == 0) { s += &quot;Buzz&quot;; }
+        if (s == string.Empty) { s += i.ToString(); }
+
+        &amp;lt;p&gt;@s&amp;lt;/p&gt;
+    }
+}
+</code></pre>
+<pre><code class="language-何も考えずに、自分なりの素直なコード。<code>@FizzBuzz.Print()</code>" data-lang="何も考えずに、自分なりの素直なコード。<code>@FizzBuzz.Print()</code>">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### 自己採点 &amp;amp; 反省
+    そのあと、いろいろぐぐってみた。普通はだいたいこのように書くみたいだ。
+</code></pre><pre><code>@helper Print2(int count = 100)
+{
+    for (int i = 1; i &amp;lt;= count; i++)
+    {
+        var fizz = (i % 3 == 0);
+        var buzz = (i % 5 == 0);
+    
+        if (fizz &amp;amp;&amp;amp; !buzz) {
+            &amp;lt;p&gt;Fizz&amp;lt;/p&gt;
+        } else if (!fizz &amp;amp;&amp;amp; buzz) {
+            &amp;lt;p&gt;Buzz&amp;lt;/p&gt;
+        } else if (fizz &amp;amp;&amp;amp; buzz) {
+            &amp;lt;p&gt;FizzBuzz&amp;lt;/p&gt;
+        } else {
+            &amp;lt;p&gt;@i&amp;lt;/p&gt;
+        }
+    }
+}
+</code></pre>
+<pre><code class="language-1." data-lang="1.">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-10-09T08:10:13JST">2011/10/09</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%20FizzBuzz%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111009/1318115413/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7&#43;FizzBuzz&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111009%2F1318115413%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111010/1362520522/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111005/1362520511/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

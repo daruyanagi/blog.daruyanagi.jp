@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/01/03/145528/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            「三重県民には無理に飲ませてはいけない」をグラフ化する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="### Excel の 3D Maps を利用する 詳しい方法は「Excel 2016の新機能「3Dマップ」の使い方。地図上にグラフを作成できる！ | できるネット」で紹介されている。  まずテーブルを作成。  次に［挿入］－［3D マップ］コマンドを選択。  「データ解析アドイン」を有効化するかどうか聞かれるので、［有効］ボタンを押す。  すると 3D Maps の編集画面が現れるので、ごにょごにょイジっていい感じにする。なんか塗りが適当だし、石川県・香川県・福岡県がなぜか欠落しているけど気にしない（詳しい人、直し方教えて）。  ### Google Chart を利用する JavaScript が書けるならこっちの方が簡単。 ```javascript &lt;script src=&#34;https://www.google.com/jsapi&#34;&lt;/script &lt;script google.load(&#39;visualization&#39;, &#39;1&#39;, {packages:[&#39;geochart&#39;]}); google.setOnLoadCallback(graphChart); function graphChart() { var data = google.visualization.arrayToDataTable([ [&ldquo;都道府県&rdquo;, &ldquo;データ&rdquo;], [&ldquo;秋田&rdquo;, 76.7] , ： ： [&ldquo;三重&rdquo;, 39.7]
+]); var option = { region: &#39;JP&#39;, resolution: &#39;provinces&#39; };
+var chart = new google.visualization .GeoChart(document.getElementById(&#39;chart&#39;)); chart.draw(data, option); } &lt;/script&gt;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-excel/">Microsoft Excel</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/google/">Google</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/01/03/145528/" >
+                    <h1 class="entry__header-title-link-text">「三重県民には無理に飲ませてはいけない」をグラフ化する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/01/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <div class="section">
+    ### Excel の 3D Maps を利用する
+    詳しい方法は「<a href="https://dekiru.net/article/13655/">Excel 2016の新機能「3Dマップ」の使い方。地図上にグラフを作成できる！ | できるネット</a>」で紹介されている。<figure>
+    <img src="/images/2017/01/03/145528/20170103144302.png"/> 
+</figure>
+まずテーブルを作成。<figure>
+    <img src="/images/2017/01/03/145528/20170103144402.png"/> 
+</figure>
+次に［挿入］－［3D マップ］コマンドを選択。<figure>
+    <img src="/images/2017/01/03/145528/20170103144439.png"/> 
+</figure>
+「データ解析アドイン」を有効化するかどうか聞かれるので、［有効］ボタンを押す。<figure>
+    <img src="/images/2017/01/03/145528/20170103144529.png"/> 
+</figure>
+すると 3D Maps の編集画面が現れるので、ごにょごにょイジっていい感じにする。なんか塗りが適当だし、石川県・香川県・福岡県がなぜか欠落しているけど気にしない（詳しい人、直し方教えて）。
+</div>
+<div class="section">
+    ### Google Chart を利用する
+    JavaScript が書けるならこっちの方が簡単。
+```javascript
+&lt;script src="https://www.google.com/jsapi">&lt;/script>
+&lt;script>
+google.load(&#39;visualization&#39;, &#39;1&#39;, {packages:[&#39;geochart&#39;]});
+google.setOnLoadCallback(graphChart);
+<p>function graphChart() {
+var data = google.visualization.arrayToDataTable([
+[&ldquo;都道府県&rdquo;, &ldquo;データ&rdquo;],
+[&ldquo;秋田&rdquo;,  76.7]  ,
+：
+：
+[&ldquo;三重&rdquo;,  39.7]<br>
+]);
+var option = {
+region: 'JP',
+resolution: 'provinces'
+};</p>
+<p>var chart = new google.visualization
+.GeoChart(document.getElementById('chart'));
+chart.draw(data, option);
+}
+&lt;/script&gt;</p>
+<p>&lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;</p>
+<pre><code class="language-コードを貼り付けると、以下のようにレンダリングされる。<script" data-lang="コードを貼り付けると、以下のようにレンダリングされる。<script">&lt;script&gt;
+google.load('visualization', '1', {packages:['geochart']});
+google.setOnLoadCallback(graphChart);
+
+function graphChart() {
+  var data = google.visualization.arrayToDataTable([
+    [&quot;都道府県&quot;, &quot;データ&quot;], 
+    [&quot;秋田&quot;,  76.7]  ,
+    [&quot;岩手&quot;,  71.4]  ,
+    [&quot;鹿児島&quot;,  71.4],
+    [&quot;福島&quot;,  70.4]  ,
+    [&quot;埼玉&quot;,  65.4]  ,
+    [&quot;山形&quot;,  65.1]  ,
+    [&quot;北海道&quot;,  64.8],
+    [&quot;沖縄&quot;,  64.8]  ,
+    [&quot;熊本&quot;,  64.3]  ,
+    [&quot;高知&quot;,  64.0]  ,
+    [&quot;千葉&quot;,  63.4]  ,
+    [&quot;青森&quot;,  63.2]  ,
+    [&quot;宮城&quot;,  63.2]  ,
+    [&quot;新潟&quot;,  62.4]  ,
+    [&quot;神奈川&quot;,  61.9],
+    [&quot;香川&quot;,  61.6]  ,
+    [&quot;大分&quot;,  60.2]  ,
+    [&quot;宮崎&quot;,  60.2]  ,
+    [&quot;東京&quot;,  60.0]  ,
+    [&quot;栃木&quot;,  59.8]  ,
+    [&quot;茨城&quot;,  59.3]  ,
+    [&quot;山梨&quot;,  59.3]  ,
+    [&quot;長野&quot;,  58.5]  ,
+    [&quot;福井&quot;,  58.5]  ,
+    [&quot;鳥取&quot;,  58.5]  ,
+    [&quot;島根&quot;,  58.5]  ,
+    [&quot;愛媛&quot;,  58.5]  ,
+    [&quot;兵庫&quot;,  57.8]  ,
+    [&quot;福岡&quot;,  57.8]  ,
+    [&quot;静岡&quot;,  57.2]  ,
+    [&quot;山口&quot;,  56.3]  ,
+    [&quot;佐賀&quot;,  56.3]  ,
+    [&quot;長崎&quot;,  56.3]  ,
+    [&quot;徳島&quot;,  56.0]  ,
+    [&quot;滋賀&quot;,  55.8]  ,
+    [&quot;京都&quot;,  55.5]  ,
+    [&quot;群馬&quot;,  54.8]  ,
+    [&quot;富山&quot;,  54.8]  ,
+    [&quot;岡山&quot;,  53.8]  ,
+    [&quot;奈良&quot;,  53.3]  ,
+    [&quot;大阪&quot;,  53.0]  ,
+    [&quot;広島&quot;,  52.4]  ,
+    [&quot;和歌山&quot;,  49.7],
+    [&quot;岐阜&quot;,  47.6]  ,
+    [&quot;石川&quot;,  45.7]  ,
+    [&quot;愛知&quot;,  41.4]  ,
+    [&quot;三重&quot;,  39.7]  
+  ]);
+  var option = {
+    region: 'JP',
+    resolution: 'provinces'
+  };
+
+  var chart = new google.visualization
+      .GeoChart(document.getElementById('chart'));
+  chart.draw(data, option);
+}
+&lt;/script&gt;&lt;div id=&quot;chart&quot;&gt;&lt;/div&gt;ちなみに、下記の記事を参照しました。都道府県名に“県”とかつけちゃうとダメみたい。[GoogleChartsのGeochartで都道府県分布マップを簡単作成 - Qiita](http://qiita.com/sue738/items/3297c79e62be1cb799c1)&lt;br/&gt;
+
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 雑感
+    東海地方はお酒が弱い人が多いみたい。なんとなくだけど記紀によく登場する地域（紀・畿内・吉備・越＋東海）はお酒に弱い感じがあるので、縄文系はお酒に強く、弥生系はお酒に弱いみたいな違いとかあるのかな。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-01-03T14:55:28JST">2017/01/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%80%8c%e4%b8%89%e9%87%8d%e7%9c%8c%e6%b0%91%e3%81%ab%e3%81%af%e7%84%a1%e7%90%86%e3%81%ab%e9%a3%b2%e3%81%be%e3%81%9b%e3%81%a6%e3%81%af%e3%81%84%e3%81%91%e3%81%aa%e3%81%84%e3%80%8d%e3%82%92%e3%82%b0%e3%83%a9%e3%83%95%e5%8c%96%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/01/03/145528/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%80%8C%E4%B8%89%E9%87%8D%E7%9C%8C%E6%B0%91%E3%81%AB%E3%81%AF%E7%84%A1%E7%90%86%E3%81%AB%E9%A3%B2%E3%81%BE%E3%81%9B%E3%81%A6%E3%81%AF%E3%81%84%E3%81%91%E3%81%AA%E3%81%84%E3%80%8D%E3%82%92%E3%82%B0%E3%83%A9%E3%83%95%E5%8C%96%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F01%2F03%2F145528%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/01/03/231515/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/01/03/133831/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

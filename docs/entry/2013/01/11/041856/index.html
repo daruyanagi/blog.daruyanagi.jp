@@ -1,0 +1,366 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/11/041856/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：RESTful？な Web アプリケーション （2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2：RESTful？な Web アプリケーション - だるろぐ の続き。とりあえず、
+ /Posts/ - GET:List /Posts/:id - GET:Show /Posts/New - GET:New, POST:Create /Posts/Edit/:id - GET:Edit, POST:Update /Posts/Remove/:id - GET:Remove, POST:DELETE って感じにマッピングされるように頑張ってみた。 ```cs # ~/Posts.cshtml @{ Layout = &ldquo;_SiteLayout.cshtml&rdquo;; }
+@try{ switch (UrlData[0].ToUpper()) { case &ldquo;&quot;: // &lt;- / へアクセスするととりあえず UrlData[0] には string.empty が入るっぽい case &ldquo;LIST&rdquo;: if (!IsPost) // GET { @List() } else // POST { throw new ApplicationException(); } break;
+ case &quot;NEW&quot;: case &quot;CREATE&quot;: // &amp;lt;- ビューを書き換えるのがめんどいので if (!" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/11/041856/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション （2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/11</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/01/07/025136">WebMatrix 2：RESTful？な Web アプリケーション - だるろぐ</a> の続き。とりあえず、</p>
+<ul>
+<li>/Posts/ -> GET:List</li>
+<li>/Posts/:id -> GET:Show</li>
+<li>/Posts/New -> GET:New, POST:Create</li>
+<li>/Posts/Edit/:id -> GET:Edit, POST:Update</li>
+<li>/Posts/Remove/:id -> GET:Remove, POST:DELETE</li>
+</ul>って感じにマッピングされるように頑張ってみた。
+```cs
+# ~/Posts.cshtml
+<p>@{
+Layout = &ldquo;_SiteLayout.cshtml&rdquo;;
+}</p>
+<p>@try{
+switch (UrlData[0].ToUpper())
+{
+case &ldquo;&quot;: // &lt;- / へアクセスするととりあえず UrlData[0] には string.empty が入るっぽい
+case &ldquo;LIST&rdquo;:
+if (!IsPost) // GET
+{
+@List()
+}
+else // POST
+{
+throw new ApplicationException();
+}
+break;</p>
+<pre><code>    case &quot;NEW&quot;:
+    case &quot;CREATE&quot;: // &amp;lt;- ビューを書き換えるのがめんどいので
+        if (!IsPost) // GET
+        {
+            @New(UrlData[1])
+        }
+        else // POST
+        {
+            Create();
+        }
+        break;
+        
+    case &quot;EDIT&quot;:
+    case &quot;UPDATE&quot;:
+        if (!IsPost) // GET
+        {
+            @Edit(UrlData[1])
+        }
+        else // POST
+        {
+            Update(UrlData[1].AsInt());
+        }
+        break;
+        
+    case &quot;REMOVE&quot;:
+    case &quot;DELETE&quot;:
+        if (!IsPost) // GET
+        {
+            @Remove(UrlData[1])
+        }
+        else // POST
+        {
+            Delete(UrlData[1].AsInt());
+        }
+        break;
+
+    default:
+        if (!IsPost) // GET
+        {
+            @Show(UrlData[0])
+        }
+        else // POST
+        {
+            throw new ApplicationException();
+        }
+        break;
+}
+</code></pre>
+<p>}
+catch (Exception e)
+{
+&lt;p&gt;&lt;span class=&quot;badge error&quot;&gt;Error&lt;/span&gt; @e.Message&lt;/p&gt;
+}</p>
+<p>@functions
+{
+dynamic FindPostByIdOrTitle(string param)
+{
+int id = 0;
+dynamic post;</p>
+<pre><code>    using (var db = Database.Open(&quot;db&quot;))
+    {
+        if (int.TryParse(param, out id))
+        {
+            var query = &quot;SELECT * FROM Post WHERE Id=@0&quot;;
+            post = db.QuerySingle(query, id);
+        }
+        else
+        {
+            var query = &quot;SELECT * FROM Post WHERE Title=@0&quot;;
+            post = db.QuerySingle(query, param);
+        }
+    }
+    
+    if (post == null)
+        throw new HttpException(404, string.Format(
+            @&quot;Post &quot;&quot;{0}&quot;&quot; is not found.&quot;, param)
+        );
+    
+    return post;
+}
+
+HelperResult List()
+{
+    var query = &quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        var posts = db.Query(query);
+        Page.Title = &quot;Archives&quot;;
+        return RenderPage(&quot;~/Views/Posts/_ListPosts.cshtml&quot;, posts);
+    }
+}
+
+HelperResult Show(string param)
+{
+    var post = FindPostByIdOrTitle(param);
+    Page.Title = post.Title;
+    return RenderPage(&quot;~/Views/Posts/_ShowPost.cshtml&quot;, post);
+}
+
+HelperResult New(string param)
+{
+    Page.Title = &quot;New Post:&quot; + param != string.Empty ? param : &quot;Untitled&quot;;
+    return RenderPage(&quot;~/Views/Posts/_NewPost.cshtml&quot;);
+}
+
+HelperResult Edit(string param)
+{
+    var post = FindPostByIdOrTitle(param);
+    Page.Title = &quot;Edit: &quot; + post.Title;
+    return RenderPage(&quot;~/Views/Posts/_EditPost.cshtml&quot;, post);
+}
+
+HelperResult Remove(string param)
+{
+    var post = FindPostByIdOrTitle(param);
+    Page.Title = &quot;Remove: &quot; + post.Title;
+    return RenderPage(&quot;~/Views/Posts/_RemovePost.cshtml&quot;, post);
+}
+
+void Create()
+{
+    var query = &quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;
+              + &quot;VALUES(@0, @1, @2, @3)&quot;;
+    var title = Request[&quot;Title&quot;];
+    var body = Request[&quot;body&quot;];
+    var now = DateTime.Now;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, title, body, now, now);
+        var key = db.QueryValue(&quot;SELECT @@IDENTITY&quot;);
+        Response.Redirect(&quot;~/Posts/&quot; + key.ToString());
+    }
+}
+
+void Update(int id)
+{
+    var query = &quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;;
+    var title = Request[&quot;Title&quot;];
+    var body = Request[&quot;body&quot;];
+    var now = DateTime.Now;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, title, body, now, id);
+        Response.Redirect(&quot;~/Posts/&quot; + id.ToString());
+    }
+}
+
+void Delete(int id)
+{
+    var query = &quot;DELETE FROM Post WHERE Id=@0&quot;;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, id);
+        Response.Redirect(&quot;~/Posts/&quot;);
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-あんまり気に入らない。なんか当初の目標とズレてきたし。でも、よく考えたら、Web" data-lang="あんまり気に入らない。なんか当初の目標とズレてきたし。でも、よく考えたら、Web">
+    &gt;
+        HTML5より前のHTMLでは、フォームで利用できるHTTPメソッドはGETとPOSTだけである。そのため、PUTやDELETEを使う場合には、JavaScriptが必要になる（JavaScriptでのHTTPリクエストを参照）。一部のケータイのブラウザのように、JavaScriptをサポートしていないブラウザでは、PUTやDELETEはPOSTで代用しなければならない。PUTやDELETEをPOSTで代用する方法には、以下の2つがあるが、フォームで利用できるのは、パラメータ_methodを利用する方法だけである。 
+
+        http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE
+    
+あーこれだ！ Rails でもやっていたやつだよね？というわけで、これベースでまた書き直しする。そのあとは、Twitter/Facebook 認証を追加することにしたいと思ってる。
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-11T04:18:56JST">2013/01/11</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aRESTful%ef%bc%9f%e3%81%aa%20Web%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%20%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/11/041856/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F11%2F041856%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/11/060424/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/10/064241/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

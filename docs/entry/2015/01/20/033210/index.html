@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2015/01/20/033210/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="http://ehime-traffic.azurewebsites.net/ WebMatrix &#43; Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。  サイトをスクレイピングして情報取得（鉄道、船、JAL） （非公開）API を叩いて JSON から情報取得（ANA、ピーチ） （ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1） スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。 ### 開発の流れ   運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。 ```cs using (var client = new WebClient()) { var response = client.DownloadString(url); var json = Json.Decode(response); var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(doc) // &lt;div class=&quot;ss_comment&quot;&gt;ここがほしいやで&lt;/div&gt; var message = doc." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-azure/">Windows Azure</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2015/01/20/033210/" >
+                    <h1 class="entry__header-title-link-text">あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2015/01/20</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2015/01/20/033210/20150120025457.png"/> 
+</figure>
+<br/></p>
+<ul>
+<li><a href="http://ehime-traffic.azurewebsites.net/">http://ehime-traffic.azurewebsites.net/</a></li>
+</ul>WebMatrix + Azure Web サイト（<a href="http://www.microsoft.com/ja-jp/mic/bizspark/">マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark</a>、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。
+<ul>
+<li>サイトをスクレイピングして情報取得（鉄道、船、JAL）</li>
+<li>（非公開）API を叩いて JSON から情報取得（ANA、ピーチ）</li>
+<li>（ジェットスターだけはうまくいかなかった！　今度誰か教えて！<a href="#f-787436cb" name="fn-787436cb" title="幸い JAL とのコードシェアなので、そっちから情報を取得">*1</a>）</li>
+</ul>スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。
+<div class="section">
+    ### 開発の流れ
+    <figure>
+    <img src="/images/2015/01/20/033210/20150120031218.png"/> 
+</figure>
+運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、<a href="https://www.nuget.org/packages/HtmlAgilityPack">NuGet Gallery | HtmlAgilityPack 1.4.9</a> が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。
+```cs
+using (var client = new WebClient())
+{
+    var response = client.DownloadString(url);
+    var json = Json.Decode(response);
+<pre><code>var doc = new HtmlAgilityPack.HtmlDocument();
+doc.LoadHtml(doc)
+
+// &lt;div class=&quot;ss_comment&quot;&gt;ここがほしいやで&lt;/div&gt;
+var message = doc.DocumentNode
+    .SelectSingleNode(@&quot;//div[@class=&quot;&quot;ss_coment&quot;&quot;]&quot;)
+    .InnerText;
+
+@ObjectInfo.Print(json)
+</code></pre>
+<p>}</p>
+<pre><code class="language-これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開" data-lang="これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開">```cs
+using (var client = new WebClient())
+{
+    var response = client.UploadString(url, postData);
+    var json = Json.Decode(response);
+
+    @ObjectInfo.Print(json)
+}
+
+```ObjectInfo.Print で Json オプジェクトの中身をみながら、自分が使いやすいようにデータを取捨・加工する。コーディング自体はとても簡単で、開発時間のほとんどは API のパラメーター解析に費やされた。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### これから
+    閲覧時に情報を取りに行く設計になっているので、キャッシュが効いていない場合にロードがとても遅い。相手にも負荷がかかって迷惑&lt;a href=&quot;#f-bb29751c&quot; name=&quot;fn-bb29751c&quot; title=&quot;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&quot;&gt;*2&lt;/a&gt;なので、バックグラウンドで情報を取得するようにしたい。Twitter BOT にするにも必要な処理だし。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-787436cb&quot; name=&quot;f-787436cb&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;幸い JAL とのコードシェアなので、そっちから情報を取得&lt;/span&gt;
+&lt;a href=&quot;#fn-bb29751c&quot; name=&quot;f-bb29751c&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2015-01-20T03:32:10JST">2015/01/20</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%82%e3%81%a1%e3%81%93%e3%81%a1%e3%82%b9%e3%82%af%e3%83%ac%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%e3%81%97%e3%81%a6%e3%80%81%e6%9d%be%e5%b1%b1%e3%81%ae%e9%89%84%e9%81%93%e3%83%bb%e8%88%b9%e3%83%bb%e9%a3%9b%e8%a1%8c%e6%a9%9f%e3%81%ae%e9%81%8b%e8%a1%8c%e7%8a%b6%e6%b3%81%e3%82%92%e3%81%be%e3%81%a8%e3%82%81%e3%82%8b%e3%82%b5%e3%82%a4%e3%83%88%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2015/01/20/033210/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%82%E3%81%A1%E3%81%93%E3%81%A1%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%97%E3%81%A6%E3%80%81%E6%9D%BE%E5%B1%B1%E3%81%AE%E9%89%84%E9%81%93%E3%83%BB%E8%88%B9%E3%83%BB%E9%A3%9B%E8%A1%8C%E6%A9%9F%E3%81%AE%E9%81%8B%E8%A1%8C%E7%8A%B6%E6%B3%81%E3%82%92%E3%81%BE%E3%81%A8%E3%82%81%E3%82%8B%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2015%2F01%2F20%2F033210%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/21/090035/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2015/01/18/081720/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

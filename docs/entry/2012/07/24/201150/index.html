@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/07/24/201150/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            失敗の数だけ強くなりたい | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
+&lt;grid&gt;&lt;/grid&gt; Name=&#34;listBoxGists&#34;&gt; ```**MainWindow.xaml.cs** ```cs using System.Net; using Newtonsoft.Json; /// &amp;lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); } private void MainWindow_Loaded( object sender, RoutedEventArgs e) { var client = new WebClient(); client.DownloadStringCompleted &#43;= (_sender, _e) =&gt; { listBoxGists.ItemsSource = JsonConvert .DeserializeObject&amp;lt;Gist[]&gt;(_e.Result); }; client." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/07/24/201150/" >
+                    <h1 class="entry__header-title-link-text">失敗の数だけ強くなりたい</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/07/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724200928.png" alt="f:id:daruyanagi:20120724200928p:plain" title="f:id:daruyanagi:20120724200928p:plain" class="hatena-fotolife"/>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている<a href="#f1" name="fn1" title="歳もとったし">*1</a>。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。<strong>MainWindow.xaml</strong></p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;grid&gt;&lt;/grid&gt;</span>
+    Name=&#34;listBoxGists&#34;&gt;
+    
+
+
+```**MainWindow.xaml.cs**
+```cs
+using System.Net;
+using Newtonsoft.Json;
+
+/// &amp;lt;summary&gt;
+/// MainWindow.xaml の相互作用ロジック
+/// &amp;lt;/summary&gt;
+public partial class MainWindow : Window
+{
+    public MainWindow()
+    {
+        InitializeComponent();
+    }
+    
+    private void MainWindow_Loaded(
+        object sender, RoutedEventArgs e)
+    {
+        var client = new WebClient();
+    
+        client.DownloadStringCompleted += (_sender, _e) =&gt;
+        {
+            listBoxGists.ItemsSource = JsonConvert
+                .DeserializeObject&amp;lt;Gist[]&gt;(_e.Result);
+        };
+    
+        client.DownloadStringAsync(
+            new Uri(&#34;https://api.github.com/gists&#34;));
+    }
+}
+
+public struct Gist
+{
+    public string html_url;
+    public string git_push_url;
+    public User user;
+    public string description;
+    public int comments;
+    public bool @public;
+    public Dictionary&amp;lt;string, File&gt; files;
+    public string created_at;
+    public string url;
+    public string id;
+    public string updated_at;
+    public string git_pull_url;
+}
+
+public struct User
+{
+    public string avatar_url;
+    public string gravatar_id;
+    public string login;
+    public string url;
+    public string id;
+}
+
+public struct File
+{
+    public string @type;
+    public string filename;
+    public string raw_url;
+    public string language;
+    public string size;
+}
+
+```これは酷いベタ書きでござる<span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;#f2&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;fn2&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;意外なことに、ここまではぐぐることもなく、案外すんなり書けたんだよ！&#34;</span><span style="color:#f92672">&gt;</span>*2<span style="color:#f92672">&lt;/a&gt;</span>。見る人が見たら殴りにくるよね？
+
+<span style="color:#f92672">&lt;div</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#f92672">&gt;</span>
+    ### 第一の失敗
+    初回ビルドは成功。しかも、ちゃんと動いているみたいだ。けれど、数分後にもう一度試すと例外が発生するようになった。なぜだ。<span style="color:#f92672">&lt;img</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724194531.png&#34;</span> <span style="color:#a6e22e">alt=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724194531p:plain&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724194531p:plain&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;hatena-fotolife&#34;</span><span style="color:#f92672">/&gt;</span>けれど、これは比較的簡単に原因がわかった。エラーがでた箇所の JSON をみてみる。<span style="color:#f92672">&lt;img</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724194701.png&#34;</span> <span style="color:#a6e22e">alt=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724194701p:plain&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724194701p:plain&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;hatena-fotolife&#34;</span><span style="color:#f92672">/&gt;</span>日本語がうまく処理されていないらしい。ちゃんと WebClient のエンコードを指定していなかった……
+```cs
+var client = new WebClient()
+{
+    Encoding = System.Text.UTF8Encoding.UTF8
+};
+
+```日本語のデータが含まれていても、例外が出なくなった。うまくいった。
+
+<span style="color:#f92672">&lt;/div&gt;</span>
+<span style="color:#f92672">&lt;div</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#f92672">&gt;</span>
+    ### 第二の失敗
+    気をよくしたので、ついでに ListBox の見た目をもう少しよくしようと思った。
+```xml
+<span style="color:#f92672">&lt;grid&gt;&lt;/grid&gt;</span>
+    Name=&#34;listBoxGists&#34;&gt;
+        .ItemTemplate&gt;
+            <span style="color:#f92672">&lt;datatemplate&gt;&lt;/datatemplate&gt;</span>
+                <span style="color:#f92672">&lt;stackpanel&gt;&lt;/stackpanel&gt;</span>
+                    Text=&#34;{Binding description}&#34;/&gt;
+                
+            
+        .ItemTemplate&gt;
+    
+
+
+```<span style="color:#f92672">&lt;img</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724195003.png&#34;</span> <span style="color:#a6e22e">alt=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724195003p:plain&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724195003p:plain&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;hatena-fotolife&#34;</span><span style="color:#f92672">/&gt;</span>うまくいかないでござる！　うまくいかないでござる！
+
+    &gt;
+        System.Windows.Data Error: 40 : BindingExpression path error: &amp;#39;description&amp;#39; property not found on &amp;#39;object&amp;#39; &amp;#39;&amp;#39;Gist&amp;#39; (HashCode=284350719)&amp;#39;. BindingExpression:Path=description; DataItem=&amp;#39;Gist&amp;#39; (HashCode=284350719); target element is &amp;#39;TextBlock&amp;#39; (Name=&amp;#39;&amp;#39;); target property is &amp;#39;Text&amp;#39; (type &amp;#39;String&amp;#39;)
+
+    
+などというエラーがたくさんでている。ここで1時間が経過してタイムオーバー。さすがにもう会社へ行かなくてはいけない。しかし、会社の椅子に座った途端、ふと気がついた。もしかしたら……！家に帰って早速コードを一行だけ変更。
+```cs
+public struct Gist
+{
+    public string html_url;
+    public string git_push_url;
+    public User user;
+    public string description { get; set; } /* Here! */
+    public int comments;
+    public bool @public;
+    public Dictionary&amp;lt;string, File&gt; files;
+    public string created_at;
+    public string url;
+    public string id;
+    public string updated_at;
+    public string git_pull_url;
+}
+
+```<span style="color:#f92672">&lt;img</span> <span style="color:#a6e22e">src=</span><span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724195343.png&#34;</span> <span style="color:#a6e22e">alt=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724195343p:plain&#34;</span> <span style="color:#a6e22e">title=</span><span style="color:#e6db74">&#34;f:id:daruyanagi:20120724195343p:plain&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;hatena-fotolife&#34;</span><span style="color:#f92672">/&gt;</span>お見事！　フィールドはバインディングできないのでした。しかし、なんでこんなところで躓いているんだろう……まったく、わたくしさまの人生そのものですな。
+
+<span style="color:#f92672">&lt;/div&gt;&lt;div</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote&#34;</span><span style="color:#f92672">&gt;</span>
+<span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;#fn1&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;f1&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span><span style="color:#f92672">&gt;</span>*1<span style="color:#f92672">&lt;/a&gt;&lt;span</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span><span style="color:#f92672">&gt;</span>:<span style="color:#f92672">&lt;/span&gt;&lt;span</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span><span style="color:#f92672">&gt;</span>歳もとったし<span style="color:#f92672">&lt;/span&gt;</span>
+<span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;#fn2&#34;</span> <span style="color:#a6e22e">name=</span><span style="color:#e6db74">&#34;f2&#34;</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span><span style="color:#f92672">&gt;</span>*2<span style="color:#f92672">&lt;/a&gt;&lt;span</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span><span style="color:#f92672">&gt;</span>:<span style="color:#f92672">&lt;/span&gt;&lt;span</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span><span style="color:#f92672">&gt;</span>意外なことに、ここまではぐぐることもなく、案外すんなり書けたんだよ！<span style="color:#f92672">&lt;/span&gt;</span>
+<span style="color:#f92672">&lt;/div&gt;</span>
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-07-24T20:11:50JST">2012/07/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%a4%b1%e6%95%97%e3%81%ae%e6%95%b0%e3%81%a0%e3%81%91%e5%bc%b7%e3%81%8f%e3%81%aa%e3%82%8a%e3%81%9f%e3%81%84%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/07/24/201150/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F24%2F201150%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/24/210100/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/23/222814/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

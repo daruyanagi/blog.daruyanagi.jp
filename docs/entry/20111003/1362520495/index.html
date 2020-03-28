@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/20111003/1362520495/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            NuGet の作成に挑戦してみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="NuGet を4つほど作ってみた。NuGet galleryやり方のほとんどは [NuGet パッケージを作って公開する](http://d.hatena.ne.jp/shiba-yan/20110306/1299422776) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。
+ [Flickr2Html](http://nuget.org/List/Packages/Flickr2Html)  Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。 ``` @Flickr2Html.GetHtml(&#34;http://www.flickr.com/photos/daruyanagi/6171600135/&#34;) ``` GetHtml5() で figure タグを使った埋め込みタグを出力することも可能。引数（size:）に Flickr2Html.Size を与えれば、写真の大きさを指定することもできます。  [BlackbirdPie](http://nuget.org/List/Packages/BlackbirdPie)  Twitter のつぶやきを簡単に引用することができます。 ``` @BlackbirdPie.GetHtml(&#34;http://twitter.com/#!/daruyanagi/status/120962210225852417&#34;) ``` スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/20111003/1362520495/" >
+                    <h1 class="entry__header-title-link-text">NuGet の作成に挑戦してみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2011/10/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://blog.daruyanagi.net/archives/256/sshot-2" rel="attachment wp-att-257"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-2-500x408.png" alt="" title="sshot-2" width="500" height="408" class="alignnone size-medium wp-image-257"/></a>NuGet を4つほど作ってみた。<a href="http://nuget.org/List/Search?searchTerm=author:%20daruyanagi">NuGet gallery</a>やり方のほとんどは [NuGet パッケージを作って公開する](<a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776"><a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776">http://d.hatena.ne.jp/shiba-yan/20110306/1299422776</a></a>) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。</p>
+<ul>
+<li>[Flickr2Html](<a href="http://nuget.org/List/Packages/Flickr2Html">http://nuget.org/List/Packages/Flickr2Html</a>)</li>
+</ul>    Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。
+```
+        @Flickr2Html.GetHtml("http://www.flickr.com/photos/daruyanagi/6171600135/")
+```    GetHtml5() で figure タグを使った埋め込みタグを出力することも可能。引数（size:）に Flickr2Html.Size を与えれば、写真の大きさを指定することもできます。
+<ul>
+<li>[BlackbirdPie](<a href="http://nuget.org/List/Packages/BlackbirdPie">http://nuget.org/List/Packages/BlackbirdPie</a>)</li>
+</ul>    Twitter のつぶやきを簡単に引用することができます。
+```
+        @BlackbirdPie.GetHtml("http://twitter.com/#!/daruyanagi/status/120962210225852417")
+```    スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2011-10-03T06:54:55JST">2011/10/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?NuGet%20%e3%81%ae%e4%bd%9c%e6%88%90%e3%81%ab%e6%8c%91%e6%88%a6%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/20111003/1362520495/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=NuGet&#43;%E3%81%AE%E4%BD%9C%E6%88%90%E3%81%AB%E6%8C%91%E6%88%A6%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F20111003%2F1362520495%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111005/1317741001/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/20111002/1317496235/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

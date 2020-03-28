@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/03/14/080000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Microsoft Flow でブログの更新を Twitter で配信してみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Windows Store Watchこれの更新を――Windows Store Watch (@win_store_watch) | Twitterで配信したいと思いました。方法はいろいろあるだろうけど（IFTTT が有名でしょうか）、今回は Microsoft Flow を試してみようと思います。確かいろいろ制限はあるけど、基本はタダです。
+ 月ごとの実行数 750 回 無制限のフロー作成 15 分ごとにチェック  ### 準備するもの  Microsoft アカウント Twitter アカウント ブログのフィード URL（はてなブログなら トップのアドレス/feed みたいな感じ）   ### フローを作成する フローというのは特定の処理です。今回の場合、  ブログの更新を Twitter で配信する が目的ですが、これは2つのフローを組み合わせることで実現できます。  ブログの更新を検知 検知した更新を Twitter へ投稿 Microsoft Flow にはすでにたくさんのフロー（メールを送る、プッシュ通知を送るなどなど）が用意されているので、たいていは組み合わせるだけです。  まず https://flow.microsoft.com/ へアクセスし――  Microsoft アカウントでサインインします。  あとはフローを組み立てていくだけなのですが、実はもう「フィードを Twitter へ投稿する」という作業のテンプレートがありますので、それを使っちゃいます。  テンプレートを選択すると――  編集画面が現れるので、Twitter 連携とフィード URL の入力をし、画面右上の［フローの作成］ボタンを押せば完成です。簡単すぎて思わず鼻毛伸びそう。  「ツイートの文言をカスタマイズしたいなー」という場合は、編集することもできます。エディター機能がまだあんまりイケてないのでサックリ消して、「［フィードのタイトル］［プライマリフィードリンク］」を配置してみました。これで【新規追加】Shazam（もう終了しちゃってたけど！）https://t.co/RycKq50w3r
+&mdash; Windows Store Watch (@win_store_watch) March 13, 2017  みたいなツイートになるはずです。ハッシュタグなんかを追加してみてもいいかもしれませんね。メディアの投稿は今回のケースではちょっと難しいかもですが、「画像を添付したメールを Gmail に送信したらそれを Twitter へ投稿」なんていうフローを作るときに役立つかも。  お疲れさまでした！    管理画面からはフローの実行結果なんかもチェックできますよ～  ### 追伸   プレビュー版の Gmail 送信機能を使ってみた（ツイートを投稿したらメールで通知、みたいな）んだけど、メールが送られてこない……まぁ、プレビューだし仕方ない。  ### 追伸その２ あとで確認したら、ちゃんと Gmail に送られていた。えらいえらい。  一気に記事を更新すると、一度に配信が始まるようだ。連投は嫌だから、ディレイをもうけたいなぁ……いい方法がないか後で探してみる。Flow で Twitter を投稿したんだけど、タイトルが半角で終わると URL に引っ付いちゃう。間に挟んでたのを 半角スペース → 全角スペース にして回避 pic." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/microsoft-flow/">Microsoft Flow</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/03/14/080000/" >
+                    <h1 class="entry__header-title-link-text">Microsoft Flow でブログの更新を Twitter で配信してみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/03/14</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://store-watch.hatenadiary.jp/">Windows Store Watch</a>これの更新を――<a href="https://twitter.com/win_store_watch">Windows Store Watch (@win_store_watch) | Twitter</a>で配信したいと思いました。方法はいろいろあるだろうけど（IFTTT が有名でしょうか）、今回は Microsoft Flow を試してみようと思います。確かいろいろ制限はあるけど、基本はタダです。</p>
+<ul>
+<li>月ごとの実行数 750 回</li>
+<li>無制限のフロー作成</li>
+<li>15 分ごとにチェック</li>
+</ul>
+<div class="section">
+    ### 準備するもの
+<ul>
+<li>Microsoft アカウント</li>
+<li>Twitter アカウント</li>
+<li>ブログのフィード URL（はてなブログなら トップのアドレス/feed みたいな感じ）</li>
+</ul>
+</div>
+<div class="section">
+    ### フローを作成する
+    フローというのは特定の処理です。今回の場合、
+<ul>
+<li>ブログの更新を Twitter で配信する</li>
+</ul>が目的ですが、これは2つのフローを組み合わせることで実現できます。
+<ul>
+<li>ブログの更新を検知</li>
+<li>検知した更新を Twitter へ投稿</li>
+</ul>Microsoft Flow にはすでにたくさんのフロー（メールを送る、プッシュ通知を送るなどなど）が用意されているので、たいていは組み合わせるだけです。<figure>
+    <img src="/images/2017/03/14/080000/20170314011430.png"/> 
+</figure>
+まず <a href="https://flow.microsoft.com/">https://flow.microsoft.com/</a> へアクセスし――<figure>
+    <img src="/images/2017/03/14/080000/20170314011511.png"/> 
+</figure>
+Microsoft アカウントでサインインします。<figure>
+    <img src="/images/2017/03/14/080000/20170314011806.png"/> 
+</figure>
+あとはフローを組み立てていくだけなのですが、実はもう「フィードを Twitter へ投稿する」という作業のテンプレートがありますので、それを使っちゃいます。<figure>
+    <img src="/images/2017/03/14/080000/20170314011913.png"/> 
+</figure>
+テンプレートを選択すると――<figure>
+    <img src="/images/2017/03/14/080000/20170314011944.png"/> 
+</figure>
+編集画面が現れるので、Twitter 連携とフィード URL の入力をし、画面右上の［フローの作成］ボタンを押せば完成です。簡単すぎて思わず鼻毛伸びそう。<figure>
+    <img src="/images/2017/03/14/080000/20170314012105.png"/> 
+</figure>
+「ツイートの文言をカスタマイズしたいなー」という場合は、編集することもできます。エディター機能がまだあんまりイケてないのでサックリ消して、「［フィードのタイトル］［プライマリフィードリンク］」を配置してみました。これで<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【新規追加】Shazam（もう終了しちゃってたけど！）<a href="https://t.co/RycKq50w3r">https://t.co/RycKq50w3r</a></p>&mdash; Windows Store Watch (@win_store_watch) <a href="https://twitter.com/win_store_watch/status/841319258109833226?ref_src=twsrc%5Etfw">March 13, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+みたいなツイートになるはずです。ハッシュタグなんかを追加してみてもいいかもしれませんね。メディアの投稿は今回のケースではちょっと難しいかもですが、「画像を添付したメールを Gmail に送信したらそれを Twitter へ投稿」なんていうフローを作るときに役立つかも。<figure>
+    <img src="/images/2017/03/14/080000/20170314012658.png"/> 
+</figure>
+お疲れさまでした！<figure>
+    <img src="/images/2017/03/14/080000/20170314012721.png"/> 
+</figure>
+<figure>
+    <img src="/images/2017/03/14/080000/20170314013025.png"/> 
+</figure>
+管理画面からはフローの実行結果なんかもチェックできますよ～
+</div>
+<div class="section">
+    ### 追伸
+    <figure>
+    <img src="/images/2017/03/14/080000/20170314012831.png"/> 
+</figure>
+プレビュー版の Gmail 送信機能を使ってみた（ツイートを投稿したらメールで通知、みたいな）んだけど、メールが送られてこない……まぁ、プレビューだし仕方ない。
+</div>
+<div class="section">
+    ### 追伸その２
+    あとで確認したら、ちゃんと Gmail に送られていた。えらいえらい。<figure>
+    <img src="/images/2017/03/14/080000/20170314130914.png"/> 
+</figure>
+一気に記事を更新すると、一度に配信が始まるようだ。連投は嫌だから、ディレイをもうけたいなぁ……いい方法がないか後で探してみる。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Flow で Twitter を投稿したんだけど、タイトルが半角で終わると URL に引っ付いちゃう。間に挟んでたのを 半角スペース → 全角スペース にして回避 <a href="https://t.co/bdJdiM5DM5">pic.twitter.com/bdJdiM5DM5</a></p>&mdash; 言われなくても家にいるやなぎ ♨🍊🐟🇯🇵 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/841508791501783040?ref_src=twsrc%5Etfw">March 14, 2017</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-03-14T08:00:00JST">2017/03/14</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Microsoft%20Flow%20%e3%81%a7%e3%83%96%e3%83%ad%e3%82%b0%e3%81%ae%e6%9b%b4%e6%96%b0%e3%82%92%20Twitter%20%e3%81%a7%e9%85%8d%e4%bf%a1%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/03/14/080000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Microsoft&#43;Flow&#43;%E3%81%A7%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E6%9B%B4%E6%96%B0%E3%82%92&#43;Twitter&#43;%E3%81%A7%E9%85%8D%E4%BF%A1%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F14%2F080000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/14/193844/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/29/125206/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

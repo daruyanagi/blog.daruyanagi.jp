@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/16/155714/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で Markdown を少しだけ拡張してみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="前回（WebMatrix で Markdown を使おう！ - だるろぐ）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。
+# Markdown.cs using System; using System.IO; using System.Text; using System.Web; /// &amp;lt;summary&gt; /// Summary description for ClassName /// &amp;lt;/summary&gt; public static class Markdown { private static readonly MarkdownSharp.Markdown md = new MarkdownSharp.Markdown(); private static readonly Encoding encoding = Encoding.UTF8; public static HtmlString Parse(string input) { return new HtmlString(md.Transform(input)); } public static HtmlString LoadFromFile(string path) { return Parse(File.ReadAllText(path, encoding)); } } ```で、 Web ページ側ではこんな感じに使います。 ```cs # Page." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/16/155714/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で Markdown を少しだけ拡張してみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/16</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/16/043012">WebMatrix で Markdown を使おう！ - だるろぐ</a>）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> Markdown.cs
+
+<span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.IO;
+<span style="color:#66d9ef">using</span> System.Text;
+<span style="color:#66d9ef">using</span> System.Web;
+
+<span style="color:#75715e">/// &amp;lt;summary&gt;
+</span><span style="color:#75715e">/// Summary description for ClassName
+</span><span style="color:#75715e">/// &amp;lt;/summary&gt;
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Markdown</span>
+{
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> MarkdownSharp.Markdown md = 
+        <span style="color:#66d9ef">new</span> MarkdownSharp.Markdown();
+    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Encoding encoding = Encoding.UTF8;
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HtmlString Parse(<span style="color:#66d9ef">string</span> input)
+    {
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HtmlString(md.Transform(input));
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HtmlString LoadFromFile(<span style="color:#66d9ef">string</span> path)
+    {
+        <span style="color:#66d9ef">return</span> Parse(File.ReadAllText(path, encoding));
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```で、</span> Web <span style="color:#960050;background-color:#1e0010">ページ側ではこんな感じに使います。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> Page.cshtml
+
+&amp;lt;!DOCTYPE html&gt;
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">var</span> path = Server.MapPath(
+        <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}/{1}.markdown&#34;</span>,
+            <span style="color:#e6db74">&#34;~/App_Docs/&#34;</span>,
+            UrlData.Count == <span style="color:#ae81ff">0</span>
+                ? <span style="color:#e6db74">&#34;Default&#34;</span>
+                : <span style="color:#66d9ef">string</span>.Join(<span style="color:#e6db74">&#34;/&#34;</span>, UrlData)
+        )
+    );
+}
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @Markdown.LoadFromFile(path)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```ところで、前回は脚注にこんなことを書いておきました。</span>
+
+    &gt;
+        <span style="color:#960050;background-color:#1e0010">（</span>Markdown <span style="color:#960050;background-color:#1e0010">の）弱点は若干機能不足なこと。これを補う派生版が幾つかあります</span>
+
+    
+<span style="color:#960050;background-color:#1e0010">その代表例が</span> &lt;a href=<span style="color:#e6db74">&#34;http://github.github.com/github-flavored-markdown/&#34;</span>&gt;Redirecting...&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">（</span>GFM<span style="color:#960050;background-color:#1e0010">）です。たとえば、こんな書式でプログラミング言語を指定してシンタックスハイライトが行えます。</span>
+</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">require <span style="color:#f92672">&amp;</span><span style="color:#75715e">#39;redcarpet&amp;#39;</span>
+markdown <span style="color:#f92672">=</span> <span style="color:#66d9ef">Redcarpet</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#34;Hello World!&#34;</span>)
+puts markdown<span style="color:#f92672">.</span>to_html
+</code></pre></div><pre><code class="language-これはいいですね！　さっそく取り入れてみましょう。" data-lang="これはいいですね！　さっそく取り入れてみましょう。">
+&lt;div class=&quot;section&quot;&gt;
+    ### 準備
+    まずはシンタックスハイライト機能をどうやって実現するか…… Google Code Prettify（&lt;a href=&quot;http://google-code-prettify.googlecode.com/svn/trunk/README.html&quot;&gt;http://google-code-prettify.googlecode.com/svn/trunk/README.html&lt;/a&gt;）ならば NuGet で取得できるのですけど、今回は Highlight.js （&lt;a href=&quot;http://softwaremaniacs.org/soft/highlight/en/&quot;&gt;highlight.js&lt;/a&gt;）を使ってみることにしました。なぜかというと、こっちのほうが言語サポートが幅広いみたいだからデス。ダウンロードして、以下のように配置しました。
+</code></pre><p>~/
+/App_Code
+Highlight.cshtml &lt;&ndash; あとで説明します！
+/Highlight
+Lisence Files
+/Content
+Highlight
+/    Theme Skins
+/Scripts
+/Highlight
+hilight.pack.js</p>
+<pre><code class="language-こうした状態で、" data-lang="こうした状態で、">```html
+
+
+&amp;lt;html lang=&quot;en&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+
+        &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/default.css&quot;&gt;
+        &amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;pre&gt;&amp;lt;code class=&quot;language&quot;&gt;
+            // Any Code...
+        &amp;lt;/pre&gt;&amp;lt;/code&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```などと記述すれば、 pre &gt; code 内のコードが色分け表示されます。……しっかし、 Highlight.js は NuGet ないのか……めんどくせえな。久しぶりに作るかな。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### コーディング
+    お次は Markdown.cs を拡張して、 ```～``` 記法へ対応させます。適当に正規表現で解決してみました。
+```cs
+：
+：
+using System.Text.RegularExpressions;
+
+public static class Markdown
+{
+    ：
+    ：
+    public static bool HighlightEnabled { get; set; }
+
+    static Markdown()
+    {
+        HighlightEnabled = true;
+    }
+
+    public static string Highlight(string input)
+    {
+        const string R = @&quot;```(?&lt;type&gt;\w+)\r(?&lt;code&gt;.+)```&quot;&lt;/code&gt;&lt;/type&gt;;
+        const string F = @&quot;&lt;pre&gt;&lt;code class=&quot;&quot; {0}&quot;&quot;=&quot;&quot;&gt;{1}&lt;/code&gt;&lt;/pre&gt;&quot;;
+
+        Regex r = new Regex(R, RegexOptions.Singleline);
+
+        return r.Replace(
+            input,
+            (m) =&gt; string.Format(
+                F, m.Groups[&quot;type&quot;],
+                HttpUtility.HtmlEncode(m.Groups[&quot;code&quot;])
+            )
+        );
+    }
+}
+
+```完成&lt;a href=&quot;#f-729061fc&quot; name=&quot;fn-729061fc&quot; title=&quot;なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ&quot;&gt;*1&lt;/a&gt;！ m.Groups[&quot;code&quot;] を HTML エンコードする必要があったのでラムダ式になりましたけれど、そうでなければ @&quot;&amp;lt;pre&gt;&amp;lt;code class=&quot;&quot;${type}&quot;&quot;&gt;${code}&amp;lt;/code&gt;&amp;lt;/pre&gt;&quot; で置換できるんですね。知らなかったわー。ちなみに、正規表現のテストはオンラインツールが便利です（&lt;a href=&quot;http://regexhero.net/tester/&quot;&gt;The .NET Regex Tester | Regex Hero&lt;/a&gt;）。できあがりはこんな感じ。<figure>
+    <img src="/images/2012/08/16/155714/20120816153937.png"/> 
+</figure>
+HighlightEnabled = false;<figure>
+    <img src="/images/2012/08/16/155714/20120816153946.png"/> 
+</figure>
+HighlightEnabled = true;
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ステップアップ
+    最後に、少し細かいところをブラッシュアップしてみましょう。
+```html
+&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/default.css&quot;&gt;
+&amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
+&amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
+
+```Highlight.js を使う際のおまじない、毎回書くの面倒ですね？　なので、ヘルパーとしてまとめてみました。 ~/App_Code/Highlight.cshtml に以下のように記述します。
+```cs
+@helper Include(string theme = &quot;default&quot;){
+    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/@(theme).css&quot;&gt;
+    &amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
+    &amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
+}
+
+```これで Web ページを使うときでも、 @Higjlight.Include() を呼び出すだけでOK！
+```html
+
+
+&amp;lt;html lang=&quot;en&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+
+        @Higjlight.Include(&quot;vs&quot;) &amp;lt;-- おまじないに変換される
+    &amp;lt;/head&gt;
+
+```引数を与えることでテーマを選択できるのもいい感じでしょう？　そうでもないデスか。まぁ、「鬼に金棒」、「怠け者にヘルパー」ってもんですよ。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-729061fc&quot; name=&quot;f-729061fc&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-16T15:57:14JST">2012/08/16</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%20Markdown%20%e3%82%92%e5%b0%91%e3%81%97%e3%81%a0%e3%81%91%e6%8b%a1%e5%bc%b5%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/16/155714/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7&#43;Markdown&#43;%E3%82%92%E5%B0%91%E3%81%97%E3%81%A0%E3%81%91%E6%8B%A1%E5%BC%B5%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F16%2F155714%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/16/162322/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/16/043012/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

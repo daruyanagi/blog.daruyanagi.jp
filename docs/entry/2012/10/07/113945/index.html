@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/10/07/113945/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix/ASP.NET Web Pages で YAML を扱う | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。
+### YAML って？ &gt; YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。  ほんとう？　それを確かめるためにちょっと比較してみました。例は XMLの論考: YAMLはXMLに改良を加える のものをベースに、XML-JSON相互変換ツール - Bluehawk&#39;s lab. で作成した JSON 形式のものを追加してあります。
+#### XML で表現した場合 ```xml xml version=&#34;1.0&#34;?   id=&#34;kramnik&#34; name=&#34;Vladimir Kramnik&#34; rating=&#34;2700&#34; status=&#34;GM&#34; / id=&#34;fritz&#34; name=&#34;Deep Fritz&#34; rating=&#34;2700&#34; status=&#34;Computer&#34; / id=&#34;mertz&#34; name=&#34;David Mertz&#34; rating=&#34;1400&#34; status=&#34;Amateur&#34; /   2002-10-04 refid=&quot;fritz&rdquo; /&gt; refid=&quot;kramnik&rdquo; /&gt; Draw
+&lt;match&gt;&lt;/match&gt; &lt;date&gt;&lt;/date&gt;2002-10-06 refid=&quot;kramnik&quot; /&gt; refid=&quot;fritz&quot; /&gt; &lt;result&gt;&lt;/result&gt;White  &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### JSON で表現した場合 ``` { &quot;club&quot;: { &quot;players&quot;: { &quot;player&quot;: [ { &quot;-id&quot;: &quot;kramnik&quot;, &quot;-name&quot;: &quot;Vladimir Kramnik&quot;, &quot;-rating&quot;: &quot;2700&quot;, &quot;-status&quot;: &quot;GM&quot; }, { &quot;-id&quot;: &quot;fritz&quot;, &quot;-name&quot;: &quot;Deep Fritz&quot;, &quot;-rating&quot;: &quot;2700&quot;, &quot;-status&quot;: &quot;Computer&quot; }, { &quot;-id&quot;: &quot;mertz&quot;, &quot;-name&quot;: &quot;David Mertz&quot;, &quot;-rating&quot;: &quot;1400&quot;, &quot;-status&quot;: &quot;Amateur&quot; } ] }, &quot;matches&quot;: { &quot;match&quot;: [ { &quot;Date&quot;: &quot;2002-10-04&quot;, &quot;White&quot;: { &quot;-refid&quot;: &quot;fritz&quot; }, &quot;Black&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; }, &quot;Result&quot;: &quot;Draw&quot; }, { &quot;Date&quot;: &quot;2002-10-06&quot;, &quot;White&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; }, &quot;Black&quot;: { &quot;-refid&quot;: &quot;fritz&quot; }, &quot;Result&quot;: &quot;White&quot; } ] } } } ```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### YAML で表現した場合 ```yaml --- players: Vladimir Kramnik: &amp;amp;kramnik rating: 2700 status: GM Deep Fritz: &amp;amp;fritz rating: 2700 status: Computer David Mertz: &amp;amp;mertz rating: 1400 status: Amateur matches: - Date: 2002-10-04 White: *fritz Black: *kramnik Result: Draw - Date: 2002-10-06 White: *kramnik Black: *fritz Result: White ```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。 &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://jp." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/10/07/113945/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix/ASP.NET Web Pages で YAML を扱う</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/10/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。</p>
+<div class="section">
+    ### YAML って？
+<pre><code>&gt;
+    YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。
+</code></pre>
+<p>ほんとう？　それを確かめるためにちょっと比較してみました。例は <a href="http://www.ibm.com/developerworks/jp/xml/library/x-matters23/">XMLの論考: YAMLはXMLに改良を加える</a> のものをベースに、<a href="http://bluehawk.infinitybird.com/dev/xmljson.html">XML-JSON相互変換ツール - Bluehawk's lab.</a> で作成した JSON 形式のものを追加してあります。</p>
+<div class="section">
+    #### XML で表現した場合
+    ```xml
+<!--?-->xml version="1.0"?>
+<club></club>
+  <players></players>
+    id="kramnik"
+            name="Vladimir Kramnik"
+            rating="2700"
+            status="GM" />
+    id="fritz"
+            name="Deep Fritz"
+            rating="2700"
+            status="Computer" />
+    id="mertz"
+            name="David Mertz"
+            rating="1400"
+            status="Amateur" />
+<p><matches></matches>
+<match></match>
+<date></date>2002-10-04
+refid=&quot;fritz&rdquo; /&gt;
+refid=&quot;kramnik&rdquo; /&gt;
+<result></result>Draw</p>
+<pre><code>&lt;match&gt;&lt;/match&gt;
+    &lt;date&gt;&lt;/date&gt;2002-10-06
+    refid=&quot;kramnik&quot; /&gt;
+    refid=&quot;fritz&quot; /&gt;
+    &lt;result&gt;&lt;/result&gt;White
+</code></pre>
+<pre><code class="language-タグがウザい。何でもできるけれど、少し厳格すぎるきらいがある。" data-lang="タグがウザい。何でもできるけれど、少し厳格すぎるきらいがある。">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### JSON で表現した場合
+    ```
+{
+  &quot;club&quot;: {
+    &quot;players&quot;: {
+      &quot;player&quot;: [
+        {
+          &quot;-id&quot;: &quot;kramnik&quot;,
+          &quot;-name&quot;: &quot;Vladimir Kramnik&quot;,
+          &quot;-rating&quot;: &quot;2700&quot;,
+          &quot;-status&quot;: &quot;GM&quot;
+        },
+        {
+          &quot;-id&quot;: &quot;fritz&quot;,
+          &quot;-name&quot;: &quot;Deep Fritz&quot;,
+          &quot;-rating&quot;: &quot;2700&quot;,
+          &quot;-status&quot;: &quot;Computer&quot;
+        },
+        {
+          &quot;-id&quot;: &quot;mertz&quot;,
+          &quot;-name&quot;: &quot;David Mertz&quot;,
+          &quot;-rating&quot;: &quot;1400&quot;,
+          &quot;-status&quot;: &quot;Amateur&quot;
+        }
+      ]
+    },
+    &quot;matches&quot;: {
+      &quot;match&quot;: [
+        {
+          &quot;Date&quot;: &quot;2002-10-04&quot;,
+          &quot;White&quot;: { &quot;-refid&quot;: &quot;fritz&quot; },
+          &quot;Black&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; },
+          &quot;Result&quot;: &quot;Draw&quot;
+        },
+        {
+          &quot;Date&quot;: &quot;2002-10-06&quot;,
+          &quot;White&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; },
+          &quot;Black&quot;: { &quot;-refid&quot;: &quot;fritz&quot; },
+          &quot;Result&quot;: &quot;White&quot;
+        }
+      ]
+    }
+  }
+}
+```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### YAML で表現した場合
+    ```yaml
+---
+players:
+  Vladimir Kramnik: &amp;amp;kramnik
+    rating: 2700
+    status: GM
+  Deep Fritz: &amp;amp;fritz
+    rating: 2700
+    status: Computer
+  David Mertz: &amp;amp;mertz
+    rating: 1400
+    status: Amateur
+matches:
+  -
+    Date: 2002-10-04
+    White: *fritz
+    Black: *kramnik
+    Result: Draw
+  -
+    Date: 2002-10-06
+    White: *kramnik
+    Black: *fritz
+    Result: White
+
+```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://jp.rubyist.net/magazine/?0009-YAML&quot;&gt;Rubyist Magazine - プログラマーのための YAML 入門 (初級編)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 
+	YamlSerializer for .NET
+
+    
+    &gt;
+        主に２つの目的で使うことができます。
+
+
+C# のオブジェクトをそのまま YAML テキストにシリアライズ・デシリアライズすることができます。=&gt; YamlSerizlizer クラス
+一般の YAML ファイルを扱うこともできます。 =&gt; YamlNode クラス
+
+    
+というわけで、今日はこのライブラリを使ってみる。ちゃんと NuGet にもパッケージングされていて、WebMatrix からもサックリ使えるよ。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121007/20121007113028.png&quot; alt=&quot;f:id:daruyanagi:20121007113028p:plain&quot; title=&quot;f:id:daruyanagi:20121007113028p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+
+&lt;div class=&quot;section&quot;&gt;
+    #### サンプルコード
+    ```cs
+# Default.cshtml
+
+@functions {
+    // シリアライズ・デシリアライズのためのサンプルクラス
+    public class Person
+    {
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        
+        public override string ToString()
+        {
+            return string.Format(&quot;{0} {1}&quot;, FirstName, LastName);
+        }
+    }
+}
+
+@{
+    var person = new Person()
+    {
+        FirstName = &quot;Hidetoshi&quot;, LastName = &quot;Yanagi&quot;,
+    };
+
+    // シリアライザの生成
+    // using System.Yaml.Serialization;
+    var serializer = new YamlSerializer();
+
+    // YML形式のテキスト
+    string yml =@&quot;
+LastName: 柳
+FirstName: 英俊
+&quot;;
+
+    // YMLテキスト → Person
+    var deserialised = serializer.Deserialize(
+        yml, typeof(Person)
+    );
+}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;pre&gt;
+        @serializer.Serialize(person) //&amp;lt;-- YMLテキストに！
+        &amp;lt;/pre&gt;
+
+        // 返り値は object 配列だよ！
+        &amp;lt;h1&gt;フルネームは @(deserialised[0] as Person) です。&amp;lt;/h1&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div>
+<div class="section">
+    #### 結果
+    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121007/20121007113045.png" alt="f:id:daruyanagi:20121007113045p:plain" title="f:id:daruyanagi:20121007113045p:plain" class="hatena-fotolife"/>ちょっとアレだな、とおもったのは @(deserialised[0] as Person) の部分だけれど、dynamic でうければいいのかもしれない。
+```cs
+dynamic deserialised = serializer.Deserialize(
+        yml, typeof(Person)
+    )[0];
+<p>deserialised.FirstName;</p>
+<pre><code>&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-10-07T11:39:45JST">2012/10/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix/ASP.NET%20Web%20Pages%20%e3%81%a7%20YAML%20%e3%82%92%e6%89%b1%e3%81%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/10/07/113945/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%2FASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7&#43;YAML&#43;%E3%82%92%E6%89%B1%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F07%2F113945%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/07/172404/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/06/194142/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

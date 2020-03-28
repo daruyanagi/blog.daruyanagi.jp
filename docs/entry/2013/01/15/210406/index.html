@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/15/210406/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Google Chart を使った数式ツールを作ってみた（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
+ 数式テキストの新規作成・開く・保存 編集機能（切り取り・コピー・貼り付けなど） 数式イメージのファイル保存・クリップボードへコピー なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。 ```cs private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Tab) { e.Handled = true; // 握りつぶす！  var text = FormulaText.Text; int start = FormulaText.SelectionStart; int end = -1; FormulaText.SelectionLength = 0; if ((Keyboard.Modifiers &amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift) { start = text.IndexOf(&amp;#39;{&amp;#39;, start); if (start &amp;lt; 0) return; FormulaText.SelectionStart = start &#43; 1; end = text." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/15/210406/" >
+                    <h1 class="entry__header-title-link-text">Google Chart を使った数式ツールを作ってみた（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/01/15/210406/20130115205240.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2013/01/14/221302">Google Chart を使った数式ツールを作ってみた - だるろぐ</a> の続き。さすがにもう少し完成度を上げようと思って、</p>
+<ul>
+<li>数式テキストの新規作成・開く・保存</li>
+<li>編集機能（切り取り・コピー・貼り付けなど）</li>
+<li>数式イメージのファイル保存・クリップボードへコピー</li>
+</ul>なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。
+```cs
+private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
+{
+    if (e.Key == Key.Tab)
+    {
+        e.Handled = true; // 握りつぶす！
+<pre><code>    var text = FormulaText.Text;
+    int start = FormulaText.SelectionStart;
+    int end = -1;
+    FormulaText.SelectionLength = 0;
+
+    if ((Keyboard.Modifiers &amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift)
+    {
+        start = text.IndexOf(&amp;#39;{&amp;#39;, start);
+        if (start &amp;lt; 0) return;
+        FormulaText.SelectionStart = start + 1;
+
+        end = text.IndexOf(&amp;#39;}&amp;#39;, FormulaText.SelectionStart);
+        if (end &amp;lt; 0) return;
+        FormulaText.SelectionLength = end - start - 1;
+    }
+    else // Shift + Tab キー
+    {
+        
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-<figure>
+    <img src="/images/2013/01/15/210406/20130115205746.png"/> 
+</figure>
+適当に書いたのだけど、これでも案外使える感じになった。ただ、<figure>
+    <img src="/images/2013/01/15/210406/20130115205946.png"/> 
+</figure>
+ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{}" data-lang="<figure>
+    <img src="/images/2013/01/15/210406/20130115205746.png"/> 
+</figure>
+適当に書いたのだけど、これでも案外使える感じになった。ただ、<figure>
+    <img src="/images/2013/01/15/210406/20130115205946.png"/> 
+</figure>
+ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{}">
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-15T21:04:06JST">2013/01/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Google%20Chart%20%e3%82%92%e4%bd%bf%e3%81%a3%e3%81%9f%e6%95%b0%e5%bc%8f%e3%83%84%e3%83%bc%e3%83%ab%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%81%9f%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/15/210406/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Google&#43;Chart&#43;%E3%82%92%E4%BD%BF%E3%81%A3%E3%81%9F%E6%95%B0%E5%BC%8F%E3%83%84%E3%83%BC%E3%83%AB%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%81%9F%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F15%2F210406%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/17/020941/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/14/221302/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

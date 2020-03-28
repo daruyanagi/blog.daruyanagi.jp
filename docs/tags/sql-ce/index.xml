@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>SQL CE on だるやなぎ</title>
+    <link>http://daruyanagi.net/tags/sql-ce/</link>
+    <description>Recent content in SQL CE on だるやなぎ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Thu, 25 Jun 2015 05:03:42 +0000</lastBuildDate>
+    
+	<atom:link href="http://daruyanagi.net/tags/sql-ce/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>WebMatrix：フィードを読み込んでデータベースへつっこむときに System.Data.SqlServerCe.SqlCeException が発生する。</title>
+      <link>http://daruyanagi.net/entry/2015/06/25/050342/</link>
+      <pubDate>Thu, 25 Jun 2015 05:03:42 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2015/06/25/050342/</guid>
+      <description>だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。
+&amp;gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。 データ型    一方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。  SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</description>
+    </item>
+    
+  </channel>
+</rss>

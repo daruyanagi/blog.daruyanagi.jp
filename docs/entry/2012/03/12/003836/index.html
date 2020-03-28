@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/03/12/003836/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WPFでバージョン情報ダイアログをつくる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspxMicrosoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。
+```  using Microsoft.VisualBasic.ApplicationServices;
+namespace Type08ScreenCapture { /// &lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); }
+ private void Window_Loaded( object sender, RoutedEventArgs e) { DataContext = new AssemblyInfo( System.Reflection.Assembly.GetExecutingAssembly()); }  ： ：
+あとは XAML 側でバインディングしていく。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&quot; alt=&quot;f:id:daruyanagi:20120312003119p:plain&quot; title=&quot;f:id:daruyanagi:20120312003119p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt; ``` &amp;lt;TextBlock Margin=&quot;24&quot; Text=&quot;{Binding ProductName}&quot; /&gt; バインディングヒャッホイ！「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/wpf/">WPF</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/03/12/003836/" >
+                    <h1 class="entry__header-title-link-text">WPFでバージョン情報ダイアログをつくる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/03/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。<a href="http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspx"><a href="http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspx">http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspx</a></a>Microsoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。</p>
+<pre><code>```
+</code></pre>
+<p>using Microsoft.VisualBasic.ApplicationServices;</p>
+<p>namespace Type08ScreenCapture
+{
+/// &lt;summary&gt;
+/// MainWindow.xaml の相互作用ロジック
+/// &lt;/summary&gt;
+public partial class MainWindow : Window
+{
+public MainWindow()
+{
+InitializeComponent();
+}</p>
+<pre><code>    private void Window_Loaded(
+        object sender, RoutedEventArgs e)
+    {
+        DataContext = new AssemblyInfo(
+           System.Reflection.Assembly.GetExecutingAssembly());
+    }
+</code></pre>
+<p>：
+：</p>
+<pre><code>あとは XAML 側でバインディングしていく。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&quot; alt=&quot;f:id:daruyanagi:20120312003119p:plain&quot; title=&quot;f:id:daruyanagi:20120312003119p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+
+    ```
+&amp;lt;TextBlock Margin=&quot;24&quot; Text=&quot;{Binding ProductName}&quot; /&gt;
+</code></pre><p>バインディングヒャッホイ！<a href="http://daruyanagi.hatenablog.com/entry/2012/03/11/165757">「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ</a> で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。</p>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-03-12T00:38:36JST">2012/03/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WPF%e3%81%a7%e3%83%90%e3%83%bc%e3%82%b8%e3%83%a7%e3%83%b3%e6%83%85%e5%a0%b1%e3%83%80%e3%82%a4%e3%82%a2%e3%83%ad%e3%82%b0%e3%82%92%e3%81%a4%e3%81%8f%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/03/12/003836/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WPF%E3%81%A7%E3%83%90%E3%83%BC%E3%82%B8%E3%83%A7%E3%83%B3%E6%83%85%E5%A0%B1%E3%83%80%E3%82%A4%E3%82%A2%E3%83%AD%E3%82%B0%E3%82%92%E3%81%A4%E3%81%8F%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F03%2F12%2F003836%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/12/004612/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/03/11/165757/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

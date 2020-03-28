@@ -1,0 +1,578 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/01/24/073816/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：RESTful？な Web アプリケーション （5） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 2：RESTful？な Web アプリケーション （4） - だるろぐ の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。
+ http://daruyanagi-sample1.azurewebsites.net/Posts モーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は WebMatrix でほかの Web サイトのデザインをパク……じゃなくて、参考にさせていただく - だるろぐ を参照。 ### データベースとのやり取り ~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。 ```cs using System; using System.Collections.Generic; using System.Linq; using System.Web.WebPages; using WebMatrix.Data; public class Post { // ここら辺はテーブルの構造をそのまま定義 public long Id { get; set; } public string Title { get; set; } public string Body { get; set; } public DateTime CreatedAt { get; set; } public DateTime UpdatedAt { get; set; }" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/01/24/073816/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション （5）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/01/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/01/13/094453">WebMatrix 2：RESTful？な Web アプリケーション （4） - だるろぐ</a> の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。</p>
+<ul>
+<li><a href="http://daruyanagi-sample1.azurewebsites.net/Posts">http://daruyanagi-sample1.azurewebsites.net/Posts</a></li>
+</ul>モーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は <a href="https://blog.daruyanagi.jp/entry/2013/01/23/053227">WebMatrix でほかの Web サイトのデザインをパク……じゃなくて、参考にさせていただく - だるろぐ</a> を参照。
+<div class="section">
+    ### データベースとのやり取り
+    ~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。
+```cs
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.WebPages;
+using WebMatrix.Data;
+<p>public class Post
+{
+// ここら辺はテーブルの構造をそのまま定義
+public long Id { get; set; }
+public string Title { get; set; }
+public string Body { get; set; }
+public DateTime CreatedAt { get; set; }
+public DateTime UpdatedAt { get; set; }</p>
+<pre><code>public string Excerpt // 本文の一部だけを取得
+{
+    get
+    {
+        return Body.IsEmpty()
+            ? string.Empty
+            : string.Join(&quot;&quot;, Body.Take(40));
+    }
+}
+
+// クエリで受け取ったデータ（dynamic）から
+// Post オブジェクトを生成
+public Post(dynamic record)
+{
+    Id = record.Id;
+    Title = record.Title;
+    Body = record.Body;
+    CreatedAt = record.CreatedAt;
+    UpdatedAt = record.UpdatedAt;
+}
+</code></pre>
+<p>}</p>
+<p>public static class PostRepository
+{
+public static IEnumerable&lt;Post&gt; List()
+{
+const string query = &ldquo;SELECT * FROM Post ORDER BY CreatedAt DESC&rdquo;;</p>
+<pre><code>    using (var db = Database.Open(&quot;db&quot;))
+    {
+        return db.Query(query).Select(_ =&gt; new Post(_));
+    }
+}
+
+public static Post Find(long id)
+{
+    const string query = &quot;SELECT * FROM Post WHERE Id=@0&quot;;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        return new Post(db.QuerySingle(query, id));
+    }
+}
+
+// タイトルでも検索できるように
+public static Post Find(string title)
+{
+    const string query = &quot;SELECT * FROM Post WHERE Title=@0&quot;;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        return new Post(db.QuerySingle(query, title));
+    }
+}
+
+public static long Create(string title, string body)
+{
+    const string query = &quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;
+                       + &quot;VALUES(@0, @1, @2, @3)&quot;;
+    var now = DateTime.Now;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, title, body, now, now);
+        // INSERT した列の Id を取得するのってこうやればいいらしい
+        var result = db.QueryValue(&quot;SELECT @@IDENTITY&quot;);
+        return Convert.ToInt64(result);
+    }
+}
+
+public static void Update(long id, string title, string body)
+{
+    var query = &quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;;
+    var now = DateTime.Now;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, title, body, now, id);
+    }
+}
+
+public static void Delete(long id)
+{
+    var query = &quot;DELETE FROM Post WHERE Id=@0&quot;;
+
+    using (var db = Database.Open(&quot;db&quot;))
+    {
+        db.Query(query, id);
+    }
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-これで" data-lang="これで">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### メソッドに応じて異なるビューを呼び出す
+    ~/Posts.cshtml の中身。IIS はデフォルトで PUT/DELETE が使えないみたい。Web.config を書き換えてもいいのだけど、ここは _method = &quot;PUT&quot; がリクエストに含まれていたら PUT として処理することにした。
+```cs
+@using System.Reflection
+
+@try
+{
+    // POST で PUT/DELETE を代用
+    string method = Request.HttpMethod.ToUpper();
+    if (IsPost &amp;amp;&amp;amp; Request[&quot;_method&quot;] != null) 
+    {
+        method = Request[&quot;_method&quot;].ToUpper(); // Camelize() とか作っておくといいのかも
+    }
+
+    // パラメーターの型を解釈（なるべく long に、無理なものは string のまま）
+    var args = UrlData.Select&amp;lt;string, object&gt;(_ =&gt;
+    {
+        try { return long.Parse(_); } catch { return _; }
+    }).ToArray();
+
+    // メソッドの検索
+    MethodInfo method_info = this.GetType().GetMethod(
+        method,
+        args.Select(_ =&gt; _.GetType()).ToArray()
+    );
+
+    // 検索したメソッドを呼び出してビューをレンダリング
+    @method_info.Invoke(this, args);
+}
+catch (Exception e)
+{
+    throw new ApplicationException();
+}
+
+@functions // HelperResult を返せば、@... で呼び出してビューがレンダリングされる
+{
+    private const string VIEW_POST_DETAIL = &quot;~/Views/Posts/_ShowPost.cshtml&quot;;
+    private const string VIEW_POST_ARCHIVE = &quot;~/Views/Posts/_ListPosts.cshtml&quot;;
+        
+    public HelperResult GET() // Camelize() すれば Get() で呼び出せるケド
+    {
+        var posts = PostRepository.List();
+        
+        switch (Request.ContentType) // JSON でも返せるように！
+        {
+            case &quot;application/json&quot;:
+                RenderJason(posts);
+                return null;
+            default:
+                return RenderPage(VIEW_POST_ARCHIVE, posts);
+        }
+    }
+
+    public HelperResult GET(long id)
+    {   
+        var post = PostRepository.Find(id);
+        CheckIfPostIsNull(post);
+        
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+                return RenderJason(post);
+            default:
+                return RenderPage(VIEW_POST_DETAIL, post);
+        }
+    }
+
+    public HelperResult GET(string title)
+    {
+        var post = PostRepository.Find(title);
+        CheckIfPostIsNull(post);
+                
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+                return RenderJason(post);
+            default:
+                return RenderPage(VIEW_POST_DETAIL, post);
+        }
+    }
+
+    public void POST()
+    {
+        var title = Request[&quot;Title&quot;];
+        var body = Request[&quot;Body&quot;];
+        var id = PostRepository.Create(title, body);
+
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+            default:
+                RenderJason(id);
+                break;
+        }
+    }
+
+    public void PUT(long id)
+    {
+        var title = Request[&quot;Title&quot;];
+        var body = Request[&quot;Body&quot;];
+        PostRepository.Update(id, title, body);
+
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+            default:
+                RenderJason(id);
+                break;
+        }
+    }
+
+    public void PUT(string title)
+    {
+        var post = PostRepository.Find(title);
+        CheckIfPostIsNull(post);
+        
+        var new_title = Request[&quot;Title&quot;];
+        var body = Request[&quot;Body&quot;];
+        PostRepository.Update(post.Id, new_title, body);
+
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+            default:
+                RenderJason(post.Id);
+                break;
+        }
+    }
+
+    public void DELETE(long id)
+    {
+        PostRepository.Delete(id);
+
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+            default:
+                RenderJason(id);
+                break;
+        }
+    }
+
+    public void DELETE(string title)
+    {
+        var post = PostRepository.Find(title);
+        CheckIfPostIsNull(post);
+        
+        PostRepository.Delete(post.Id);
+
+        switch (Request.ContentType)
+        {
+            case &quot;application/json&quot;:
+            default:
+                RenderJason(post.Id);
+                break;
+        }
+    }
+}
+
+@functions
+{
+    private HelperResult RenderJason(long id) // Id だけを JSON で返す
+    {
+        Response.Clear();
+        Response.ContentType = &quot;application/json&quot;;
+        Response.Write(string.Format(@&quot;{{ &quot;&quot;Id&quot;&quot;: &quot;&quot;{0}&quot;&quot; }}&quot;, id));
+        Response.End();
+        return null; // null を返すなら HelperResult 型にしなくてもいい気はする
+    }
+    
+    private HelperResult RenderJason(object post) // Post だの Posts だのを JSON で返す
+    {
+        Response.Clear();
+        Response.ContentType = &quot;application/json&quot;;
+        Response.Write(Json.Encode(post));
+        Response.End();
+        return null;
+    }
+    
+    private void CheckIfPostIsNull(Post post)
+    {
+        if (post == null)
+            throw new HttpException(404, &quot;Post is not found.&quot;);
+    }
+}
+
+```<figure>
+    <img src="/images/2013/01/24/073816/20130124072621.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/01/24/073816/20130124072619.png"/> 
+</figure>
+Content-Type によって応答が切り替わるようにしてみた。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ビュー
+    全部のっけても仕方ないので、~/Views/Posts/_ShowPost.cshtml&quot; だけを。
+```html
+@{
+    var model = PageData.First().Value as Post; // もはやイディオムかな……
+    Page.Title = model.Title;
+    Page.PostId = model.Id;
+    Layout = &quot;~/_SiteLayout.cshtml&quot;;
+}
+
+&amp;lt;h1&gt;@Page.Title&amp;lt;/h1&gt;
+
+@model.Body
+
+@section Dialog // 編集作業はモーダルダイアログで処理することにした
+{
+    &amp;lt;aside id=&quot;EditDocument&quot; class=&quot;modal&quot;&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;&gt;
+        $(function () {
+            $(&amp;#39;#edit-document&amp;#39;).click(function () {
+                $.ajax({
+                    url: &quot;@Request.Url.AbsolutePath&quot;,
+                    type: &amp;#39;POST&amp;#39;,
+                    data: {
+                        &amp;#39;_method&amp;#39;: &quot;PUT&quot;,
+                        &amp;#39;Title&amp;#39;: $(&amp;#39;#Edit-Title&amp;#39;).val(),
+                        &amp;#39;Body&amp;#39;: $(&amp;#39;#Edit-Body&amp;#39;).val(),
+                    },
+                    success: function (data) {
+                        var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39; + data.Id;
+                        window.location.replace(uri); // リダイレクト
+                    },
+                    error: function (data) {
+                        alert(&amp;#39;failure&amp;#39;);
+                    },
+                });
+            })
+        });
+        &amp;lt;/script&gt;
+	    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
+            &amp;lt;header class=&quot;modal-header&quot;&gt;
+                &amp;lt;h1&gt;&amp;lt;input type=&quot;text&quot; id=&quot;Edit-Title&quot; value=&quot;@model.Title&quot; /&gt;&amp;lt;/h1&gt;
+            &amp;lt;/header&gt;
+            &amp;lt;div class=&quot;modal-content&quot;&gt;
+                &amp;lt;textarea id=&quot;Edit-Body&quot; placeholder=&quot;なんか書いてもええんやでぇ&quot;&gt;@model.Body&amp;lt;/textarea&gt;
+            &amp;lt;/div&gt;
+		    &amp;lt;footer class=&quot;modal-footer&quot;&gt;
+                &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;edit-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
+                &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
+            &amp;lt;/footer&gt;
+	    &amp;lt;/div&gt;
+    &amp;lt;/aside&gt;
+
+    &amp;lt;aside id=&quot;RemoveDocument&quot; class=&quot;modal&quot;&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;&gt;
+        $(function () {
+            $(&amp;#39;#remove-document&amp;#39;).click( function () {
+                $.ajax({
+                    url: &quot;@Request.Url.AbsolutePath&quot;,
+                    type: &amp;#39;POST&amp;#39;,
+                    data: {
+                        &amp;#39;_method&amp;#39;: &quot;DELETE&quot;,
+                    },
+                    success: function (data) {
+                        var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39;;
+                        window.location.replace(uri);
+                    },
+                    error: function (data) {
+                        alert(&amp;#39;failure&amp;#39;);
+                    },
+                });
+            })
+        });
+        &amp;lt;/script&gt;
+	    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
+            &amp;lt;header class=&quot;modal-header&quot;&gt;
+		        &amp;lt;h1&gt;&amp;lt;span id=&quot;Delete-Title&quot; &gt;@model.Title&amp;lt;/span&gt; を削除しようとしています……&amp;lt;/h1&gt;
+            &amp;lt;/header&gt;
+            &amp;lt;div class=&quot;modal-content&quot;&gt;
+                &amp;lt;p&gt;本当に削除しますか？&amp;lt;/p&gt;
+            &amp;lt;/div&gt;
+		    &amp;lt;footer class=&quot;modal-footer&quot;&gt;
+                &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;remove-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
+                &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
+            &amp;lt;/footer&gt;
+	    &amp;lt;/div&gt;
+    &amp;lt;/aside&gt;
+}
+
+```普通の MVC フレームワークだと
+
+&lt;ul&gt;
+&lt;li&gt;GET /Posts/Edit/:Id&lt;/li&gt;
+&lt;/ul&gt;なんかで編集画面に遷移すると思うのだけど、今回は
+
+&lt;ul&gt;
+&lt;li&gt;GET /Posts/:Id#Edit&lt;/li&gt;
+&lt;/ul&gt;で編集ダイアログを表示するようにしてる（今は開発中の可読性のために #EditDocument としているけど）。ルーティング処理を手抜きしたかったのもあるし、こうした方がかっこよくないか？　ってところもあって。そんなわけで、リダイレクト処理もサーバー側が処理するのではなくて、ビューの JavaScript が担当するようになっている。積み残した部分もあるけど、とりあえずはこれで終わり。つぎは予定通り Twitter/Facebook 認証を使ってみようかと思う。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-01-24T07:38:16JST">2013/01/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aRESTful%ef%bc%9f%e3%81%aa%20Web%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%20%ef%bc%885%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/24/073816/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9ARESTful%EF%BC%9F%E3%81%AA&#43;Web&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3&#43;%EF%BC%885%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F24%2F073816%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/25/070238/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/24/063507/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

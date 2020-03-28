@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/10/01/081913/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 3 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix 3: @ でハマる - だるろぐ の続き。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &ldquo;https://platform.twitter.com/widgets.js&quot;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;)); twttr.ready(function (twttr) { var el = document.getElementsByClassName(&lsquo;twitter-syntax-tweet-id-384486530380611584&rsquo;); for (var i=0;i&lt;el.length;i&#43;&#43;) { if (!!el[i].getAttribute(&lsquo;data-is-tweet-loaded&rsquo;)){ continue; } el[i].setAttribute(&lsquo;data-is-tweet-loaded&rsquo;, &lsquo;1&rsquo;); twttr." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/10/01/081913/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/10/01</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/10/01/081913/20130929122557.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2013/09/29/122508">WebMatrix 3: @ でハマる - だるろぐ</a> の続き。<script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &ldquo;<a href="https://platform.twitter.com/widgets.js%22;">https://platform.twitter.com/widgets.js&quot;;</a>        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName(&lsquo;twitter-syntax-tweet-id-384486530380611584&rsquo;);        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute(&lsquo;data-is-tweet-loaded&rsquo;)){                continue;            }            el[i].setAttribute(&lsquo;data-is-tweet-loaded&rsquo;, &lsquo;1&rsquo;);            twttr.widgets.createTweet(&lsquo;384486530380611584&rsquo;,el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-384486530380611584"></div>というアドバイスをもらった。あ、たぶんそれだ。というわけで書き直した。</p>
+<div class="section">
+    ### 旧バージョン（Logger.cshtml）
+    ```cs
+#App_Code/Logger.cshtml
+<p>@helper Write(string message)
+{
+System.IO.File.AppendAllText(
+Server.MapPath(&ldquo;~/log.txt&rdquo;),
+string.Format(&quot;{0}:\t{1}\r\n&rdquo;, DateTime.Now, message)
+);
+}</p>
+<pre><code class="language-これって実は" data-lang="これって実は">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 新バージョン（Logger.cs）
+    <figure>
+    <img src="/images/2013/10/01/081913/20131001075835.png"/> 
+</figure>
+&lt;br/&gt;
+
+```cs
+#App_Code/Logger.cs
+
+using System;
+
+public static class Logger
+{
+    public static void Write(string message)
+    {
+        System.IO.File.AppendAllText(
+            System.Web.Hosting.HostingEnvironment.MapPath(&quot;~/log.txt&quot;),
+            string.Format(&quot;{0}:\t{1}\r\n&quot;, DateTime.Now, message)
+        );
+    }
+}
+
+```CSHTML → CS にして、コードを Razor ではなく C# で書き直す。“&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/system.web.hosting.hostingenvironment.mappath.aspx&quot;&gt;HostingEnvironment.MapPath(String) Method (System.Web.Hosting) | Microsoft Docs&lt;/a&gt;”は最近覚えたのだけど、Server.MapPath() が使えない場面でも動く（のだと期待している）。<figure>
+    <img src="/images/2013/10/01/081913/20131001080145.png"/> 
+</figure>
+結果は――期待通りログが出力される。けれど、Default.cshtml も少し書き直さなければならない。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 旧バージョン（Default.cshtml）
+    ```html
+@{
+     @Logger.Write(&quot;冒頭のコードブロック内で記述&quot;);
+}
+
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @Logger.Write(&quot;Body 内で記述&quot;)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div>
+<div class="section">
+    ### 新バージョン（Default.cshtml）
+    ```html
+@{
+     Logger.Write("冒頭のコードブロック内で記述");
+}
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&rdquo; content=&quot;text/html; charset=utf-8&rdquo;/&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@{ Logger.Write(&ldquo;Body 内で記述&rdquo;); }
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-Logger.Write" data-lang="Logger.Write">
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://haacked.com/archive/2011/02/27/templated-razor-delegates.aspx&quot;&gt;Templated Razor Delegates | You’ve Been Haacked&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;をあんまり理解していないことを思い出したので、これも今度解決しておくことにする。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 追記
+    この功を表して、しばやんにはもう一枚 CD を贈ることにした。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-10-01T08:19:13JST">2013/10/01</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/10/01/081913/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F10%2F01%2F081913%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/10/01/085013/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/29/174957/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

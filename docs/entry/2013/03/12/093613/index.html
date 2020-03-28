@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/03/12/093613/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。
+ ASP.NET SignalR 1.0.1 が出てました - しばやん雑記 最新版は 1.0.1 ですかね。ASP.NET SignalR は「WebMatrix 2」からも使えますが、ベータのとき（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）とは少し変わっている部分もあるようなので、もう一度やってみました。とりあえず、QuickStart Hubs · SignalR/SignalR Wiki · GitHub を動作させるのが目標。 ### NuGet で SignalR を取得   公式パッケージソースで「SignalR」を検索すると、三番目ぐらいに出てくるはず。  ### サーバー（ハブ）   ~/App_Code フォルダに ChatHub.cs を作成し、以下のようなクラスを用意します。 ```cs using Microsoft.AspNet.SignalR; public class Chat : Hub { public void Send(string message) { // Call the addMessage method on all clients Clients." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/signalr/">SignalR</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/03/12/093613/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/03/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。</p>
+<ul>
+<li><a href="http://shiba-yan.hatenablog.jp/entry/20130303/1362291390">ASP.NET SignalR 1.0.1 が出てました - しばやん雑記</a></li>
+</ul>最新版は 1.0.1 ですかね。ASP.NET SignalR は「WebMatrix 2」からも使えますが、ベータのとき（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）とは少し変わっている部分もあるようなので、もう一度やってみました。とりあえず、<a href="https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs">QuickStart Hubs · SignalR/SignalR Wiki · GitHub</a> を動作させるのが目標。
+<div class="section">
+    ### NuGet で SignalR を取得
+    <figure>
+    <img src="/images/2013/03/12/093613/20130312085421.png"/> 
+</figure>
+公式パッケージソースで「SignalR」を検索すると、三番目ぐらいに出てくるはず。
+</div>
+<div class="section">
+    ### サーバー（ハブ）
+    <figure>
+    <img src="/images/2013/03/12/093613/20130312090003.png"/> 
+</figure>
+~/App_Code フォルダに ChatHub.cs を作成し、以下のようなクラスを用意します。
+```cs
+using Microsoft.AspNet.SignalR;
+<p>public class Chat : Hub
+{
+public void Send(string message)
+{
+// Call the addMessage method on all clients         <br>
+Clients.All.addMessage(message);
+}
+}</p>
+<pre><code class="language-受け取ったメッセージを接続中のすべてのクライアントへそのまま一斉送信する（クライアントクラスの" data-lang="受け取ったメッセージを接続中のすべてのクライアントへそのまま一斉送信する（クライアントクラスの">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### ハブのマッピング
+    <figure>
+    <img src="/images/2013/03/12/093613/20130312090455.png"/> 
+</figure>
+さきほど記述したハブをルートテーブルにマップして使えるようにします。~/_AppStart.cshtml を作成し、以下のように記述しましょう。
+```cs
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapHubs();
+}
+
+```&lt;a href=&quot;https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs&quot;&gt;QuickStart Hubs · SignalR/SignalR Wiki · GitHub&lt;/a&gt; に掲載されているコードと少し違いますが、「WebMatrix 2」の場合はこれで OK です。正直、あんまりよくわかっていないのですけれど、これをコメントアウトすると次のセクションに出てくる &amp;lt;script src=&quot;/signalr/hubs&quot;&gt;&amp;lt;/script&gt; が 404 になってしまうので、まぁ、そういうのことをしてくれているのではないでしょうか。クライアントコードで $.connection.chat と書いてハブプロキシを呼び出せるようにごにょごにょするとか、そういう準備全般だと思います。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### クライアント（Javascript + HTML）
+    <figure>
+    <img src="/images/2013/03/12/093613/20130312091147.png"/> 
+</figure>
+~/Default.cshtml を以下のように書き換えます。自分の場合は jQuery をアップデートしてあるのですが、古いものでも大丈夫なのかな？　コピペで動かす場合は、スクリプトのバージョンだけ間違わないように気を付けてくださいね。
+```cs
+@{
+    
+}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+
+        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+
+        &amp;lt;script src=&quot;~/Scripts/jquery-1.9.1.min.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script src=&quot;~/Scripts/jquery.signalR-1.0.1.min.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script src=&quot;~/signalr/hubs&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;
+            $(function () {
+                // ハブプロキシを作成        
+                var chat = $.connection.chat;
+
+                // サーバーが addMessage() を呼んだら……         
+                chat.client.addMessage = function (message) {
+                    $(&amp;#39;#messages&amp;#39;).append(&amp;#39;&lt;li&gt;&lt;/li&gt;&amp;#39; + message + &amp;#39;&amp;#39;);
+                };
+
+                // 接続開始
+                $.connection.hub.start().done(function() {
+                    // imput#broadcast がクリックされたら……
+                    $(&quot;#broadcast&quot;).click(function () {
+                        // サーバーの Send() を実行する
+                        chat.server.send($(&amp;#39;#msg&amp;#39;).val());
+                    });
+                });
+            });
+        &amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;div&gt;
+            &amp;lt;input type=&quot;text&quot; id=&quot;msg&quot; /&gt;
+            &amp;lt;input type=&quot;button&quot; id=&quot;broadcast&quot; value=&quot;broadcast&quot; /&gt;
+
+            &amp;lt;ul id=&quot;messages&quot;&gt;
+            &amp;lt;/ul&gt;
+        &amp;lt;/div&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```input#broadcast を押したら、input#msg の内容を引数にサーバーの ChatHub.Send(string） を実行します。 すると、それがすべてのクライアントに送信され、それを受け取ったクライアントは ul#messages にそれを追加する、というわけ。<figure>
+    <img src="/images/2013/03/12/093613/20130312092011.png"/> 
+</figure>
+とりあえずブラウザーをいくつか起動して適当に入力してみてください。ちゃんとブロードキャストされているかな？
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-03-12T09:36:13JST">2013/03/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/03/12/093613/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F03%2F12%2F093613%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/13/065552/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/03/12/071453/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/03/03/145454/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            PowerShell：Windows ストアのアプリの更新履歴をチェックする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="これをチェックするツールがほしかったんだけど、WPF や ASP.NET Web Pages ではストアに「おまえ BOT だろ」と怒られてうまくいかなかった。けれど、似たようなコードを PowerShell で試すと、なぜかうまくいく……。原因はわかんないけど（調べる気が起きない）、PowerShell でできるんなら、PowerShell でやるか―って感じで頑張ってみた。基本方針は
+ ストアから #version-notes をスクレイピングして保存 新旧 #version-notes を比較してステータス（!?*&#43;-）をつける 結果を PSCustomｍObject の配列で返す って感じ。 ``` function Check-WindowsStore { $urls =@( &#34;https://www.microsoft.com/ja-jp/store/p/swarm/9wzdncrdrsq1&#34;, :（途中省略） ) # 重複は無駄なので削る $urls = $urls | Get-Unique foreach ($url in $urls) { try { # ストアからテキストをダウンロード $request = Invoke-WebRequest -Uri $url # アプリの表示名を記憶 $title = $request.AllElements .FindById(&quot;page-title&quot;).innerText # 新しいバージョンノートを記憶 $new = $request.AllElements .FindById(&quot;version-notes&quot;).innerText if ($new) { # 最初だけ：更新履歴を保存する ." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/03/03/145454/" >
+                    <h1 class="entry__header-title-link-text">PowerShell：Windows ストアのアプリの更新履歴をチェックする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/03/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/03/03/145454/20170303143002.png"/> 
+</figure>
+これをチェックするツールがほしかったんだけど、WPF や ASP.NET Web Pages ではストアに「おまえ BOT だろ」と怒られてうまくいかなかった。けれど、似たようなコードを PowerShell で試すと、なぜかうまくいく……。原因はわかんないけど（調べる気が起きない）、PowerShell でできるんなら、PowerShell でやるか―って感じで頑張ってみた。基本方針は</p>
+<ul>
+<li>ストアから #version-notes をスクレイピングして保存</li>
+<li>新旧 #version-notes を比較してステータス（!?*+-）をつける</li>
+<li>結果を PSCustomｍObject の配列で返す</li>
+</ul>って感じ。
+```
+function Check-WindowsStore
+{
+    $urls =@(
+        "https://www.microsoft.com/ja-jp/store/p/swarm/9wzdncrdrsq1",
+          :（途中省略）
+    )
+<pre><code># 重複は無駄なので削る
+$urls = $urls | Get-Unique
+
+foreach ($url in $urls)
+{
+    try
+    {
+        # ストアからテキストをダウンロード 
+        $request = Invoke-WebRequest -Uri $url
+        
+        # アプリの表示名を記憶
+        $title = $request.AllElements
+                         .FindById(&quot;page-title&quot;).innerText
+
+        # 新しいバージョンノートを記憶
+        $new = $request.AllElements
+                       .FindById(&quot;version-notes&quot;).innerText
+
+        if ($new)
+        {
+            # 最初だけ：更新履歴を保存する .temp フォルダーを掘る
+            $path = $env:USERPROFILE 
+                  | Join-Path -ChildPath  &quot;.temp&quot;
+            if (Test-Path $path) { } 
+            else { New-Item $path -ItemType Directory }
+
+            # バージョンノートを保存するファイル名を記憶
+            # （パスに使えない文字は排除しておく）
+            $path = $path | Join-Path -ChildPath
+                ($title -replace &quot;/&quot;, &quot; &quot; -replace &quot;:&quot;, &quot; &quot;)
+            $old_path = $path + &quot;.old.txt&quot; # 質素な差分管理
+            $new_path = $path + &quot;.txt&quot;
+
+            # 前の更新履歴が保存されていたら……
+            if (Test-Path $new_path)
+            {
+                # 名前を変えて保存
+                $old = [System.IO.File]::ReadAllText($new_path)
+
+                if ($old -eq $new)
+                {
+                    $status = &quot;-&quot; # 変化なし
+                
+                }
+                else
+                {
+                    [System.IO.File]::
+                        WriteAllText($old_path, $old)
+                    [System.IO.File]::
+                        WriteAllText($new_path, $new)
+                    $status = &quot;*&quot; # 変化あり
+                }
+            }
+            else # 新しい更新履歴
+            {
+                [System.IO.File]::WriteAllText($new_path, $new)
+                $status = &quot;+&quot; # 新規作成
+            }
+        }
+        else # $new が nil
+        {
+            $status = &quot;?&quot; # そもそもリリースノートがない
+        }
+
+        [PSCustomObject] @{ 
+            Status = $status; Title = $title; Url=$url
+        }
+    }
+    catch [Exception]
+    {
+        $status = &quot;!&quot; # エラー
+
+        [PSCustomObject] @{ 
+            Status = $status; Title = $title; Url=$url
+        }
+    }
+    finally
+    {
+        Write-Host &quot;$status $url&quot;
+        $request = $null
+    }
+}
+
+Write-Host &quot;Complete&quot;
+</code></pre>
+<p>}</p>
+<pre><code class="language-この前は" data-lang="この前は"></code></pre><p>Check-WindowsStore
+| where { $_.Status -ne &ldquo;?&rdquo; }
+| where { $_.Status -ne &ldquo;-&rdquo; }
+| Format-Table</p>
+<pre><code class="language-を実行すると、" data-lang="を実行すると、"></code></pre><p>Status Title Url</p>
+<hr>
+<ul>
+<li>
+<pre><code> Slack https://www.microsoft.com/ja-jp/store/p/……
+</code></pre>
+</li>
+</ul>
+<pre><code class="language-が出力される。" data-lang="が出力される。">
+&lt;div class=&quot;section&quot;&gt;
+    ### 個人的お勉強ポイント
+    PowerShell はいろいろ省略記法とかあって、カッコよく書くのはまだまだ難しいなって思った。ぼちぼちうまくなりたい。
+
+&lt;div class=&quot;section&quot;&gt;
+    #### エスケープは ` で（今回は結局使わなかったけど）
+    タブは `t で入力できる。改行は `n だけど、CRLF にしたかったら `r`n にする。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### ループでオブジェクトをポイポイすれば yield return みたいになる
+    ```
+$result = @()
+```に結果をストアしていかなくてもいいみたい。なーんだ！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### JoinPath は | で繋ぐとネストが避けられて美しい
+    [[powershell]Join-Pathはパイプで使うとキレイ](http://sevenb.jp/wordpress/ura/2015/08/10/powershelljoin-path%E3%81%AF%E3%83%91%E3%82%A4%E3%83%97%E3%81%A7%E4%BD%BF%E3%81%86%E3%81%A8%E3%82%AD%E3%83%AC%E3%82%A4/)&lt;br/&gt;
+
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### Invoke-WebRequest はすっげえ便利
+    特定の id の中身がほしい場合はこれだけ。
+</code></pre><p>$request = Invoke-WebRequest $url
+$request.AllElements.FindById(&ldquo;page-title&rdquo;).innerText</p>
+<pre><code class="language-リンクや画像だけをストアしてるメンバーもある！XPath" data-lang="リンクや画像だけをストアしてるメンバーもある！XPath">
+&lt;/div&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-03-03T14:54:54JST">2017/03/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?PowerShell%ef%bc%9aWindows%20%e3%82%b9%e3%83%88%e3%82%a2%e3%81%ae%e3%82%a2%e3%83%97%e3%83%aa%e3%81%ae%e6%9b%b4%e6%96%b0%e5%b1%a5%e6%ad%b4%e3%82%92%e3%83%81%e3%82%a7%e3%83%83%e3%82%af%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/03/03/145454/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=PowerShell%EF%BC%9AWindows&#43;%E3%82%B9%E3%83%88%E3%82%A2%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%81%AE%E6%9B%B4%E6%96%B0%E5%B1%A5%E6%AD%B4%E3%82%92%E3%83%81%E3%82%A7%E3%83%83%E3%82%AF%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F03%2F145454%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/04/140328/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/02/082901/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

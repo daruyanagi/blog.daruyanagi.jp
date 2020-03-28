@@ -1,0 +1,257 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/03/14/182000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="見事 WebMatrix で Gmail 経由のアラートメールが送れたわけだが（WebMatrix: Gmail 経由でアラートメールを送る - だるろぐ）、このやり方には一つ欠点（？　というか、仕様だな）があった。たとえば、以下のようなコード。タイマーでとあるジョブ（必ず失敗する）を処理し、エラーが発生したらエラーメールを送る。
+@{ WebMail.SmtpServer=&#34;smtp.gmail.com&#34;; WebMail.SmtpPort = 587; WebMail.EnableSsl=true; WebMail.UserName=&#34;***&#34;; WebMail.From=&#34;***@gmail.com&#34;; WebMail.Password=&#34;***&#34;; var timer = new System.Timers.Timer(1000 * 60); timer.Elapsed &#43;= (sender, args) =&gt; { try { throw new Exception(); } catch (Exception e) { WebMail.Send(&#34;***@***.com&#34;, e.Message, e.StackTrace); } }; timer.Start(); } ```これは失敗する。しかも、WebMatrix だと例外が捕捉できないので気づきにくい。  よくわからんけれど、WebMail は &lt;a href=&#34;http://msdn.microsoft.com/ja-jp/library/system.web.helpers(v=vs.111).aspx&#34;&gt;System.Web.Helpers Namespace () | Microsoft Docs&lt;/a&gt; に属するみたいで、Page のスレッドじゃないと動作しないのかもしれない。そういえば昔、こういうシチュエーションで Server.MapPath() が使えなかった覚えがある。 &lt;div class=&#34;section&#34;&gt; ### 解決策 System.Net.Mail.MailMessage と System." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/03/14/182000/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/03/14</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>見事 WebMatrix で Gmail 経由のアラートメールが送れたわけだが（<a href="https://blog.daruyanagi.jp/entry/2014/03/08/220723">WebMatrix: Gmail 経由でアラートメールを送る - だるろぐ</a>）、このやり方には一つ欠点（？　というか、仕様だな）があった。たとえば、以下のようなコード。タイマーでとあるジョブ（必ず失敗する）を処理し、エラーが発生したらエラーメールを送る。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
+    WebMail.SmtpServer=<span style="color:#e6db74">&#34;smtp.gmail.com&#34;</span>;
+    WebMail.SmtpPort = <span style="color:#ae81ff">587</span>;
+    WebMail.EnableSsl=<span style="color:#66d9ef">true</span>;  
+    WebMail.UserName=<span style="color:#e6db74">&#34;***&#34;</span>;
+    WebMail.From=<span style="color:#e6db74">&#34;***@gmail.com&#34;</span>;  
+    WebMail.Password=<span style="color:#e6db74">&#34;***&#34;</span>;
+
+    <span style="color:#66d9ef">var</span> timer = <span style="color:#66d9ef">new</span> System.Timers.Timer(<span style="color:#ae81ff">1000</span> * <span style="color:#ae81ff">60</span>);
+
+    timer.Elapsed += (sender, args) =&gt;
+    {
+        <span style="color:#66d9ef">try</span>
+        {
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception();
+        }
+        <span style="color:#66d9ef">catch</span> (Exception e)
+        {
+            WebMail.Send(<span style="color:#e6db74">&#34;***@***.com&#34;</span>, e.Message, e.StackTrace);
+        }
+    };
+
+    timer.Start();
+}
+
+<span style="color:#960050;background-color:#1e0010">```これは失敗する。しかも、</span>WebMatrix <span style="color:#960050;background-color:#1e0010">だと例外が捕捉できないので気づきにくい。</span><figure>
+    <img src="/images/2014/03/14/182000/20140314181207.png"/> 
+</figure>
+よくわからんけれど<span style="color:#960050;background-color:#1e0010">、</span>WebMail <span style="color:#960050;background-color:#1e0010">は</span> &lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/ja-jp/library/system.web.helpers(v=vs.111).aspx&#34;</span>&gt;System.Web.Helpers Namespace () | Microsoft Docs&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">に属するみたいで、</span>Page <span style="color:#960050;background-color:#1e0010">のスレッドじゃないと動作しないのかもしれない。そういえば昔、こういうシチュエーションで</span> Server.MapPath() <span style="color:#960050;background-color:#1e0010">が使えなかった覚えがある。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">解決策</span>
+    System.Net.Mail.MailMessage <span style="color:#960050;background-color:#1e0010">と</span> System.Net.Mail.SmtpClient <span style="color:#960050;background-color:#1e0010">を使ってみた。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">var</span> timer = <span style="color:#66d9ef">new</span> System.Timers.Timer(<span style="color:#ae81ff">1000</span> * <span style="color:#ae81ff">60</span>);
+
+    timer.Elapsed += (sender, args) =&gt;
+    {
+        <span style="color:#66d9ef">try</span>
+        {
+            <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception();
+        }
+        <span style="color:#66d9ef">catch</span> (Exception e)
+        {
+            SendMail(e.Message, e.StackTrace);
+        }
+    };
+
+    timer.Start();
+}
+
+@functions
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> SendMail(<span style="color:#66d9ef">string</span> title, <span style="color:#66d9ef">string</span> body)
+    {
+        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> mail = <span style="color:#66d9ef">new</span> System.Net.Mail.MailMessage())
+        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> smtp = <span style="color:#66d9ef">new</span> System.Net.Mail.SmtpClient())
+        {
+            <span style="color:#66d9ef">try</span>
+            { 
+                mail.From = <span style="color:#66d9ef">new</span> System.Net.Mail.MailAddress(<span style="color:#e6db74">&#34;***@***.com&#34;</span>);
+                mail.To.Add(<span style="color:#66d9ef">new</span> System.Net.Mail.MailAddress(<span style="color:#e6db74">&#34;***@***.com&#34;</span>));
+                mail.Subject = title;
+                mail.Body = body;
+
+                smtp.Host = <span style="color:#e6db74">&#34;smtp.gmail.com&#34;</span>;
+                smtp.Port = <span style="color:#ae81ff">587</span>;
+                smtp.EnableSsl = <span style="color:#66d9ef">true</span>;
+                smtp.UseDefaultCredentials = <span style="color:#66d9ef">false</span>;
+                smtp.Credentials = <span style="color:#66d9ef">new</span> System.Net.NetworkCredential(<span style="color:#e6db74">&#34;***&#34;</span>, <span style="color:#e6db74">&#34;***&#34;</span>);
+                smtp.Send(mail);
+                
+                System.Diagnostics.Debug.WriteLine(<span style="color:#e6db74">&#34;The mail has been sent successfully.&#34;</span>);
+            }
+            <span style="color:#66d9ef">catch</span>(Exception e)
+            {
+                System.Diagnostics.Debug.WriteLine(e.Message);
+            }
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```これは成功。</span><figure>
+    <img src="/images/2014/03/14/182000/20140314181811.png"/> 
+</figure>
+成功したのはいいけどアプリを止め忘れて<span style="color:#960050;background-color:#1e0010">、気が付いたら</span> <span style="color:#ae81ff">100</span> <span style="color:#960050;background-color:#1e0010">通以上メールがきてた</span> <span style="color:#960050;background-color:#1e0010">／</span>(<span style="color:#960050;background-color:#1e0010">＾</span>o<span style="color:#960050;background-color:#1e0010">＾</span>)<span style="color:#960050;background-color:#1e0010">＼</span>
+
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-03-14T18:20:00JST">2014/03/14</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/03/14/182000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F03%2F14%2F182000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/03/14/183430/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/03/14/014053/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

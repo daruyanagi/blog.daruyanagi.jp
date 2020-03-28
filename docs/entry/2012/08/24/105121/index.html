@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/24/105121/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="さて、前回（WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。
+using System; using System.Web; namespace WebMatrix.WebData { public static class WebSecurity { public static readonly string EnableSimpleMembershipKey; ```WebSecurity は静的クラスです。“EnableSimpleMembershipKey”はよくわかりませんが、 readonly だしとくにわからなくても問題無さそう。 AppSetting から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。 ASP.NET の認証システムは全然わかってないけれど、おいおい解決していきたいです。 ```cs public static int CurrentUserId { get; } public static string CurrentUserName { get; } public static bool HasUserId { get; } public static bool Initialized { get; } public static bool IsAuthenticated { get; } ```お次はプロパティ群ですね。 CurrentUser に関するさまざまな情報を取得できます。 Initialized だけは &lt;a href=&#34;http://msdn." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/24/105121/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>さて、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a>）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.Web;
+
+<span style="color:#66d9ef">namespace</span> WebMatrix.WebData
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurity</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">string</span> EnableSimpleMembershipKey;
+
+<span style="color:#960050;background-color:#1e0010">```</span>WebSecurity <span style="color:#960050;background-color:#1e0010">は静的クラスです。“</span>EnableSimpleMembershipKey<span style="color:#960050;background-color:#1e0010">”はよくわかりませんが、</span> <span style="color:#66d9ef">readonly</span> <span style="color:#960050;background-color:#1e0010">だしとくにわからなくても問題無さそう。</span> AppSetting <span style="color:#960050;background-color:#1e0010">から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。</span> ASP.NET <span style="color:#960050;background-color:#1e0010">の認証システムは全然わかってないけれど、おいおい解決していきたいです。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> CurrentUserId { <span style="color:#66d9ef">get</span>; }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CurrentUserName { <span style="color:#66d9ef">get</span>; }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> HasUserId { <span style="color:#66d9ef">get</span>; }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> Initialized { <span style="color:#66d9ef">get</span>; }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAuthenticated { <span style="color:#66d9ef">get</span>; }
+
+<span style="color:#960050;background-color:#1e0010">```お次はプロパティ群ですね。</span> CurrentUser <span style="color:#960050;background-color:#1e0010">に関するさまざまな情報を取得できます。</span> Initialized <span style="color:#960050;background-color:#1e0010">だけは</span> &lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx&lt;/a&gt; に記述がなくてわからない。たぶん、前回やった初期化が完了しているかどうかを取得できるのだと思う。
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>cs
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ChangePassword(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> currentPassword,
+            <span style="color:#66d9ef">string</span> newPassword);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ConfirmAccount(
+            <span style="color:#66d9ef">string</span> accountConfirmationToken);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ConfirmAccount(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> accountConfirmationToken);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CreateAccount(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
+            <span style="color:#66d9ef">bool</span> requireConfirmationToken = <span style="color:#66d9ef">false</span>);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CreateUserAndAccount(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
+            <span style="color:#66d9ef">object</span> propertyValues = <span style="color:#66d9ef">null</span>,
+            <span style="color:#66d9ef">bool</span> requireConfirmationToken = <span style="color:#66d9ef">false</span>);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> GeneratePasswordResetToken(
+            <span style="color:#66d9ef">string</span> userName,
+            <span style="color:#66d9ef">int</span> tokenExpirationInMinutesFromNow = <span style="color:#ae81ff">1440</span>);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetCreateDate(<span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetLastPasswordFailureDate(
+            <span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetPasswordChangedDate(
+            <span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetPasswordFailuresSinceLastSuccess(
+            <span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetUserId(<span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetUserIdFromPasswordResetToken(
+            <span style="color:#66d9ef">string</span> token);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeDatabaseConnection(
+            <span style="color:#66d9ef">string</span> connectionStringName, <span style="color:#66d9ef">string</span> userTableName,
+            <span style="color:#66d9ef">string</span> userIdColumn, <span style="color:#66d9ef">string</span> userNameColumn,
+            <span style="color:#66d9ef">bool</span> autoCreateTables);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeDatabaseConnection(
+            <span style="color:#66d9ef">string</span> connectionString, <span style="color:#66d9ef">string</span> providerName,
+            <span style="color:#66d9ef">string</span> userTableName, <span style="color:#66d9ef">string</span> userIdColumn,
+            <span style="color:#66d9ef">string</span> userNameColumn, <span style="color:#66d9ef">bool</span> autoCreateTables);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAccountLockedOut(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">int</span> allowedPasswordAttempts,
+            <span style="color:#66d9ef">int</span> intervalInSeconds);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAccountLockedOut(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">int</span> allowedPasswordAttempts,
+            TimeSpan interval);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsConfirmed(<span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsCurrentUser(<span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> Login(
+            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
+            <span style="color:#66d9ef">bool</span> persistCookie = <span style="color:#66d9ef">false</span>);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Logout();
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireAuthenticatedUser();
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireRoles(<span style="color:#66d9ef">params</span> <span style="color:#66d9ef">string</span>[] roles);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireUser(<span style="color:#66d9ef">int</span> userId);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireUser(<span style="color:#66d9ef">string</span> userName);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ResetPassword(
+            <span style="color:#66d9ef">string</span> passwordResetToken, <span style="color:#66d9ef">string</span> newPassword);
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> UserExists(<span style="color:#66d9ef">string</span> userName);
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>WebSecurity <span style="color:#960050;background-color:#1e0010">クラスのメンバーたち（このうち、</span>InitializeDatabaseConnection() <span style="color:#960050;background-color:#1e0010">は前回使いました）。</span>
+
+&lt;ul&gt;
+&lt;li&gt;<span style="color:#960050;background-color:#1e0010">メールなどを利用した本人確認</span>&lt;/li&gt;
+&lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードのリセット（忘れちゃった時のためかな？）</span>&lt;/li&gt;
+&lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードの入力ミスを複数回繰り返すとアカウントをロック</span>&lt;/li&gt;
+&lt;/ul&gt;<span style="color:#960050;background-color:#1e0010">なんてことができるみたい。気になったのは</span> CreateUserAndAccount() <span style="color:#960050;background-color:#1e0010">ですかね。</span> Account <span style="color:#960050;background-color:#1e0010">（メンバーシップアカウント）と</span> User <span style="color:#960050;background-color:#1e0010">（ユーザープロファイル、ユーザー情報）って別物なんだ。“</span>Starter Site<span style="color:#960050;background-color:#1e0010">”テンプレートで使っていたのは</span> CreateAccount() <span style="color:#960050;background-color:#1e0010">で、ほかにサンプルも見当たらなかったのでよくわかりませんが……。</span><figure>
+    <img src="/images/2012/08/24/105121/20120824104305.png"/> 
+</figure>
+ちょっと DB <span style="color:#960050;background-color:#1e0010">のテーブル構成を見てみましょう。なんかいろいろありますけど、メンバーシップアカウントは</span> webpages_Membership <span style="color:#960050;background-color:#1e0010">、ユーザープロファイルは</span> Users<span style="color:#960050;background-color:#1e0010">（初期設定は</span> UserProfile<span style="color:#960050;background-color:#1e0010">）で管理するというのがなんとなく想像できます。どうやら</span> webpages_ <span style="color:#960050;background-color:#1e0010">というプレフィックスがついたテーブルはシステム（</span>WebSecurity Helper<span style="color:#960050;background-color:#1e0010">）が管理するみたい。</span><figure>
+    <img src="/images/2012/08/24/105121/20120824103854.png"/> 
+</figure>
+実際<span style="color:#960050;background-color:#1e0010">、</span>webpages_Membership <span style="color:#960050;background-color:#1e0010">テーブルには認証情報を格納するカラムがたくさん用意されていますが、</span><figure>
+    <img src="/images/2012/08/24/105121/20120824103857.png"/> 
+</figure>
+UserProfile <span style="color:#960050;background-color:#1e0010">テーブルのほうはかなりスッキリしていて「好きに使え」と言わんばかり。たとえばユーザーのプロフィール画像なんかの情報はこっちに保存しておいたほうがいいみたいですね。これはおいおい試していきたいと思います。</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-24T10:51:21JST">2012/08/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e8%aa%8d%e8%a8%bc%e6%a9%9f%e8%83%bd%ef%bc%882%ef%bc%89%20%e2%80%95%e2%80%95%20WebSecurity%e3%81%a3%e3%81%a6%e3%81%a9%e3%81%86%e3%82%84%e3%81%a3%e3%81%a6%e4%bd%bf%e3%81%86%e3%82%93%e3%81%a0%ef%bc%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/24/105121/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E8%AA%8D%E8%A8%BC%E6%A9%9F%E8%83%BD%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;WebSecurity%E3%81%A3%E3%81%A6%E3%81%A9%E3%81%86%E3%82%84%E3%81%A3%E3%81%A6%E4%BD%BF%E3%81%86%E3%82%93%E3%81%A0%EF%BC%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F24%2F105121%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/25/003421/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/24/095023/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

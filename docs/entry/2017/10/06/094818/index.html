@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/10/06/094818/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Omawari 1.4.0.0：ユーザーインターフェイスを手直ししました | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="内部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。
+ 複数環境での起動を考慮する 各部の名称を整理・わかりやすくする ローカルフォルダーや親ルールにアクセスするボタンを追加 ログウィンドウに前後移動機能を追加 既存のウィンドウがあれば新規に開かずアクティブにする New/No Changed ステータスの新設 アプリケーションアイコンの追加 データフォルダーを開くコマンドを新設 ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも 日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。    ### Chocolatey パッケージ化の準備 実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツの Windows 版ですね。Chocolatey のパッケージは、  パッケージに全部ファイルを入れちゃう リモートに置いてあるインストーラーを叩く という2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exeついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。 ```ps1 # Add-AzureAccount $StorageAccountName = &ldquo;yanagi&rdquo; $StorageAccountKey = &ldquo;***&rdquo; $ContainerName = &ldquo;clickonce-omawari&rdquo;
+$binRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\bin&rdquo; $publishRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\Publish&rdquo;
+function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/omawari/">Omawari</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/10/06/094818/" >
+                    <h1 class="entry__header-title-link-text">Omawari 1.4.0.0：ユーザーインターフェイスを手直ししました</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/10/06</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/10/06/094818/20171006093047.png"/> 
+</figure>
+内部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。</p>
+<ul>
+<li>複数環境での起動を考慮する</li>
+<li>各部の名称を整理・わかりやすくする</li>
+<li>ローカルフォルダーや親ルールにアクセスするボタンを追加</li>
+<li>ログウィンドウに前後移動機能を追加</li>
+<li>既存のウィンドウがあれば新規に開かずアクティブにする</li>
+<li>New/No Changed ステータスの新設</li>
+<li>アプリケーションアイコンの追加</li>
+<li>データフォルダーを開くコマンドを新設</li>
+<li>ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも</li>
+</ul>日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。
+<div class="github-card" data-user="daruyanagi/Omawari/releases/tag" data-repo="v1.4.0.0" data-width="400" data-height="" data-theme="default"></div>
+<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+<br/>
+<div class="section">
+    ### Chocolatey パッケージ化の準備
+    実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツの<br/>
+Windows 版ですね。Chocolatey のパッケージは、
+<ul>
+<li>パッケージに全部ファイルを入れちゃう</li>
+<li>リモートに置いてあるインストーラーを叩く</li>
+</ul>という2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。<a href="https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exe">https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exe</a>ついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。
+```ps1
+# Add-AzureAccount
+<p>$StorageAccountName = &ldquo;yanagi&rdquo;
+$StorageAccountKey = &ldquo;***&rdquo;
+$ContainerName = &ldquo;clickonce-omawari&rdquo;</p>
+<p>$binRootDirectory     = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\bin&rdquo;
+$publishRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\Publish&rdquo;</p>
+<p>function New-ReleaseArchive {
+[cmdletbinding()]
+param(
+$rootDirectory,
+$Force
+)</p>
+<pre><code>$releaseDirectory = Join-Path $rootDirectory &quot;Release&quot;
+$version = (Get-ItemProperty (Join-Path $releaseDirectory &quot;Omawari.exe&quot;)).VersionInfo.FileVersion
+$destinationPath = Join-Path $rootDirectory Omawari-$version.zip
+Compress-Archive -Path $releaseDirectory/* -DestinationPath $destinationPath -Force:$Force
+Invoke-Item $rootDirectory
+</code></pre>
+<p>}</p>
+<p>function Upload-FileToAzureStorageContainer {
+[cmdletbinding()]
+param(
+$StorageAccountName,
+$StorageAccountKey,
+$ContainerName,
+$rootDirectory,
+$Force
+)</p>
+<pre><code>$context = New-AzureStorageContext -StorageAccountName $StorageAccountName -StorageAccountKey $StorageAccountKey
+$container = Get-AzureStorageContainer -Name $ContainerName -Context $context
+
+$container.CloudBlobContainer.Uri.AbsoluteUri
+if ($container) {
+    $filesToUpload = Get-ChildItem $rootDirectory -Recurse -File
+
+    foreach ($x in $filesToUpload) {
+        $targetPath = ($x.fullname.Substring($rootDirectory.Length + 1)).Replace(&quot;\&quot;, &quot;/&quot;)
+
+        Write-Verbose &quot;Uploading $(&quot;\&quot; + $x.fullname.Substring($rootDirectory.Length + 1)) to $($container.CloudBlobContainer.Uri.AbsoluteUri + &quot;/&quot; + $targetPath)&quot;
+        Set-AzureStorageBlobContent -File $x.fullname -Container $container.Name -Blob $targetPath -Context $context -Force:$Force | Out-Null
+    }
+}
+</code></pre>
+<p>}</p>
+<p>New-ReleaseArchive <code>-rootDirectory $binRootDirectory </code>
+-Force $true</p>
+<p>Upload-FileToAzureStorageContainer <code>-StorageAccountName $StorageAccountName </code>
+-StorageAccountKey $StorageAccountKey <code>-ContainerName $ContainerName </code>
+-rootDirectory $publishRootDirectory `
+-Verbose</p>
+<pre><code class="language-リリースビルドや" data-lang="リリースビルドや">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-10-06T09:48:18JST">2017/10/06</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Omawari%201.4.0.0%ef%bc%9a%e3%83%a6%e3%83%bc%e3%82%b6%e3%83%bc%e3%82%a4%e3%83%b3%e3%82%bf%e3%83%bc%e3%83%95%e3%82%a7%e3%82%a4%e3%82%b9%e3%82%92%e6%89%8b%e7%9b%b4%e3%81%97%e3%81%97%e3%81%be%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/10/06/094818/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Omawari&#43;1.4.0.0%EF%BC%9A%E3%83%A6%E3%83%BC%E3%82%B6%E3%83%BC%E3%82%A4%E3%83%B3%E3%82%BF%E3%83%BC%E3%83%95%E3%82%A7%E3%82%A4%E3%82%B9%E3%82%92%E6%89%8B%E7%9B%B4%E3%81%97%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F10%2F06%2F094818%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/10/06/180000/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/10/05/163425/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

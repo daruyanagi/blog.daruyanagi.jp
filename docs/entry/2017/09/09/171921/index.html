@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/09/09/171921/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。
+var document = default(IHtmlDocument); using (var client = new HttpClient()) using (var stream = await client.GetStreamAsync(Target)) { var parser = new HtmlParser(); document = await parser.ParseAsync(stream); } Result = document.QuerySelector(Selector)?.InnerHtml; return Page(); ```確かにシンプルなのですが、外部 JavaScript を読んで、評価して……までやりだすと、いろいろ大変な感じ&lt;a href=&#34;#f-4db4db9a&#34; name=&#34;fn-4db4db9a&#34; title=&#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&#34;&gt;*1&lt;/a&gt;。これまで通り PhantomJS でやった方がよさそう。――というわけで。今回はそっちを置いておいて、Web API として使えるようにしてみました。ASP.NET API（Core）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。 ```cs namespace WebApplication7.Controllers { [Route(&#34;api/[controller]&#34;)]  public class ValuesController : Controller { // GET api/values [HttpGet] public IEnumerable&amp;lt;string&gt; Get() { return new string[] { &#34;value1&#34;, &#34;value2&#34; }; } } } ```&lt;code&gt;/api/values&lt;/code&gt; をゲットでたたくと、&lt;code&gt;{ &#34;value1&#34;, &#34;value2&#34; }&lt;/code&gt; が返ってくる。これと組み合わせて、API Controller を Razor Pages で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、API と Razor Pages で共通のロジックをまとめて（適当に &lt;code&gt;Services&lt;/code&gt; フォルダーにまとめました）、共有することにしました。  共有部分はこんな感じ。 ```cs // サービスと名付けたモノ（/Services）  namespace WebApplication7." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core-razor-page/">ASP.NET Core Razor Page</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core-web-api/">ASP.NET Core Web API</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/09/09/171921/" >
+                    <h1 class="entry__header-title-link-text">Razor Pages：PhantomJS で動的サイトをスクレイピングする（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/09/09</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450">Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ</a>前回、<a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450">AngleSharp</a> を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> document = <span style="color:#66d9ef">default</span>(IHtmlDocument);
+            
+<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> HttpClient())
+<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> stream = <span style="color:#66d9ef">await</span> client.GetStreamAsync(Target))
+{
+    <span style="color:#66d9ef">var</span> parser = <span style="color:#66d9ef">new</span> HtmlParser();
+    document = <span style="color:#66d9ef">await</span> parser.ParseAsync(stream);
+}
+
+Result = document.QuerySelector(Selector)?.InnerHtml;
+
+<span style="color:#66d9ef">return</span> Page();
+
+<span style="color:#960050;background-color:#1e0010">```確かにシンプルなのですが、外部</span> JavaScript <span style="color:#960050;background-color:#1e0010">を読んで、評価して……までやりだすと、いろいろ大変な感じ</span>&lt;a href=<span style="color:#e6db74">&#34;#f-4db4db9a&#34;</span> name=<span style="color:#e6db74">&#34;fn-4db4db9a&#34;</span> title=<span style="color:#e6db74">&#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。これまで通り</span> PhantomJS <span style="color:#960050;background-color:#1e0010">でやった方がよさそう。――というわけで。今回はそっちを置いておいて、</span>Web API <span style="color:#960050;background-color:#1e0010">として使えるようにしてみました。</span>ASP.NET API<span style="color:#960050;background-color:#1e0010">（</span>Core<span style="color:#960050;background-color:#1e0010">）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">namespace</span> WebApplication7.Controllers
+{
+<span style="color:#a6e22e">    [Route(&#34;api/[controller]</span><span style="color:#e6db74">&#34;)]
+</span><span style="color:#e6db74"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ValuesController</span> : Controller
+    {
+        <span style="color:#75715e">// GET api/values
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">        [HttpGet]</span>
+        <span style="color:#66d9ef">public</span> IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt; Get()
+        {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>[] { <span style="color:#e6db74">&#34;value1&#34;</span>, <span style="color:#e6db74">&#34;value2&#34;</span> };
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>&lt;code&gt;/api/values&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">をゲットでたたくと、</span>&lt;code&gt;{ <span style="color:#e6db74">&#34;value1&#34;</span>, <span style="color:#e6db74">&#34;value2&#34;</span> }&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">が返ってくる。これと組み合わせて、</span>API Controller <span style="color:#960050;background-color:#1e0010">を</span> Razor Pages <span style="color:#960050;background-color:#1e0010">で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、</span>API <span style="color:#960050;background-color:#1e0010">と</span> Razor Pages <span style="color:#960050;background-color:#1e0010">で共通のロジックをまとめて（適当に</span> &lt;code&gt;Services&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">フォルダーにまとめました）、共有することにしました。</span><figure>
+    <img src="/images/2017/09/09/171921/20170909170801.png"/> 
+</figure>
+共有部分はこんな感じ<span style="color:#960050;background-color:#1e0010">。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#75715e">// サービスと名付けたモノ（/Services）
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> WebApplication7.Services
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicScrapingService</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Process(Models.ScrapingRequest request)
+        {
+            <span style="color:#66d9ef">var</span> root_dir = Hosting.Environment.ContentRootPath;
+            <span style="color:#66d9ef">var</span> work_dir = System.IO.Path.Combine(root_dir, <span style="color:#e6db74">&#34;Tools&#34;</span>);
+            <span style="color:#66d9ef">var</span> script_name = <span style="color:#e6db74">&#34;scrape.js&#34;</span>;
+
+            <span style="color:#66d9ef">var</span> info = <span style="color:#66d9ef">new</span> System.Diagnostics.ProcessStartInfo()
+            {
+                Arguments = <span style="color:#e6db74">$@&#34;&#34;&#34;{script_name}&#34;&#34; &#34;&#34;{request?.Target}&#34;&#34; &#34;&#34;{request?.Selector}&#34;&#34;&#34;</span>,
+                FileName = System.IO.Path.Combine(work_dir, <span style="color:#e6db74">&#34;phantomjs.exe&#34;</span>),
+                CreateNoWindow = <span style="color:#66d9ef">true</span>,
+                RedirectStandardOutput = <span style="color:#66d9ef">true</span>,
+                StandardOutputEncoding = System.Text.Encoding.UTF8,
+                UseShellExecute = <span style="color:#66d9ef">false</span>,
+                WorkingDirectory = work_dir,
+            };
+
+            <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> process = <span style="color:#66d9ef">new</span> System.Diagnostics.Process() { StartInfo = info, })
+            {
+                <span style="color:#66d9ef">var</span> output = <span style="color:#66d9ef">string</span>.Empty;
+
+                process.OutputDataReceived += (s, a) =&gt; { output += a.Data; };
+
+                process.Start();
+                process.BeginOutputReadLine();
+                process.WaitForExit();
+
+                <span style="color:#75715e">// エラー出力をちょん切る
+</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> r = <span style="color:#66d9ef">new</span> System.Text.RegularExpressions.Regex(<span style="color:#e6db74">&#34;{.+}&#34;</span>);
+                output = r.Match(output).Value;
+
+                <span style="color:#66d9ef">return</span> output;
+            }
+        }
+    }
+}
+
+<span style="color:#75715e">// モデル的なモノ（/Models）
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">namespace</span> WebApplication7.Models
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScrapingRequest</span>
+    {
+        <span style="color:#66d9ef">public</span> Uri Target { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Selector { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    }
+}
+
+<span style="color:#66d9ef">namespace</span> WebApplication7.Models
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScrapingResult</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Url { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+        
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Selector { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+        
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Status { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+        
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Text { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```これを</span> Index.cshtml <span style="color:#960050;background-color:#1e0010">では</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">namespace</span> WebApplication7.Pages
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IndexModel</span> : PageModel
+    {
+        <span style="color:#66d9ef">public</span> IndexModel()
+        {
+            ScrapinRequest = <span style="color:#66d9ef">new</span> Models.ScrapingRequest()
+            {
+                Target = <span style="color:#66d9ef">new</span> Uri(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>),
+                Selector = <span style="color:#e6db74">&#34;footer&#34;</span>,
+            };
+        }
+
+        <span style="color:#66d9ef">public</span> Models.ScrapingRequest ScrapinRequest { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+        <span style="color:#66d9ef">public</span> Models.ScrapingResult ScrapingResult { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnPost()
+        {
+            <span style="color:#66d9ef">var</span> output = Services.DynamicScrapingService.Process(ScrapinRequest);
+            ScrapingResult = Newtonsoft.Json.JsonConvert.DeserializeObject&amp;lt;Models.ScrapingResult&gt;(output);
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```こんな感じに呼び出します。</span><figure>
+    <img src="/images/2017/09/09/171921/20170909171117.png"/> 
+</figure>
+API Controller <span style="color:#960050;background-color:#1e0010">ではこんな感じに使ってみました。</span>JSON <span style="color:#960050;background-color:#1e0010">で渡して、</span>JSON <span style="color:#960050;background-color:#1e0010">で返してくれる感じ。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">namespace</span> WebApplication7.Controllers
+{
+<span style="color:#a6e22e">    [Route(&#34;api/[controller]</span><span style="color:#e6db74">&#34;)]
+</span><span style="color:#e6db74"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicScrapingController</span> : Controller
+    {   
+<span style="color:#a6e22e">        [HttpPost]</span>
+        <span style="color:#66d9ef">public</span> IActionResult Index([FromBody] Models.ScrapingRequest request)
+        {
+            <span style="color:#66d9ef">var</span> output = Services.DynamicScrapingService.Process(request);
+            <span style="color:#66d9ef">return</span> Json(output);
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```テストはむかし</span> @nakaji <span style="color:#960050;background-color:#1e0010">せんせいが教えてくれた</span> Chrome <span style="color:#960050;background-color:#1e0010">拡張機能を使ってみました。</span>[WebAPIの動作確認にはAdvanced REST clientが便利そう - <span style="color:#960050;background-color:#1e0010">なか日記</span>](http:<span style="color:#75715e">//blog.nakajix.jp/entry/2014/06/24/005200)大変便利なのでこれからも常用していこうと思います。<figure>
+    <img src="/images/2017/09/09/171921/20170909171326.png"/> 
+</figure>
+&lt;br/&gt;
+</span><span style="color:#75715e"></span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追伸</span>
+    <span style="color:#960050;background-color:#1e0010">前回書き忘れたのですが、</span>ASP.NET Core <span style="color:#960050;background-color:#1e0010">には</span> &lt;code&gt;Server.MapPath()&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">がないみたい。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">namespace</span> WebApplication7
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span>
+    {
+        <span style="color:#66d9ef">public</span> Startup(IConfiguration configuration)
+        {
+            Configuration = configuration;
+        }
+
+        <span style="color:#66d9ef">public</span> IConfiguration Configuration { <span style="color:#66d9ef">get</span>; }
+
+        <span style="color:#75715e">// This method gets called by the runtime. Use this method to add services to the container.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        <span style="color:#75715e">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+        {
+            app.UseMvc();
+
+            Hosting.Environment = env;
+        }
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hosting</span>
+    {
+        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IHostingEnvironment Environment { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```適当に</span> IHostingEnvironment <span style="color:#960050;background-color:#1e0010">を保存しておくようにしたのですが（</span>&lt;code&gt;Hosting.Environment.ContentRootPath&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">でルートがわかるので、それを</span> &lt;code&gt;Path.Combine()&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">なんかでごにょごにょする）、これがいい作法なのかどうかは自信がない。</span>
+
+&lt;/div&gt;
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追伸</span><span style="color:#ae81ff">2</span>
+    <span style="color:#960050;background-color:#1e0010">そのまま</span> Azure Web Site <span style="color:#960050;background-color:#1e0010">に置けなくて泣いてる。</span>
+
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-4db4db9a&#34;</span> name=<span style="color:#e6db74">&#34;f-4db4db9a&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">すごく頑張ればできなくはなさそうだけど、バージョンアップで</span> API <span style="color:#960050;background-color:#1e0010">が変わってたりでちょっと調べるのが面倒になった</span>&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-09-09T17:19:21JST">2017/09/09</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Razor%20Pages%ef%bc%9aPhantomJS%20%e3%81%a7%e5%8b%95%e7%9a%84%e3%82%b5%e3%82%a4%e3%83%88%e3%82%92%e3%82%b9%e3%82%af%e3%83%ac%e3%82%a4%e3%83%94%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/09/09/171921/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Razor&#43;Pages%EF%BC%9APhantomJS&#43;%E3%81%A7%E5%8B%95%E7%9A%84%E3%82%B5%E3%82%A4%E3%83%88%E3%82%92%E3%82%B9%E3%82%AF%E3%83%AC%E3%82%A4%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F09%2F171921%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/09/14/024053/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/09/08/235450/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

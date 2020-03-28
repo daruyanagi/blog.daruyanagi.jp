@@ -1,0 +1,389 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/12/11/015827/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            ASP.NET Web Pages | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="※ この記事は One ASP.NET Advent Calendar 2013 の11日目の記事です。@ono さん、ありがとうございます！
+&gt; ASP.NET Web Pagesは4番目の選択肢です。Razorのシンタックスのおかげで、PHPやクラシックASPに似た開発経験を提供してくれます。 Microsoftの技術の活用方法  どうも恐縮です！　“4番目の選択肢”が大好きな @daruyanagi です。ウェブベースのアプリを作るとき、ASP.NET Web Pages は LightSwitch の次にお勧めデス。とくに動的な“ペライチ”*1のサイトを作るにはピッタリで、MVC とか API とか Single Page Application とかわかんない僕でも少しはわかるぐらいの簡単さ。これから広大な One ASP.NET の海に漕ぎ出そうという入門者にはピッタリの技術なのではないかと思います。とくに年頃の娘さんにはお勧めしたいですね！――ま、そんなことは置いておいて。今日は ASP.NET Web Pages におけるルーティングの話です。“ペライチ”のサイトを作るには実はあまり関係ないのですけど、データベースを扱うページを作る場合、知っておくと URL がカッコいいサイトが作れるのではないでしょうか。SEO にもいいらしいです。知らんけど。
+### 規約ベースのルーティング 勝手にそう呼んでみましたが、ASP.NET Web Pages で一番簡単かつ基礎となるルーティングです。ASP.NET Web Pages は _/Default/あ/い/う/え/お _というリソースへのリクエストを受け取ると、_~/Default/あ/い/う/え/お.cshtml _を探しに行きます。なければ _~/Default/あ/い/う/え.cshtml_ を、次は _~/Default/あ/い/う.cshtml_ を……。そしてついにこんな **~/Default.cshtml** を発見します。 ```html &lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;link href=&quot;~/favicon." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/12/11/015827/" >
+                    <h1 class="entry__header-title-link-text">ASP.NET Web Pages</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/12/11</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2013/12/11/015827/20131205024503.png"/> 
+</figure>
+※ この記事は <a href="http://www.adventar.org/calendars/132">One ASP.NET Advent Calendar 2013</a> の11日目の記事です。<a href="http://blogonos.wordpress.com/2013/12/10/asp-net-identity-%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%BF%BD%E5%8A%A0/">@ono さん</a>、ありがとうございます！</p>
+<pre><code>&gt;
+    ASP.NET Web Pagesは4番目の選択肢です。Razorのシンタックスのおかげで、PHPやクラシックASPに似た開発経験を提供してくれます。
+
+    Microsoftの技術の活用方法
+</code></pre>
+<p>どうも恐縮です！　“4番目の選択肢”が大好きな @daruyanagi です。ウェブベースのアプリを作るとき、ASP.NET Web Pages は LightSwitch の次にお勧めデス。とくに動的な“ペライチ”<a href="#f-5fab35cf" name="fn-5fab35cf" title="あんまりこの言葉って使われないらしいですね？　ペラペラの紙一枚って感じの意味です">*1</a>のサイトを作るにはピッタリで、MVC とか API とか Single Page Application とかわかんない僕でも少しはわかるぐらいの簡単さ。これから広大な One ASP.NET の海に漕ぎ出そうという入門者にはピッタリの技術なのではないかと思います。とくに年頃の娘さんにはお勧めしたいですね！――ま、そんなことは置いておいて。今日は ASP.NET Web Pages におけるルーティングの話です。“ペライチ”のサイトを作るには実はあまり関係ないのですけど、データベースを扱うページを作る場合、知っておくと URL がカッコいいサイトが作れるのではないでしょうか。SEO にもいいらしいです。知らんけど。</p>
+<div class="section">
+    ### 規約ベースのルーティング
+    勝手にそう呼んでみましたが、ASP.NET Web Pages で一番簡単かつ基礎となるルーティングです。ASP.NET Web Pages は _/Default/あ/い/う/え/お _というリソースへのリクエストを受け取ると、_~/Default/あ/い/う/え/お.cshtml _を探しに行きます。なければ _~/Default/あ/い/う/え.cshtml_ を、次は _~/Default/あ/い/う.cshtml_ を……。そしてついにこんな **~/Default.cshtml** を発見します。
+```html
+<!-- ~/Default.cshtml -->
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;ul&gt;
+@foreach (var data in UrlData)
+{
+&lt;li&gt;@data&lt;/li&gt;
+}
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-後ろにくっついていた" data-lang="後ろにくっついていた">
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/06/174414&quot;&gt;WebMatrix のルーティング - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### URL リライト
+    IIS 7.0 以降であれば URL リライトモジュールを利用してもいいと思います。たとえば、
+</code></pre><p><a href="http://sample.com/Pages.cshtml/Hoge">http://sample.com/Pages.cshtml/Hoge</a>
+<a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a></p>
+<pre><code class="language-を" data-lang="を"></code></pre><p><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></p>
+<pre><code class="language-に飛ばしたい場合、Web.config" data-lang="に飛ばしたい場合、Web.config">```xml
+&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;
+&lt;configuration&gt;&lt;/configuration&gt;
+    .webServer&gt;
+        &lt;rewrite&gt;&lt;/rewrite&gt;
+            &lt;rules&gt;&lt;/rules&gt;
+                name=&quot;Daruboard&quot; stopProcessing=&quot;true&quot;&gt;
+                    url=&quot;^(.*)$&quot; ignoreCase=&quot;false&quot; /&gt;
+                    &lt;conditions&gt;&lt;/conditions&gt;
+                         input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;
+                         input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsDirectory&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;
+                    
+                    type=&quot;Rewrite&quot; url=&quot;Pages.cshtml/{R:1}&quot; /&gt;
+                
+            
+        
+    .webServer&gt;
+
+
+```このやり方は割かし強力で、規範ベースのルーティングの例で言えば /Default すら消すことができます（先のやり方では、既定のページに Default.cshtml を加えていたとしても、 /Default/あ/い/う/え/お の /Default が省略できません）。ただ、個人的にはあんまりやりたくないです。IIS ベッタリだし、書き方もよくわからん（ぉ
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### IRouteHandler を実装する
+    ASP.NET Web Pages は ASP.NET ファミリーの一員ですので、ASP.NET の作法が使えます。つまり、&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/system.web.routing.iroutehandler(v=vs.100).aspx&quot;&gt;IRouteHandler&lt;/a&gt; を実装してルーティングを定義することもできる。<figure>
+    <img src="/images/2013/12/11/015827/20131205041246.png"/> 
+</figure>
+ただ、自分で IRouteHandler を実装するのはちょっとめんどくさいので、今回は &lt;a href=&quot;http://www.nuget.org/packages/WebPageRouteHandler/&quot;&gt;Routing for WebPages&lt;/a&gt; を使わせてもらおうと思います。この NuGet には
+
+&lt;ul&gt;
+&lt;li&gt;WebPagesRouteHandler：IRouteHandler の実装&lt;/li&gt;
+&lt;li&gt;MapWebPageRoute 拡張メソッド&lt;/li&gt;
+&lt;li&gt;GetRouteValue 拡張メソッド&lt;/li&gt;
+&lt;/ul&gt;が含まれています。使い方は――
+```cs
+// ~/_AppStart.cshtml: アプリケーションの起動時に実行されます
+
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapWebPageRoute(
+        &quot;List/&quot;, 
+        &quot;~/ListProducts.cshtml&quot;
+    );
+}
+
+```まず、MapWebPageRoute を使って ~/_AppStart.cshtml でルーティングを追加。<figure>
+    <img src="/images/2013/12/11/015827/20131205042059.png"/> 
+</figure>
+次にこんな ~/ListProducts.cshtml を用意して実行すると――<figure>
+    <img src="/images/2013/12/11/015827/20131205042115.png"/> 
+</figure>
+結果はこんな感じ。~/List.cshtml ではなく ~/ListProducts.cshtml が参照されます。さらに、
+```cs
+// ~/_AppStart.cshtml
+
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapWebPageRoute(
+        &quot;List/{category}/&quot;, 
+        &quot;~/ListProducts.cshtml&quot;
+    );
+}
+
+```こんな風にすれば――<figure>
+    <img src="/images/2013/12/11/015827/20131205042542.png"/> 
+</figure>
+GetRouteValue で category が取得できる。
+```cs
+@{
+    var category = Context.GetRouteValue(&quot;category&quot;);
+}
+
+```UrlData では不完全だったバインディングの問題が解決されるのがポイントかな。<figure>
+    <img src="/images/2013/12/11/015827/20131205044708.png"/> 
+</figure>
+このルーティングでは category を指定せず /List/ へアクセスすると 404 になるけど――
+```cs
+// ~/_AppStart.cshtml
+
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapWebPageRoute(
+        &quot;List/{*category}/&quot;, 
+        &quot;~/ListProducts.cshtml&quot;
+    );
+}
+
+```“*”をつけてやれば category がない場合でもマッチする。<figure>
+    <img src="/images/2013/12/11/015827/20131205044047.png"/> 
+</figure>
+category に初期値を与えることも。
+```cs
+// ~/_AppStart.cshtml
+
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapWebPageRoute(
+        &quot;List/{*category}&quot;, 
+        &quot;~/ListProducts.cshtml&quot;, 
+        new { category = &quot;Beverages&quot; }
+    );
+}
+
+```<figure>
+    <img src="/images/2013/12/11/015827/20131205044132.png"/> 
+</figure>
+category に正規表現で制約を設けてみる。
+```cs
+// ~/_AppStart.cshtml
+
+@using System.Web.Routing
+
+@{
+    RouteTable.Routes.MapWebPageRoute(
+        &quot;List/{category}&quot;, 
+        &quot;~/ListProducts.cshtml&quot;,
+        defaultValues: new { category = &quot;Beverages&quot; },
+        constraints: new { category = &quot;[a-zA-Z]+&quot; }
+    );
+}
+
+```<figure>
+    <img src="/images/2013/12/11/015827/20131205044344.png"/> 
+</figure>
+/List/Tea は受け付けるが……<figure>
+    <img src="/images/2013/12/11/015827/20131205044451.png"/> 
+</figure>
+/List/お茶 は受け付けない。/Blog/2013/01/01 -&gt; /Blog/{Year}/{Month}/{Day} なんて URL を設計するとき、{Year} {Month} {Day} を数字に限定したいですよね！　そんな時にはこれが使えそう。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### まとめ
+    今回は ASP.NET Web Pages で使えるルーティング方法を3つ紹介しました。
+
+&lt;table&gt;
+    &lt;tbody&gt;&lt;tr&gt;
+    &lt;td&gt;&lt;/td&gt;
+    &lt;td&gt;処理レイヤー&lt;/td&gt;
+    &lt;td&gt;特徴&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt;URL Rewrite&lt;/td&gt;
+    &lt;td&gt;IIS（Web サーバー）&lt;/td&gt;
+    &lt;td&gt;強力！　だけど面倒で IIS べったりなのが気になる&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt;IRouteHandler&lt;/td&gt;
+    &lt;td&gt;ASP.NET&lt;/td&gt;
+    &lt;td&gt;中間。バランスはいいかな。NuGet で楽ができる&lt;/td&gt;
+    &lt;/tr&gt;
+    &lt;tr&gt;
+    &lt;td&gt;規約ベース（UrlData）&lt;/td&gt;
+    &lt;td&gt;ASP.NET Web Pages&lt;/td&gt;
+    &lt;td&gt;とにかくお手軽！　だけどユルユル？&lt;/td&gt;
+    &lt;/tr&gt;
+&lt;/tbody&gt;&lt;/table&gt;今回紹介はしなかったけれど、&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2013/05/10/085706&quot;&gt;NancyFx&lt;/a&gt; を使ってみてもいいかもしれない。ページではなく API を実装したい場合には使えそうですよ。MVC や Web API もいいけれど、そういう大きなフレームワークに頼るのではなく、手のひらの上でちょっとしたウェブアプリを動かしたいときは ASP.NET Web Pages のことも思い出してもらえるとうれしいです。あと、女子高生のユーザーが増えるといいな。次は北陸のイケメン MVP こと &lt;a href=&quot;http://xin9le.net/&quot;&gt;@xin9le さん&lt;/a&gt;です。よろしく！
+
+&lt;div class=&quot;section&quot;&gt;
+    #### 参照
+    
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.thecodingguys.net/tutorials/asp/webpages-routing&quot;&gt;ASP.NET Web Pages - Routing | the coding guys&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&quot;&gt;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&lt;/a&gt;（サーバー落ちてるかも）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### 追記
+    <figure>
+    <img src="/images/2013/12/11/015827/20131211020715.png"/> 
+</figure>
+縄神さまの周りだけ、Advent Calendar が埋まっていません！　どなたかご協力をお願いします！！
+
+&lt;/div&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-5fab35cf&quot; name=&quot;f-5fab35cf&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;あんまりこの言葉って使われないらしいですね？　ペラペラの紙一枚って感じの意味です&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-12-11T01:58:27JST">2013/12/11</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Web%20Pages%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/12/11/015827/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/11/030821/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/09/213931/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/08/15/043634/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            空のアプリケーションから ASP.NET Core Razor Page を始める | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="前回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Razor Pages はカンタン！」_というのも伝わりにくいと思いました。Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる - だるろぐそこで、今回は Visual Studio 2017.3 を利用して“空”のアプリケーションから Razor Pages で Hello! World するまでをステップバイステップでやっていこうかなと思います。
+### 空のアプリケーションを作成する   まず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションを作成。フレームワークを .NET Core へ、.NET のバージョンを 2.0.0 に切り替えて、“空”のアプリケーションを作成します。  このアプリケーションには、ソリューションファイルなどを除くと  Program.cs Startup.cs 静的ファイルを置く wwwroot フォルダー の3つしかありません。シンプルだね！　コードも最低限で、  ［F5］キーで実行すると“Hello! World”が表示されるだけです。まずはここから始めましょう。  ### Program.cs と Startup.cs Program.cs は、アプリケーションを実行する際、最初に処理されます（エントリポイントってやつだな）。 ```cs using Microsoft.AspNetCore; using Microsoft.AspNetCore.Hosting; namespace WebApplication3 { public class Program { public static void Main(string[] args) { BuildWebHost(args)." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core-razor-page/">ASP.NET Core Razor Page</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/08/15/043634/" >
+                    <h1 class="entry__header-title-link-text">空のアプリケーションから ASP.NET Core Razor Page を始める</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/08/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/08/15/043634/20170815033116.png"/> 
+</figure>
+前回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Razor Pages はカンタン！」_というのも伝わりにくいと思いました。<a href="http://blog.daruyanagi.jp/entry/2017/08/15/032010">Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる - だるろぐ</a>そこで、今回は Visual Studio 2017.3 を利用して“空”のアプリケーションから Razor Pages で Hello! World するまでをステップバイステップでやっていこうかなと思います。</p>
+<div class="section">
+    ### 空のアプリケーションを作成する
+    <figure>
+    <img src="/images/2017/08/15/043634/20170815033122.png"/> 
+</figure>
+まず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションを作成。フレームワークを .NET Core へ、.NET のバージョンを 2.0.0 に切り替えて、“空”のアプリケーションを作成します。<figure>
+    <img src="/images/2017/08/15/043634/20170815033129.png"/> 
+</figure>
+このアプリケーションには、ソリューションファイルなどを除くと
+<ul>
+<li>Program.cs</li>
+<li>Startup.cs</li>
+<li>静的ファイルを置く wwwroot フォルダー</li>
+</ul>の3つしかありません。シンプルだね！　コードも最低限で、<figure>
+    <img src="/images/2017/08/15/043634/20170815033136.png"/> 
+</figure>
+［F5］キーで実行すると“Hello! World”が表示されるだけです。まずはここから始めましょう。
+</div>
+<div class="section">
+    ### Program.cs と Startup.cs
+    Program.cs は、アプリケーションを実行する際、最初に処理されます（エントリポイントってやつだな）。
+```cs
+using Microsoft.AspNetCore;
+using Microsoft.AspNetCore.Hosting;
+<p>namespace WebApplication3
+{
+public class Program
+{
+public static void Main(string[] args)
+{
+BuildWebHost(args).Run();
+}</p>
+<pre><code>    public static IWebHost BuildWebHost(string[] args) =&gt;
+        WebHost.CreateDefaultBuilder(args)
+            .UseStartup&amp;lt;Startup&gt;()
+            .Build();
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-WebHost" data-lang="WebHost">```cs
+using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.Hosting;
+using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.DependencyInjection;
+
+namespace WebApplication3
+{
+    public class Startup
+    {
+        public void ConfigureServices(IServiceCollection services)
+        {
+
+        }
+
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            app.Run(async (context) =&gt;
+            {
+                await context.Response.WriteAsync(&quot;Hello World!&quot;);
+            });
+        }
+    }
+}
+
+```リクエストがあったらレスポンスに“Hello! World”と書いて送るだけのようです。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### Razor Pages を使う
+    Razor Pages は MVC に含まれています。なので、まず Startup.cs で MVC を有効にします。
+```cs
+namespace WebApplication3
+{
+    public class Startup
+    {
+        // This method gets called by the runtime. Use this method to add services to the container.
+        // For more information on how to configure your application, visit https://go.microsoft.com/fwlink/?LinkID=398940
+        public void ConfigureServices(IServiceCollection services)
+        {
+            services.AddMvc();
+        }
+
+        // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
+        public void Configure(IApplicationBuilder app, IHostingEnvironment env)
+        {
+            if (env.IsDevelopment())
+            {
+                app.UseDeveloperExceptionPage();
+            }
+
+            // もう要らないのでコメントオフ
+            // app.Run(async (context) =&gt;
+            // {
+            //     await context.Response.WriteAsync(&quot;Hello World!&quot;);
+            // });
+
+            app.UseMvc();
+        }
+    }
+}
+
+```これだけだと実行して何も表示されないので、ビューも追加しましょう。<figure>
+    <img src="/images/2017/08/15/043634/20170815041428.png"/> 
+</figure>
+まず、アプリケーションルートに Pages フォルダーを作成。Razor Pages の *.cshtml はここに保存します（設定で変更可能できるらしいけど）。<figure>
+    <img src="/images/2017/08/15/043634/20170815035213.png"/> 
+</figure>
+次に Pages フォルダーのコンテキストメニュー から“MVC ビュー”を追加。これは要するに *.cshtml ファイルです。“Razor ページ”でも *.cshtml を追加できますが、ビューモデルの *.cs ファイルもくっついてくるので（これはこれで便利だけど、まだお子さまには早い！）、今回は“MVC ビュー”にしておきました。ちなみに、名前は Index.cshtml にしておきます。&lt;code&gt;/&lt;/code&gt; にアクセスすると、&lt;code&gt;/Pages/Index.cshtml&lt;/code&gt; が自動で表示される仕組みになっていますので（ルーティングの規則については、また機会を改めましょう）。内容はこんな感じ。ごちゃごちゃ書いてあるのは、［Ctrl］＋［A］して［Delete］しちゃって下さい。
+```html
+@page
+
+&amp;lt;p&gt;Hello! World&amp;lt;/p&gt;
+
+```［F5］キーで実行すると、こんな感じになるはずです。<figure>
+    <img src="/images/2017/08/15/043634/20170815035710.png"/> 
+</figure>
+できた＼(＾o＾)／でも、これだけでは Razor Pages を使っている意味がないので、変数を使ってみます（文法に関しては説明しません。ググってね！　めっちゃ簡単だよ）。
+```html
+@page
+
+@{ 
+    var message = &quot;Hello! World&quot;;
+}
+
+&amp;lt;p&gt;@message by Razor Pages&amp;lt;/p&gt;
+
+```ページの先頭に_「Razor Pages だよ！」_ってことを知らせるディレクティブ @page を追加している以外は ASP.NET Web Pages（Razor）とまったく変わりません。保存してブラウザーをリロードするとこんな感じになるでしょう。<figure>
+    <img src="/images/2017/08/15/043634/20170815040013.png"/> 
+</figure>
+あんまり面白くないですかね？　こうしてみますか。
+```html
+@page &quot;{message?}&quot;
+
+@{ 
+    var message = Request.Query[&quot;message&quot;];
+}
+
+&amp;lt;p&gt;@message by Razor Pages&amp;lt;/p&gt;
+
+```<figure>
+    <img src="/images/2017/08/15/043634/20170815040646.png"/> 
+</figure>
+@pages のあとに routing constraint を書けるのは新しいかもしれません。この例では正直意味がないのですが（消してもそのまま動くしな）、モデルで _void OnGet(string message)_ などと受け取れるので覚えておくといい感じ。
+```html
+@page &quot;{message?}&quot;
+@using Microsoft.AspNetCore.Mvc.RazorPages
+@model IndexModel
+
+@functions 
+{ 
+    public class IndexModel : PageModel
+    {
+        public string Message { get; private set; }
+
+        public void OnGet(string message)
+        {
+            Message = string.IsNullOrEmpty(message)
+                ? &quot;Hello! World&quot;
+                : message;
+        }
+    }
+}
+
+&amp;lt;p&gt;@Model.Message by Razor Pages&amp;lt;/p&gt;
+
+```もっと複雑な型データを受け取るときに役立つでしょう。ちなみに @functions の部分は *.cs ファイルに分離することもできます（NEW!）。
+```html
+@page &quot;{message?}&quot;
+@model IndexModel
+
+&amp;lt;p&gt;@Model.Message by Razor Pages&amp;lt;/p&gt;
+
+```ちょうど WPF や WinForm のビュー（デザイナー）＋コードビハインドみたいな感じで、スッキリしていいですね（こういうことがしたい場合は、最初から“MVC ビュー”ではなく“Razor ビュー”を追加するといいです）。もっと詳しいことが知りたい場合は、チュートリアルページを参照してください。自分もあとでゆっくり読んでみようと思います。[Introduction to Razor Pages in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/mvc/razor-pages/)[Getting started with Razor Pages in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start)&lt;br/&gt;
+
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### おまけ
+    <figure>
+    <img src="/images/2017/08/15/043634/20170815041046.png"/> 
+</figure>
+空のアプリケーションには 2 つの NuGet パッケージが含まれています。
+
+&lt;ul&gt;
+&lt;li&gt;Microsoft.AspNetCore.All&lt;/li&gt;
+&lt;li&gt;Microsoft.NETCore.App&lt;/li&gt;
+&lt;/ul&gt;初期状態ではどっちもプレビュー版で、前者のみ v2.0.0 正式版へのアップデートが提供されています。<figure>
+    <img src="/images/2017/08/15/043634/20170815041223.png"/> 
+</figure>
+でも、片っぽだけアップデートすると実行時にコケるみたい。もうちょっと待ちますかね。
+
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-08-15T04:36:34JST">2017/08/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e7%a9%ba%e3%81%ae%e3%82%a2%e3%83%97%e3%83%aa%e3%82%b1%e3%83%bc%e3%82%b7%e3%83%a7%e3%83%b3%e3%81%8b%e3%82%89%20ASP.NET%20Core%20Razor%20Page%20%e3%82%92%e5%a7%8b%e3%82%81%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/08/15/043634/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E7%A9%BA%E3%81%AE%E3%82%A2%E3%83%97%E3%83%AA%E3%82%B1%E3%83%BC%E3%82%B7%E3%83%A7%E3%83%B3%E3%81%8B%E3%82%89&#43;ASP.NET&#43;Core&#43;Razor&#43;Page&#43;%E3%82%92%E5%A7%8B%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F043634%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/121303/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/032010/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

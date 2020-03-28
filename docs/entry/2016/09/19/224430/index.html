@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2016/09/19/224430/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            UWP：はてなの oAuth 認証 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
+### AsyncOAuth を導入する さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。  neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。 ```cs var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret); var callbackUri = &#34;http://localhost/&#34;; var requestTokenResponse = await authorizer.GetRequestToken( &ldquo;https://www.hatena.com/oauth/initiate&quot;, new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;oauth_callback&rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;scope&rdquo;, &ldquo;read_public,write_public,read_private,write_private&rdquo; ) }));" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/uwp/">UWP</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2016/09/19/224430/" >
+                    <h1 class="entry__header-title-link-text">UWP：はてなの oAuth 認証</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2016/09/19</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2016/09/19/224430/20160919220838.png"/> 
+</figure>
+プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。</p>
+<div class="section">
+    ### AsyncOAuth を導入する
+    さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。
+<ul>
+<li><a href="http://neue.cc/2013/02/27_398.html">neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ</a></li>
+</ul>UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fneuecc%2FAsyncOAuth%2Fissues%2F23" title="Cannot add nuget to UWP project · Issue #23 · neuecc/AsyncOAuth" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。
+```cs
+var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);
+var callbackUri = "http://localhost/";
+<p>var requestTokenResponse = await authorizer.GetRequestToken(
+&ldquo;<a href="https://www.hatena.com/oauth/initiate%22,">https://www.hatena.com/oauth/initiate&quot;,</a>
+new[]
+{
+new KeyValuePair&lt;string, string&gt;(
+&ldquo;oauth_callback&rdquo;,
+callbackUri
+)
+},
+new FormUrlEncodedContent(new[] {
+new KeyValuePair&lt;string, string&gt;(
+&ldquo;scope&rdquo;,
+&ldquo;read_public,write_public,read_private,write_private&rdquo;
+)
+}));</p>
+<p>var requestToken = requestTokenResponse.Token;</p>
+<p>var authorizeUrl = authorizer.BuildAuthorizeUrl(
+&ldquo;<a href="https://www.hatena.ne.jp/touch/oauth/authorize%22,">https://www.hatena.ne.jp/touch/oauth/authorize&quot;,</a>
+requestToken);</p>
+<pre><code class="language-たとえば、リクエストトークンをとるまでのところはこんな感じ。めんどくさいところは全部やってくれるので楽ちんだー。callbackUri" data-lang="たとえば、リクエストトークンをとるまでのところはこんな感じ。めんどくさいところは全部やってくれるので楽ちんだー。callbackUri">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### WebAuthenticationBroker を使って認証する
+    <figure>
+    <img src="/images/2016/09/19/224430/20160919223009.png"/> 
+</figure>
+次は Web へアクセスして認証。UWP には WebAuthenticationBroker っていうダイアログを出す仕組み（それだけじゃないけど）が用意されているので、それを使うといい感じ。
+```cs
+// さっき取得したリクエストトークンを使って認証 URI を取得
+var authorizeUrl = authorizer.BuildAuthorizeUrl(
+    &quot;https://www.hatena.ne.jp/touch/oauth/authorize&quot;,
+     requestToken);
+
+// ダイアログを開いて結果を取得
+var webAuthenticationResult = await WebAuthenticationBroker
+    .AuthenticateAsync(
+        WebAuthenticationOptions.None,
+        new Uri(authorizeUrl), new Uri(callbackUri)
+    );
+
+// 結果をみていろいろ分岐処理
+switch (webAuthenticationResult.ResponseStatus)
+{
+    case WebAuthenticationStatus.Success:
+        try
+        {
+            // http://localhost?...=...&amp;amp;...=... っていうのが
+            // 返るのでテキトーに千切って verifier だけ取得
+            var verifier = webAuthenticationResult.ResponseData
+                .Split(&amp;#39;?&amp;#39;).Last()
+                .Split(&amp;#39;&amp;amp;&amp;#39;).Last()
+                .Split(&amp;#39;=&amp;#39;).Last();
+            // リクエストトークンと verifier で
+            // アクセストークンをゲット
+            // これでいろいろし放題だ！
+            var accessTokenTokenResponse = await authorizer
+                .GetAccessToken(
+                    &quot;https://www.hatena.com/oauth/token&quot;,
+                    requestToken, verifier);
+
+            AccessToken = accessTokenTokenResponse.Token;
+
+            result = true;
+        }
+        catch (Exception exception)
+        {
+            // エラー処理するんやで
+        }
+        break;
+
+    case WebAuthenticationStatus.ErrorHttp:
+    case WebAuthenticationStatus.UserCancel:
+    default:
+        break;
+}
+
+</code></pre></div>
+<div class="section">
+    ### ユーザー情報を取得
+    <figure>
+    <img src="/images/2016/09/19/224430/20160919223808.png"/> 
+</figure>
+あとは OAuthUtility.CreateOAuthClient() でクライアントを取得してごにょごにょするだけ。このクライアントは AsyncOAuth が HttpClient にフィルター（？）をかましているだけなので、HttpClient みたいに GetAsync() とかできる。
+```cs
+var client = OAuthUtility.CreateOAuthClient(
+    ConsumerKey, ConsumerSecret, AccessToken
+);
+<p>var json = await client.GetStringAsync(
+&ldquo;<a href="http://n.hatena.com/applications/my.json%22">http://n.hatena.com/applications/my.json&quot;</a>
+);</p>
+<pre><code class="language-これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。" data-lang="これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2016-09-19T22:44:30JST">2016/09/19</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?UWP%ef%bc%9a%e3%81%af%e3%81%a6%e3%81%aa%e3%81%ae%20oAuth%20%e8%aa%8d%e8%a8%bc%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2016/09/19/224430/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=UWP%EF%BC%9A%E3%81%AF%E3%81%A6%E3%81%AA%E3%81%AE&#43;oAuth&#43;%E8%AA%8D%E8%A8%BC&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2016%2F09%2F19%2F224430%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2016/09/23/212240/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/privacy_policy/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

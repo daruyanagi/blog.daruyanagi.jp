@@ -1,0 +1,310 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/02/24/154553/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Markdown は覚えやすくて書きやすいのだけれど、とても非力に感じる。一応 HTML タグの埋め込みも可能なので、原理的にはなんでも書けるのだけれど、たとえばルビを振りたい場合、
+国民の&amp;lt;ruby&gt;税金&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;ぜいきん&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt;を２億円使うなんて ```などといちいち書くのは、読みにくいし第一めんどくさい。もっと簡単に、たとえば、 ```html 国民の[[ruby|税金|ぜいきん]]を２億円使うなんて ```などのような、&lt;code&gt;[[コマンド|引数1|引数2...]] &lt;/code&gt;といった記法で書ければどうだろう。なるべく規約ベースとし、Hoge コマンドは Hoge / HogeHelper ヘルパーの GetHtml() メソッドを呼び出すようにする。 ```cs # App_Code/RubyHelper.cshtml @helper GetHtml(string text, string ruby){ &amp;lt;ruby&gt;@text&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt; } ```これならば、Markdown の拡張だけでなく、普通の cshtml でも利用できてよいと思う。 ```html 国民の@RubyHelper.GetHtml(&#34;税金&#34;, &#34;ぜいきん&#34;)を２億円使うなんて ### 実装 とりあえずこんな感じにしてみた。 ```cs @using System.IO @using System.Reflection @using System.Text.RegularExpressions @functions { private string Camelize(string input) { if (input.Length == 0) return input;
+ var chars = input.ToArray(); chars[0] = char.ToUpper(chars[0]); return string.Join(string.Empty, chars); }  }" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/02/24/154553/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/02/24</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>Markdown は覚えやすくて書きやすいのだけれど、とても非力に感じる。一応 HTML タグの埋め込みも可能なので、原理的にはなんでも書けるのだけれど、たとえばルビを振りたい場合、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">国民の&amp;lt;ruby&gt;税金&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;ぜいきん&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt;を２億円使うなんて
+
+```などといちいち書くのは、読みにくいし第一めんどくさい。もっと簡単に、たとえば、
+```html
+国民の[[ruby|税金|ぜいきん]]を２億円使うなんて
+
+```などのような、&lt;<span style="color:#f92672">code</span>&gt;[[コマンド|引数1|引数2...]] &lt;/<span style="color:#f92672">code</span>&gt;といった記法で書ければどうだろう。なるべく規約ベースとし、Hoge コマンドは Hoge / HogeHelper ヘルパーの GetHtml() メソッドを呼び出すようにする。
+```cs
+# App_Code/RubyHelper.cshtml
+
+@helper GetHtml(string text, string ruby){
+    &amp;lt;ruby&gt;@text&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt;
+}
+
+```これならば、Markdown の拡張だけでなく、普通の cshtml でも利用できてよいと思う。
+```html
+国民の@RubyHelper.GetHtml(&#34;税金&#34;, &#34;ぜいきん&#34;)を２億円使うなんて
+
+</code></pre></div><div class="section">
+    ### 実装
+    とりあえずこんな感じにしてみた。
+```cs
+@using System.IO
+@using System.Reflection
+@using System.Text.RegularExpressions
+<p>@functions {
+private string Camelize(string input)
+{
+if (input.Length == 0) return input;</p>
+<pre><code>    var chars = input.ToArray();
+    chars[0] = char.ToUpper(chars[0]);
+    return string.Join(string.Empty, chars);
+}
+</code></pre>
+<p>}</p>
+<p>@{
+// テストテキストをロード
+var text = File.ReadAllText(Server.MapPath(&ldquo;~/Test.txt&rdquo;));</p>
+<pre><code>// HtmlHelper の子孫を列挙して型名-型ディクショナリを作成
+var type_table = AppDomain.CurrentDomain
+    .GetAssemblies()
+    .SelectMany(_ =&gt; _.GetTypes())
+    .Where(_ =&gt; _.IsSubclassOf(typeof(HelperPage)))
+    .ToDictionary(_ =&gt; _.ToString(), _ =&gt; _);
+
+// [[...]] 構文を置換
+var regex = new Regex(@&quot;\[\[(?&lt;params&gt;[^\[\]\r\n]*)\]\]&quot;&lt;/params&gt;);
+text = regex.Replace(text, (MatchEvaluator)((match) =&gt;
+    {
+        // [[...]]構文の書式
+        // - [[コマンド|引数1|引数2|...]]
+        // - [[引数1|引数2|引数3...]] : Link コマンドと解釈（規定）
+        var p = match.Groups[&quot;params&quot;].Value.Split(&amp;#39;|&amp;#39;);
+        
+        // コマンド名は Hoge, HogeHelper ... を許容
+        var helper_table = new string[] {
+            string.Format(&quot;ASP.{0}&quot;, Camelize(p[0])),
+            string.Format(&quot;ASP.{0}Helper&quot;, Camelize(p[0])),
+        };
+
+        Type helper = null; 
+        MethodInfo method = null;
+        string[] args = null;
+
+        // 型名-型ディクショナリから、メソッド
+        // (Type: p[0]).GetHtml(p[1], p[2]...) 
+        // をもつ HtmlHelper を探す
+        var result = helper_table.FirstOrDefault(name =&gt;
+        {
+            if (type_table.TryGetValue(name, out helper))
+            {
+                args = p.Skip(1).ToArray();
+                method = helper.GetMethod(
+                    &quot;GetHtml&quot;,
+                    args.Select(_ =&gt; _.GetType()).ToArray()
+                );
+            }
+            return method != null;
+        });
+
+        // 見つからなかった場合は、既定の型・メソッドを利用する
+        if (string.IsNullOrEmpty(result)) 
+        {
+            helper = typeof(LinkHelper);
+            args = p;
+            method = helper.GetMethod(
+                &quot;GetHtml&quot;,
+                args.Select(_ =&gt; _.GetType()).ToArray()
+            );
+        }
+    
+        // メソッドを実行
+        return (method.Invoke(helper, args) as HelperResult)
+            .ToHtmlString().ToString().Trim();
+    }
+));
+
+var m = new MarkdownSharp.Markdown();
+text = m.Transform(text);
+</code></pre>
+<p>}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta http-equiv=&quot;Content-Type&rdquo; content=&quot;text/html; charset=utf-8&rdquo;/&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@Html.Raw(text)
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-当初、型名->型" data-lang="当初、型名->型"></code></pre><p>var _type = Type.GetType(&ldquo;ASP.RubyHelper&rdquo;);</p>
+<pre><code class="language-ではだめで、" data-lang="ではだめで、"></code></pre><p>var _type = Type.GetType(&ldquo;ASP.RubyHelper, <em><strong>, Version=1.0.0.0, Culture=neutral, PublicKeyToken=</strong></em>*&quot;);</p>
+<pre><code class="language-みたいな感じじゃないとダメらしい。ASP.NET" data-lang="みたいな感じじゃないとダメらしい。ASP.NET">```cs
+@helper GetHtml(string url)
+{
+    &amp;lt;a href=&quot;@url&quot;&gt;@url&amp;lt;/a&gt;
+}
+
+@helper GetHtml(string url, string title)
+{
+    &amp;lt;a href=&quot;@url&quot; title=&quot;@title&quot;&gt;@title&amp;lt;/a&gt;
+}
+
+```ちなみに、Camelize() は簡易実装なのでみないふりしてほしい（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/28/081228&quot;&gt;寄り道: string クラスの拡張 - だるろぐ&lt;/a&gt;）。あと、エラーチェックがぬるい。たとえば、引数の数をわざと多くするとエラーになる。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### 実験
+    とりあえず手元ではだいたい動いたので、試しに NuGet から適当なヘルパーを取得して、それを Markdown から呼び出せるかやってみた。<figure>
+    <img src="/images/2013/02/24/154553/20130224152749.png"/> 
+</figure>
+QRCode ヘルパーは、その名もズバリ、QRCode が生成できるヘルパー。このヘルパーは
+</code></pre><p>@QRCode.Render(&ldquo;<a href="http://daruyanagi.net/%22">http://daruyanagi.net/&quot;</a>)</p>
+<pre><code class="language-という感じで呼び出すので、残念ながらそのままでは使えない。App_Code/QRCodeHelper.cshtml" data-lang="という感じで呼び出すので、残念ながらそのままでは使えない。App_Code/QRCodeHelper.cshtml"></code></pre><p>@helper GetHtml(string data){
+&lt;img src=&rdquo;@Href(&ldquo;~/QRCodeImage.cshtml&rdquo;, new{data, scale = 3})&rdquo; alt=&rdquo;@data&rdquo; /&gt;
+}</p>
+<pre><code class="language-あとは、<code>[[QRCode|http://daruyanagi.net/]]</code>という記法を" data-lang="あとは、<code>[[QRCode|http://daruyanagi.net/]]</code>という記法を">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-02-24T15:45:53JST">2013/02/24</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/02/24/154553/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F02%2F24%2F154553%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/02/24/180109/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/02/24/020248/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

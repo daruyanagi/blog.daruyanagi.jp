@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>VirusToral  on だるやなぎ</title>
+    <link>http://daruyanagi.net/tags/virustoral/</link>
+    <description>Recent content in VirusToral  on だるやなぎ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Fri, 24 Oct 2014 02:52:19 +0000</lastBuildDate>
+    
+	<atom:link href="http://daruyanagi.net/tags/virustoral/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>VirusTotal API を使ってみる</title>
+      <link>http://daruyanagi.net/entry/2014/10/24/025219/</link>
+      <pubDate>Fri, 24 Oct 2014 02:52:19 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2014/10/24/025219/</guid>
+      <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
+### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。  ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&amp;lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/08/15/194636/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            ASP.NET Core：特定のリクエストをミドルウェアでリダイレクトする | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  旧ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。URL Rewriting Middleware in ASP.NET Core具体的には、こんな感じ。
+public class Startup { public void ConfigureServices(IServiceCollection services) { services.AddMvc(); } public void Configure(IApplicationBuilder app, IHostingEnvironment env) { if (env.IsDevelopment()) { app.UseDeveloperExceptionPage(); } var options = new RewriteOptions() .AddRedirect(&#34;entry/(.*)&#34;, &#34;http://blog.daruyanagi.jp/entry/$1&#34;) .AddRedirect(&#34;category/(.*)&#34;, &#34;http://blog.daruyanagi.jp/category/$1&#34;) .AddRedirect(&#34;entries/(.*)&#34;, &#34;http://blog.daruyanagi.jp/entries/$1&#34;) .AddRedirect(&#34;search/(.*)&#34;, &#34;http://blog.daruyanagi.jp/search/$1&#34;) .AddRedirect(&#34;touch/(.*)&#34;, &#34;http://blog.daruyanagi.jp/touch/$1&#34;) .AddRedirect(&#34;embed/(.*)&#34;, &#34;http://blog.daruyanagi.jp/embed/$1&#34;); app.UseRewriter(options); app.UseStaticFiles(); app.UseMvc(); } } ```今まで自分がやってきたやり方はクソなので、もう忘れようと思う。[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/08/15/194636/" >
+                    <h1 class="entry__header-title-link-text">ASP.NET Core：特定のリクエストをミドルウェアでリダイレクトする</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/08/15</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/08/15/194636/20170816021356.png"/> 
+</figure>
+旧ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting">URL Rewriting Middleware in ASP.NET Core</a>具体的には、こんな感じ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services)
+    {
+        services.AddMvc();
+    }
+        
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env)
+    {
+        <span style="color:#66d9ef">if</span> (env.IsDevelopment())
+        {
+            app.UseDeveloperExceptionPage();
+        }
+
+        <span style="color:#66d9ef">var</span> options = <span style="color:#66d9ef">new</span> RewriteOptions()
+            .AddRedirect(<span style="color:#e6db74">&#34;entry/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/entry/$1&#34;</span>)
+            .AddRedirect(<span style="color:#e6db74">&#34;category/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/category/$1&#34;</span>)
+            .AddRedirect(<span style="color:#e6db74">&#34;entries/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/entries/$1&#34;</span>)
+            .AddRedirect(<span style="color:#e6db74">&#34;search/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/search/$1&#34;</span>)
+            .AddRedirect(<span style="color:#e6db74">&#34;touch/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/touch/$1&#34;</span>)
+            .AddRedirect(<span style="color:#e6db74">&#34;embed/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/embed/$1&#34;</span>);
+        app.UseRewriter(options);
+
+        app.UseStaticFiles();
+        app.UseMvc();
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```今まで自分がやってきたやり方はクソなので、もう忘れようと思う。</span>[ASP.NET Core MVC<span style="color:#960050;background-color:#1e0010">：特定のリクエストを他のサイトにリダイレクトする</span> - <span style="color:#960050;background-color:#1e0010">だるろぐ</span>](http:<span style="color:#75715e">//blog.daruyanagi.jp/entry/2017/07/17/143323)[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　
+</span><span style="color:#75715e"></span>
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-08-15T19:46:36JST">2017/08/15</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Core%ef%bc%9a%e7%89%b9%e5%ae%9a%e3%81%ae%e3%83%aa%e3%82%af%e3%82%a8%e3%82%b9%e3%83%88%e3%82%92%e3%83%9f%e3%83%89%e3%83%ab%e3%82%a6%e3%82%a7%e3%82%a2%e3%81%a7%e3%83%aa%e3%83%80%e3%82%a4%e3%83%ac%e3%82%af%e3%83%88%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/08/15/194636/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Core%EF%BC%9A%E7%89%B9%E5%AE%9A%E3%81%AE%E3%83%AA%E3%82%AF%E3%82%A8%E3%82%B9%E3%83%88%E3%82%92%E3%83%9F%E3%83%89%E3%83%AB%E3%82%A6%E3%82%A7%E3%82%A2%E3%81%A7%E3%83%AA%E3%83%80%E3%82%A4%E3%83%AC%E3%82%AF%E3%83%88%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F194636%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/16/184814/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/121303/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,231 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/07/03/035624/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix：ルビを振るためのヘルパーを作ってみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。
+# ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;（&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;）&amp;lt;/rp&gt;&amp;lt;/ruby&gt; } ```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。 ```cs # ~/Test.cshtml @{ } &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @Ruby.GetHtml(&#34;柳 英俊&#34;, &#34;やなぎ ひでとし&#34;) &amp;lt;/body&gt; &amp;lt;/html&gt; ```  （※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。 &lt;div class=&#34;section&#34;&gt; ### ちょっとハッテン ```cs # ~/App_Code/HtmlHelperExtensions.cs using System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html; public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby) { return new HtmlString(string." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/07/03/035624/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix：ルビを振るためのヘルパーを作ってみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/07/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/07/03/035624/20140703034425.png"/> 
+</figure>
+とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/Ruby.cshtml
+
+@helper GetHtml(<span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">string</span> ruby){
+    &amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;<span style="color:#960050;background-color:#1e0010">（</span>&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;<span style="color:#960050;background-color:#1e0010">）</span>&amp;lt;/rp&gt;&amp;lt;/ruby&gt;
+}
+
+<span style="color:#960050;background-color:#1e0010">```使い方はこんな感じ</span> .cshtml <span style="color:#960050;background-color:#1e0010">の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> ~/Test.cshtml
+
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    
+}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        @Ruby.GetHtml(<span style="color:#e6db74">&#34;柳 英俊&#34;</span>, <span style="color:#e6db74">&#34;やなぎ ひでとし&#34;</span>)
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```</span><figure>
+    <img src="/images/2014/07/03/035624/20140703034801.png"/> 
+</figure>
+<span style="color:#960050;background-color:#1e0010">（※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない</span> Firefox <span style="color:#960050;background-color:#1e0010">のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。</span>
+
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">ちょっとハッテン</span>
+    <span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/HtmlHelperExtensions.cs
+
+<span style="color:#66d9ef">using</span> System;
+<span style="color:#66d9ef">using</span> System.Collections.Generic;
+<span style="color:#66d9ef">using</span> System.Linq;
+<span style="color:#66d9ef">using</span> System.Web;
+<span style="color:#66d9ef">using</span> System.Web.WebPages.Html;
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HtmlHelperExtenstion</span>
+{
+   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IHtmlString Ruby(<span style="color:#66d9ef">this</span> HtmlHelper helper, <span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">string</span> ruby)
+   {
+       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HtmlString(<span style="color:#66d9ef">string</span>.Format(
+          <span style="color:#e6db74">&#34;&lt;ruby&gt;&lt;rb&gt;{0}&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;{1}&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;&#34;</span>,
+          text, ruby
+       ));
+   }
+}
+
+<span style="color:#960050;background-color:#1e0010">```こうやって</span> HtmlHelper <span style="color:#960050;background-color:#1e0010">の拡張メソッドとして定義しておけば</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+@Html.Ruby(<span style="color:#e6db74">&#34;柳 英俊&#34;</span>, <span style="color:#e6db74">&#34;やなぎ ひでとし&#34;</span>)
+
+<span style="color:#960050;background-color:#1e0010">```で同様のことができるようになる。</span>
+
+&lt;/div&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-07-03T03:56:24JST">2014/07/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%ef%bc%9a%e3%83%ab%e3%83%93%e3%82%92%e6%8c%af%e3%82%8b%e3%81%9f%e3%82%81%e3%81%ae%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/07/03/035624/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix%EF%BC%9A%E3%83%AB%E3%83%93%E3%82%92%E6%8C%AF%E3%82%8B%E3%81%9F%E3%82%81%E3%81%AE%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F07%2F03%2F035624%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/03/060355/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/07/03/033712/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

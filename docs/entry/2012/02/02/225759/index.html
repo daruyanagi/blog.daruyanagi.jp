@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/02/02/225759/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+             RSS 2.0 を実装する | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="http://sample.com/Post/LastUpdated.rss で RSS が吐かれるようにしてみたかった。まずはルーティング。
+```  #Global.asax.cs
+routes.MapRoute( &ldquo;Mode&rdquo;, // ルート名 &ldquo;{controller}/{action}.{mode}&quot;, // パラメーター付きの URL new { controller = &ldquo;Home&rdquo;, action = &ldquo;Index&rdquo;, id = UrlParameter.Optional, mode = &ldquo;html&rdquo; } // パラメーターの既定値 );
+次はコントローラー。IPagedList は自分で作ったページング機能付きのリスト。&quot;&lt;a href=&quot;http://sample.com/Post/LastUpdated?mode=rss&quot;&gt;http://sample.com/Post/LastUpdated?mode=rss&lt;/a&gt;&quot; でアクセスしてもいい。レポジトリパターンにしたのにここで IPagedList 作ってるのはダサいので、あとで直そう… ``` #Post.cs // // GET: /Post/LastUpdated public ViewResult LastUpdated(int current = 1, int items_per_page = 10, string mode = &quot;html&quot;) { var posts = new PagedList&amp;lt;Post&gt;( repository.GetList().OrderByDescending(p =&gt; p.UpdatedAt), current, items_per_page); switch (mode) { case &quot;rss&quot;: return View(&quot;LastUpdated." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/02/02/225759/" >
+                    <h1 class="entry__header-title-link-text"> RSS 2.0 を実装する</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/02/02</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="http://sample.com/Post/LastUpdated.rss"><a href="http://sample.com/Post/LastUpdated.rss">http://sample.com/Post/LastUpdated.rss</a></a> で RSS が吐かれるようにしてみたかった。まずはルーティング。</p>
+<pre><code>```
+</code></pre>
+<p>#Global.asax.cs</p>
+<p>routes.MapRoute(
+&ldquo;Mode&rdquo;, // ルート名
+&ldquo;{controller}/{action}.{mode}&quot;, // パラメーター付きの URL
+new { controller = &ldquo;Home&rdquo;,
+action = &ldquo;Index&rdquo;,
+id = UrlParameter.Optional,
+mode = &ldquo;html&rdquo; } // パラメーターの既定値
+);</p>
+<pre><code>次はコントローラー。IPagedList は自分で作ったページング機能付きのリスト。&quot;&lt;a href=&quot;http://sample.com/Post/LastUpdated?mode=rss&quot;&gt;http://sample.com/Post/LastUpdated?mode=rss&lt;/a&gt;&quot; でアクセスしてもいい。レポジトリパターンにしたのにここで IPagedList 作ってるのはダサいので、あとで直そう…
+
+    ```
+#Post.cs
+
+//
+// GET: /Post/LastUpdated
+
+public ViewResult LastUpdated(int current = 1, int items_per_page = 10, string mode = &quot;html&quot;)
+{
+    var posts = new PagedList&amp;lt;Post&gt;(
+        repository.GetList().OrderByDescending(p =&gt; p.UpdatedAt),
+        current, items_per_page);
+
+    switch (mode)
+    {
+        case &quot;rss&quot;:
+            return View(&quot;LastUpdated.rss&quot;, posts);
+        default:
+            return View(posts);
+    }
+}
+</code></pre><p>最後にビュー。&ldquo;LastUpdated.rss.cshtml&quot;ってのを追加する。XML宣言をファイルの先頭にしたほうがいいのかな。あと、Response.ContentType に &ldquo;application/rss+xml&rdquo; を設定して、「今から返すんはRSSやで！」と教えておく。</p>
+<pre><code>```
+</code></pre>
+<p>&lt;?xml version=&quot;1.0&rdquo; encoding=&quot;utf-8&rdquo;?&gt;</p>
+<p>@model IEnumerable&lt;Daruwiki.Models.Post&gt;</p>
+<p>@{
+Layout = string.Empty;
+Response.ContentType = &ldquo;application/rss+xml&rdquo;;</p>
+<pre><code>var Title = App.Name;
+var SiteUrl = &quot;http://&quot; + Request.Url.Authority;
+var RssUrl = Request.Url;
+var Description = &quot;&quot;;
+var LastUpdated = GetUnixTime(Model
+    .OrderByDescending(p =&gt; p.CreatedAt).First().CreatedAt);
+</code></pre>
+<p>}</p>
+<p>@functions
+{
+private static DateTime UNIX_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);</p>
+<pre><code>public static long GetUnixTime(DateTime targetTime)
+{
+    targetTime = targetTime.ToUniversalTime();
+    TimeSpan elapsedTime = targetTime - UNIX_EPOCH;
+    return (long)elapsedTime.TotalSeconds;
+}
+</code></pre>
+<p>}</p>
+<p>&lt;rss version=&quot;2.0&rdquo; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+&lt;channel&gt;
+&lt;title&gt;@Title&lt;/title&gt;
+&lt;link&gt;@SiteUrl&lt;/link&gt;
+&lt;atom:link href=&rdquo;@RssUrl&rdquo; rel=&quot;self&rdquo; type=&quot;application/rss+xml&rdquo; /&gt;
+&lt;description&gt;@Description&lt;/description&gt;
+&lt;language&gt;ja&lt;/language&gt;
+&lt;lastBuildDate&gt;@LastUpdated&lt;/lastBuildDate&gt;
+@foreach (var item in Model)
+{
+&lt;item&gt;
+&lt;title&gt;@item.Title&lt;/title&gt;
+&lt;link&gt;@SiteUrl/@item.Title&lt;/link&gt;
+&lt;guid&gt;@item.PostId&lt;/guid&gt;
+&lt;pubDate&gt;@item.CreatedAt&lt;/pubDate&gt;
+&lt;description&gt;&lt;![CDATA[@Html.Raw(item.FormattedBody)]]&gt;&lt;/description&gt;
+&lt;/item&gt;
+}
+&lt;/channel&gt;
+&lt;/rss&gt;</p>
+<pre><code>
+    &gt;
+        でけた。でも、その直後に RssResult っていうのがあるっぽいことを知った
+
+        Twitter
+    
+
+    &gt;
+        @daruyanagi WCF とか使えば出力できそうな気が
+
+        Twitter
+    
+勉強が足りない。
+
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-02-02T22:57:59JST">2012/02/02</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%20RSS%202.0%20%e3%82%92%e5%ae%9f%e8%a3%85%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/02/02/225759/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=&#43;RSS&#43;2.0&#43;%E3%82%92%E5%AE%9F%E8%A3%85%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F02%2F225759%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/06/221337/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/02/112522/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

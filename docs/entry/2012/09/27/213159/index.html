@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/27/213159/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            SignalR &#43; WebMatrix でサーバーフォルダの監視を行ってみる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。自分の作ったサンプルコード（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。
+# ~/App_Code/SampleHub.cs using SignalR.Hubs; using System.IO; [HubName(&#34;sample&#34;)] public class SampleHub : Hub { public SampleHub() { var watcher = new FileSystemWatcher(); watcher.Path = System.Web.HttpContext.Current .Server.MapPath(@&#34;~/_Documents&#34;); watcher.Filter = &#34;*.txt&#34;; watcher.NotifyFilter = NotifyFilters.FileName | NotifyFilters.DirectoryName | NotifyFilters.LastWrite; watcher.IncludeSubdirectories = false; watcher.Changed &#43;= (o, s) =&gt; { Clients.Echo(&#34;なんかかわったで&#34;); }; watcher.Created &#43;= (o, s) =&gt; { Clients.Echo(&#34;あたらしいのできたで&#34;); }; watcher.Deleted &#43;= (o, s) =&gt; { Clients." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/signalr/">SignalR</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/27/213159/" >
+                    <h1 class="entry__header-title-link-text">SignalR &#43; WebMatrix でサーバーフォルダの監視を行ってみる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/27</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。自分の作ったサンプルコード（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/SampleHub.cs
+
+<span style="color:#66d9ef">using</span> SignalR.Hubs;
+<span style="color:#66d9ef">using</span> System.IO;
+<span style="color:#a6e22e">
+</span><span style="color:#a6e22e">[HubName(&#34;sample&#34;)]</span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleHub</span> : Hub
+{
+    <span style="color:#66d9ef">public</span> SampleHub()
+    {
+        <span style="color:#66d9ef">var</span> watcher = <span style="color:#66d9ef">new</span> FileSystemWatcher();
+        
+        watcher.Path =  System.Web.HttpContext.Current
+            .Server.MapPath(<span style="color:#e6db74">@&#34;~/_Documents&#34;</span>);
+        watcher.Filter = <span style="color:#e6db74">&#34;*.txt&#34;</span>;
+        watcher.NotifyFilter = NotifyFilters.FileName
+                             | NotifyFilters.DirectoryName
+                             | NotifyFilters.LastWrite;
+        watcher.IncludeSubdirectories = <span style="color:#66d9ef">false</span>;
+        watcher.Changed +=
+            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;なんかかわったで&#34;</span>); };
+        watcher.Created +=
+            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;あたらしいのできたで&#34;</span>); };
+        watcher.Deleted +=
+            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;きえてもうた……&#34;</span>); };
+        watcher.Renamed +=
+            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;なまえかわったわ&#34;</span>); };
+        watcher.EnableRaisingEvents = <span style="color:#66d9ef">true</span>;
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```めんどくさいので</span> &lt;a href=<span style="color:#e6db74">&#34;http://dobon.net/vb/dotnet/file/filesystemwatcher.html&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">フォルダ、ファイルの変更を監視する</span> - .NET Tips (VB.NET,C<span style="color:#960050;background-color:#1e0010">#</span>...)&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">をほとんど丸コピしている。原理的には、これで</span> _Documents <span style="color:#960050;background-color:#1e0010">フォルダ内のテキストファイルが更新されると、クライアント側の</span> Echo() <span style="color:#960050;background-color:#1e0010">が呼ばれるはず。ちなみにクライアント側はこんな感じ。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>html
+<span style="color:#960050;background-color:#1e0010">#</span> ~/Default.cshtml
+
+
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;ja&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;<span style="color:#960050;background-color:#1e0010">マイ</span> <span style="color:#960050;background-color:#1e0010">サイトのタイトル</span>&amp;lt;/title&gt;
+        &amp;lt;script type=<span style="color:#e6db74">&#34;text/javascript&#34;</span>
+                src=<span style="color:#e6db74">&#34;Scripts/jquery-1.6.4.js&#34;</span>&gt;&amp;lt;/script&gt;
+        &amp;lt;script type=<span style="color:#e6db74">&#34;text/javascript&#34;</span>
+                src=<span style="color:#e6db74">&#34;Scripts/jquery.signalR-0.5.3.js&#34;</span>&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;
+            <span style="color:#66d9ef">var</span> connection = <span style="color:#960050;background-color:#1e0010">$</span>.hubConnection();
+            <span style="color:#66d9ef">var</span> sample = connection.createProxy(<span style="color:#e6db74">&#34;sample&#34;</span>);
+            connection.start();
+            sample.<span style="color:#66d9ef">on</span>(<span style="color:#e6db74">&#34;Echo&#34;</span>, function (<span style="color:#66d9ef">value</span>) {
+                <span style="color:#960050;background-color:#1e0010">$</span>(<span style="color:#e6db74">&#34;#value&#34;</span>).html(<span style="color:#66d9ef">value</span>);
+            });
+        &amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;p id=<span style="color:#e6db74">&#34;value&#34;</span>&gt;&amp;lt;/p&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div><div class="section">
+    ### 反応がない、ただの屍のようだ。
+    でも、これだと動かない。なぜだ！元のサンプルコードをいじりながらいろいろ試してみたところ、クライアントから一度なんらかのアクションがあれば、期待通りの動作をするみたい。ということで、コードを少し足した。
+```cs
+# ~/App_Code/SampleHub.cs
+<p>using SignalR.Hubs;
+using System.IO;</p>
+<p>[HubName(&ldquo;sample&rdquo;)]
+public class SampleHub : Hub
+{
+public SampleHub()
+{
+（省略）
+}</p>
+<pre><code>public void Initialize()
+{
+    // 追加：コネクションを叩き起こすための何もしないメソッド
+}
+</code></pre>
+<p>}</p>
+<pre><code class="language-で、クライアント側から" data-lang="で、クライアント側から">```html
+# ~/Default.cshtml
+
+
+
+&amp;lt;html lang=&quot;ja&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;
+                src=&quot;Scripts/jquery-1.6.4.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script type=&quot;text/javascript&quot;
+                src=&quot;Scripts/jquery.signalR-0.5.3.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script&gt;
+            var connection = $.hubConnection();
+            var sample = connection.createProxy(&quot;sample&quot;);
+            connection.start();
+            sample.on(&quot;Echo&quot;, function (value) {
+                $(&quot;#value&quot;).html(value);
+            });
+            sample.invoke(&amp;#39;initialize&amp;#39;); // &amp;lt;-- 追加！
+        &amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;p id=&quot;value&quot;&gt;&amp;lt;/p&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+</code></pre></div>
+<div class="section">
+    ### 無理やり叩いたらゲロ吐きやがった
+    そうしたらエラーで止まった。<figure>
+    <img src="/images/2012/09/27/213159/20120927212447.png"/> 
+</figure>
+connection.start() が終わってないのに SampleHub.Initialize() を叩くんじゃねえ、バカ。そういいたいらしい。connection.start().done() を使えというので、素直に従おう。
+```html
+# ~/Default.cshtml
+<p>&lt;html lang=&quot;ja&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;script type=&quot;text/javascript&rdquo;
+src=&quot;Scripts/jquery-1.6.4.js&quot;&gt;&lt;/script&gt;
+&lt;script type=&quot;text/javascript&rdquo;
+src=&quot;Scripts/jquery.signalR-0.5.3.js&quot;&gt;&lt;/script&gt;
+&lt;script&gt;
+var connection = $.hubConnection();
+var sample = connection.createProxy(&ldquo;sample&rdquo;);
+connection.start().done(function () { // &lt;&ndash; done()!
+sample.invoke('initialize');
+});
+sample.on(&ldquo;Echo&rdquo;, function (value) {
+$(&quot;#value&rdquo;).html(value);
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;p id=&quot;value&quot;&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-<figure>
+    <img src="/images/2012/09/27/213159/20120927212701.png"/> 
+</figure>
+ぉー！" data-lang="<figure>
+    <img src="/images/2012/09/27/213159/20120927212701.png"/> 
+</figure>
+ぉー！">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-27T21:31:59JST">2012/09/27</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?SignalR%20&#43;%20WebMatrix%20%e3%81%a7%e3%82%b5%e3%83%bc%e3%83%90%e3%83%bc%e3%83%95%e3%82%a9%e3%83%ab%e3%83%80%e3%81%ae%e7%9b%a3%e8%a6%96%e3%82%92%e8%a1%8c%e3%81%a3%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/27/213159/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=SignalR&#43;%2B&#43;WebMatrix&#43;%E3%81%A7%E3%82%B5%E3%83%BC%E3%83%90%E3%83%BC%E3%83%95%E3%82%A9%E3%83%AB%E3%83%80%E3%81%AE%E7%9B%A3%E8%A6%96%E3%82%92%E8%A1%8C%E3%81%A3%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F27%2F213159%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/28/211706/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/27/195233/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

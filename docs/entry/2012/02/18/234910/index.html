@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/02/18/234910/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            Twitter Bootstrap を v2.0 にしてみた | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="   米Twitterは1月31日、CSS/HTMLフレームワーク「Bootstrap 2.0」をリリースしたと発表した。画面を格子状に分割して要素を配置する「グリッドレイアウト」を容易に実装できるほか、WebサイトやWebアプリケーション開発に向けたUIコンポーネントが多く含まれている。 米Twitter、同社発のCSS/HTMLフレームワーク「Bootstrap 2.0」を公開 - SourceForge.JP Magazine : オープンソースの話題満載  ちょっと様子見していたのだけど、サクっと乗り換えてみた。ドロップダウンメニューやタブが動かなくなった ＼(^o^)／結構色々変わっていて、後方互換性はないみたい。既存のビューを書き換えるのには、多少苦労した。
+&gt; Bootstrap 2.0では、ボタン、ボタングループ、ドロップダウン、タブなどのコンポーネントが書き直されている。また、**グリッドシステムではカラムの数が16から12カラムとなり**、画面の大きさなどに応じて柔軟に調整する**レスポンシブアプローチを導入**、スマートフォン、タブレットなどへの対応が強化された。　フォームスタイルも一新され、jQuery UIなどのツールとの互換性を強化した新しいテーブルスタイルも用意された。**Collapse、Crousel、TypeaheadなどのJavaScriptプラグインも加わっている**。必要な機能を選んで利用するカスタマイズ版も新たに用意された。  とくにカラム数の変更は&hellip;&hellip;描き直しが面倒くさい。ドロップダウンメニューのデザインは新しいほうが格好いいな。しかし、@Html.EditorFor() ではHTMLタグの属性を指定できないんだなぁ。クラス名がないと、ちゃんとデザインしてくれないのでこまる。とりあえず、JavaScript で後からチョコチョコッとクラスをつけておいた。
+```js  $(function () { $(&#39;form&#39;).addClass(&ldquo;form-horizontal&rdquo;); $(&#39;label&#39;).addClass(&ldquo;control-label&rdquo;); $(&#39;input&#39;).addClass(&ldquo;input-xlarge&rdquo;); $(&#39;textarea&#39;).addClass(&ldquo;input-xlarge&rdquo;); });
+なお、Twitter Bootstrap は、Visual Studio/WebMatrix ならば Nuget で簡単にインストールできる（プラグインは含まれていない）。ダウンロード＆配置の手間が少しだけ省けるので試すべし。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234746.png&quot; alt=&quot;f:id:daruyanagi:20120218234746p:plain&quot; title=&quot;f:id:daruyanagi:20120218234746p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234748.png&quot; alt=&quot;f:id:daruyanagi:20120218234748p:plain&quot; title=&quot;f:id:daruyanagi:20120218234748p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/01/12/013836&quot;&gt;Twitter Bootstrap はカンタンかつカッコイイ - だるろぐ&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/02/18/234910/" >
+                    <h1 class="entry__header-title-link-text">Twitter Bootstrap を v2.0 にしてみた</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/02/18</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    米Twitterは1月31日、CSS/HTMLフレームワーク「Bootstrap 2.0」をリリースしたと発表した。画面を格子状に分割して要素を配置する「グリッドレイアウト」を容易に実装できるほか、WebサイトやWebアプリケーション開発に向けたUIコンポーネントが多く含まれている。
+
+    米Twitter、同社発のCSS/HTMLフレームワーク「Bootstrap 2.0」を公開 - SourceForge.JP Magazine : オープンソースの話題満載
+</code></pre>
+<p>ちょっと様子見していたのだけど、サクっと乗り換えてみた。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234116.png" alt="f:id:daruyanagi:20120218234116p:plain" title="f:id:daruyanagi:20120218234116p:plain" class="hatena-fotolife"/>ドロップダウンメニューやタブが動かなくなった ＼(^o^)／結構色々変わっていて、後方互換性はないみたい。既存のビューを書き換えるのには、多少苦労した。</p>
+<pre><code>&gt;
+    Bootstrap 2.0では、ボタン、ボタングループ、ドロップダウン、タブなどのコンポーネントが書き直されている。また、**グリッドシステムではカラムの数が16から12カラムとなり**、画面の大きさなどに応じて柔軟に調整する**レスポンシブアプローチを導入**、スマートフォン、タブレットなどへの対応が強化された。　フォームスタイルも一新され、jQuery UIなどのツールとの互換性を強化した新しいテーブルスタイルも用意された。**Collapse、Crousel、TypeaheadなどのJavaScriptプラグインも加わっている**。必要な機能を選んで利用するカスタマイズ版も新たに用意された。
+</code></pre>
+<p>とくにカラム数の変更は&hellip;&hellip;描き直しが面倒くさい。ドロップダウンメニューのデザインは新しいほうが格好いいな。しかし、@Html.EditorFor() ではHTMLタグの属性を指定できないんだなぁ。クラス名がないと、ちゃんとデザインしてくれないのでこまる。とりあえず、JavaScript で後からチョコチョコッとクラスをつけておいた。</p>
+<pre><code>```js
+</code></pre>
+<p>$(function () {
+$('form').addClass(&ldquo;form-horizontal&rdquo;);
+$('label').addClass(&ldquo;control-label&rdquo;);
+$('input').addClass(&ldquo;input-xlarge&rdquo;);
+$('textarea').addClass(&ldquo;input-xlarge&rdquo;);
+});</p>
+<pre><code>なお、Twitter Bootstrap は、Visual Studio/WebMatrix ならば Nuget で簡単にインストールできる（プラグインは含まれていない）。ダウンロード＆配置の手間が少しだけ省けるので試すべし。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234746.png&quot; alt=&quot;f:id:daruyanagi:20120218234746p:plain&quot; title=&quot;f:id:daruyanagi:20120218234746p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234748.png&quot; alt=&quot;f:id:daruyanagi:20120218234748p:plain&quot; title=&quot;f:id:daruyanagi:20120218234748p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/01/12/013836&quot;&gt;Twitter Bootstrap はカンタンかつカッコイイ - だるろぐ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-02-18T23:49:10JST">2012/02/18</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Twitter%20Bootstrap%20%e3%82%92%20v2.0%20%e3%81%ab%e3%81%97%e3%81%a6%e3%81%bf%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/02/18/234910/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Twitter&#43;Bootstrap&#43;%E3%82%92&#43;v2.0&#43;%E3%81%AB%E3%81%97%E3%81%A6%E3%81%BF%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F02%2F18%2F234910%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/19/022206/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/02/18/232559/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

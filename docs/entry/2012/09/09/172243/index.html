@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/09/09/172243/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix で LESS を使おう！（2） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrix でユーザー認証機能（5） ―― ロール - だるろぐ なんかで使っているラベル用の CSS は LESS で書いている。変数とか関数とか使えないと、この程度の CSS を書くだけで簡単に破たんできるぜ……。で、どうやって使うのかというと……例えば、
+&amp;lt;html lang=&#34;ja&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt; &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt; &amp;lt;link href=&#34;~/Content/StyleSheet.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&gt; &amp;lt;/head&gt; &amp;lt;body&gt; &amp;lt;div class=&#34;message error&#34;&gt; エラーが発生しました。 &amp;lt;/div&gt; &amp;lt;div class=&#34;message info&#34;&gt; お知らせが1件あります。 &amp;lt;/div&gt; &amp;lt;div class=&#34;message warning&#34;&gt; 注意してください。 &amp;lt;/div&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```こんな cshtml があるとする。次に、新規作成のダイアログで［すべて］タブを選択し、LESS ファイルを作成する。  パスは ~/Content/StyleSheet.less （css → less にするだけ）だよ。あとはどんどん書いていくんだぜ～！　保存するたんびに「OrangeBits Compiler」（後述）が CSS （~/Content/StyleSheet.css）へ変換してくれるから楽ちんでいい。 ```css body { font-family: Meiryo, sans-serif; } ." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/09/09/172243/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix で LESS を使おう！（2）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/09/09</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/09/09/172243/20120829200628.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2012/09/03/093520">WebMatrix でユーザー認証機能（5） ―― ロール - だるろぐ</a> なんかで使っているラベル用の CSS は LESS で書いている。変数とか関数とか使えないと、この程度の CSS を書くだけで簡単に破たんできるぜ……。で、どうやって使うのかというと……例えば、</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">
+
+&amp;lt;html lang=&#34;ja&#34;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&#34;utf-8&#34; /&gt;
+        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
+        &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34;
+              type=&#34;image/x-icon&#34; /&gt;
+        &amp;lt;link href=&#34;~/Content/StyleSheet.css&#34; rel=&#34;stylesheet&#34;
+              type=&#34;text/css&#34; /&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;div class=&#34;message error&#34;&gt;
+            エラーが発生しました。     
+        &amp;lt;/div&gt;
+        &amp;lt;div class=&#34;message info&#34;&gt;
+            お知らせが1件あります。     
+        &amp;lt;/div&gt;
+        &amp;lt;div class=&#34;message warning&#34;&gt;
+            注意してください。     
+        &amp;lt;/div&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```こんな cshtml があるとする。次に、新規作成のダイアログで［すべて］タブを選択し、LESS ファイルを作成する。<figure>
+    <img src="/images/2012/09/09/172243/20120909171100.png"/> 
+</figure>
+パスは ~/Content/StyleSheet.less （css → less にするだけ）だよ。あとはどんどん書いていくんだぜ～！　保存するたんびに「OrangeBits Compiler」（後述）が CSS （~/Content/StyleSheet.css）へ変換してくれるから楽ちんでいい。
+```css
+body {
+    font-family: Meiryo, sans-serif;
+}
+
+.error {
+    .message-status(&#34;ERROR&#34;, red)
+}
+
+.info {
+    .message-status(&#34;INFO&#34;, steelblue)
+}
+
+.warning {
+    .message-status(&#34;WARNING&#34;, orange)
+}
+
+```関数&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f-b0036404&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fn-b0036404&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;Mixin（ミックスイン）っていうのかな？&#34;</span>&gt;*1&lt;/<span style="color:#f92672">a</span>&gt;のおかげで、メインの部分はこんなにコンパクトだよ。ちなみに message-status というイケてない名前の関数の中身は、以下の通り。上のスタイルシートの続きに書いていく。だいたいそんな感じで使うんだなっていうのがわかると思う。
+```css
+.message-status(@label, @base-color) {
+    // 引数がとれる！
+
+    // 変数の宣言と組み込み関数による色の演算
+    @dark-color: darken(@base-color, 5%);
+    @light-color: lighten(@base-color, 45%);
+        
+    border: 1px solid black;
+    border-color: @dark-color;
+    color: @dark-color;
+    background-color: @light-color;
+    
+    margin: 1em;
+    padding: 1em;
+    .rounded-box(); // &amp;lt;- スタイルの Mixin
+    
+    // ネストしたスタイルの指定
+    // &amp;amp; はちょっと特殊な変数（？）で、現在の要素を表す 
+    // &amp;amp;:before を .label で使うと .label:before になる
+    &amp;amp;:before {
+        content: @label;
+        font-size: 80%;
+        color: white;
+        background-color: @dark-color;
+        padding: 0 0.5em;
+        .rounded-box(3px);
+    }
+}
+
+.rounded-box (@radius: 5px) { // &amp;lt;- 超便利じゃない？
+    border-radius: @radius;
+    -webkit-border-radius: @radius;
+    -moz-border-radius: @radius;
+}
+
+```<figure>
+    <img src="/images/2012/09/09/172243/20120909170137.png"/> 
+</figure>
+こうやってまとめられるところはまとめておくと、CSS が肥大化してもメンテナンス性・可読性への影響が少ないんじゃないかな。<figure>
+    <img src="/images/2012/09/09/172243/20120909171526.png"/> 
+</figure>
+邪魔ならみえないように折りたたんでおくこともできるしね。WebMatrix 2 では、追加で「Orangebits Compiler」を導入することで、この LESS が簡単に扱えるようになっているのでぜひ試すべし。
+
+&lt;<span style="color:#f92672">ul</span>&gt;
+&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/08/15/161932&#34;</span>&gt;WebMatrix で LESS を使おう！ - だるろぐ&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
+&lt;/<span style="color:#f92672">ul</span>&gt;&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-b0036404&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-b0036404&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*1&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;Mixin（ミックスイン）っていうのかな？&lt;/<span style="color:#f92672">span</span>&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-09-09T17:22:43JST">2012/09/09</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%20LESS%20%e3%82%92%e4%bd%bf%e3%81%8a%e3%81%86%ef%bc%81%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/09/172243/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7&#43;LESS&#43;%E3%82%92%E4%BD%BF%E3%81%8A%E3%81%86%EF%BC%81%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F09%2F172243%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/09/200930/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/09/145506/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

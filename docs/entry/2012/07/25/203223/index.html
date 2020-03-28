@@ -1,0 +1,221 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/07/25/203223/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            失敗の数だけ強くなりたい（ Jason.NET についての補足 | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="失敗の数だけ強くなりたい - だるろぐ の補足。
+&quot;files&quot;: { &quot;close_duplicate_tab.js&quot;: { &quot;type&quot;: &quot;application/javascript&quot;, &quot;filename&quot;: &quot;close_duplicate_tab.js&quot;, &quot;raw_url&quot;: &quot;https://gist.github.com/raw/3175551/c7590ad8cfdd352150a8c845ff96fb9f30bd3a65/close_duplicate_tab.js&quot;, &quot;language&quot;: &quot;JavaScript&quot;, &quot;size&quot;: 1465 } } ```この Json は Dictionary&amp;lt;string, File&gt; でうけることになるのだけど、 File を最初以下のとおりに定義していた。 ```cs public struct File { public string @type; public string filename; public string raw_url; public string language; public string size; } ```これでもいいのだけれど、フィールドはビューへバインディングできないのでプロパティにした、というのは前回に言った&lt;a href=&quot;#f-1abcc75c&quot; name=&quot;fn-1abcc75c&quot; title=&quot;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&quot;&gt;*1&lt;/a&gt;。 ```cs public struct File { public string @type { get; set; } public string filename { get; set; } public string raw_url { get; set; } public string language { get; set; } public string size { get; set; } } ```これでうまくいったのだけれど……うっかり struct を class にしてなかった。それでも動くんだな…… struct でもプロパティ持てるの？&lt;a href=&quot;#f-1fd0fe34&quot; name=&quot;fn-1fd0fe34&quot; title=&quot;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&quot;&gt;*2&lt;/a&gt;　よくわからなくなってくる。ここでは値を渡すことはないし、のちのち面倒くさいことになったら嫌なので class にしておいたほうが無難かな。まぁ、それは置いておこう。次に気になるのは、プロパティが Snake Case になっていること。やっぱり Pascal Case にしておきたい。試してみたところ&lt;a href=&quot;#f-2b14458a&quot; name=&quot;fn-2b14458a&quot; title=&quot;ドキュメント読めよ&quot;&gt;*3&lt;/a&gt;、 Jason." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/07/25/203223/" >
+                    <h1 class="entry__header-title-link-text">失敗の数だけ強くなりたい（ Jason.NET についての補足</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/07/25</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2012/07/25/203223/20120725203328.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2012/07/24/201150">失敗の数だけ強くなりたい - だるろぐ</a> の補足。</p>
+<pre><code>&quot;files&quot;: {
+    &quot;close_duplicate_tab.js&quot;: {
+        &quot;type&quot;: &quot;application/javascript&quot;,
+        &quot;filename&quot;: &quot;close_duplicate_tab.js&quot;,
+        &quot;raw_url&quot;: &quot;https://gist.github.com/raw/3175551/c7590ad8cfdd352150a8c845ff96fb9f30bd3a65/close_duplicate_tab.js&quot;,
+        &quot;language&quot;: &quot;JavaScript&quot;,
+        &quot;size&quot;: 1465
+    }
+}
+```この Json は Dictionary&amp;lt;string, File&gt; でうけることになるのだけど、 File を最初以下のとおりに定義していた。
+```cs
+public struct File
+{
+    public string @type;
+    public string filename;
+    public string raw_url;
+    public string language;
+    public string size;
+}
+
+```これでもいいのだけれど、フィールドはビューへバインディングできないのでプロパティにした、というのは前回に言った&lt;a href=&quot;#f-1abcc75c&quot; name=&quot;fn-1abcc75c&quot; title=&quot;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&quot;&gt;*1&lt;/a&gt;。
+```cs
+public struct File
+{
+    public string @type { get; set; }
+    public string filename { get; set; }
+    public string raw_url { get; set; }
+    public string language { get; set; }
+    public string size { get; set; }
+}
+
+```これでうまくいったのだけれど……うっかり struct を class にしてなかった。それでも動くんだな…… struct でもプロパティ持てるの？&lt;a href=&quot;#f-1fd0fe34&quot; name=&quot;fn-1fd0fe34&quot; title=&quot;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&quot;&gt;*2&lt;/a&gt;　よくわからなくなってくる。ここでは値を渡すことはないし、のちのち面倒くさいことになったら嫌なので class にしておいたほうが無難かな。まぁ、それは置いておこう。次に気になるのは、プロパティが Snake Case になっていること。やっぱり Pascal Case にしておきたい。試してみたところ&lt;a href=&quot;#f-2b14458a&quot; name=&quot;fn-2b14458a&quot; title=&quot;ドキュメント読めよ&quot;&gt;*3&lt;/a&gt;、 Jason.NET でデシリアライズするときには大文字と小文字が区別されないようなので、先頭を大文字にしてもいいようだ。
+```cs
+public class File
+{
+    public string @Type { get; set; }
+    public string Filename { get; set; }
+    public string Raw_Url { get; set; }
+    public string Language { get; set; }
+    public string Size { get; set; }
+}
+
+```しかし、これでも Raw_Url のようにアンダーバーが残ってしまう。 Snake Case を勝手に Pascal Case のフィールド・プロパティへ割り当ててくれないかなぁ、とほのかに期待していたのだけれど、そこまではやってくれないみたい&lt;a href=&quot;#f-82a71e39&quot; name=&quot;fn-82a71e39&quot; title=&quot;Ruby on Rails ならやってくれただろう&quot;&gt;*4&lt;/a&gt;。そんなときは、 JasonProperty 属性を利用すればよいようだ。
+```cs
+public class File
+{
+    public string @Type { get; set; }
+    public string Filename { get; set; }
+    [JsonProperty(&quot;raw_url&quot;)]
+    public string RawUrl { get; set; }
+    public string Language { get; set; }
+    public string Size { get; set; }
+}
+
+```それだけ。
+&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-1abcc75c&quot; name=&quot;f-1abcc75c&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&lt;/span&gt;
+&lt;a href=&quot;#fn-1fd0fe34&quot; name=&quot;f-1fd0fe34&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&lt;/span&gt;
+&lt;a href=&quot;#fn-2b14458a&quot; name=&quot;f-2b14458a&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ドキュメント読めよ&lt;/span&gt;
+&lt;a href=&quot;#fn-82a71e39&quot; name=&quot;f-82a71e39&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Ruby on Rails ならやってくれただろう&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-07-25T20:32:23JST">2012/07/25</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%a4%b1%e6%95%97%e3%81%ae%e6%95%b0%e3%81%a0%e3%81%91%e5%bc%b7%e3%81%8f%e3%81%aa%e3%82%8a%e3%81%9f%e3%81%84%ef%bc%88%20Jason.NET%20%e3%81%ab%e3%81%a4%e3%81%84%e3%81%a6%e3%81%ae%e8%a3%9c%e8%b6%b3%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/07/25/203223/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%A4%B1%E6%95%97%E3%81%AE%E6%95%B0%E3%81%A0%E3%81%91%E5%BC%B7%E3%81%8F%E3%81%AA%E3%82%8A%E3%81%9F%E3%81%84%EF%BC%88&#43;Jason.NET&#43;%E3%81%AB%E3%81%A4%E3%81%84%E3%81%A6%E3%81%AE%E8%A3%9C%E8%B6%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F07%2F25%2F203223%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/26/074416/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/07/25/090416/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

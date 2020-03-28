@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+  <channel>
+    <title>OneDrive on だるやなぎ</title>
+    <link>http://daruyanagi.net/tags/onedrive/</link>
+    <description>Recent content in OneDrive on だるやなぎ</description>
+    <generator>Hugo -- gohugo.io</generator>
+    <language>ja-jp</language>
+    <lastBuildDate>Tue, 12 Mar 2019 11:25:30 +0000</lastBuildDate>
+    
+	<atom:link href="http://daruyanagi.net/tags/onedrive/index.xml" rel="self" type="application/rss+xml" />
+    
+    
+    <item>
+      <title>特定条件下で OneDrive が同期されなくなる</title>
+      <link>http://daruyanagi.net/entry/2019/03/12/112530/</link>
+      <pubDate>Tue, 12 Mar 2019 11:25:30 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2019/03/12/112530/</guid>
+      <description>  ここ最近、OneDrive をしばらく使っているとファイルが同期されなくなる問題に悩まされていた。当初は発生条件がわからず、困っていた。
+ OS の起動後、ある程度時間が経過すると発生するようだが、発生するまでに要する時間に一定性はない（経過時間ではなく、特定の操作がトリガーになってる？） 問題が発生した後も、他のフォルダーでは問題なく同期できたりする（OneDrive デスクトップクライアントそのものが落ちているわけではない） 同期の停止、再開をしても問題は解消しない OS を再起動すると問題は解消される ちなみに、ファイルが同期されなくなるとインジケーターアイコンは“同期中”のままになる。エクスプローラーのステータスバーには“同期保留中”と表示される。  OneDrive デスクトップクライアントでは変更が検出されない（よって、アップロードもダウンロードも行われない）。数日、いろいろ試してみたが、どうやらファイルをリネームすると  リネームファイルのあるフォルダー およびそのサブフォルダー の変更が追跡されなくなるようだ。うちの環境では特定のフォルダーをほかのユーザーと共有してファイルをやり取りしているが、その共有フォルダーで変更の追跡が行われなくなる≒同期が行われなくなると、先方と当方で異なるバージョンのファイルを見ていて話がかみ合わなくなったり、いろいろ弊害が多い。とりあえず「共有フォルダーではリネーム処理を行わない」という運用で回避している。フィードバックはしたけれど、日本語が不自由で、Microsoft にちゃんと伝わっているかわからない。まぁ、自分以外にも報告者はいるだろうから、そのうち直るとは思う。手元のバージョンは以下の通り。 &amp;gt; **Version 19.012.0121.0011 (Released March 1, 2019)**  Bug fix to improve reliability of the client.
+ OneDrive release notes - Office Support  ### 2019/02/23 追記 直ってる気がする。  </description>
+    </item>
+    
+    <item>
+      <title>OneDrive sync client 19.012.0121.0009</title>
+      <link>http://daruyanagi.net/entry/2019/02/26/110247/</link>
+      <pubDate>Tue, 26 Feb 2019 11:02:47 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2019/02/26/110247/</guid>
+      <description>ファイルのコンテキストメニューに［OneDrive に移動］コマンドが追加された。実行するとファイルが OneDrive のルートフォルダーに移動し、「エクスプローラー」が起動する。  あんまり使わない気もするけど、あるに越したことはないって感じかな？
+&amp;gt; **Version 19.012.0121.0009 (Released February 22, 2019)**  Bug fixes to improve reliability and performance of the client. New features gradually rolling out to users:
+Users can now use the &amp;ldquo;Move to OneDrive&amp;rdquo; context menu option to move files into their OneDrive folder.
+ New OneDrive sync client release notes - Office Support  あと、先月末、地味に v18 → v19 へメジャーバージョンアップしてるけど、機能的にはあまり変わってなさそう。2019年リリースってだけか。</description>
+    </item>
+    
+    <item>
+      <title>日記：OneDrive で画像のサムネイルが表示されなくなった → なぜか直った</title>
+      <link>http://daruyanagi.net/entry/2018/03/20/180000/</link>
+      <pubDate>Tue, 20 Mar 2018 18:00:00 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2018/03/20/180000/</guid>
+      <description>先日から OneDrive のスクリーンショットフォルダーで画像のサムネイルが表示されなくなって困っていた。このフォルダーは %USERPROFILE%¥Pictures¥Screenshots のシンボリックリンクで、［Windows］＋［Print Screen］キーなどで保存したスクリーンショットを複数デバイスで同期する。当初は単にサムネイルキャッシュが壊れているのかと思ったのだけど、よく観察してみると
+ 保存直後～同期中はサムネイルが表示される 同期が完了すると、サムネイルが表示されなくなる 他の非 OneDrive フォルダーではサムネイルが表示される OneDrive とそのほかのフォルダーでファイルを移動させていると、ときどきサムネイルが有効になる場合がある（リネームした場合？） などとよくわからないことになっている。下記リンクの Q＆A が手元の状況に近かったので、これを参考に修復を試み―― [OneDriveの写真サムネイルが表示されない](https://answers.microsoft.com/ja-jp/onedrive/forum/odwork-odtags-sdmac/onedriveの写真サ/c63c89a0-6d0d-4bee-af9e-e6f5d30206a1)[OneDriveの画像サムネイルについて](https://answers.microsoft.com/ja-jp/onedrive/forum/odwork-odfiles-sdwin10/onedriveの画像サ/ff9c5ad4-40e7-4cb9-836c-f9b12ae10b45)――ようと思ったのだけど、見た感じめんどくさそう……。とりあえず、一番簡単そうなサポートページの手順に従ってみた。[OneDrive の同期に関する問題を解決する](https://support.office.com/ja-jp/article/OneDrive-の同期に関する問題を解決する-83ab0d8a-8400-45b0-8dcf-dc8aa8a6bcf8) &amp;gt; それでも OneDrive が起動しない場合は、OneDrive の最新バージョンをダウンロードし、インストールします。 https://onedrive.live.com/about/download/OneDrive のセットアップが開始されたら、OneDrive アカウントを入力し、[サインイン] を選んでアカウントを設定します。    アカウントを設定すると“OneDrive”フォルダーが開くだけで、とくに何かが変わった様子もない。不具合も解消されていなかった。  ところが、別件の不具合で Windows を再起動したところ、いつの間にか直っていた。もしかしたら、シェルのリロードが必要だったのかもしれない。もともと Windows の再起動で直る問題だったのか（基本的に用がなければ OS の再起動はしないので、それは十分あり得る）、OneDrive の最新版ダウンロード＆実行が奏功したしたのか、そのあとに再起動したのがよかったのか、イマイチさっぱりわからないのだけど、とりあえず直ってよかった。サムネイルで中身がみられるのとみられないのとでは作業効率に大きな違いが出る。</description>
+    </item>
+    
+    <item>
+      <title>OneDrive の新しいユーザーインターフェイス</title>
+      <link>http://daruyanagi.net/entry/2017/01/03/133831/</link>
+      <pubDate>Tue, 03 Jan 2017 13:38:31 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2017/01/03/133831/</guid>
+      <description>12月中に更新がきて（早い人はもっと早かったのかもしれない）、OneDrive のアクティビティセンター（って呼ぶのだそうな）が新しくなっていた。
+&amp;gt; ### Version 17.3.6720.1207 (Released December 14, 2016) #### New features and updates:  The OneDrive activity center has been improved for vision-impaired users. Added support for Office 365 operated by 21Vianet.
+### Version 17.3.6674.1021 (Released November 10, 2016) #### New features and updates:  Added support for Office 365 Germany. (Rolling out) The OneDrive activity center has been updated to provide information on recent activity.</description>
+    </item>
+    
+    <item>
+      <title>OneDrive を強制的に再起動・同期させる</title>
+      <link>http://daruyanagi.net/entry/2015/11/28/161908/</link>
+      <pubDate>Sat, 28 Nov 2015 16:19:08 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2015/11/28/161908/</guid>
+      <description>  諸事情あって OneDrive と Dropbox を併用しているのだけど、どうも OneDrive の同期がたまにとまるので、バッチ書いてみた。
+@echo off taskkill /f /im onedrive.exe start %USERPROFILE%\AppData\Local\Microsoft\OneDrive\OneDrive.exe /background ```今のところ問題はない気がする。 </description>
+    </item>
+    
+    <item>
+      <title>OneDrive の 15GB ボーナスで 25GB → 40GB になったった</title>
+      <link>http://daruyanagi.net/entry/2014/09/21/061819/</link>
+      <pubDate>Sun, 21 Sep 2014 06:18:19 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2014/09/21/061819/</guid>
+      <description>    iOS 版の「OneDrive」で“カメラ バックアップ”機能を有効化すると 3GB のボーナスが得られるが、これが9月末までの期間限定で 15GB へ増量されているらしい（iOS 以外のプラットフォームでも“カメラ バックアップ”機能を有効化すれば同様の特典が得られる）。自分の環境だと、ボーナスの案内画面では 3GB と表示されたが、実際には 15GB 増えている。ウチの OneDrive はもともと 25GB あったので、合計 40GB になった。The Verge によると、これは空き容量不足で iOS 8 へアップデートできないユーザーに対する救済措置なのだそうだ。Microsoft plays on iOS 8 issues by doubling free OneDrive space to 30GBiOS 8 はアップデートに空き容量を 5.7GB 要求する。16GB モデルだと全体の 35％ をフリーにしておかなければならなくなる計算だが、これはかなり厳しい制限だと思う*1。Hey iPhone Users…You Can Now Get 30 GB of Free Storage with OneDrive! | OneDrive Blog
+*1:自分は一度初期化してアップデートした  </description>
+    </item>
+    
+    <item>
+      <title>OneDrive のアップデート</title>
+      <link>http://daruyanagi.net/entry/2014/06/11/195111/</link>
+      <pubDate>Wed, 11 Jun 2014 19:51:11 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2014/06/11/195111/</guid>
+      <description>  &amp;gt;6/10付で公開されているWindows 8.1のupdate rollupにOneDriveのUpdateが含まれてて、それを当てたらタスクトレイのアイコンから同期のオン、オフが可能になった。MicrosoftさんGJ！
+http://t.co/DmFOrtvs0s— Kazuki Kasahara (@KazukiKasahara) 2014, 6月 11  使用前。  使用後。    設定ダイアログは新設になるのかな？　見た覚えがない気がする。［OneDrive の容量］は PC 設定の“OneDrive”画面に飛ばされるだけ。  一応、これまでも OneDrive フォルダーのコンテキストメニューから同期の一時停止はできたっぽいのだけど、タスクトレイからできるほうが便利だよね。わざわざエクスプローラーを起動せずに済むし。なお、更新プログラムの適用には再起動が必要。“重要”ではなく“オプション”として提供されている。
+#### 追記   タスクトレイアイコンをクリックするとパネルが出てくる。以前は“OneDrive”フォルダーが開く仕組みだった。  </description>
+    </item>
+    
+    <item>
+      <title>SkyDrive……じゃなくて、OneDrive を手動で同期させる</title>
+      <link>http://daruyanagi.net/entry/2014/02/28/094611/</link>
+      <pubDate>Fri, 28 Feb 2014 09:46:11 +0000</pubDate>
+      
+      <guid>http://daruyanagi.net/entry/2014/02/28/094611/</guid>
+      <description>ストアアプリを起動して画面右上のリンクをクリック。  ［同期］ボタンを押す。  SkyDrive……じゃなくて、OneDrive にファイルの変更がないかチェックされる。  変更があれば同期が始まるはず。  アップロード中のフォルダ（↑アイコン）、ダウンロード中のフォルダ（↓アイコン）、同期されたフォルダ（雲とコンピュータのアイコン）。オンラインで利用するフォルダーにはアイコンがつかない。ちなみに、うちの環境だとまだ SkyDrive って表示されてるんだけど……引っ越しで昨日やっと PC をセットアップできたところなので、この2週間程度の間に公開された Update とかあてていけば OneDrive になるのかな。SkyDrive の名前が変わるというのでちょっと心配していたのだけど、そんなにダサい名前じゃなくて安心した。</description>
+    </item>
+    
+  </channel>
+</rss>

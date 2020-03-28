@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/12/11/085125/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix 2：ASP.NET と PHP | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="前回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる*1。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。
+ データベースと連携できる ほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる*2 Web サイト共通の部分（パラメーターやデザイン）が一元管理できる 状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン） 世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている*3。空のフォルダーから作成した Web サイト でも簡単に利用できる。 ### ASP.NET（C#）*4   拡張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“**Razor**”と呼ばれるシンプルな構文で記述できる。 ```cs @{ var s = &#34;Hello! World&#34;; // 追加 } &lt;!DOCTYPE html&gt;
+&lt;html lang=&quot;en&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; @s &lt;!&ndash; 追加 &ndash;&gt; &lt;/body&gt; &lt;/html&gt;" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/php/">PHP</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/12/11/085125/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix 2：ASP.NET と PHP</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/12/11</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/12/07/125835">WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ</a>）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる<a href="#f-5619c126" name="fn-5619c126" title="クライアントサイドの場合は、JavaScript でやるよね！">*1</a>。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。</p>
+<ul>
+<li>データベースと連携できる</li>
+<li>ほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる<a href="#f-dbae782a" name="fn-dbae782a" title="いわゆるマッシュアップ">*2</a></li>
+<li>Web サイト共通の部分（パラメーターやデザイン）が一元管理できる</li>
+<li>状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン）</li>
+</ul>世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている<a href="#f-af9dfc05" name="fn-af9dfc05" title="node.js も利用できるのだけど、ちょっと理由があって今回は省いている">*3</a>。空のフォルダーから作成した Web サイト でも簡単に利用できる。
+<div class="section">
+    ### ASP.NET（C#）*4
+    <figure>
+    <img src="/images/2012/12/11/085125/20121211081503.png"/> 
+</figure>
+拡張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“**Razor**”と呼ばれるシンプルな構文で記述できる。
+```cs
+@{
+    var s = "Hello! World"; // 追加
+}
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=&quot;en&quot;&gt;
+&lt;head&gt;
+&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@s &lt;!&ndash; 追加 &ndash;&gt;
+&lt;/body&gt;
+&lt;/html&gt;</p>
+<pre><code class="language-<figure>
+    <img src="/images/2012/12/11/085125/20121211082320.png"/> 
+</figure>
+拡張子を省略してもアクセスできる。" data-lang="<figure>
+    <img src="/images/2012/12/11/085125/20121211082320.png"/> 
+</figure>
+拡張子を省略してもアクセスできる。">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### PHP: Hypertext Preprocessor
+    <figure>
+    <img src="/images/2012/12/11/085125/20121211082442.png"/> 
+</figure>
+拡張子は“.php”。おそらくもっともポピュラーなサーバーサイドプログラミング言語。
+```php
+&lt;!--?php--&gt;
+    $s = &quot;Hello! World&quot;; // 追加
+?&gt;
+
+
+&amp;lt;html lang=&quot;en&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &lt;!--?php--&gt; echo($s); ?&gt; &lt;!-- 追加 --&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```<figure>
+    <img src="/images/2012/12/11/085125/20121211082528.png"/> 
+</figure>
+&lt;br/&gt;
+
+
+&lt;div class=&quot;section&quot;&gt;
+    #### PHP を利用するには
+    「WebMatrix 2」で PHP を利用するには追加のコンポーネントが必要。<figure>
+    <img src="/images/2012/12/11/085125/20121211082852.png"/> 
+</figure>
+まず、［サイト］タブの［設定］画面を開き、“PHP を有効にする”をチェック。<figure>
+    <img src="/images/2012/12/11/085125/20121211082949.png"/> 
+</figure>
+すると、「PHP 5.4.8 for IIS Express」がインストールされる。<figure>
+    <img src="/images/2012/12/11/085125/20121211083024.png"/> 
+</figure>
+<figure>
+    <img src="/images/2012/12/11/085125/20121211083028.png"/> 
+</figure>
+<figure>
+    <img src="/images/2012/12/11/085125/20121211083032.png"/> 
+</figure>
+セットアップはほとんど自動で行われる。
+
+&lt;/div&gt;
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### どちらを利用すべきか？
+    **なんなら混ぜて利用することもできる**ので、別にどっちでもよいのだけれど、これから Windows プラットフォームでサーバーサイドプログラミングを始めるならば、ASP.NET の方をお勧めしたい。後発であるがゆえのさまざまなメリットがある。
+
+&lt;ul&gt;
+&lt;li&gt;構文がシンプル&lt;/li&gt;
+&lt;li&gt;言語レベルでのセキュリティ設計で一日の長がある&lt;/li&gt;
+&lt;li&gt;C# が利用できる。この知識は Web プログラミング以外にも活用できる&lt;/li&gt;
+&lt;/ul&gt;PHP の方が優れている面も、もちろんある。
+
+&lt;ul&gt;
+&lt;li&gt;Windows / IIS 以外の環境でも動作する&lt;/li&gt;
+&lt;li&gt;動作実績が豊富でサンプルも多く、学習が容易&lt;/li&gt;
+&lt;li&gt;Razor より少しだけ速いらしい&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-5619c126&quot; name=&quot;f-5619c126&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;クライアントサイドの場合は、JavaScript でやるよね！&lt;/span&gt;
+&lt;a href=&quot;#fn-dbae782a&quot; name=&quot;f-dbae782a&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;いわゆるマッシュアップ&lt;/span&gt;
+&lt;a href=&quot;#fn-af9dfc05&quot; name=&quot;f-af9dfc05&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;node.js も利用できるのだけど、ちょっと理由があって今回は省いている&lt;/span&gt;
+&lt;a href=&quot;#fn-b6e12467&quot; name=&quot;f-b6e12467&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Visual Basic も利用できる&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-12-11T08:51:25JST">2012/12/11</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aASP.NET%20%e3%81%a8%20PHP%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/12/11/085125/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9AASP.NET&#43;%E3%81%A8&#43;PHP&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F12%2F11%2F085125%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/12/15/142304/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/12/11/074148/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/08/16/211610/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WinRT | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  
+&gt; COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。    なんかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
+protected void OnPropertyChanged([CallerMemberName] string propertyName = null) { var eventHandler = this.PropertyChanged; if (eventHandler != null) { eventHandler(this, new PropertyChangedEventArgs(propertyName)); } } ```ここで InvalidCastException が出る……。&lt;a href=&#34;http://okazuki.hatenablog.com/entries/2012/10/13&#34;&gt;かずきのBlog@hatena&lt;/a&gt; ともちょっと違うのだけど、どうせ似たような原因だと思う。 &gt; 結果として別スレッドでコレクションを操作したため、エラーになるというWPFやSilverlightなどでおなじみのエラーパターンと同じでした。それにしても、何故InvalidCastExceptionなのだ！！ いろいろ試してみたが、結局、自分の場合は Visual Studio でデバッグ実行しているときだけ発生することが判明（？）。共有のテストをするときはデバッグ実行したアプリを終了してから行うという手段で回避できた。いつか根本的に解決できるようになりたいです（小並 " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/winrt/">WinRT</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/08/16/211610/" >
+                    <h1 class="entry__header-title-link-text">WinRT</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/08/16</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/08/16/211610/20140816205113.png"/> 
+</figure>
+<br/></p>
+<pre><code>&gt;
+    COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。
+</code></pre>
+<p><figure>
+    <img src="/images/2014/08/16/211610/20140816210519.png"/> 
+</figure>
+なんかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> OnPropertyChanged([CallerMemberName] <span style="color:#66d9ef">string</span> propertyName = <span style="color:#66d9ef">null</span>)
+{
+    <span style="color:#66d9ef">var</span> eventHandler = <span style="color:#66d9ef">this</span>.PropertyChanged;
+    <span style="color:#66d9ef">if</span> (eventHandler != <span style="color:#66d9ef">null</span>)
+    {
+        eventHandler(<span style="color:#66d9ef">this</span>, <span style="color:#66d9ef">new</span> PropertyChangedEventArgs(propertyName));
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```ここで</span> InvalidCastException <span style="color:#960050;background-color:#1e0010">が出る……。</span>&lt;a href=<span style="color:#e6db74">&#34;http://okazuki.hatenablog.com/entries/2012/10/13&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">かずきの</span>Blog@hatena&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">ともちょっと違うのだけど、どうせ似たような原因だと思う。</span>
+
+    &gt;
+        <span style="color:#960050;background-color:#1e0010">結果として別スレッドでコレクションを操作したため、エラーになるという</span>WPFやSilverlightなどでおなじみのエラーパターンと同じでした<span style="color:#960050;background-color:#1e0010">。それにしても、何故</span>InvalidCastExceptionなのだ<span style="color:#960050;background-color:#1e0010">！！</span>
+
+    
+<span style="color:#960050;background-color:#1e0010">いろいろ試してみたが、結局、自分の場合は</span> Visual Studio <span style="color:#960050;background-color:#1e0010">でデバッグ実行しているときだけ発生することが判明（？）。共有のテストをするときはデバッグ実行したアプリを終了してから行うという手段で回避できた。いつか根本的に解決できるようになりたいです（小並</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-08-16T21:16:10JST">2014/08/16</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/08/16/211610/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F08%2F16%2F211610%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/16/214851/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/08/13/222321/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

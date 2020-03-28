@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/11/03/184149/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            引数で匿名型を受け取る | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。
+public static string Wrap(this string source, string element) { return string.Format(&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;, source, element); } ```たとえば、 ```cs &#34;これを強調してぇ&#34;.Wrap(&#34;strong&#34;) ```で ```html &amp;lt;strong&gt;これを強調してぇ&amp;lt;/strong&gt; ```が得られる。でも、どうせなら class 属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。 ```cs public static bool IsNullOrEmpty(this string source) { return string.IsNullOrEmpty(source); } public static string Wrap( this string source, string element, string @class = null) { return @class.IsNullOrEmpty() ? string.Format(&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;, source, element) : string.Format(&#34;&amp;lt;{1} class=\&#34;{2}\&#34;&gt;{0}&lt;!--{1}--&gt;&#34;, source, element, @class); } ```こうすると、 ```cs &#34;これを強調してぇ&#34;.Wrap(&#34;span&#34;, &#34;label label-warning&#34;) ```で ```html &amp;lt;span class=&#34;label label-warning&#34;&gt;これを強調してぇ&amp;lt;/span&gt; ```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。 ```cs public static string Join(this IEnumerable&amp;lt;string&gt; source, string delimitter) { return string." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/11/03/184149/" >
+                    <h1 class="entry__header-title-link-text">引数で匿名型を受け取る</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/11/03</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p>string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element)
+{
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element);
+}
+
+<span style="color:#960050;background-color:#1e0010">```たとえば、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#e6db74">&#34;これを強調してぇ&#34;</span>.Wrap(<span style="color:#e6db74">&#34;strong&#34;</span>)
+
+<span style="color:#960050;background-color:#1e0010">```で</span>
+<span style="color:#960050;background-color:#1e0010">```</span>html
+&amp;lt;strong&gt;<span style="color:#960050;background-color:#1e0010">これを強調してぇ</span>&amp;lt;/strong&gt;
+
+<span style="color:#960050;background-color:#1e0010">```が得られる。でも、どうせなら</span> <span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsNullOrEmpty(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source)
+{
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.IsNullOrEmpty(source);
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(
+    <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element, <span style="color:#66d9ef">string</span> @class = <span style="color:#66d9ef">null</span>)
+{
+    <span style="color:#66d9ef">return</span> @class.IsNullOrEmpty()
+        ? <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element)
+        : <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1} class=\&#34;{2}\&#34;&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element, @class);
+}
+
+<span style="color:#960050;background-color:#1e0010">```こうすると、</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#e6db74">&#34;これを強調してぇ&#34;</span>.Wrap(<span style="color:#e6db74">&#34;span&#34;</span>, <span style="color:#e6db74">&#34;label label-warning&#34;</span>)
+
+<span style="color:#960050;background-color:#1e0010">```で</span>
+<span style="color:#960050;background-color:#1e0010">```</span>html
+&amp;lt;span class=<span style="color:#e6db74">&#34;label label-warning&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">これを強調してぇ</span>&amp;lt;/span&gt;
+
+<span style="color:#960050;background-color:#1e0010">```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Join(<span style="color:#66d9ef">this</span> IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt; source, <span style="color:#66d9ef">string</span> delimitter)
+{
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Join(delimitter, source);
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(
+    <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element, <span style="color:#66d9ef">object</span> attributes)
+{
+    <span style="color:#66d9ef">var</span> text = attributes.GetType().GetProperties().Select(_ =&gt;
+    {
+        <span style="color:#66d9ef">var</span> name = _.Name;
+        <span style="color:#66d9ef">var</span> <span style="color:#66d9ef">value</span> = _.GetValue(attributes, <span style="color:#66d9ef">null</span>).ToString();
+
+        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">value</span>.IsNullOrEmpty())
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Empty;
+        <span style="color:#66d9ef">else</span>
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}=\&#34;{1}\&#34;&#34;</span>, name, <span style="color:#66d9ef">value</span>);
+    })
+    .Where(_ =&gt; !_.IsNullOrEmpty())
+    .Join(<span style="color:#e6db74">&#34; &#34;</span>);
+
+    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1} {2}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element, text);
+}
+
+<span style="color:#960050;background-color:#1e0010">```（</span>Select() <span style="color:#960050;background-color:#1e0010">のなかで</span> <span style="color:#66d9ef">continue</span> <span style="color:#960050;background-color:#1e0010">使えたら</span> Where() <span style="color:#960050;background-color:#1e0010">要らないのになぁ）こんな感じで使える。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#75715e">// a タグで囲う
+</span><span style="color:#75715e"></span>title.Wrap(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#66d9ef">new</span> { href = source, title = title, });
+
+<span style="color:#960050;background-color:#1e0010">```</span>GetType() <span style="color:#960050;background-color:#1e0010">した後どうすればいいんだ、と思って、</span>MSDN <span style="color:#960050;background-color:#1e0010">を彷徨ってしまった。</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-11-03T18:41:49JST">2014/11/03</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%bc%95%e6%95%b0%e3%81%a7%e5%8c%bf%e5%90%8d%e5%9e%8b%e3%82%92%e5%8f%97%e3%81%91%e5%8f%96%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/11/03/184149/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%BC%95%E6%95%B0%E3%81%A7%E5%8C%BF%E5%90%8D%E5%9E%8B%E3%82%92%E5%8F%97%E3%81%91%E5%8F%96%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F11%2F03%2F184149%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/11/04/000945/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/10/29/040210/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

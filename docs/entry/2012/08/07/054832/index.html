@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2012/08/07/054832/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="Razor 構文を使用する ASP.NET Web Pages は web framework および WebMatrix の一部で、Windows を使用した Web サイトの構築で必要なすべてが含まれます。 Download: Razor 構文を使用する ASP.NET Web Pages - Microsoft Download Center - Download Details  WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたいなぁ、と思うのだけれど、どうするのが正しいのかよくわからない。自分なりのテンプレみたいなのがほしいんだけれどね。
+### 設定の共通化 まず、 Web サイト全体の設定は一元管理したい。たぶん、これは“_AppStart.cshtml”に記述するのが正しいのだろう。 ```cs @{ App.Title = &#34;daruyanagi.net&#34;; App.Author = &#34;daruyanagi&#34;; App.Language = &#34;ja&#34;; App.Encoding = &#34;utf-8&#34;; App.Copyright = &#34;Copyright © 2012 daruyanagi. All rights reserved.&#34;; App.Description = &#34;This is the web site of Hidetoshi Yanagi a." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2012/08/07/054832/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2012/08/07</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <blockquote>
+</blockquote>
+<pre><code>    Razor 構文を使用する ASP.NET Web Pages は web framework および WebMatrix の一部で、Windows を使用した Web サイトの構築で必要なすべてが含まれます。
+
+    
+Download: Razor 構文を使用する ASP.NET Web Pages - Microsoft Download Center - Download Details
+</code></pre>
+<p>WebMatrix + ASP.NET Web Pages でキレイにコーディングしたいなぁ、と思うのだけれど、どうするのが正しいのかよくわからない。自分なりのテンプレみたいなのがほしいんだけれどね。</p>
+<div class="section">
+    ### 設定の共通化
+    まず、 Web サイト全体の設定は一元管理したい。たぶん、これは“_AppStart.cshtml”に記述するのが正しいのだろう。
+```cs
+@{
+    App.Title = "daruyanagi.net";
+    App.Author = "daruyanagi";
+    App.Language = "ja";
+    App.Encoding = "utf-8";
+    App.Copyright = "Copyright © 2012 daruyanagi. All rights reserved.";
+    App.Description = "This is the web site of Hidetoshi Yanagi a.k.a. daruyanagi.";
+    App.Keyword = "daruyanagi";
+}
+<pre><code class="language-これでも十分に簡素だけれど、設定ファイルやデータベースからロードできるようにすればもっとクールかもしれない。<img" data-lang="これでも十分に簡素だけれど、設定ファイルやデータベースからロードできるようにすればもっとクールかもしれない。<img">```cs
+@{ 
+    AppState[&quot;customAppName&quot;] = &quot;Application Name&quot;; 
+} 
+
+```ほんとは AppState というのを使うっぽいけど、まぁ、いいや。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### レイアウトの共通化
+    つぎは、 Web サイトのデザインの共通化。 HTML 5 でレイアウトファイル（“~/Views/Shared/_Layout.cshtml”）記述して、 jQuery / Modernizr / html5.js あたりのスクリプトをロードしておくのがモダンなやり方というものだろう。あと、リセット CSS で一度スタイルをリセットし、そのあとに独自の CSS を充てるようにした。ブラウザー幅によってデザインを変更するレスポンシブな部分を担当する CSS を切り分ければ、より一層メンテナンス性は上がるかも。ただ、あんまりファイル数は多くしたくないな。
+```html
+@{
+    App.Title = App.Title ?? &quot;Untitled Application&quot;;
+    App.Language = App.Language ?? &quot;en&quot;;
+    App.Encoding = App.Encoding ?? &quot;utf-8&quot;;
+    Page.Title = Page.Title ?? &quot;Untitled Page&quot;;
+}
+
+
+&amp;lt;html lang=&quot;@App.Language&quot;&gt;
+    &amp;lt;head&gt;
+        &amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;
+        
+        &amp;lt;meta charset=&quot;@App.Encoding&quot; /&gt;
+        &amp;lt;meta name=&quot;description&quot; content=&quot;@App.Description&quot;&gt;
+        &amp;lt;meta name=&quot;keywords&quot; content=&quot;@App.Keyword&quot;&gt;
+        &amp;lt;meta name=&quot;author&quot; content=&quot;@App.Author&quot;&gt;
+        &amp;lt;meta name=&quot;copyright&quot; content=&quot;@App.Copyright&quot;&gt;
+        &amp;lt;meta name=&quot;genarator&quot; content=&quot;Microsoft WebMatrix 2.0&quot;&gt;
+        &amp;lt;meta name=&quot;viewport&quot;
+              content=&quot;width=device-width,initial-scale=1&quot;&gt;
+
+        &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Reset.css&quot; /&gt;
+        &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Site.css&quot; /&gt;
+        
+        &lt;!--[if lt IE 9]&gt;--&gt;
+        &lt;script src=&quot;http://html5shiv.googlecode.com/svn/trunk/html5.js&quot;&gt;&lt;/script&gt;
+        &lt;!--[endif]----&gt;
+
+        &amp;lt;script src=&quot;http://code.jquery.com/jquery-latest.js&quot;&gt;&amp;lt;/script&gt;
+        &amp;lt;script src=&quot;http://www.modernizr.com/downloads/modernizr-latest.js&quot;&gt;&amp;lt;/script&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;header id=&quot;site-header&quot;&gt;
+@RenderPage(&quot;_Header.cshtml&quot;)    
+        &amp;lt;/header&gt;
+
+        &amp;lt;nav id=&quot;site-nav&quot;&gt;
+@RenderPage(&quot;_Navigation.cshtml&quot;)    
+        &amp;lt;/nav&gt;
+        
+        &amp;lt;div id=&quot;site-content&quot;&gt;
+            &amp;lt;article id=&quot;site-body&quot;&gt;
+@RenderBody()           
+            &amp;lt;/article&gt;
+            &amp;lt;aside id=&quot;site-sidebar&quot;&gt;
+@RenderPage(&quot;_SideBar.cshtml&quot;)    
+            &amp;lt;/aside&gt;
+        &amp;lt;/div&gt;
+
+        &amp;lt;footer id=&quot;site-footer&quot;&gt;
+@RenderPage(&quot;_Footer.cshtml&quot;)    
+        &amp;lt;/footer&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+```冒頭は、“_AppStart.cshtml”で Title などを指定し忘れたときに、最低限のパラメータを指定しておくコード。今まで気づかなかったのだけれど、&amp;lt;meta name=&quot;author&quot; content=&quot;@App.Author&quot;&gt; で @App.Author が null だと、 content 属性は出力されず、 &amp;lt;meta name=&quot;author&quot;&gt; だけが出力されるんだね。なかなか頭いいな。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120807/20120807042822.png&quot; alt=&quot;f:id:daruyanagi:20120807042822p:plain&quot; title=&quot;f:id:daruyanagi:20120807042822p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;ヘッダーやナビゲーション、サイドバー、フッターは外部ファイルに追い出した。ここらへんは「分割し、統治せよ（divide et impera）」&lt;a href=&quot;#f2&quot; name=&quot;fn2&quot; title=&quot;http://www.kitashirakawa.jp/taro/2011/05/divide-et-impera/&quot;&gt;*2&lt;/a&gt;ってやつですな。
+```html
+@{
+    Layout = &quot;~/Views/Shared/_Layout.cshtml&quot;;
+
+    Page.Title = &quot;Default&quot;;
+}
+&amp;lt;p&gt;Web ページの内容。&amp;lt;/p&gt;
+
+```あとは、こんな感じで @RenderBody() でレンダリングする内容を記述すればいいというわけ。ページ固有のデータは、 dynamic 型の変数 Page に格納しておくことができる。
+</code></pre><p>@{
+PageData[&ldquo;Color1&rdquo;] = &ldquo;Red&rdquo;;
+PageData[&ldquo;Color2&rdquo;] = &ldquo;Blue&rdquo;;
+}</p>
+<pre><code class="language-PageData" data-lang="PageData">
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### これからの目標
+    今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。あと、 @RenderPage(&quot;_Footer.cshtml&quot;)  は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。汎用的な部分はガンガン外に追い出して、再利用できるといい。
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
+    ### まとめ
+    ASP.NET MVC はとてもすばらしい技術だと思うけれど、素人に毛の生えたレベルではどうもデカ過ぎる。その点、 ASP.NET Web Pages はちょうどいい。大規模なサービスを作ろうと思うとすぐぐちゃぐちゃになって破綻するけれど（そんな場合は MVC パターンの力を借りるべきだ）、“Template.html”をひたすらコピペして新しい記事を作るような個人サイトならば、 ASP.NET Web Pages で十分なんだ。サーバーを IIS にして、拡張子を html から cshtml にするだけでいい。たったこれだけで、 C# ＋ Razor を使ってキレイにコーディングできる。今から覚えるんだったら、 PHP より C# ＋ Razor のほうが簡潔かつ安全でいいと思うし。ドキュメントは、とりあえずこれを読んどけばいい。わしも全部は読んでないけれど、これの紙バージョンをもっていてたまに読んでいる。お盆休み中に、また復習してみようと思う。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/asp.net/gg193039&quot;&gt;Razor 構文と ASP.NET Web ページ&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;あとは、しばやんのやる気を待つしかない。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20110714/1310652120&quot;&gt;PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;また、おいおい Razor に関しては備忘録をかねて書いていきたいと思うかも。
+
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;WebPageExecutingBase は The base class for all Plan9 files (_pagestart, _appstart, and regular pages) らしいのだけれど、 Plan9 ってなんぞ。今度調べよう&lt;/span&gt;
+&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;http://www.kitashirakawa.jp/taro/2011/05/divide-et-impera/&lt;/span&gt;
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2012-08-07T05:48:32JST">2012/08/07</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20&#43;%20ASP.NET%20Web%20Pages%20%e3%81%a7%e3%82%ad%e3%83%ac%e3%82%a4%e3%81%ab%e3%82%b3%e3%83%bc%e3%83%87%e3%82%a3%e3%83%b3%e3%82%b0%e3%81%97%e3%81%9f%e3%81%84%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/07/054832/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%2B&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%81%A7%E3%82%AD%E3%83%AC%E3%82%A4%E3%81%AB%E3%82%B3%E3%83%BC%E3%83%87%E3%82%A3%E3%83%B3%E3%82%B0%E3%81%97%E3%81%9F%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F07%2F054832%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/08/035745/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/06/223332/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

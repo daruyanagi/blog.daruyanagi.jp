@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2013/07/25/083857/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix によくある誤解を解いておこうかと思う | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="WebMatrixをインストールすると、IIS ExpressとSQL Serverが自動でインストールできたりとか、PHP for IISが入ってたりするから、Webサーバーが・・・とかデータベースが・・・とか、PHPが・・・とか言うことがないから2013-07-25 03:39:38 via Janetter これ、普通の一般の人には絶対におすすめできないわ・・・、開発するところも、公開するところもWindows系で統一されてないと、ドツボ踏むだけになるから、WebMatrix使う意味が待ったくねぇ・・・2013-07-25 03:44:08 via Janetter ってか、DBがSQL Server限定で、Web鯖がIISって・・・、WPをWebMatrix使って編集したとしても、実際の環境と違いすぎるからヤバ過ぎる・・・2013-07-25 03:41:56 via Janetterおそらく WordPress を設置もしくは編集しようとしているのだと思うけれど、こういった誤解はよくみかけるので、少し説明しておこうかと思う。 ### OS やサーバーなんてなんでもいい――スクリプト言語が動けば IISでも今はWordpress側でもちゃんと案内出てるし実際使ってて何も問題ないよ（・ω・）　URL2013-07-25 13:20:03 via web  アプリケーションやプラグインが OS やサーバー独自の機能を使っていたり、スクリプト言語が OS やサーバー固有の機能に依存していない限り、ローカルテストに使う OS やサーバーなんてなんでもイイんじゃないだろうか。たとえば、Apache でも nginx でも IIS でも、PHP は問題なく動作するし、挙動も同じはず*1。Windows の Apache と Linux の Apache はそんなに違うのか？　まぁ、細かい所でいろいろ違うところもあるんだろうけど、だいたい同じように動くはず。だったら、Windows 環境でわざわざ Apache だの nginx だのを用意しなくても、Windows と相性のよい IIS でいいじゃないか。リモートが LAMP 環境でもあまり問題になることはないよ。世に流布している PHP 関連の TIPS が Apache ベースであるせいか、「PHP を使うなら Apache でなければならない」という信仰が一部であるみたいだけれど、そんなものに根拠はない――まぁ、むかしは PHP がスレッドセーフじゃなかったせいで色々あったっぽいけど。この件については、以下の記事も参考にしてほしい。  なぜ、 IIS は PHP アプリケーションの実行に不向きとされてきたのか?" />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2013/07/25/083857/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix によくある誤解を解いておこうかと思う</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2013/07/25</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      WebMatrixをインストールすると、IIS ExpressとSQL Serverが自動でインストールできたりとか、PHP for IISが入ってたりするから、Webサーバーが・・・とかデータベースが・・・とか、PHPが・・・とか言うことがないから<a href="http://twitter.com/aWebprogrammer/status/360107018729693184" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:39:38</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div><br/>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      これ、普通の一般の人には絶対におすすめできないわ・・・、開発するところも、公開するところもWindows系で統一されてないと、ドツボ踏むだけになるから、WebMatrix使う意味が待ったくねぇ・・・<a href="http://twitter.com/aWebprogrammer/status/360108150982049792" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:44:08</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div><br/>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      ってか、DBがSQL Server限定で、Web鯖がIISって・・・、WPをWebMatrix使って編集したとしても、実際の環境と違いすぎるからヤバ過ぎる・・・<a href="http://twitter.com/aWebprogrammer/status/360107596654456834" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:41:56</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div>おそらく WordPress を設置もしくは編集しようとしているのだと思うけれど、こういった誤解はよくみかけるので、少し説明しておこうかと思う。
+<div class="section">
+    ### OS やサーバーなんてなんでもいい――スクリプト言語が動けば
+    <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/coddledegg"><img src="http://a0.twimg.com/profile_images/924030448/hanjuku_normal.jpg" alt="coddledegg" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      IISでも今はWordpress側でもちゃんと案内出てるし実際使ってて何も問題ないよ（・ω・）　<a class="twitter-tweet-url" href="http://t.co/V0Glp4ZCRd" target="_top"><span>URL</span></a><a href="http://twitter.com/coddledegg/status/360253085756563458" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">13:20:03</span></a> <span class="twitter-detail-info-source">via web</span></div></div><figure>
+    <img src="/images/2013/07/25/083857/20130725080019.png"/> 
+</figure>
+アプリケーションやプラグインが OS やサーバー独自の機能を使っていたり、スクリプト言語が OS やサーバー固有の機能に依存していない限り、ローカルテストに使う OS やサーバーなんてなんでもイイんじゃないだろうか。たとえば、Apache でも nginx でも IIS でも、PHP は問題なく動作するし、挙動も同じはず<a href="#f1" name="fn1" title="ただし、設定ファイルはサーバーによって異なるので注意。あんまり自分でイジることもないと思うけれど。">*1</a>。Windows の Apache と Linux の Apache はそんなに違うのか？　まぁ、細かい所でいろいろ違うところもあるんだろうけど、だいたい同じように動くはず。だったら、Windows 環境でわざわざ Apache だの nginx だのを用意しなくても、Windows と相性のよい IIS でいいじゃないか。リモートが LAMP 環境でもあまり問題になることはないよ。世に流布している PHP 関連の TIPS が Apache ベースであるせいか、「PHP を使うなら Apache でなければならない」という信仰が一部であるみたいだけれど、そんなものに根拠はない――まぁ、むかしは PHP がスレッドセーフじゃなかったせいで色々あったっぽいけど。この件については、以下の記事も参考にしてほしい。
+<ul>
+<li><a href="http://blogs.msdn.com/b/osamum/archive/2011/04/05/iis-php.aspx">なぜ、 IIS は PHP アプリケーションの実行に不向きとされてきたのか? - monoe&#39;s blog - Site Home - MSDN Blogs</a></li>
+</ul>ちなみに WebMatrix が使うのは（通常） IIS Express という開発用の簡易サーバーで、とくになにかめんどくさい設定があるわけじゃない。管理もいらないし、常駐もしない。必要なときにサクッと起動して、不要なときはワンクリックで落とせる。Ruby on Rails でつかう WEBrick みたいなもんだと思えばイイかな。この開発サーバーだって厳密に言えば IIS じゃないけれど、挙動は変わらないし、別になんの問題もないでしょう？
+</div>
+<div class="section">
+    ### MySQL も使えます
+    <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/superriver"><img src="http://a0.twimg.com/profile_images/611413065/trooper_normal.jpg" alt="superriver" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      WebMatrixで普通にMySQL使えるはずだけど、何か勘違いされてるっぽい<a href="http://twitter.com/superriver/status/360162882182316032" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">07:21:37</span></a> <span class="twitter-detail-info-source">via web</span></div></div><figure>
+    <img src="/images/2013/07/25/083857/20130725075205.png"/> 
+</figure>
+「DBがSQL Server限定で」というのは完全に間違いで、MySQL も使える。<figure>
+    <img src="/images/2013/07/25/083857/20130725080318.png"/> 
+</figure>
+<a href="http://www.phpmyadmin.net/home_page/index.php">phpMyAdmin</a> など入れなくても、データベースの中身だってみることができる。べつに phpMyAdmin の方が好きだというのならば、インストールして使うことを止めはしないが。
+</div>
+<div class="section">
+    ### バージョンコントロールについて
+    <figure>
+    <img src="/images/2013/07/25/083857/20130717071742.png"/> 
+</figure>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      ぬぅ、WebMatrixでGit使うのはかなり無理があるな・・・、これ、普通にWebMatrixは使わないほうがいいんじゃ・・・・<a href="http://twitter.com/aWebprogrammer/status/360100152192671744" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:12:21</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div><br/>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      一応、Git for WebMatrixとかGitHub for WebMatrixとかって拡張機能あるけど、これ入れて何のメリットがあるんだ状態だな・・・・<a href="http://twitter.com/aWebprogrammer/status/360102446695055360" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:21:28</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div><br/>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      Git for WebMatrixでgit initかけるのはいいとして、コミット・プッシュ・プルは、まぁ、いけるとして、ツールバー的に微妙すぎる・・・<a href="http://twitter.com/aWebprogrammer/status/360102921049870337" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:23:21</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div><br/>
+<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/aWebprogrammer"><img src="http://a0.twimg.com/profile_images/1732418991/______normal.png" alt="aWebprogrammer" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      WebMatrixで使えるGitの拡張機能はオイラ的にまったく意味がなくて使えないって結論に至りました・・・<a href="http://twitter.com/aWebprogrammer/status/360103931231211520" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">03:27:22</span></a> <span class="twitter-detail-info-source">via <a href="http://janetter.net/" rel="nofollow">Janetter</a></span></div></div>まぁ、これに関してはそうなのかもしれない。自分はあんまり Git を使いこなせていないし、よくわからない。いつでもロールバックできるようにするだけなら、この程度のユーザーインターフェースで十分のような気もするけれど……。もし気に入らなければ、ほかのツールを使うこともできる。WebMatrix はエディタやデプロイツール（FTPクライアント）、プロジェクト管理、バージョン管理なんかの“最大公約数”をパッケージングして提供しているけれど、なにもそのすべてを使え、従えと言っているわけじゃない。実際、自分はよく Visual Studio で HTML/CSS 書いてる。サーバーはコマンドラインでも管理できる。アプリのインストールは Web Platform Installer でもいい。Git のクライアントは GitHub for Windows や SourceTree が代わりに使える。FTP は「FFFTP」でもなんでもいいんじゃないかな。ちなみに、**「Git for WebMatrix」**は WebMatrix で Git を扱うため内部的に使われている拡張機能で、ユーザーはとくに意識しなくてイイ。**「GitHub for WebMatrix」**は GitHub のプロジェクトを開く場合に使える。<figure>
+    <img src="/images/2013/07/25/083857/20130725081728.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/07/25/083857/20130725081802.png"/> 
+</figure>
+<figure>
+    <img src="/images/2013/07/25/083857/20130725082026.png"/> 
+</figure>
+こんな感じでリモートリポジトリを選んでクローンできる。この拡張機能でクローンしたプロジェクトは、設定レスでプッシュもできる。
+</div>
+<div class="section">
+    ### まとめ
+<ul>
+<li>スクリプトで書かれた LAMP アプリケーションを管理するのに、手元のテスト環境まで WAMP にする必要はない（かもしれない）</li>
+<li>WebMatrix はなんでも入っていて便利だけど、中途半端なところもないわけじゃないので、気に入らなければそこだけ別のツールを使ってもいいのよ？</li>
+<li>みんな XAMPP 好きだよね。めんどくさくね？</li>
+</ul>もし *AMP 環境にこだわるなら、別途 Linux の仮想マシン作ったほうがよさげ。Windows には Windows の流儀があるし、逆らってもあまりいいことはないかな。<div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/ishisaka"><img src="http://a0.twimg.com/profile_images/3775560338/5378087d372b783ac84a772d9128abfc_normal.jpeg" alt="ishisaka" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      まぁそんなに環境を気にするなら、はじめからLinuxで作業した方がいいよって事だね。WindwosはLinuxではないし、逆も然り。同じように使えないことが当たり前なんだ。ただ、WebMatrixほどあれこれ簡単にやってくれるツールをWindows以外の環境含めて俺は知らない<a href="http://twitter.com/ishisaka/status/360250808765399042" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-07-25</span> <span class="twitter-detail-info-time">13:11:00</span></a> <span class="twitter-detail-info-source">via <a href="http://www.tweetdeck.com" rel="nofollow">TweetDeck</a></span></div></div>
+</div><div class="footnote">
+<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ただし、設定ファイルはサーバーによって異なるので注意。あんまり自分でイジることもないと思うけれど。</span>
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2013-07-25T08:38:57JST">2013/07/25</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%ab%e3%82%88%e3%81%8f%e3%81%82%e3%82%8b%e8%aa%a4%e8%a7%a3%e3%82%92%e8%a7%a3%e3%81%84%e3%81%a6%e3%81%8a%e3%81%93%e3%81%86%e3%81%8b%e3%81%a8%e6%80%9d%e3%81%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/07/25/083857/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%AB%E3%82%88%E3%81%8F%E3%81%82%E3%82%8B%E8%AA%A4%E8%A7%A3%E3%82%92%E8%A7%A3%E3%81%84%E3%81%A6%E3%81%8A%E3%81%93%E3%81%86%E3%81%8B%E3%81%A8%E6%80%9D%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F07%2F25%2F083857%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/07/28/131947/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/07/25/071956/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

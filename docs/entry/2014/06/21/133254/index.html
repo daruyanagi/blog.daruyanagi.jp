@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/06/21/133254/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            オープン拡張辞書を Windows Runtime アプリで読み書きする（3） | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="オープン拡張辞書を Windows Runtime アプリで読み書きする（2） - だるろぐ の続き。今度は第二の方法「XDocument を使う」でやってみる。
+public static void Load(string path = @&#34;Assets\Sample.dctx&#34;) { var xml = XDocument.Load(Path.Combine(Package.Current.InstalledLocation.Path, path)); XNamespace ns1 = &#34;http://www.microsoft.com/ime/dctx&#34;; var header = xml.Root.Element(ns1 &#43; &#34;DictionaryHeader&#34;); dictionary.DictionaryGuid = header.Element(ns1 &#43; &#34;DictionaryGUID&#34;).Value; dictionary.DictionaryLanguage = header.Element(ns1 &#43; &#34;DictionaryLanguage&#34;).Value; dictionary.DictionaryVersion = header.Element(ns1 &#43; &#34;DictionaryVersion&#34;).Value; dictionary.DictionaryInfo = header.Elements(ns1 &#43; &#34;DictionaryInfo&#34;) .ToDictionary( _ =&gt; _.Attribute(&#34;Language&#34;).Value, _ =&gt; new OpenExtendedDictionaryInfo() { ShortName = _.Element(ns1 &#43; &#34;ShortName&#34;).Value, LongName = _.Element(ns1 &#43; &#34;LongName&#34;).Value, Description = _." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/06/21/133254/" >
+                    <h1 class="entry__header-title-link-text">オープン拡張辞書を Windows Runtime アプリで読み書きする（3）</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/06/21</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><a href="https://blog.daruyanagi.jp/entry/2014/06/20/160824">オープン拡張辞書を Windows Runtime アプリで読み書きする（2） - だるろぐ</a> の続き。今度は第二の方法「XDocument を使う」でやってみる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Load(<span style="color:#66d9ef">string</span> path = <span style="color:#e6db74">@&#34;Assets\Sample.dctx&#34;</span>)
+{
+    <span style="color:#66d9ef">var</span> xml = XDocument.Load(Path.Combine(Package.Current.InstalledLocation.Path, path));
+    XNamespace ns1 = <span style="color:#e6db74">&#34;http://www.microsoft.com/ime/dctx&#34;</span>;
+
+    <span style="color:#66d9ef">var</span> header = xml.Root.Element(ns1 + <span style="color:#e6db74">&#34;DictionaryHeader&#34;</span>);
+    dictionary.DictionaryGuid = header.Element(ns1 + <span style="color:#e6db74">&#34;DictionaryGUID&#34;</span>).Value;
+    dictionary.DictionaryLanguage = header.Element(ns1 + <span style="color:#e6db74">&#34;DictionaryLanguage&#34;</span>).Value;
+    dictionary.DictionaryVersion = header.Element(ns1 + <span style="color:#e6db74">&#34;DictionaryVersion&#34;</span>).Value;
+    dictionary.DictionaryInfo = header.Elements(ns1 + <span style="color:#e6db74">&#34;DictionaryInfo&#34;</span>)
+        .ToDictionary(
+            _ =&gt; _.Attribute(<span style="color:#e6db74">&#34;Language&#34;</span>).Value, 
+            _ =&gt; <span style="color:#66d9ef">new</span> OpenExtendedDictionaryInfo()
+            {
+                ShortName = _.Element(ns1 + <span style="color:#e6db74">&#34;ShortName&#34;</span>).Value,
+                LongName = _.Element(ns1 + <span style="color:#e6db74">&#34;LongName&#34;</span>).Value,
+                Description = _.Element(ns1 + <span style="color:#e6db74">&#34;Description&#34;</span>).Value,
+                Copyright = _.Element(ns1 + <span style="color:#e6db74">&#34;Copyright&#34;</span>).Value,
+            }
+        );
+
+    dictionary.DictionaryEntries = xml.Root.Elements(ns1 + <span style="color:#e6db74">&#34;DictionaryEntry&#34;</span>)
+        .Select(_ =&gt; <span style="color:#66d9ef">new</span> OpenExtendedDictionaryEntry
+        {
+            PartOfSpeech = _.Element(ns1 + <span style="color:#e6db74">&#34;PartOfSpeech&#34;</span>).Value,
+            OutputString = _.Element(ns1 + <span style="color:#e6db74">&#34;OutputString&#34;</span>).Value,
+            InputString = _.Element(ns1 + <span style="color:#e6db74">&#34;InputString&#34;</span>).Value,
+            Priority = _.Element(ns1 + <span style="color:#e6db74">&#34;Priority&#34;</span>).Value.AsInt(),
+            ReverseConversion = _.Element(ns1 + <span style="color:#e6db74">&#34;ReverseConversion&#34;</span>).Value.AsBool(),
+            CommonWord = _.Element(ns1 + <span style="color:#e6db74">&#34;CommonWord&#34;</span>).Value.AsBool(),
+        })
+        .ToList();
+}
+
+<span style="color:#960050;background-color:#1e0010">```個人的には</span> &lt;code&gt;XNamespace ns1 = <span style="color:#e6db74">&#34;http://www.microsoft.com/ime/dctx&#34;</span>;&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">や</span> &lt;code&gt;xml.Root.Element(ns1 + <span style="color:#e6db74">&#34;DictionaryHeader&#34;</span>)&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">みたいなコードが気持ち悪いのだけど、</span>XDocument <span style="color:#960050;background-color:#1e0010">では</span> Namespace <span style="color:#960050;background-color:#1e0010">をこうやって扱うってことで割り切るしかない。それ以外は割りとすっきりかけたので、</span>DictionaruInfo <span style="color:#960050;background-color:#1e0010">たちは</span> Dictionary&amp;lt;<span style="color:#e6db74">&#34;ローケール文字列&#34;</span>, DictionaryIndo&gt; <span style="color:#960050;background-color:#1e0010">で管理するように書き換えてある。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenExtendedDictionary</span>
+{
+    <span style="color:#66d9ef">public</span> OpenExtendedDictionary()
+    {
+        DictionaryInfo = <span style="color:#66d9ef">new</span> Dictionary&amp;lt;<span style="color:#66d9ef">string</span>,OpenExtendedDictionaryInfo&gt;();
+        DictionaryEntries = <span style="color:#66d9ef">new</span> List&amp;lt;OpenExtendedDictionaryEntry&gt;();
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> DictionaryGuid { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> DictionaryLanguage { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> DictionaryVersion { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> CommentInsertion { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> Dictionary&amp;lt;<span style="color:#66d9ef">string</span>, OpenExtendedDictionaryInfo&gt; DictionaryInfo { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> List&amp;lt;OpenExtendedDictionaryEntry&gt; DictionaryEntries { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenExtendedDictionaryInfo</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> ShortName { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> LongName { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Description { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Copyright { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">OpenExtendedDictionaryEntry</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> PartOfSpeech { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> OutputString { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> InputString { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">int</span> Priority { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> ReverseConversion { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> CommonWord { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
+}
+
+<span style="color:#960050;background-color:#1e0010">```あと、</span>ASP.NET WebPages <span style="color:#960050;background-color:#1e0010">みたいな</span> .As***() <span style="color:#960050;background-color:#1e0010">系の拡張メソッドが好きなので、別途作っておいた。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ObjectExtentions</span>
+{
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> AsString(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">object</span> input, <span style="color:#66d9ef">string</span> defaultValue = <span style="color:#e6db74">&#34;&#34;</span>)
+    {
+        <span style="color:#66d9ef">try</span>
+        {
+            <span style="color:#66d9ef">return</span> input.ToString();
+        }
+        <span style="color:#66d9ef">catch</span>
+        {
+            <span style="color:#66d9ef">return</span> defaultValue;
+        }
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> AsBool(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">object</span> input, <span style="color:#66d9ef">bool</span> defaultValue = <span style="color:#66d9ef">false</span>)
+    {
+        <span style="color:#66d9ef">try</span>
+        {
+            <span style="color:#66d9ef">return</span> Boolean.Parse(input.ToString());
+        }
+        <span style="color:#66d9ef">catch</span>
+        {
+            <span style="color:#66d9ef">return</span> defaultValue;
+        }
+    }
+
+    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> AsInt(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">object</span> input, <span style="color:#66d9ef">int</span> defaultValue = <span style="color:#ae81ff">0</span>)
+    {
+        <span style="color:#66d9ef">try</span>
+        {
+            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">int</span>.Parse(input.ToString());
+        }
+        <span style="color:#66d9ef">catch</span>
+        {
+            <span style="color:#66d9ef">return</span> defaultValue;
+        }
+    }
+}
+
+<span style="color:#960050;background-color:#1e0010">```別に</span> Windows Runtime <span style="color:#960050;background-color:#1e0010">関係なくなってきたな。第三の手段、バインディングはやり方まったくわからないしめんどくさそうなので、今回は第二の手段をとることとし、今度は保存してみることにする。</span>
+
+
+</code></pre></div>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-06-21T13:32:54JST">2014/06/21</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%82%aa%e3%83%bc%e3%83%97%e3%83%b3%e6%8b%a1%e5%bc%b5%e8%be%9e%e6%9b%b8%e3%82%92%20Windows%20Runtime%20%e3%82%a2%e3%83%97%e3%83%aa%e3%81%a7%e8%aa%ad%e3%81%bf%e6%9b%b8%e3%81%8d%e3%81%99%e3%82%8b%ef%bc%883%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/06/21/133254/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%82%AA%E3%83%BC%E3%83%97%E3%83%B3%E6%8B%A1%E5%BC%B5%E8%BE%9E%E6%9B%B8%E3%82%92&#43;Windows&#43;Runtime&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%81%A7%E8%AA%AD%E3%81%BF%E6%9B%B8%E3%81%8D%E3%81%99%E3%82%8B%EF%BC%883%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F21%2F133254%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/21/152642/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/20/160824/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

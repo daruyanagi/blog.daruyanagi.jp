@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2014/10/12/135537/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            winmd を参照していると ClickOnce で配置できない | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="  Mihari 1.0.0.0 - だるろぐ を ClickOnce で配置しようと思ったら、エラーが出てビルドできなくなった。
+&gt; マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;#39;…\Windows.winmd&amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。  ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。
+#### 解決策   ［アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。  Microsoft Connect is Retired - Collaborate | Microsoft Docs WindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。  " />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/clickonce/">ClickOnce</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2014/10/12/135537/" >
+                    <h1 class="entry__header-title-link-text">winmd を参照していると ClickOnce で配置できない</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2014/10/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2014/10/12/135537/20141012134634.png"/> 
+</figure>
+<a href="https://blog.daruyanagi.jp/entry/2014/10/12/133551">Mihari 1.0.0.0 - だるろぐ</a> を ClickOnce で配置しようと思ったら、エラーが出てビルドできなくなった。</p>
+<pre><code>&gt;
+    マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;#39;…\Windows.winmd&amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。
+</code></pre>
+<p>ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。</p>
+<div class="section">
+    #### 解決策
+    <figure>
+    <img src="/images/2014/10/12/135537/20141012134900.png"/> 
+</figure>
+［アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。
+<ul>
+<li><a href="https://connect.microsoft.com/VisualStudio/feedback/details/874199/clickonce-resolvemanifestfiles-task-failed-when-using-windows-runtime">Microsoft Connect is Retired - Collaborate | Microsoft Docs</a></li>
+</ul>WindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。
+</div>
+
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2014-10-12T13:55:37JST">2014/10/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?winmd%20%e3%82%92%e5%8f%82%e7%85%a7%e3%81%97%e3%81%a6%e3%81%84%e3%82%8b%e3%81%a8%20ClickOnce%20%e3%81%a7%e9%85%8d%e7%bd%ae%e3%81%a7%e3%81%8d%e3%81%aa%e3%81%84%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/10/12/135537/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=winmd&#43;%E3%82%92%E5%8F%82%E7%85%A7%E3%81%97%E3%81%A6%E3%81%84%E3%82%8B%E3%81%A8&#43;ClickOnce&#43;%E3%81%A7%E9%85%8D%E7%BD%AE%E3%81%A7%E3%81%8D%E3%81%AA%E3%81%84&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F10%2F12%2F135537%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/10/13/025303/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/10/12/133551/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

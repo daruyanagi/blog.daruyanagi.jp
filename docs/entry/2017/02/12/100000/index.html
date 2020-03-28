@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="ja">
+    <head>
+        <meta charset="UTF-8">
+        <base href="http://daruyanagi.net/" />
+        <link rel="canonical" href="http://daruyanagi.net/entry/2017/02/12/100000/" />
+
+        <meta name="viewport" content="width=device-width,initial-scale=1">
+
+        <title> 
+            WebMatrix とおさらばして、Visual Studio 2015 で ASP.NET Web Pages をはじめる | だるやなぎ
+        </title>
+
+        
+
+        
+            
+        
+
+        
+            <meta name="description" content="長年愛用してきた「WebMatrix」ですが、昨年10月に2017年11月1日 でのサポート終了がアナウンスされました。
+&gt; Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix. Formal support will end on November 1st, 2017. Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor! VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix team WebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums    すでにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS." />
+        
+
+        
+        
+        <link rel="stylesheet" href="css/style.css">
+
+    </head>
+    <body class="body">
+
+        <header class="global-header">
+            <h1><a href="/" >だるやなぎ</a></h1>
+
+<p>そうだ、だるだるしよう。</p>
+
+
+        </header>
+
+        <main>
+            
+    <article class="entry">
+
+        <div class="entry__header">
+            <div class="entry__header-taxonomies">
+                
+                
+                    <div class="entry__header-taxonomies-category">
+                        <span class="entry__header-taxonomies-category-title">
+                            <a class="entry__header-taxonomies-category-title-link" href="http://daruyanagi.net/entry/">
+                                Entries
+                            </a>
+                        </span>
+                    </div>
+                
+                
+                    <div class="entry__header-taxonomies-tags">
+                        <ul class="entry__header-taxonomies-tags-list" >
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                    </li>
+                                
+                            
+                                
+                                
+                                    <li class="entry__header-taxonomies-tags-list-item">
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="http://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                    </li>
+                                
+                            
+                        </ul>
+                    </div>
+                
+            </div>
+
+            <div class="entry__header-title">
+                <a class="entry__header-title-link" href="http://daruyanagi.net/entry/2017/02/12/100000/" >
+                    <h1 class="entry__header-title-link-text">WebMatrix とおさらばして、Visual Studio 2015 で ASP.NET Web Pages をはじめる</h1>
+                </a>
+            </div>
+
+            <div class="entry__header-date">
+                <P>公開日：<time>2017/02/12</time>
+                </P>
+            </div>
+
+        </div>
+        <div class="entry__content">
+            <p><figure>
+    <img src="/images/2017/02/12/100000/20170212020533.png"/> 
+</figure>
+長年愛用してきた「WebMatrix」ですが、昨年10月に2017年11月1日 でのサポート終了がアナウンスされました。</p>
+<pre><code>&gt;
+    Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix.  Formal support will end on November 1st, 2017.  Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor!  VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix team
+
+    WebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums
+</code></pre>
+<p><figure>
+    <img src="/images/2017/02/12/100000/20170212020959.png"/> 
+</figure>
+すでにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS.NET Web Pages を使うならば、当面の間は「Visual Studio 2015」が一番楽かなーって感じです。</p>
+<div class="section">
+    ### 1. 「Visual Studio 2015」で ASP.NET プロジェクトを作成
+    <figure>
+    <img src="/images/2017/02/12/100000/20170212021454.png"/> 
+</figure>
+まず「Visual Studio 2015」で ASP.NET プロジェクトを作成します。<figure>
+    <img src="/images/2017/02/12/100000/20170212021543.png"/> 
+</figure>
+プロジェクトタイプは“Empty”でよいです。というか、「WebMatrix」でいうところのスターターテンプレートの類は「Visual Studio」に用意されていないので、“Empty”が無難な気がします。
+</div>
+<div class="section">
+    ### 2. プロジェクトに Razor ページを追加
+    <figure>
+    <img src="/images/2017/02/12/100000/20170212021735.png"/> 
+</figure>
+このテンプレートは本当にほぼ空なので、プロジェクトのコンテキストメニューなどから Web ページ（Razor）を追加する必要があります。<figure>
+    <img src="/images/2017/02/12/100000/20170212021905.png"/> 
+</figure>
+“Razor”などのキーワードで探すと簡単。いろいろあるけど、わかんなかった“Web ページ（Razor v3）”でいいと思います。<figure>
+    <img src="/images/2017/02/12/100000/20170212022148.png"/> 
+</figure>
+最初のページを追加すると、ASP.NET Web Pages に必要な参照が勝手に追加されます。すごーい！
+</div>
+<div class="section">
+    ### 3. ［F5］キーを押して実行
+    とりあえずなんか書いて実行してみましょう。
+```cs
+&lt;!DOCTYPE html>
+@{ 
+    var message = "Hello! World";
+}
+&lt;html>
+    &lt;head>
+        &lt;title>&lt;/title>
+    &lt;/head>
+    &lt;body>
+        &lt;p>@message&lt;/p>
+    &lt;/body>
+&lt;/html>
+<pre><code class="language-［F5］キーを押すとサーバー＆ブラウザーが立ち上がります。<figure>
+    <img src="/images/2017/02/12/100000/20170212022322.png"/> 
+</figure>
+message" data-lang="［F5］キーを押すとサーバー＆ブラウザーが立ち上がります。<figure>
+    <img src="/images/2017/02/12/100000/20170212022322.png"/> 
+</figure>
+message">
+&lt;/div&gt;
+
+</code></pre>
+        </div>
+        <div class="entry__footer">
+            <div class="entry__footer-date">
+                
+                更新日：<time
+                    datetime="2017-02-12T10:00:00JST">2017/02/12</time>
+                
+                </P>
+            </div>
+
+            <div class="entry__footer-buttons">
+                
+                <span class="entry__footer-share">
+                    
+                    
+                        
+                    
+                    
+                    <ul>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-hatebu">hatena</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-twitter">twitter</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-facebook">facebook</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-get-pocket">pocket</i>
+                        </a></li>
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a8%e3%81%8a%e3%81%95%e3%82%89%e3%81%b0%e3%81%97%e3%81%a6%e3%80%81Visual%20Studio%202015%20%e3%81%a7%20ASP.NET%20Web%20Pages%20%e3%82%92%e3%81%af%e3%81%98%e3%82%81%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/02/12/100000/" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-line">line</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-reddit">reddit</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fab fa-linkedin-in">linkedin</i>
+                        </a></li>
+                        
+                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A8%E3%81%8A%E3%81%95%E3%82%89%E3%81%B0%E3%81%97%E3%81%A6%E3%80%81Visual&#43;Studio&#43;2015&#43;%E3%81%A7&#43;ASP.NET&#43;Web&#43;Pages&#43;%E3%82%92%E3%81%AF%E3%81%98%E3%82%81%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F02%2F12%2F100000%2F" target="_blank" rel="noopener noreferrer">
+                            <i class="fas fa-thumbtack">pinboard</i>
+                        </a></li>
+                    </ul>
+                </span>
+            </div>
+            
+            <div class="entry__footer-buttons">
+                <span class="entry__footer-prev">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/02/12/200000/">&laquo; prev</a> 
+                </span>
+                <span class="entry__footer-next">
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/02/11/200000/">次 &raquo; </a> 
+                </span>
+            </div>
+        </div>
+
+    </article>
+
+        </main>
+
+        <footer class="global-footer">
+            <p>&copy; 2020 daruyanagi.</p>
+
+        </footer>
+    </body>
+</html>

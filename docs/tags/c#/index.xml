@@ -2,169 +2,169 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>C# on だるやなぎ</title>
-    <link>http://daruyanagi.net/tags/c#/</link>
+    <link>https://daruyanagi.net/tags/c#/</link>
     <description>Recent content in C# on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sat, 09 Jun 2018 16:35:00 +0000</lastBuildDate>
     
-	<atom:link href="http://daruyanagi.net/tags/c#/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://daruyanagi.net/tags/c#/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>UWP：FullTrustProcessLauncher で起動したプログラムに引数を渡す</title>
-      <link>http://daruyanagi.net/entry/2018/06/09/163500/</link>
+      <link>https://daruyanagi.net/entry/2018/06/09/163500/</link>
       <pubDate>Sat, 09 Jun 2018 16:35:00 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2018/06/09/163500/</guid>
+      <guid>https://daruyanagi.net/entry/2018/06/09/163500/</guid>
       <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
 &amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34; &amp;gt; &amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt; Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt; &amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt; &amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34; Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt; &amp;amp;lt;desktop:FullTrustProcess&amp;gt; &amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt; &amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Active&amp;#34; Parameters=&amp;#34;/a&amp;#34;/&amp;gt; &amp;amp;lt;/desktop:FullTrustProcess&amp;gt; &amp;amp;lt;/desktop:Extension&amp;gt; ```それを使えばいいみたい。 ```cs private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) { await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&amp;#34;Desktop&amp;#34;); } ```これをコンソールアプリで受けてみると、こんな感じになった。 ```cs namespace Yakitori.Console { class Program { static void Main(string[] args) { foreach (var arg in args) { System.Console.WriteLine(arg); } System.Console.ReadKey(); } } } ```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。  </description>
     </item>
     
     <item>
       <title>WPF ＋ PhantomJS で Web ページの内容を取得してみる</title>
-      <link>http://daruyanagi.net/entry/2017/03/21/195845/</link>
+      <link>https://daruyanagi.net/entry/2017/03/21/195845/</link>
       <pubDate>Tue, 21 Mar 2017 19:58:45 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/21/195845/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/21/195845/</guid>
       <description>「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。
 ### PhantomJS とは ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。  http://phantomjs.org/ スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。  ### 使い方 まず NuGet で PhantomJS をとってきます。  すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。  次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。 ```javascript console.log(&amp;#39;Hello, world!&amp;#39;); phantom.exit(); ```cs public MainWindow() { InitializeComponent(); Loaded += MainWindow_Loaded; } private void MainWindow_Loaded(object sender, RoutedEventArgs e) { var result = ProcessScript(&amp;quot;hello.js&amp;quot;); System.Diagnostics.Debug.WriteLine(result); } private string ProcessScript(string script, params string[] args) { using (var process = new System.</description>
     </item>
     
     <item>
       <title>Visual Studio 2017 で Windows サービスを作った</title>
-      <link>http://daruyanagi.net/entry/2017/03/10/214227/</link>
+      <link>https://daruyanagi.net/entry/2017/03/10/214227/</link>
       <pubDate>Fri, 10 Mar 2017 21:42:27 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/10/214227/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/10/214227/</guid>
       <description>まぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
 ### 今回の目標 実行ファイルが書き換わったら、トーストで通知してほしい。  ### プロジェクトを作成する   ［テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。  次に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。  すると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。  ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで） DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした） Description：システム内で EXE ファイルが変更されるのを監視します StartType：Automatic（これでたぶん自動実行されるはず） 最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。  ### サービスの登録とデバッグ   このままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。  まず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。  Debug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。 ``` ********************************************************************** ** Visual Studio 2017 Developer Command Prompt v15.</description>
     </item>
     
     <item>
       <title>UWP：はてなの oAuth 認証</title>
-      <link>http://daruyanagi.net/entry/2016/09/19/224430/</link>
+      <link>https://daruyanagi.net/entry/2016/09/19/224430/</link>
       <pubDate>Mon, 19 Sep 2016 22:44:30 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2016/09/19/224430/</guid>
+      <guid>https://daruyanagi.net/entry/2016/09/19/224430/</guid>
       <description>プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
 ### AsyncOAuth を導入する さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。  neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。 ```cs var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret); var callbackUri = &#34;http://localhost/&#34;; var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
     </item>
     
     <item>
       <title>C#：非同期なイベント？</title>
-      <link>http://daruyanagi.net/entry/2016/09/15/123548/</link>
+      <link>https://daruyanagi.net/entry/2016/09/15/123548/</link>
       <pubDate>Thu, 15 Sep 2016 12:35:48 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2016/09/15/123548/</guid>
+      <guid>https://daruyanagi.net/entry/2016/09/15/123548/</guid>
       <description>たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。
 public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled += (sender, reason) =&amp;gt; { Hoge(); }; } ```イベントハンドラ内で非同期コードがある場合は、こんな感じになる。 ```cs public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled += async (sender, reason) =&amp;gt; { await Hoge(); }; } ```async/await を付け足すだけなので、そんなに難しくはない。次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。非同期じゃない場合はこんな感じ。 ```cs public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled += taskInstanceCanceled; } private void taskInstanceCanceled( IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason) { Hoge(); ： ： } ```これをさっきみたいに非同期にすると、 ```cs public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled += taskInstanceCanceled; // taskInstance.Canceled += async taskInstanceCanceled; } private async Task taskInstanceCanceled( IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason) { await Hoge(); ： ： } ```になると思うんだけど、 ```cs taskInstance.</description>
     </item>
     
     <item>
       <title>引数で匿名型を受け取る</title>
-      <link>http://daruyanagi.net/entry/2014/11/03/184149/</link>
+      <link>https://daruyanagi.net/entry/2014/11/03/184149/</link>
       <pubDate>Mon, 03 Nov 2014 18:41:49 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2014/11/03/184149/</guid>
+      <guid>https://daruyanagi.net/entry/2014/11/03/184149/</guid>
       <description>string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。
 public static string Wrap(this string source, string element) { return string.Format(&amp;#34;&amp;amp;lt;{1}&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element); } ```たとえば、 ```cs &amp;#34;これを強調してぇ&amp;#34;.Wrap(&amp;#34;strong&amp;#34;) ```で ```html &amp;amp;lt;strong&amp;gt;これを強調してぇ&amp;amp;lt;/strong&amp;gt; ```が得られる。でも、どうせなら class 属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。 ```cs public static bool IsNullOrEmpty(this string source) { return string.IsNullOrEmpty(source); } public static string Wrap( this string source, string element, string @class = null) { return @class.IsNullOrEmpty() ? string.Format(&amp;#34;&amp;amp;lt;{1}&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element) : string.Format(&amp;#34;&amp;amp;lt;{1} class=\&amp;#34;{2}\&amp;#34;&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element, @class); } ```こうすると、 ```cs &amp;#34;これを強調してぇ&amp;#34;.Wrap(&amp;#34;span&amp;#34;, &amp;#34;label label-warning&amp;#34;) ```で ```html &amp;amp;lt;span class=&amp;#34;label label-warning&amp;#34;&amp;gt;これを強調してぇ&amp;amp;lt;/span&amp;gt; ```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。 ```cs public static string Join(this IEnumerable&amp;amp;lt;string&amp;gt; source, string delimitter) { return string.</description>
     </item>
     
     <item>
       <title>VirusTotal API を使ってみる</title>
-      <link>http://daruyanagi.net/entry/2014/10/24/025219/</link>
+      <link>https://daruyanagi.net/entry/2014/10/24/025219/</link>
       <pubDate>Fri, 24 Oct 2014 02:52:19 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2014/10/24/025219/</guid>
+      <guid>https://daruyanagi.net/entry/2014/10/24/025219/</guid>
       <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
 ### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。  ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&amp;lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;</description>
     </item>
     
     <item>
       <title>Windows Store Apps：Cookie を取得して、ログインが必要なページを閲覧する（はてなフォトライフ）</title>
-      <link>http://daruyanagi.net/entry/2013/05/01/031148/</link>
+      <link>https://daruyanagi.net/entry/2013/05/01/031148/</link>
       <pubDate>Wed, 01 May 2013 03:11:48 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/05/01/031148/</guid>
+      <guid>https://daruyanagi.net/entry/2013/05/01/031148/</guid>
       <description>さてはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ*1、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。</description>
     </item>
     
     <item>
       <title>Widows Store Apps</title>
-      <link>http://daruyanagi.net/entry/2013/04/30/190004/</link>
+      <link>https://daruyanagi.net/entry/2013/04/30/190004/</link>
       <pubDate>Tue, 30 Apr 2013 19:00:04 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/04/30/190004/</guid>
+      <guid>https://daruyanagi.net/entry/2013/04/30/190004/</guid>
       <description>Surface RT（Windows RT）で“はてなブログ”を書くのが微妙にめんどくさいので、“はてなフォトライフ”のクライアントでも作ろうかと思い、@kanaharu ちゃんのブログ（はてなフォトライフに画像をアップロードするプログラムをC#で実装してみた - kanaharu.cpp）を参考にしながら WSSE 認証を実装してみた。</description>
     </item>
     
     <item>
       <title>--&amp;gt; 演算子</title>
-      <link>http://daruyanagi.net/entry/2013/02/26/210221/</link>
+      <link>https://daruyanagi.net/entry/2013/02/26/210221/</link>
       <pubDate>Tue, 26 Feb 2013 21:02:21 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/02/26/210221/</guid>
+      <guid>https://daruyanagi.net/entry/2013/02/26/210221/</guid>
       <description>C++ で新しい演算子“&amp;ndash;&amp;gt;” が採用されたそうだが、これは C# ですでに利用可能である。この演算子は、左辺の変数を右辺値まで 1 ずつ減算する。
 @{ int x = 10; } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @do { &amp;amp;lt;p&amp;gt;@x&amp;amp;lt;/p&amp;gt; } while(x --&amp;gt; 0); &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```筆者の趣味により、コードは Razor で示した。結果は以下の通り。  from: &amp;lt;a href=&amp;#34;http://stackoverflow.com/questions/1642028/what-is-the-name-of-this-operator&amp;#34;&amp;gt;c++ - What is the name of this operator: &amp;#34;--&amp;gt;&amp;#34;? - Stack Overflow&amp;lt;/a&amp;gt; , via &amp;lt;a href=&amp;#34;http://siv3d.hateblo.jp/entry/2013/02/19/232040&amp;#34;&amp;gt;--&amp;gt; 演算子 - Siv3D 開発ブログ&amp;lt;/a&amp;gt; </description>
     </item>
     
     <item>
       <title>意図が明確なコード</title>
-      <link>http://daruyanagi.net/entry/2013/02/26/205208/</link>
+      <link>https://daruyanagi.net/entry/2013/02/26/205208/</link>
       <pubDate>Tue, 26 Feb 2013 20:52:08 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/02/26/205208/</guid>
+      <guid>https://daruyanagi.net/entry/2013/02/26/205208/</guid>
       <description>WebMatrix 2: Markdown を汎用的に拡張する仕組みを考えてみる - だるろぐ でこんなコードを書いた。
 // 型名-型ディクショナリから、メソッド // (Type: p[0]).GetHtml(p[1], p[2]...) // をもつ HtmlHelper を探す var result = helper_table.FirstOrDefault(name =&amp;gt; { if (type_table.TryGetValue(name, out helper)) { args = p.Skip(1).ToArray(); method = helper.GetMethod( &amp;#34;GetHtml&amp;#34;, args.Select(_ =&amp;gt; _.GetType()).ToArray() ); } return method != null; }); // 見つからなかった場合は、既定の型・メソッドを利用する if (string.IsNullOrEmpty(result)) { helper = typeof(LinkHelper); args = p; method = helper.GetMethod( &amp;#34;GetHtml&amp;#34;, args.Select(_ =&amp;gt; _.GetType()).ToArray() ); } ```お詫びして訂正いたします。 ```cs // 型名-型ディクショナリから、メソッド // (Type: p[0]).</description>
     </item>
     
     <item>
       <title>Google Chart を使った数式ツールを作ってみた（3） </title>
-      <link>http://daruyanagi.net/entry/2013/01/17/065707/</link>
+      <link>https://daruyanagi.net/entry/2013/01/17/065707/</link>
       <pubDate>Thu, 17 Jan 2013 06:57:07 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/01/17/065707/</guid>
+      <guid>https://daruyanagi.net/entry/2013/01/17/065707/</guid>
       <description>&amp;gt; ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。 Google Chart を使った数式ツールを作ってみた（2） - だるろぐ  構文解析というか、対応する { と } をペアにして、その出現位置をメモる方向で考えてみた。括弧の種類が増えていけば破たんするけれど、とりあえず最初は動けばいいや。アルゴリズムは、
  テキストを先頭から一文字ずつ取り出して、 { だったら [i, ?] をリストに保存。（i は { の出現位置、? は } の位置を保存するプレースホルダ） } だったら最後の ? へ出現位置を保存。 これを文末まで繰り返す。 みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。たとえば、   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15   \ f r a c { \ f r a c { } { } }  だったら、   { の出現位置 （対応する）} の出現位置   5 15   11 12   13 14  こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、?</description>
     </item>
     
     <item>
       <title>Google Chart を使った数式ツールを作ってみた（2）</title>
-      <link>http://daruyanagi.net/entry/2013/01/15/210406/</link>
+      <link>https://daruyanagi.net/entry/2013/01/15/210406/</link>
       <pubDate>Tue, 15 Jan 2013 21:04:06 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/01/15/210406/</guid>
+      <guid>https://daruyanagi.net/entry/2013/01/15/210406/</guid>
       <description>Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
  数式テキストの新規作成・開く・保存 編集機能（切り取り・コピー・貼り付けなど） 数式イメージのファイル保存・クリップボードへコピー なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。 ```cs private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Tab) { e.Handled = true; // 握りつぶす！  var text = FormulaText.Text; int start = FormulaText.SelectionStart; int end = -1; FormulaText.SelectionLength = 0; if ((Keyboard.Modifiers &amp;amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift) { start = text.IndexOf(&amp;amp;#39;{&amp;amp;#39;, start); if (start &amp;amp;lt; 0) return; FormulaText.SelectionStart = start + 1; end = text.</description>
     </item>
     
     <item>
       <title>Google Chart を使った数式ツールを作ってみた</title>
-      <link>http://daruyanagi.net/entry/2013/01/14/221302/</link>
+      <link>https://daruyanagi.net/entry/2013/01/14/221302/</link>
       <pubDate>Mon, 14 Jan 2013 22:13:02 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/01/14/221302/</guid>
+      <guid>https://daruyanagi.net/entry/2013/01/14/221302/</guid>
       <description>晩御飯食べた後にさくっと作ってみた（参考：WebMatrix で数式を表現する（１） - だるろぐ）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。
  仮定 &#34;Assumption&#34; (A) モーダスポネンス &#34;Modus Ponendo Ponens&#34; (MPP) 二重否定 &#34;Double Negation&#34; (DN) 条件付き証明 &#34;Conditional Proof&#34; (CP) ∧-導入 &#34;∧-introduction&#34; (∧I) ∧-除去 &#34;∧-elimination&#34; (∧E) ∨-導入 &#34;∨-introduction&#34; (∨I) ∨-除去 &#34;∨-elimination&#34; (∨E) 背理法 &#34;Ad Absurdum&#34; (RAA) これぐらいしかないんだから覚えられるはず (;´Д｀) ```cs private void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e) { const string API = &#34;http://chart.apis.google.com/chart?cht={0}&amp;amp;chl={1}&#34;; var cht = &#34;tx&#34;; var chl = HttpUtility.UrlEncode(FormulaText.Text); var uri = new Uri(string.Format(API, cht, chl)); FormulaImage.Source = new BitmapImage(uri);  }</description>
     </item>
     
     <item>
       <title>WebMatrix 2：ASP.NET と PHP（2）</title>
-      <link>http://daruyanagi.net/entry/2012/12/27/070246/</link>
+      <link>https://daruyanagi.net/entry/2012/12/27/070246/</link>
       <pubDate>Thu, 27 Dec 2012 07:02:46 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/12/27/070246/</guid>
+      <guid>https://daruyanagi.net/entry/2012/12/27/070246/</guid>
       <description>WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。
 @Code Dim s = &amp;#34;Hello! World&amp;#34; &amp;amp;#39; 追加 End Code &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @s &amp;amp;lt;!-- 追加 --&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは &amp;lt;a href=&amp;#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&amp;#34;&amp;gt;VB Razor構文 基礎文法 総まとめ - ＠IT&amp;lt;/a&amp;gt; でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。あと、前回は言わなかったけれど &amp;amp;lt;% … %&amp;gt; という ASP.</description>
     </item>
     
     <item>
       <title>C# も神だった！　（もちろん、WebMatrix も神）</title>
-      <link>http://daruyanagi.net/entry/2012/10/31/194222/</link>
+      <link>https://daruyanagi.net/entry/2012/10/31/194222/</link>
       <pubDate>Wed, 31 Oct 2012 19:42:22 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/10/31/194222/</guid>
+      <guid>https://daruyanagi.net/entry/2012/10/31/194222/</guid>
       <description>0.1を10回足してみた。  PHPでの結果、１ JavaScriptでの結果、 0.9999999999999999 Pythonでの結果、0.9999999999999999 Rubyでの結果、1.0 Haskellでの結果0.9999999999999999 結論、PHPは神、その次、Ruby
  0.1を10回足してみた結果PHPが神と言う事が判明しました | WhiteHackerzBlog ハッカー養成学院 公式ブログ  何がいいたいのかよくわかんないのだけど、とりあえず C# で試してみた。
 using System; using System.Collections.Generic; using System.Linq; using System.Text; using System.Threading.Tasks; namespace ConsoleApplication1 { class Program { static void Main(string[] args) { Console.WriteLine(0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1 + 0.1); Console.ReadKey(); } } } ```&amp;lt;img src=&amp;#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121031/20121031193448.png&amp;#34; alt=&amp;#34;f:id:daruyanagi:20121031193448p:plain&amp;#34; title=&amp;#34;f:id:daruyanagi:20121031193448p:plain&amp;#34; class=&amp;#34;hatena-fotolife&amp;#34;/&amp;gt;結論、**C# も神**。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### おまけ &amp;lt;img src=&amp;#34;http://cdn-ak.</description>
@@ -172,78 +172,78 @@ using System; using System.Collections.Generic; using System.Linq; using System.
     
     <item>
       <title>寄り道</title>
-      <link>http://daruyanagi.net/entry/2012/08/28/081228/</link>
+      <link>https://daruyanagi.net/entry/2012/08/28/081228/</link>
       <pubDate>Tue, 28 Aug 2012 08:12:28 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/08/28/081228/</guid>
+      <guid>https://daruyanagi.net/entry/2012/08/28/081228/</guid>
       <description>WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ の脱線。個人的には
 &amp;amp;lt;fieldset&amp;gt; &amp;amp;lt;legend&amp;gt;Register Your Account&amp;amp;lt;/legend&amp;gt; @this.RenderTextWithValidation( &amp;#34;name&amp;#34;, &amp;#34;Name&amp;#34;, new { Value = name} ) @this.RenderPasswordWithValidation( &amp;#34;password&amp;#34;, &amp;#34;Password&amp;#34;) @this.RenderPasswordWithValidation( &amp;#34;confirmPassword&amp;#34;, &amp;#34;Confirm Password&amp;#34;) &amp;amp;lt;input type=&amp;#34;submit&amp;#34; value=&amp;#34;Register&amp;#34; /&amp;gt; &amp;amp;lt;/fieldset&amp;gt; ```って書くのがイケてない。「&amp;#34;password&amp;#34;, &amp;#34;Password&amp;#34;」だの、「&amp;#34;confirmPassword&amp;#34;, &amp;#34;Confirm Password&amp;#34;」だの、おんなじこと二回も書きたくないじゃん。あと、 HTML 要素の class や id は勝手にハイフン区切りにしてほしい。 Ruby on Rails にはソレ系のユーティリティが用意されているので楽なんだけどな（ActiveSupport）。まぁ、なければ作れって話だ。まず、あると便利な拡張メソッドを作っていく。先頭を大文字、後を小文字にする Capitalize() は欲しいよね。 ```cs public static string Capitalize(this string target) { return target.Length &amp;gt; 1 ? char.ToUpper(target[0]) + target.Substring(1, target.Length - 1).ToLower() : target.ToUpper(); } ```char.</description>
     </item>
     
     <item>
       <title>なぜ var d = new Dictionary&amp;lt;string, string&amp;gt; { { &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; }, { &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot; } } と書けるのか ―― コレクション初期化子</title>
-      <link>http://daruyanagi.net/entry/2012/08/23/000547/</link>
+      <link>https://daruyanagi.net/entry/2012/08/23/000547/</link>
       <pubDate>Thu, 23 Aug 2012 00:05:47 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/08/23/000547/</guid>
+      <guid>https://daruyanagi.net/entry/2012/08/23/000547/</guid>
       <description>Dictionary ってその場で初期化できるんだね。  private Dictionary&amp;lt;string, string=&amp;#34;&amp;#34;&amp;gt; AllowedFileType = new Dictionary&amp;lt;string, string=&amp;#34;&amp;#34;&amp;gt;() { { &amp;#34;image/jpeg&amp;#34;, &amp;#34;jpg&amp;#34; }, { &amp;#34;image/png&amp;#34; , &amp;#34;png&amp;#34; }, { &amp;#34;image/gif&amp;#34; , &amp;#34;gif&amp;#34; }, }; ```こっちのほうがいいや。 これまでのサンプルを NuGet パッケージにしてみました - だるろぐ &amp;lt;/string,&amp;gt;&amp;lt;/string,&amp;gt; 簡単に書けるのはとっても素晴らしいのだけれど、イマイチこうやって書ける理由がわからなかったので調べてみました。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### C# 3.0 のコレクション初期化子*1 とりあえず、基本となるコレクション初期化子（配列初期化子）の復習から。 &amp;gt; List は、次のように作成して初期化することができます。 ```cs var contacts = new List&amp;lt;contact&amp;gt; { new Contact { Name = &amp;#34;Chris Smith&amp;#34;, PhoneNumbers = { &amp;#34;206-555-0101&amp;#34;, &amp;#34;425-882-8080&amp;#34; } }, new Contact { Name = &amp;#34;Bob Harris&amp;#34;, PhoneNumbers = { &amp;#34;650-555-0199&amp;#34; } } }; ```これは、以下と同じ効果を持ちます。 ```cs var contacts = new List&amp;lt;contact&amp;gt;(); var __c1 = new Contact(); __c1.</description>
     </item>
     
     <item>
       <title>失敗の数だけ強くなりたい（ Jason.NET についての補足</title>
-      <link>http://daruyanagi.net/entry/2012/07/25/203223/</link>
+      <link>https://daruyanagi.net/entry/2012/07/25/203223/</link>
       <pubDate>Wed, 25 Jul 2012 20:32:23 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/07/25/203223/</guid>
+      <guid>https://daruyanagi.net/entry/2012/07/25/203223/</guid>
       <description>失敗の数だけ強くなりたい - だるろぐ の補足。
 &amp;quot;files&amp;quot;: { &amp;quot;close_duplicate_tab.js&amp;quot;: { &amp;quot;type&amp;quot;: &amp;quot;application/javascript&amp;quot;, &amp;quot;filename&amp;quot;: &amp;quot;close_duplicate_tab.js&amp;quot;, &amp;quot;raw_url&amp;quot;: &amp;quot;https://gist.github.com/raw/3175551/c7590ad8cfdd352150a8c845ff96fb9f30bd3a65/close_duplicate_tab.js&amp;quot;, &amp;quot;language&amp;quot;: &amp;quot;JavaScript&amp;quot;, &amp;quot;size&amp;quot;: 1465 } } ```この Json は Dictionary&amp;amp;lt;string, File&amp;gt; でうけることになるのだけど、 File を最初以下のとおりに定義していた。 ```cs public struct File { public string @type; public string filename; public string raw_url; public string language; public string size; } ```これでもいいのだけれど、フィールドはビューへバインディングできないのでプロパティにした、というのは前回に言った&amp;lt;a href=&amp;quot;#f-1abcc75c&amp;quot; name=&amp;quot;fn-1abcc75c&amp;quot; title=&amp;quot;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&amp;quot;&amp;gt;*1&amp;lt;/a&amp;gt;。 ```cs public struct File { public string @type { get; set; } public string filename { get; set; } public string raw_url { get; set; } public string language { get; set; } public string size { get; set; } } ```これでうまくいったのだけれど……うっかり struct を class にしてなかった。それでも動くんだな…… struct でもプロパティ持てるの？&amp;lt;a href=&amp;quot;#f-1fd0fe34&amp;quot; name=&amp;quot;fn-1fd0fe34&amp;quot; title=&amp;quot;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&amp;quot;&amp;gt;*2&amp;lt;/a&amp;gt;　よくわからなくなってくる。ここでは値を渡すことはないし、のちのち面倒くさいことになったら嫌なので class にしておいたほうが無難かな。まぁ、それは置いておこう。次に気になるのは、プロパティが Snake Case になっていること。やっぱり Pascal Case にしておきたい。試してみたところ&amp;lt;a href=&amp;quot;#f-2b14458a&amp;quot; name=&amp;quot;fn-2b14458a&amp;quot; title=&amp;quot;ドキュメント読めよ&amp;quot;&amp;gt;*3&amp;lt;/a&amp;gt;、 Jason.</description>
     </item>
     
     <item>
       <title>失敗の数だけ強くなりたい</title>
-      <link>http://daruyanagi.net/entry/2012/07/24/201150/</link>
+      <link>https://daruyanagi.net/entry/2012/07/24/201150/</link>
       <pubDate>Tue, 24 Jul 2012 20:11:50 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/07/24/201150/</guid>
+      <guid>https://daruyanagi.net/entry/2012/07/24/201150/</guid>
       <description>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
 &amp;lt;grid&amp;gt;&amp;lt;/grid&amp;gt; Name=&amp;#34;listBoxGists&amp;#34;&amp;gt; ```**MainWindow.xaml.cs** ```cs using System.Net; using Newtonsoft.Json; /// &amp;amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); } private void MainWindow_Loaded( object sender, RoutedEventArgs e) { var client = new WebClient(); client.DownloadStringCompleted += (_sender, _e) =&amp;gt; { listBoxGists.ItemsSource = JsonConvert .DeserializeObject&amp;amp;lt;Gist[]&amp;gt;(_e.Result); }; client.</description>
     </item>
     
     <item>
       <title>デスクトップ全体を一時的に暗転させたい (2)</title>
-      <link>http://daruyanagi.net/entry/2012/06/19/022455/</link>
+      <link>https://daruyanagi.net/entry/2012/06/19/022455/</link>
       <pubDate>Tue, 19 Jun 2012 02:24:55 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/06/19/022455/</guid>
+      <guid>https://daruyanagi.net/entry/2012/06/19/022455/</guid>
       <description>デスクトップ全体を一時的に暗転させたい - だるろぐ がなぜか動かんなぁ、と思っていろいろ試していた（08式机上撮影機 v1.5.0 - だるろぐ）のだけど、原因は FormWindowState.Maximized だったっぽい。これをコメントアウトすると動いた。
 public const int AW_HIDE = 0x10000; public const int AW_ACTIVATE = 0x20000; public const int AW_SLIDE = 0x40000; public const int AW_BLEND = 0x80000; public const int AW_HOR_POSITIVE = 0x00000001; public const int AW_HOR_NEGATIVE = 0x00000002; public const int AW_VER_POSITIVE = 0x00000004; public const int AW_VER_NEGATIVE = 0x00000008; public const int AW_CENTER = 0x00000010; [DllImport(&amp;#34;user32.dll&amp;#34;, CharSet = CharSet.Auto, SetLastError = true)] public static extern int AnimateWindow( IntPtr hWnd, int dwTime, int dwFlags); using (var form = new Form() { BackColor = Color.</description>
     </item>
     
     <item>
       <title>シリアライズを利用したアプリケーションの設定保存</title>
-      <link>http://daruyanagi.net/entry/2012/05/27/160704/</link>
+      <link>https://daruyanagi.net/entry/2012/05/27/160704/</link>
       <pubDate>Sun, 27 May 2012 16:07:04 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/05/27/160704/</guid>
+      <guid>https://daruyanagi.net/entry/2012/05/27/160704/</guid>
       <description>アプリケーションの設定保存はいくつか方法があるけど、XMLシリアライズを使うのが一番楽な気がする。
 var settings = Settings.FromFile(); settings.ToFile(); ```って感じに使うようにしてみた（&amp;lt;a href=&amp;#34;http://daruyanagi.net/Type08ScreenCapture&amp;#34;&amp;gt;Type08ScreenCapture - Daruboard&amp;lt;/a&amp;gt; のコードの一部）。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;パブリックフィールドおよびプロパティしか保存されない&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;引数のないコンストラクタが必要&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;なのが注意なのかな。&amp;lt;script src=&amp;#34;https://gist.github.com/2802525.js&amp;#34;&amp;gt; &amp;lt;/script&amp;gt;FromFile() では、クラスの設計が変わってシリアライズがうまくいかなくなったら古い設定ファイルを破棄して、デフォルト値の設定を返すようにしている。ここのところをちゃんとしようと思ったらめんどくさそうなので、あくまでもちょろっとしたアプリを作るときにしか使えないのかもしれない。 </description>
     </item>
     
     <item>
       <title>デスクトップ全体を一時的に暗転させたい</title>
-      <link>http://daruyanagi.net/entry/2012/05/27/155731/</link>
+      <link>https://daruyanagi.net/entry/2012/05/27/155731/</link>
       <pubDate>Sun, 27 May 2012 15:57:31 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/05/27/155731/</guid>
+      <guid>https://daruyanagi.net/entry/2012/05/27/155731/</guid>
       <description>Windows 8 は［Windows］＋［PrintScreen］キーでデスクトップのスクリーンショットを“ピクチャー”フォルダに保存できる - だるろぐ Windows 8では、スクリーンショットを撮るときデスクトップにエフェクトがかかる。画面が一瞬だけ暗転して徐々に戻る、といった感じのエフェクトなのだけど、どうせなら Type08ScreenCapture - Daruboard でもちゃんと再現してみたい。ってことで、やってみた。黒い全画面フォームを用意して、透明度を調整しながら表示・非表示するだけ。透明度の調整は最初手動でやっていたのだけど、Win32 API に AnimateWindow() というそれ専用の API があったので結局はそっちを使った。まぁ、悪くない気がする。</description>
     </item>
     
     <item>
       <title> 最初に生成されたウィンドウがメインウィンドウ</title>
-      <link>http://daruyanagi.net/entry/2012/03/17/204950/</link>
+      <link>https://daruyanagi.net/entry/2012/03/17/204950/</link>
       <pubDate>Sat, 17 Mar 2012 20:49:50 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/17/204950/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/17/204950/</guid>
       <description>﻿&amp;amp;lt;Application x:Class=&amp;quot;SoundKeyboard2012.App&amp;quot; xmlns=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot; xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot; StartupUri=&amp;quot;MainWindow.xaml&amp;quot;&amp;gt; &amp;amp;lt;Application.Resources&amp;gt; &amp;amp;lt;/Application.Resources&amp;gt; &amp;amp;lt;/Application&amp;gt; こう書いたら、MainWindow がメインウィンドウになると思うじゃないですか。けれど、WPF って「最初に生成されたウインドウがメインウィンドウになる」んだね。Windows型のメンバ変数をフィールドで初期化していた（ public Window HogeWindow = new HogeWindow() ）ので、デバッグ時の動作（MainWindow.xaml がメインウィンドウ）と、リリースバイナリの動作（HogeDialog.xamlがメインウィンドウ）が違っていて、ちょっと困った。
 ```  private void Application_Startup(object sender, StartupEventArgs e) { MainWindow = new MainWindow(); }
 明示的にメインウィンドウを指定してあげれば問題ない。 &amp;gt; StartupUri を宣言で設定してもプログラムで設定しても、対応する UI リソースは Startup イベントが処理されるまで読み込まれません。 したがって、Startup の処理時には、Windows プロパティまたは MainWindow プロパティからのウィンドウにアクセスできません。 Application.StartupUri プロパティ (System.Windows) &amp;gt; MainWindow には、AppDomain でインスタンス化される最初の Window オブジェクトへの参照が自動的に設定されます。 Application.MainWindow プロパティ (System.Windows) </description>
@@ -251,10 +251,10 @@ var settings = Settings.FromFile(); settings.ToFile(); ```って感じに使う�
     
     <item>
       <title> Notify Property Weaver で楽ちんに INotifyPropertyChanged を実装する</title>
-      <link>http://daruyanagi.net/entry/2012/03/16/002534/</link>
+      <link>https://daruyanagi.net/entry/2012/03/16/002534/</link>
       <pubDate>Fri, 16 Mar 2012 00:25:34 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/16/002534/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/16/002534/</guid>
       <description>INotifyPropertyChanged の実装って面倒じゃないですか。
 ```  public class Person : INotifyPropertyChanged { public event PropertyChangedEventHandler PropertyChanged;
 public string GivenNames { get; set; } public string FamilyName { get; set; } public string FullName { get { return string.Format(&amp;quot;{0} {1}&amp;quot;, GivenNames, FamilyName); } }  }
@@ -263,10 +263,10 @@ public string GivenNames { get; set; } public string FamilyName { get; set; } pu
     
     <item>
       <title>なんでフック、すぐに死んでまうん……</title>
-      <link>http://daruyanagi.net/entry/2012/03/12/004612/</link>
+      <link>https://daruyanagi.net/entry/2012/03/12/004612/</link>
       <pubDate>Mon, 12 Mar 2012 00:46:12 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/12/004612/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/12/004612/</guid>
       <description>せっかく公開した SoundKeyboard 2012 なのだけど、ちょっとしたバグがある。長い間放置してると、音が鳴らなくなり、サウンドパックを切り替えようとするとエラーで落ちる。どうも、フックが勝手に外れてしまうらしい。@daruyanagi GC に回収されてるだけじゃないんですかね。GC.KeepAlive とか参照
 &amp;mdash; しばやん (@shibayan) March 11, 2012  きっとミラクルしばやんのいう通りなのだろうと思うけど、あんまり GC 周りをよく理解していないのと、問題がサードパーティの DLL 側にあるらしいこともあって、対策がうまくいかない。結局タイマーで定期的にフックが生きているかどうかチェックするという、若干美しくない手段を取らざるを得なかった。数日これで試して問題がなければ、このままリリースするつもり。
  SoundKeyboard 2012 を公開しました - だるろぐ  </description>
@@ -274,10 +274,10 @@ public string GivenNames { get; set; } public string FamilyName { get; set; } pu
     
     <item>
       <title>WPFでバージョン情報ダイアログをつくる</title>
-      <link>http://daruyanagi.net/entry/2012/03/12/003836/</link>
+      <link>https://daruyanagi.net/entry/2012/03/12/003836/</link>
       <pubDate>Mon, 12 Mar 2012 00:38:36 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/12/003836/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/12/003836/</guid>
       <description>VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspxMicrosoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。
 ```  using Microsoft.VisualBasic.ApplicationServices;
 namespace Type08ScreenCapture { /// &amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); }
@@ -287,19 +287,19 @@ namespace Type08ScreenCapture { /// &amp;lt;summary&amp;gt; /// MainWindow.xaml 
     
     <item>
       <title>ClickOnce インストーラーで「ハードディスクへの書き込みエラーが発生しました。ディスクに十分な空きがあるかどうか確認してください」と表示される</title>
-      <link>http://daruyanagi.net/entry/2012/03/09/221452/</link>
+      <link>https://daruyanagi.net/entry/2012/03/09/221452/</link>
       <pubDate>Fri, 09 Mar 2012 22:14:52 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/09/221452/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/09/221452/</guid>
       <description>ClickOnce インストーラーで、ディスクにGB単位で余裕があるにもかかわらず、こんなエラーが表示される場合がある。ウチの場合は、同じDLLが2回インストールされようとしていたのが原因らしい。プロジェクトのプロパティにある［発行］タブで［アプリケーションファイル］ボタンを押し、重複ファイルを除外してやればエラーが解消される。</description>
     </item>
     
     <item>
       <title>YouTube の URL を動画タグへ変換する（oEmbed）</title>
-      <link>http://daruyanagi.net/entry/2012/03/06/011745/</link>
+      <link>https://daruyanagi.net/entry/2012/03/06/011745/</link>
       <pubDate>Tue, 06 Mar 2012 01:17:45 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/06/011745/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/06/011745/</guid>
       <description>Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、Flickr の写真の場合と少し違うところ&amp;lt;a href=&amp;rdquo;#f1&amp;rdquo; name=&amp;quot;fn1&amp;rdquo; title=&amp;quot;Flickr も動画に対応しているのだけど、type==&amp;rdquo; video&amp;quot;=&amp;rdquo;&amp;rdquo; の場合はやっぱり=&amp;rdquo;&amp;rdquo; url=&amp;rdquo;&amp;rdquo; ではなく=&amp;rdquo;&amp;rdquo; html=&amp;rdquo;&amp;rdquo; を使う&amp;quot;=&amp;quot;&amp;ldquo;&amp;gt;*1。type には、ほかに rich だの link だのがあるっぽい。詳しくは oEmbed に全部書いてあるので参照のこと。
 ```  private static readonly string SERVICE_ENDPOINT = @&amp;ldquo;http://www.youtube.com/oembed&amp;quot;; private static readonly string FORMAT_URL = @&amp;quot;{0}?url={1}&amp;amp;maxwidth={2}&amp;amp;maxheight={3}&amp;amp;format={4}&amp;quot;;
 public static string FORMAT_HTML_VIDEO_TAG = @&amp;rdquo; &amp;lt;blockquote class=&#39;youtube youtube-video&#39;&amp;gt; &amp;lt;p&amp;gt;{0}&amp;lt;p&amp;gt; &amp;lt;p&amp;gt;&amp;lt;small&amp;gt;{1} by &amp;lt;a href=&#39;{3}&#39;&amp;gt;{2}&amp;lt;/a&amp;gt;&amp;lt;/small&amp;gt;&amp;lt;p&amp;gt; &amp;lt;/blockquote&amp;gt; &amp;ldquo;; public static string FORMAT_ERROR = @&amp;quot;&amp;lt;p class=&#39;error&#39;&amp;gt;{0}&amp;lt;/p&amp;gt;&amp;rdquo;;</description>
@@ -307,10 +307,10 @@ public static string FORMAT_HTML_VIDEO_TAG = @&amp;rdquo; &amp;lt;blockquote cla
     
     <item>
       <title>Flickr の URL を画像タグへ変換する（oEmbed）</title>
-      <link>http://daruyanagi.net/entry/2012/03/03/225037/</link>
+      <link>https://daruyanagi.net/entry/2012/03/03/225037/</link>
       <pubDate>Sat, 03 Mar 2012 22:50:37 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/03/225037/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/03/225037/</guid>
       <description>eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を  サードパーティ上で、写真自体の埋め込みに変換したいときに、 埋め込みに必要なパラメータを取得するためのプロトコルみたいです。
  URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World  前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。
 ```  using System; using System.Collections.Generic; using System.Linq; using System.Web;
@@ -320,10 +320,10 @@ public static class FlickrHelper { private static readonly string Endpoint = @&a
     
     <item>
       <title> 危険な可能性のある Request.Form 値がクライアントから検出されました</title>
-      <link>http://daruyanagi.net/entry/2012/02/19/022206/</link>
+      <link>https://daruyanagi.net/entry/2012/02/19/022206/</link>
       <pubDate>Sun, 19 Feb 2012 02:22:06 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/02/19/022206/</guid>
+      <guid>https://daruyanagi.net/entry/2012/02/19/022206/</guid>
       <description>ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。
 ### ページ単位でバリデーションを無効にする web.config に設定を記述する。 ```xml  &amp;lt;configuration&amp;gt; &amp;lt;system.web&amp;gt; &amp;lt;httpRuntime requestValidationMode=&amp;quot;2.0&amp;rdquo; /&amp;gt; &amp;lt;pages validateRequest=&amp;quot;false&amp;quot;&amp;gt; &amp;lt;/pages&amp;gt; &amp;lt;/system.web&amp;gt; &amp;lt;/configuration&amp;gt;
  &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### メソッド単位でバリデーションを無効にする。 POSTメソッドをまるごと。 ```cs [HttpPost] [ValidateInput(false)] public ViewResult Edit(FormCollection form) { } ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow
@@ -334,10 +334,10 @@ var hoge = Request.Unvalidated().Form[&amp;ldquo;hoge&amp;rdquo;];
     
     <item>
       <title> RSS を処理する</title>
-      <link>http://daruyanagi.net/entry/2012/02/15/005152/</link>
+      <link>https://daruyanagi.net/entry/2012/02/15/005152/</link>
       <pubDate>Wed, 15 Feb 2012 00:51:52 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/02/15/005152/</guid>
+      <guid>https://daruyanagi.net/entry/2012/02/15/005152/</guid>
       <description>今日の10分プログラミングは、RSSを取得してリストタグに変換しようの巻。
 ```cs  using System; using System.Collections.Generic; using System.Linq; using System.Web;
 using System.Web.Mvc; using System.Xml; using System.ServiceModel.Syndication;
@@ -347,10 +347,10 @@ namespace Daruyanagi { public static class FeedHelper { public static string Get
     
     <item>
       <title> RFC822 の日付形式</title>
-      <link>http://daruyanagi.net/entry/2012/02/13/004241/</link>
+      <link>https://daruyanagi.net/entry/2012/02/13/004241/</link>
       <pubDate>Mon, 13 Feb 2012 00:42:41 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/02/13/004241/</guid>
+      <guid>https://daruyanagi.net/entry/2012/02/13/004241/</guid>
       <description>RSS 2.0 を実装する - だるろぐ の記述に誤りがあった（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）。 RSS 2.0 Notes によれば、日付の形式は RFC822 に従わなければいけなかったらしい。例えばこんな感じ。
 &amp;gt; Sun, 12 Feb 2012 21:09:36 +0900  とりあえず、こうしてみた。
 ```  @LastUpdated.ToString(&amp;ldquo;ddd, dd MMM yyyy HH:mm:ss zzz&amp;rdquo;)
@@ -361,10 +361,10 @@ namespace Daruyanagi { public static class FeedHelper { public static string Get
     
     <item>
       <title> C# の Markdown エンジン</title>
-      <link>http://daruyanagi.net/entry/2012/02/12/213437/</link>
+      <link>https://daruyanagi.net/entry/2012/02/12/213437/</link>
       <pubDate>Sun, 12 Feb 2012 21:34:37 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/02/12/213437/</guid>
+      <guid>https://daruyanagi.net/entry/2012/02/12/213437/</guid>
       <description>C# で Markdown エンジンを探すと、 MarkdownSharp と MarkdownDeep というのが見つかるけど、どっちがいいんだろうね。
  markdownsharp - C# Markdown processor - Google Project Hosting 
 Topten Software （MarkdownDeep） どちらも NuGet からダウンロード可能。基本的には MarkdownDeep の方が高速で、サンプルも充実している。（.Net版とJavaScript版、そしてそれらを動かすサンプルを NuGet で取得できる）。ただ、使い込んでいくと、どうも一部HTMLタグの解釈に問題があるっぽい。MarkdownSharp の場合は、 &amp;lt;span class=&#34;label important&#34;Important&amp;lt;/span なんていう複数のクラスをもつタグでも正しく解釈できるが、MarkdownDeep だと失敗してしまう。今のところ MarkdownSharp の方がおすすめできるっぽい。 </description>
@@ -372,10 +372,10 @@ Topten Software （MarkdownDeep） どちらも NuGet からダウンロード�
     
     <item>
       <title> RSS 2.0 を実装する</title>
-      <link>http://daruyanagi.net/entry/2012/02/02/225759/</link>
+      <link>https://daruyanagi.net/entry/2012/02/02/225759/</link>
       <pubDate>Thu, 02 Feb 2012 22:57:59 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/02/02/225759/</guid>
+      <guid>https://daruyanagi.net/entry/2012/02/02/225759/</guid>
       <description>http://sample.com/Post/LastUpdated.rss で RSS が吐かれるようにしてみたかった。まずはルーティング。
 ```  #Global.asax.cs
 routes.MapRoute( &amp;ldquo;Mode&amp;rdquo;, // ルート名 &amp;ldquo;{controller}/{action}.{mode}&amp;quot;, // パラメーター付きの URL new { controller = &amp;ldquo;Home&amp;rdquo;, action = &amp;ldquo;Index&amp;rdquo;, id = UrlParameter.Optional, mode = &amp;ldquo;html&amp;rdquo; } // パラメーターの既定値 );
@@ -384,10 +384,10 @@ routes.MapRoute( &amp;ldquo;Mode&amp;rdquo;, // ルート名 &amp;ldquo;{control
     
     <item>
       <title> Embedded Tweets を使ってWebページにツイートを埋め込む</title>
-      <link>http://daruyanagi.net/entry/2012/01/25/000739/</link>
+      <link>https://daruyanagi.net/entry/2012/01/25/000739/</link>
       <pubDate>Wed, 25 Jan 2012 00:07:39 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/01/25/000739/</guid>
+      <guid>https://daruyanagi.net/entry/2012/01/25/000739/</guid>
       <description>最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。これをコードからもやってみたくて、 Embedded Tweets | Twitter Developers を参考にちょっとやってみた。
 ```?  var tweet_url = url; // 例: https://twitter.com/#!/daruyanagi/statuses/57438593853034497
 var tweet_id = new Regex(@&amp;ldquo;status/(?&amp;lt;id&amp;gt;\d+)&amp;quot;) .Match(tweet_url).Groups[&amp;ldquo;id&amp;rdquo;].ToString();
@@ -398,10 +398,10 @@ return Codeplex.Data.DynamicJson.Parse(tweet).html;
     
     <item>
       <title> URLとして使えない文字が含まれているのを検出する</title>
-      <link>http://daruyanagi.net/entry/2012/01/21/203120/</link>
+      <link>https://daruyanagi.net/entry/2012/01/21/203120/</link>
       <pubDate>Sat, 21 Jan 2012 20:31:20 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/01/21/203120/</guid>
+      <guid>https://daruyanagi.net/entry/2012/01/21/203120/</guid>
       <description>[Url]という属性を作成。 &amp;quot;&#39;|*`^&amp;gt;&amp;lt;)(}{][#%;/?:@&amp;amp;=+$,. が含まれていたら IsValid() =&amp;gt; false を返す。
 ```C  [AttributeUsage(AttributeTargets.Property, AllowMultiple = false)] public sealed class UrlAttribute : ValidationAttribute, IClientValidatable { public UrlAttribute() { ErrorMessage = &amp;ldquo;URLに利用できない文字が含まれています。&amp;quot;; }
 private readonly char[] INVALID_CHARS = &amp;quot;\\\&amp;quot;&amp;amp;#39;|*`^&amp;gt;&amp;amp;lt;)(}{][#%;/?:@&amp;amp;amp;=+$,.&amp;quot;.ToCharArray(); public IEnumerable&amp;amp;lt;ModelClientValidationRule&amp;gt; GetClientValidationRules( ModelMetadata metadata, ControllerContext context) { var rule = new ModelClientValidationRule { ValidationType = &amp;quot;url&amp;quot;, ErrorMessage = FormatErrorMessage( metadata.GetDisplayName()), }; yield return rule; } public override bool IsValid(object value) { if (value == null || value.</description>

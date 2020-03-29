@@ -2,31 +2,31 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Home Serever on だるやなぎ</title>
-    <link>http://daruyanagi.net/tags/windows-home-serever/</link>
+    <link>https://daruyanagi.net/tags/windows-home-serever/</link>
     <description>Recent content in Windows Home Serever on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 27 Mar 2012 01:29:40 +0000</lastBuildDate>
     
-	<atom:link href="http://daruyanagi.net/tags/windows-home-serever/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://daruyanagi.net/tags/windows-home-serever/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Windows Home Server 2011 をプリンターサーバとして利用する → 諸事情あってやめた</title>
-      <link>http://daruyanagi.net/entry/2012/03/27/012940/</link>
+      <link>https://daruyanagi.net/entry/2012/03/27/012940/</link>
       <pubDate>Tue, 27 Mar 2012 01:29:40 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/27/012940/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/27/012940/</guid>
       <description>無線LANも安定稼働するようになった1ので、今度はホコリをカブっていたプリンタ複合機を引っ張り出して、Windows Home Server に繋いだ。ふとした縁でタダでもらったものだ。これまではメインマシンに直結して使っていたけれど、常時起動が前提のホームサーバーをプリンターサーバとして使えば、メインマシンに電源を入れなくてもいろんなデバイスからアクセスできて便利だろう。ドライバーのインストールに成功2。リモートからの印刷にも成功した*3。ただ、どうしても古いドライバーのアンインストールに失敗するので、解凍ソフト「Lhaz」で自動解凍形式の書庫ファイルをバラして、デバイスマネージャーから［ドライバーの更新］を利用してインストールした。しかし、問題が。プリンター本体のボタンを押しても、スキャン → フォルダへ保存が始まらない。ユーティリティソフトを入れても、症状は同じだった。スキャナードライバーのプロパティ画面ではボタンの挙動を設定できるのだけど、実際には動かないらしい。こいつはもともとプリンタとしてよりも、スキャナとしての利用頻度のほうが高い。現に、今はインクがない状態でそのまま半年以上は放置されている。なので、本体の操作でほいほいスキャンできないのはちょっと不便だ。まさかいちいちリモートデスクトップでサーバーにつないでユーティリティソフトを起動してスキャン……なんてことはできない。ちょっと残念だけど、やはりメインマシンに繋ぎ直したほうがよさそう。何か対応策があればいいのだけど。
 *1:とはいえ、リモートデスクトップ接続がちょっと切れやすいけれど *2:ただし、Windows 7版 *3:ただし、インクがないと言われた  </description>
     </item>
     
     <item>
       <title>Buffalo WZR-HP-AG300H で Windows Home Server 2011 を外部に公開する</title>
-      <link>http://daruyanagi.net/entry/2012/03/26/212244/</link>
+      <link>https://daruyanagi.net/entry/2012/03/26/212244/</link>
       <pubDate>Mon, 26 Mar 2012 21:22:44 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2012/03/26/212244/</guid>
+      <guid>https://daruyanagi.net/entry/2012/03/26/212244/</guid>
       <description>ウチのネットワーク。ほんとは、ここに MacBook Pro だの Windows Phone だの iPad だの iPhone だのもぶら下がっているが、基本的にはバッファロー製のルーター WZR-HP-AG300H を介してインターネットに繋がっている。けれど、このルーター、UPnP に対応していないだの何だので *1、 Windows Home Serevr では自動でリモートアクセス構成をセットアップできない。なので、手動で公開してあげることになる。
 ### 1. Windows Home Server のIPアドレスを固定する まず、［Internet/LAN］－［DHCPリース］とたどって、WHS機のIPアドレスを手動割り当てに変更する。WHS機のIPアドレスがわからない場合は、［ステータス］－［クライアントモニター］に進めばよい。ここでは、SERVER-WHS2011 に 192.168.11.4 が割り当てられているのがわかる。無論、IPCONFIG コマンドで調べてもいいし、エクスプローラーでも調べられる。とりあえず、どうにかIPアドレスを調べてWindows Home Server のIPアドレスを固定すればいい。  ### 2. ポートフォワーディングの設定 続いて、ポートフォワーディングの設定を行う。WZR-HP-AG300H では「ポート変換」と呼ばれており、［ゲーム＆アプリ］設定で変更できる。要は特定のポートに対するリクエストへ応えるマシンを指定してあげるというわけ。今回の場合は、HTTP（80番）とHTTPS（443番）に対するリクエストが来たら、ルーターではなくWHS機が応答するように設定してあげる。先代のWHS機ではリモートデスクトップ接続のポートも開ける必要があったみたいだけれど、2011ではその必要はないようだ。  ### 3. ドメインの指定 あとは、ネットワークにドメインを割り当てる。ダッシュボードにある［サーバーの設定］ボタンをクリックして、現れるダイアログで［リモート Web アクセス］を選択する。あとは……まぁ、やってみればわかると思う。ここでは _https://&amp;lt;任意のID.homeserver.com/_ のドメインを取得した*2。2. の設定に失敗していると、ネットワーク外から https://&amp;lt;任意のID.homeserver.com/ へのアクセスでルーターの設定画面が開いてしまうと思う*3。ちゃんと WHS のWebインターフェイスが開けば成功。おつかれさまでした。バッファローのルーター、IE9でデザイン崩れるの何とかならないかな！
 &amp;mdash; 言われなくても家にいるやなぎ ♨🍊🐟🇯🇵 (@daruyanagi) March 26, 2012  *1:一応ほんとは対応はしているはず *2:無償です *3:ネットワーク内からアクセスした場合は、設定に成功していてもルーターの設定画面が開く。インターネットからのリクエストではないため、ポートフォワーディングが行われないため  </description>

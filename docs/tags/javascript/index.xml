@@ -2,100 +2,100 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>JavaScript  on だるやなぎ</title>
-    <link>http://daruyanagi.net/tags/javascript/</link>
+    <link>https://daruyanagi.net/tags/javascript/</link>
     <description>Recent content in JavaScript  on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 21 Mar 2017 19:58:45 +0000</lastBuildDate>
     
-	<atom:link href="http://daruyanagi.net/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://daruyanagi.net/tags/javascript/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>WPF ＋ PhantomJS で Web ページの内容を取得してみる</title>
-      <link>http://daruyanagi.net/entry/2017/03/21/195845/</link>
+      <link>https://daruyanagi.net/entry/2017/03/21/195845/</link>
       <pubDate>Tue, 21 Mar 2017 19:58:45 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/21/195845/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/21/195845/</guid>
       <description>「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。
 ### PhantomJS とは ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。  http://phantomjs.org/ スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。  ### 使い方 まず NuGet で PhantomJS をとってきます。  すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。  次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。 ```javascript console.log(&amp;#39;Hello, world!&amp;#39;); phantom.exit(); ```cs public MainWindow() { InitializeComponent(); Loaded += MainWindow_Loaded; } private void MainWindow_Loaded(object sender, RoutedEventArgs e) { var result = ProcessScript(&amp;quot;hello.js&amp;quot;); System.Diagnostics.Debug.WriteLine(result); } private string ProcessScript(string script, params string[] args) { using (var process = new System.</description>
     </item>
     
     <item>
       <title>はてなブログの記事下に SNS で投稿するボタンを独自に追加する</title>
-      <link>http://daruyanagi.net/entry/2017/03/05/180000/</link>
+      <link>https://daruyanagi.net/entry/2017/03/05/180000/</link>
       <pubDate>Sun, 05 Mar 2017 18:00:00 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/05/180000/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/05/180000/</guid>
       <description>ちょっと長いけど、はてなブログの［デザイン設定］－［カスタマイズ］－［記事上下のカスタマイズ］－［記事下］に張り付けるだけで使える。グレースケールで目立たないデザインだけど、マウスホバーで色付きになるぜー（ぃぇーぃあと、はてなブログって標準で jQuery を使ってるのかな？　だったらこの行は消した方がいいかもしれない（ローカルでテストするために使っていた）。
 &amp;amp;lt;script src=&amp;#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&amp;#34;&amp;gt;&amp;amp;lt;/script&amp;gt; ```開発は Visual Studio Code ＋ ASP.NET Core で行いました（なんとなく）。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### コード ```html &amp;amp;lt;style&amp;gt; a.sns-logo svg { height: 2.5em; width:2.5em; filter: grayscale(100%); } a.sns-logo svg:hover, a.sns-logo svg:active, a.sns-logo svg:focus { filter: grayscale(0); } #share { text-align: center; } #share ul { margin: 0; padding: 0; } #share ul li { display: inline-block; margin: 0.5em; padding: 0.5em; width: 4em; } #share ul li a { color: gray; } #share ul li a:hover, #share ul li a:active, #share ul li a:focus { text-decoration: none; } #share ul li a span { } #share ul li div.</description>
     </item>
     
     <item>
       <title>ただの日記：HTML5 Canvas で五胡十六国</title>
-      <link>http://daruyanagi.net/entry/2015/09/23/084635/</link>
+      <link>https://daruyanagi.net/entry/2015/09/23/084635/</link>
       <pubDate>Wed, 23 Sep 2015 08:46:35 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2015/09/23/084635/</guid>
+      <guid>https://daruyanagi.net/entry/2015/09/23/084635/</guid>
       <description>気分がのってきたので、昨日のスクリプトを改造して王朝の興亡を表せるようにしてみた。世界史の鬼門、五胡十六国・南北朝時代もスッキリ。一応、民族ごとに色分けもしてある。五胡十六国の口火を切った匈奴が少案外ない（前趙ぐらい）のと、氐と鮮卑系の活躍が目立つ。まぁ、鮮卑は○×部ってのがいっぱいあったから多少はね？  ハードコーディングしているところもあるし、年号を書き込む場所なんかに改良の余地があるけど、まぁ、満足した。 </description>
     </item>
     
     <item>
       <title>一年ぶり： HTML5 Canvas に挑戦したった。</title>
-      <link>http://daruyanagi.net/entry/2015/09/22/171205/</link>
+      <link>https://daruyanagi.net/entry/2015/09/22/171205/</link>
       <pubDate>Tue, 22 Sep 2015 17:12:05 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2015/09/22/171205/</guid>
+      <guid>https://daruyanagi.net/entry/2015/09/22/171205/</guid>
       <description>むかし HTML5 Canvas で年表っぽいの作りたいなぁ、って思って一度挑戦したのだけど……すごい、もう一年経ってた。そら、加齢臭も増しますわ。コーディングは WebMatrix でやったけれど、いまだに JavaScript をいい感じにコンポーネント化するやり方が分かってない(;´･ω･)前と違うのは縦書きである点だけど、HTML は横に広がるより縦に広がる方が読みやすい気がした。あと、デザイン……センスないのどうやったら改善されるんだろう？ ```javascript &amp;lt;script src=&#34;~/Scripts/Chronology.js&#34;&amp;lt;/script &amp;lt;script var graph_settings1 = { : } window.onload = function () { chronology(&amp;amp;#39;graph&amp;amp;#39;, graph_settings1); };  &amp;lt;/script&amp;gt;
 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### テスト1：三国志の年表   &amp;lt;br/&amp;gt; ```javascript var graph_settings2 = { &amp;quot;begin_year&amp;quot;: 190, &amp;quot;end_year&amp;quot;: 290, &amp;quot;scale&amp;quot;: 5, &amp;quot;margin&amp;quot;: 6, &amp;quot;items&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;魏&amp;quot;, &amp;quot;start&amp;quot;: 220, &amp;quot;end&amp;quot;: 265, &amp;quot;color&amp;quot;: &amp;quot;blue&amp;quot; }, { &amp;quot;name&amp;quot;: &amp;quot;呉&amp;quot;, &amp;quot;start&amp;quot;: 222, &amp;quot;end&amp;quot;: 280, &amp;quot;color&amp;quot;: &amp;quot;red&amp;quot; }, { &amp;quot;name&amp;quot;: &amp;quot;蜀&amp;quot;, &amp;quot;start&amp;quot;: 221, &amp;quot;end&amp;quot;: 263, &amp;quot;color&amp;quot;: &amp;quot;orange&amp;quot; }, { &amp;quot;name&amp;quot;: &amp;quot;晋&amp;quot;, &amp;quot;start&amp;quot;: 265, &amp;quot;end&amp;quot;: 316, &amp;quot;color&amp;quot;: &amp;quot;green&amp;quot; }, { &amp;quot;name&amp;quot;: &amp;quot;後漢&amp;quot;, &amp;quot;start&amp;quot;: 23, &amp;quot;end&amp;quot;: 220, &amp;quot;color&amp;quot;: &amp;quot;gray&amp;quot; }, ], &amp;quot;events&amp;quot;: [ { &amp;quot;name&amp;quot;: &amp;quot;黄巾の乱&amp;quot;, &amp;quot;year&amp;quot;: 184 }, { &amp;quot;name&amp;quot;: &amp;quot;赤壁の戦い&amp;quot;, &amp;quot;year&amp;quot;: 208 }, { &amp;quot;name&amp;quot;: &amp;quot;夷陵の戦い&amp;quot;, &amp;quot;year&amp;quot;: 221 }, { &amp;quot;name&amp;quot;: &amp;quot;五丈原の戦い&amp;quot;, &amp;quot;year&amp;quot;: 234 }, { &amp;quot;name&amp;quot;: &amp;quot;高平陵の変&amp;quot;, &amp;quot;year&amp;quot;: 249 }, { &amp;quot;name&amp;quot;: &amp;quot;公孫淵滅亡&amp;quot;, &amp;quot;year&amp;quot;: 238 }, ] };  ### テスト2：共和制ローマ末期（紀元前のテスト）    var graph_settings3 = { &amp;#34;begin_year&amp;#34;: -120, &amp;#34;end_year&amp;#34;: 20, &amp;#34;scale&amp;#34;: 5, &amp;#34;margin&amp;#34;: 6, &amp;#34;graduation&amp;#34;: 20, &amp;#34;items&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;キケロ&amp;#34;, &amp;#34;start&amp;#34;: -107, &amp;#34;end&amp;#34;: -43, &amp;#34;color&amp;#34;: &amp;#34;blue&amp;#34; }, { &amp;#34;name&amp;#34;: &amp;#34;スッラ&amp;#34;, &amp;#34;start&amp;#34;: -138, &amp;#34;end&amp;#34;: -78, &amp;#34;color&amp;#34;: &amp;#34;red&amp;#34; }, { &amp;#34;name&amp;#34;: &amp;#34;カエサル&amp;#34;, &amp;#34;start&amp;#34;: -102, &amp;#34;end&amp;#34;: -44, &amp;#34;color&amp;#34;: &amp;#34;orange&amp;#34; }, { &amp;#34;name&amp;#34;: &amp;#34;アントニウス&amp;#34;, &amp;#34;start&amp;#34;: -83, &amp;#34;end&amp;#34;: -30, &amp;#34;color&amp;#34;: &amp;#34;green&amp;#34; }, { &amp;#34;name&amp;#34;: &amp;#34;アウグストゥス&amp;#34;, &amp;#34;start&amp;#34;: -63, &amp;#34;end&amp;#34;: 14, &amp;#34;color&amp;#34;: &amp;#34;gray&amp;#34; }, ], &amp;#34;events&amp;#34;: [ { &amp;#34;name&amp;#34;: &amp;#34;アクティウムの海戦&amp;#34;, &amp;#34;year&amp;#34;: -31 }, { &amp;#34;name&amp;#34;: &amp;#34;アレシア攻防戦&amp;#34;, &amp;#34;year&amp;#34;: -51 }, { &amp;#34;name&amp;#34;: &amp;#34;同盟市戦争&amp;#34;, &amp;#34;year&amp;#34;: -90 }, { &amp;#34;name&amp;#34;: &amp;#34;スパルタクスの反乱&amp;#34;, &amp;#34;year&amp;#34;: -73 }, { &amp;#34;name&amp;#34;: &amp;#34;ユグルタ戦争&amp;#34;, &amp;#34;year&amp;#34;: -109 }, ] }; ```紀元前0年が発生するのは気にしないことにする（ぉ &amp;lt;/div&amp;gt; </description>
     </item>
     
     <item>
       <title>はてなダイアリーで特定カテゴリーの記事をお知らせとしてトップに掲出する方法を考えてみた。</title>
-      <link>http://daruyanagi.net/entry/2015/05/02/111206/</link>
+      <link>https://daruyanagi.net/entry/2015/05/02/111206/</link>
       <pubDate>Sat, 02 May 2015 11:12:06 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2015/05/02/111206/</guid>
+      <guid>https://daruyanagi.net/entry/2015/05/02/111206/</guid>
       <description>これな。ドメイン失くしてごめんなさい的な告知を出しておきたかった。
 ### カテゴリーのフィードを探す。 まずはカテゴリーのフィードを探す。カテゴリーページを開いてソースを見ると……  こんな風に書いてある。 ```html &amp;lt;link rel=&#34;alternate&#34; type=&#34;application/atom+xml&#34; title=&#34;Atom&#34; href=&#34;https://blog.daruyanagi.jp/feed/category/%E5%91%8A%E7%9F%A5&#34;/ &amp;lt;link rel=&#34;alternate&#34; type=&#34;application/rss+xml&#34; title=&#34;RSS2.0&#34; href=&#34;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&#34;/ &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### JavaScript でフィードを取得して主力する Google Feed API を利用するのが一般的な方法らしい。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;https://developers.google.com/feed/v1/?hl=ja&amp;quot;&amp;gt;Google Developers&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;最初の1個だけ取得して、#target 要素を書き換えるようにしてみる。 ```javascript &amp;amp;lt;script type=&amp;quot;text/javascript&amp;quot; src=&amp;quot;http://www.google.com/jsapi&amp;quot;&amp;gt;&amp;amp;lt;/script&amp;gt; &amp;amp;lt;script type=&amp;quot;text/javascript&amp;quot;&amp;gt; function GetAnnouncement(target, url) { google.load(&amp;quot;feeds&amp;quot;, &amp;quot;1&amp;quot;); function initialize() { var feed = new google.feeds.Feed(url); feed.setNumEntries(1); feed.load(function (result) { if (!result.error) { var container = document.getElementById(target); var feed = result.feed.entries[0]; var html = &amp;quot; + feed.</description>
     </item>
     
     <item>
       <title>ブログにかっちょいいグラフを張り付ける</title>
-      <link>http://daruyanagi.net/entry/2015/01/05/163509/</link>
+      <link>https://daruyanagi.net/entry/2015/01/05/163509/</link>
       <pubDate>Mon, 05 Jan 2015 16:35:09 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2015/01/05/163509/</guid>
+      <guid>https://daruyanagi.net/entry/2015/01/05/163509/</guid>
       <description>去年 Amazonで使った金額を計算してみた。 - だるろぐ でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google ChartCharts | Google Developers で張り付けた方がカッコイイっぽいことに気付いた。  最近は Material Charts と呼ばれる SVG で実装されたリッチなグラフが書けるようになっている（そのため、古い Internet Explorer では表示できないので注意）。たとえば、グラフにマウスオーバーすると数値が表示されたり。かっちょいい。ただし、ベータ版であることには留意しておこう。
 ### コード ```javascript &amp;lt;script type=&#34;text/javascript&#34; src=&#34;https://www.google.com/jsapi&#34;&amp;lt;/script &amp;lt;script type=&#34;text/javascript&#34; google.load(&#34;visualization&#34;, &#34;1.1&#34;, {packages:[&#34;bar&#34;]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([ [&amp;amp;#39;Year&amp;amp;#39;, &amp;amp;#39;合計金額&amp;amp;#39;], [&amp;amp;#39;2006&amp;amp;#39;, 71180 ], [&amp;amp;#39;2007&amp;amp;#39;, 283066 ], [&amp;amp;#39;2008&amp;amp;#39;, 66638 ], [&amp;amp;#39;2009&amp;amp;#39;, 35289 ], [&amp;amp;#39;2010&amp;amp;#39;, 93949 ], [&amp;amp;#39;2010&amp;amp;#39;, 93949 ], [&amp;amp;#39;2011&amp;amp;#39;, 258747 ], [&amp;amp;#39;2012&amp;amp;#39;, 277831 ], [&amp;amp;#39;2013&amp;amp;#39;, 186103 ], [&amp;amp;#39;2014&amp;amp;#39;, 258747 ], ]); var options = { chart: { title: &amp;amp;#39;Amazon 年間消費金額&amp;amp;#39;, subtitle: &amp;amp;#39;2006-2014&amp;amp;#39;, } }; var chart = new google.</description>
     </item>
     
     <item>
       <title>テキストエリアの高さをウィンドウサイズに合わせて調節したい</title>
-      <link>http://daruyanagi.net/entry/2014/11/15/160504/</link>
+      <link>https://daruyanagi.net/entry/2014/11/15/160504/</link>
       <pubDate>Sat, 15 Nov 2014 16:05:04 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2014/11/15/160504/</guid>
+      <guid>https://daruyanagi.net/entry/2014/11/15/160504/</guid>
       <description>  テキストエリアの高さって、いつもなやむ。適当に &amp;lt;textarea rows=&amp;quot;10&amp;rdquo; &amp;gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。  要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。
 &amp;amp;lt;script&amp;gt; $(window).bind(&amp;#34;resize ready&amp;#34;, function(event){ $(&amp;amp;#39;#Content&amp;amp;#39;).height( $(&amp;amp;#39;#Content&amp;amp;#39;).height() + $(window).height() - $(document.body).height() ); }); &amp;amp;lt;/script&amp;gt; ```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。  ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。 </description>
     </item>
     
     <item>
       <title>はてなブログの人気の記事リストを表示する</title>
-      <link>http://daruyanagi.net/entry/2013/10/21/040832/</link>
+      <link>https://daruyanagi.net/entry/2013/10/21/040832/</link>
       <pubDate>Mon, 21 Oct 2013 04:08:32 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/10/21/040832/</guid>
+      <guid>https://daruyanagi.net/entry/2013/10/21/040832/</guid>
       <description>  このブログのサイドバーにある「人気記事」のリストは、しばやんが作ったはてなブログ用の人気エントリー API を利用している。
  Nancy ではてなブログ用の人気エントリー API を作ってみた - しばやん雑記 はてなブログ用の人気エントリー表示パーツを真面目に作った - しばやん雑記 最近ちょっと動かないことがあったのだけど、 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &#34;https://platform.twitter.com/widgets.js&#34;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &#34;script&#34;, &#34;twitter-wjs&#34;)); twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-391341056127934464&#39;); for (var i=0;iとのこと。最近、はてながスクリプトの読み込み順序をイジったのが原因らしい。というわけで、この対処法を組み込んで実行してみる。 </description>
     </item>
     
     <item>
       <title>『プロになるためのJavaScript入門』</title>
-      <link>http://daruyanagi.net/entry/2013/05/08/102734/</link>
+      <link>https://daruyanagi.net/entry/2013/05/08/102734/</link>
       <pubDate>Wed, 08 May 2013 10:27:34 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/05/08/102734/</guid>
+      <guid>https://daruyanagi.net/entry/2013/05/08/102734/</guid>
       <description>プロになるためのJavaScript入門 ~node.js、Backbone.js、HTML5、jQuery-Mobile (Software Design plus)作者: 河村嘉之,川尻剛出版社/メーカー: 技術評論社発売日: 2012/12/07メディア: 大型本購入: 4人 クリック: 1,144回この商品を含むブログ (6件) を見るTypeScript 1.0 の足音が聞こえてきた。そろそろ本気を出して TypeScript を学ぶべき時が近づいてきた。しかし、そのまえに JavaScript を知らねばならないだろう。というわけで『プロになるためのJavaScript入門』という本を買ってみた。まだ2章までしか読んでないのだけれど、なかなか面白い。  たとえば、これはオブジェクト指向プログラミング（OOP）における JavaScript の立ち位置を図式化したもの。筆者によると、OOP には大きく分けて3つの要素が存在するという（以下、わしの独断と偏見も含む）。 #### メッセージ &amp;gt; すべての処理 ＝ メッセージの送信 ＋ オブジェクト（レシーバー）  たとえば Smalltalk には制御構造すらなく、すべてが“メッセージ”として扱われている。元祖オブジェクト指向。
  #### 型 &amp;gt; クラス ＝ 構造化されたデータ ＋ それに所属するメソッド  インスタンス ＝ クラスの具現化
 データとメソッドのカプセル化。コールされたメッセージではなく、それを受け取ったレシーバーによって処理の内容が決められる（多態性）。継承という概念で“あらかじめ静的に”階層設計されたクラスをもつ。
@@ -106,10 +106,10 @@
     
     <item>
       <title>WebMatrix 3</title>
-      <link>http://daruyanagi.net/entry/2013/04/22/200709/</link>
+      <link>https://daruyanagi.net/entry/2013/04/22/200709/</link>
       <pubDate>Mon, 22 Apr 2013 20:07:09 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/04/22/200709/</guid>
+      <guid>https://daruyanagi.net/entry/2013/04/22/200709/</guid>
       <description>  
  WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐ 一連の記事では、FeedCount の結果を JSON でやり取りしていました。 ### JSON #### サーバーサイド ```cs // ~/FeedCount.cshtml Response.Clear(); Response.ContentType = &amp;ldquo;application/json&amp;rdquo;; Response.Write(Json.Encode(data)); Response.End();
 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### 渡されるデータ（例） ```javascript {&amp;quot;livedoor&amp;quot;:6,&amp;quot;total&amp;quot;:6}  #### クライアントサイド ```javascript // ~/Script/SocialButtons.js $.ajax({ url: &#39;/FeedCount/&#39; + url, dataType: &#39;json&#39;, success: function (json) { element.text(json.total || 0); } });
@@ -118,10 +118,10 @@
     
     <item>
       <title>WebMatrix 3</title>
-      <link>http://daruyanagi.net/entry/2013/04/21/154036/</link>
+      <link>https://daruyanagi.net/entry/2013/04/21/154036/</link>
       <pubDate>Sun, 21 Apr 2013 15:40:36 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/04/21/154036/</guid>
+      <guid>https://daruyanagi.net/entry/2013/04/21/154036/</guid>
       <description>WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ で吐いた JSON を JavaScript で読み取ってみる。</description>
     </item>
     

@@ -2,116 +2,116 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>はてな on だるやなぎ</title>
-    <link>http://daruyanagi.net/tags/%E3%81%AF%E3%81%A6%E3%81%AA/</link>
+    <link>https://daruyanagi.net/tags/%E3%81%AF%E3%81%A6%E3%81%AA/</link>
     <description>Recent content in はてな on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Mon, 04 Feb 2019 19:55:08 +0000</lastBuildDate>
     
-	<atom:link href="http://daruyanagi.net/tags/%E3%81%AF%E3%81%A6%E3%81%AA/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://daruyanagi.net/tags/%E3%81%AF%E3%81%A6%E3%81%AA/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>はてなブログの記事下に SNS で投稿するボタンを独自に追加する</title>
-      <link>http://daruyanagi.net/entry/2017/03/05/180000/</link>
+      <link>https://daruyanagi.net/entry/2017/03/05/180000/</link>
       <pubDate>Sun, 05 Mar 2017 18:00:00 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/05/180000/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/05/180000/</guid>
       <description>ちょっと長いけど、はてなブログの［デザイン設定］－［カスタマイズ］－［記事上下のカスタマイズ］－［記事下］に張り付けるだけで使える。グレースケールで目立たないデザインだけど、マウスホバーで色付きになるぜー（ぃぇーぃあと、はてなブログって標準で jQuery を使ってるのかな？　だったらこの行は消した方がいいかもしれない（ローカルでテストするために使っていた）。
 &amp;amp;lt;script src=&amp;#34;https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js&amp;#34;&amp;gt;&amp;amp;lt;/script&amp;gt; ```開発は Visual Studio Code ＋ ASP.NET Core で行いました（なんとなく）。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### コード ```html &amp;amp;lt;style&amp;gt; a.sns-logo svg { height: 2.5em; width:2.5em; filter: grayscale(100%); } a.sns-logo svg:hover, a.sns-logo svg:active, a.sns-logo svg:focus { filter: grayscale(0); } #share { text-align: center; } #share ul { margin: 0; padding: 0; } #share ul li { display: inline-block; margin: 0.5em; padding: 0.5em; width: 4em; } #share ul li a { color: gray; } #share ul li a:hover, #share ul li a:active, #share ul li a:focus { text-decoration: none; } #share ul li a span { } #share ul li div.</description>
     </item>
     
     <item>
       <title>UWP：はてなの oAuth 認証</title>
-      <link>http://daruyanagi.net/entry/2016/09/19/224430/</link>
+      <link>https://daruyanagi.net/entry/2016/09/19/224430/</link>
       <pubDate>Mon, 19 Sep 2016 22:44:30 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2016/09/19/224430/</guid>
+      <guid>https://daruyanagi.net/entry/2016/09/19/224430/</guid>
       <description>プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
 ### AsyncOAuth を導入する さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。  neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。 ```cs var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret); var callbackUri = &#34;http://localhost/&#34;; var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
     </item>
     
     <item>
       <title>実質14,720円。</title>
-      <link>http://daruyanagi.net/entry/2013/12/13/231656/</link>
+      <link>https://daruyanagi.net/entry/2013/12/13/231656/</link>
       <pubDate>Fri, 13 Dec 2013 23:16:56 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/12/13/231656/</guid>
+      <guid>https://daruyanagi.net/entry/2013/12/13/231656/</guid>
       <description>今となっては割とどうでもいい話なのだけど、「はてなブログ Pro（有料）」を使う前は「はてなブログ（無料）」＋「はてなフォトライフ（有料、自動継続）」という構成で使ってたんだよ。ブログの新規作成画面のサイドバーで画像を簡単に上げられる UI が結構気に入っていたので。その後、「はてなブログ Pro」がどんどん便利になっていくので、確かドメインを割り当てられるようになったことがきっかけで、「はてなブログ Pro」へ移行したのさ。「はてなブログ Pro」へ移行すれば、実質「はてなフォトライフ（有料）」がついてくるようなものなので、そっちは解約すればいい。最初は「はてなブログ Pro」を契約すれば「はてなフォトライフ」は自動解約になるのかなと思ってたのだけど、そこまで便利じゃなかった。残念。しょうがないので手動で「はてなフォトライフ」を解約しようと思ったが……これができないんだよ！（当時の話、今は知らん）というわけで、「はてなフォトライフ（有料、自動継続）」は解約できず、端数の「はてなポイント」が毎月なくなっていくのを見ているしかなかった。とはいえ、まぁ、これぐらいのおカネなら寄付と思えばいいやと思っていたので、それほど気にはしていない（フィードバックも面倒だったのでやってない）。ただ、このブログは2年間14,000円ではなく、実質14,720円だということだ。もうちょっと大事に使わねばならん。  なんでこんなことを書いたのかというと、こういうメールがきたのでそのことを思い出したから。まぁ、残り100円程度ではなにもできんので、これもはてなに寄付することにする。</description>
     </item>
     
     <item>
       <title>はてなブログの人気の記事リストを表示する</title>
-      <link>http://daruyanagi.net/entry/2013/10/21/040832/</link>
+      <link>https://daruyanagi.net/entry/2013/10/21/040832/</link>
       <pubDate>Mon, 21 Oct 2013 04:08:32 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/10/21/040832/</guid>
+      <guid>https://daruyanagi.net/entry/2013/10/21/040832/</guid>
       <description>  このブログのサイドバーにある「人気記事」のリストは、しばやんが作ったはてなブログ用の人気エントリー API を利用している。
  Nancy ではてなブログ用の人気エントリー API を作ってみた - しばやん雑記 はてなブログ用の人気エントリー表示パーツを真面目に作った - しばやん雑記 最近ちょっと動かないことがあったのだけど、 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &#34;https://platform.twitter.com/widgets.js&#34;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &#34;script&#34;, &#34;twitter-wjs&#34;)); twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-391341056127934464&#39;); for (var i=0;iとのこと。最近、はてながスクリプトの読み込み順序をイジったのが原因らしい。というわけで、この対処法を組み込んで実行してみる。 </description>
     </item>
     
     <item>
       <title>Windows Live Writer で“はてなブログ”を書いてみた</title>
-      <link>http://daruyanagi.net/entry/2013/09/04/161420/</link>
+      <link>https://daruyanagi.net/entry/2013/09/04/161420/</link>
       <pubDate>Wed, 04 Sep 2013 16:14:20 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/09/04/161420/</guid>
+      <guid>https://daruyanagi.net/entry/2013/09/04/161420/</guid>
       <description>&amp;gt; 本日、はてなブログの記事を投稿・編集等できるAPI「はてなブログAtomPub」を公開しました。はてなブログAtomPubは、Atom Publishing Protocolに準拠したAPIです。AtomPubを利用すると、Windows Live Writerなど、各種のブログ編集ソフトから記事の投稿等ができます。また、はてなブログ専用のクライアントや、独自サービスの開発なども可能です。どうぞご利用ください。 はてなブログAtomPub APIを公開しました。サードパーティのブログ投稿ツールを利用・作成できます - はてなブログ開発ブログ  最近やる気満々やな！　ありがとねっ！（北上さん風に「Windows Live Writer」もサポートされているみたいなので、さっそく AtomPub を叩いてブログを書いてみましょう。それにしても「Windows Live Writer」使うの久しぶりだわ。先代のブログは WordPress で構築していたので、「Windows Live Writer」にはだいぶお世話になったのだけど。実はいくつかプラグインも作っているぐらい、昔は好きだったんだけどね*1。</description>
     </item>
     
     <item>
       <title>はてなグループ、作ってみました。</title>
-      <link>http://daruyanagi.net/entry/2013/09/02/040614/</link>
+      <link>https://daruyanagi.net/entry/2013/09/02/040614/</link>
       <pubDate>Mon, 02 Sep 2013 04:06:14 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/09/02/040614/</guid>
+      <guid>https://daruyanagi.net/entry/2013/09/02/040614/</guid>
       <description>  &amp;gt; 本日、はてなブログを「ブログ グループ」に参加させる際に、ブログ記事のカテゴリーを指定できるようにしました。自分のブログで「写真」カテゴリーにある記事だけを「写真」グループに参加させる、といったことができます。 ブログ グループに参加する際に、記事のカテゴリーを指定できるようにしました - はてなブログ開発ブログ  グッジョブ！　ずっと要望していた昨日なのでとても嬉しい。
  ASP.NET Web Pages - はてなブログ グループ WebMatrix - はてなブログ グループ まだ僕しかいないけど！はてなグループには RSS もあるので、お前の日記になんぞ興味ないよ、WebMatrix や ASP.NET Web Pages のことだけ書けよ、という人がいたらそっちを購読してくだサイ。また、参加者も募集しています！ </description>
     </item>
     
     <item>
       <title>WebMatrix 3</title>
-      <link>http://daruyanagi.net/entry/2013/06/11/224153/</link>
+      <link>https://daruyanagi.net/entry/2013/06/11/224153/</link>
       <pubDate>Tue, 11 Jun 2013 22:41:53 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/06/11/224153/</guid>
+      <guid>https://daruyanagi.net/entry/2013/06/11/224153/</guid>
       <description>今回は WebMatrix 3 ではてなブログのデザインをいじってみた。みんな、はてなブログのデザインを作るときってどうやってるのかなぁ。あんまり効率のいい方法って思いつかなかったのだけど、こんなのはどうかな、というのを考えてみた。</description>
     </item>
     
     <item>
       <title>Windows Store Apps：Cookie を取得して、ログインが必要なページを閲覧する（はてなフォトライフ）</title>
-      <link>http://daruyanagi.net/entry/2013/05/01/031148/</link>
+      <link>https://daruyanagi.net/entry/2013/05/01/031148/</link>
       <pubDate>Wed, 01 May 2013 03:11:48 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/05/01/031148/</guid>
+      <guid>https://daruyanagi.net/entry/2013/05/01/031148/</guid>
       <description>さてはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ*1、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。</description>
     </item>
     
     <item>
       <title>Widows Store Apps</title>
-      <link>http://daruyanagi.net/entry/2013/04/30/190004/</link>
+      <link>https://daruyanagi.net/entry/2013/04/30/190004/</link>
       <pubDate>Tue, 30 Apr 2013 19:00:04 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/04/30/190004/</guid>
+      <guid>https://daruyanagi.net/entry/2013/04/30/190004/</guid>
       <description>Surface RT（Windows RT）で“はてなブログ”を書くのが微妙にめんどくさいので、“はてなフォトライフ”のクライアントでも作ろうかと思い、@kanaharu ちゃんのブログ（はてなフォトライフに画像をアップロードするプログラムをC#で実装してみた - kanaharu.cpp）を参考にしながら WSSE 認証を実装してみた。</description>
     </item>
     
     <item>
       <title>WordPress → はてなブログ</title>
-      <link>http://daruyanagi.net/entry/2013/03/06/073953/</link>
+      <link>https://daruyanagi.net/entry/2013/03/06/073953/</link>
       <pubDate>Wed, 06 Mar 2013 07:39:53 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/03/06/073953/</guid>
+      <guid>https://daruyanagi.net/entry/2013/03/06/073953/</guid>
       <description>今のところ、WordPress の記事を直接はてなブログへインポートする手段は用意されていないが、工夫次第ではなんとかなりそう。たとえばこんな感じ。
  「WordPress」のログを WXR（WordPress eXtended RSS）でエクスポート（*.xml） エクスポートした XML ファイルを「Movable Type」形式へコンバート（*.txt） 「Movable Type」形式のログを「はてなダイアリー」へインポート 「はてなダイアリー」の記事を「はてなブログ」へインポート 結論から言えば、これでうまくいった。 ### WordPress → WXR   ［ツール］－［エクスポート］メニューから、記事を XML 形式で出力。  ### WXR → Movable Type Format   小物置き場 - WxrToMt が利用できる。自分の場合、WordPress の記事を Markdown 記法で記述していたので、ここでテキストエディターを使ってはてな記法へ置換。ちょちょいとマクロを作って大雑把に置換し、あとは諦めるなり、修正を入れるなりして頑張った。  ### Movable Type Format → はてなダイアリー   はてなダイアリーで新規ダイアリーを作成し、そこへ Movable Type 形式のログをインポートする。ここでちゃんとデータがインポートされたかをしっかりチェック。とくに、WordPress の記事でレベルの高い見出し（h1, h2...）を使っている場合、それがダイアリーで単体の記事と扱われてしまうので注意（要するに、記事が増殖する！）。場合によってはレベルを下げる処理を行う必要がある。はてなでは、過去に取得・放棄した URL を再び取得することはできない。つまり、インポートに失敗して、ダイアリーやブログを一旦削除すれば、その URL は二度と使えなくなる。そのため、ダイアリーの段階で入念にインポートのテストを行った方がいいと思う。自分の場合、はてなダイアリーを4つ作るハメになった。  ### はてなダイアリー → はてなブログ   はてなダイアリーからはてなブログへインポートすれば作業は完了。インポート先は新規ブログでも、既存のブログでも OK。このブログに、はてなブログのサービスが始まる前の日付で記事が追加されているのが分かるかな？  </description>
     </item>
     
     <item>
       <title>はてなスペースとやらを試してみた。</title>
-      <link>http://daruyanagi.net/entry/2013/01/17/020941/</link>
+      <link>https://daruyanagi.net/entry/2013/01/17/020941/</link>
       <pubDate>Thu, 17 Jan 2013 02:09:41 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2013/01/17/020941/</guid>
+      <guid>https://daruyanagi.net/entry/2013/01/17/020941/</guid>
       <description>  よくわからないけど、トピックごとの掲示板のようなものなのかな。ログインしたら勝手に自分の掲示板ができていた。
  だるやなぎ - はてなスペース これ、流行るのかなぁ……。  試しに WebMatrix の掲示板を作ってみた。はてな ID をもっていれば、簡便な情報交換の場になるのかもしれない。  WebMatrix - はてなスペース  </description>
     </item>

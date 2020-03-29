@@ -2,68 +2,68 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>PowerShell on だるやなぎ</title>
-    <link>http://daruyanagi.net/tags/powershell/</link>
+    <link>https://daruyanagi.net/tags/powershell/</link>
     <description>Recent content in PowerShell on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sat, 03 Nov 2018 20:24:17 +0000</lastBuildDate>
     
-	<atom:link href="http://daruyanagi.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://daruyanagi.net/tags/powershell/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>PowerShall：VPN 接続をセットアップする</title>
-      <link>http://daruyanagi.net/entry/2018/11/03/202417/</link>
+      <link>https://daruyanagi.net/entry/2018/11/03/202417/</link>
       <pubDate>Sat, 03 Nov 2018 20:24:17 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2018/11/03/202417/</guid>
+      <guid>https://daruyanagi.net/entry/2018/11/03/202417/</guid>
       <description>OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、AuthenticationMethod に Maximum を指定。
 $PreKey = &amp;#34;***&amp;#34; $VpnUrl = &amp;#34;***&amp;#34; $VpnName = &amp;#34;***&amp;#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod MSChapv2 ` -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```これであっさり VPN を追加できたのだけど、うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい。ここのチェックボックスね。  GUI ではできないのかなぁ、と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど、どうにもかっこ悪いので Twitter で聞いてみたら、幸い返事がいただけた。&amp;gt;もうお試しかもしれませんが、-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます。 pic.twitter.com/4LsYAR7Ulv— のらねこ！ C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &amp;lt;script async=&amp;#34;&amp;#34; src=&amp;#34;https://platform.twitter.com/widgets.js&amp;#34; charset=&amp;#34;utf-8&amp;#34;&amp;gt;&amp;lt;/script&amp;gt; ぉ、`AuthenticationMethod` って複数設定できるのか！　ってことでちょい修正。 ```ps1 $PreKey = &amp;#34;***&amp;#34; $VpnUrl = &amp;#34;***&amp;#34; $VpnName = &amp;#34;テスト&amp;#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod Chap,MSChapv2 ` # ここ -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```確かめてみたところ、意図したとおりにチェックボックスがオンになっていた。やったねー！ちなみに ID とパスワードを設定するコマンドレットはないとのこと。 $RasExec = &amp;ldquo;C:\windows\system32\rasdial.</description>
     </item>
     
     <item>
       <title>6月23日：貝殻本で PowerShell のお勉強をした</title>
-      <link>http://daruyanagi.net/entry/2018/06/29/185504/</link>
+      <link>https://daruyanagi.net/entry/2018/06/29/185504/</link>
       <pubDate>Fri, 29 Jun 2018 18:55:04 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2018/06/29/185504/</guid>
+      <guid>https://daruyanagi.net/entry/2018/06/29/185504/</guid>
       <description>第1章だけ読んで、ちょっと手を動かしてみた。6月5日：『PowerShell実践ガイドブック』 - だるろぐ今回の目標は PowerShell ISE から Visual Studio Code への移行がメイン。Visual Studio Code は知らないでもないし、使いやすいのは知ってるし、PowerShell ISE はそのうちディスコンになるだろうし、早晩移行はしなければならないのだけど、おっさんになるとほんとダメだね……なんとなくクセで ISE を起動してしまう。めんどくさいけれどちゃんと環境を作って、Visual Studio Code を使う癖を付けなければならない。  本では丁寧に拡張機能の導入方法が書いてあるけど、Visual Studio Code は結構賢いので、PS1 ファイルを開くと「推奨する拡張機能」を教えてくれる。案内に従ってインストールして、リロードするだけで PowerShell 環境が完成するのでらくちんだね。  ちなみに PowerShell は Windows PowerShell 5.x のままにしてる。PowerShell Core 6.0 への移行は、そのうちやろうかなって感じ。あと、Visual Studio Code は codeで起動できるので覚えておくとよい。cmd や explorer で code .&amp;lt;/code&amp;gt; ってやれば、カレントフォルダーを Visual Studio Code で開けると思う。  まずは手始めにフォルダーの作成や移動を PowerShell だけでやる。統合ターミナルが使えるので、わざわざ cmd なんかを立ち上げる必要はない。PowerShell におけるファイルシステムの操作は ***-Item だけど、エイリアスがいい感じに振ってあるので、cd や ls、pwd が普通に使えていい（どんなエイリアスが降ってあるかは Get-Alias でみられる）。ただ、touch はないみたい。&amp;rdquo;&amp;rdquo; &amp;gt; sample.ps1 みたいなイディオムを覚えておくといい。これは本に書いてあった。Visual Studio Code の PowerShell 拡張は大変良くできていて、PowerShell ISE よりもだいぶ強力に感じる。さっさと移行すればよかったな。  とりあえず自動補完。PowerShell はコマンド名が 動詞-目的語 なのでわかりやすいのだけど、その分入力はちょっとめんどいので補完があると楽。  デバッグ機能も ISE より使いやすいと思う。  あと、個人的に気に入ったのが Expand Alias 機能。エイリアスを使ってあるコードって、それを知らなかったらぱっと見わかんないんだけど、これで展開してやると馬鹿正直に書いたコードに直してくれる。  ?</description>
     </item>
     
     <item>
       <title>6月5日：『PowerShell実践ガイドブック』</title>
-      <link>http://daruyanagi.net/entry/2018/06/05/030249/</link>
+      <link>https://daruyanagi.net/entry/2018/06/05/030249/</link>
       <pubDate>Tue, 05 Jun 2018 03:02:49 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2018/06/05/030249/</guid>
+      <guid>https://daruyanagi.net/entry/2018/06/05/030249/</guid>
       <description> 6月1日（金）：お仕事お休み。でも、1日中業務改善のための Trello ＆ Slack 設定や環境のセットアップをしていた。  Trello：メールでカードを追加する - だるろぐ 手持ちの Excel ファイルと Microsoft Flow で簡単な Web サービスを作成する - だるろぐ  6月2日（土）：徹夜明けで爆睡。外に出ようかなって思ってたけど、なにもできなかった。クロネコの配達日時指定してたので頑張って起きてたんだけど、知らない間に意識が飛んでたのか、インターホンが聞こえなかったのか、不在通知が入ってた……ごめんなさい 6月3日（日）：不規則な生活の影響で、明るいうちから眠い。この日はクロネコの配達をちゃんと受け取れた。えらい！　夜中から週明けに備えて仕事を始める 6月4日（月）：日付が変わる前から午後5時ぐらいまで寝ずに仕事、そのあと気絶。 6月5日（火）：WWDC を観ているけど、あんまり面白くない。このあと新デバイスの発表とかあるんだろうけど クロネコで受け取ったのは、食糧・飲料、今年の浴衣（夏着物としても着れそうな、近江ちぢみのやつ）、あと『PowerShell実践ガイドブック』（通称、貝殻本）。PowerShell実践ガイドブック ~クロスプラットフォーム対応の次世代シェルを徹底解説~作者: 吉崎生出版社/メーカー: マイナビ出版発売日: 2018/05/30メディア: 単行本（ソフトカバー）この商品を含むブログを見る忙しくてまだちゃんと読めてないのだけど、思ったより分厚かった。PowerShell は今 Windows（.NET Framework ） → クロスプラットフォーム（.NET Core、Mac/Linux）な過渡期にあると思うけど、このタイミングでちゃんと勉強しなおしたいなーと思ってたので、Twitter で発刊を耳にするや否や速攻 Amazon で予約した――けど、本屋で買う方が早かったみたいだな！　失敗したぜ。まぁ、時間が取れてなくてまだちゃんと読めてないから、いいっちゃいいんだけど。そろそろ PowerShell ISE を卒業して、Visual Studio Code あたりで使えるようになりたいと思っているのだけど、そういうのにもちゃんと応えてくれる内容にもなっているみたい。斜め読みでさらっと全部読んでから、自分に足りないところを、手を動かしながら勉強していきたいなーって思う。目標はこうやってワンライナーでカッコよくかけるぐらい！脳みそが C# ベースでモノを考えるようになっているから、なかなかワンライナーでかけないんだよねぇ……スマートにかぁ、こうとか? (Invoke-WebRequest -Uri https://t.co/VTbIxZiar0).Links.href.Where({$_.EndsWith(&#34;.pdf&#34;)}).ForEach({Invoke-WebRequest -Uri $_ -OutFile (Split-Path $_ -Leaf)}) // PowerShell：陸上自衛隊のイラク派遣日報をまとめてダウンロードする https://t.co/eo955O9P9L— guitarrapc_tech (@guitarrapc_tech) 2018年5月27日 </description>
     </item>
     
     <item>
       <title>PowerShell：陸上自衛隊のイラク派遣日報をまとめてダウンロードする</title>
-      <link>http://daruyanagi.net/entry/2018/04/17/114152/</link>
+      <link>https://daruyanagi.net/entry/2018/04/17/114152/</link>
       <pubDate>Tue, 17 Apr 2018 11:41:52 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2018/04/17/114152/</guid>
+      <guid>https://daruyanagi.net/entry/2018/04/17/114152/</guid>
       <description>$source = &amp;#34;https://www.asahi.com/articles/ASL4J669JL4JUEHF016.html&amp;#34; $folder = &amp;#34;C:\Users\Hideto\pdf&amp;#34; $result = Invoke-WebRequest $source -UseBasicParsing $urls = $result.Links.href | Get-Unique | where { $_ -match &amp;#34;.pdf&amp;#34; } foreach ($url in $urls) { $file = ($url -split &amp;#34;/&amp;#34;)[-1] Invoke-WebRequest -Uri $url -OutFile (Join-Path $folder $file) } ```  結構量があるんだなぁ……（終わらねぇ。文学作品として割と楽しめるらしいので、ダウンロードが終わるの楽しみ☆（ゝω・）vｷｬﾋﾟそれはともかく、PowerShell、もっとうまく、サクッと書けるようになりたいなぁ。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### 元ネタ &amp;gt;イラク日報ぶっこ抜きスターターパック$ curl https://t.co/nt7h0I8NpE | grep &amp;amp;#39;&amp;amp;#39; | grep pdf | awk -F&amp;amp;#39;&amp;#34;&amp;amp;#39; &amp;amp;#39;{print $4}&amp;amp;#39; | xargs wget— opensorter (@opensorter) 2018年4月16日&amp;lt;script async=&amp;#34;&amp;#34; src=&amp;#34;https://platform.twitter.com/widgets.js&amp;#34; charset=&amp;#34;utf-8&amp;#34;&amp;gt;&amp;lt;/script&amp;gt;&amp;lt;br/&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### 追伸   ナメてたけど、結構量が多かった。ダウンロード中のファイルを一つ開いちゃって、ダウンロードに失敗したにもかかわらずこんなにデカくなったぞ……。 &amp;lt;/div&amp;gt; </description>
     </item>
     
     <item>
       <title>Omawari 1.2.0.0：いわゆる Web 更新チェッカーだけど、細かいところを改善した</title>
-      <link>http://daruyanagi.net/entry/2017/09/23/140731/</link>
+      <link>https://daruyanagi.net/entry/2017/09/23/140731/</link>
       <pubDate>Sat, 23 Sep 2017 14:07:31 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/09/23/140731/</guid>
+      <guid>https://daruyanagi.net/entry/2017/09/23/140731/</guid>
       <description>メインリストビューに Last Update 欄を設ける  それに伴うコード整理 Refresh ボタンは不要になったので廃止  通知トレイで DEBUG モードなのがわかるように ファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）  それに伴うリグレッションの修正 ついでにステータスバーに総稼働時間を表示するように  リファクタリング Click Once がめんどいのでやめた（ごめんなさい！）     ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした   ClickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。 ```ps1 # 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &#34;Omawari\bin&#34; 入力フォルダー $src = Join-Path $root &amp;ldquo;Release&amp;rdquo;
 出力フォルダー $version = (Get-ItemProperty (Join-Path $src &amp;ldquo;Omawari.exe&amp;rdquo;)).VersionInfo.FileVersion $dest = Join-Path $root Omawari-$version.</description>
     </item>
     
     <item>
       <title>PowerShell：環境構築を（なるべく）自動化する</title>
-      <link>http://daruyanagi.net/entry/2017/05/17/073339/</link>
+      <link>https://daruyanagi.net/entry/2017/05/17/073339/</link>
       <pubDate>Wed, 17 May 2017 07:33:39 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/05/17/073339/</guid>
+      <guid>https://daruyanagi.net/entry/2017/05/17/073339/</guid>
       <description>Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。
  （データは OneDrive で同期する。スタンドアロンアプリもだいたい OneDrive で） Set-ExecutionPolicy -ExecutionPolicy RemoteSigned chocolatey で必要なアプリをセットアップ  chocolatey で管理できない（するとかえって面倒）なものは OneDrive へ保存済みのインストーラーでセットアップ  シンボリックリンクを張る  Picture\Screenshots - OneDrive\Screenshots（スクリーンショットを同期するため）  これだったら自分の PowerShell 力でもなんとかなると思った。 ```ps1 Write-Host &#34;STEP 0: Set-ExecutionPolicy を RemoteSigned に書き換えます……&#34; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned Write-Host &amp;quot;&amp;rdquo;
 Write-Host &amp;ldquo;STEP 1: chocolatey をセットアップしています……&amp;rdquo;
@@ -73,10 +73,10 @@ Write-Host &amp;quot;&amp;rdquo;</description>
     
     <item>
       <title>PowerShell：String を String で分割する</title>
-      <link>http://daruyanagi.net/entry/2017/05/12/003539/</link>
+      <link>https://daruyanagi.net/entry/2017/05/12/003539/</link>
       <pubDate>Fri, 12 May 2017 00:35:39 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/05/12/003539/</guid>
+      <guid>https://daruyanagi.net/entry/2017/05/12/003539/</guid>
       <description>まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。さて、この間こんな感じのコードを書いたんですよ。
 $text = &amp;amp;#39;Microsoft Edge on Windows 10 Version 1511 for x64-based Systems&amp;amp;#39; $text.Split(&amp;amp;#39; on &amp;amp;#39;)[-1]  ```意図としては、文字列を“ on ”で分割して後ろ部分“Windows 10 Version 1511 for x64-based Systems”を取り出したい、みたいな感じだったのですが……結果はこうでした Systems
 ```cs text.Split(new char[] { &amp;amp;#39; &amp;amp;#39;, &amp;amp;#39;o&amp;amp;#39;, &amp;amp;#39;n&amp;amp;#39;, &amp;amp;#39; &amp;amp;#39; }) ```が実行されたんですね？（C# ならコンパイルエラーで止まる、というか、IntelliSense が補ってくれるから間違えない）　ためしに &amp;lt;code&amp;gt;| write&amp;lt;/code&amp;gt; と書き足してみたところ、ぐちゃぐちゃに引き裂かれた文字列たちが出力されました(´；ω；`)ｳｯ…でも、これちょっと面白いかも。文字列を文字列で分割したい場合、.NET だと &amp;lt;code&amp;gt;String.Split(string[], StringSplitOptions)&amp;lt;/code&amp;gt; を使えばよいので、PowerShell だとこんな感じになるみたいです。 ```ps1 // text.Split(new string[] { &amp;quot; on &amp;quot; }, StringSplitOptions.None) のつもり $text.Split(@(&amp;quot; on &amp;quot;), &amp;amp;#39;None&amp;amp;#39;)[-1] ```これでいいのかイマイチよくわかっていないのですが、これで意図通りに動きました。 Windows 10 Version 1511 for x64-based Systems</description>
@@ -84,10 +84,10 @@ $text = &amp;amp;#39;Microsoft Edge on Windows 10 Version 1511 for x64-based Sys
     
     <item>
       <title>PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する</title>
-      <link>http://daruyanagi.net/entry/2017/04/30/155040/</link>
+      <link>https://daruyanagi.net/entry/2017/04/30/155040/</link>
       <pubDate>Sun, 30 Apr 2017 15:50:40 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/04/30/155040/</guid>
+      <guid>https://daruyanagi.net/entry/2017/04/30/155040/</guid>
       <description>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ以前に作った PowerShell が動作しなくなった。
 $urls =@( &amp;#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&amp;#34; ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url $body = $request.ParsedHtml $price_node = $body.getElementsByTagName(&amp;#34;s&amp;#34;) | where { $_.getAttributeNode(&amp;#34;class&amp;#34;).Value -eq &amp;#34;srv_saleprice&amp;#34; }　#&amp;amp;lt;-- ここで例外 ```――結果。 HRESULT からの例外:0x800A01B6
 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### 解決 &amp;lt;code&amp;gt;getElementsByTagName()&amp;lt;/code&amp;gt; のかわりに &amp;lt;code&amp;gt;IHTMLDocument3_getElementsByTagName()&amp;lt;/code&amp;gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。 getElementsByTagName -&amp;gt; IHTMLDocument3_getElementsByTagName
@@ -98,10 +98,10 @@ getElementByID -&amp;gt; IHTMLDocument3_getElementByID
     
     <item>
       <title>PowerShell：メールが文字化けする</title>
-      <link>http://daruyanagi.net/entry/2017/03/05/090000/</link>
+      <link>https://daruyanagi.net/entry/2017/03/05/090000/</link>
       <pubDate>Sun, 05 Mar 2017 09:00:00 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/05/090000/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/05/090000/</guid>
       <description>PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。
 &amp;gt; NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。 .NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記  よくわかんないのだけど、&amp;ldquo;ISO-2022-JP と Base64 でエンコードするような処理&amp;quot;を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。
 #「=?iso-2022-jp?B?&amp;amp;lt;エンコード文字列&amp;gt;?=」形式に変換 function Encode-MailHeader($subject) { $enc = [System.Text.Encoding]::GetEncoding(&amp;#34;iso-2022-jp&amp;#34;); $strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject)); &amp;#34;=?{0}?B?{1}?=&amp;#34; -f &amp;#34;iso-2022-jp&amp;#34;, $strBase64 } ```あとはこの関数を使って、 ```ps1 $subject = Encode-MailHeader(Encode-MailHeader($title)) ```とでもすればよい。とりあえず文字化けはなくなった気がする。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### 今日学んだこと &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; #### 関数をパイプ対応にする これで完成――でもいいのだけど、なんかダサいので、パイプで繋げるようにしてみた。 ```ps1 #「=?iso-2022-jp?B?&amp;amp;lt;エンコード文字列&amp;gt;?=」形式に変換 function Encode-MailHeader([Parameter(ValueFromPipeline=$true)]$subject) { process { $enc = [System.Text.Encoding]::GetEncoding(&amp;#34;iso-2022-jp&amp;#34;); $strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject)); &amp;#34;=?{0}?B?{1}?=&amp;#34; -f &amp;#34;iso-2022-jp&amp;#34;, $strBase64 } } ```パイプを処理できるように、さっきの関数を改良。 ```ps1 $subject = $title | Encode-MailHeader | Encode-MailHeader ```ちょっとだけスマートになった気がする。 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; </description>
@@ -109,19 +109,19 @@ getElementByID -&amp;gt; IHTMLDocument3_getElementByID
     
     <item>
       <title>PowerShell：ストアアプリのセール情報を取得する</title>
-      <link>http://daruyanagi.net/entry/2017/03/04/220000/</link>
+      <link>https://daruyanagi.net/entry/2017/03/04/220000/</link>
       <pubDate>Sat, 04 Mar 2017 22:00:00 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/04/220000/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/04/220000/</guid>
       <description># スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &amp;#34;StoreApps.txt&amp;#34; $urls = (Get-Content $path) -as [string[]] # デバッグ用のサンプル # $urls =@( # &amp;#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&amp;#34; # ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url # アプリ名を取得 $title = $request.AllElements.FindById(&amp;#34;page-title&amp;#34;).innerText # ParsedHtml もめっちゃ便利やったぞ！ # 例：打消し線の付いた定価タグを取得 $body = $request.ParsedHtml $price_node = $body.getElementsByTagName(&amp;#34;s&amp;#34;) | where { $_.getAttributeNode(&amp;#34;class&amp;#34;).Value -eq &amp;#34;srv_saleprice&amp;#34; } # 定価が打ち消されていたらセール中ってこと if ($price_node) { $price = $price_node.innerText # 販売価格（セール価格）の取得 $sales_node = $body.</description>
     </item>
     
     <item>
       <title>PowerShell：Windows ストアのアプリの更新履歴をチェックする</title>
-      <link>http://daruyanagi.net/entry/2017/03/03/145454/</link>
+      <link>https://daruyanagi.net/entry/2017/03/03/145454/</link>
       <pubDate>Fri, 03 Mar 2017 14:54:54 +0000</pubDate>
       
-      <guid>http://daruyanagi.net/entry/2017/03/03/145454/</guid>
+      <guid>https://daruyanagi.net/entry/2017/03/03/145454/</guid>
       <description>これをチェックするツールがほしかったんだけど、WPF や ASP.NET Web Pages ではストアに「おまえ BOT だろ」と怒られてうまくいかなかった。けれど、似たようなコードを PowerShell で試すと、なぜかうまくいく……。原因はわかんないけど（調べる気が起きない）、PowerShell でできるんなら、PowerShell でやるか―って感じで頑張ってみた。基本方針は
  ストアから #version-notes をスクレイピングして保存 新旧 #version-notes を比較してステータス（!?*+-）をつける 結果を PSCustomｍObject の配列で返す って感じ。 ``` function Check-WindowsStore { $urls =@( &#34;https://www.microsoft.com/ja-jp/store/p/swarm/9wzdncrdrsq1&#34;, :（途中省略） ) # 重複は無駄なので削る $urls = $urls | Get-Unique foreach ($url in $urls) { try { # ストアからテキストをダウンロード $request = Invoke-WebRequest -Uri $url # アプリの表示名を記憶 $title = $request.AllElements .FindById(&amp;quot;page-title&amp;quot;).innerText # 新しいバージョンノートを記憶 $new = $request.AllElements .FindById(&amp;quot;version-notes&amp;quot;).innerText if ($new) { # 最初だけ：更新履歴を保存する .</description>
     </item>

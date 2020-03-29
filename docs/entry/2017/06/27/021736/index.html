@@ -90,7 +90,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2017/06/27/021736/20170627010541.png"/> 
+    <img src="/images/20170627010541.png"/> 
 </figure>
 ウチの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。</p>
 <div class="section">
@@ -102,24 +102,24 @@
 <div class="section">
     #### 空のテンプレートを作成
     <figure>
-    <img src="/images/2017/06/27/021736/20170627011714.png"/> 
+    <img src="/images/20170627011714.png"/> 
 </figure>
 まず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。
 <ul>
 <li>.NET Core</li>
 <li>.NET Framework</li>
 </ul>の 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。<figure>
-    <img src="/images/2017/06/27/021736/20170627022120.png"/> 
+    <img src="/images/20170627022120.png"/> 
 </figure>
 .NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。<figure>
-    <img src="/images/2017/06/27/021736/20170627012047.png"/> 
+    <img src="/images/20170627012047.png"/> 
 </figure>
 プロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。
 </div>
 <div class="section">
     #### 空のテンプレートを概観
     <figure>
-    <img src="/images/2017/06/27/021736/20170627012316.png"/> 
+    <img src="/images/20170627012316.png"/> 
 </figure>
 プロジェクトが作成されたら、さらっと中身を見てみましょう。ファイル構造はこんな感じです
 <ul>
@@ -192,7 +192,7 @@ namespace Sample
 }
 
 ```ConfigureServices と Configure という二つのメソッドがあり、Configure で Hello World! を出力する（context.Response.WriteAsync）ようになっているみたい。<figure>
-    <img src="/images/2017/06/27/021736/20170627012904.png"/> 
+    <img src="/images/20170627012904.png"/> 
 </figure>
 実際に［F5］キーで実行してみると、Hello World! が出力されました。つまり、どっかにファイルを置いて読み込み、context.Response.WriteAsync() すれば、とりあえずトップページは出力されそう……だけど、後々のことを考えると流石にそれはめんどくさそうなので、フレームワークの力を借りておこうかな。
 
@@ -200,10 +200,10 @@ namespace Sample
 &lt;div class=&quot;section&quot;&gt;
     #### ASP.NET Core MVC の導入
     できれば使い慣れた ASP.NET Web Pages の ASN.NET Core 版のようなのがあればよかったのだけど、今のところ無いのかな？　よくわかんないので、比較的情報の多かった ASN.NET Core MVC を導入してみます。NuGet パッケージで簡単にインストールできるみたいなので、今回はそれを利用してみましょう。アプリを終了して、ソリューションのコンテキストメニューから［ソリューションの NuGet パッケージを管理］コマンドを選択。<figure>
-    <img src="/images/2017/06/27/021736/20170627013555.png"/> 
+    <img src="/images/20170627013555.png"/> 
 </figure>
 「Microsoft.AspNetCore.MVC」を探してインストールします。<figure>
-    <img src="/images/2017/06/27/021736/20170627013752.png"/> 
+    <img src="/images/20170627013752.png"/> 
 </figure>
 パッケージがクソほどあってビビるけど、インストールは一瞬で終わりました。
 </code></pre><p>：
@@ -284,10 +284,10 @@ namespace Sample
 &lt;div class=&quot;section&quot;&gt;
     ### コントローラーとビューを作成
     <figure>
-    <img src="/images/2017/06/27/021736/20170627015130.png"/> 
+    <img src="/images/20170627015130.png"/> 
 </figure>
 以下のような構造でコントローラーとビューを作成します。この辺りは MVC の“お約束”なので覚えるしかない。<figure>
-    <img src="/images/2017/06/27/021736/20170627021309.png"/> 
+    <img src="/images/20170627021309.png"/> 
 </figure>
 &lt;br/&gt;
 
@@ -308,7 +308,7 @@ namespace Sample
 &lt;li&gt;Program.cs&lt;/li&gt;
 &lt;li&gt;Startup.cs&lt;/li&gt;
 &lt;/ul&gt;ソリューションエクスプローラーのコンテキストメニューには［追加］－［コントローラー］というコマンドがあるのですが、これを使うとなんかエラーが出たので、［新しい項目］コマンドからコントローラーを追加しました。<figure>
-    <img src="/images/2017/06/27/021736/20170627015202.png"/> 
+    <img src="/images/20170627015202.png"/> 
 </figure>
 先程、ルーティングでデフォルトコントローラーの名前を“Home”にしておいたのにはとくに意味はなく、単にこのときの既定の名前が“HomeController.cs”だったからデス。名前はお好みで。
 ```cs
@@ -333,7 +333,7 @@ namespace Sample.Controllers
 }
 
 ```Index() も用意されているので、ここで追加のコーディングは不要。なんでも既定（“お約束”）に合わせておくと色々楽ちん。<figure>
-    <img src="/images/2017/06/27/021736/20170627015533.png"/> 
+    <img src="/images/20170627015533.png"/> 
 </figure>
 ビューもおんなじ感じで。作成するやで。ビューは殺風景なので、適当にサンプルを書いてみました。
 ```cs
@@ -353,7 +353,7 @@ namespace Sample.Controllers
 &amp;lt;/html&gt;
 
 ```［F5］で実行します。<figure>
-    <img src="/images/2017/06/27/021736/20170627015831.png"/> 
+    <img src="/images/20170627015831.png"/> 
 </figure>
 フーーーッ！　これでだいたい完了！　あとはビューをしこしこ書いていくだけです。
 
@@ -388,7 +388,7 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 &lt;div class=&quot;section&quot;&gt;
     #### デプロイ
     <figure>
-    <img src="/images/2017/06/27/021736/20170627020507.png"/> 
+    <img src="/images/20170627020507.png"/> 
 </figure>
 プロジェクトのコンテキストメニューから［公開］コマンドを選択。あとはそんなに難しくないと思うで、以下省略。ウチの場合はトラブルなく、デプロイまで完了しました。いずれは GitHub 連携でデプロイ……みたいな感じにしたいですね。終わり！
 
@@ -398,64 +398,19 @@ public void Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerF
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-06-27T02:17:36JST">2017/06/27</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e7%a9%ba%e3%81%ae%20ASP.NET%20Core%20%e3%83%97%e3%83%ad%e3%82%b8%e3%82%a7%e3%82%af%e3%83%88%e3%81%8b%e3%82%89%e3%81%a8%e3%82%8a%e3%81%82%e3%81%88%e3%81%9a%20Web%20%e3%82%b5%e3%82%a4%e3%83%88%e3%81%ae%e3%83%88%e3%83%83%e3%83%97%e3%83%9a%e3%83%bc%e3%82%b8%e3%82%92%e6%9b%b8%e3%81%84%e3%81%a6%20Azure%20%e3%81%ab%e3%83%87%e3%83%97%e3%83%ad%e3%82%a4%e3%81%99%e3%82%8b%e3%81%be%e3%81%a7%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/06/27/021736/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E7%A9%BA%E3%81%AE&#43;ASP.NET&#43;Core&#43;%E3%83%97%E3%83%AD%E3%82%B8%E3%82%A7%E3%82%AF%E3%83%88%E3%81%8B%E3%82%89%E3%81%A8%E3%82%8A%E3%81%82%E3%81%88%E3%81%9A&#43;Web&#43;%E3%82%B5%E3%82%A4%E3%83%88%E3%81%AE%E3%83%88%E3%83%83%E3%83%97%E3%83%9A%E3%83%BC%E3%82%B8%E3%82%92%E6%9B%B8%E3%81%84%E3%81%A6&#43;Azure&#43;%E3%81%AB%E3%83%87%E3%83%97%E3%83%AD%E3%82%A4%E3%81%99%E3%82%8B%E3%81%BE%E3%81%A7&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F27%2F021736%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/29/030457/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/29/030457/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-06-27T02:17:36JST">2017/06/27</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/26/004342/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/26/004342/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

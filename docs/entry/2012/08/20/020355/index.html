@@ -101,18 +101,18 @@ var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファ�
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> model = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">dynamic</span>&gt;();
 
 <span style="color:#960050;background-color:#1e0010">```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように</span> Upload.cshtml <span style="color:#960050;background-color:#1e0010">はめでたく複数ファイルのアップロードに対応できたし、</span> Ajax <span style="color:#960050;background-color:#1e0010">には</span> Json <span style="color:#960050;background-color:#1e0010">で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。</span><figure>
-    <img src="/images/2012/08/20/020355/20120820014053.png"/> 
+    <img src="/images/20120820014053.png"/> 
 </figure>
 初期状態<span style="color:#960050;background-color:#1e0010">。</span><figure>
-    <img src="/images/2012/08/20/020355/20120820014058.png"/> 
+    <img src="/images/20120820014058.png"/> 
 </figure>
 ファイルをドラッグ<span style="color:#960050;background-color:#1e0010">＆ドロップ。これにはもちろん、</span> Drag &amp;amp; Drop <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用する。画像のプレビューは</span> HTML5 <span style="color:#960050;background-color:#1e0010">の</span> File Reader API <span style="color:#960050;background-color:#1e0010">を利用して実装してある。</span>JavaScript <span style="color:#960050;background-color:#1e0010">は見よう見まねで書いてみたけれどなかなか難しい……けれど、</span> cshtml <span style="color:#960050;background-color:#1e0010">ならば自動補完機能の恩恵をうけることができるのでまだマシ。</span>jQuery <span style="color:#960050;background-color:#1e0010">だと</span>
 </code></pre></div><p>$.event.props.push('dataTransfer');</p>
 <pre><code class="language-という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
-    <img src="/images/2012/08/20/020355/20120820014101.png"/> 
+    <img src="/images/20120820014101.png"/> 
 </figure>
 Ajax" data-lang="という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
-    <img src="/images/2012/08/20/020355/20120820014101.png"/> 
+    <img src="/images/20120820014101.png"/> 
 </figure>
 Ajax">```cs
 # Upload.cs
@@ -262,64 +262,19 @@ Ajax">```cs
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-08-20T02:03:55JST">2012/08/20</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e3%82%a2%e3%83%83%e3%83%97%e3%83%ad%e3%83%bc%e3%83%89%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/20/020355/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F020355%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/202253/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/202253/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-08-20T02:03:55JST">2012/08/20</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/19/130606/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/19/130606/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

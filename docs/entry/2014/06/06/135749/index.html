@@ -83,7 +83,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2014/06/06/135749/20140606135118.png"/> 
+    <img src="/images/20140606135118.png"/> 
 </figure>
 <br/></p>
 <div class="section">
@@ -93,20 +93,20 @@
 <div class="section">
     ### 準備
     <figure>
-    <img src="/images/2014/06/06/135749/20140606133749.png"/> 
+    <img src="/images/20140606133749.png"/> 
 </figure>
 適当にコードを書いて実行すると、
 <pre><code>&gt;
     アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。
 </code></pre>
 <p>というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、<a href="http://www.atmarkit.co.jp/ait/articles/1304/26/news058_2.html">特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT</a> に解決策があった。まとめると、<figure>
-    <img src="/images/2014/06/06/135749/20140606134302.png"/> 
+    <img src="/images/20140606134302.png"/> 
 </figure>
 プロジェクトを一度アンロードして……<figure>
-    <img src="/images/2014/06/06/135749/20140606134305.png"/> 
+    <img src="/images/20140606134305.png"/> 
 </figure>
  *.csproj ファイルを編集し……<figure>
-    <img src="/images/2014/06/06/135749/20140606134309.png"/> 
+    <img src="/images/20140606134309.png"/> 
 </figure>
 TargetPlatformVersion を 8.0 にする。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
@@ -118,13 +118,13 @@ ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://sch
     <span style="color:#f92672">&lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;</span>8.0 // &amp;lt;-- この行を追加
 
 ```<figure>
-    <img src="/images/2014/06/06/135749/20140606134457.png"/> 
+    <img src="/images/20140606134457.png"/> 
 </figure>
 で、もう一度プロジェクトを読み込んで［参照の追加］をすると、<figure>
-    <img src="/images/2014/06/06/135749/20140606134515.png"/> 
+    <img src="/images/20140606134515.png"/> 
 </figure>
 ［Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows.Management と Windows.ApplicationModel を参照に追加。さらに、最初のビルドエラーで要求されていた System.Runtime も参照に追加しておく。<figure>
-    <img src="/images/2014/06/06/135749/20140606134654.png"/> 
+    <img src="/images/20140606134654.png"/> 
 </figure>
 “%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.dll”ファイルを指定して参照に加える。これで準備は完了。
 
@@ -171,7 +171,7 @@ namespace Sample3
 }
 
 ```適当にこんな感じにして実行。<figure>
-    <img src="/images/2014/06/06/135749/20140606135118.png"/> 
+    <img src="/images/20140606135118.png"/> 
 </figure>
 package.DisplayName や package.Description などが表示されないが、この情報はそもそも提供されていないらしい。がっかりだ。ただ、 <span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;https://github.com/luisrigoni/metro-apps-list&#34;</span><span style="color:#f92672">&gt;</span>luisrigoni/metro-apps-list · GitHub<span style="color:#f92672">&lt;/a&gt;</span> で示されているように、Win32 API で PRI を読むなどすれば取得できないこともないらしい。だいぶ面倒だな……。
 
@@ -183,64 +183,19 @@ package.DisplayName や package.Description などが表示されないが、こ
 </code></pre></div>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2014-06-06T13:57:49JST">2014/06/06</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e6%b8%88%e3%81%bf%e3%81%ae%20Windows%20Store%20Apps%20%e3%82%92%e5%88%97%e6%8c%99%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/06/06/135749/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E6%B8%88%E3%81%BF%E3%81%AE&#43;Windows&#43;Store&#43;Apps&#43;%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F06%2F06%2F135749%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/07/171204/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/07/171204/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2014-06-06T13:57:49JST">2014/06/06</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/06/023509/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/06/06/023509/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

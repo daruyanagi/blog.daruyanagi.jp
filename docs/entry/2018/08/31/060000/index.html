@@ -86,13 +86,13 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2018/08/31/060000/20180830200841.png"/> 
+    <img src="/images/20180830200841.png"/> 
 </figure>
 なんか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど――<figure>
-    <img src="/images/2018/08/31/060000/20180830201012.png"/> 
+    <img src="/images/20180830201012.png"/> 
 </figure>
 <figure>
-    <img src="/images/2018/08/31/060000/20180830201108.png"/> 
+    <img src="/images/20180830201108.png"/> 
 </figure>
 画像をコピーすると、ファイルリストと一緒にイメージもクリップボードに格納してくれるみたい<a href="#f-384b75a0" name="fn-384b75a0" title="クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML">*1</a>。「ペイント」で張り付ければイメージに、「エクスプローラー」で張り付けると画像ファイルになって便利なんだけど、そのあたりをちゃんと考えてなかった。ちゃんと条件分岐を増やして不要な処理を減らす。あと、高速に［Ctrl］＋［C］キーを押しまくったりするとたまにエラーが発生するので、それもちゃんとトラップしてバルーンで警告するようにした。他にも少しエラー処理を足したので、アプリのクラッシュは減ったはず。それでもデカいファイルを扱う場合などに連続処理が発生するとあまりよろしくないので、ファイルの保存時に警告音を再生するオプションを付けた。音が鳴るまでは次のコピーを控えてもらえると、余計なエラーが発生しない。</p>
 <div class="github-card" data-user="daruyanagi/Amaguri/releases/tag" data-repo="v1.1.0.0" data-width="400" data-height="" data-theme="default"></div>
@@ -104,64 +104,19 @@
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-08-31T06:00:00JST">2018/08/31</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Amaguri%20v1.1.0.0%ef%bc%9a%e4%bf%9d%e5%ad%98%e6%99%82%e3%81%ae%e5%8a%b9%e6%9e%9c%e9%9f%b3%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/08/31/060000/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Amaguri&#43;v1.1.0.0%EF%BC%9A%E4%BF%9D%E5%AD%98%E6%99%82%E3%81%AE%E5%8A%B9%E6%9E%9C%E9%9F%B3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F08%2F31%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/05/023013/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/09/05/023013/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-08-31T06:00:00JST">2018/08/31</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/08/30/192006/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/08/30/192006/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

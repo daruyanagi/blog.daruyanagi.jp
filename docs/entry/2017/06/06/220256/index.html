@@ -93,10 +93,10 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2017/06/06/220256/20170606214904.png"/> 
+    <img src="/images/20170606214904.png"/> 
 </figure>
 開いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。<a href="http://forest.watch.impress.co.jp/docs/news/1063435.html">開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に</a>名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FTonjiru%2Freleases%2Ftag%2Fv1.0.0" title="daruyanagi/Tonjiru" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。 <figure>
-    <img src="/images/2017/06/06/220256/20170606214302.png"/> 
+    <img src="/images/20170606214302.png"/> 
 </figure>
 一応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。</p>
 <div class="section">
@@ -128,7 +128,7 @@ return true;
 &lt;div class=&quot;section&quot;&gt;
     ### 与太話その二：GitHub for Windows
     <figure>
-    <img src="/images/2017/06/06/220256/20170606215620.png"/> 
+    <img src="/images/20170606215620.png"/> 
 </figure>
 「GitHub」アプリの新版がベータ公開されているので試してみた。[GitHub、“GitHub Flow”に最適化した新しいクライアント「GitHub Desktop」を公開](http://forest.watch.impress.co.jp/docs/news/716583.html)個人的にはいろいろ使いにくいというか、プルリクエストが GUI から作れないのか？　それがちょっと面倒だった。――ので、古いの（現行版）を引っ張り出して使っている。こっちの方が今のところ便利かなぁ。
 
@@ -137,64 +137,19 @@ return true;
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-06-06T22:02:56JST">2017/06/06</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%83%87%e3%82%b9%e3%82%af%e3%83%88%e3%83%83%e3%83%97%e3%81%ae%e3%82%a6%e3%82%a3%e3%83%b3%e3%83%89%e3%82%a6%e3%82%92%e5%85%a8%e9%83%a8%e9%96%89%e3%81%98%e3%82%8b%e3%83%84%e3%83%bc%e3%83%ab%e3%80%8cTonjiru%e3%80%8d%e3%82%92%e4%bd%9c%e3%81%a3%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/06/06/220256/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%83%87%E3%82%B9%E3%82%AF%E3%83%88%E3%83%83%E3%83%97%E3%81%AE%E3%82%A6%E3%82%A3%E3%83%B3%E3%83%89%E3%82%A6%E3%82%92%E5%85%A8%E9%83%A8%E9%96%89%E3%81%98%E3%82%8B%E3%83%84%E3%83%BC%E3%83%AB%E3%80%8CTonjiru%E3%80%8D%E3%82%92%E4%BD%9C%E3%81%A3%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F06%2F06%2F220256%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/07/191844/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/07/191844/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-06-06T22:02:56JST">2017/06/06</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/02/093913/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/06/02/093913/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

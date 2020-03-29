@@ -93,7 +93,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2017/09/01/090403/20170901084555.png"/> 
+    <img src="/images/20170901084555.png"/> 
 </figure>
 Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を<strong>3年ぶりに</strong>アップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。</p>
 <ul>
@@ -103,19 +103,19 @@ Windows の［共有］機能からシェアした URL を整形してクリッ�
 <li>improve error handling</li>
 </ul></li>
 </ul>ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血<figure>
-    <img src="/images/2017/09/01/090403/20170901084843.png"/> 
+    <img src="/images/20170901084843.png"/> 
 </figure>
 昔と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、**このアプリからまた［共有］機能が呼べる**ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。<figure>
-    <img src="/images/2017/09/01/090403/20170901085337.png"/> 
+    <img src="/images/20170901085337.png"/> 
 </figure>
 一方、**ときどきデータがクリップボードにコピーされない**という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です<a href="#f-341c777e" name="fn-341c777e" title="WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除">*1</a>。<figure>
-    <img src="/images/2017/09/01/090403/20170901084949.png"/> 
+    <img src="/images/20170901084949.png"/> 
 </figure>
 <figure>
-    <img src="/images/2017/09/01/090403/20170901084951.png"/> 
+    <img src="/images/20170901084951.png"/> 
 </figure>
 整形ルールの管理画面も新しくなりました。<a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" target="_blank"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png"/></a>昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。<figure>
-    <img src="/images/2017/09/01/090403/20170901085908.png"/> 
+    <img src="/images/20170901085908.png"/> 
 </figure>
 あと、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（[【更新】Clipper - Windows Store Watch](http://store-watch.hatenadiary.jp/entry/2017/09/01/084209)[Clipper を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz)
 <div class="footnote">
@@ -124,64 +124,19 @@ Windows の［共有］機能からシェアした URL を整形してクリッ�
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-09-01T09:04:03JST">2017/09/01</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Windows%20%e3%81%ae%ef%bc%bb%e5%85%b1%e6%9c%89%ef%bc%bd%e6%a9%9f%e8%83%bd%e3%81%8b%e3%82%89%e3%82%b7%e3%82%a7%e3%82%a2%e3%81%97%e3%81%9f%20URL%20%e3%82%92%e6%95%b4%e5%bd%a2%e3%81%97%e3%81%a6%e3%82%af%e3%83%aa%e3%83%83%e3%83%97%e3%83%9c%e3%83%bc%e3%83%89%e3%81%ab%e3%82%b3%e3%83%94%e3%83%bc%e3%81%a7%e3%81%8d%e3%82%8b%e3%82%b9%e3%83%88%e3%82%a2%e3%82%a2%e3%83%97%e3%83%aa%e3%80%8cClipper%e3%80%8dv3.0.0%20%e3%82%92%e5%85%ac%e9%96%8b%e3%81%97%e3%81%be%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/09/01/090403/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Windows&#43;%E3%81%AE%EF%BC%BB%E5%85%B1%E6%9C%89%EF%BC%BD%E6%A9%9F%E8%83%BD%E3%81%8B%E3%82%89%E3%82%B7%E3%82%A7%E3%82%A2%E3%81%97%E3%81%9F&#43;URL&#43;%E3%82%92%E6%95%B4%E5%BD%A2%E3%81%97%E3%81%A6%E3%82%AF%E3%83%AA%E3%83%83%E3%83%97%E3%83%9C%E3%83%BC%E3%83%89%E3%81%AB%E3%82%B3%E3%83%94%E3%83%BC%E3%81%A7%E3%81%8D%E3%82%8B%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E3%80%8CClipper%E3%80%8Dv3.0.0&#43;%E3%82%92%E5%85%AC%E9%96%8B%E3%81%97%E3%81%BE%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F09%2F01%2F090403%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/09/03/124251/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/09/03/124251/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-09-01T09:04:03JST">2017/09/01</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/31/134930/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/31/134930/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

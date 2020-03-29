@@ -91,7 +91,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
         </div>
         <div class="entry__content">
             <p>まずはお詫びを。<figure>
-    <img src="/images/2012/08/20/202253/20120819115634.png"/> 
+    <img src="/images/20120819115634.png"/> 
 </figure>
 <br/></p>
 <pre><code>&gt;
@@ -100,7 +100,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
     WebMatrix でファイルのアップロード - だるろぐ
 </code></pre>
 <p>そしたらツッコミをもらった。&gt;だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。<figure>
-    <img src="/images/2012/08/20/202253/20120820201127.png"/> 
+    <img src="/images/20120820201127.png"/> 
 </figure>
 確かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Collections.Generic;
@@ -208,7 +208,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
 &amp;lt;/html&gt;
 
 <span style="color:#960050;background-color:#1e0010">```結果はこんな感じ。</span><figure>
-    <img src="/images/2012/08/20/202253/20120820201550.png"/> 
+    <img src="/images/20120820201550.png"/> 
 </figure>
 できた<span style="color:#960050;background-color:#1e0010">！</span>
 
@@ -219,64 +219,19 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
 </code></pre></div>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-08-20T20:22:53JST">2012/08/20</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%20%e3%81%a7%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%ae%e3%82%a2%e3%83%83%e3%83%97%e3%83%ad%e3%83%bc%e3%83%89%ef%bc%883%ef%bc%89%20-%20FileUpload%20%e3%83%98%e3%83%ab%e3%83%91%e3%83%bc%e3%82%92%e4%bd%bf%e3%81%86%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/20/202253/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;%E3%81%A7%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E3%82%A2%E3%83%83%E3%83%97%E3%83%AD%E3%83%BC%E3%83%89%EF%BC%883%EF%BC%89&#43;-&#43;FileUpload&#43;%E3%83%98%E3%83%AB%E3%83%91%E3%83%BC%E3%82%92%E4%BD%BF%E3%81%86&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F20%2F202253%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/210729/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/210729/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-08-20T20:22:53JST">2012/08/20</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/020355/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/20/020355/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

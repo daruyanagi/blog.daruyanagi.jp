@@ -89,7 +89,7 @@
         </div>
         <div class="entry__content">
             <p>「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。<figure>
-    <img src="/images/2013/01/27/102043/20130127100427.png"/> 
+    <img src="/images/20130127100427.png"/> 
 </figure>
 </p>
 <ul>
@@ -103,28 +103,28 @@
 <div class="section">
     ### スターターテンプレート
     <figure>
-    <img src="/images/2013/01/27/102043/20130127095934.png"/> 
+    <img src="/images/20130127095934.png"/> 
 </figure>
 で、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。<figure>
-    <img src="/images/2013/01/27/102043/20130127100804.png"/> 
+    <img src="/images/20130127100804.png"/> 
 </figure>
 さっそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。<figure>
-    <img src="/images/2013/01/27/102043/20130127100847.png"/> 
+    <img src="/images/20130127100847.png"/> 
 </figure>
 どうやら、“_AppStart.cshtml”<a href="#f1" name="fn1" title="アプリケーションの起動時に実行される">*1</a>でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。<figure>
-    <img src="/images/2013/01/27/102043/20130127100700.png"/> 
+    <img src="/images/20130127100700.png"/> 
 </figure>
 とりあえず Twitter の API キーを取得して試したのだけど、うまくいかない<a href="#f2" name="fn2" title="わしが何かミスってるんだろう">*2</a>。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……<figure>
-    <img src="/images/2013/01/27/102043/20130127101058.png"/> 
+    <img src="/images/20130127101058.png"/> 
 </figure>
 <figure>
-    <img src="/images/2013/01/27/102043/20130127101110.png"/> 
+    <img src="/images/20130127101110.png"/> 
 </figure>
 <figure>
-    <img src="/images/2013/01/27/102043/20130127101114.png"/> 
+    <img src="/images/20130127101114.png"/> 
 </figure>
 いともあっさり動いた（右上に注目！）。<figure>
-    <img src="/images/2013/01/27/102043/20130127101234.png"/> 
+    <img src="/images/20130127101234.png"/> 
 </figure>
 データベースにもちゃんと登録されている<a href="#f3" name="fn3" title="UserId が 2 になっているのは、Twitter で試して失敗したためかな">*3</a>。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う<a href="#f4" name="fn4" title="実はもうだいたいできてるんだけど！">*4</a>。
 </div><div class="footnote">
@@ -136,64 +136,19 @@
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2013-01-27T10:20:43JST">2013/01/27</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%202%ef%bc%9aOAuth%20%e3%81%a7%e3%83%ad%e3%82%b0%e3%82%a4%e3%83%b3%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/01/27/102043/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;2%EF%BC%9AOAuth&#43;%E3%81%A7%E3%83%AD%E3%82%B0%E3%82%A4%E3%83%B3%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F01%2F27%2F102043%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/29/095805/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/29/095805/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2013-01-27T10:20:43JST">2013/01/27</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/25/085927/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/01/25/085927/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

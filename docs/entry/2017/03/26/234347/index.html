@@ -92,7 +92,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2017/03/26/234347/20170325190700.png"/> 
+    <img src="/images/20170325190700.png"/> 
 </figure>
 あまり気付かれてない気がしますが（こっそりやったので！）、はてなブログのドメインをお引越ししました。はてなブログを独自ドメインにする話はよく見かけますが、独自ドメインで運用していたはてなブログを別のドメインへ移動させた例はあまりないかもしれないので、メモがてら残しておきます。とはいえ、心配したようなトラブルもとくに起こりませんでした。1時間ちょっと はてなブログ がダウンしたのと、AdSense がちょっと減ったような気がする程度です。</p>
 <div class="section">
@@ -102,7 +102,7 @@
 <li>daruyanagi**.net**：メインのブログ（WordPress）</li>
 <li>daruyanagi**.jp**：はてなブログ</li>
 </ul>という運用をしていたのですが（こういうちょっと謎な構造になっていたのは、もっぱら歴史的な事情によります）、WordPress よりも はてなブログの方が管理が楽だったこともあり、いつしか daruyanagi.jp がメインに。持て余していた daruyanagi.net をポートフォリオサイト（というか自己紹介サイト）っぽい感じにして使っていたのですが、とある日、ドメインの延長手続きを失念してしまい、daruyanagi.net を失ってしまいました。<figure>
-    <img src="/images/2017/03/26/234347/20170326230159.png"/> 
+    <img src="/images/20170326230159.png"/> 
 </figure>
 現在は水素水を布教するサイトになっています。そんなわけで、
 <ul>
@@ -138,7 +138,7 @@
 <li>Azure のカスタムドメイン機能で daruyanagi.jp を割り当てる</li>
 </ol></li>
 </ol>うちは20年近くバリュードメインですので、そこで DNS の設定を書き換えます。<figure>
-    <img src="/images/2017/03/26/234347/20170326233254.png"/> 
+    <img src="/images/20170326233254.png"/> 
 </figure>
 これが反映されるのを待って、はてなブログ と Azure 側でもドメインの設定をしました。はてなブログのドメイン移動は、反映までに少し時間がかかりましたが（1時間ちょい）、問題なく行えました。あまり期待していなかったんですが、はてなブックマークなどもちゃんと受け継がれたようです。さすが！<a href="#f-2bea128f" name="fn-2bea128f" title="スターはダメなんだっけ？　よくわかんないけどいいや">*1</a>しかし、以前に外部からいただいた はてなブログ へのリンクが、移転に伴い 404 になってしまうのはあまりいただけません。というわけで、自己紹介サイトを拡張し、blog.daruyanagi.jp へリダイレクトを行うことにしました。幸い、自己紹介サイトは WebMatrix × ASP.NET Web Pages で作ってあったので、そんなに難しくはなさそう。しかも幸運なことに、はてなブログ は記事を配信するディレクトリを一段深く掘ってあります（ドメイン直下ではない）。
 <pre><code>&gt;
@@ -147,7 +147,7 @@
     記事を配信するディレクトリを変更する - はてなブログ ヘルプ
 </code></pre>
 <p>というわけで、<code>daruyanagi.jp/entry</code>、<code>daruyanagi.jp/archive</code>、<code>daruyanagi.jp/about</code> へのリクエストをそのまま <code>blog.daruyanagi.jp</code> の各ディレクトリへリダイレクトすればよさそう。<figure>
-    <img src="/images/2017/03/26/234347/20170326232734.png"/> 
+    <img src="/images/20170326232734.png"/> 
 </figure>
 <br/></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/Entry.cs<span style="color:#960050;background-color:#1e0010">、</span> ~/Archive.cs<span style="color:#960050;background-color:#1e0010">、</span> ~/About.cs
@@ -159,7 +159,7 @@
 }
 
 <span style="color:#960050;background-color:#1e0010">```</span>&lt;code&gt;App.Blog&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">には、</span>blog.daruyanagi.jp <span style="color:#960050;background-color:#1e0010">が格納されています</span>&lt;a href=<span style="color:#e6db74">&#34;#f-e1a7f04d&#34;</span> name=<span style="color:#e6db74">&#34;fn-e1a7f04d&#34;</span> title=<span style="color:#e6db74">&#34;開発中は daruyanagi.jp にしていろいろテストしていました&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。</span>&lt;a href=<span style="color:#e6db74">&#34;https://msdn.microsoft.com/ja-jp/library/system.web.httpresponse.redirectpermanent(v=vs.110).aspx&#34;</span>&gt;HttpResponse.RedirectPermanent <span style="color:#960050;background-color:#1e0010">メソッド</span> (System.Web)&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">は</span> <span style="color:#ae81ff">301</span> <span style="color:#960050;background-color:#1e0010">リダイレクトを行ってくれるらしいです。楽ちんですね！</span> WebMatrix/ASP.NET Web Pages <span style="color:#960050;background-color:#1e0010">を使ってる人は少ないと思いますが、他の言語やフレームワーク、サーバーでも似たような感じの運用で対処できそうな気がします。フィードもリダイレクトしようかなと思いましたが、それはなんとなくやめました。ごめんなさい。購読してくれてる方は、</span>URL <span style="color:#960050;background-color:#1e0010">の登録をやり直してください。</span>&lt;a href=<span style="color:#e6db74">&#34;#f-a6c4b1b3&#34;</span> name=<span style="color:#e6db74">&#34;fn-a6c4b1b3&#34;</span> title=<span style="color:#e6db74">&#34;daruyanagi.jp/feed を登録している場合は、はてなブログと僕のもう一つのブログ（コラムのみ）の新着情報の両方を受け取れます&#34;</span>&gt;*<span style="color:#ae81ff">3</span>&lt;/a&gt;Azure <span style="color:#960050;background-color:#1e0010">のカスタムドメイン割り当ては、はてなブログの独自ドメイン設定よりも早く、</span><span style="color:#ae81ff">30</span><span style="color:#960050;background-color:#1e0010">分弱で反映されました。うまくいってるみたいでよかったです。</span>Google <span style="color:#960050;background-color:#1e0010">はすぐに古い</span> URL <span style="color:#960050;background-color:#1e0010">を参照しなくなりましたが（</span>RedirectPermanent <span style="color:#960050;background-color:#1e0010">のおかげでしょうか？）、まだ古い</span> URL <span style="color:#960050;background-color:#1e0010">からくるトラフィックもあるみたいで、残念な思いをさせなくてよかったと思います（ブログを読んでがっかりするのは防げませんが！）。</span><figure>
-    <img src="/images/2017/03/26/234347/20170326233705.png"/> 
+    <img src="/images/20170326233705.png"/> 
 </figure>
 丸一日様子を見てから<span style="color:#960050;background-color:#1e0010">、</span>daruyanagi.jp -&gt; Azure <span style="color:#960050;background-color:#1e0010">も</span> cname <span style="color:#960050;background-color:#1e0010">ではなく</span> a <span style="color:#960050;background-color:#1e0010">レコードで引くようにしてみました。これで今回のミッションは完了！</span>　<span style="color:#960050;background-color:#1e0010">お疲れさまでした。</span>WebMatrix <span style="color:#960050;background-color:#1e0010">は今年いっぱいでサポート終了ですけど、最後まで役に立ってくれました。僕のようなアマチュアにはピッタリなツールだったのですが、やっぱり</span> Visual Studio Code <span style="color:#960050;background-color:#1e0010">などと比べてエディターが弱いので仕方がないかな。ともあれ、ありがとうと言いたいです。</span>
 
@@ -179,64 +179,19 @@
 </code></pre></div>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-03-26T23:43:47JST">2017/03/26</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e3%81%af%e3%81%a6%e3%81%aa%e3%83%96%e3%83%ad%e3%82%b0%e3%81%ae%e3%83%89%e3%83%a1%e3%82%a4%e3%83%b3%e3%82%92%20daruyanagi.jp%20%e3%81%8b%e3%82%89%20blog.daruyanagi.jp%20%e3%81%b8%e5%bc%95%e8%b6%8a%e3%81%97%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/03/26/234347/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0%E3%81%AE%E3%83%89%E3%83%A1%E3%82%A4%E3%83%B3%E3%82%92&#43;daruyanagi.jp&#43;%E3%81%8B%E3%82%89&#43;blog.daruyanagi.jp&#43;%E3%81%B8%E5%BC%95%E8%B6%8A%E3%81%97%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F03%2F26%2F234347%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/28/193550/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/28/193550/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-03-26T23:43:47JST">2017/03/26</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/25/201141/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/03/25/201141/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

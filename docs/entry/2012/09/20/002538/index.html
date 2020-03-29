@@ -82,13 +82,13 @@
         </div>
         <div class="entry__content">
             <p><a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920">燃費記録用の Windows ストアアプリを作ってみた - だるろぐ</a> を作っていてふと思った。<script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &ldquo;<a href="https://platform.twitter.com/widgets.js%22;">https://platform.twitter.com/widgets.js&quot;;</a>        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName(&lsquo;twitter-syntax-tweet-id-247909564761112576&rsquo;);        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute(&lsquo;data-is-tweet-loaded&rsquo;)){                continue;            }            el[i].setAttribute(&lsquo;data-is-tweet-loaded&rsquo;, &lsquo;1&rsquo;);            twttr.widgets.createTweet(&lsquo;247909564761112576&rsquo;,el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-247909564761112576"></div>そうなんだ、それがあれば完璧になるんだ！　すると、すかさずナイスな情報を教えてもらえた。<script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &ldquo;<a href="https://platform.twitter.com/widgets.js%22;">https://platform.twitter.com/widgets.js&quot;;</a>        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName(&lsquo;twitter-syntax-tweet-id-247911268567101440&rsquo;);        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute(&lsquo;data-is-tweet-loaded&rsquo;)){                continue;            }            el[i].setAttribute(&lsquo;data-is-tweet-loaded&rsquo;, &lsquo;1&rsquo;);            twttr.widgets.createTweet(&lsquo;247911268567101440&rsquo;,el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-247911268567101440"></div>さすが左の翼！（<a href="https://blog.daruyanagi.jp/entry/2012/04/26/050929">WWD いってきたよ！ - だるろぐ</a> での内輪ネタです、ゴメンナサイ）<figure>
-    <img src="/images/2012/09/20/002538/20120920000508.png"/> 
+    <img src="/images/20120920000508.png"/> 
 </figure>
 で、実際にちょっと試したのだけれど、チャートはなんだかうまくいかなかった。チュートリアル通りにコードを書いたんだけど、なんでだろう。サンプルアプリもあるし、動くはずなんだけれど。もう少し頑張ってみるべきだろうけれど、正式版は有償となるとどうもモチベーションが上がらない。<figure>
-    <img src="/images/2012/09/20/002538/20120920000619.png"/> 
+    <img src="/images/20120920000619.png"/> 
 </figure>
 ただ、これに付属している DatePicker はイケてる。Windows Phone みたいだ。ただ、こういうのは標準で搭載していてほしい気もするんだ。WinRT には NumericUpDown すらない。まぁ、Silverlight Toolkit みたいなプロジェクトがすでにあるみたいだけれど。<a href="http://jupitertoolkit.codeplex.com/"><a href="http://jupitertoolkit.codeplex.com/">http://jupitertoolkit.codeplex.com/</a></a>まだそこまで手が出せるほどの知識がないのが悲しい。<figure>
-    <img src="/images/2012/09/20/002538/20120920001434.png"/> 
+    <img src="/images/20120920001434.png"/> 
 </figure>
 ともあれ、自分で何とかできないかなぁ、と思って Line や Polyline を使ったサンプルを作って勉強している。XAML は比較的こういうのが得意みたいで、データをグラフ表現するのはそんなに難しくない。たとえば、左のしょぼい棒グラフ付きの ListBox ならこんな感じだ。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnNavigatedTo(NavigationEventArgs e)
@@ -114,64 +114,19 @@
 </code></pre></div>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-09-20T00:25:38JST">2012/09/20</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT/XAML%20%e3%81%ae%e3%81%8a%e5%8b%89%e5%bc%b7%20%e2%80%95%e2%80%95%20%e3%83%87%e3%83%bc%e3%82%bf%e3%82%92%e8%a6%96%e8%a6%9a%e5%8c%96%e3%81%97%e3%81%9f%e3%81%84%e3%81%aa%e3%81%81%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/20/002538/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT%2FXAML&#43;%E3%81%AE%E3%81%8A%E5%8B%89%E5%BC%B7&#43;%E2%80%95%E2%80%95&#43;%E3%83%87%E3%83%BC%E3%82%BF%E3%82%92%E8%A6%96%E8%A6%9A%E5%8C%96%E3%81%97%E3%81%9F%E3%81%84%E3%81%AA%E3%81%81&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F20%2F002538%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/20/022735/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/20/022735/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-09-20T00:25:38JST">2012/09/20</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/19/073208/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/19/073208/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

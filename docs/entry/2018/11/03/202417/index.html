@@ -97,7 +97,7 @@ Add-VpnConnection -Name $VpnName `
                   -Force
 
 ```これであっさり VPN を追加できたのだけど<span style="color:#960050;background-color:#1e0010">、</span>うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい<span style="color:#960050;background-color:#1e0010">。</span>ここのチェックボックスね<span style="color:#960050;background-color:#1e0010">。</span><figure>
-    <img src="/images/2018/11/03/202417/20181103200617.png"/> 
+    <img src="/images/20181103200617.png"/> 
 </figure>
 GUI ではできないのかなぁ<span style="color:#960050;background-color:#1e0010">、</span>と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど<span style="color:#960050;background-color:#1e0010">、</span>どうにもかっこ悪いので Twitter で聞いてみたら<span style="color:#960050;background-color:#1e0010">、</span>幸い返事がいただけた<span style="color:#960050;background-color:#1e0010">。</span>&gt;もうお試しかもしれませんが<span style="color:#960050;background-color:#1e0010">、</span>-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます<span style="color:#960050;background-color:#1e0010">。</span> pic.twitter.com/4LsYAR7Ulv<span style="color:#960050;background-color:#1e0010">—</span> のらねこ<span style="color:#960050;background-color:#1e0010">！</span> C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt; ぉ<span style="color:#960050;background-color:#1e0010">、</span>`AuthenticationMethod` って複数設定できるのか<span style="color:#960050;background-color:#1e0010">！</span>　ってことでちょい修正<span style="color:#960050;background-color:#1e0010">。</span>
 ```ps1
@@ -130,64 +130,19 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-11-03T20:24:17JST">2018/11/03</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?PowerShall%ef%bc%9aVPN%20%e6%8e%a5%e7%b6%9a%e3%82%92%e3%82%bb%e3%83%83%e3%83%88%e3%82%a2%e3%83%83%e3%83%97%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/11/03/202417/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=PowerShall%EF%BC%9AVPN&#43;%E6%8E%A5%E7%B6%9A%E3%82%92%E3%82%BB%E3%83%83%E3%83%88%E3%82%A2%E3%83%83%E3%83%97%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F11%2F03%2F202417%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/04/031210/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/04/031210/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-11-03T20:24:17JST">2018/11/03</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/02/041440/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/11/02/041440/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

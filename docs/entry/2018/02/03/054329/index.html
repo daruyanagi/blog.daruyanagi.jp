@@ -113,7 +113,7 @@
 <div class="section">
     ### Trello＋Slack Powered by Mictosoft Flow
     まずは、業務が回っているとなかなか手を出せない、業務フローの改善に着手（半分趣味なので、これはあまり仕事って感じはしない）。今回は「Trello にカードを作って、そのことを Slack にも伝える」というアホの極みな無駄を減らしてみた。コードを書くのはだるいので、なるべく Microsoft Flow を使う。Microsoft Flow には Trello 関係のトリガー（If...then... の if）として<figure>
-    <img src="/images/2018/02/03/054329/20180203051643.png"/> 
+    <img src="/images/20180203051643.png"/> 
 </figure>
 <br/>
 <ul>
@@ -126,7 +126,7 @@
 <ul>
 <li>新しいカードがリストに追加されたら、そのリストに溜まっているカードのリストを Slack に投げる</li>
 </ul>というフローはひと手間かかる。Microsoft Flow には「ID でリストを取得する」というアクションがあって、それを使うと「リストの中のカード」が取得できるので、これを使えばよい――んだけど、ちょっとハマった。なぜか「リストの中のカード」を得ようとしても null しか返ってこない。<figure>
-    <img src="/images/2018/02/03/054329/20180203051729.png"/> 
+    <img src="/images/20180203051729.png"/> 
 </figure>
 理由はわかってみれば簡単で、「ID でリストを取得する」アクションは既定で「リストを取得するだけ」になっていて、子のカードまで取ってきてくれない。拡張オプションで、一緒に取ってくるデータをいろいろ指定してあげなくちゃいけないんだね。とりあえず“all”とか“open”とかにしておくと、リストの中のカードまで取ってきてくれると思う。あと、JST で現在時刻をとるのが最初よくわからなかった。Microsoft Flow って UtcNow() っていう関数が使えるのだけど（名前の通り、標準世界時で現在日時を取得する）、これって帰ってくるのが文字列名のな。AddHours(9) で日本時間にしてやろうとしても受け付けてくれない。アッーーー！　なんだこの面倒くささ！　結局、こんなキモいコードになったんだけど、もっといい方法はないだろうか……。
 ```
@@ -139,80 +139,35 @@ uriComponentToString(&#39;%0A&#39;)
 <div class="section">
     ### テントの設営
     <figure>
-    <img src="/images/2018/02/03/054329/20180202124822.jpg"/> 
+    <img src="/images/20180202124822.jpg"/> 
 </figure>
 午後は、押し入れからテントを引っ張り出して、ベランダに設営して遊んだ。このテントは、バイクでソロキャンプに行きたいなとずっと思ってて、愛媛に来る前に購入したものだ。愛媛にきてもう4年になるから、それ以上の間ずっと、押し入れで脾肉の嘆にくれていたわけやな……すまん……すまん。<figure>
-    <img src="/images/2018/02/03/054329/20180203050749.png"/> 
+    <img src="/images/20180203050749.png"/> 
 </figure>
 ちなみに、今頃になってキャンプ道具を引っ張り出す気になったのは――べ、べつに、今期の大傑作アニメ『ゆるキャン』に触発されたからじゃないんだからねっ！　前々からやりたいと思っていて、ちょくちょく装備を整えていたんだからねっ！　たまたまやりたくなってしまっただけなんだからねっ！それはともかく、自分がもっていたのはどうやら、モンベルのクロノスドーム 1 型という安い一人用のテント（の旧モデル）だったみたい。塩漬けにし過ぎて、どのメーカーの、どんなモデルを持っていたのかすら覚えてなかったぜ……。<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B001CM8SIQ/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/4119CItkXXL._SL160_.jpg" class="hatena-asin-detail-image" alt="モンベル(mont-bell) クロノスドーム1型 スカイブルー [1~2人用] 1122370" title="モンベル(mont-bell) クロノスドーム1型 スカイブルー [1~2人用] 1122370"/></a><div class="hatena-asin-detail-info"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B001CM8SIQ/bestylesnet-22/">モンベル(mont-bell) クロノスドーム1型 スカイブルー [1~2人用] 1122370</a><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> モンベル(mont-bell)</li><li><span class="hatena-asin-detail-label">発売日:</span> 2012/03/02</li><li><span class="hatena-asin-detail-label">メディア:</span> スポーツ用品</li><li><a href="http://d.hatena.ne.jp/asin/B001CM8SIQ/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div>広げてみたところ、傷みや欠品はなく、十分使えそう。<figure>
-    <img src="/images/2018/02/03/054329/20180202124135.jpg"/> 
+    <img src="/images/20180202124135.jpg"/> 
 </figure>
 先週あたりに購入したバイクのサイドバッグにもキッチリ（マジで横幅ギリギリ）収まる。<div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00IJSN12O/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/414cJ1pqhzL._SL160_.jpg" class="hatena-asin-detail-image" alt="タナックス (TANAX) ツアーシェルケース モトフィズ(MOTOFIZZ) ヘアラインシルバー MFK-196 (容量40? 片側20?)" title="タナックス (TANAX) ツアーシェルケース モトフィズ(MOTOFIZZ) ヘアラインシルバー MFK-196 (容量40? 片側20?)"/></a><div class="hatena-asin-detail-info"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B00IJSN12O/bestylesnet-22/">タナックス (TANAX) ツアーシェルケース モトフィズ(MOTOFIZZ) ヘアラインシルバー MFK-196 (容量40? 片側20?)</a><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> タナックス</li><li><span class="hatena-asin-detail-label">発売日:</span> 2014/03/18</li><li><span class="hatena-asin-detail-label">メディア:</span> Automotive</li><li><a href="http://d.hatena.ne.jp/asin/B00IJSN12O/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div>テントは快適に使いたければ（利用人数）＋1～2人にすべきというけれど、今のバイクは 250cc なので積み過ぎると前に進まなく恐れがある（いや、そこまでじゃないけどな）。クルマだったらともかく、自分にとってはちょうどいいチョイスだと思う。<figure>
-    <img src="/images/2018/02/03/054329/20180202125355.jpg"/> 
+    <img src="/images/20180202125355.jpg"/> 
 </figure>
 設営も簡単で、ものの数分で完成した。グランドシードが見当たらなかったので、専用のものを足りないものと一緒に Amazon へ注文。この日はこれだけでいろいろ満足してしまい、ベッドに転がって本を読んでいたら、夕方前に寝落ちしてそのまま夜中過ぎまで爆睡してしまった。日付が変わって今日は、新居浜までおいしいおいしいお寿司を食べに行く。なんと**無回転寿司**だぞ！！
 </div>
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-02-03T05:43:29JST">2018/02/03</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e6%97%a5%e8%a8%98%ef%bc%9a%e9%87%91%e6%9b%9c%e6%97%a5%e3%81%af%e5%8d%8a%e4%bc%91%e3%81%ab%e3%81%97%e3%81%a6%20Trello%ef%bc%8bSlack%20%e3%82%92%e8%a9%a6%e3%81%97%e3%81%9f%ef%bc%86%e3%83%86%e3%83%b3%e3%83%88%e3%82%92%e5%bc%b5%e3%82%8b%e7%b7%b4%e7%bf%92%e3%82%92%e3%81%97%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/02/03/054329/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E6%97%A5%E8%A8%98%EF%BC%9A%E9%87%91%E6%9B%9C%E6%97%A5%E3%81%AF%E5%8D%8A%E4%BC%91%E3%81%AB%E3%81%97%E3%81%A6&#43;Trello%EF%BC%8BSlack&#43;%E3%82%92%E8%A9%A6%E3%81%97%E3%81%9F%EF%BC%86%E3%83%86%E3%83%B3%E3%83%88%E3%82%92%E5%BC%B5%E3%82%8B%E7%B7%B4%E7%BF%92%E3%82%92%E3%81%97%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F02%2F03%2F054329%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/24/060000/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/24/060000/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-02-03T05:43:29JST">2018/02/03</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/02/02/073050/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/02/02/073050/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

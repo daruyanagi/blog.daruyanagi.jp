@@ -97,7 +97,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2017/04/15/170659/20170415163622.png"/> 
+    <img src="/images/20170415163622.png"/> 
 </figure>
 以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。</p>
 <ul>
@@ -106,7 +106,7 @@
 <div class="section">
     ### Twitter の位置情報
     <figure>
-    <img src="/images/2017/04/15/170659/20170415163522.png"/> 
+    <img src="/images/20170415163522.png"/> 
 </figure>
 Twitter の位置情報は
 <ul>
@@ -189,7 +189,7 @@ public class CheckinEntity : TableEntity
 }
 
 ```ちょっとハマったのは、RowKey にスラッシュを含められないこと。table.Execute() が 400 という HTTP ステータスコードを返して失敗するときは、このあたりを疑ってみるといいのかも。今回はスラッシュを含まず、並び替えにも使える書式 &quot;u&quot; で ToString() しておいた。成功すると、こんな感じで Table Storage にデータが格納される。<figure>
-    <img src="/images/2017/04/15/170659/20170415165656.png"/> 
+    <img src="/images/20170415165656.png"/> 
 </figure>
 データを読み出す場合は、こんな感じ。
 ```cs
@@ -207,7 +207,7 @@ public static IEnumerable&amp;lt;CheckinEntity&gt; Get()
 }
 
 ```データが多くなってきたら、ちゃんと範囲を絞ってクエリしたほうがいいのかもしれない。<figure>
-    <img src="/images/2017/04/15/170659/20170415170111.png"/> 
+    <img src="/images/20170415170111.png"/> 
 </figure>
 あとはこれを JSON で吐くようにして――
 ```javascript
@@ -255,7 +255,7 @@ function initMap() {
 }
 
 ```Google マップにプロットしてみた（情報ウィンドウは一つ開いたら一つ閉じるようにしたかったけど、なんかうまくいかんのでタイマーで閉じた）。<figure>
-    <img src="/images/2017/04/15/170659/20170415170311.png"/> 
+    <img src="/images/20170415170311.png"/> 
 </figure>
 テキトーだけど、今回はこのぐらいで。
 
@@ -269,64 +269,19 @@ function initMap() {
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-04-15T17:06:59JST">2017/04/15</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Azure%20Web%20App%ef%bc%8bJob%ef%bc%8bTable%20Storage%20%ef%bc%9aTwitter%20%e3%81%ae%e4%bd%8d%e7%bd%ae%e6%83%85%e5%a0%b1%e3%82%92%e6%8b%be%e3%81%a3%e3%81%a6%e3%83%9e%e3%83%83%e3%83%94%e3%83%b3%e3%82%b0%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/04/15/170659/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Azure&#43;Web&#43;App%EF%BC%8BJob%EF%BC%8BTable&#43;Storage&#43;%EF%BC%9ATwitter&#43;%E3%81%AE%E4%BD%8D%E7%BD%AE%E6%83%85%E5%A0%B1%E3%82%92%E6%8B%BE%E3%81%A3%E3%81%A6%E3%83%9E%E3%83%83%E3%83%94%E3%83%B3%E3%82%B0%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F04%2F15%2F170659%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/16/202111/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/16/202111/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-04-15T17:06:59JST">2017/04/15</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/13/215309/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/04/13/215309/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -104,16 +104,16 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2013/09/05/070245/20130905061149.png"/> 
+    <img src="/images/20130905061149.png"/> 
 </figure>
 ちょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、<a href="https://blog.daruyanagi.jp/entry/2013/02/03/160915">WebMatrix 2：OAuth でログインする（２） - だるろぐ</a> を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。</p>
 <div class="section">
     ### 下準備
     <figure>
-    <img src="/images/2013/09/05/070245/20130905063705.png"/> 
+    <img src="/images/20130905063705.png"/> 
 </figure>
 まず NuGet で <a href="http://www.nuget.org/packages/Microsoft.AspNet.WebPages.OAuth/">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。これで“スターター サイト”テンプレートでも使われている <a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx">OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a> が使えるようになる。<figure>
-    <img src="/images/2013/09/05/070245/20130905062911.png"/> 
+    <img src="/images/20130905062911.png"/> 
 </figure>
 次に <a href="https://dev.twitter.com/apps/">https://dev.twitter.com/apps/</a> でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
 <ul>
@@ -142,7 +142,7 @@
 &lt;div class=&quot;section&quot;&gt;
     ### ~/Default.cshtml
     <figure>
-    <img src="/images/2013/09/05/070245/20130905061617.png"/> 
+    <img src="/images/20130905061617.png"/> 
 </figure>
 ログインしていない場合はログインボタンを、ログインしている場合はログオフのリンクを表示するだけの簡単なコード。
 ```cs
@@ -184,7 +184,7 @@
 }
 
 ```**OAuthWebSecurity.RequestAuthentication** で Twitter へリクエストを投げる。<figure>
-    <img src="/images/2013/09/05/070245/20130905064446.png"/> 
+    <img src="/images/20130905064446.png"/> 
 </figure>
 おなじみのこの画面へ飛ばされる。
 
@@ -248,13 +248,13 @@
 }
 
 ```<figure>
-    <img src="/images/2013/09/05/070245/20130905064840.png"/> 
+    <img src="/images/20130905064840.png"/> 
 </figure>
 <figure>
-    <img src="/images/2013/09/05/070245/20130905064842.png"/> 
+    <img src="/images/20130905064842.png"/> 
 </figure>
 成功するとこんなかんじにユーザーがデータベースに追加される。ちなみに result の中身はこんな感じ。<figure>
-    <img src="/images/2013/09/05/070245/20130905064941.png"/> 
+    <img src="/images/20130905064941.png"/> 
 </figure>
 ObjectInfo.Print() はデバッグにとっても便利なヘルパーなのでぜひ覚えておいてね！
 
@@ -290,64 +290,19 @@ ObjectInfo.Print() はデバッグにとっても便利なヘルパーなので�
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2013-09-05T07:02:45JST">2013/09/05</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WebMatrix%203%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/09/05/070245/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WebMatrix&#43;3&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F09%2F05%2F070245%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/07/045632/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/07/045632/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2013-09-05T07:02:45JST">2013/09/05</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/05/025249/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/09/05/025249/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

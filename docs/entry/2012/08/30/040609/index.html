@@ -110,7 +110,7 @@
 }
 
 <span style="color:#960050;background-color:#1e0010">```この</span> @helper <span style="color:#960050;background-color:#1e0010">ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは</span> Visual Studio <span style="color:#960050;background-color:#1e0010">のツールチップでのぞいてみた。</span><figure>
-    <img src="/images/2012/08/30/040609/20120830023803.png"/> 
+    <img src="/images/20120830023803.png"/> 
 </figure>
 とりあえず<span style="color:#960050;background-color:#1e0010">、</span> &lt;code&gt;@helper Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">は</span> &lt;code&gt;<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">（引数をとって</span> HelperResult <span style="color:#960050;background-color:#1e0010">を返す＋なんらかの処理）ということのようだ。実際、</span> @helper Read() <span style="color:#960050;background-color:#1e0010">は</span> @functions <span style="color:#960050;background-color:#1e0010">で表すこともできないことはない。</span>
 <span style="color:#960050;background-color:#1e0010">```</span>cs
@@ -135,7 +135,7 @@
 }
 
 <span style="color:#960050;background-color:#1e0010">```というわけで書いてみたのがこれ（参考：</span>&lt;a href=<span style="color:#e6db74">&#34;http://shiba-yan.hatenablog.jp/entry/20110615/1308070842&#34;</span>&gt;Razor Deep Dive (<span style="color:#ae81ff">2</span>) - <span style="color:#960050;background-color:#1e0010">しばやん雑記</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">）。たぶんきっと内部ではこういうことをしているんだと思う（ラムダの引数</span> w <span style="color:#960050;background-color:#1e0010">は</span> TextWriter型<span style="color:#960050;background-color:#1e0010">）。</span><figure>
-    <img src="/images/2012/08/30/040609/20120830034439.png"/> 
+    <img src="/images/20120830034439.png"/> 
 </figure>
 HelperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&lt;/a&gt;）っていうのは、WebPage を継承していて「Represents a base class for pages that is used when ASP.NET compiles a .cshtml or .vbhtml file and that exposes page-level and application-level properties and methods.」なんだそうな。あと、WriteLiteralTo() はエスケープされず、 WriteTo() はエスケープされないようだ。これで、Razor で書いた HTML タグはそのまま、外から与えられた変数（@Session[&#34;flash&#34;]）だけ無毒化される。ほへぇ。
 </span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>cs
@@ -196,64 +196,19 @@ HelperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a h
 </code></pre></div>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-08-30T04:06:09JST">2012/08/30</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e5%af%84%e3%82%8a%e9%81%93%ef%bc%9a%20Rails%20%e3%81%ae%20Flash%20%e3%81%a3%e3%81%bd%e3%81%84%e6%a9%9f%e8%83%bd%e3%82%92%20WebMatrix%20%e3%81%a7%e4%bd%bf%e3%81%84%e3%81%9f%e3%81%84%ef%bc%882%ef%bc%89%20%e2%80%95%e2%80%95%20@helper%20%e3%81%a8%20@functions%20%e3%81%a8%e3%82%8f%e3%81%9f%e3%81%97%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/08/30/040609/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E5%AF%84%E3%82%8A%E9%81%93%EF%BC%9A&#43;Rails&#43;%E3%81%AE&#43;Flash&#43;%E3%81%A3%E3%81%BD%E3%81%84%E6%A9%9F%E8%83%BD%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E4%BD%BF%E3%81%84%E3%81%9F%E3%81%84%EF%BC%882%EF%BC%89&#43;%E2%80%95%E2%80%95&#43;%40helper&#43;%E3%81%A8&#43;%40functions&#43;%E3%81%A8%E3%82%8F%E3%81%9F%E3%81%97&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F08%2F30%2F040609%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/31/031730/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/31/031730/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-08-30T04:06:09JST">2012/08/30</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/29/201834/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/08/29/201834/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -97,7 +97,7 @@
 <div class="section">
     ### 三分間クッキング
     今回は題材として「なにかを問い合わせたら Excel のデータを舐めて変換する」サービスを作ってみます。たまたま手元に「ベクターのソフト公開ページの URL と作者サイト・窓の杜ライブラリの関係」を管理した Excel ファイルがあるので、それを使って「ベクターの URL を投げたら、作者と窓の杜ライブラリの URL を返す」アプリ（Web サービス）を作ってみます。完成イメージはこんな感じです。<figure>
-    <img src="/images/2018/06/03/060000/20180602230616.png"/> 
+    <img src="/images/20180602230616.png"/> 
 </figure>
 <br/>
 <ul>
@@ -116,7 +116,7 @@
 <div class="section">
     #### 1. JSON で HTTP 要求を受けたら
     <figure>
-    <img src="/images/2018/06/03/060000/20180602231144.png"/> 
+    <img src="/images/20180602231144.png"/> 
 </figure>
 まず、［HTTP 要求の受信時］というトリガー（切っ掛け）を追加。［サンプルのペイロードを使用してスキーマを生成する］でサンプルをぶち込んでスキーマを作ります。今回はシンプルにこんな感じのペイロード（リクエストの中身）にしてみました。
 ```json
@@ -139,10 +139,10 @@
 &lt;div class=&quot;section&quot;&gt;
     #### OneDrive に置いた Excel のテーブルを読む
     <figure>
-    <img src="/images/2018/06/03/060000/20180602232505.png"/> 
+    <img src="/images/20180602232505.png"/> 
 </figure>
 次に、Excel ファイルを読みます。Microsoft のサービスだけあって、OneDrive との相性がいいですが、別に Google スプレッドシートでも構わないと思います。試してないけど。今回はしょうもないところでコケるのもアホらしいので、OneDrive で試してみました。<figure>
-    <img src="/images/2018/06/03/060000/20180602232030.png"/> 
+    <img src="/images/20180602232030.png"/> 
 </figure>
 何の変哲もない Excel ファイルですが以下の点には気を付けてください。
 
@@ -157,7 +157,7 @@
 &lt;div class=&quot;section&quot;&gt;
     #### ベクターの URL に合致する行を取得
     <figure>
-    <img src="/images/2018/06/03/060000/20180602232559.png"/> 
+    <img src="/images/20180602232559.png"/> 
 </figure>
 続いて、［配列のフィルター処理］を追加して、目的の URL が含まれる行だけを取得します。
 
@@ -166,13 +166,13 @@
 &lt;div class=&quot;section&quot;&gt;
     ### 要素がなければ 404 を返す、あれば処理を続ける
     (2018/06/05 追記：Microsoft Flow にこのサービスを組み込む場合、404 を返すと次のステップに進めなくなります。分岐を削除して、生成した配列をそのまま返すといいです)<figure>
-    <img src="/images/2018/06/03/060000/20180602232900.png"/> 
+    <img src="/images/20180602232900.png"/> 
 </figure>
 **この処理はなくてもいいです**（空の JSON を返してもいいわけで）。今回はほかの Flow と接続するときに条件分岐がしやすいように、あらかじめチェックをくわえておきました。<figure>
-    <img src="/images/2018/06/03/060000/20180602233620.png"/> 
+    <img src="/images/20180602233620.png"/> 
 </figure>
 ほとんどの処理をブロックで表現できる Microsoft Flow でも、「要素の数を求める」みたいなのはさすがに無理みたいで、ここで初めて関数が登場します。&lt;code&gt;length(body(&amp;#39;配列のフィルター処理&amp;#39;))&lt;/code&gt; というのがそれです。［配列のフィルター処理］の結果（body）に &lt;code&gt;Length()&lt;/code&gt; 関数を適用しています（&quot;配列のフィルター処理&quot;というのが気に入らなければ、前の処理の名前をわかりやすいのに変えてね！）。<figure>
-    <img src="/images/2018/06/03/060000/20180602233724.png"/> 
+    <img src="/images/20180602233724.png"/> 
 </figure>
 慣れてる人は Microsoft Flow の内部表現で直接書いてもいいです（詳細モード）。
 </code></pre><p>@equals(length(body('配列のフィルター処理')), 0)</p>
@@ -180,10 +180,10 @@
 &lt;div class=&quot;section&quot;&gt;
     ### 配列を生成
     <figure>
-    <img src="/images/2018/06/03/060000/20180602233805.png"/> 
+    <img src="/images/20180602233805.png"/> 
 </figure>
 いよいよ大詰め、返すデータを準備しましょう。日本語訳があまりよくなくて［選択］となっていますが、これが要するに「新しい配列を作る」コマンドです（SQL/LINQ の Select() です）。［配列のフィルター処理］を通った後の結果（body、クソ翻訳では&quot;本文&quot;）をテーブルにマップしていきます。ここでは「列3のデータには Author っていう名前を付けるよ、列4 は Madonomori ね」ってことです。<figure>
-    <img src="/images/2018/06/03/060000/20180602234136.png"/> 
+    <img src="/images/20180602234136.png"/> 
 </figure>
 最後に、最初の要求受け付けのときと同じようにスキーマを作ります。これもサンプルから簡単に生成できます。
 ```json
@@ -209,13 +209,13 @@
 &lt;div class=&quot;section&quot;&gt;
     ### 試してみる
     <figure>
-    <img src="/images/2018/06/03/060000/20180602234713.png"/> 
+    <img src="/images/20180602234713.png"/> 
 </figure>
 できあがったフローは、**「Advanced Rest Client」**っていう Chrome アプリで試すといいです。最初に言ったけど、**content-type ヘッダーを application/json に**して **POST** で叩くのを忘れずにね。API のエンドポイントの名前が長いから、短縮 URL とかするといいのかもしれませんねぇ（ただし、セキュリティには気をつけてな、第三者にはあまり漏らさない方がいいと思う）。
 &lt;div class=&quot;github-card&quot; data-user=&quot;jarrodek&quot; data-repo=&quot;ChromeRestClient&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/github-cards/latest/widget.js&quot;&gt;&lt;/script&gt;
 ちなみに、失敗したときは Microsoft Flow  の実行履歴をみると、フローのどの段階でコケているのかがわかります。<figure>
-    <img src="/images/2018/06/03/060000/20180602235125.png"/> 
+    <img src="/images/20180602235125.png"/> 
 </figure>
 そんじゃーね！
 
@@ -229,64 +229,19 @@
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-06-03T06:00:00JST">2018/06/03</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e6%89%8b%e6%8c%81%e3%81%a1%e3%81%ae%20Excel%20%e3%83%95%e3%82%a1%e3%82%a4%e3%83%ab%e3%81%a8%20Microsoft%20Flow%20%e3%81%a7%e7%b0%a1%e5%8d%98%e3%81%aa%20Web%20%e3%82%b5%e3%83%bc%e3%83%93%e3%82%b9%e3%82%92%e4%bd%9c%e6%88%90%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/06/03/060000/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E6%89%8B%E6%8C%81%E3%81%A1%E3%81%AE&#43;Excel&#43;%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%A8&#43;Microsoft&#43;Flow&#43;%E3%81%A7%E7%B0%A1%E5%8D%98%E3%81%AA&#43;Web&#43;%E3%82%B5%E3%83%BC%E3%83%93%E3%82%B9%E3%82%92%E4%BD%9C%E6%88%90%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F03%2F060000%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/03/080000/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/03/080000/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-06-03T06:00:00JST">2018/06/03</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/02/225431/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/02/225431/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

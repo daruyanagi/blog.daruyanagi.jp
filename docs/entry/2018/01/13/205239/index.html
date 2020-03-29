@@ -92,109 +92,64 @@
 <div class="section">
     ### @addTagHelper で指定するのはアセンブリ名
     TagHelper をビューで利用するには @addTagHelper でロードしておかなくちゃいけないんだけど（_ViewStart.cshtml に書いておくと複数のビューに一括指定できて便利）、ロードの指定は**アセンブリ名**で行う。自分はなぜかネームスペースだと勘違いしてしまっていて、ちゃんと書いたはずなのに動かねーなー、クソだなーと悩んでしまった。クソなのは僕の頭でした。申し訳ない。<figure>
-    <img src="/images/2018/01/13/205239/20180113201326.png"/> 
+    <img src="/images/20180113201326.png"/> 
 </figure>
 TagHelper がちゃんとロードされるとインテリセンスの補完を受けることができるが（タグが太字にもなる）、プロジェクトをリビルドしないと反映されないかもしれない。なお、TagHelper の読み込みは @addTagHelper *, Tsundoku でも @addTagHelper "*, Tsundoku" でもよいみたい。知らんけど。
 </div>
 <div class="section">
     ### HTML タグを SetContent() するとサニタイズされる → SetHtmlContent() を使う
     <figure>
-    <img src="/images/2018/01/13/205239/20180113201721.png"/> 
+    <img src="/images/20180113201721.png"/> 
 </figure>
 タグの中身は SetContent() で書き換えるのが基本だけど、HTML タグはエスケープされる。エスケープなしでコンテンツにセットしたい場合は、SetHtmlContent() で「HTML だよ！」と明示すればおっけ。このあたりは string と HtmlString の関係に似ているかもしれない。
 </div>
 <div class="section">
     ### 書き換え対象のタグは <hoge> にしない、Attributes.Clear() は要らないかも</hoge>
     &lt;hoge /> って書いたタグを TabHelper でいじると、いろいろ謎なことが起こるっぽい。ちゃんと開いて書いといたほうが無難。この前もこれでハマったのにまたやらかすとはな。あと、Attributes はわざわざクリアしなくてもいいっぽい？　Clear() をコメントアウトしてもへんな属性は出力されなかった。変なタイミングでクリアしちゃうと属性ベースで受け渡しされた情報にアクセスできなくなることがあるみたいなので、要らないことはしない方がいいかもね。<figure>
-    <img src="/images/2018/01/13/205239/20180113202348.png"/> 
+    <img src="/images/20180113202348.png"/> 
 </figure>
 これで無事、アクティブティパネル（読書進捗のタイムラインのアイテム）のデザインを共通化することができてスッキリ。でも、TagHelper にするとデバッグ時にコードがいじれなくなるのはちょっと面倒だね。ビューなら変更が効くのに……あらかじめビューでいろいろ試して、デザインが固まったら TagHelper にまとめるって感じにした方がいいかも。
 </div>
 <div class="section">
     ### インターネットが切れる
     Visual Studio でちょっと遊んだ後、布団でゴロゴロしているとそのまま爆睡してしまった……たぶん6時間ぐらい、本格的に。再び目を覚ましたのは夕方前だった。クロネコヤマトの配達指定を2時にしていたのに、ビデオを垂れ流しにしていた iPhone の電池が切れていて、アラームが鳴らず……再配達させてしまって、すごく申し訳ないことをした。それはそうと、布団からのそのそ這い出て Surface Bool 2 の電源を入れると、またインターネットがダウンしていた。今週2回目でいい加減うっとうしいので Wi-Fi Analyzer で電波状況をチェックしてみると……<figure>
-    <img src="/images/2018/01/13/205239/20180113203122.png"/> 
+    <img src="/images/20180113203122.png"/> 
 </figure>
 DIRECT-D*** という SSID がモロかぶりしている。ググってみると Direct Wi-Fi 関連のものらしいのだけど……隣近所で電波ビンビンしてんのかな。<figure>
-    <img src="/images/2018/01/13/205239/20180113203307.png"/> 
+    <img src="/images/20180113203307.png"/> 
 </figure>
 しょうがないので、自分とこの Wi-Fi の設定をいじって、チャンネルを少しずらした。接続の不具合も解消されて、いい気分。スマートネットワークリモコン eRemote mini が 5GHz 対応になってくれたら、混線で悩んだりせずに済むのにな。ちなみに、今回使った Wi-Fi Analyzer は Windows ストア アプリで、今はほぼ実質死んでいる Windows 10 Mobile でも使える優れもの。アプリ内課金はあるけど、基本無料だしおススメできると思う。[無線LANの状況をビジュアル表示できる診断ツール「WiFi Analyzer」NOT SUPPORTED](https://forest.watch.impress.co.jp/docs/review/755032.html)<br/>
 </div>
 <div class="section">
     ### 晩御飯
     <figure>
-    <img src="/images/2018/01/13/205239/20180113194539.jpg"/> 
+    <img src="/images/20180113194539.jpg"/> 
 </figure>
 晩御飯は豚バラ肉に下味をつけて衣をつけて、少し多めの油で炒めて食べた。皿洗いが面倒なのでワンプレートにご飯と一緒に盛り付けてもしゃもしゃ。それでちょっと思ったんだが、独身ってのはほんとうにダメだな。なにがダメかっていうと、徹頭徹尾自分のためだけに暮らしているという部分がダメ。所詮、自分のためだけにやることなんかたかが知れている。誰かのためだからこそ、面倒くささを乗り越えて何かをするわけだ。独身のおっさんにはそういうところがないからダメ。結婚して家庭を築いている人は大なり小なり他人の世話を焼いているわけで、その積み重ねが……人格の重みとか、安定感とか……よくわからんけど、そういうものになるんだろう。自分にはそういうものがカケラもないから、うらやましいっちゃ、うらやましい。とにかく。独身の耐えられない軽さっていうのを、晩飯のワンプレートで実感させられた。だいたい、日の出前からビール飲んで、ぶっ倒れて二度寝で目が覚めたら夕方ってあり得ないし――今日は日記を書かないつもりだったけど、懺悔の意味も込めてちゃんと書いた。
 </div>
 <div class="section">
     ### 追伸
     <figure>
-    <img src="/images/2018/01/13/205239/20180113195658.jpg"/> 
+    <img src="/images/20180113195658.jpg"/> 
 </figure>
 Amazon で買ったビールがちょっと安くてうれしかった。箱根駅伝記念バージョンみたいだけど、時期を外すと安くなるんだな。東京ローカルな駅伝なんぞに興味はないんだけど、こういう余福があるなら悪くはない。だるやなぎも時期を外しているので、かなりお安くしておきます。誰か、引き取ってください。
 </div>
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-01-13T20:52:39JST">2018/01/13</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?2018%e5%b9%b41%e6%9c%8813%e6%97%a5%e3%81%ae%e6%97%a5%e8%a8%98%ef%bc%9aTagHelper%20%e3%81%a8%e3%80%8c%e3%81%82%e3%81%88%e3%81%a6%e8%a8%80%e3%81%8a%e3%81%86%e3%80%81%e7%8b%ac%e8%ba%ab%e3%81%af%e3%82%ab%e3%82%b9%e3%81%a7%e3%81%82%e3%82%8b%ef%bc%81%e3%80%8d%e3%81%a8%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/01/13/205239/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=2018%E5%B9%B41%E6%9C%8813%E6%97%A5%E3%81%AE%E6%97%A5%E8%A8%98%EF%BC%9ATagHelper&#43;%E3%81%A8%E3%80%8C%E3%81%82%E3%81%88%E3%81%A6%E8%A8%80%E3%81%8A%E3%81%86%E3%80%81%E7%8B%AC%E8%BA%AB%E3%81%AF%E3%82%AB%E3%82%B9%E3%81%A7%E3%81%82%E3%82%8B%EF%BC%81%E3%80%8D%E3%81%A8&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F01%2F13%2F205239%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/15/000833/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/15/000833/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-01-13T20:52:39JST">2018/01/13</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/13/043313/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/01/13/043313/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

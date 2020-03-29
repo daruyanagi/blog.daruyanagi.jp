@@ -100,23 +100,23 @@
 <div class="section">
     ### プロジェクトの作成
     <figure>
-    <img src="/images/2017/08/15/032010/20170815024132.png"/> 
+    <img src="/images/20170815024132.png"/> 
 </figure>
 まず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。<figure>
-    <img src="/images/2017/08/15/032010/20170815024315.png"/> 
+    <img src="/images/20170815024315.png"/> 
 </figure>
 ソリューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。<figure>
-    <img src="/images/2017/08/15/032010/20170815024643.png"/> 
+    <img src="/images/20170815024643.png"/> 
 </figure>
 とりあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。<figure>
-    <img src="/images/2017/08/15/032010/20170815025010.png"/> 
+    <img src="/images/20170815025010.png"/> 
 </figure>
 <br/>
 </div>
 <div class="section">
     ### ファーストインプレッション
     <figure>
-    <img src="/images/2017/08/15/032010/20170815025059.png"/> 
+    <img src="/images/20170815025059.png"/> 
 </figure>
 詳しいことは以下のサイトで学べるので、今回は省略。自分もまだ斜め読みしかしていません（汗[Getting started with Razor Pages in ASP.NET Core](https://docs.microsoft.com/en-us/aspnet/core/tutorials/razor-pages/razor-pages-start)でも、パッと見た感じ、ASP.NET Web Pages とあまり変わらないですね。目につく違いは、
 <ul>
@@ -125,7 +125,7 @@
 <li>ビューモデル（MVVM のアレではない）を *.cs ファイルに分離して紐づけられる（一枚の *.cshtml に @functions{ } でガリガリ書いていた処理を分離できる）</li>
 <li>OnGet などでリクエストを処理。非同期版もあるみたい **public async Task<iactionresult> OnPostAsync()</iactionresult>**！</li>
 </ul>ぐらいでしょうか。<figure>
-    <img src="/images/2017/08/15/032010/20170815025107.png"/> 
+    <img src="/images/20170815025107.png"/> 
 </figure>
 ひな型には message メンバーを OnGet（GET リクエスト）で吐く感じのコードが書かれています。新しいビューを追加すると、CSHTML/CS の両方が吐き出されるんだなー。一方、ASP.NET Web Pages 時代に慣れ親しんでたけど見当たらない、
 <ul>
@@ -136,64 +136,19 @@
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2017-08-15T03:20:10JST">2017/08/15</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?Visual%20Studio%202017.3%20%e3%81%8c%e5%87%ba%e3%81%9f%e3%81%a3%e3%81%bd%e3%81%84%e3%81%ae%e3%81%a7%e3%80%81ASP.NET%20Core%20Razor%20Pages%20%e3%82%92%e3%83%81%e3%83%a9%e8%a6%8b%e3%81%97%e3%81%a6%e3%81%bf%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2017/08/15/032010/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=Visual&#43;Studio&#43;2017.3&#43;%E3%81%8C%E5%87%BA%E3%81%9F%E3%81%A3%E3%81%BD%E3%81%84%E3%81%AE%E3%81%A7%E3%80%81ASP.NET&#43;Core&#43;Razor&#43;Pages&#43;%E3%82%92%E3%83%81%E3%83%A9%E8%A6%8B%E3%81%97%E3%81%A6%E3%81%BF%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2017%2F08%2F15%2F032010%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/043634/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/15/043634/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2017-08-15T03:20:10JST">2017/08/15</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/14/051032/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2017/08/14/051032/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -95,10 +95,10 @@
     TypeScript: JavaScript Development at Application Scale – Somasegar&amp;#39;s blog
 </code></pre>
 <p>たまにこのブログに載せるコードでもわかるように、わしは JavaScript があんまりわかっていない。見様見真似で jQuery 使ったりするけれど、基本的なことがわかっていなさ過ぎて、キレイにモジュール化して書くことができない。だから、たくさん書くとすぐに破たんする。でも、TypeScript だったらちょっと何とかなるんじゃないか。そんな印象を受けた。なにより、JavaScript からそんなに離れていないのがいい。TypeScript は ECMAScript 5 のスーパーセットになっていて、付け足された部分も ECMAScript 6 で勧告されている仕様を先取りした形になっている。つまり、TypeScript というのは_未来の JavaScript を今の JavaScript へコンパイルする言語_なんだな。今までの知識が多少なりとも役に立つし、新たに勉強してもその努力が無駄になることはあるまい<a href="#f-a5d3206c" name="fn-a5d3206c" title="この歳になると、まっさらな言語を一から勉強するのはめんどくさいのよね。"><em>1</a>。そう考えると、俄然興味がわいてしまう。<figure>
-    <img src="/images/2012/10/02/204834/20121002203637.png"/> 
+    <img src="/images/20121002203637.png"/> 
 </figure>
 で、どうせ使うなら、Visual Studio もいいけど WebMatrix で使いたい。でも、今のところ Node.js プロジェクトの場合 npm でインストールできるけれど、それもコンパイラだけなのかな。シンタックスハイライトや IntelliSense はないみたい<a href="#f-30e541f5" name="fn-30e541f5" title="Visual Studio にはもちろんあるよ"></em>2</a>。<figure>
-    <img src="/images/2012/10/02/204834/20121002203648.png"/> 
+    <img src="/images/20121002203648.png"/> 
 </figure>
 というわけで、ツールのサポートもないわ、いちいち tsc でコンパイルすなきゃだわで、WebMatrix で使うにはまだめんどくさい感じ。せめて、「OrangeBits Compiler」（<a href="https://blog.daruyanagi.jp/entry/2012/08/15/161932">WebMatrix で LESS を使おう！ - だるろぐ</a>）がやってるみたいに .ts を監視して自動で .js にコンパイルする拡張機能なんかがあれば面白いかもしれない。そのうち誰かが作ってくれそうだな。</p>
 <div class="footnote">
@@ -108,64 +108,19 @@
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-10-02T20:48:34JST">2012/10/02</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?%e6%9c%aa%e6%9d%a5%e3%81%ae%20JavaScript%20%e3%82%92%e5%85%88%e5%8f%96%e3%82%8a%e3%81%99%e3%82%8b%20TypeScript%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/10/02/204834/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=%E6%9C%AA%E6%9D%A5%E3%81%AE&#43;JavaScript&#43;%E3%82%92%E5%85%88%E5%8F%96%E3%82%8A%E3%81%99%E3%82%8B&#43;TypeScript&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F10%2F02%2F204834%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/02/212321/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/02/212321/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-10-02T20:48:34JST">2012/10/02</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/01/215059/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/10/01/215059/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

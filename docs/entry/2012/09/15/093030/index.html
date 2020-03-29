@@ -100,14 +100,14 @@
 <div class="section">
     ### NuGet のインストール
     <figure>
-    <img src="/images/2012/09/15/093030/20120915085309.png"/> 
+    <img src="/images/20120915085309.png"/> 
 </figure>
 合言葉は「Optimization」！　検索で出てきた**2番目**の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、
 <ul>
 <li>どれを使うべきか</li>
 <li>どうやって使うのか</li>
 </ul>がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う<a href="#f-7ccd8146" name="fn-7ccd8146" title="開発終了したけどすぐに消すわけにはいかない、ということはあると思う">*1</a>し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか<a href="#f-0b5f8be8" name="fn-0b5f8be8" title="GitHub みたいなやつだね！">*2</a>、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。<figure>
-    <img src="/images/2012/09/15/093030/20120915090021.png"/> 
+    <img src="/images/20120915090021.png"/> 
 </figure>
 依存関係で入ってくる「WebGrease」は、Minify <a href="#f-c5e4a6fe" name="fn-c5e4a6fe" title="余計なコメントや改行・空白を削るなどしてペイロードを軽くすること">*3</a>を行うコマンドラインツールみたい。<a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx">http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx</a>Microsoft の中の人が作ってるみたいだね。
 </div>
@@ -150,20 +150,20 @@ BundleTable.Bundles.Add(
 &lt;div class=&quot;section&quot;&gt;
     ### 実際の出力と BundleTable.EnableOptimizations
     で、実際の出力はどうなるかというと、 @Scripts.Render(&quot;~/Scripts/jQuery&quot;) の場合はこんな感じ。<figure>
-    <img src="/images/2012/09/15/093030/20120915091457.png"/> 
+    <img src="/images/20120915091457.png"/> 
 </figure>
 おおー、最新版が読み込まれているぞ。けれど、 Minify まではされていない。Minify までしてほしい場合は、
 ```cs
     BundleTable.EnableOptimizations = true;
 
 ```しておく。すると、出力はこんな感じに変わる。<figure>
-    <img src="/images/2012/09/15/093030/20120915091631.png"/> 
+    <img src="/images/20120915091631.png"/> 
 </figure>
 スクリプトの内容はこんな感じ。<figure>
-    <img src="/images/2012/09/15/093030/20120915091656.png"/> 
+    <img src="/images/20120915091656.png"/> 
 </figure>
 改行が飛んでいるので少しわかりにくいけれど、最適化を有効にしない場合はこんな感じ。<figure>
-    <img src="/images/2012/09/15/093030/20120915091732.png"/> 
+    <img src="/images/20120915091732.png"/> 
 </figure>
 著作権表示などのコメントがいっぱい残っているのがわかる。「Microsoft ASP.NET Web Optimization Framework」を利用したら、こういうのを全部取って、リソースの転送量を抑えてくれるので便利！……というわけで、今回はおしまい。ASP.NET MVC4 だとこうのも標準で入っているみたい。メイドの人が言ってた。&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20111103/1320331131&quot;&gt;Microsoft.Web.Optimization で JavaScript と CSS の最適化を行う - しばやん雑記&lt;/a&gt;WebMatrix は標準で Application_Start / RegisterBundles() みたいなのが標準では用意されていないけれど、なんなら自分で作ってもいいね。まぁ、そんなのが必要になるぐらいキッチリとデカいアプリケーションを書きたくなったら、自然と MVC みたいなフレームワーク＋ IDE 支援がほしくなると思う。それまでは、WebMatrix でお勉強するのもありだと思うよ。
 
@@ -176,64 +176,19 @@ BundleTable.Bundles.Add(
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2012-09-15T09:30:30JST">2012/09/15</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?CSS%20/%20Javascript%20%e3%81%ae%20Bunlde%20%e3%81%a8%20Minify%20%e3%82%92%20WebMatrix%20%e3%81%a7%e5%88%a9%e7%94%a8%e3%81%99%e3%82%8b%ef%bc%882%ef%bc%89%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2012/09/15/093030/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=CSS&#43;%2F&#43;Javascript&#43;%E3%81%AE&#43;Bunlde&#43;%E3%81%A8&#43;Minify&#43;%E3%82%92&#43;WebMatrix&#43;%E3%81%A7%E5%88%A9%E7%94%A8%E3%81%99%E3%82%8B%EF%BC%882%EF%BC%89&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2012%2F09%2F15%2F093030%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/16/001625/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/16/001625/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2012-09-15T09:30:30JST">2012/09/15</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/14/093750/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2012/09/14/093750/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

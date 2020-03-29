@@ -88,26 +88,26 @@
 <div class="section">
     ### SDK のインストール
     <figure>
-    <img src="/images/2018/06/23/204520/20180623202128.png"/> 
+    <img src="/images/20180623202128.png"/> 
 </figure>
 とりあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。[ASP.NET - Get started in 10 minutes](https://www.microsoft.com/net/learn/apps/web/get-started/windows)なんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。<figure>
-    <img src="/images/2018/06/23/204520/20180623202320.png"/> 
+    <img src="/images/20180623202320.png"/> 
 </figure>
 <figure>
-    <img src="/images/2018/06/23/204520/20180623202323.png"/> 
+    <img src="/images/20180623202323.png"/> 
 </figure>
 ちゃんとプルダウンに 2.1 がでてきたので切り替えました。<figure>
-    <img src="/images/2018/06/23/204520/20180623202524.png"/> 
+    <img src="/images/20180623202524.png"/> 
 </figure>
 <br/>
 </div>
 <div class="section">
     ### とりあえずデバッグ → エラー
     <figure>
-    <img src="/images/2018/06/23/204520/20180623202603.png"/> 
+    <img src="/images/20180623202603.png"/> 
 </figure>
 とりあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。<figure>
-    <img src="/images/2018/06/23/204520/20180623202756.png"/> 
+    <img src="/images/20180623202756.png"/> 
 </figure>
 それ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP.NET Core に内蔵の Webrick みたいなサーバーが使えるんだな（何度聞いても名前が覚えられないんだけど、<a href="https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x">Kestrel </a>っていうらしい？）。
 </div>
@@ -118,84 +118,39 @@
     ASP.NET Core 2.0 から Microsoft.AspNetCore.All という狂気に満ちたメタパッケージが用意されましたが、2.1 からはマイルドになった Microsoft.AspNetCore.App というメタパッケージが追加されました。
 </code></pre>
 <p>っていう部分はウチの環境でも対応しておいた方がいいかなって思ったので、NuGet パッケージを入れ替えました。<figure>
-    <img src="/images/2018/06/23/204520/20180623203608.png"/> 
+    <img src="/images/20180623203608.png"/> 
 </figure>
 更新インジケーターが出ている Microsoft.AspNetCore.All をブッコ抜き、Microsoft.AspNetCore.App に入れ替えるだけ。これで狂気から解放されたようです。<figure>
-    <img src="/images/2018/06/23/204520/20180623203730.png"/> 
+    <img src="/images/20180623203730.png"/> 
 </figure>
 これでウチの移行作業はだいたい終わりですが、リポジトリ上での変更はマジで<strong>ターゲット フレームワークの変更だけ</strong>でした。あとでいろいろ問題が出ないとも限らないけど、スクショとりながら進めるほどの作業でもなかった。</p>
 </div>
 <div class="section">
     ### Web Deploy できない問題
     <figure>
-    <img src="/images/2018/06/23/204520/20180623203918.png"/> 
+    <img src="/images/20180623203918.png"/> 
 </figure>
 さて、あとはデプロイするだけなのですが、ウチの環境はいろいろ腐り始めてるっぽくてエラーがでる。[未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐ](https://blog.daruyanagi.jp/entry/2018/06/20/232113)一通りググってみたけどピッタリの解決策は見つからなくて、FTP でデプロイするという邪悪な方法でしのいできたのですが――>未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐGitHubからデプロイするようにするのはダメなのかしら？2018/06/20 23:50<script src="https://b.st-hatena.com/js/comment-widget.js" charset="utf-8" async=""></script><cite class="hatena-citation"><a href="http://b.hatena.ne.jp/entry/366160930/comment/nakaji999">b.hatena.ne.jp</a></cite>賢者の声がしたので、それに従ってみました。いや、前々からやろうと思ってたんだけど、なんかめんどくさくて後回しになってただけなんだからねっ！<figure>
-    <img src="/images/2018/06/23/204520/20180623204237.png"/> 
+    <img src="/images/20180623204237.png"/> 
 </figure>
 で、やってみたらフツーにイケました。ソースコード管理は GitHub でやってるし、こっちの方が断然いいな。ちゃんと master ブランチを触らない癖も付きそうだ。
 </div>
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2018-06-23T20:45:20JST">2018/06/23</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Core%ef%bc%9adaruyanagi.jp%20%e3%82%92%20ASP.NET%20Core%202.1%20%e3%81%b8%e7%a7%bb%e8%a1%8c%e3%81%95%e3%81%9b%e3%81%9f%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2018/06/23/204520/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Core%EF%BC%9Adaruyanagi.jp&#43;%E3%82%92&#43;ASP.NET&#43;Core&#43;2.1&#43;%E3%81%B8%E7%A7%BB%E8%A1%8C%E3%81%95%E3%81%9B%E3%81%9F&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2018%2F06%2F23%2F204520%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/26/182340/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/26/182340/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2018-06-23T20:45:20JST">2018/06/23</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/23/114536/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2018/06/23/114536/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

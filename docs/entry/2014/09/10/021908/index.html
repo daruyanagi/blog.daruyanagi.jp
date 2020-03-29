@@ -92,20 +92,20 @@
 <div class="section">
     #### ターゲットプラットフォームバージョンを指定
     まず *.csproj ファイルをテキストエディターなどで開き、ターゲットプラットフォームとして Windows 8 以降を指定する。<figure>
-    <img src="/images/2014/09/10/021908/20140910015930.png"/> 
+    <img src="/images/20140910015930.png"/> 
 </figure>
 プロジェクトを一度アンロード。<figure>
-    <img src="/images/2014/09/10/021908/20140910020152.png"/> 
+    <img src="/images/20140910020152.png"/> 
 </figure>
 プロジェクトフォルダをエクスプローラで開く。いつからかコンテキストメニューにこのコマンドが追加されていてうれしい。<figure>
-    <img src="/images/2014/09/10/021908/20140910020215.png"/> 
+    <img src="/images/20140910020215.png"/> 
 </figure>
 TargetPlatformVersion<a href="http://msdn.microsoft.com/ja-jp/library/microsoft.build.utilities.targetplatformsdk.targetplatformversion(v=vs.110).aspx">TargetPlatformSDK.TargetPlatformVersion プロパティ (Microsoft.Build.Utilities)</a> を記述して保存。プロジェクトをリロード。
 </div>
 <div class="section">
     #### winmd を参照に追加
     <figure>
-    <img src="/images/2014/09/10/021908/20140910020337.png"/> 
+    <img src="/images/20140910020337.png"/> 
 </figure>
 次に、winmd を参照に追加。パスが長いけれど、コモンダイアログで winmd を検索すれば簡単に見つかる。これで IntelliSense で PackageManager クラスが補完できるようになるはず。デスクトップアプリから Windows Runtime API を使う時には、毎回こういう作業が必要になるみたい。知らんけど。
 </div>
@@ -158,74 +158,29 @@ ItemsSource=&quot;{Binding Packages}&quot;&gt;
 <div class="section">
     ### 実行
     <figure>
-    <img src="/images/2014/09/10/021908/20140910020822.png"/> 
+    <img src="/images/20140910020822.png"/> 
 </figure>
 実行するとエラーが発生するので、System.Rumtime を参照へ追加する（64bit Windows 8.1 Update/Visual Studio 2013 Update 3 で開発してるけれど、32bit版 .NET 4 のアセンブリでいいみたい？）。<figure>
-    <img src="/images/2014/09/10/021908/20140910021531.png"/> 
+    <img src="/images/20140910021531.png"/> 
 </figure>
 残念ながら DisplayName はプロパティがあるにもかかわらず取得できない。ほんとこういうところクソだと思う。InstalledLocation にある AppxManifest.xml を読む必要がある。
 </div>
 
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2014-09-10T02:19:08JST">2014/09/10</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?WinRT%ef%bc%9a%e3%82%b7%e3%82%b9%e3%83%86%e3%83%a0%e3%81%ab%e3%82%a4%e3%83%b3%e3%82%b9%e3%83%88%e3%83%bc%e3%83%ab%e3%81%95%e3%82%8c%e3%81%9f%20Windows%20%e3%82%b9%e3%83%88%e3%82%a2%20%e3%82%a2%e3%83%97%e3%83%aa%e3%82%92%e5%88%97%e6%8c%99%e3%81%99%e3%82%8b%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2014/09/10/021908/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=WinRT%EF%BC%9A%E3%82%B7%E3%82%B9%E3%83%86%E3%83%A0%E3%81%AB%E3%82%A4%E3%83%B3%E3%82%B9%E3%83%88%E3%83%BC%E3%83%AB%E3%81%95%E3%82%8C%E3%81%9F&#43;Windows&#43;%E3%82%B9%E3%83%88%E3%82%A2&#43;%E3%82%A2%E3%83%97%E3%83%AA%E3%82%92%E5%88%97%E6%8C%99%E3%81%99%E3%82%8B&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2014%2F09%2F10%2F021908%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/10/030408/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/10/030408/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2014-09-10T02:19:08JST">2014/09/10</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/08/003344/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2014/09/08/003344/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

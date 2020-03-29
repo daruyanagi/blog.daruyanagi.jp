@@ -91,7 +91,7 @@
         </div>
         <div class="entry__content">
             <p><figure>
-    <img src="/images/2013/12/11/015827/20131205024503.png"/> 
+    <img src="/images/20131205024503.png"/> 
 </figure>
 ※ この記事は <a href="http://www.adventar.org/calendars/132">One ASP.NET Advent Calendar 2013</a> の11日目の記事です。<a href="http://blogonos.wordpress.com/2013/12/10/asp-net-identity-%E3%83%97%E3%83%AD%E3%83%95%E3%82%A1%E3%82%A4%E3%83%AB%E3%81%AE%E8%BF%BD%E5%8A%A0/">@ono さん</a>、ありがとうございます！</p>
 <pre><code>&gt;
@@ -156,7 +156,7 @@
 &lt;div class=&quot;section&quot;&gt;
     ### IRouteHandler を実装する
     ASP.NET Web Pages は ASP.NET ファミリーの一員ですので、ASP.NET の作法が使えます。つまり、&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/system.web.routing.iroutehandler(v=vs.100).aspx&quot;&gt;IRouteHandler&lt;/a&gt; を実装してルーティングを定義することもできる。<figure>
-    <img src="/images/2013/12/11/015827/20131205041246.png"/> 
+    <img src="/images/20131205041246.png"/> 
 </figure>
 ただ、自分で IRouteHandler を実装するのはちょっとめんどくさいので、今回は &lt;a href=&quot;http://www.nuget.org/packages/WebPageRouteHandler/&quot;&gt;Routing for WebPages&lt;/a&gt; を使わせてもらおうと思います。この NuGet には
 
@@ -178,10 +178,10 @@
 }
 
 ```まず、MapWebPageRoute を使って ~/_AppStart.cshtml でルーティングを追加。<figure>
-    <img src="/images/2013/12/11/015827/20131205042059.png"/> 
+    <img src="/images/20131205042059.png"/> 
 </figure>
 次にこんな ~/ListProducts.cshtml を用意して実行すると――<figure>
-    <img src="/images/2013/12/11/015827/20131205042115.png"/> 
+    <img src="/images/20131205042115.png"/> 
 </figure>
 結果はこんな感じ。~/List.cshtml ではなく ~/ListProducts.cshtml が参照されます。さらに、
 ```cs
@@ -197,7 +197,7 @@
 }
 
 ```こんな風にすれば――<figure>
-    <img src="/images/2013/12/11/015827/20131205042542.png"/> 
+    <img src="/images/20131205042542.png"/> 
 </figure>
 GetRouteValue で category が取得できる。
 ```cs
@@ -206,7 +206,7 @@ GetRouteValue で category が取得できる。
 }
 
 ```UrlData では不完全だったバインディングの問題が解決されるのがポイントかな。<figure>
-    <img src="/images/2013/12/11/015827/20131205044708.png"/> 
+    <img src="/images/20131205044708.png"/> 
 </figure>
 このルーティングでは category を指定せず /List/ へアクセスすると 404 になるけど――
 ```cs
@@ -222,7 +222,7 @@ GetRouteValue で category が取得できる。
 }
 
 ```“*”をつけてやれば category がない場合でもマッチする。<figure>
-    <img src="/images/2013/12/11/015827/20131205044047.png"/> 
+    <img src="/images/20131205044047.png"/> 
 </figure>
 category に初期値を与えることも。
 ```cs
@@ -239,7 +239,7 @@ category に初期値を与えることも。
 }
 
 ```<figure>
-    <img src="/images/2013/12/11/015827/20131205044132.png"/> 
+    <img src="/images/20131205044132.png"/> 
 </figure>
 category に正規表現で制約を設けてみる。
 ```cs
@@ -257,10 +257,10 @@ category に正規表現で制約を設けてみる。
 }
 
 ```<figure>
-    <img src="/images/2013/12/11/015827/20131205044344.png"/> 
+    <img src="/images/20131205044344.png"/> 
 </figure>
 /List/Tea は受け付けるが……<figure>
-    <img src="/images/2013/12/11/015827/20131205044451.png"/> 
+    <img src="/images/20131205044451.png"/> 
 </figure>
 /List/お茶 は受け付けない。/Blog/2013/01/01 -&gt; /Blog/{Year}/{Month}/{Day} なんて URL を設計するとき、{Year} {Month} {Day} を数字に限定したいですよね！　そんな時にはこれが使えそう。
 
@@ -303,7 +303,7 @@ category に正規表現で制約を設けてみる。
 &lt;div class=&quot;section&quot;&gt;
     #### 追記
     <figure>
-    <img src="/images/2013/12/11/015827/20131211020715.png"/> 
+    <img src="/images/20131211020715.png"/> 
 </figure>
 縄神さまの周りだけ、Advent Calendar が埋まっていません！　どなたかご協力をお願いします！！
 
@@ -315,64 +315,19 @@ category に正規表現で制約を設けてみる。
 </code></pre>
         </div>
         <div class="entry__footer">
-            <div class="entry__footer-date">
-                
-                更新日：<time
-                    datetime="2013-12-11T01:58:27JST">2013/12/11</time>
-                
-                </P>
-            </div>
-
-            <div class="entry__footer-buttons">
-                
-                <span class="entry__footer-share">
-                    
-                    
-                        
-                    
-                    
-                    <ul>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon-hatebu" href="https://b.hatena.ne.jp/my/add.confirm?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-hatebu">hatena</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://twitter.com/intent/tweet?text=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-twitter">twitter</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.facebook.com/sharer.php?u=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-facebook">facebook</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://getpocket.com/edit?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-get-pocket">pocket</i>
-                        </a></li>
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://line.me/R/msg/text/?ASP.NET%20Web%20Pages%20%7c%20%e3%81%a0%e3%82%8b%e3%82%84%e3%81%aa%e3%81%8e http://daruyanagi.net/entry/2013/12/11/015827/" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-line">line</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.reddit.com/submit?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-reddit">reddit</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://www.linkedin.com/shareArticle?mini=true&amp;title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fab fa-linkedin-in">linkedin</i>
-                        </a></li>
-                        
-                        <li><a class="entry__footer-sns-buttons-icon" href="https://pinboard.in/popup_login/?title=ASP.NET&#43;Web&#43;Pages&#43;%7C&#43;%E3%81%A0%E3%82%8B%E3%82%84%E3%81%AA%E3%81%8E&amp;url=http%3A%2F%2Fdaruyanagi.net%2Fentry%2F2013%2F12%2F11%2F015827%2F" target="_blank" rel="noopener noreferrer">
-                            <i class="fas fa-thumbtack">pinboard</i>
-                        </a></li>
-                    </ul>
-                </span>
-            </div>
             
-            <div class="entry__footer-buttons">
+            <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/11/030821/">&laquo; prev</a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/11/030821/">&laquo; 前の記事</a> 
+                </span>
+                <span class="entry__footer-lastmod">
+                    
+                    最終更新日：<time
+                        datetime="2013-12-11T01:58:27JST">2013/12/11</time>
+                    
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/09/213931/">次 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="http://daruyanagi.net/entry/2013/12/09/213931/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -1,0 +1,3 @@
+$dir = "entry/" + (Get-Date -Format "yyyy/MM/dd")
+Hugo new ($dir + "/index.md")
+Invoke-Item (Join-Path (Get-Location) "content" $dir)

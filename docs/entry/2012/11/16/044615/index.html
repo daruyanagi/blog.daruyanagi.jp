@@ -1,96 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/11/16/044615/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix で数式を表現する（2） | だるやなぎ
-        </title>
+<title>WebMatrix で数式を表現する（2） - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="WebMatrix で数式を表現する（１） - だるろぐ の続き。前回の方法は、Google の気分次第でいつでも廃止されちゃいます。というわけでもう少し調べたところ、MathJax.js という素敵な JavaScript ライブラリがあるそうなので、こっちを使うほうがいいのかも。
- http://www.mathjax.org/ MathJaxの使い方 たとえばこんな感じ。   br/&gt;
-# Default.cshtml @{ } &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;script src=&#34;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&#34;&gt; &amp;lt;/script&gt; &amp;lt;/head&gt; &amp;lt;body&gt; \(\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}\) &amp;lt;/body&gt; &amp;lt;/html&gt; ```\(……\) で囲まれた部分が TeX 記法の数式として扱われ、文系人間にも読める形へ変換されます。もはや WebMatrix （ASP.NET Web Page）である必要すらない、とても汎用的な方法ですね！難点と言えば、複雑怪奇ゲロゲロな HTML タグが吐き出されることと、ちょっと余計な機能が多すぎるかな、といった点でしょうか。ほとんど難癖に近いですけれど。あと思いつくのは &lt;a href=&#34;http://blogs.wankuma.com/pizyumi/archive/2012/05/19/271826.aspx&#34;&gt;while(true);&lt;/a&gt; のような方法を利用して、サーバー側でレンダリングする方法でしょうか。そっちのほうが WebMatrix とは思いますが、ちょっとめんどくさいですね。 " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/11/16/044615/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix で数式を表現する（2）</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/11/16</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><a href="https://blog.daruyanagi.jp/entry/2012/11/16/042840">WebMatrix で数式を表現する（１） - だるろぐ</a> の続き。前回の方法は、Google の気分次第でいつでも廃止されちゃいます。というわけでもう少し調べたところ、MathJax.js という素敵な JavaScript ライブラリがあるそうなので、こっちを使うほうがいいのかも。</p>
+<article>
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/11/16/042840">WebMatrix で数式を表現する（１） - だるろぐ</a> の続き。前回の方法は、Google の気分次第でいつでも廃止されちゃいます。というわけでもう少し調べたところ、MathJax.js という素敵な JavaScript ライブラリがあるそうなので、こっちを使うほうがいいのかも。</p>
 <ul>
 <li><a href="http://www.mathjax.org/">http://www.mathjax.org/</a></li>
 <li><a href="http://genkuroki.web.fc2.com/">MathJaxの使い方</a></li>
@@ -124,32 +94,35 @@
 
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/11/16/064844/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-11-16T04:46:15JST">2012/11/16</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/11/16/042840/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/11/16/042840/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/11/16/064844/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

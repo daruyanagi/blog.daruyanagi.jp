@@ -1,96 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/08/30/051929/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する | だるやなぎ
-        </title>
+<title>GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
-#### 1. とりあえずローカルに発行してコミットする まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。 ``` # Click-Once directory # publish/ ```ついでに .gitattributes も編集しておく。 ``` *.manifest binary *.application binary *.deploy binary ```これをコミットして GitHub にプッシュしておく。  #### 2. ClickOnce のインストール フォルダーの URL を変更 GitHub に publish フォルダーがちゃんとアップロードされているのを確認。   こからセットアップファイルの Raw URL を取得しておく。今回は
- https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。   ほど取得した Raw URL を cdn." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/clickonce/">ClickOnce</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/08/30/051929/" >
-                    <h1 class="entry__header-title-link-text">GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2016/08/30</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F08%2F29%2F175526" title="Aoba 1.3.0：艦これの画面をビデオキャプチャーできるようにした / Screna っていうライブラリが超便利 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。<iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F13512029%2Fis-it-possible-to-offer-a-clickonce-installer-on-github" title="Is it possible to offer a ClickOnce installer on Github?" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さすがやでぇ。以下はそれを試してみたよっていう話。</p>
+<article>
+    <p>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F08%2F29%2F175526" title="Aoba 1.3.0：艦これの画面をビデオキャプチャーできるようにした / Screna っていうライブラリが超便利 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。<iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F13512029%2Fis-it-possible-to-offer-a-clickonce-installer-on-github" title="Is it possible to offer a ClickOnce installer on Github?" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さすがやでぇ。以下はそれを試してみたよっていう話。</p>
 <div class="section">
     #### 1. とりあえずローカルに発行してコミットする
     まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。
@@ -138,32 +108,35 @@
     Aoba の ClickOnce 発行でエラーが出るのでぐぐったら、昔の自分のブログを発見。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2014%2F10%2F12%2F135537" title="winmd を参照していると ClickOnce で配置できない - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>メモは大事。
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/31/023417/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2016-08-30T05:19:29JST">2016/08/30</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/29/175526/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2016/08/29/175526/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2016/08/31/023417/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

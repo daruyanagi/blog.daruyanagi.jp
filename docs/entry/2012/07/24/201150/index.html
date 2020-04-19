@@ -1,91 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/07/24/201150/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            失敗の数だけ強くなりたい | だるやなぎ
-        </title>
+<title>失敗の数だけ強くなりたい - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
-&lt;grid&gt;&lt;/grid&gt; Name=&#34;listBoxGists&#34;&gt; ```**MainWindow.xaml.cs** ```cs using System.Net; using Newtonsoft.Json; /// &amp;lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); } private void MainWindow_Loaded( object sender, RoutedEventArgs e) { var client = new WebClient(); client.DownloadStringCompleted &#43;= (_sender, _e) =&gt; { listBoxGists.ItemsSource = JsonConvert .DeserializeObject&amp;lt;Gist[]&gt;(_e.Result); }; client." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/07/24/201150/" >
-                    <h1 class="entry__header-title-link-text">失敗の数だけ強くなりたい</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/07/24</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724200928.png" alt="f:id:daruyanagi:20120724200928p:plain" title="f:id:daruyanagi:20120724200928p:plain" class="hatena-fotolife"/>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている<a href="#f1" name="fn1" title="歳もとったし">*1</a>。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。<strong>MainWindow.xaml</strong></p>
+<article>
+    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724200928.png" alt="f:id:daruyanagi:20120724200928p:plain" title="f:id:daruyanagi:20120724200928p:plain" class="hatena-fotolife"/>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている<a href="#f1" name="fn1" title="歳もとったし">*1</a>。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。<strong>MainWindow.xaml</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;grid&gt;&lt;/grid&gt;</span>
     Name=&#34;listBoxGists&#34;&gt;
     
@@ -218,32 +193,35 @@ public struct Gist
 <span style="color:#f92672">&lt;/div&gt;</span>
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/24/210100/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-07-24T20:11:50JST">2012/07/24</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/23/222814/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/07/23/222814/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/07/24/210100/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

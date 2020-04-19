@@ -1,97 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/10/07/113945/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix/ASP.NET Web Pages で YAML を扱う | だるやなぎ
-        </title>
+<title>WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。
-### YAML って？ &gt; YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。  ほんとう？　それを確かめるためにちょっと比較してみました。例は XMLの論考: YAMLはXMLに改良を加える のものをベースに、XML-JSON相互変換ツール - Bluehawk&#39;s lab. で作成した JSON 形式のものを追加してあります。
-#### XML で表現した場合 ```xml xml version=&#34;1.0&#34;?   id=&#34;kramnik&#34; name=&#34;Vladimir Kramnik&#34; rating=&#34;2700&#34; status=&#34;GM&#34; / id=&#34;fritz&#34; name=&#34;Deep Fritz&#34; rating=&#34;2700&#34; status=&#34;Computer&#34; / id=&#34;mertz&#34; name=&#34;David Mertz&#34; rating=&#34;1400&#34; status=&#34;Amateur&#34; /   2002-10-04 refid=&quot;fritz&rdquo; /&gt; refid=&quot;kramnik&rdquo; /&gt; Draw
-&lt;match&gt;&lt;/match&gt; &lt;date&gt;&lt;/date&gt;2002-10-06 refid=&quot;kramnik&quot; /&gt; refid=&quot;fritz&quot; /&gt; &lt;result&gt;&lt;/result&gt;White  &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### JSON で表現した場合 ``` { &quot;club&quot;: { &quot;players&quot;: { &quot;player&quot;: [ { &quot;-id&quot;: &quot;kramnik&quot;, &quot;-name&quot;: &quot;Vladimir Kramnik&quot;, &quot;-rating&quot;: &quot;2700&quot;, &quot;-status&quot;: &quot;GM&quot; }, { &quot;-id&quot;: &quot;fritz&quot;, &quot;-name&quot;: &quot;Deep Fritz&quot;, &quot;-rating&quot;: &quot;2700&quot;, &quot;-status&quot;: &quot;Computer&quot; }, { &quot;-id&quot;: &quot;mertz&quot;, &quot;-name&quot;: &quot;David Mertz&quot;, &quot;-rating&quot;: &quot;1400&quot;, &quot;-status&quot;: &quot;Amateur&quot; } ] }, &quot;matches&quot;: { &quot;match&quot;: [ { &quot;Date&quot;: &quot;2002-10-04&quot;, &quot;White&quot;: { &quot;-refid&quot;: &quot;fritz&quot; }, &quot;Black&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; }, &quot;Result&quot;: &quot;Draw&quot; }, { &quot;Date&quot;: &quot;2002-10-06&quot;, &quot;White&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; }, &quot;Black&quot;: { &quot;-refid&quot;: &quot;fritz&quot; }, &quot;Result&quot;: &quot;White&quot; } ] } } } ```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### YAML で表現した場合 ```yaml --- players: Vladimir Kramnik: &amp;amp;kramnik rating: 2700 status: GM Deep Fritz: &amp;amp;fritz rating: 2700 status: Computer David Mertz: &amp;amp;mertz rating: 1400 status: Amateur matches: - Date: 2002-10-04 White: *fritz Black: *kramnik Result: Draw - Date: 2002-10-06 White: *kramnik Black: *fritz Result: White ```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。 &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://jp." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/10/07/113945/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix/ASP.NET Web Pages で YAML を扱う</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/10/07</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。</p>
+<article>
+    <p>ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。</p>
 <div class="section">
     ### YAML って？
 <pre><code>&gt;
@@ -297,32 +266,35 @@ dynamic deserialised = serializer.Deserialize(
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/10/07/172404/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-10-07T11:39:45JST">2012/10/07</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/10/06/194142/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/10/06/194142/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/10/07/172404/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

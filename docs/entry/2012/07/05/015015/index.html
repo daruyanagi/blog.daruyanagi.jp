@@ -1,102 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/07/05/015015/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた | だるやなぎ
-        </title>
+<title>XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。
-### XREA/CoreServer からデータをバックアップ FTP 接続でファイルをローカルに保存。と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。  ### Windows Azure Websites で WordPress サイトを作成・ダウンロード ふつーに Windows Azure Websites で WordPress サイトを作成する。初期設定まで Azure 上でやっておいた。あとは WebMatrix でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の WordPress がローカルで動作する。  ### ファイルのコピーとデータベースのインポート、ローカルで WordPress を動作させる 先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。``` mysql -u root -p DB_NAME &lt; DUMP_FILE_NAME ```WebMatrix のデータベースを開いて、旧Webサイトのドメインを“http://localhost:****”（テスト環境のIPアドレス）に書き換えておこう*1。この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。ちゃんと動いた！　WebMatrix では URL Rewrite が動かないようで、パーマリンクをカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。  ### Azure へ発行……失敗 あとは Windows Azure Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。 ``` 2012/07/05 0:12 0:18:17: Using ID &#39;d4c71007-****&#39; for connections to the remote server." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-azure/">Windows Azure</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wordpress/">WordPress</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/07/05/015015/" >
-                    <h1 class="entry__header-title-link-text">XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/07/05</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。</p>
+<article>
+    <p>近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。</p>
 <div class="section">
     ### XREA/CoreServer からデータをバックアップ
     <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705012338.png" alt="f:id:daruyanagi:20120705012338p:plain" title="f:id:daruyanagi:20120705012338p:plain" class="hatena-fotolife"/>FTP 接続でファイルをローカルに保存。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705012559.png" alt="f:id:daruyanagi:20120705012559p:plain" title="f:id:daruyanagi:20120705012559p:plain" class="hatena-fotolife"/>と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。
@@ -143,32 +107,35 @@ ERROR: データベースを発行できません。詳細については、"htt
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/05/022927/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-07-05T01:50:15JST">2012/07/05</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/04/081647/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/07/04/081647/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/07/05/022927/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

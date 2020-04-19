@@ -1,125 +1,100 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/04/05/133515/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix：NuGet サーバーをたてる | だるやなぎ
-        </title>
+<title>WebMatrix：NuGet サーバーをたてる - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="オレオレデザインのベースを NuGet 化しよう2013-04-04 16:54:23 via MetroTwit プライベート NuGet サーバーがあれば、公式レポジトリを汚さなくてすむのだけど2013-04-04 16:55:07 via MetroTwit @daruyanagi 立てればいいやん2013-04-04 16:55:16 via みについ to @daruyanagi @shibayan 前にブログに書いてた方法でまだいけんの？2013-04-04 16:55:32 via MetroTwit to @shibayan @daruyanagi 多分2013-04-04 16:55:48 via みについ to @daruyanagiというわけで、NuGet.Server を利用してプライベートリポジトリを構築する - しばやん雑記 を参考に自分で NuGet サーバーをたててみた。_WebMatrix で。_このブログはできるだけ WebMatrix でなんとかやってしまう主義なのです。 " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/nuget/">NuGet</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/04/05/133515/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix：NuGet サーバーをたてる</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2013/04/05</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi"><img src="http://a0.twimg.com/profile_images/3067808861/99fc8ebada780f56a03492cd5eba4b3e_normal.jpeg" alt="daruyanagi" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      オレオレデザインのベースを NuGet 化しよう<a href="http://twitter.com/daruyanagi/status/319719585307844609" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:54:23</span></a> <span class="twitter-detail-info-source">via <a href="http://www.metrotwit.com/" rel="nofollow">MetroTwit</a></span></div></div><br/>
+<article>
+    <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi"><img src="http://a0.twimg.com/profile_images/3067808861/99fc8ebada780f56a03492cd5eba4b3e_normal.jpeg" alt="daruyanagi" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      オレオレデザインのベースを NuGet 化しよう<a href="http://twitter.com/daruyanagi/status/319719585307844609" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:54:23</span></a> <span class="twitter-detail-info-source">via <a href="http://www.metrotwit.com/" rel="nofollow">MetroTwit</a></span></div></div><br/>
 <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi"><img src="http://a0.twimg.com/profile_images/3067808861/99fc8ebada780f56a03492cd5eba4b3e_normal.jpeg" alt="daruyanagi" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      プライベート NuGet サーバーがあれば、公式レポジトリを汚さなくてすむのだけど<a href="http://twitter.com/daruyanagi/status/319719769924308993" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:55:07</span></a> <span class="twitter-detail-info-source">via <a href="http://www.metrotwit.com/" rel="nofollow">MetroTwit</a></span></div></div><br/>
 <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/shibayan"><img src="http://a0.twimg.com/profile_images/3246694761/82d00e7c243a3d38677c98a6e4a8491b_normal.jpeg" alt="shibayan" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> 立てればいいやん<a href="http://twitter.com/shibayan/status/319719804137250816" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:55:16</span></a> <span class="twitter-detail-info-source">via <a href="http://www.s-software.net/" rel="nofollow">みについ</a></span> to @<a href="http://twitter.com/daruyanagi/status/319719769924308993" class="twitter-user-screen-name">daruyanagi</a></div></div><br/>
 <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi"><img src="http://a0.twimg.com/profile_images/3067808861/99fc8ebada780f56a03492cd5eba4b3e_normal.jpeg" alt="daruyanagi" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/shibayan" target="_top">shibayan</a> 前にブログに書いてた方法でまだいけんの？<a href="http://twitter.com/daruyanagi/status/319719872550543360" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:55:32</span></a> <span class="twitter-detail-info-source">via <a href="http://www.metrotwit.com/" rel="nofollow">MetroTwit</a></span> to @<a href="http://twitter.com/shibayan/status/319719804137250816" class="twitter-user-screen-name">shibayan</a></div></div><br/>
 <div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/shibayan"><img src="http://a0.twimg.com/profile_images/3246694761/82d00e7c243a3d38677c98a6e4a8491b_normal.jpeg" alt="shibayan" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> 多分<a href="http://twitter.com/shibayan/status/319719938417897472" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2013-04-04</span> <span class="twitter-detail-info-time">16:55:48</span></a> <span class="twitter-detail-info-source">via <a href="http://www.s-software.net/" rel="nofollow">みについ</a></span> to @<a href="http://twitter.com/daruyanagi/status/319719872550543360" class="twitter-user-screen-name">daruyanagi</a></div></div>というわけで、<a href="http://shiba-yan.hatenablog.jp/entry/20111017/1318860985">NuGet.Server を利用してプライベートリポジトリを構築する - しばやん雑記</a> を参考に自分で NuGet サーバーをたててみた。_WebMatrix で。_このブログはできるだけ WebMatrix でなんとかやってしまう主義なのです。
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/04/05/153356/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2013-04-05T13:35:15JST">2013/04/05</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/04/04/095736/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2013/04/04/095736/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2013/04/05/153356/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

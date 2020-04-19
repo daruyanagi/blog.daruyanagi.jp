@@ -1,84 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/07/25/203223/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            失敗の数だけ強くなりたい（ Jason.NET についての補足 | だるやなぎ
-        </title>
+<title>失敗の数だけ強くなりたい（ Jason.NET についての補足 - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/24/201150&quot;&gt;失敗の数だけ強くなりたい - だるろぐ の補足。
-&quot;files&quot;: { &quot;close_duplicate_tab.js&quot;: { &quot;type&quot;: &quot;application/javascript&quot;, &quot;filename&quot;: &quot;close_duplicate_tab.js&quot;, &quot;raw_url&quot;: &quot;https://gist.github.com/raw/3175551/c7590ad8cfdd352150a8c845ff96fb9f30bd3a65/close_duplicate_tab.js&quot;, &quot;language&quot;: &quot;JavaScript&quot;, &quot;size&quot;: 1465 } } ```この Json は Dictionary&amp;lt;string, File&gt; でうけることになるのだけど、 File を最初以下のとおりに定義していた。 ```cs public struct File { public string @type; public string filename; public string raw_url; public string language; public string size; } ```これでもいいのだけれど、フィールドはビューへバインディングできないのでプロパティにした、というのは前回に言った&lt;a href=&quot;#f-1abcc75c&quot; name=&quot;fn-1abcc75c&quot; title=&quot;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&quot;&gt;*1&lt;/a&gt;。 ```cs public struct File { public string @type { get; set; } public string filename { get; set; } public string raw_url { get; set; } public string language { get; set; } public string size { get; set; } } ```これでうまくいったのだけれど……うっかり struct を class にしてなかった。それでも動くんだな…… struct でもプロパティ持てるの？&lt;a href=&quot;#f-1fd0fe34&quot; name=&quot;fn-1fd0fe34&quot; title=&quot;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&quot;&gt;*2&lt;/a&gt;　よくわからなくなってくる。ここでは値を渡すことはないし、のちのち面倒くさいことになったら嫌なので class にしておいたほうが無難かな。まぁ、それは置いておこう。次に気になるのは、プロパティが Snake Case になっていること。やっぱり Pascal Case にしておきたい。試してみたところ&lt;a href=&quot;#f-2b14458a&quot; name=&quot;fn-2b14458a&quot; title=&quot;ドキュメント読めよ&quot;&gt;*3&lt;/a&gt;、 Jason." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/07/25/203223/" >
-                    <h1 class="entry__header-title-link-text">失敗の数だけ強くなりたい（ Jason.NET についての補足</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/07/25</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20120725203328.png"/> 
 </figure>
 
@@ -146,32 +128,35 @@ public class File
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/26/074416/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-07-25T20:32:23JST">2012/07/25</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/07/25/090416/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/07/25/090416/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/07/26/074416/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

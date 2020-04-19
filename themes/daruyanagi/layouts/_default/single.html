@@ -1,66 +1,27 @@
-{{ define "content" }}
-    <article class="entry">
+{{ define "main" }}
+<article>
+    {{ .Content }}
+</article>
 
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                {{ $section_page := .Site.GetPage .Section }}
-                {{ if eq $section_page.IsHome false }}
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="{{ $section_page.Permalink }}">
-                                {{ .CurrentSection.Title }}
-                            </a>
-                        </span>
-                    </div>
-                {{ end }}
-                {{ with .Params.tags }}
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            {{ range . }}
-                                {{ $name := . }}
-                                {{ with $.Site.GetPage (printf "/%s/%s" "tags" ($name | urlize)) }}
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="{{ .Permalink }}">{{ $name }}</a>
-                                    </li>
-                                {{ end }}
-                            {{ end }}
-                        </ul>
-                    </div>
-                {{ end }}
-            </div>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
 
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="{{ .Permalink }}" >
-                    <h1 class="entry__header-title-link-text">{{ .Title }}</h1>
-                </a>
-            </div>
+    <p>
+        {{ with .PrevInSection }}
+        <a href="{{ .Permalink }}">&laquo; Older</a>
+        {{ end }}
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        {{ with .NextInSection }}
+            <a href="{{ .Permalink }}">Newer &raquo;</a>
+        {{ end }}
+    </p>    
+    
+</section>
 
-            <div class="entry__header-date">
-                <P>公開日：<time>{{ .PublishDate.Format "2006/01/02" }}</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            {{ .Content }}
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                    {{ if .NextInSection }} <a class="entry__page-navigation-link" href="{{ .NextInSection.Permalink }}">&laquo; 前の記事</a> {{ end }}
-                </span>
-                <span class="entry__footer-lastmod">
-                    {{ with .Lastmod }}
-                    最終更新日：<time
-                        datetime="{{ .Format "2006-01-02T15:04:05JST" }}">{{ .Format "2006/01/02" }}</time>
-                    {{ end }}
-                </span>
-                <span class="entry__footer-next">
-                    {{ if .PrevInSection }} <a class="entry__page-navigation-link" href="{{ .PrevInSection.Permalink }}">次の記事 &raquo; </a> {{ end }}
-                </span>
-            </div>
-        </div>
-
-    </article>
-{{ end }}
+{{end}}

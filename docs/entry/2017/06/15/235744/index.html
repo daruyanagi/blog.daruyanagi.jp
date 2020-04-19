@@ -1,99 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/06/15/235744/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Yakitori 1.0.0.0：Windows 10 のネイティブ機能を活用したスクリーンショット支援ツール | だるやなぎ
-        </title>
+<title>Yakitori 1.0.0.0：Windows 10 のネイティブ機能を活用したスクリーンショット支援ツール - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="  週は身内に不幸があったりちょっと情緒不安定だったので、手慰みに Windows 10 のスクリーンショット機能をジャンプリストから利用できるようにするツールを作ってみました。「ネイティブ機能を利用する」という手抜きシンプルさがウリです。
-  ツールの名前は、大阪へ向かうフェリーのレストランで「撮る……撮る……」と名前を考えながら晩飯を選んでいたら、いつの間にかお盆の上に焼き鳥があったという故事から採っています。
-### なぜ作ったのか [ツールなしで“矩形キャプチャー”が可能！「Creators Update」に新搭載されたスクリーンショット機能が便利【やじうまの杜】](http://forest.watch.impress.co.jp/docs/serial/yajiuma/1061300.html)Windows 10 Creators Update 以降では OS ネイティブのスクリーンショット機能が拡充されていますが、  キーボードショートカットを覚えるのが面倒 クリップボードへコピーされた画像をファイル化するのが面倒 スクリーンショットフォルダーがどこにあるのか分からん＆開くのが面倒 なのではないかと思い作ってみました。あと、常駐しないのもよいところかな。逆にジャンプリストの利用が前提になっているのはマイナスかもね。なお、作った本人は「WinSnap」という有償ツールを愛用しているので、この手のツールは要らない模様（ぉ  ### 使い方  とりあえず実行する 設定ダイアログが表示されるのでタスクバーにピン留め 次回からはジャンプリストから Windows 10 ネイティブのスクリーンショット機能を呼び出せます   ### 機能  Windows 10 ネイティブのスクリーンショット機能を呼び出します  アクティブウィンドウをクリップボードへコピー デスクトップ全体をクリップボードへコピー デスクトップ全体をスクリーンショットフォルダーへ保存（Windows 8以降？が必要） デスクトップを矩形選択してクリップボードへコピー（Windows 10 Creators Update 以降が必要）  クリップボードに格納されている画像をスクリーンショットフォルダーへ保存 スクリーンショットフォルダーを開く カウントダウン実行 常駐しません スペシャルサンクス：オレンジフェリーの無料 Wi-Fi  ### 蛇足：メッセージポンプ このアプリは Tonjiru と似たような方法で起動オプションを実装＆ジャンプリストから呼べるように作ってありますが、App クラスを生成せずにカウントダウンを行おうとするとうまくいきませんでした。DispatchTimer ってメッセージポンプがないとダメなのかな（よくわかってない）。ShowDialog() でもいけるやろ、と思ったのですがそっちもダメだったので、おとなしく App.Run() しています。ここを削ればもう少し高速化できるんじゃないかなーと思うのですが、まぁ、そこまでやらんでもいいかな。  " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/yakitori/">Yakitori</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/06/15/235744/" >
-                    <h1 class="entry__header-title-link-text">Yakitori 1.0.0.0：Windows 10 のネイティブ機能を活用したスクリーンショット支援ツール</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/06/15</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20170615233530.png"/> 
 </figure>
 
@@ -141,32 +108,35 @@
     このアプリは Tonjiru と似たような方法で起動オプションを実装＆ジャンプリストから呼べるように作ってありますが、App クラスを生成せずにカウントダウンを行おうとするとうまくいきませんでした。DispatchTimer ってメッセージポンプがないとダメなのかな（よくわかってない）。ShowDialog() でもいけるやろ、と思ったのですがそっちもダメだったので、おとなしく App.Run() しています。ここを削ればもう少し高速化できるんじゃないかなーと思うのですが、まぁ、そこまでやらんでもいいかな。
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/21/000602/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-06-15T23:57:44JST">2017/06/15</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/12/233653/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/06/12/233653/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/06/21/000602/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

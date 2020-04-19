@@ -1,84 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/20111003/1362520495/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            NuGet の作成に挑戦してみた | だるやなぎ
-        </title>
+<title>NuGet の作成に挑戦してみた - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="NuGet を4つほど作ってみた。NuGet galleryやり方のほとんどは [NuGet パッケージを作って公開する](http://d.hatena.ne.jp/shiba-yan/20110306/1299422776) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。
- [Flickr2Html](http://nuget.org/List/Packages/Flickr2Html)  Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。 ``` @Flickr2Html.GetHtml(&#34;http://www.flickr.com/photos/daruyanagi/6171600135/&#34;) ``` GetHtml5() で figure タグを使った埋め込みタグを出力することも可能。引数（size:）に Flickr2Html.Size を与えれば、写真の大きさを指定することもできます。  [BlackbirdPie](http://nuget.org/List/Packages/BlackbirdPie)  Twitter のつぶやきを簡単に引用することができます。 ``` @BlackbirdPie.GetHtml(&#34;http://twitter.com/#!/daruyanagi/status/120962210225852417&#34;) ``` スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。 " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/20111003/1362520495/" >
-                    <h1 class="entry__header-title-link-text">NuGet の作成に挑戦してみた</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2011/10/03</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><a href="http://blog.daruyanagi.net/archives/256/sshot-2" rel="attachment wp-att-257"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-2-500x408.png" alt="" title="sshot-2" width="500" height="408" class="alignnone size-medium wp-image-257"/></a>NuGet を4つほど作ってみた。<a href="http://nuget.org/List/Search?searchTerm=author:%20daruyanagi">NuGet gallery</a>やり方のほとんどは [NuGet パッケージを作って公開する](<a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776"><a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776">http://d.hatena.ne.jp/shiba-yan/20110306/1299422776</a></a>) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。</p>
+<article>
+    <p><a href="http://blog.daruyanagi.net/archives/256/sshot-2" rel="attachment wp-att-257"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-2-500x408.png" alt="" title="sshot-2" width="500" height="408" class="alignnone size-medium wp-image-257"/></a>NuGet を4つほど作ってみた。<a href="http://nuget.org/List/Search?searchTerm=author:%20daruyanagi">NuGet gallery</a>やり方のほとんどは [NuGet パッケージを作って公開する](<a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776"><a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776">http://d.hatena.ne.jp/shiba-yan/20110306/1299422776</a></a>) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。</p>
 <ul>
 <li>[Flickr2Html](<a href="http://nuget.org/List/Packages/Flickr2Html">http://nuget.org/List/Packages/Flickr2Html</a>)</li>
 </ul>    Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。
@@ -92,32 +74,35 @@
         @BlackbirdPie.GetHtml("http://twitter.com/#!/daruyanagi/status/120962210225852417")
 ```    スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111005/1317741001/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2011-10-03T06:54:55JST">2011/10/03</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111002/1317496235/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/20111002/1317496235/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/20111005/1317741001/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

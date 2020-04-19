@@ -1,99 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/09/19/195837/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Omawari 1.1：Web 更新を巡回するヤツ。静的スクレイピングとか追加した | だるやなぎ
-        </title>
+<title>Omawari 1.1：Web 更新を巡回するヤツ。静的スクレイピングとか追加した - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
- デバッグビルドとリリースビルドの共存（開発の都合） 通知アイコンの改善 （タイマーの通算稼働時間のカウント） Updated を Pending に変えるまでの時間をグローバル設定から読み込むように ステータス色分けの改善 内部で保持している UTC を Local Time にちゃんと直して表示 コードの整理 **静的スクレイピング機能の追加** **プレビューの文字化けを修正** **更新ログウィンドウの追加** スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）     ### 静的スクレイピング機能の追加   hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
- ### プレビューの文字化けを修正 WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死 ```cs public class WebBrowserExtension { public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached( &#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged)); public static string GetHtml(DependencyObject obj) { return (string)obj." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/omawari/">Omawari</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/09/19/195837/" >
-                    <h1 class="entry__header-title-link-text">Omawari 1.1：Web 更新を巡回するヤツ。静的スクレイピングとか追加した</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/09/19</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20170919194055.png"/> 
 </figure>
 
@@ -189,32 +156,35 @@ browser.NavigateToString(html);
 <p>esktop Bridge を利用した WPF → UWP の移植は理想的にはこうなるらしいけど、やってるアプリ見たことないので、ちょっと挑戦してみようと思う。cmd とのやり取りは排除できないけど、それ以外の要素は UWP にできんことはない気がする。まぁ、早くても来年やね。</p>
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/21/000957/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-09-19T19:58:37JST">2017/09/19</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/18/172320/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/09/18/172320/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/09/21/000957/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

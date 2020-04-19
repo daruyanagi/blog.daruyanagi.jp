@@ -1,92 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/09/09/165125/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            9月9日：大雨のおかげで遅延情報の収集がはかどった | だるやなぎ
-        </title>
+<title>9月9日：大雨のおかげで遅延情報の収集がはかどった - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。
-### JR 四国 遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)  ### 伊予鉄 遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。   ーブルの解釈は多少面倒くさいけど、隣接セレクタ― &quot;th.rail3 &#43; td&quot; なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)
- ### フェリー 防予フェリーだけ UTF-8 じゃなくてつらかった。そのほかの各航路は、単純に公式ページからスクレイピングするだけ。オレンジフェリーのサイトだけ少し重く、うちの環境でベンチマークをとると取得から解析まで2秒ぐらいかかった。  ### ANA 公式の運行状況ページで便名を指定して検索。[国内線運航状況のご案内サービス│航空券│ANA SKY WEB](https://www.ana.co.jp/fs/dom/jp/)裏で JSONP API を使っているので、それをそのまま使えばよい……が、情報過多なので解釈が少しつらい。ちなみに JSON → C# への変換は、 https://quicktype.io/ が激しくお勧め。シリアライズ・デシリアライズするメソッド付きで C# 型へとコンバートしてくれる。  ### JAL/JAC JAL - 運航状況のご案内（国内線） で便名を検索。あまりセンスのないテーブルをガリガリと解釈する必要があってすごくつらい。セレクターでやると body  table  tbody  tr:nth-child(2)  td:nth-child(3)みたいな感じ……ファック！あと、JAL と JAC は別で、airlineCode を間違えるとエラーになる。  ### Jet Star PC サイトは ASP." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/blazor/">Blazor</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/09/09/165125/" >
-                    <h1 class="entry__header-title-link-text">9月9日：大雨のおかげで遅延情報の収集がはかどった</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2018/09/09</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20180909162600.png"/> 
 </figure>
 
@@ -127,32 +101,35 @@
 <a href="#fn-357aa3b2" name="f-357aa3b2" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a href="https://m.jetstar.com/Ink.API/api/flightstatus?origin=myj&amp;destination=nrt">https://m.jetstar.com/Ink.API/api/flightstatus?origin=myj&amp;destination=nrt</a></span>
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/14/044640/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2018-09-09T16:51:25JST">2018/09/09</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/08/233948/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2018/09/08/233948/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2018/09/14/044640/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

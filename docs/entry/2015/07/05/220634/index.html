@@ -1,93 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/07/05/220634/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            「Visual Studio Community」で ASP.NET Web Pages をはじめる | だるやなぎ
-        </title>
+<title>「Visual Studio Community」で ASP.NET Web Pages をはじめる - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="んなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。
-### とりあえずプロジェクトを作成する   ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。
-  なみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。
-  のテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。
- ### ページの追加   ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。
-  とは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。
-@{ Layout = null; } &amp;lt;!DOCTYPE html&gt; &amp;lt;html&gt; &amp;lt;head&gt; &amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; &amp;lt;div&gt; &amp;lt;/div&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```body が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。 ```cs @{ Layout = null; var message = &#34;Hello!" />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.NET Web Pages </a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/07/05/220634/" >
-                    <h1 class="entry__header-title-link-text">「Visual Studio Community」で ASP.NET Web Pages をはじめる</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2015/07/05</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20150705212532.png"/> 
 </figure>
 
@@ -197,32 +170,35 @@
     ASP.NET Web Pages は .NET 言語で PHP っぽく Web ページのロジックを記述できるフレームワークです。PHP よりも安全に作られているので、お仕事で使わなければならないかわいそうな人でもなければ、こっちの方がお勧めデス。書き方は @shibayan のサイトでも参考にしてください。PHP の記法と比べながら簡単に解説してくれています。<iframe src="http://blog.shibayan.jp/embed/20110714/1310652120" title="PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"><a href="http://blog.shibayan.jp/entry/20110714/1310652120">PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記</a></iframe>「（1）」って書いてあるのに続編がないのは気にしないでおきましょう。あとは<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwebmatrix.g.hatena.ne.jp%2Fcx20%2F20110228%2F1298841518" title="ASP.NET Razor 記法 基礎文法最速マスター - CX&#39;s WebMatrix Diary" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="http://webmatrix.g.hatena.ne.jp/cx20/20110228/1298841518">ASP.NET Razor 記法 基礎文法最速マスター - CX&#39;s WebMatrix Diary</a></iframe>なんかが詳しいかもしれません。
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/07/06/185809/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2015-07-05T22:06:34JST">2015/07/05</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/07/03/181444/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2015/07/03/181444/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2015/07/06/185809/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

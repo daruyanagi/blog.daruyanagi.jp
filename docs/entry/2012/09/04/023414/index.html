@@ -1,102 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/04/023414/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ | だるやなぎ
-        </title>
+<title>さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="WebMatrix 2 では Twitter や Facebook など、外部サービスの OAuth 認証を使ってログインできるサイトも簡単に作れるらしい。というわけで試すことにした。いつもどおり Empty Site テンプレートから Webサイトを作成。ついで DotNetOpenAuth extension for ASP.NET (WebPages) を NuGet でインストール。ガッデム！／(^o^)＼ NuGet が古いらしいぞ。確かに Empty Site テンプレートに含まれるのは 1.6.2 と相当古い。とっくに 2.0 も出てるのにな。しかし、なんで［更新プログラム］のところに出てこないのだろう。自動でアップデートできないじゃないか。一度アンインストールして、再度インストールしてみるかな。&gt; #### Dependencies  Microsoft.AspNet.WebPages (≥ 2.0.20710.0 &amp;&amp; &lt; 2.1) NuGet.Core (≥ 1.6.2 &amp;&amp; &lt; 1.7)
- NuGet Gallery | Microsoft ASP.NET Web Pages 2 Administration 2.0.20713.0  ジーザス！／(^o^)＼ これが依存性地獄か！うまくいっているときには気にならないが、こういう状況になると WebMatrix に搭載されている NuGet クライアントは非常に非力かつ情報不足に感じられて、使うのが辛くなる。とりあえず、このパッケージが何をしているのかは知らんが、ぶっこ抜くことにした。なに、困ったら初めからやり直せば良い ( ｰ`дｰ´)ｷﾘｯ ＜失うものなどなにもないんだ！ウェルダン！＼(^o^)／ これで NuGet.Core のバージョンが 2.0.1 になった。これでもう一度インストールを……ゴッドイズデス！／(^o^)＼ NuGet." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/nuget/">NuGet</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/04/023414/" >
-                    <h1 class="entry__header-title-link-text">さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/09/04</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>WebMatrix 2 では Twitter や Facebook など、外部サービスの OAuth 認証を使ってログインできるサイトも簡単に作れるらしい。というわけで試すことにした。いつもどおり Empty Site テンプレートから Webサイトを作成。ついで DotNetOpenAuth extension for ASP.NET (WebPages) を NuGet でインストール。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015306.png" alt="f:id:daruyanagi:20120904015306p:plain" title="f:id:daruyanagi:20120904015306p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015310.png" alt="f:id:daruyanagi:20120904015310p:plain" title="f:id:daruyanagi:20120904015310p:plain" class="hatena-fotolife"/><strong>ガッデム！／(^o^)＼</strong> NuGet が古いらしいぞ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015418.png" alt="f:id:daruyanagi:20120904015418p:plain" title="f:id:daruyanagi:20120904015418p:plain" class="hatena-fotolife"/>確かに Empty Site テンプレートに含まれるのは 1.6.2 と相当古い。とっくに 2.0 も出てるのにな。しかし、なんで［更新プログラム］のところに出てこないのだろう。自動でアップデートできないじゃないか。一度アンインストールして、再度インストールしてみるかな。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904021510.png" alt="f:id:daruyanagi:20120904021510p:plain" title="f:id:daruyanagi:20120904021510p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904021513.png" alt="f:id:daruyanagi:20120904021513p:plain" title="f:id:daruyanagi:20120904021513p:plain" class="hatena-fotolife"/></p>
+<article>
+    <p>WebMatrix 2 では Twitter や Facebook など、外部サービスの OAuth 認証を使ってログインできるサイトも簡単に作れるらしい。というわけで試すことにした。いつもどおり Empty Site テンプレートから Webサイトを作成。ついで DotNetOpenAuth extension for ASP.NET (WebPages) を NuGet でインストール。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015306.png" alt="f:id:daruyanagi:20120904015306p:plain" title="f:id:daruyanagi:20120904015306p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015310.png" alt="f:id:daruyanagi:20120904015310p:plain" title="f:id:daruyanagi:20120904015310p:plain" class="hatena-fotolife"/><strong>ガッデム！／(^o^)＼</strong> NuGet が古いらしいぞ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904015418.png" alt="f:id:daruyanagi:20120904015418p:plain" title="f:id:daruyanagi:20120904015418p:plain" class="hatena-fotolife"/>確かに Empty Site テンプレートに含まれるのは 1.6.2 と相当古い。とっくに 2.0 も出てるのにな。しかし、なんで［更新プログラム］のところに出てこないのだろう。自動でアップデートできないじゃないか。一度アンインストールして、再度インストールしてみるかな。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904021510.png" alt="f:id:daruyanagi:20120904021510p:plain" title="f:id:daruyanagi:20120904021510p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904021513.png" alt="f:id:daruyanagi:20120904021513p:plain" title="f:id:daruyanagi:20120904021513p:plain" class="hatena-fotolife"/></p>
 <pre><code>&gt;
     
 
@@ -108,32 +72,35 @@ NuGet.Core (≥ 1.6.2 &amp;&amp; &lt; 1.7)</p>
 </code></pre>
 <p><strong>ジーザス！／(^o^)＼</strong> これが依存性地獄か！うまくいっているときには気にならないが、こういう状況になると WebMatrix に搭載されている NuGet クライアントは非常に非力かつ情報不足に感じられて、使うのが辛くなる。とりあえず、このパッケージが何をしているのかは知らんが、ぶっこ抜くことにした。なに、困ったら初めからやり直せば良い ( ｰ`дｰ´)ｷﾘｯ ＜失うものなどなにもないんだ！<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904022334.png" alt="f:id:daruyanagi:20120904022334p:plain" title="f:id:daruyanagi:20120904022334p:plain" class="hatena-fotolife"/><strong>ウェルダン！＼(^o^)／</strong> これで NuGet.Core のバージョンが 2.0.1 になった。これでもう一度インストールを……<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904022727.png" alt="f:id:daruyanagi:20120904022727p:plain" title="f:id:daruyanagi:20120904022727p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120904/20120904022726.png" alt="f:id:daruyanagi:20120904022726p:plain" title="f:id:daruyanagi:20120904022726p:plain" class="hatena-fotolife"/><strong>ゴッドイズデス！／(^o^)＼</strong> NuGet.Core は関係なかったのか？　Visual Studio の Nuget は最新版なのだけどなぁ。どこかに古いのが残っていて、それを参照しているのかな。面倒くさいことになった。まぁ、続きは WebMatrix 2 の正式版まちってことで。ちなみに、今すぐ OAuth を試したい子は Starter Site テンプレートを使うといい。古いバージョンが完璧にセットアップ済みなので、とりあえず試すことができるゾ。</p>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/04/033606/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-09-04T02:34:14JST">2012/09/04</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/03/093520/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/09/03/093520/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/09/04/033606/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

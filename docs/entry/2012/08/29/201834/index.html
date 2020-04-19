@@ -1,97 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/29/201834/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい | だるやなぎ
-        </title>
+<title>寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、
-&gt;  ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。 コントローラでflashメッセージを設定し、ビューで表示する。 flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。 設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。 普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。
- flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション  というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。
-# Logout.cshtml @{ WebSecurity.Logout(); Session[&#34;flash&#34;] = &#34;Good bye!&#34;; // &amp;lt;-- ココ！  Response.Redirect(Request[&#34;ReturnUrl&#34;] ?? &#34;~/&#34;); } ```実装には Session を利用した。 Session[&#34;flash&#34;] にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。 ```cs # ＿SiteLayout.cshtml &amp;lt;body&gt; @if (Session[&#34;flash&#34;] != null) { &amp;lt;div class=&#34;message info&#34;&gt; &amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt; // &amp;lt;-- 読みだして……  &amp;lt;/div&gt; Session[&#34;flash&#34;] = null; // &amp;lt;-- 消す！……  } @RenderBody() &amp;lt;/body&gt; ```表示する側では、かならず Session[&#34;flash&#34;] をクリアしておく。これで Session[&#34;flash&#34;] の内容が表示されるのは一度きりになるはず。&lt;img src=&#34;http://cdn-ak." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/29/201834/" >
-                    <h1 class="entry__header-title-link-text">寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/08/29</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、</p>
+<article>
+    <p>Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、</p>
 <pre><code>&gt;
 </code></pre>
 <p>ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。
@@ -176,32 +145,35 @@ flashは全体で見ればHash。あるキーに対する値としてメッセ�
 &lt;/div&gt;
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/30/040609/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-08-29T20:18:34JST">2012/08/29</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/29/033503/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/08/29/033503/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/08/30/040609/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

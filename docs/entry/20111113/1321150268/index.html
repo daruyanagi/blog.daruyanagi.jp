@@ -1,84 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/20111113/1321150268/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Page のものは Page に、App のものは App に | だるやなぎ
-        </title>
+<title>Page のものは Page に、App のものは App に - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。WebMatrix &#43; Markdown …… リファクタリング。 のコードで言えばこんな感じ。
-	@functions { string ReadTextFile(string path) { path = string.Format(&quot;/Pages/{0}.txt&quot;, path); path = Server.MapPath(path); if (!File.Exists(path)) { throw new HttpException(404, path &#43; &quot;is not found.&quot;); } Page.CreatedAt = File.GetCreationTime(path); Page.UpdatedAt = File.GetLastWriteTime(path); // あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！ return File.ReadAllText(path); } } ```&lt;code&gt;Page&lt;/code&gt; は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、&lt;code&gt;App&lt;/code&gt; を使えばいいらしい。たとえば、&lt;code&gt;App.Title&lt;/code&gt; にWebサイト名、&lt;code&gt;Page.Title&lt;/code&gt;にページタイトルに突っ込んでおけば、__&amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;__ という風にレイアウトファイルでタイトルをセットできる。僕は初めこの作法を知らなかったから、 &lt;code&gt;App_Code&lt;/code&gt; にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね......orz " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/20111113/1321150268/" >
-                    <h1 class="entry__header-title-link-text">Page のものは Page に、App のものは App に</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2011/11/13</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> のコードで言えばこんな感じ。</p>
+<article>
+    <p>たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> のコードで言えばこんな感じ。</p>
 <pre><code>	@functions {
 	    string ReadTextFile(string path)
 	    {
@@ -101,32 +83,35 @@
 
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111113/1321153887/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2011-11-13T11:11:08JST">2011/11/13</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111111/1362520875/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/20111111/1362520875/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/20111113/1321153887/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

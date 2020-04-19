@@ -1,90 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/20/022735/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する | だるやなぎ
-        </title>
+<title>WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
-### 回転と解像度   とえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。
- ### スナップ   indows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。
-&lt;!-- The back button and title have different styles when snapped --&gt; x:Name=&#34;Snapped&#34;&gt; &lt;storyboard&gt;&lt;/storyboard&gt; Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/&gt; Storyboard.TargetName=&#34;pageTitle&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedPageHeaderTextStyle}&#34;/&gt; Storyboard.TargetName=&#34;contentGrid&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;Collapsed&#34;/&gt; Storyboard.TargetName=&#34;logListView&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;Visible&#34;/&gt; ```下の二つの ObjectAnimationUsingKeyFrames がそれで、contentGrid/logListView という二つのエレメントの Visibility を VisualState に応じて切り替えている。コードの意味はあんまりよくわかってなくて、辛うじて StoryBoard を知っている程度だけど、まぁ、コピペでいけるから今はそれでいいことにしておく。   indows ストアアプリは、こういうところが難しいなぁ、と思った。デスクトップアプリと違って、「未完成だけど公開してみます」というのはストアが認めてくれないわけで、ハードルはかなり高い。それに比べれば、開発者登録にお金が要るのはあまり大した問題じゃない気もする。けれど、一つアプリを完成させた（&lt;a href=&#34;https://blog." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/winrt/">WinRT</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/022735/" >
-                    <h1 class="entry__header-title-link-text">WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/09/20</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20120917220924.png"/> 
 </figure>
 
@@ -135,32 +111,35 @@ indows ストアアプリは、こういうところが難しいなぁ、と思�
 <span style="color:#f92672">&lt;/div&gt;</span>
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-09-20T02:27:35JST">2012/09/20</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/002538/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/09/20/002538/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

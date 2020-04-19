@@ -1,88 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/21/230552/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす | だるやなぎ
-        </title>
+<title>WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。2012-09-20 22:51:33 via Krile2 to @xin9le昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは
-SampleDataSource List: SampleDataGroup (SampleDataCommon) List: SampleDataItem (SampleDataCommon) ```になってる。こういう感じに作ればいい。うちのアプリの場合は、 ```cs DataSource List: Vehicle (乗り物) List: RefuelLog (給油ログ) ```って感じになるかな。乗り物＝Group、給油ログ＝Itemというイメージ。んで、Group も Item も SampleDataCommon を継承している。要は **UniqueId、Title、Subtitle、Description、Image というプロパティを持ちなさい**ということだ。実装したら、テンプレートでバインドされますよ、と&lt;a href=&#34;#f1&#34; name=&#34;fn1&#34; title=&#34;SplitPage ではこれに加えて Content というプロパティも要求する&#34;&gt;*1&lt;/a&gt;。でも、だったらインターフェイスでもいいわけで、 ```cs namespace App5.Common { using Windows.UI.Xaml.Media; using Windows.UI.Xaml.Media.Imaging; public interface ITemplateGridViewItem { Guid UniqueId { get; } // &amp;lt;- string は嫌だったので改造  string Title { get; } string Subtitle { get; } string Description { get; } ImageSource Image { get; } ITemplateGridViewItem Parent { get; } // &amp;lt;- なくてもいい  } } ```というのを作って、Group/Item はこれを実装するということにした。乗り物データと給油ログデータが一つのデータから継承されてるってなんかアレだけど、インターフェイスなら個人的にしっくりくる。燃費管理アプリのデータには、タイトルやサブタイトルなどという概念はない。でも、そこは給油量（Amout）や日付（Date）といったふさわしいプロパティを別途もっておいて、 ```cs public string Title { get { return string." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/winrt/">WinRT</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/21/230552/" >
-                    <h1 class="entry__header-title-link-text">WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/09/21</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"/><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。<a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193" class="twitter-user-screen-name">xin9le</a></div></div>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<group> を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;</group><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"/>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
+<article>
+    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"/><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。<a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193" class="twitter-user-screen-name">xin9le</a></div></div>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<group> を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;</group><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"/>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">SampleDataSource
     List: SampleDataGroup (SampleDataCommon)
         List: SampleDataItem (SampleDataCommon)
@@ -146,32 +124,35 @@ DataSource
 &lt;/div&gt;
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/23/145821/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-09-21T23:05:52JST">2012/09/21</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/09/23/145821/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

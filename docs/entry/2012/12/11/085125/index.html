@@ -1,103 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/12/11/085125/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix 2：ASP.NET と PHP | だるやなぎ
-        </title>
+<title>WebMatrix 2：ASP.NET と PHP - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="前回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる*1。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。
- データベースと連携できる ほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる*2 Web サイト共通の部分（パラメーターやデザイン）が一元管理できる 状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン） 世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている*3。空のフォルダーから作成した Web サイト でも簡単に利用できる。 ### ASP.NET（C#）*4   張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“Razor”と呼ばれるシンプルな構文で記述できる。
-@{ var s = &#34;Hello! World&#34;; // 追加 } &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @s &amp;lt;!-- 追加 --&gt; &amp;lt;/body&gt; &amp;lt;/html&gt;   張子を省略してもアクセスできる。" />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/php/">PHP</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/12/11/085125/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix 2：ASP.NET と PHP</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/12/11</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/12/07/125835">WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ</a>）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる<a href="#f-5619c126" name="fn-5619c126" title="クライアントサイドの場合は、JavaScript でやるよね！">*1</a>。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。</p>
+<article>
+    <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/12/07/125835">WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ</a>）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる<a href="#f-5619c126" name="fn-5619c126" title="クライアントサイドの場合は、JavaScript でやるよね！">*1</a>。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。</p>
 <ul>
 <li>データベースと連携できる</li>
 <li>ほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる<a href="#f-dbae782a" name="fn-dbae782a" title="いわゆるマッシュアップ">*2</a></li>
@@ -208,32 +171,35 @@
 <a href="#fn-b6e12467" name="f-b6e12467" class="footnote-number">*4</a><span class="footnote-delimiter">:</span><span class="footnote-text">Visual Basic も利用できる</span>
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/12/15/142304/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-12-11T08:51:25JST">2012/12/11</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/12/11/074148/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/12/11/074148/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/12/15/142304/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

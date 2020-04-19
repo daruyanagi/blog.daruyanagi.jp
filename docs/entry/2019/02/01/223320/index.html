@@ -1,87 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2019/02/01/223320/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            2月1日：セキュリティ強化月間 | だるやなぎ
-        </title>
+<title>2月1日：セキュリティ強化月間 - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="月はセキュリティの見直しを行うことにした。まずは、パスワードの管理。1Password の Watchtower 機能でダメなログイン情報を調べるとわんさか出てきた（同じドメインのログイン情報が重複して登録されていたので、実際はそんなに多くはない）ので、これを一つずつ潰す。ちなみに、うちは ID とパスワードの組み合わせを使い回すことはないけれど、
- ID の使い回し（daruyanagi） パスワードの使い回し（数種類） は個別にやってたりする。ザっと言うと、  **ID としてニックネームを付けられる場合**：daruyanagi にして強いパスワードを作る **ID がメールアドレス固定の場合**：そのサービス専用のメールアドレス（&#34;［サービス名から適当に］@daruyanagi.jp&#34;）を作って、パスワードは覚えやすい奴を使い回し。サービスごとにメアドを作っとくと、楽天から漏れたとかすぐわかる みたいな感じ。でも、前者はともかく、後者のやり方だと Watchtower に「侵害されたパスワード」「再使用されたパスワード」がたくさん出てきて気持ち悪い。また、古いパスワードは大文字小文字を混ぜてなかったので「脆弱」だと指摘される。いい加減、「脆弱」な奴だけでも対処すべきだろう。やられてからでは遅いしな。んで、ちまちまとパスワードの再登録をしていたのだけど――サービスごとパスワード再設定のやり方が異なるのは本当に面倒くさいな。  **現在のパスワードと新しいパスワード（×2）を入力させるやつ**：一番楽だけど、たまにユーザー名が空の新規ログイン情報として Chrome が覚えてしまう **メールでパスワード変更フォームの URL を送ってくる**：クロネコヤマト **パスワードの確認の際、2回目を手入力させる**（コピペ不可）：マジかよ…… **パスワード管理ツールとうまく連携できない**：古いサイトあるある **アカウントの管理画面がそもそもわからん**：エンバカデロ。ググらないとわからんかった。 **リンクをクリックすると PWA アプリに**：PWA アプリ上でログイン情報を管理できない、パスワード管理ツールと連携できない   figcaption&gt;まぁ、リンクをコピーしてブラウザーに入れればいいんだけど！
- **PC からパスワードを変更できない**：LINE。アプリから変更できるときは、PC で 1Password にエントリ＆新パスワードを作って、端末でコピー＆ペーストする **メールアドレスの入力欄が @ で二分割**：カメラのキタムラ（テスト送信機能があるのはいいけど、オートフィルと相性悪い） **パスワードの文字数制限が妙に厳しい**：エディオン、おめぇだよ！    br/&gt;
- **パスワードの変更 UI が住所・電話番号と同居**：Value-Domain。しかも、保存ボタンを押すと“住所を正しく入れろ”だのとバリデーションエラーが出る（登録時は緩かったがあとで制限が厳しくなったパターン） **しかも、末尾にある［同意チェック］しないとパスワードが変えられない**：エディオン、おめぇだよ！    と、パスワードを変更するときは、新しく生成したパスワードを保存しておくべき。Chrome の場合、パスワードの生成 → 入力 → マスクされたパスワードを選択 すると生成したパスワードを見ることができるので、それをクリップボードへコピーしておく。
-  スワードを更新すると、ブラウザー（Chrome）のパスワード管理機能とパスワード管理ツール（うちは 1password）の両方でパスワードの更新 UI が出ると思うのだけど、ときどき片方もしくは両方が出ない場合がある。もし保存しそこなったらえらいことだ。" />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2019/02/01/223320/" >
-                    <h1 class="entry__header-title-link-text">2月1日：セキュリティ強化月間</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2019/02/01</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20190201193524.png"/> 
 </figure>
 
@@ -151,32 +130,35 @@
 </ul>たまにはやるもんだな。
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2019/02/02/172454/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2019-02-01T22:33:20JST">2019/02/01</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2019/01/29/195343/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2019/01/29/195343/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2019/02/02/172454/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

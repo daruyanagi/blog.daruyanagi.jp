@@ -1,84 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/20111106/1320520298/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る | だるやなぎ
-        </title>
+<title>WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="指定したフォルダに Markdown 形式のプレーンテキストを配置して、 http://sample.com/Hoge にアクセスしたら、 Hoge.txt がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。
- Markdown Deep （最近気に入っている Markdown パーサ。MVC3 向けのサンプルもある） Razor Engine （ちょっとあとで面白い機能を付けるために入れておく） んで、 _Pages.cshtml_ に以下のコードを追加。 ``` @using System.IO @{ // Layout = &quot;_SiteLayout.cshtml&quot;; レイアウトを使うならコメントアウト // http://sample.com/Pages/Hoge のうち、Hoge を取得 string id = UrlData[0]; if (string.IsNullOrEmpty(id)) { id = &quot;Home&quot;; } Page.Title = id; // IDをページタイトルにセット。レイアウトで使う // サーバー上の /Pages/Hoge.txt をロード string path = Server.MapPath(string.Format(&quot;/Pages/{0}.txt&quot;, id)); if (!File.Exists(path)) // ファイルあらへん =&gt; 404を投げる { throw new HttpException(404, path &#43; &quot;is not found." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/20111106/1320520298/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2011/11/06</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10-500x379.png" alt="" title="sshot-10" width="500" height="379" class="alignnone size-medium wp-image-389"/></a>指定したフォルダに Markdown 形式のプレーンテキストを配置して、 <em><a href="http://sample.com/Hoge"><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></a></em> にアクセスしたら、 <em>Hoge.txt</em> がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。</p>
+<article>
+    <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-10-500x379.png" alt="" title="sshot-10" width="500" height="379" class="alignnone size-medium wp-image-389"/></a>指定したフォルダに Markdown 形式のプレーンテキストを配置して、 <em><a href="http://sample.com/Hoge"><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></a></em> にアクセスしたら、 <em>Hoge.txt</em> がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。</p>
 <ul>
 <li>Markdown Deep （最近気に入っている Markdown パーサ。MVC3 向けのサンプルもある）</li>
 <li>Razor Engine （ちょっとあとで面白い機能を付けるために入れておく）</li>
@@ -131,32 +113,35 @@
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111106/1320538301/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2011-11-06T04:11:38JST">2011/11/06</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/20111104/1320365491/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/20111104/1320365491/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/20111106/1320538301/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

@@ -1,19 +1,12 @@
-{{ define "content" }}
-    <article class="entry-content">
-        {{ .Content }}
-    </article>
-
-    <h2>最近の記事</h2>
-
-    <ul class="entry-list">
-    {{ $paginator := .Paginate .Pages.ByDate.Reverse 50 }}
-    {{ range $paginator.Pages }}
-            <li>
-                <a href="{{ .Permalink }}">{{ .Title }}</a>
-                (<time>{{ .PublishDate.Format "2006/01/02" }}</time>)
-                </li>
-            </li>
+{{ define "main" }}
+<article>
+    {{ .Content }}
+</article>
+<ul>
+    {{ range .Pages }}
+    <li>
+        <a href="{{.Permalink}}">{{.Date.Format "2006-01-02"}} | {{.Title}}</a>
+    </li>
     {{ end }}
-    </ul>
-
-{{ end }}
+</ul>
+{{end}}

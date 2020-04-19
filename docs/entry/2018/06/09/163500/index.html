@@ -1,91 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/06/09/163500/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            UWP：FullTrustProcessLauncher で起動したプログラムに引数を渡す | だるやなぎ
-        </title>
+<title>UWP：FullTrustProcessLauncher で起動したプログラムに引数を渡す - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
-&lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; xmlns:desktop=&#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&#34; &gt; &lt;applications&gt;&lt;/applications&gt; Id=&#34;App&#34; Executable=&#34;$targetnametoken$.exe&#34; EntryPoint=&#34;$targetentrypoint$&#34;&gt; &lt;extensions&gt;&lt;/extensions&gt; &amp;lt;desktop:Extension Category=&#34;windows.fullTrustProcess&#34; Executable=&#34;Yakitori.Console\Yakitori.Console.exe&#34;&gt; &amp;lt;desktop:FullTrustProcess&gt; &amp;lt;desktop:ParameterGroup GroupId=&#34;Desktop&#34; Parameters=&#34;/d&#34;/&gt; &amp;lt;desktop:ParameterGroup GroupId=&#34;Active&#34; Parameters=&#34;/a&#34;/&gt; &amp;lt;/desktop:FullTrustProcess&gt; &amp;lt;/desktop:Extension&gt; ```それを使えばいいみたい。 ```cs private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) { await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&#34;Desktop&#34;); } ```これをコンソールアプリで受けてみると、こんな感じになった。 ```cs namespace Yakitori.Console { class Program { static void Main(string[] args) { foreach (var arg in args) { System.Console.WriteLine(arg); } System.Console.ReadKey(); } } } ```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。   " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/06/09/163500/" >
-                    <h1 class="entry__header-title-link-text">UWP：FullTrustProcessLauncher で起動したプログラムに引数を渡す</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2018/06/09</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>できないのかなーと思ってたのだけど、イケるっぽい。<a href="https://stackoverflow.com/questions/39487135/uwp-javascript-app-run-win32-exe-with-parameters">UWP JavaScript APP: run win32 EXE with parameters</a>こんな風に desktop:ParameterGroup をあらかじめ登録して……</p>
+<article>
+    <p>できないのかなーと思ってたのだけど、イケるっぽい。<a href="https://stackoverflow.com/questions/39487135/uwp-javascript-app-run-win32-exe-with-parameters">UWP JavaScript APP: run win32 EXE with parameters</a>こんな風に desktop:ParameterGroup をあらかじめ登録して……</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
 
     xmlns:desktop=&#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&#34;
@@ -139,32 +114,35 @@ namespace Yakitori.Console
 
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/10/123946/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2018-06-09T16:35:00JST">2018/06/09</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/09/053535/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2018/06/09/053535/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2018/06/10/123946/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

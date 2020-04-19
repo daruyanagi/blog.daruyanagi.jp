@@ -1,92 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/04/30/155040/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する | だるやなぎ
-        </title>
+<title>PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ以前に作った PowerShell が動作しなくなった。
-$urls =@( &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34; ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url $body = $request.ParsedHtml $price_node = $body.getElementsByTagName(&#34;s&#34;) | where { $_.getAttributeNode(&#34;class&#34;).Value -eq &#34;srv_saleprice&#34; }　#&amp;lt;-- ここで例外 ```――結果。 HRESULT からの例外:0x800A01B6
-&lt;div class=&quot;section&quot;&gt; ### 解決 &lt;code&gt;getElementsByTagName()&lt;/code&gt; のかわりに &lt;code&gt;IHTMLDocument3_getElementsByTagName()&lt;/code&gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。 getElementsByTagName -&gt; IHTMLDocument3_getElementsByTagName
-getElementsByName -&gt; IHTMLDocument3_getElementsByName
-getElementByID -&gt; IHTMLDocument3_getElementByID
-&lt;ul&gt; &lt;li&gt;&lt;a href=&quot;https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname&quot;&gt;PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### なぞ   owerShell スクリプトからではなく、PowerShell のシェルから &lt;code&gt;getElementsByTagName()&lt;/code&gt; を使うとそのまま通った。よくわからんな……。 &lt;/div&gt; " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/04/30/155040/" >
-                    <h1 class="entry__header-title-link-text">PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/04/30</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、<a href="http://blog.daruyanagi.jp/entry/2017/03/04/220000">PowerShell：ストアアプリのセール情報を取得する - だるろぐ</a>以前に作った PowerShell が動作しなくなった。</p>
+<article>
+    <p>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、<a href="http://blog.daruyanagi.jp/entry/2017/03/04/220000">PowerShell：ストアアプリのセール情報を取得する - だるろぐ</a>以前に作った PowerShell が動作しなくなった。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$urls =@(
   <span style="color:#e6db74">&#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34;</span>
 )
@@ -132,32 +106,35 @@ owerShell スクリプトからではなく、PowerShell のシェルから &lt;
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/05/01/134744/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-04-30T15:50:40JST">2017/04/30</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/04/23/233723/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/04/23/233723/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/05/01/134744/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

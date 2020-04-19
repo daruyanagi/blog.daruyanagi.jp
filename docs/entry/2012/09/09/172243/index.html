@@ -1,88 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/09/172243/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix で LESS を使おう！（2） | だるやなぎ
-        </title>
+<title>WebMatrix で LESS を使おう！（2） - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/03/093520&quot;&gt;WebMatrix でユーザー認証機能（5） ―― ロール - だるろぐ なんかで使っているラベル用の CSS は LESS で書いている。変数とか関数とか使えないと、この程度の CSS を書くだけで簡単に破たんできるぜ……。で、どうやって使うのかというと……例えば、
-&amp;lt;html lang=&#34;ja&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt; &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt; &amp;lt;link href=&#34;~/Content/StyleSheet.css&#34; rel=&#34;stylesheet&#34; type=&#34;text/css&#34; /&gt; &amp;lt;/head&gt; &amp;lt;body&gt; &amp;lt;div class=&#34;message error&#34;&gt; エラーが発生しました。 &amp;lt;/div&gt; &amp;lt;div class=&#34;message info&#34;&gt; お知らせが1件あります。 &amp;lt;/div&gt; &amp;lt;div class=&#34;message warning&#34;&gt; 注意してください。 &amp;lt;/div&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```こんな cshtml があるとする。次に、新規作成のダイアログで［すべて］タブを選択し、LESS ファイルを作成する。   スは ~/Content/StyleSheet.less （css → less にするだけ）だよ。あとはどんどん書いていくんだぜ～！　保存するたんびに「OrangeBits Compiler」（後述）が CSS （~/Content/StyleSheet.css）へ変換してくれるから楽ちんでいい。 ```css body { font-family: Meiryo, sans-serif; } ." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/09/172243/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix で LESS を使おう！（2）</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/09/09</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20120829200628.png"/> 
 </figure>
 
@@ -189,32 +167,35 @@ body {
 <a href="#fn-b0036404" name="f-b0036404" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">Mixin（ミックスイン）っていうのかな？</span>
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/09/200930/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-09-09T17:22:43JST">2012/09/09</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/09/145506/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/09/09/145506/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/09/09/200930/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

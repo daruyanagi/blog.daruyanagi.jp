@@ -1,77 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/02/18/234910/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Twitter Bootstrap を v2.0 にしてみた | だるやなぎ
-        </title>
+<title>Twitter Bootstrap を v2.0 にしてみた - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="   米Twitterは1月31日、CSS/HTMLフレームワーク「Bootstrap 2.0」をリリースしたと発表した。画面を格子状に分割して要素を配置する「グリッドレイアウト」を容易に実装できるほか、WebサイトやWebアプリケーション開発に向けたUIコンポーネントが多く含まれている。 米Twitter、同社発のCSS/HTMLフレームワーク「Bootstrap 2.0」を公開 - SourceForge.JP Magazine : オープンソースの話題満載  ちょっと様子見していたのだけど、サクっと乗り換えてみた。ドロップダウンメニューやタブが動かなくなった ＼(^o^)／結構色々変わっていて、後方互換性はないみたい。既存のビューを書き換えるのには、多少苦労した。
-&gt; Bootstrap 2.0では、ボタン、ボタングループ、ドロップダウン、タブなどのコンポーネントが書き直されている。また、**グリッドシステムではカラムの数が16から12カラムとなり**、画面の大きさなどに応じて柔軟に調整する**レスポンシブアプローチを導入**、スマートフォン、タブレットなどへの対応が強化された。　フォームスタイルも一新され、jQuery UIなどのツールとの互換性を強化した新しいテーブルスタイルも用意された。**Collapse、Crousel、TypeaheadなどのJavaScriptプラグインも加わっている**。必要な機能を選んで利用するカスタマイズ版も新たに用意された。  とくにカラム数の変更は&hellip;&hellip;描き直しが面倒くさい。ドロップダウンメニューのデザインは新しいほうが格好いいな。しかし、@Html.EditorFor() ではHTMLタグの属性を指定できないんだなぁ。クラス名がないと、ちゃんとデザインしてくれないのでこまる。とりあえず、JavaScript で後からチョコチョコッとクラスをつけておいた。
-```js  $(function () { $(&#39;form&#39;).addClass(&ldquo;form-horizontal&rdquo;); $(&#39;label&#39;).addClass(&ldquo;control-label&rdquo;); $(&#39;input&#39;).addClass(&ldquo;input-xlarge&rdquo;); $(&#39;textarea&#39;).addClass(&ldquo;input-xlarge&rdquo;); });
-なお、Twitter Bootstrap は、Visual Studio/WebMatrix ならば Nuget で簡単にインストールできる（プラグインは含まれていない）。ダウンロード＆配置の手間が少しだけ省けるので試すべし。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234746.png&quot; alt=&quot;f:id:daruyanagi:20120218234746p:plain&quot; title=&quot;f:id:daruyanagi:20120218234746p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234748.png&quot; alt=&quot;f:id:daruyanagi:20120218234748p:plain&quot; title=&quot;f:id:daruyanagi:20120218234748p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt; &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/01/12/013836&quot;&gt;Twitter Bootstrap はカンタンかつカッコイイ - だるろぐ&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/02/18/234910/" >
-                    <h1 class="entry__header-title-link-text">Twitter Bootstrap を v2.0 にしてみた</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/02/18</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <blockquote>
+<article>
+    <blockquote>
 </blockquote>
 <pre><code>    米Twitterは1月31日、CSS/HTMLフレームワーク「Bootstrap 2.0」をリリースしたと発表した。画面を格子状に分割して要素を配置する「グリッドレイアウト」を容易に実装できるほか、WebサイトやWebアプリケーション開発に向けたUIコンポーネントが多く含まれている。
 
@@ -97,32 +86,35 @@ $('textarea').addClass(&ldquo;input-xlarge&rdquo;);
 &lt;/ul&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/02/19/022206/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-02-18T23:49:10JST">2012/02/18</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/02/18/232559/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/18/232559/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/02/19/022206/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

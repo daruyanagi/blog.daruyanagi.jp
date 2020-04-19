@@ -1,91 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            PowerShell：環境構築を（なるべく）自動化する | だるやなぎ
-        </title>
+<title>PowerShell：環境構築を（なるべく）自動化する - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。
- （データは OneDrive で同期する。スタンドアロンアプリもだいたい OneDrive で） Set-ExecutionPolicy -ExecutionPolicy RemoteSigned chocolatey で必要なアプリをセットアップ  chocolatey で管理できない（するとかえって面倒）なものは OneDrive へ保存済みのインストーラーでセットアップ  シンボリックリンクを張る  Picture\Screenshots - OneDrive\Screenshots（スクリーンショットを同期するため）  これだったら自分の PowerShell 力でもなんとかなると思った。 ```ps1 Write-Host &#34;STEP 0: Set-ExecutionPolicy を RemoteSigned に書き換えます……&#34; Set-ExecutionPolicy -ExecutionPolicy RemoteSigned Write-Host &quot;&rdquo;
-Write-Host &ldquo;STEP 1: chocolatey をセットアップしています……&rdquo;
-if (Test-Path &ldquo;C:\ProgramData\chocolatey&rdquo;) { Write-Host &ldquo;すでにインストールされています。&rdquo; } else { iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) # Get-PackageProvider -name chocolatey Write-Host &ldquo;インストールが完了しました。&rdquo; }
-Write-Host &quot;&rdquo;" />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" >
-                    <h1 class="entry__header-title-link-text">PowerShell：環境構築を（なるべく）自動化する</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/05/17</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。</p>
+<article>
+    <p>Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。</p>
 <ul>
 <li>（データは OneDrive で同期する。スタンドアロンアプリもだいたい OneDrive で）</li>
 <li>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</li>
@@ -154,32 +129,35 @@ urface 3 を初期化してテストした後に、デスクトップ PC でも�
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/05/18/014141/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-05-17T07:33:39JST">2017/05/17</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/05/16/041039/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/05/16/041039/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/05/18/014141/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

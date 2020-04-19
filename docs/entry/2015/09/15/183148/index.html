@@ -1,75 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/09/15/183148/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Windows のあのフォルダーをサクッと開きたい！　覚えておくとちょっと便利なシェルコマンド | だるやなぎ
-        </title>
+<title>Windows のあのフォルダーをサクッと開きたい！　覚えておくとちょっと便利なシェルコマンド - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="ょっと覚えておくと便利なシェルコマンドの一覧。たとえば［Windows］＋［R］キーで「ファイルを指名して実行」を開いて、著ちょいと入力してエンターを押すと目当てのフォルダーへサクッとアクセスできる。OS起動時に実行開始するアプリを登録する“shell:Startup”辺りは割と使うかな？
-  shell:AccountPictures	 “アカウントの画像”フォルダー   shell:AddNewProgramsFolder	 「コントロール パネル」の“プログラムの取得”   shell:Administrative Tools	 “プログラム\管理ツール”フォルダー   shell:AppData	 C:\Users\\AppData\Roaming   shell:Application Shortcuts	 \AppData\Local\Microsoft\Windows\Application Shortcuts   shell:AppsFolder	 モダンアプリを集めた仮想フォルダー“Applications”   shell:AppUpdatesFolder	 「コントロール パネル」の“インストールされた更新プログラム”   shell:Cache	 「Internet Explorer」のキャッシュフォルダー   shell:Camera Roll	 　   shell:CD Burning	 CDを焼くときに使う“一時書き込みフォルダー”   shell:ChangeRemoveProgramsFolder	 「コントロール パネル」の“プログラムと機能”   shell:Common Administrative Tools	 “プログラム\管理ツール”フォルダー（すべてのユーザー）   shell:Common AppData	 C:\ProgramData   shell:Common Desktop	 “デスクトップ”（すべてのユーザー）   shell:Common Documents	 “ドキュメント”（すべてのユーザー）   shell:Common Programs	 “スタート メニュー\プログラム”（すべてのユーザー）   shell:Common Start Menu	 “スタート メニュー”（すべてのユーザー）   shell:Common Startup	 “スタートアップ”（すべてのユーザー）   shell:Common Templates	 “Templates”（すべてのユーザー）   shell:CommonDownloads	 “ダウンロード”（すべてのユーザー）   shell:CommonMusic	 “ミュージック”（すべてのユーザー）   shell:CommonPictures	 “ピクチャー”（すべてのユーザー）   shell:CommonRingtones	 “Ringtones”（すべてのユーザー）   shell:CommonVideo	 “ビデオ”（すべてのユーザー）   shell:ConflictFolder	 「コントロール パネル」の“競合”   shell:ConnectionsFolder	 「コントロール パネル」の“ネットワーク接続”   shell:Contacts	 “アドレス帳”   shell:ControlPanelFolder	 「コントロール パネル」の“すべてのコントロール パネル項目”   shell:Cookies	 「Internet Explorer」のCookieフォルダー   shell:CredentialManager	 \AppData\Roaming\Microsoft\Credentials   shell:CryptoKeys	 \AppData\Roaming\Microsoft\Crypto   shell:CSCFolder	 　   shell:Desktop	 “デスクトップ”   shell:Device Metadata Store	 C:\ProgramData\Microsoft\ Windows\DeviceMetadataStore   shell:DocumentsLibrary	 “ドキュメント”ライブラリ   shell:Downloads	 “ダウンロード”   shell:DpapiKeys	 \AppData\Roaming\Microsoft\Protect   shell:Favorites	 “お気に入り”   shell:Fonts	 C:\Windows\Fonts   shell:Games	 “ゲーム”   shell:GameTasks	 \AppData\Local\Microsoft\Windows\GameExplorer   shell:History	 \AppData\Local\Microsoft\Windows\History   shell:HomeGroupCurrentUserFolder	 The Home Group folder for the current user   shell:HomeGroupFolder	 The Home Group root folder   shell:ImplicitAppShortcuts	 \AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned\ImplicitAppShortcuts   shell:InternetFolder	 「Internet Explorer」の起動   shell:Libraries	 ライブラリ   shell:Links	 “リンク”（「エクスプローラー」のナビゲーションペインに表示される）   shell:Local AppData	 C:\Users\\AppData\Local   shell:LocalAppDataLow	 C:\Users\\AppData\LocalLow   shell:LocalizedResourcesDir	 　   shell:MAPIFolder	 「Microsoft Outlook」のフォルダーらしい（入れてないから知らん）   shell:MusicLibrary	 “ミュージック”ライブラリ   shell:My Music	 “ミュージック”フォルダー   shell:My Pictures	 “ピクチャー”フォルダー   shell:My Video	 “ビデオ”フォルダー   shell:MyComputerFolder	 “PC”   shell:NetHood	 \AppData\Roaming\Microsoft\Windows\Network Shortcuts   shell:NetworkPlacesFolder	 “ネットワーク”   shell:OEM Links	 　   shell:Original Images	 　   shell:Personal	 “ドキュメント”フォルダー   shell:PhotoAlbums	 　   shell:PicturesLibrary	 “ピクチャー”ライブラリ   shell:Playlists	 　   shell:PrintersFolder	 \AppData\Roaming\Microsoft\Windows\Printer Shortcuts   shell:PrintHood	 \AppData\Roaming\Microsoft\Windows\Printer Shortcuts   shell:Profile	 ユーザーフォルダー   shell:ProgramFiles	 C:\Program Files   shell:ProgramFilesCommon	 C:\Program Files\Common Files   shell:ProgramFilesCommonX64	 C:\Program Files\Common Files   shell:ProgramFilesCommonX86	 C:\Program Files (x86)\Common Files   shell:ProgramFilesX64	 C:\Program Files   shell:ProgramFilesX86	 C:\Program Files (x86)   shell:Programs	 \AppData\Roaming\Microsoft\Windows\Start Menu\Programs   shell:Public	 C:\Users\Public   shell:PublicAccountPictures	 C:\Users\Public\AccountPictures   shell:PublicGameTasks	 C:\ProgramData\Microsoft\Windows\GameExplorer   shell:PublicLibraries	 C:\Users\Public\Libraries   shell:Quick Launch	 \AppData\Roaming\Microsoft\Internet Explorer\Quick Launch   shell:Recent	 “最近使った項目”   shell:RecordedTVLibrary	 　   shell:RecycleBinFolder	 “ごみ箱”   shell:ResourceDir	 C:\Windows\Resources（Windows テーマの保存場所）   shell:Ringtones	 \AppData\Local\Microsoft\Windows\Ringtones   shell:Roamed Tile Images	 　   shell:Roaming Tiles	 \AppData\Local\Microsoft\Windows\RoamingTiles   shell:SavedGames	 “保存したゲーム”   shell:Screenshots	 ［Windows］＋［Print Screen］キーで撮影したスクリーンショットの保存先   shell:Searches	 “検索”   shell:SearchHistoryFolder	 \AppData\Local\Microsoft\Windows\ConnectedSearch\History   shell:SearchHomeFolder	 “検索結果”   shell:SearchTemplatesFolder	 　   shell:SendTo	 “送る”メニューに表示されるショートカットを保存するフォルダー   shell:SkyDrive	 現在は shell:OneDrive。当然ながら“OneDrive”フォルダーを表示   shell:SkyDriveCameraRoll	 　   shell:SkyDriveDocuments	 　   shell:SkyDrivePictures	 　   shell:Start Menu	 \AppData\Roaming\Microsoft\Windows\Start Menu   shell:Startup	 “スタートアップ”   shell:SyncCenterFolder	 　   shell:SyncResultsFolder	 「コントロール パネル」の“同期結果”   shell:SyncSetupFolder	 「コントロール パネル」の“同期のセットアップ”   shell:System	 C:\Windows\System32   shell:SystemCertificates	 \AppData\Roaming\Microsoft\SystemCertificates   shell:SystemX86	 C:\Windows\SysWOW64   shell:Templates	 \AppData\Roaming\Microsoft\Windows\Templates   shell:ThisPCDesktopFolder	 “デスクトップ”   shell:User Pinned	 \AppData\Roaming\Microsoft\Internet Explorer\Quick Launch\User Pinned   shell:UserProfiles	 C:\Users   shell:UserProgramFiles	 \AppData\Local\Programs   shell:UserProgramFilesCommon	 \AppData\Local\Programs\Common   shell:UsersFilesFolder	 ユーザーフォルダー   shell:UsersLibrariesFolder	 ライブラリ   shell:VideosLibrary	 “ビデオ”ライブラリ   shell:Windows	 C:\Windows  ここに挙げたのは Windows 8." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/09/15/183148/" >
-                    <h1 class="entry__header-title-link-text">Windows のあのフォルダーをサクッと開きたい！　覚えておくとちょっと便利なシェルコマンド</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2015/09/15</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20150915175559.png"/> 
 </figure>
 
@@ -541,32 +532,35 @@
     </tr>
 </tbody></table>ここに挙げたのは Windows 8.1 世代のモノなので、Windows 10 では追加や廃止があるかも。単語の間に空白があったりなかったりと命名規則が統一されていないのは Microsoft らしいなぁ、と思います。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwinaero.com%2Fblog%2Fshell-commands-in-windows-8-1%2F" title="Shell commands in Windows 8.1" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/09/19/203816/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2015-09-15T18:31:48JST">2015/09/15</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/09/15/153737/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2015/09/15/153737/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2015/09/19/203816/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

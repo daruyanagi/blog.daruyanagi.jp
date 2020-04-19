@@ -1,88 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/09/11/025615/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） | だるやなぎ
-        </title>
+<title>WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ で未解決だった問題を解決しておく。
-### AppxManifest.xml を読んで DisplayName などを取得する とりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。 ```cs namespace WinRTAppsUpdateChecker { using System.IO; using System.Xml.Linq; using Windows.Management.Deployment; /// &amp;lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); var manager = new PackageManager(); var packages = manager .FindPackagesForUser(string.Empty) .Select(_ =&gt; { dynamic result = new System.Dynamic.ExpandoObject(); result.Id = _.Id; try { var path = _." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-runtime/">Windows Runtime</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/09/11/025615/" >
-                    <h1 class="entry__header-title-link-text">WinRT：システムにインストールされた Windows ストア アプリを列挙する（2）</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2014/09/11</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><a href="https://blog.daruyanagi.jp/entry/2014/09/10/021908">WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ</a> で未解決だった問題を解決しておく。</p>
+<article>
+    <p><a href="https://blog.daruyanagi.jp/entry/2014/09/10/021908">WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ</a> で未解決だった問題を解決しておく。</p>
 <div class="section">
     ### AppxManifest.xml を読んで DisplayName などを取得する
     とりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。
@@ -266,32 +244,35 @@ var resourcePath = string.Format(&quot;@{{{0}? ms-resource://{1}{2}}}&quot;, pri
 &lt;/div&gt;
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/09/13/202504/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2014-09-11T02:56:15JST">2014/09/11</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/09/10/030408/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2014/09/10/030408/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2014/09/13/202504/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

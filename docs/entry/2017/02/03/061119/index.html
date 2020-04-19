@@ -1,98 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/02/03/061119/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Skype UWPプレビュー にさっさと会話ログの検索機能をつけてほしい | だるやなぎ
-        </title>
+<title>Skype UWPプレビュー にさっさと会話ログの検索機能をつけてほしい - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="  イン PC をクリーンアップしてデスクトップ版 Skype を起動したら、こんなメニューが表示された。「Skype UWP プレビュー」を使ってくれとの由。実は Windows 10 Insider Preview をいれた Surface Pro 3 ではメイン PC との簡単なテキストのやり取りに「Skype UWP プレビュー」を常用しているのだけど、一つ、大きな不満がある。_［Ctrl］＋［F］キーで会話ログの検索ができないんだよ。_ふぁっきゅー。
-  近の会話をちょろっと確認できればいいモバイルならともかく、スマートな方々が ChatOps とか言ってるこの時代に、デスクトップアプリで会話ログの検索もできないなんてウンコ of ウンコでしょう？　「Slack」みたいにコメントへ絵文字リアクションをつけられるようにとか、コルタナか［共有］コマンドかなんかで選択テキストをタスク登録できるようにしてくれとか、そういうのは会話ログがちゃんと扱えてからの話だ。ここ数年の「Skype」の進歩のなさには、どちらかというと Microsoft 贔屓なわしでも愛想が尽きそう（いつからかデスクトップアプリのバージョンアップを Windows 版だけ公式ブログで告知しなくなったのもどうかと思う）。https://aka.ms/W1gogrフィードバックを投げておいたので、もしよければ賛同してほしい。ちょうど日本時間で今日か明日あたりからバグバッシュをやるみたいなので、溜まっていた鬱憤をまとめて晴らしてこようかと思う。みんなも週末はフィードバックやりまくろうぜ！
-### 追伸その 1   別フィードバックの Web 画面も作ってほしい。んで、_「こんなこともできないの、Windows m9(^Д^)ﾌﾟｷﾞｬｰ」_とかはてブ付きまくって、フィードバックを盛り上げてほしい（炎上ともいう）。今のフィードバックの仕組みでは、「フィードバック Hub」以外から他の人のフィードバックを知る手段に乏しすぎると思う。知らないものは、主観的に存在しえない。
- ### 追伸その 2   レクション機能が付いたのはうれしい。ちゃんと役に立つかまでは試せてないけれど。
- ### 追伸その 3 以前に“Windows Insider Meetup”というイベントに参加して、中のヒトのお話を聞けたのだけど、あれ、またやってくんないかな。あのとき、IME がらみのテキストでは表現するのが面倒な不具合を直接フィードバックしたら、そのあとちゃんと直っててうれしかった。あと、ああいうイベントはフィードバックのモチベーションにもなると思う。日本人って（※主語が大きい）、「あ、ほかの人も困ってたんだ」って思わないとアクション起こさないところあるじゃん？　「自分だけかもしれないから、我慢しておけばいいや」みたいなメンタリティ（炎上しないと自分からは動かないとも言う）。直に集まってワイワイやれば、そういう引っ込み思案が少なくなって、もう少しフィードバックの機運が高まる気もする。  ### 追伸その 4 そのときに聞いた話なのだけど、やっぱり日本はフィードバックの数が少ないみたい（フィードバックの採用率ではほかの国と差はないようだ）。これはさっき挙げたメンタリティの問題も多少あると思うけれど、基本的に余暇が少ないのが最大の原因だと思う。社畜なのにフィードバック投げるの、おでさんぐらいやろ。日本の労働環境はあらゆるところに負の遺産を建立しまくっているので、早くなんとかすべき。  ### 追伸その 5 変な文字化けが実は“プレースホルダ”（あとで直すっていう目印）だって知ったの、その“Windows Insider Meetup”でだった。ドヤ顔で_**「ローカライズミス残ってやんの m9(^Д^)ﾌﾟｷﾞｬｰ」**_してたオレ、恥ずかしい。  " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/skype/">Skype</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-insider/">Windows Insider</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/02/03/061119/" >
-                    <h1 class="entry__header-title-link-text">Skype UWPプレビュー にさっさと会話ログの検索機能をつけてほしい</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/02/03</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20170203053656.png"/> 
 </figure>
 
@@ -131,32 +99,35 @@
     変な文字化けが実は“プレースホルダ”（あとで直すっていう目印）だって知ったの、その“Windows Insider Meetup”でだった。ドヤ顔で_**「ローカライズミス残ってやんの m9(^Д^)ﾌﾟｷﾞｬｰ」**_してたオレ、恥ずかしい。
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/02/04/183944/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-02-03T06:11:19JST">2017/02/03</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/02/02/070244/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/02/02/070244/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/02/04/183944/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

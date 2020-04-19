@@ -1,95 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/02/19/022206/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-             危険な可能性のある Request.Form 値がクライアントから検出されました | だるやなぎ
-        </title>
+<title> 危険な可能性のある Request.Form 値がクライアントから検出されました - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。
-### ページ単位でバリデーションを無効にする web.config に設定を記述する。 ```xml  &lt;configuration&gt; &lt;system.web&gt; &lt;httpRuntime requestValidationMode=&quot;2.0&rdquo; /&gt; &lt;pages validateRequest=&quot;false&quot;&gt; &lt;/pages&gt; &lt;/system.web&gt; &lt;/configuration&gt;
- &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### メソッド単位でバリデーションを無効にする。 POSTメソッドをまるごと。 ```cs [HttpPost] [ValidateInput(false)] public ViewResult Edit(FormCollection form) { } ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow
- ### フォームデータ単位でバリデーションを無効にする。 Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。コントローラーで使ってみる。 ```cs  using System.Web.Helpers;
-var hoge = Request.Unvalidated().Form[&ldquo;hoge&rdquo;];
-ビューでも使えるんだね。 ``` @Request.Unvalidated(&quot;html&quot;) &amp;lt;form method=&quot;post&quot;&gt; &amp;lt;input type=&quot;text&quot; name=&quot;html&quot; /&gt; &amp;lt;input type=&quot;submit&quot; /&gt; &amp;lt;/form&gt; System." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/02/19/022206/" >
-                    <h1 class="entry__header-title-link-text"> 危険な可能性のある Request.Form 値がクライアントから検出されました</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2012/02/19</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120219/20120219013646.png" alt="f:id:daruyanagi:20120219013646p:plain" title="f:id:daruyanagi:20120219013646p:plain" class="hatena-fotolife"/>ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。</p>
+<article>
+    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120219/20120219013646.png" alt="f:id:daruyanagi:20120219013646p:plain" title="f:id:daruyanagi:20120219013646p:plain" class="hatena-fotolife"/>ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。</p>
 <div class="section">
     ### ページ単位でバリデーションを無効にする
     web.config に設定を記述する。
@@ -158,32 +129,35 @@ public string Body { get; set; }</p>
 </code></pre><p>※ 間違ってるところがあったら、ぜひ教えてほしいです&hellip;&hellip;</p>
 </div>
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/02/20/224419/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2012-02-19T02:22:06JST">2012/02/19</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/02/18/234910/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/18/234910/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2012/02/20/224419/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

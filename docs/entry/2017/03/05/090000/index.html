@@ -1,89 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/03/05/090000/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            PowerShell：メールが文字化けする | だるやなぎ
-        </title>
+<title>PowerShell：メールが文字化けする - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。
-&gt; NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。 .NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記  よくわかんないのだけど、&ldquo;ISO-2022-JP と Base64 でエンコードするような処理&quot;を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。
-#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換 function Encode-MailHeader($subject) { $enc = [System.Text.Encoding]::GetEncoding(&#34;iso-2022-jp&#34;); $strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject)); &#34;=?{0}?B?{1}?=&#34; -f &#34;iso-2022-jp&#34;, $strBase64 } ```あとはこの関数を使って、 ```ps1 $subject = Encode-MailHeader(Encode-MailHeader($title)) ```とでもすればよい。とりあえず文字化けはなくなった気がする。 &lt;div class=&#34;section&#34;&gt; ### 今日学んだこと &lt;div class=&#34;section&#34;&gt; #### 関数をパイプ対応にする これで完成――でもいいのだけど、なんかダサいので、パイプで繋げるようにしてみた。 ```ps1 #「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換 function Encode-MailHeader([Parameter(ValueFromPipeline=$true)]$subject) { process { $enc = [System.Text.Encoding]::GetEncoding(&#34;iso-2022-jp&#34;); $strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject)); &#34;=?{0}?B?{1}?=&#34; -f &#34;iso-2022-jp&#34;, $strBase64 } } ```パイプを処理できるように、さっきの関数を改良。 ```ps1 $subject = $title | Encode-MailHeader | Encode-MailHeader ```ちょっとだけスマートになった気がする。 &lt;/div&gt; &lt;/div&gt; " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/03/05/090000/" >
-                    <h1 class="entry__header-title-link-text">PowerShell：メールが文字化けする</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2017/03/05</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <p>PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。</p>
+<article>
+    <p>PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。</p>
 <pre><code>&gt;
     NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。
 
@@ -134,32 +111,35 @@ $subject = $title | Encode-MailHeader | Encode-MailHeader
 &lt;/div&gt;
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/05/180000/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2017-03-05T09:00:00JST">2017/03/05</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/04/220000/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2017/03/04/220000/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2017/03/05/180000/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

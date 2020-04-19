@@ -1,101 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/10/20/011849/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            Web サイトのピン止め | だるやなぎ
-        </title>
+<title>Web サイトのピン止め - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="  末は具合が悪かったので（また今度書くけど、小康状態になるや ARIA 劇場版観に行ったらまたおかしくなった）、日曜日はお布団でこの前作ったサイトにライブタイルを実装して遊んでいた。
- http://akashi.daruyanagi.jp/ 工廠で今日改修できる装備なんかがチェックできるようになって満足（装備ページをピン止めするとその日にその装備が改修できる艦娘がタイル表示される。艦娘のページをピン止めすると、その艦娘がその日に改修できる装備がリストアップされる）。簡素ながら、ちゃんとイメージも用意してみた。ちょうど一年前、そういうことをして遊んでいたことがあったらしく、そのときのメモがちょっと役に立った。でも、pollong-uri は5つまでっていうのは今回初めて知ったかも。ドキュメントってキッチリ書いてあっても、なぜか知りたいことが書いてなかったりするよな。書いてあってもそれと気付かなかったり。不思議なものだ。それにしても、ピン止めサイトの実装は面倒だ。最大の難関はデバッグ。環境によって動いたり、一度ミスをするとキャッシュが残っているのか、挙動がおかしくなったりする。おかげで3台の PC を使ってピン止めしたり外していたりしていたのだけど、どうも Windows 8.x ではちゃんと動くのに、Windows 10 ではちゃんと動かないことがあるようだ（同じサイトをピン止めしているのに Windows 10 側だけ更新されないことがある）。ライブタイルはエラーが発生すると更新されないだけで、なんのエラーメッセージも出してくれないから、手探りでいろいろ試してみるものの、先述のキャッシュか何かの関係もからんで問題がよけい悪化する。こういうのはほんと疲れる。すでに推奨しない機能なら、そう言ってくれれば使おうとは思わないのに。正直なところピン止めサイトはあまり流行っていないようだが、それはわかる。必要なものでもなければ、とくに利便性が著しく向上するというたぐいのものではない。対応していればほかのサイトよりクールで、［スタート］に特別な場所を占めることができるチャンスがあるといった程度のシロモノに過ぎず、まぁ、流行らないからといっても驚くべきものでもないだろう。しかし、それ以上に実装とデバッグの面倒くささというのが普及の障害になっているのではないかと思った。実装が簡単な OPG や Twitter Card はたいした利便性もないのにこれだけ普及するわけで。バリデーションサービスなんかもあるしね。ピン止めサイトも OPG に動的要素を追加提案する形で相乗りすればいいんじゃないかと思った。 " />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                            
-                                
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-10/">Windows 10</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-8.1/">Windows 8.1</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/10/20/011849/" >
-                    <h1 class="entry__header-title-link-text">Web サイトのピン止め</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2015/10/20</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20151020004537.png"/> 
 </figure>
 
@@ -104,32 +69,35 @@
 <li><a href="http://akashi.daruyanagi.jp/">http://akashi.daruyanagi.jp/</a></li>
 </ul>工廠で今日改修できる装備なんかがチェックできるようになって満足（装備ページをピン止めするとその日にその装備が改修できる艦娘がタイル表示される。艦娘のページをピン止めすると、その艦娘がその日に改修できる装備がリストアップされる）。簡素ながら、ちゃんとイメージも用意してみた。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2014%2F07%2F26%2F035349" title="WebMatrix 3：サイトをライブタイルに対応させてみた - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>ちょうど一年前、そういうことをして遊んでいたことがあったらしく、そのときのメモがちょっと役に立った。でも、pollong-uri は5つまでっていうのは今回初めて知ったかも。ドキュメントってキッチリ書いてあっても、なぜか知りたいことが書いてなかったりするよな。書いてあってもそれと気付かなかったり。不思議なものだ。それにしても、ピン止めサイトの実装は面倒だ。最大の難関はデバッグ。環境によって動いたり、一度ミスをするとキャッシュが残っているのか、挙動がおかしくなったりする。おかげで3台の PC を使ってピン止めしたり外していたりしていたのだけど、どうも Windows 8.x ではちゃんと動くのに、Windows 10 ではちゃんと動かないことがあるようだ（同じサイトをピン止めしているのに Windows 10 側だけ更新されないことがある）。ライブタイルはエラーが発生すると更新されないだけで、なんのエラーメッセージも出してくれないから、手探りでいろいろ試してみるものの、先述のキャッシュか何かの関係もからんで問題がよけい悪化する。こういうのはほんと疲れる。すでに推奨しない機能なら、そう言ってくれれば使おうとは思わないのに。正直なところピン止めサイトはあまり流行っていないようだが、それはわかる。必要なものでもなければ、とくに利便性が著しく向上するというたぐいのものではない。対応していればほかのサイトよりクールで、［スタート］に特別な場所を占めることができるチャンスがあるといった程度のシロモノに過ぎず、まぁ、流行らないからといっても驚くべきものでもないだろう。しかし、それ以上に実装とデバッグの面倒くささというのが普及の障害になっているのではないかと思った。実装が簡単な OPG や Twitter Card はたいした利便性もないのにこれだけ普及するわけで。バリデーションサービスなんかもあるしね。ピン止めサイトも OPG に動的要素を追加提案する形で相乗りすればいいんじゃないかと思った。
 
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/10/20/194242/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2015-10-20T01:18:49JST">2015/10/20</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/10/16/185802/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2015/10/16/185802/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2015/10/20/194242/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

@@ -1,94 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/01/05/050056/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            WebMatrix 2：お正月なのでいつもは書かないことを徒然なるままに | だるやなぎ
-        </title>
+<title>WebMatrix 2：お正月なのでいつもは書かないことを徒然なるままに - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="@{ var hello = &#34;Hello!&#34;; } &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;ja&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt; &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt; &amp;lt;/head&gt; &amp;lt;body&gt; &amp;lt;p&gt;@hello World!&amp;lt;/p&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```これの結果は、当然“Hello! World!”ですね。   て、Razor 構文で変数を埋め込んだ ```cs &amp;lt;p&gt;@hello World!&amp;lt;/p&gt; ```の部分は、 ```cs &amp;lt;p&gt;@(hello) World!&amp;lt;/p&gt; ```とも書いていい、というか、もともとこの形の省略なんだな（たぶん）。括弧を省略した場合は、スペースや記号（要は C# の変数に使えない文字）、HTML タグの手前で一度区切られ、評価が行われる。だから、もし Hello! と World! の間にスペースを入れたくなければ、@(hello)World! と書いて明示的に括弧で区切りを示さなければならない。じゃないと、@(helloWorld)! と解釈される。@() の内容は、その値が評価され（ToString() だと思えばいい）、無毒化のうえ（つまり HtmlEncode() やな）出力される。逆に言えば、@() の内容は値をもつ変数か関数でなくてはならない。一方、@{} の中には文を記述する。文というのは、要は ; で終わっていたり、{} で囲まれたコードの塊。たとえば、Razor で括弧を省略せずに for 文を書くときは {} が使える。 ```cs &amp;lt;ul&gt; @{ for(int i = 0; i &amp;lt; 10; i&#43;&#43;) { &amp;lt;li&gt;@(i)&amp;lt;/li&gt; } } &amp;lt;/ul&gt; ```わざわざこのように読みにくく書くことはないけど（ひとによってはこっちの方がいいか？）。ちなみに、for や if のあとの {} の中身はまた少し特殊で（だから省略できないんだな……）、@{} 外と同じ感じで評価される。つまり、HTML タグと @() が使える。まぁ、理屈より書いて慣れた方が早い。Don&amp;#39;t think, feel!" />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/01/05/050056/" >
-                    <h1 class="entry__header-title-link-text">WebMatrix 2：お正月なのでいつもは書かないことを徒然なるままに</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2013/01/05</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20130105035445.png"/> 
 </figure>
 
@@ -221,32 +193,35 @@ namespace ASP
 
 
 </code></pre>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/06/051815/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2013-01-05T05:00:56JST">2013/01/05</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/05/002415/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2013/01/05/002415/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2013/01/06/051815/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

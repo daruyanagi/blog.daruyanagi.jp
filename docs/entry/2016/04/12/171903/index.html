@@ -1,95 +1,66 @@
 <!DOCTYPE html>
-<html lang="ja">
-    <head>
-        <meta charset="UTF-8">
-        <base href="https://blog.daruyanagi.jp/" />
-        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/04/12/171903/" />
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
 
-        <meta name="viewport" content="width=device-width,initial-scale=1">
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-        <title> 
-            UWP：ユーザーコントロールを作ってみる | だるやなぎ
-        </title>
+<title>UWP：ユーザーコントロールを作ってみる - だるろぐ - だるやなぎのブログ</title>
 
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
         
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
 
-        
-            
-        
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
 
-        
-            <meta name="description" content="回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。
-x:Class=&#34;Hateboo.UserControls.TextBoxWithCounter&#34; xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; xmlns:local=&#34;using:Hateboo.UserControls&#34; xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34; xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34; mc:Ignorable=&#34;d&#34; d:DesignHeight=&#34;300&#34; d:DesignWidth=&#34;400&#34;&gt; &lt;stackpanel&gt;&lt;/stackpanel&gt; x:Name=&#34;textBox&#34; TextChanged=&#34;textBox_TextChanged&#34; /&gt; Orientation=&#34;Horizontal&#34; HorizontalAlignment=&#34;Right&#34;&gt; x:Name=&#34;textBlockCurrent&#34;&gt;0 &lt;textblock&gt;&lt;/textblock&gt;/ x:Name=&#34;textBlockMax&#34;&gt;0 ```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、 &lt;ul&gt; &lt;li&gt;Text：TextBox の内容&lt;/li&gt; &lt;li&gt;Current：現在の TextBox 文字数&lt;/li&gt; &lt;li&gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&lt;/li&gt; &lt;/ul&gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。 ```cs // 依存関係プロパティ public static readonly DependencyProperty MaxProperty = DependencyProperty.Register( &#34;Max&#34;,　// Max という名前の…… typeof(int),　// int 型の CLR プロパティを…… typeof(TextBoxWithCounter), // クラスに登録するやで― new PropertyMetadata(0)); // CLR プロパティ public int Max { get { return (int)GetValue(MaxProperty); } set { SetValue(MaxProperty, value); textBlockMax." />
-        
+<h1>だるろぐ - だるやなぎのブログ</h1>
 
-        
-        
-        <link rel="stylesheet" href="css/style.css">
-
-    </head>
-    <body class="body">
-
-        <header class="global-header">
-            <h1><a href="/" >だるやなぎ</a></h1>
-
-<p>そうだ、だるだるしよう。</p>
+<p></p>
 
 
-        </header>
+
+<hr></header>
 
         <main>
-            
-    <article class="entry">
-
-        <div class="entry__header">
-            <div class="entry__header-taxonomies">
-                
-                
-                    <div class="entry__header-taxonomies-category">
-                        <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
-                                Entries
-                            </a>
-                        </span>
-                    </div>
-                
-                
-                    <div class="entry__header-taxonomies-tags">
-                        <ul class="entry__header-taxonomies-tags-list" >
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
-                                    </li>
-                                
-                            
-                                
-                                
-                                    <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows/">Windows開発</a>
-                                    </li>
-                                
-                            
-                        </ul>
-                    </div>
-                
-            </div>
-
-            <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/04/12/171903/" >
-                    <h1 class="entry__header-title-link-text">UWP：ユーザーコントロールを作ってみる</h1>
-                </a>
-            </div>
-
-            <div class="entry__header-date">
-                <P>公開日：<time>2016/04/12</time>
-                </P>
-            </div>
-
-        </div>
-        <div class="entry__content">
-            <figure>
+<article>
+    <figure>
     <img src="/images/20160412165802.png"/> 
 </figure>
 
@@ -178,32 +149,35 @@ private static void TextPropertyChanged(DependencyObject d, DependencyPropertyCh
 
 
 </code></pre></div>
-        </div>
-        <div class="entry__footer">
-            
-            <div class="entry__footer-navigation">
-                <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/04/13/050000/">&laquo; 前の記事</a> 
-                </span>
-                <span class="entry__footer-lastmod">
-                    
-                    最終更新日：<time
-                        datetime="2016-04-12T17:19:03JST">2016/04/12</time>
-                    
-                </span>
-                <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/04/11/181901/">次の記事 &raquo; </a> 
-                </span>
-            </div>
-        </div>
+</article>
 
-    </article>
+<section>
+    <style>
+        .spacer { margin: auto 1em;}
+    </style>
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2016/04/11/181901/">&laquo; Older</a>
+        
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
+        
+            <a href="https://blog.daruyanagi.jp/entry/2016/04/13/050000/">Newer &raquo;</a>
+        
+    </p>    
+    
+</section>
+
 
         </main>
-
-        <footer class="global-footer">
-            <p>&copy; 2020 daruyanagi.</p>
-
-        </footer>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
     </body>
 </html>

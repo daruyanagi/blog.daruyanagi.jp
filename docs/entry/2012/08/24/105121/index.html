@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/24/105121/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/24/105121/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -47,7 +47,7 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +60,14 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -77,7 +77,7 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/24/105121/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/24/105121/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？</h1>
                 </a>
             </div>
@@ -172,16 +172,28 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
 &lt;li&gt;<span style="color:#960050;background-color:#1e0010">メールなどを利用した本人確認</span>&lt;/li&gt;
 &lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードのリセット（忘れちゃった時のためかな？）</span>&lt;/li&gt;
 &lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードの入力ミスを複数回繰り返すとアカウントをロック</span>&lt;/li&gt;
-&lt;/ul&gt;<span style="color:#960050;background-color:#1e0010">なんてことができるみたい。気になったのは</span> CreateUserAndAccount() <span style="color:#960050;background-color:#1e0010">ですかね。</span> Account <span style="color:#960050;background-color:#1e0010">（メンバーシップアカウント）と</span> User <span style="color:#960050;background-color:#1e0010">（ユーザープロファイル、ユーザー情報）って別物なんだ。“</span>Starter Site<span style="color:#960050;background-color:#1e0010">”テンプレートで使っていたのは</span> CreateAccount() <span style="color:#960050;background-color:#1e0010">で、ほかにサンプルも見当たらなかったのでよくわかりませんが……。</span><figure>
+&lt;/ul&gt;<span style="color:#960050;background-color:#1e0010">なんてことができるみたい。気になったのは</span> CreateUserAndAccount() <span style="color:#960050;background-color:#1e0010">ですかね。</span> Account <span style="color:#960050;background-color:#1e0010">（メンバーシップアカウント）と</span> User <span style="color:#960050;background-color:#1e0010">（ユーザープロファイル、ユーザー情報）って別物なんだ。“</span>Starter Site<span style="color:#960050;background-color:#1e0010">”テンプレートで使っていたのは</span> CreateAccount() <span style="color:#960050;background-color:#1e0010">で、ほかにサンプルも見当たらなかったのでよくわかりませんが……。</span>
+
+<figure>
     <img src="/images/20120824104305.png"/> 
 </figure>
-ちょっと DB <span style="color:#960050;background-color:#1e0010">のテーブル構成を見てみましょう。なんかいろいろありますけど、メンバーシップアカウントは</span> webpages_Membership <span style="color:#960050;background-color:#1e0010">、ユーザープロファイルは</span> Users<span style="color:#960050;background-color:#1e0010">（初期設定は</span> UserProfile<span style="color:#960050;background-color:#1e0010">）で管理するというのがなんとなく想像できます。どうやら</span> webpages_ <span style="color:#960050;background-color:#1e0010">というプレフィックスがついたテーブルはシステム（</span>WebSecurity Helper<span style="color:#960050;background-color:#1e0010">）が管理するみたい。</span><figure>
+
+
+<span style="color:#960050;background-color:#1e0010">ょっと</span> DB <span style="color:#960050;background-color:#1e0010">のテーブル構成を見てみましょう。なんかいろいろありますけど、メンバーシップアカウントは</span> webpages_Membership <span style="color:#960050;background-color:#1e0010">、ユーザープロファイルは</span> Users<span style="color:#960050;background-color:#1e0010">（初期設定は</span> UserProfile<span style="color:#960050;background-color:#1e0010">）で管理するというのがなんとなく想像できます。どうやら</span> webpages_ <span style="color:#960050;background-color:#1e0010">というプレフィックスがついたテーブルはシステム（</span>WebSecurity Helper<span style="color:#960050;background-color:#1e0010">）が管理するみたい。</span>
+
+<figure>
     <img src="/images/20120824103854.png"/> 
 </figure>
-実際<span style="color:#960050;background-color:#1e0010">、</span>webpages_Membership <span style="color:#960050;background-color:#1e0010">テーブルには認証情報を格納するカラムがたくさん用意されていますが、</span><figure>
+
+
+<span style="color:#960050;background-color:#1e0010">際、</span>webpages_Membership <span style="color:#960050;background-color:#1e0010">テーブルには認証情報を格納するカラムがたくさん用意されていますが、</span>
+
+<figure>
     <img src="/images/20120824103857.png"/> 
 </figure>
-UserProfile <span style="color:#960050;background-color:#1e0010">テーブルのほうはかなりスッキリしていて「好きに使え」と言わんばかり。たとえばユーザーのプロフィール画像なんかの情報はこっちに保存しておいたほうがいいみたいですね。これはおいおい試していきたいと思います。</span>
+
+
+serProfile <span style="color:#960050;background-color:#1e0010">テーブルのほうはかなりスッキリしていて「好きに使え」と言わんばかり。たとえばユーザーのプロフィール画像なんかの情報はこっちに保存しておいたほうがいいみたいですね。これはおいおい試していきたいと思います。</span>
 
 
 </code></pre></div>
@@ -190,7 +202,7 @@ UserProfile <span style="color:#960050;background-color:#1e0010">テーブルの
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/25/003421/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/25/003421/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -199,7 +211,7 @@ UserProfile <span style="color:#960050;background-color:#1e0010">テーブルの
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/24/095023/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/24/095023/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/02/24/154553/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/02/24/154553/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -48,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/02/24/154553/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/02/24/154553/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2</h1>
                 </a>
             </div>
@@ -222,15 +222,26 @@ text = m.Transform(text);
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### 実験
-    とりあえず手元ではだいたい動いたので、試しに NuGet から適当なヘルパーを取得して、それを Markdown から呼び出せるかやってみた。<figure>
+    とりあえず手元ではだいたい動いたので、試しに NuGet から適当なヘルパーを取得して、それを Markdown から呼び出せるかやってみた。
+
+<figure>
     <img src="/images/20130224152749.png"/> 
 </figure>
-QRCode ヘルパーは、その名もズバリ、QRCode が生成できるヘルパー。このヘルパーは
+
+
+RCode ヘルパーは、その名もズバリ、QRCode が生成できるヘルパー。このヘルパーは
 </code></pre><p>@QRCode.Render(&ldquo;<a href="http://daruyanagi.net/%22">http://daruyanagi.net/&quot;</a>)</p>
 <pre><code class="language-という感じで呼び出すので、残念ながらそのままでは使えない。App_Code/QRCodeHelper.cshtml" data-lang="という感じで呼び出すので、残念ながらそのままでは使えない。App_Code/QRCodeHelper.cshtml"></code></pre><p>@helper GetHtml(string data){
 &lt;img src=&rdquo;@Href(&ldquo;~/QRCodeImage.cshtml&rdquo;, new{data, scale = 3})&rdquo; alt=&rdquo;@data&rdquo; /&gt;
 }</p>
 <pre><code class="language-あとは、<code>[[QRCode|http://daruyanagi.net/]]</code>という記法を" data-lang="あとは、<code>[[QRCode|http://daruyanagi.net/]]</code>という記法を">
+<figure>
+    <img src="/images/20130224153033.png"/> 
+</figure>
+
+
+んな感じになる。GetHtml() メソッドをもつヘルパーだったら、無加工でそのまま利用できる！
+
 &lt;/div&gt;
 
 </code></pre>
@@ -239,7 +250,7 @@ QRCode ヘルパーは、その名もズバリ、QRCode が生成できるヘル
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/02/24/180109/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/02/24/180109/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -248,7 +259,7 @@ QRCode ヘルパーは、その名もズバリ、QRCode が生成できるヘル
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/02/24/020248/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/02/24/020248/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

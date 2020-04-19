@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/07/03/035624/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/07/03/035624/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。
-# ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;（&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;）&amp;lt;/rp&gt;&amp;lt;/ruby&gt; } ```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。 ```cs # ~/Test.cshtml @{ } &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @Ruby.GetHtml(&#34;柳 英俊&#34;, &#34;やなぎ ひでとし&#34;) &amp;lt;/body&gt; &amp;lt;/html&gt; ```  （※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。 &lt;div class=&#34;section&#34;&gt; ### ちょっとハッテン ```cs # ~/App_Code/HtmlHelperExtensions.cs using System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html; public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby) { return new HtmlString(string." />
+            <meta name="description" content="りあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。
+# ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;（&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;）&amp;lt;/rp&gt;&amp;lt;/ruby&gt; } ```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。 ```cs # ~/Test.cshtml @{ } &amp;lt;!DOCTYPE html&gt; &amp;lt;html lang=&#34;en&#34;&gt; &amp;lt;head&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @Ruby.GetHtml(&#34;柳 英俊&#34;, &#34;やなぎ ひでとし&#34;) &amp;lt;/body&gt; &amp;lt;/html&gt;   ※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。
+### ちょっとハッテン ```cs # ~/App_Code/HtmlHelperExtensions.cs using System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html;
+public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby) { return new HtmlString(string." />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +62,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -77,7 +79,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/07/03/035624/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/07/03/035624/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：ルビを振るためのヘルパーを作ってみる</h1>
                 </a>
             </div>
@@ -89,10 +91,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20140703034425.png"/> 
 </figure>
-とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。</p>
+
+<p>りあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/Ruby.cshtml
 
 @helper GetHtml(<span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">string</span> ruby){
@@ -119,48 +122,44 @@
     &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-<span style="color:#960050;background-color:#1e0010">```</span><figure>
+</code></pre></div><figure>
     <img src="/images/20140703034801.png"/> 
 </figure>
-<span style="color:#960050;background-color:#1e0010">（※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない</span> Firefox <span style="color:#960050;background-color:#1e0010">のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。</span>
 
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">ちょっとハッテン</span>
-    <span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/HtmlHelperExtensions.cs
-
-<span style="color:#66d9ef">using</span> System;
-<span style="color:#66d9ef">using</span> System.Collections.Generic;
-<span style="color:#66d9ef">using</span> System.Linq;
-<span style="color:#66d9ef">using</span> System.Web;
-<span style="color:#66d9ef">using</span> System.Web.WebPages.Html;
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">HtmlHelperExtenstion</span>
+<p>※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。</p>
+<div class="section">
+    ### ちょっとハッテン
+    ```cs
+# ~/App_Code/HtmlHelperExtensions.cs
+<p>using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web;
+using System.Web.WebPages.Html;</p>
+<p>public static class HtmlHelperExtenstion
 {
-   <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IHtmlString Ruby(<span style="color:#66d9ef">this</span> HtmlHelper helper, <span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">string</span> ruby)
-   {
-       <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HtmlString(<span style="color:#66d9ef">string</span>.Format(
-          <span style="color:#e6db74">&#34;&lt;ruby&gt;&lt;rb&gt;{0}&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;{1}&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;&#34;</span>,
-          text, ruby
-       ));
-   }
+public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby)
+{
+return new HtmlString(string.Format(
+&ldquo;<ruby><rb>{0}</rb><rp>（</rp><rt>{1}</rt><rp>）</rp></ruby>&rdquo;,
+text, ruby
+));
 }
+}</p>
+<pre><code class="language-こうやって" data-lang="こうやって">```cs
+@Html.Ruby(&quot;柳 英俊&quot;, &quot;やなぎ ひでとし&quot;)
 
-<span style="color:#960050;background-color:#1e0010">```こうやって</span> HtmlHelper <span style="color:#960050;background-color:#1e0010">の拡張メソッドとして定義しておけば</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-@Html.Ruby(<span style="color:#e6db74">&#34;柳 英俊&#34;</span>, <span style="color:#e6db74">&#34;やなぎ ひでとし&#34;</span>)
-
-<span style="color:#960050;background-color:#1e0010">```で同様のことができるようになる。</span>
+```で同様のことができるようになる。
 
 &lt;/div&gt;
 
-</code></pre></div>
+</code></pre>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/03/060355/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/03/060355/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -169,7 +168,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/03/033712/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/03/033712/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

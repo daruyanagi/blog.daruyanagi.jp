@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/09/02/180638/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/09/02/180638/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="PC は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。とりあえず直さないと。
+            <meta name="description" content="C は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。とりあえず直さないと。
 ### APC_INDEX_MISMATCH ってなんだ？ &gt; The most common cause of this bug check is when a file system or driver has a mismatched sequence of calls to disable and re-enable APCs. The key data item is the Thread-&gt;CombinedApcDisable field. The CombinedApcDisable field consists of two separate 16-bit fields: SpecialApcDisable and KernelApcDisable. A negative value of either field indicates that a driver has disabled special or normal APCs (respectively) without re-enabling them." />
         
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +60,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows-10/">Windows 10</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-10/">Windows 10</a>
                                     </li>
                                 
                             
@@ -73,7 +73,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/09/02/180638/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/09/02/180638/" >
                     <h1 class="entry__header-title-link-text">Windows 10 で BSOD。 APC_INDEX_MISMATCH で起動しなくなった</h1>
                 </a>
             </div>
@@ -85,10 +85,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20160902002955.jpg"/> 
 </figure>
-PC は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。とりあえず直さないと。</p>
+
+<p>C は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。とりあえず直さないと。</p>
 <div class="section">
     ### APC_INDEX_MISMATCH ってなんだ？
 <pre><code>&gt;
@@ -100,36 +101,47 @@ PC は基本つけっぱなしなのだけど、晩飯食ったあとにウト�
 </div>
 <div class="section">
     ### とりあえずセーフモードで起動する
-    <figure>
+<figure>
     <img src="/images/20160902004933.jpg"/> 
 </figure>
-電源をガチャガチャやると運よく回復メニューにたどり着けたので、まずはセーフモードで起動してみる。<figure>
+
+<p>源をガチャガチャやると運よく回復メニューにたどり着けたので、まずはセーフモードで起動してみる。</p>
+<figure>
     <img src="/images/20160902004946.jpg"/> 
 </figure>
-［トラブル シューティング］－［詳細オプション］－［スタートアップ設定］と進み、Windows を再起動。<figure>
+
+<p>トラブル シューティング］－［詳細オプション］－［スタートアップ設定］と進み、Windows を再起動。</p>
+<figure>
     <img src="/images/20160902005038.jpg"/> 
 </figure>
-4 番を選択してセーフモードで起動する。<figure>
+
+<p>番を選択してセーフモードで起動する。</p>
+<figure>
     <img src="/images/20160902005146.jpg"/> 
 </figure>
-とりあえず、ログインできた。試しにここから単に再起動してみたが、やはり APC_INDEX_MISMATCH で起動できなくなる。どうやら何かごちゃごちゃしないと直らないっぽい。
+
+<p>りあえず、ログインできた。試しにここから単に再起動してみたが、やはり APC_INDEX_MISMATCH で起動できなくなる。どうやら何かごちゃごちゃしないと直らないっぽい。</p>
 </div>
 <div class="section">
     ### SCAN /SFCNOW → ダメ
-    <figure>
+<figure>
     <img src="/images/20160902175640.png"/> 
 </figure>
-**SCAN /SFCNOW**（システムファイルのスキャン）という民間療法を試してみる。結論的には、なにも改善されなかった。
+
+<p><em>SCAN /SFCNOW</em>*（システムファイルのスキャン）という民間療法を試してみる。結論的には、なにも改善されなかった。</p>
 </div>
 <div class="section">
     ### 心当たりのあるプログラムをアンインストールする
-    <figure>
+<figure>
     <img src="/images/20160902175847.png"/> 
 </figure>
-**最近なにか変なアプリをインストールした**かなぁ、と記憶をたどると、あったあった。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1017850.html" title="ランサムウェアからファイルを守る対策をさらに充実させた「ウイルスバスター クラウド」最新版" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さっそくウイルスバスターさんには消えてもらうことにした。<figure>
+
+<p>*最近なにか変なアプリをインストールした**かなぁ、と記憶をたどると、あったあった。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1017850.html" title="ランサムウェアからファイルを守る対策をさらに充実させた「ウイルスバスター クラウド」最新版" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さっそくウイルスバスターさんには消えてもらうことにした。</p>
+<figure>
     <img src="/images/20160902175949.png"/> 
 </figure>
-こいつ一回死んでくればいいのにと思った。けれどこの状態で再起動すると、なぜか正常に起動できた。原因はよくわからんが、ウイルス対策ソフトのアップデートと、Windows Update がコンボしてなんらかのヤバいなにかが起こったのかもしれん。念のため、公式の削除ツールで完全に削除。
+
+<p>いつ一回死んでくればいいのにと思った。けれどこの状態で再起動すると、なぜか正常に起動できた。原因はよくわからんが、ウイルス対策ソフトのアップデートと、Windows Update がコンボしてなんらかのヤバいなにかが起こったのかもしれん。念のため、公式の削除ツールで完全に削除。</p>
 <ul>
 <li><a href="https://esupport.trendmicro.com/support/vb/solution/ja-jp/1314086.aspx">ウイルスバスター クラウドアンインストールツール | サポート Q&amp;A：トレンドマイクロ</a></li>
 </ul>あとは、**［システムの回復］**を使うという手もあるけど、環境がロールバックされるのが嫌なので今回は使わなかった。そういうのを気にしない人は、これを真っ先に試した方がいいかもしれない。いい機会なので、大事なファイルはクラウド or サブ HDD に退避させて、Windows 10 を初期化。環境を再構築しておいた。Windows 10 にアップデートする前からほったらかしでカオスだったが、まっさらになって気持ちいい。
@@ -140,7 +152,7 @@ PC は基本つけっぱなしなのだけど、晩飯食ったあとにウト�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/09/03/045737/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/09/03/045737/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -149,7 +161,7 @@ PC は基本つけっぱなしなのだけど、晩飯食ったあとにウト�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/09/01/204619/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/09/01/204619/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

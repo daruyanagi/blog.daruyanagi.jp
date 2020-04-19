@@ -2,33 +2,40 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WebMatrix 3 で Wiki クローンを作る on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/webmatrix-3-%E3%81%A7-wiki-%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B/</link>
+    <link>https://blog.daruyanagi.jp/tags/webmatrix-3-%E3%81%A7-wiki-%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B/</link>
     <description>Recent content in WebMatrix 3 で Wiki クローンを作る on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sat, 10 Aug 2013 15:52:43 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/webmatrix-3-%E3%81%A7-wiki-%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/webmatrix-3-%E3%81%A7-wiki-%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>WebMatrix 3 で Wiki クローンを作る vol.1</title>
-      <link>https://daruyanagi.net/entry/2013/08/10/155243/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/08/10/155243/</link>
       <pubDate>Sat, 10 Aug 2013 15:52:43 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/08/10/155243/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2013/08/10/155243/</guid>
       <description>前回（WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では SQL Server Compact Edition（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。SQL CE というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。
-### データベースの作成   WebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。  では、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。  今回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。  PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ［ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。  コードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。 ```cs @{ if (IsPost) // POST 要求だけを受け付けましょう { // Request[&#34;name&#34;] で送られてきた名前を取得。 // POST データなら Request.</description>
+### データベースの作成   ebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。
+  は、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。
+  回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。
+ PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。
+  ードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
+@{ if (IsPost) // POST 要求だけを受け付けましょう  { // Request[&amp;#34;name&amp;#34;] で送られてきた名前を取得。  // POST データなら Request.</description>
     </item>
     
     <item>
       <title>WebMatrix 3 で Wiki クローンを作る vol.0</title>
-      <link>https://daruyanagi.net/entry/2013/07/17/054740/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/07/17/054740/</link>
       <pubDate>Wed, 17 Jul 2013 05:47:40 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/07/17/054740/</guid>
-      <description>&amp;gt; Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。 http://tam.qmix.org/wiki/Minki00.html  昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります*1。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（WebMatrix 3 で Wiki クローンを作る）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。
-### 必要なもの  Microsoft Developer これだけです。できれば http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web があるといろいろ便利。フレームワークには ASP.NET Web Pages 2 | Microsoft Docs を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。  ### プロジェクトの新規作成   テンプレートギャラリーから……  ASP.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/07/17/054740/</guid>
+      <description>br/&amp;gt;
+&amp;gt; Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。 http://tam.qmix.org/wiki/Minki00.html  昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります*1。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（WebMatrix 3 で Wiki クローンを作る）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。
+### 必要なもの  Microsoft Developer これだけです。できれば http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web があるといろいろ便利。フレームワークには ASP.NET Web Pages 2 | Microsoft Docs を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。  ### プロジェクトの新規作成   ンプレートギャラリーから……
+  SP.</description>
     </item>
     
   </channel>

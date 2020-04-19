@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/10/06/094818/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/10/06/094818/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="内部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。
+            <meta name="description" content="部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。
  複数環境での起動を考慮する 各部の名称を整理・わかりやすくする ローカルフォルダーや親ルールにアクセスするボタンを追加 ログウィンドウに前後移動機能を追加 既存のウィンドウがあれば新規に開かずアクティブにする New/No Changed ステータスの新設 アプリケーションアイコンの追加 データフォルダーを開くコマンドを新設 ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも 日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。    ### Chocolatey パッケージ化の準備 実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツの Windows 版ですね。Chocolatey のパッケージは、  パッケージに全部ファイルを入れちゃう リモートに置いてあるインストーラーを叩く という2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exeついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。 ```ps1 # Add-AzureAccount $StorageAccountName = &ldquo;yanagi&rdquo; $StorageAccountKey = &ldquo;***&rdquo; $ContainerName = &ldquo;clickonce-omawari&rdquo;
 $binRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\bin&rdquo; $publishRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\Publish&rdquo;
 function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )" />
@@ -49,7 +49,7 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )"
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -65,7 +65,7 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )"
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/omawari/">Omawari</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/omawari/">Omawari</a>
                                     </li>
                                 
                             
@@ -75,7 +75,7 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )"
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/10/06/094818/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/10/06/094818/" >
                     <h1 class="entry__header-title-link-text">Omawari 1.4.0.0：ユーザーインターフェイスを手直ししました</h1>
                 </a>
             </div>
@@ -87,10 +87,11 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )"
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20171006093047.png"/> 
 </figure>
-内部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。</p>
+
+<p>部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。</p>
 <ul>
 <li>複数環境での起動を考慮する</li>
 <li>各部の名称を整理・わかりやすくする</li>
@@ -102,7 +103,9 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )"
 <li>データフォルダーを開くコマンドを新設</li>
 <li>ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも</li>
 </ul>日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。
-<div class="github-card" data-user="daruyanagi/Omawari/releases/tag" data-repo="v1.4.0.0" data-width="400" data-height="" data-theme="default"></div>
+<div class="github-card" data-user="daruyanagi/Omawari/releases/tag" data-repo="v1.4.0.0" data-width="400" data-height="" data-theme="default"></div
+<blockquote>
+</blockquote>
 <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 <br/>
 <div class="section">
@@ -173,7 +176,7 @@ if ($container) {
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/10/06/180000/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/10/06/180000/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -182,7 +185,7 @@ if ($container) {
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/10/05/163425/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/10/05/163425/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

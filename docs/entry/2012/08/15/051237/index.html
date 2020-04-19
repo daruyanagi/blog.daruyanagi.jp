@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/15/051237/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/15/051237/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,11 +18,12 @@
         
 
         
-            <meta name="description" content="今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  というわけで、今回はテーマ機能を（試しに）作ってみた。  
+            <meta name="description" content="今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  というわけで、今回はテーマ機能を（試しに）作ってみた。
+  br/&gt;
  “~/Themes/”フォルダにテーマフォルダを作成（今回は Basic と Default） それぞれのテーマフォルダにレイアウトファイル、スタイルシート、リソースなどをまとめる “App.Theme”にテーマフォルダの名前を入れれば、サイト全体のテーマが切り替わる カッコいいか悪いかは知らないけど、とりあえず書いてみた。 ```cs # _AppStart.cshtml @{ /* Configure App Setting */ App.Theme = &ldquo;Default&rdquo;; }
 @using System.IO;
 @{ /* Define Utilities */ const string ThemeBaseDir = &ldquo;~/Themes/&quot;; const string ThemeLayoutFile = &ldquo;_Layout.cshtml&rdquo;;
-App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbsolute( Path.Combine(ThemeBaseDir, App.Theme) ) ); App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbsolute( Path." />
+App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbsolute( Path.Combine(ThemeBaseDir, App.Theme) ) ); App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility." />
         
 
         
@@ -50,7 +51,7 @@ App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbso
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,14 +64,14 @@ App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbso
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@ App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbso
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/15/051237/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/15/051237/" >
                     <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（4）</h1>
                 </a>
             </div>
@@ -98,10 +99,12 @@ App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt; VirtualPathUtility.ToAbso
 
     WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ
 </code></pre>
-<p>というわけで、今回はテーマ機能を（試しに）作ってみた。<figure>
+<p>というわけで、今回はテーマ機能を（試しに）作ってみた。</p>
+<figure>
     <img src="/images/20120815044918.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li>“~/Themes/”フォルダにテーマフォルダを作成（今回は Basic と Default）</li>
 <li>それぞれのテーマフォルダにレイアウトファイル、スタイルシート、リソースなどをまとめる</li>
@@ -161,7 +164,7 @@ App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt;
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/15/061025/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/15/061025/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -170,7 +173,7 @@ App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt;
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/13/224213/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/13/224213/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

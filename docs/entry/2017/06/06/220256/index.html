@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/06/06/220256/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/06/06/220256/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="開いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。   一応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。
+            <meta name="description" content="いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。
+  応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。
 ### 与太話その一：ストアアプリへの対応 EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。 ```cs private static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam) { var builder = new StringBuilder(256); GetClassName(handle, builder, builder.Capacity); // ストアアプリのためのハック -&gt; &quot;Windows.UI.Core.CoreWindow&quot; を探す if (builder.ToString() == &quot;Windows.UI.Core.CoreWindow&quot;) { int process_id; GetWindowThreadProcessId(handle, out processId); process = Process.GetProcessById(process_id); // プロセス情報を保管 if (process != null) return false; // Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう } return true;  }" />
         
 
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/tonjiru/">Tonjiru</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/06/06/220256/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/06/06/220256/" >
                     <h1 class="entry__header-title-link-text">デスクトップのウィンドウを全部閉じるツール「Tonjiru」を作った</h1>
                 </a>
             </div>
@@ -92,13 +93,16 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170606214904.png"/> 
 </figure>
-開いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。<a href="http://forest.watch.impress.co.jp/docs/news/1063435.html">開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に</a>名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FTonjiru%2Freleases%2Ftag%2Fv1.0.0" title="daruyanagi/Tonjiru" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。 <figure>
+
+<p>いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。<a href="http://forest.watch.impress.co.jp/docs/news/1063435.html">開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に</a>名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FTonjiru%2Freleases%2Ftag%2Fv1.0.0" title="daruyanagi/Tonjiru" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。</p>
+<figure>
     <img src="/images/20170606214302.png"/> 
 </figure>
-一応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。</p>
+
+<p>応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。</p>
 <div class="section">
     ### 与太話その一：ストアアプリへの対応
     EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。
@@ -127,10 +131,14 @@ return true;
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### 与太話その二：GitHub for Windows
-    <figure>
+    
+
+<figure>
     <img src="/images/20170606215620.png"/> 
 </figure>
-「GitHub」アプリの新版がベータ公開されているので試してみた。[GitHub、“GitHub Flow”に最適化した新しいクライアント「GitHub Desktop」を公開](http://forest.watch.impress.co.jp/docs/news/716583.html)個人的にはいろいろ使いにくいというか、プルリクエストが GUI から作れないのか？　それがちょっと面倒だった。――ので、古いの（現行版）を引っ張り出して使っている。こっちの方が今のところ便利かなぁ。
+
+
+GitHub」アプリの新版がベータ公開されているので試してみた。[GitHub、“GitHub Flow”に最適化した新しいクライアント「GitHub Desktop」を公開](http://forest.watch.impress.co.jp/docs/news/716583.html)個人的にはいろいろ使いにくいというか、プルリクエストが GUI から作れないのか？　それがちょっと面倒だった。――ので、古いの（現行版）を引っ張り出して使っている。こっちの方が今のところ便利かなぁ。
 
 &lt;/div&gt;
 
@@ -140,7 +148,7 @@ return true;
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/06/07/191844/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/07/191844/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -149,7 +157,7 @@ return true;
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/06/02/093913/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/02/093913/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

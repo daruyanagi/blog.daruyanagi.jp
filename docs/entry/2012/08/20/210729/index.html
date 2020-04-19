@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/20/210729/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/20/210729/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +18,9 @@
         
 
         
-            <meta name="description" content="  
+            <meta name="description" content="  br/&gt;
 &gt; デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。 WebMatrix でファイルのアップロード（2） - だるろぐ  思いついたのだけれど、無理してビューまたは Json を返そうとしなくてもステータスコードだけ返せばいいな。最初にわざとエラーを発生させるコードを書いてそこで return してしまえば、 try……catch 文のネストを減らせるし。
-@{ try // Catch Request-too-long Error  { var dummy = Request.Files; } catch (Exception e) { Response.StatusCode = (int) HttpStatusCode.InternalServerError; Response.Write(e.Message); return; } if (IsPost) { ： ： ```これをするとどうなるのかというと、  まず、デカいファイルを投げる（既定では約4MB以上）。  サーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。  $.ajax() の error プロパティでそれを拾って……  HTML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。 " />
+@{ try // Catch Request-too-long Error  { var dummy = Request.Files; } catch (Exception e) { Response.StatusCode = (int) HttpStatusCode.InternalServerError; Response.Write(e.Message); return; } if (IsPost) { ： ： ```これをするとどうなるのかというと、   ず、デカいファイルを投げる（既定では約4MB以上）。   ーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。   .ajax() の error プロパティでそれを拾って……   TML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。 " />
         
 
         
@@ -48,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/20/210729/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/210729/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でファイルのアップロード（2） の補足</h1>
                 </a>
             </div>
@@ -90,10 +90,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120820014842.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <pre><code>&gt;
     デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。
 
@@ -118,19 +119,35 @@
         <span style="color:#960050;background-color:#1e0010">：</span>
         <span style="color:#960050;background-color:#1e0010">：</span>
 
-<span style="color:#960050;background-color:#1e0010">```これをするとどうなるのかというと、</span><figure>
+<span style="color:#960050;background-color:#1e0010">```これをするとどうなるのかというと、</span>
+
+<figure>
     <img src="/images/20120820210027.png"/> 
 </figure>
-まず<span style="color:#960050;background-color:#1e0010">、デカいファイルを投げる（既定では約</span><span style="color:#ae81ff">4</span>MB以上<span style="color:#960050;background-color:#1e0010">）。</span><figure>
+
+
+<span style="color:#960050;background-color:#1e0010">ず、デカいファイルを投げる（既定では約</span><span style="color:#ae81ff">4</span>MB以上<span style="color:#960050;background-color:#1e0010">）。</span>
+
+<figure>
     <img src="/images/20120820210114.png"/> 
 </figure>
-サーバーでエラーが発生し<span style="color:#960050;background-color:#1e0010">、ステータスコード（よくわからんけど</span><span style="color:#ae81ff">5</span>**<span style="color:#960050;background-color:#1e0010">）を返す。</span><figure>
+
+
+<span style="color:#960050;background-color:#1e0010">ーバーでエラーが発生し、ステータスコード（よくわからんけど</span><span style="color:#ae81ff">5</span>**<span style="color:#960050;background-color:#1e0010">）を返す。</span>
+
+<figure>
     <img src="/images/20120820210207.png"/> 
 </figure>
-<span style="color:#960050;background-color:#1e0010">$</span>.ajax() <span style="color:#960050;background-color:#1e0010">の</span> error <span style="color:#960050;background-color:#1e0010">プロパティでそれを拾って……</span><figure>
+
+
+.ajax() <span style="color:#960050;background-color:#1e0010">の</span> error <span style="color:#960050;background-color:#1e0010">プロパティでそれを拾って……</span>
+
+<figure>
     <img src="/images/20120820014842.png"/> 
 </figure>
-HTML <span style="color:#960050;background-color:#1e0010">を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。</span>
+
+
+TML <span style="color:#960050;background-color:#1e0010">を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。</span>
 
 
 </code></pre></div>
@@ -139,7 +156,7 @@ HTML <span style="color:#960050;background-color:#1e0010">を更新する。ブ�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/20/220750/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/220750/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -148,7 +165,7 @@ HTML <span style="color:#960050;background-color:#1e0010">を更新する。ブ�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/20/202253/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/202253/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/02/03/160915/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/02/03/160915/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,9 @@
 
         
             <meta name="description" content="WebMatrix 2：OAuth でログインする - だるろぐ の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。
-### NuGet で必要なものをインストール   MuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。  これをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。  ### ~/_AppStart.cshtml Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。 ```cs @{ // いろんなところで使うので、グローバルにアクセスできるようにしとくか App.Database = &#34;Database&#34;; // ユーザー管理用のテーブルを初期化・作成 WebSecurity.InitializeDatabaseConnection( App.Database, &quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;, autoCreateTables: true); // Google の OAuth を使います！ OAuthWebSecurity.RegisterGoogleClient();  }
+### NuGet で必要なものをインストール   uGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。
+  れをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。
+ ### ~/_AppStart.cshtml Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。 ```cs @{ // いろんなところで使うので、グローバルにアクセスできるようにしとくか App.Database = &#34;Database&#34;; // ユーザー管理用のテーブルを初期化・作成 WebSecurity.InitializeDatabaseConnection( App.Database, &quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;, autoCreateTables: true); // Google の OAuth を使います！ OAuthWebSecurity.RegisterGoogleClient();  }
 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ~/Account/Login." />
         
 
@@ -48,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/02/03/160915/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/02/03/160915/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2：OAuth でログインする（２）</h1>
                 </a>
             </div>
@@ -93,13 +95,16 @@
             <p><a href="https://blog.daruyanagi.jp/entry/2013/01/27/102043">WebMatrix 2：OAuth でログインする - だるろぐ</a> の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。</p>
 <div class="section">
     ### NuGet で必要なものをインストール
-    <figure>
+<figure>
     <img src="/images/20130203152828.png"/> 
 </figure>
-MuGet で <a href="http://nuget.org/packages/Microsoft.AspNet.WebPages.OAuth">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。まえにやったとき（<a href="https://blog.daruyanagi.jp/entry/2012/09/04/023414">さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ</a>）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。<figure>
+
+<p>uGet で <a href="http://nuget.org/packages/Microsoft.AspNet.WebPages.OAuth">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。まえにやったとき（<a href="https://blog.daruyanagi.jp/entry/2012/09/04/023414">さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ</a>）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。</p>
+<figure>
     <img src="/images/20130203153208.png"/> 
 </figure>
-これをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。
+
+<p>れをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。</p>
 </div>
 <div class="section">
     ### ~/_AppStart.cshtml
@@ -172,35 +177,38 @@ OAuthWebSecurity.RegisterGoogleClient();
     }
 }
 
-```<figure>
+</code></pre><figure>
     <img src="/images/20130203155104.png"/> 
 </figure>
-このボタンを押すと、<figure>
+
+<p>のボタンを押すと、</p>
+<figure>
     <img src="/images/20130203155926.png"/> 
 </figure>
-Google の認証ページに飛ぶはず。
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+<p>oogle の認証ページに飛ぶはず。</p>
+</div>
+<div class="section">
     ### ~/Account/RegisterService.cshtml
     Google での認証が成功すると、このページに着地する。まぁ、名前は好きにすればいいと思う。
 ```cs
 @{
-    Page.Title = &quot;登録&quot;;
+    Page.Title = "登録";
 }
-
-&amp;lt;dl&gt;
+<p>&lt;dl&gt;
 @foreach (var key in Request.Params.Keys)
 {
-    &amp;lt;dt&gt;@key&amp;lt;/dt&gt;
-    &amp;lt;dd&gt;@Request.Params[key.ToString()]&amp;lt;/dd&gt;
+&lt;dt&gt;@key&lt;/dt&gt;
+&lt;dd&gt;@Request.Params[key.ToString()]&lt;/dd&gt;
 }
-&amp;lt;/dl&gt;
-
-```<figure>
+&lt;/dl&gt;</p>
+<pre><code>
+<figure>
     <img src="/images/20130203160114.png"/> 
 </figure>
-今回はパラメーターを列挙するだけにしておいた。ほんとはここから
+
+
+回はパラメーターを列挙するだけにしておいた。ほんとはここから
 
 &lt;ul&gt;
 &lt;li&gt;認証がうまくいったか&lt;/li&gt;
@@ -222,7 +230,7 @@ Google の認証ページに飛ぶはず。
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/02/03/214620/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/02/03/214620/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -231,7 +239,7 @@ Google の認証ページに飛ぶはず。
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/02/03/111946/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/02/03/111946/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

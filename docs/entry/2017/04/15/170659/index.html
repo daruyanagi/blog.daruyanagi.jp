@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/04/15/170659/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/04/15/170659/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
- Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   Twitter の位置情報は  Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure." />
+            <meta name="description" content="前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
+ Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   witter の位置情報は
+ Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure." />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,21 +61,21 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/microsoft-azure/">Microsoft Azure</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/microsoft-azure/">Microsoft Azure</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/visual-studio/">Visual Studio</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.NET Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.NET Web Pages</a>
                                     </li>
                                 
                             
@@ -84,7 +85,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/04/15/170659/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/04/15/170659/" >
                     <h1 class="entry__header-title-link-text">Azure Web App＋Job＋Table Storage ：Twitter の位置情報を拾ってマッピングする</h1>
                 </a>
             </div>
@@ -96,19 +97,21 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170415163622.png"/> 
 </figure>
-以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。</p>
+
+<p>前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。</p>
 <ul>
 <li><a href="http://api.daruyanagi.jp/map">Daruyanagi API : Check-ins</a></li>
 </ul>ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ
 <div class="section">
     ### Twitter の位置情報
-    <figure>
+<figure>
     <img src="/images/20170415163522.png"/> 
 </figure>
-Twitter の位置情報は
+
+<p>witter の位置情報は</p>
 <ul>
 <li>Place：大まかな位置を共有（矩形）</li>
 <li>Coordinates：経度・緯度を正確に共有（点）</li>
@@ -188,10 +191,14 @@ public class CheckinEntity : TableEntity
     public string Url { get { return $&quot;https://twitter.com/{ScreenName}/status/{Id}&quot;; } }
 }
 
-```ちょっとハマったのは、RowKey にスラッシュを含められないこと。table.Execute() が 400 という HTTP ステータスコードを返して失敗するときは、このあたりを疑ってみるといいのかも。今回はスラッシュを含まず、並び替えにも使える書式 &quot;u&quot; で ToString() しておいた。成功すると、こんな感じで Table Storage にデータが格納される。<figure>
+```ちょっとハマったのは、RowKey にスラッシュを含められないこと。table.Execute() が 400 という HTTP ステータスコードを返して失敗するときは、このあたりを疑ってみるといいのかも。今回はスラッシュを含まず、並び替えにも使える書式 &quot;u&quot; で ToString() しておいた。成功すると、こんな感じで Table Storage にデータが格納される。
+
+<figure>
     <img src="/images/20170415165656.png"/> 
 </figure>
-データを読み出す場合は、こんな感じ。
+
+
+ータを読み出す場合は、こんな感じ。
 ```cs
 public static IEnumerable&amp;lt;CheckinEntity&gt; Get()
 {
@@ -206,10 +213,14 @@ public static IEnumerable&amp;lt;CheckinEntity&gt; Get()
     return table.ExecuteQuery(rangeQuery).OrderByDescending(_ =&gt; _.CreatedAt);
 }
 
-```データが多くなってきたら、ちゃんと範囲を絞ってクエリしたほうがいいのかもしれない。<figure>
+```データが多くなってきたら、ちゃんと範囲を絞ってクエリしたほうがいいのかもしれない。
+
+<figure>
     <img src="/images/20170415170111.png"/> 
 </figure>
-あとはこれを JSON で吐くようにして――
+
+
+とはこれを JSON で吐くようにして――
 ```javascript
 var map_element = document.getElementById(&quot;daru_map&quot;);
 var map;
@@ -254,10 +265,14 @@ function initMap() {
     }
 }
 
-```Google マップにプロットしてみた（情報ウィンドウは一つ開いたら一つ閉じるようにしたかったけど、なんかうまくいかんのでタイマーで閉じた）。<figure>
+```Google マップにプロットしてみた（情報ウィンドウは一つ開いたら一つ閉じるようにしたかったけど、なんかうまくいかんのでタイマーで閉じた）。
+
+<figure>
     <img src="/images/20170415170311.png"/> 
 </figure>
-テキトーだけど、今回はこのぐらいで。
+
+
+キトーだけど、今回はこのぐらいで。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
@@ -272,7 +287,7 @@ function initMap() {
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/04/16/202111/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/04/16/202111/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -281,7 +296,7 @@ function initMap() {
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/04/13/215309/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/04/13/215309/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

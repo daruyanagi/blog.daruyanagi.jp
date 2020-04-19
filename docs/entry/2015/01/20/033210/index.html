@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2015/01/20/033210/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/01/20/033210/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,9 @@
         
 
         
-            <meta name="description" content="http://ehime-traffic.azurewebsites.net/ WebMatrix &#43; Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。  サイトをスクレイピングして情報取得（鉄道、船、JAL） （非公開）API を叩いて JSON から情報取得（ANA、ピーチ） （ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1） スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。 ### 開発の流れ   運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。 ```cs using (var client = new WebClient()) { var response = client.DownloadString(url); var json = Json.Decode(response); var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(doc) // &lt;div class=&quot;ss_comment&quot;&gt;ここがほしいやで&lt;/div&gt; var message = doc." />
+            <meta name="description" content="br/&gt;
+ http://ehime-traffic.azurewebsites.net/ WebMatrix &#43; Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。  サイトをスクレイピングして情報取得（鉄道、船、JAL） （非公開）API を叩いて JSON から情報取得（ANA、ピーチ） （ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1） スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。 ### 開発の流れ   行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。
+using (var client = new WebClient()) { var response = client.DownloadString(url); var json = Json.Decode(response); var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(doc) // &lt;div class=&#34;ss_comment&#34;&gt;ここがほしいやで&lt;/div&gt;  var message = doc." />
         
 
         
@@ -46,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows-azure/">Windows Azure</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-azure/">Windows Azure</a>
                                     </li>
                                 
                             
@@ -76,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2015/01/20/033210/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/01/20/033210/" >
                     <h1 class="entry__header-title-link-text">あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた</h1>
                 </a>
             </div>
@@ -88,10 +90,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20150120025457.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li><a href="http://ehime-traffic.azurewebsites.net/">http://ehime-traffic.azurewebsites.net/</a></li>
 </ul>WebMatrix + Azure Web サイト（<a href="http://www.microsoft.com/ja-jp/mic/bizspark/">マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark</a>、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。
@@ -102,54 +105,56 @@
 </ul>スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。
 <div class="section">
     ### 開発の流れ
-    <figure>
+<figure>
     <img src="/images/20150120031218.png"/> 
 </figure>
-運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、<a href="https://www.nuget.org/packages/HtmlAgilityPack">NuGet Gallery | HtmlAgilityPack 1.4.9</a> が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。
-```cs
-using (var client = new WebClient())
-{
-    var response = client.DownloadString(url);
-    var json = Json.Decode(response);
-<pre><code>var doc = new HtmlAgilityPack.HtmlDocument();
-doc.LoadHtml(doc)
 
-// &lt;div class=&quot;ss_comment&quot;&gt;ここがほしいやで&lt;/div&gt;
-var message = doc.DocumentNode
-    .SelectSingleNode(@&quot;//div[@class=&quot;&quot;ss_coment&quot;&quot;]&quot;)
-    .InnerText;
-
-@ObjectInfo.Print(json)
-</code></pre>
-<p>}</p>
-<pre><code class="language-これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開" data-lang="これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開">```cs
-using (var client = new WebClient())
+<p>行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、<a href="https://www.nuget.org/packages/HtmlAgilityPack">NuGet Gallery | HtmlAgilityPack 1.4.9</a> が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> WebClient())
 {
-    var response = client.UploadString(url, postData);
-    var json = Json.Decode(response);
+    <span style="color:#66d9ef">var</span> response = client.DownloadString(url);
+    <span style="color:#66d9ef">var</span> json = Json.Decode(response);
+
+    <span style="color:#66d9ef">var</span> doc = <span style="color:#66d9ef">new</span> HtmlAgilityPack.HtmlDocument();
+    doc.LoadHtml(doc)
+
+    <span style="color:#75715e">// &lt;div class=&#34;ss_comment&#34;&gt;ここがほしいやで&lt;/div&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> message = doc.DocumentNode
+        .SelectSingleNode(<span style="color:#e6db74">@&#34;//div[@class=&#34;&#34;ss_coment&#34;&#34;]&#34;</span>)
+        .InnerText;
 
     @ObjectInfo.Print(json)
 }
 
-```ObjectInfo.Print で Json オプジェクトの中身をみながら、自分が使いやすいようにデータを取捨・加工する。コーディング自体はとても簡単で、開発時間のほとんどは API のパラメーター解析に費やされた。
+<span style="color:#960050;background-color:#1e0010">```これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開</span> API <span style="color:#960050;background-color:#1e0010">があるのならば、</span>JSON Helper <span style="color:#960050;background-color:#1e0010">が便利。</span>Chrome <span style="color:#960050;background-color:#1e0010">の場合、開発者ツールの［</span>Network<span style="color:#960050;background-color:#1e0010">］タブでリクエスト・レスポンスをみると、内部</span> API <span style="color:#960050;background-color:#1e0010">らしきものが見るかる。今回見つけたなかでは、</span>ANA <span style="color:#960050;background-color:#1e0010">が出発・到着空港の天気までとれる重量級。一方、ピーチは割と扱いやすい感じ（</span>ASP.NET <span style="color:#960050;background-color:#1e0010">っぽかった）。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> WebClient())
+{
+    <span style="color:#66d9ef">var</span> response = client.UploadString(url, postData);
+    <span style="color:#66d9ef">var</span> json = Json.Decode(response);
+
+    @ObjectInfo.Print(json)
+}
+
+<span style="color:#960050;background-color:#1e0010">```</span>ObjectInfo.Print <span style="color:#960050;background-color:#1e0010">で</span> Json <span style="color:#960050;background-color:#1e0010">オプジェクトの中身をみながら、自分が使いやすいようにデータを取捨・加工する。コーディング自体はとても簡単で、開発時間のほとんどは</span> API <span style="color:#960050;background-color:#1e0010">のパラメーター解析に費やされた。</span>
 
 &lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### これから
-    閲覧時に情報を取りに行く設計になっているので、キャッシュが効いていない場合にロードがとても遅い。相手にも負荷がかかって迷惑&lt;a href=&quot;#f-bb29751c&quot; name=&quot;fn-bb29751c&quot; title=&quot;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&quot;&gt;*2&lt;/a&gt;なので、バックグラウンドで情報を取得するようにしたい。Twitter BOT にするにも必要な処理だし。
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">これから</span>
+    <span style="color:#960050;background-color:#1e0010">閲覧時に情報を取りに行く設計になっているので、キャッシュが効いていない場合にロードがとても遅い。相手にも負荷がかかって迷惑</span>&lt;a href=<span style="color:#e6db74">&#34;#f-bb29751c&#34;</span> name=<span style="color:#e6db74">&#34;fn-bb29751c&#34;</span> title=<span style="color:#e6db74">&#34;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">なので、バックグラウンドで情報を取得するようにしたい。</span>Twitter BOT <span style="color:#960050;background-color:#1e0010">にするにも必要な処理だし。</span>
 
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-787436cb&quot; name=&quot;f-787436cb&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;幸い JAL とのコードシェアなので、そっちから情報を取得&lt;/span&gt;
-&lt;a href=&quot;#fn-bb29751c&quot; name=&quot;f-bb29751c&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&lt;/span&gt;
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-787436cb&#34;</span> name=<span style="color:#e6db74">&#34;f-787436cb&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">幸い</span> JAL <span style="color:#960050;background-color:#1e0010">とのコードシェアなので、そっちから情報を取得</span>&lt;/span&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-bb29751c&#34;</span> name=<span style="color:#e6db74">&#34;f-bb29751c&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある</span>&lt;/span&gt;
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/01/21/090035/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/01/21/090035/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -158,7 +163,7 @@ using (var client = new WebClient())
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/01/18/081720/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/01/18/081720/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

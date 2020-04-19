@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2015/09/19/203816/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/09/19/203816/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="  今週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？
-### 最初に作ったヤツ   ASP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。  http://akashi.azurewebsites.net/   ### 二番目に作ったヤツ   で、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。  http://akashiarsenal.azurewebsites.net/ ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　 " />
+            <meta name="description" content="  週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？
+### 最初に作ったヤツ   SP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。
+ http://akashi.azurewebsites.net/   ### 二番目に作ったヤツ   、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。
+ http://akashiarsenal.azurewebsites.net/ ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　 " />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,14 +65,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -80,7 +82,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2015/09/19/203816/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/09/19/203816/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：改修工廠の早見表がほしかったので作ってみた</h1>
                 </a>
             </div>
@@ -92,26 +94,29 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20150919201617.png"/> 
 </figure>
-今週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？</p>
+
+<p>週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？</p>
 <div class="section">
     ### 最初に作ったヤツ
-    <figure>
+<figure>
     <img src="/images/20150919201737.png"/> 
 </figure>
-ASP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。
+
+<p>SP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。</p>
 <ul>
 <li><a href="http://akashi.azurewebsites.net/">http://akashi.azurewebsites.net/</a></li>
 </ul>
 </div>
 <div class="section">
     ### 二番目に作ったヤツ
-    <figure>
+<figure>
     <img src="/images/20150919202146.png"/> 
 </figure>
-で、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。
+
+<p>、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。</p>
 <ul>
 <li><a href="http://akashiarsenal.azurewebsites.net/">http://akashiarsenal.azurewebsites.net/</a></li>
 </ul>ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　
@@ -122,7 +127,7 @@ ASP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/09/20/164754/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/09/20/164754/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -131,7 +136,7 @@ ASP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/09/15/183148/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/09/15/183148/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/03/10/214227/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/03/10/214227/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,13 @@
         
 
         
-            <meta name="description" content="まぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
-### 今回の目標 実行ファイルが書き換わったら、トーストで通知してほしい。  ### プロジェクトを作成する   ［テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。  次に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。  すると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。  ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで） DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした） Description：システム内で EXE ファイルが変更されるのを監視します StartType：Automatic（これでたぶん自動実行されるはず） 最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。  ### サービスの登録とデバッグ   このままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。  まず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。  Debug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。 ``` ********************************************************************** ** Visual Studio 2017 Developer Command Prompt v15." />
+            <meta name="description" content="ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
+### 今回の目標 実行ファイルが書き換わったら、トーストで通知してほしい。  ### プロジェクトを作成する   テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。
+  に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。
+  ると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。
+ ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで） DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした） Description：システム内で EXE ファイルが変更されるのを監視します StartType：Automatic（これでたぶん自動実行されるはず） 最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。  ### サービスの登録とデバッグ   のままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。
+  ず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。
+  ebug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。" />
         
 
         
@@ -47,7 +52,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +65,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows/">Windows デスクトップ アプリ</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows/">Windows デスクトップ アプリ</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/visual-studio/">Visual Studio</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/visual-studio/">Visual Studio</a>
                                     </li>
                                 
                             
@@ -80,7 +85,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/03/10/214227/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/03/10/214227/" >
                     <h1 class="entry__header-title-link-text">Visual Studio 2017 で Windows サービスを作った</h1>
                 </a>
             </div>
@@ -92,26 +97,32 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170310210104.png"/> 
 </figure>
-まぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。</p>
+
+<p>ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。</p>
 <div class="section">
     ### 今回の目標
     実行ファイルが書き換わったら、トーストで通知してほしい。
 </div>
 <div class="section">
     ### プロジェクトを作成する
-    <figure>
+<figure>
     <img src="/images/20170310210338.png"/> 
 </figure>
-［テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。<figure>
+
+<p>テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。</p>
+<figure>
     <img src="/images/20170310210613.png"/> 
 </figure>
-次に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。<figure>
+
+<p>に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。</p>
+<figure>
     <img src="/images/20170310210915.png"/> 
 </figure>
-すると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。
+
+<p>ると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。</p>
 <ul>
 <li>ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで）</li>
 <li>DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした）</li>
@@ -121,59 +132,73 @@
 </div>
 <div class="section">
     ### サービスの登録とデバッグ
-    <figure>
+<figure>
     <img src="/images/20170310211757.png"/> 
 </figure>
-このままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。<figure>
+
+<p>のままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。</p>
+<figure>
     <img src="/images/20170310211520.png"/> 
 </figure>
-まず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。<figure>
+
+<p>ず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。</p>
+<figure>
     <img src="/images/20170310211358.png"/> 
 </figure>
-Debug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。
-```
-**********************************************************************
+
+<p>ebug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。</p>
+<pre><code>**********************************************************************
 ** Visual Studio 2017 Developer Command Prompt v15.0.26228.4
 ** Copyright (c) 2017 Microsoft Corporation
 **********************************************************************
-> cd （Debug フォルダー）
-<blockquote>
-<p>installutil MihariService.exe</p>
-</blockquote>
-<pre><code class="language-<figure>
+&gt; cd （Debug フォルダー）
+
+&gt; installutil MihariService.exe
+</code></pre><figure>
     <img src="/images/20170310212252.png"/> 
 </figure>
-ログインを求められたら、ユーザー名とパスワードを入力。ユーザー名はコンピュータ名から始まる完全な奴じゃないとダメみたい。" data-lang="<figure>
-    <img src="/images/20170310212252.png"/> 
-</figure>
-ログインを求められたら、ユーザー名とパスワードを入力。ユーザー名はコンピュータ名から始まる完全な奴じゃないとダメみたい。"></code></pre><blockquote>
-<p>whoami</p>
-</blockquote>
-<pre><code class="language-で取得したのをコピーして使うといい。<figure>
+
+<p>グインを求められたら、ユーザー名とパスワードを入力。ユーザー名はコンピュータ名から始まる完全な奴じゃないとダメみたい。</p>
+<pre><code>&gt; whoami
+```で取得したのをコピーして使うといい。
+
+<figure>
     <img src="/images/20170310212519.png"/> 
 </figure>
-あとは「サービス」に移動して、登録したサービスを開始する。" data-lang="で取得したのをコピーして使うといい。<figure>
-    <img src="/images/20170310212519.png"/> 
-</figure>
-あとは「サービス」に移動して、登録したサービスを開始する。">
+
+
+とは「サービス」に移動して、登録したサービスを開始する。
+
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### デバッグ
-    <figure>
+    
+
+<figure>
     <img src="/images/20170310212629.png"/> 
 </figure>
-デバッグを行うには Windows サービスのプロセスにアタッチすればよい。<figure>
+
+
+バッグを行うには Windows サービスのプロセスにアタッチすればよい。
+
+<figure>
     <img src="/images/20170310212806.png"/> 
 </figure>
-［すべてのユーザーからのプロセスを表示する］オプションを有効化し、フィルターで Mihari を探すと早い。あとはブレークポイントを仕掛けるなりなんなりご自由に。リビルドのときは サービスを止める → ビルド → サービスを開始する（→再びアタッチする）みたいな作業フローで。ちょっと面倒くさいけど仕方ない（もしかしたら自動化できるのかもだけど、そこまではいいや）。
+
+
+すべてのユーザーからのプロセスを表示する］オプションを有効化し、フィルターで Mihari を探すと早い。あとはブレークポイントを仕掛けるなりなんなりご自由に。リビルドのときは サービスを止める → ビルド → サービスを開始する（→再びアタッチする）みたいな作業フローで。ちょっと面倒くさいけど仕方ない（もしかしたら自動化できるのかもだけど、そこまではいいや）。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### ファイルを監視する
-    <figure>
+    
+
+<figure>
     <img src="/images/20170310213029.png"/> 
 </figure>
-めんどくさくなった。MihariService.cs に FileSystemWatcher を追加して、いろいろコードを書けばおっけ。 完成してから気づいたんだけど、サービスから通知トーストを出しても、クリックに反応してくれないんだな（フォルダーを開いたりしてほしい）。単にログだけ出力し、そのログを監視してトーストを出すクライアントを別途作った方がよかった。[Windowsサービスの作り方講座　その１ - おろかな日々](http://rinta.hatenablog.com/entry/20110102/p2)[WindowsサービスをC#で書く - backyard of 伊勢的新常識](http://iseebi.hatenablog.com/entry/20080603/p1)先人たちのおかげですんなり完成しました。
+
+
+んどくさくなった。MihariService.cs に FileSystemWatcher を追加して、いろいろコードを書けばおっけ。 完成してから気づいたんだけど、サービスから通知トーストを出しても、クリックに反応してくれないんだな（フォルダーを開いたりしてほしい）。単にログだけ出力し、そのログを監視してトーストを出すクライアントを別途作った方がよかった。[Windowsサービスの作り方講座　その１ - おろかな日々](http://rinta.hatenablog.com/entry/20110102/p2)[WindowsサービスをC#で書く - backyard of 伊勢的新常識](http://iseebi.hatenablog.com/entry/20080603/p1)先人たちのおかげですんなり完成しました。
 
 &lt;/div&gt;
 
@@ -183,7 +208,7 @@ Debug フォルダーに移動してパスをコピーしておき、コマン�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/03/11/151103/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/11/151103/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -192,7 +217,7 @@ Debug フォルダーに移動してパスをコピーしておき、コマン�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/03/09/194122/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/09/194122/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

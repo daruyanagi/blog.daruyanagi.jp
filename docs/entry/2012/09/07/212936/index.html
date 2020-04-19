@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/09/07/212936/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/07/212936/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="&gt; サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。 http://blog.jp.twitter.com/2012/09/blog-post.html    さっそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
-### ちょっとした注意   **ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、 ``` @@daruyanagi // - &#34;@daruyanagi&#34; ```と @ を重ねて書けばいい。  ### もちろんヘルパーにしてみる…… と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。 ```cs # ~/App_Code/Twitter.EmbededTimeline.chtml @helper GetHtml( string id, string url, string text = null, int? width = null, int? height = null, string lang = null, string theme = null, string link_color = null, string[] related = null, string aria_polite = null) { if (string." />
+            <meta name="description" content="br/&gt;
+&gt; サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。 http://blog.jp.twitter.com/2012/09/blog-post.html    っそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
+### ちょっとした注意   *ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
+@@daruyanagi // -&gt; &quot;@daruyanagi&quot; ```と @ を重ねて書けばいい。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### もちろんヘルパーにしてみる…… と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。 ```cs # ~/App_Code/Twitter.EmbededTimeline.chtml @helper GetHtml( string id, string url, string text = null, int? width = null, int? height = null, string lang = null, string theme = null, string link_color = null, string[] related = null, string aria_polite = null) { if (string." />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,21 +62,21 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/twitter/">Twitter</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/twitter/">Twitter</a>
                                     </li>
                                 
                             
@@ -84,7 +86,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/09/07/212936/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/07/212936/" >
                     <h1 class="entry__header-title-link-text">Twitter の埋め込みタイムラインを WebMatrix で利用する</h1>
                 </a>
             </div>
@@ -96,56 +98,62 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120907205420.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <pre><code>&gt;
     サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。
 
     http://blog.jp.twitter.com/2012/09/blog-post.html
 </code></pre>
-<p><figure>
+<figure>
     <img src="/images/20120907205552.png"/> 
 </figure>
-さっそく WebMatrix 2 RC版（！）で試してみよう。<a href="https://twitter.com/settings/widgets">Login on Twitter</a> でウィジェットを作って cshtml へ貼り付けてみる。</p>
+
+<p>っそく WebMatrix 2 RC版（！）で試してみよう。<a href="https://twitter.com/settings/widgets">Login on Twitter</a> でウィジェットを作って cshtml へ貼り付けてみる。</p>
 <div class="section">
     ### ちょっとした注意
-    <figure>
+<figure>
     <img src="/images/20120907205557.png"/> 
 </figure>
-**ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
-```
-@@daruyanagi    // -> "@daruyanagi" 
+
+<p>*ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、</p>
+<pre><code>@@daruyanagi    // -&gt; &quot;@daruyanagi&quot; 
 ```と @ を重ねて書けばいい。
-</div>
-<div class="section">
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
     ### もちろんヘルパーにしてみる……
     と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。
 ```cs
 # ~/App_Code/Twitter.EmbededTimeline.chtml
-<p>@helper GetHtml(
-string id, string url, string text = null,
-int? width = null, int? height = null, string lang = null,
-string theme = null, string link_color = null,
-string[] related = null, string aria_polite = null)
+
+@helper GetHtml(
+    string id, string url, string text = null,
+    int? width = null, int? height = null, string lang = null,
+    string theme = null, string link_color = null,
+    string[] related = null, string aria_polite = null)
 {
-if (string.IsNullOrEmpty(text))
-{
-// URL を解析して適当なテキストを生成する処理
-// たとえば、
-// twitter.com/daruyanagi -&gt; @daruyanagi からのツイート
-}</p>
-<pre><code>&amp;lt;a class=&quot;twitter-timeline&quot; href=&quot;@url&quot;
-   data-widget-id=&quot;@id&quot;
-   data-theme=&quot;@theme&quot;
-   data-link-color=@link_color
-   data-related=&quot;@string.Join(&quot;, @related)&quot;
-   data-aria-polite=&quot;@aria_polite&quot;
-   width=&quot;@width&quot; height=&quot;@height&quot; lang=&quot;@lang&quot;&gt;@text&amp;lt;/a&gt;
-</code></pre>
-<p>}</p>
-<pre><code class="language-こんな感じで書いておいて、" data-lang="こんな感じで書いておいて、">```html
+    if (string.IsNullOrEmpty(text))
+    {
+        // URL を解析して適当なテキストを生成する処理
+        // たとえば、
+        // twitter.com/daruyanagi -&gt; @daruyanagi からのツイート
+    }
+
+    &amp;lt;a class=&quot;twitter-timeline&quot; href=&quot;@url&quot;
+       data-widget-id=&quot;@id&quot;
+       data-theme=&quot;@theme&quot;
+       data-link-color=@link_color
+       data-related=&quot;@string.Join(&quot;, @related)&quot;
+       data-aria-polite=&quot;@aria_polite&quot;
+       width=&quot;@width&quot; height=&quot;@height&quot; lang=&quot;@lang&quot;&gt;@text&amp;lt;/a&gt;
+}
+
+```こんな感じで書いておいて、
+```html
 
 
 &amp;lt;html lang=&quot;ja&quot;&gt;
@@ -172,10 +180,14 @@ if (string.IsNullOrEmpty(text))
     &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-```と使うんだけど、まぁ、結構微妙だよね。ウィジェット ID と URL の最低2つをコピってこなければならない。それだったら、何も考えずに&lt;a href=&quot;#f-934456ce&quot; name=&quot;fn-934456ce&quot; title=&quot;@ のエスケープはしなきゃだけど&quot;&gt;*1&lt;/a&gt;吐かれた公式のコードを張ったほうがマシだ。<figure>
+```と使うんだけど、まぁ、結構微妙だよね。ウィジェット ID と URL の最低2つをコピってこなければならない。それだったら、何も考えずに&lt;a href=&quot;#f-934456ce&quot; name=&quot;fn-934456ce&quot; title=&quot;@ のエスケープはしなきゃだけど&quot;&gt;*1&lt;/a&gt;吐かれた公式のコードを張ったほうがマシだ。
+
+<figure>
     <img src="/images/20120907212725.png"/> 
 </figure>
-試しにウィジェット ID を使いまわしていろんなパラメーターを入れると、 IE がなにかお世話をしてくれるみたい。このメッセージは初めてみたかも。
+
+
+しにウィジェット ID を使いまわしていろんなパラメーターを入れると、 IE がなにかお世話をしてくれるみたい。このメッセージは初めてみたかも。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
@@ -216,7 +228,7 @@ if (string.IsNullOrEmpty(text))
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/07/221315/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/07/221315/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -225,7 +237,7 @@ if (string.IsNullOrEmpty(text))
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/07/102100/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/07/102100/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

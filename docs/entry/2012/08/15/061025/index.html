@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/15/061025/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/15/061025/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -47,7 +47,7 @@ using System.Web; public static class Theme { const string ThemeBaseDir = &#34;~
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -57,7 +57,7 @@ using System.Web; public static class Theme { const string ThemeBaseDir = &#34;~
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/15/061025/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/15/061025/" >
                     <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（5）</h1>
                 </a>
             </div>
@@ -122,30 +122,30 @@ using System.Web; public static class Theme { const string ThemeBaseDir = &#34;~
 &lt;!-- &lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@App.GetThemePath()/Styles/Main.css&#34;</span> /&gt; --&gt;
 &amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@Theme.Path/Styles/Main.css&#34;</span> /&gt;
 
-<span style="color:#960050;background-color:#1e0010">```</span><figure>
+</code></pre></div><figure>
     <img src="/images/20120815053803.png"/> 
 </figure>
-dynamic <span style="color:#960050;background-color:#1e0010">型にしたら入力補完されないけれど、ちゃんとクラスにしたら……ほら！</span>　<span style="color:#960050;background-color:#1e0010">クラスの責務も明確になるし、断然こっちのほうがいいなと自己満足した。</span>
 
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">閑話休題</span>
-    WebMatrix <span style="color:#ae81ff">2</span> RC <span style="color:#960050;background-color:#1e0010">版はなかなか完成度が高いと思うけれど、テキストのコピーにやたら時間がかかったり</span>&lt;a href=<span style="color:#e6db74">&#34;#f-76078fae&#34;</span> name=<span style="color:#e6db74">&#34;fn-76078fae&#34;</span> title=<span style="color:#e6db74">&#34;とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">、まれにコピー＆ペーストそのものができなくなってしまう。</span> NuGet <span style="color:#960050;background-color:#1e0010">のリボンボタンが行方不明になるのもたまに困る。</span><figure>
+<p>ynamic 型にしたら入力補完されないけれど、ちゃんとクラスにしたら……ほら！　クラスの責務も明確になるし、断然こっちのほうがいいなと自己満足した。</p>
+<div class="section">
+    ### 閑話休題
+    WebMatrix 2 RC 版はなかなか完成度が高いと思うけれど、テキストのコピーにやたら時間がかかったり<a href="#f-76078fae" name="fn-76078fae" title="とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある">*1</a>、まれにコピー＆ペーストそのものができなくなってしまう。 NuGet のリボンボタンが行方不明になるのもたまに困る。
+<figure>
     <img src="/images/20120815054857.png"/> 
 </figure>
-あと<span style="color:#960050;background-color:#1e0010">、［</span>Alt<span style="color:#960050;background-color:#1e0010">］キーでメニューのナビゲーションが出るのだけれど、そっちにフォーカスがとられて矩形選択や</span> IME <span style="color:#960050;background-color:#1e0010">の切り替え</span>&lt;a href=<span style="color:#e6db74">&#34;#f-52b40b4a&#34;</span> name=<span style="color:#e6db74">&#34;fn-52b40b4a&#34;</span> title=<span style="color:#e6db74">&#34;英語配列だと［Alt］＋［~］キーが標準&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">に支障が出るのもなおしてほしいところかな。［</span>Alt<span style="color:#960050;background-color:#1e0010">］キー</span> <span style="color:#960050;background-color:#1e0010">＝</span> <span style="color:#960050;background-color:#1e0010">メニュー操作</span> <span style="color:#960050;background-color:#1e0010">というのは確かにわかりやすいのだけれど。不具合のいくつかはすでに報告済み。</span> RTM <span style="color:#960050;background-color:#1e0010">でちゃんとなおればいいなぁ、と思った。</span>
 
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-76078fae&#34;</span> name=<span style="color:#e6db74">&#34;f-76078fae&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">とくに［テキストを折り返す］を</span> ON <span style="color:#960050;background-color:#1e0010">にすると絶望的に遅いことがある</span>&lt;/span&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-52b40b4a&#34;</span> name=<span style="color:#e6db74">&#34;f-52b40b4a&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">英語配列だと［</span>Alt<span style="color:#960050;background-color:#1e0010">］＋［</span>~<span style="color:#960050;background-color:#1e0010">］キーが標準</span>&lt;/span&gt;
-&lt;/div&gt;
+<p>と、［Alt］キーでメニューのナビゲーションが出るのだけれど、そっちにフォーカスがとられて矩形選択や IME の切り替え<a href="#f-52b40b4a" name="fn-52b40b4a" title="英語配列だと［Alt］＋［~］キーが標準">*2</a>に支障が出るのもなおしてほしいところかな。［Alt］キー ＝ メニュー操作 というのは確かにわかりやすいのだけれど。不具合のいくつかはすでに報告済み。 RTM でちゃんとなおればいいなぁ、と思った。</p>
+</div><div class="footnote">
+<a href="#fn-76078fae" name="f-76078fae" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある</span>
+<a href="#fn-52b40b4a" name="f-52b40b4a" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">英語配列だと［Alt］＋［~］キーが標準</span>
+</div>
 
-</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/15/071026/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/15/071026/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -154,7 +154,7 @@ dynamic <span style="color:#960050;background-color:#1e0010">型にしたら入�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/15/051237/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/15/051237/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

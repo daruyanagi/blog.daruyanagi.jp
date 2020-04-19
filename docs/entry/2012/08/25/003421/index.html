@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/25/003421/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/25/003421/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ のんびりやっていこう。今回はユーザー登録するで。 ```cs @{ var name = &#34;&#34;; var password = &#34;&#34;; var confirmPassword = &#34;&#34;; if (IsPost) { name = Request.Form[&quot;name&quot;]; password = Request.Form[&quot;password&quot;]; confirmPassword = Request.Form[&quot;confirmPassword&quot;]; // ここでバリデーション（値が妥当なものか検証）する if (Validation.IsValid()) { if (WebSecurity.GetUserId(name) &gt; -1) { ModelState.AddFormError(&quot;Username alredy exists&quot;); } else { try { WebSecurity.CreateUserAndAccount( name, password, new { Name = name }); WebSecurity." />
+            <meta name="description" content="br/&gt;
+ WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ のんびりやっていこう。今回はユーザー登録するで。 ```cs @{ var name = &#34;&#34;; var password = &#34;&#34;; var confirmPassword = &#34;&#34;; if (IsPost) { name = Request.Form[&quot;name&quot;]; password = Request.Form[&quot;password&quot;]; confirmPassword = Request.Form[&quot;confirmPassword&quot;]; // ここでバリデーション（値が妥当なものか検証）する if (Validation.IsValid()) { if (WebSecurity.GetUserId(name) &gt; -1) { ModelState.AddFormError(&quot;Username alredy exists&quot;); } else { try { WebSecurity.CreateUserAndAccount( name, password, new { Name = name }); WebSecurity." />
         
 
         
@@ -46,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,14 +60,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -76,7 +77,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/25/003421/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/25/003421/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん</h1>
                 </a>
             </div>
@@ -88,10 +89,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120824233928.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a></li>
 <li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ</a></li>
@@ -176,10 +178,14 @@ if (Validation.IsValid())
             WebSecurity.CreateUserAndAccount(
                 name, password, new { Name = name });
 
-```絶対こっちにするやろ。せっかく WebSecurity Helper を使うんだから、大いに頼ればよろしい。<figure>
+```絶対こっちにするやろ。せっかく WebSecurity Helper を使うんだから、大いに頼ればよろしい。
+
+<figure>
     <img src="/images/20120825001002.png"/> 
 </figure>
-&lt;br/&gt;
+
+
+br/&gt;
 
 
 &lt;/div&gt;
@@ -248,19 +254,27 @@ Validation.Add(&quot;password&quot;,
     &quot;Please correct the errors and try again.&quot;,
     excludeFieldErrors: true, htmlAttributes: null)
 
-```でページ全体についてのバリデーション結果を表示する。<figure>
+```でページ全体についてのバリデーション結果を表示する。
+
+<figure>
     <img src="/images/20120825002435.png"/> 
 </figure>
-フォームの各フィールドは、
+
+
+ォームの各フィールドは、
 ```cs
 &amp;lt;label for=&quot;name&quot; @if (!ModelState.IsValidField(&quot;name&quot;)) {&amp;lt;text&gt;class=&quot;error-label&quot;&amp;lt;/text&gt;}&gt;Name&amp;lt;/label&gt; 
 &amp;lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; value=&quot;@name&quot; @Validation.For(&quot;name&quot;) /&gt;
 @Html.ValidationMessage(&quot;name&quot;)
 
-```このコードでワンセットみたい。 Validation.For() は JavaScript によるバリデーションに必要な data- 属性を出力する（今回は使ってない）。 Html.ValidationMessage() はバリデーションエラーのメッセージがあれば表示する。このメッセージはさっき ModelState に登録したエラーから取得するみたい。<figure>
+```このコードでワンセットみたい。 Validation.For() は JavaScript によるバリデーションに必要な data- 属性を出力する（今回は使ってない）。 Html.ValidationMessage() はバリデーションエラーのメッセージがあれば表示する。このメッセージはさっき ModelState に登録したエラーから取得するみたい。
+
+<figure>
     <img src="/images/20120825002611.png"/> 
 </figure>
-後者のコードは使いまわせそうないわばイディオムなので、ヘルパーか拡張メソッドにしておくとよさそうだ。今回は以下のようにしてみたよ。
+
+
+者のコードは使いまわせそうないわばイディオムなので、ヘルパーか拡張メソッドにしておくとよさそうだ。今回は以下のようにしてみたよ。
 ```cs
 ~/App_Code/WebPageExtension.cs
 
@@ -374,7 +388,7 @@ public static class WebPageExtension
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/26/114129/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/26/114129/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -383,7 +397,7 @@ public static class WebPageExtension
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/24/105121/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/24/105121/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

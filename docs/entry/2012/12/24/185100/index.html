@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/12/24/185100/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/12/24/185100/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="前々回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。  
-#### 1. NuGet が使えない リボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。  #### 2. 実環境で動かすにはコンポーネントが足りません ［テンプレート］ボタンからサイトを作成すると、 App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されます。しかし、空のフォルダーから Web サイトを作るとこれらが追加されないため、たとえば FTP でファイルをサーバーへ丸コピしても動作しません。ローカルでは「WebMatrix 2」が気を利かせてくれるのでちゃんと動くのですけど。  ### 解決策   というわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります*1。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。  ただし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。    “ASP." />
+            <meta name="description" content="々回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。
+  br/&gt;
+#### 1. NuGet が使えない リボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。  #### 2. 実環境で動かすにはコンポーネントが足りません ［テンプレート］ボタンからサイトを作成すると、 App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されます。しかし、空のフォルダーから Web サイトを作るとこれらが追加されないため、たとえば FTP でファイルをサーバーへ丸コピしても動作しません。ローカルでは「WebMatrix 2」が気を利かせてくれるのでちゃんと動くのですけど。  ### 解決策   いうわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります*1。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。
+  だし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。" />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +62,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -77,7 +79,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/12/24/185100/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/12/24/185100/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2：フォルダーから Web サイトを作成する場合の注意点</h1>
                 </a>
             </div>
@@ -89,13 +91,16 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20121202135815.png"/> 
 </figure>
-前々回（<a href="https://blog.daruyanagi.jp/entry/2012/12/07/125835">WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ</a>）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。<figure>
+
+<p>々回（<a href="https://blog.daruyanagi.jp/entry/2012/12/07/125835">WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ</a>）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。</p>
+<figure>
     <img src="/images/20121207114929.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <div class="section">
     #### 1. NuGet が使えない
     リボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。
@@ -106,19 +111,25 @@
 </div>
 <div class="section">
     ### 解決策
-    <figure>
+<figure>
     <img src="/images/20121224183654.png"/> 
 </figure>
-というわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります<a href="#f-c2c022f9" name="fn-c2c022f9" title="ExpressWeb の場合はどうなるのか、などは検証していません。多分動くんじゃないかな">*1</a>。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。<figure>
+
+<p>いうわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります<a href="#f-c2c022f9" name="fn-c2c022f9" title="ExpressWeb の場合はどうなるのか、などは検証していません。多分動くんじゃないかな">*1</a>。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。</p>
+<figure>
     <img src="/images/20121224184558.png"/> 
 </figure>
-ただし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。<figure>
+
+<p>だし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。</p>
+<figure>
     <img src="/images/20121224184608.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20121224184614.png"/> 
 </figure>
-“ASP.NET Web ページ”の最新版は 2.0 なのでアップデートをお勧めします。1.0 と 2.0 の違いは……まぁ、また今度。……どうでもいい Tips でしたね！Windows Azure Web サイトは、基本的な機能であればタダで利用できます<a href="#f-50298c3d" name="fn-50298c3d" title="ただし、本人確認のためにクレジットカードが必要。まぁ、大学生なら生協かどこかでカード作ってもらえばいいんじゃないかな">*2</a>。次回はその登録・利用フローでも説明しようかと思います<a href="#f-2edda042" name="fn-2edda042" title="というより、スクリーンショットととってあるので、死蔵するよりは公開しておきたいｗ">*3</a>。
+
+<p>ASP.NET Web ページ”の最新版は 2.0 なのでアップデートをお勧めします。1.0 と 2.0 の違いは……まぁ、また今度。……どうでもいい Tips でしたね！Windows Azure Web サイトは、基本的な機能であればタダで利用できます<a href="#f-50298c3d" name="fn-50298c3d" title="ただし、本人確認のためにクレジットカードが必要。まぁ、大学生なら生協かどこかでカード作ってもらえばいいんじゃないかな"><em>2</a>。次回はその登録・利用フローでも説明しようかと思います<a href="#f-2edda042" name="fn-2edda042" title="というより、スクリーンショットととってあるので、死蔵するよりは公開しておきたいｗ"></em>3</a>。</p>
 </div><div class="footnote">
 <a href="#fn-c2c022f9" name="f-c2c022f9" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ExpressWeb の場合はどうなるのか、などは検証していません。多分動くんじゃないかな</span>
 <a href="#fn-50298c3d" name="f-50298c3d" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">ただし、本人確認のためにクレジットカードが必要。まぁ、大学生なら生協かどこかでカード作ってもらえばいいんじゃないかな</span>
@@ -130,7 +141,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/12/25/030702/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/12/25/030702/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -139,7 +150,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/12/23/033842/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/12/23/033842/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

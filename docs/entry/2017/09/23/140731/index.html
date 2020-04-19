@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/09/23/140731/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/09/23/140731/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="メインリストビューに Last Update 欄を設ける  それに伴うコード整理 Refresh ボタンは不要になったので廃止  通知トレイで DEBUG モードなのがわかるように ファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）  それに伴うリグレッションの修正 ついでにステータスバーに総稼働時間を表示するように  リファクタリング Click Once がめんどいのでやめた（ごめんなさい！）     ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした   ClickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。 ```ps1 # 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &#34;Omawari\bin&#34; 入力フォルダー $src = Join-Path $root &ldquo;Release&rdquo;
-出力フォルダー $version = (Get-ItemProperty (Join-Path $src &ldquo;Omawari.exe&rdquo;)).VersionInfo.FileVersion $dest = Join-Path $root Omawari-$version." />
+            <meta name="description" content="br/&gt;
+ メインリストビューに Last Update 欄を設ける  それに伴うコード整理 Refresh ボタンは不要になったので廃止  通知トレイで DEBUG モードなのがわかるように ファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）  それに伴うリグレッションの修正 ついでにステータスバーに総稼働時間を表示するように  リファクタリング Click Once がめんどいのでやめた（ごめんなさい！）     ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした   lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。
+# 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &#34;Omawari\bin&#34; # 入力フォルダー $src = Join-Path $root &#34;Release&#34; # 出力フォルダー $version = (Get-ItemProperty (Join-Path $src &#34;Omawari.exe&#34;)).VersionInfo.FileVersion $dest = Join-Path $root Omawari-$version." />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,14 +64,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/omawari/">Omawari</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/omawari/">Omawari</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/09/23/140731/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/09/23/140731/" >
                     <h1 class="entry__header-title-link-text">Omawari 1.2.0.0：いわゆる Web 更新チェッカーだけど、細かいところを改善した</h1>
                 </a>
             </div>
@@ -92,10 +93,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170923135951.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li>メインリストビューに Last Update 欄を設ける
 <ul>
@@ -111,40 +113,50 @@
 <li>リファクタリング</li>
 <li>Click Once がめんどいのでやめた（ごめんなさい！）</li>
 </ul>
-<div class="github-card" data-user="daruyanagi/Omawari" data-repo="releases" data-width="400" data-height="" data-theme="default"></div>
+<div class="github-card" data-user="daruyanagi/Omawari" data-repo="releases" data-width="400" data-height="" data-theme="default"></div
+<blockquote>
+</blockquote>
 <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 <br/>
 <div class="section">
     ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした
-    <figure>
+<figure>
     <img src="/images/20170923140119.png"/> 
 </figure>
-ClickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。
-```ps1
-# 起点となる bin フォルダー
-$root = Join-Path $PSScriptRoot "Omawari\bin"
-<h1 id="入力フォルダー">入力フォルダー</h1>
-<p>$src = Join-Path $root &ldquo;Release&rdquo;</p>
-<h1 id="出力フォルダー">出力フォルダー</h1>
-<p>$version = (Get-ItemProperty (Join-Path $src &ldquo;Omawari.exe&rdquo;)).VersionInfo.FileVersion
-$dest = Join-Path $root Omawari-$version.zip</p>
-<h1 id="zip-で圧縮">ZIP で圧縮</h1>
-<p>Compress-Archive -Path $src/* -DestinationPath $dest</p>
-<h1 id="フォルダーを開く">フォルダーを開く</h1>
-<p>Invoke-Item $root</p>
-<pre><code class="language-リリースビルドの実行ファイルのバージョンを読んで" data-lang="リリースビルドの実行ファイルのバージョンを読んで"> PowerShell なら割と書けるようになってきた！（バージョンの取得の仕方はググったけど……）コレでもアップデートは面倒なので、Chocolatey パッケージにすることも画策してる。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>&mdash; 言われなくても家にいるやなぎ ♨🍊🐟🇯🇵 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736?ref_src=twsrc%5Etfw">September 22, 2017</a></blockquote>
+
+<p>lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
+$root = Join-Path $PSScriptRoot <span style="color:#e6db74">&#34;Omawari\bin&#34;</span>
+
+<span style="color:#75715e"># 入力フォルダー</span>
+$src = Join-Path $root <span style="color:#e6db74">&#34;Release&#34;</span>
+
+<span style="color:#75715e"># 出力フォルダー</span>
+$version = (Get-ItemProperty (Join-Path $src <span style="color:#e6db74">&#34;Omawari.exe&#34;</span>)).VersionInfo.FileVersion
+$dest = Join-Path $root Omawari-$version.zip
+
+<span style="color:#75715e"># ZIP で圧縮</span>
+Compress-Archive -Path $src/* -DestinationPath $dest
+
+<span style="color:#75715e"># フォルダーを開く</span>
+Invoke-Item $root
+
+```リリースビルドの実行ファイルのバージョンを読んで Omawari-*.*.*.*.zip という名前の ZIP アーカイブに圧縮するだけ<span style="color:#960050;background-color:#1e0010">。</span>この程度の&lt;br/&gt;
+ PowerShell なら割と書けるようになってきた<span style="color:#960050;background-color:#1e0010">！（</span>バージョンの取得の仕方はググったけど<span style="color:#960050;background-color:#1e0010">……）</span>コレでもアップデートは面倒なので<span style="color:#960050;background-color:#1e0010">、</span>Chocolatey パッケージにすることも画策してる<span style="color:#960050;background-color:#1e0010">。</span>
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>&mdash; 40やなぎ ♨🍊🐟🇯🇵 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736?ref_src=twsrc%5Etfw">September 22, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/10/01/090000/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/10/01/090000/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -153,7 +165,7 @@ $dest = Join-Path $root Omawari-$version.zip</p>
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/21/000957/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/21/000957/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

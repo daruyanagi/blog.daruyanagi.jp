@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/08/10/155243/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/08/10/155243/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,12 @@
 
         
             <meta name="description" content="前回（WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では SQL Server Compact Edition（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。SQL CE というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。
-### データベースの作成   WebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。  では、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。  今回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。  PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ［ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。  コードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。 ```cs @{ if (IsPost) // POST 要求だけを受け付けましょう { // Request[&#34;name&#34;] で送られてきた名前を取得。 // POST データなら Request." />
+### データベースの作成   ebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。
+  は、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。
+  回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。
+ PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。
+  ードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
+@{ if (IsPost) // POST 要求だけを受け付けましょう  { // Request[&#34;name&#34;] で送られてきた名前を取得。  // POST データなら Request." />
         
 
         
@@ -47,7 +52,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,21 +65,21 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix 3 で Wiki クローンを作る</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix 3 で Wiki クローンを作る</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -84,7 +89,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/08/10/155243/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/08/10/155243/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 3 で Wiki クローンを作る vol.1</h1>
                 </a>
             </div>
@@ -99,16 +104,21 @@
             <p>前回（<a href="https://blog.daruyanagi.jp/entry/2013/07/17/054740">WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ</a>）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では <strong>SQL Server Compact Edition</strong>（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。<strong>SQL CE</strong> というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。</p>
 <div class="section">
     ### データベースの作成
-    <figure>
+<figure>
     <img src="/images/20130810152905.png"/> 
 </figure>
-WebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。<figure>
+
+<p>ebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。</p>
+<figure>
     <img src="/images/20130810152957.png"/> 
 </figure>
-では、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。<figure>
+
+<p>は、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。</p>
+<figure>
     <img src="/images/20130810153138.png"/> 
 </figure>
-今回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。
+
+<p>回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。</p>
 <ul>
 <li>PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。</li>
 <li>Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。</li>
@@ -119,64 +129,71 @@ WebMatrix でデータを扱うには、［データベース］というワー�
 </div>
 <div class="section">
     ### データの入力画面の作成
-    <figure>
+<figure>
     <img src="/images/20130810153956.png"/> 
 </figure>
-［ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、<a href="http://***/NewPost">http://***/NewPost</a> でアクセスできます。<figure>
+
+<p>ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、<a href="http://***/NewPost">http://***/NewPost</a> でアクセスできます。</p>
+<figure>
     <img src="/images/20130810154059.png"/> 
 </figure>
-コードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
-```cs
-@{
-    if (IsPost) // POST 要求だけを受け付けましょう
-    {
-        // Request["name"] で送られてきた名前を取得。
-        // POST データなら Request.Form["name"] の方がフォーマルな書き方かな
-        var title = Request["title"];
-        var raw_text = Request["raw-text"];
-        var now = DateTime.Now;
-<pre><code>    // データベースを開く。拡張子はいらない
-    using (var db = Database.Open(&quot;Green Tights&quot;))
-    {
-        const string query = @&quot;
-            INSERT INTO Post(Title, CreatedAt, UpdatedAt, RawText)
-            VALUES(@0, @1, @2, @3)
-            &quot;;
-        db.Query(query, title, now, now, raw_text);
+
+<p>ードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">if</span> (IsPost) <span style="color:#75715e">// POST 要求だけを受け付けましょう
+</span><span style="color:#75715e"></span>    {
+        <span style="color:#75715e">// Request[&#34;name&#34;] で送られてきた名前を取得。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// POST データなら Request.Form[&#34;name&#34;] の方がフォーマルな書き方かな
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> title = Request[<span style="color:#e6db74">&#34;title&#34;</span>];
+        <span style="color:#66d9ef">var</span> raw_text = Request[<span style="color:#e6db74">&#34;raw-text&#34;</span>];
+        <span style="color:#66d9ef">var</span> now = DateTime.Now;
+
+        <span style="color:#75715e">// データベースを開く。拡張子はいらない
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> db = Database.Open(<span style="color:#e6db74">&#34;Green Tights&#34;</span>))
+        {
+            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> query = <span style="color:#e6db74">@&#34;
+</span><span style="color:#e6db74">                INSERT INTO Post(Title, CreatedAt, UpdatedAt, RawText)
+</span><span style="color:#e6db74">                VALUES(@0, @1, @2, @3)
+</span><span style="color:#e6db74">                &#34;</span>;
+            db.Query(query, title, now, now, raw_text);
+        }
     }
 }
-</code></pre>
-<p>}</p>
-<p>&lt;!DOCTYPE html&gt;</p>
-<p>&lt;html lang=&quot;en&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&rdquo; /&gt;
-&lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;form method=&quot;post&quot;&gt; &lt;!&ndash; Submit すると自分を POST で呼ぶ &ndash;&gt;
-&lt;p&gt;&lt;input type=&quot;text&rdquo; id=&quot;title&rdquo; name=&quot;title&rdquo; /&gt;&lt;/p&gt;
-&lt;p&gt;&lt;textarea id=&quot;raw-text&rdquo; name=&quot;raw-text&quot;&gt;&lt;/textarea&gt;&lt;/p&gt;
-&lt;p&gt;&lt;input type=&quot;submit&rdquo; /&gt;&lt;/p&gt;
-&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-試しに実行し、［データ］ワークペースでデータを確認してみましょう。表示モードを［定義］から［データ］に切り替えてね！<figure>
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
+    &amp;lt;head&gt;
+        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
+        &amp;lt;title&gt;&amp;lt;/title&gt;
+    &amp;lt;/head&gt;
+    &amp;lt;body&gt;
+        &amp;lt;form method=<span style="color:#e6db74">&#34;post&#34;</span>&gt; &amp;lt;!-- Submit <span style="color:#960050;background-color:#1e0010">すると自分を</span> POST <span style="color:#960050;background-color:#1e0010">で呼ぶ</span> --&gt;
+            &amp;lt;p&gt;&amp;lt;input type=<span style="color:#e6db74">&#34;text&#34;</span> id=<span style="color:#e6db74">&#34;title&#34;</span> name=<span style="color:#e6db74">&#34;title&#34;</span> /&gt;&amp;lt;/p&gt;
+            &amp;lt;p&gt;&amp;lt;textarea id=<span style="color:#e6db74">&#34;raw-text&#34;</span> name=<span style="color:#e6db74">&#34;raw-text&#34;</span>&gt;&amp;lt;/textarea&gt;&amp;lt;/p&gt;
+            &amp;lt;p&gt;&amp;lt;input type=<span style="color:#e6db74">&#34;submit&#34;</span> /&gt;&amp;lt;/p&gt;
+        &amp;lt;/form&gt;
+    &amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```試しに実行し、［データ］ワークペースでデータを確認してみましょう。表示モードを［定義］から［データ］に切り替えてね！</span>
+
+<figure>
     <img src="/images/20130810154452.png"/> 
 </figure>
-なにか……入ってますね？　成功！　次回はこれを取り出して表示して見ることにしましょう。おつかれさまです。<a" data-lang="試しに実行し、［データ］ワークペースでデータを確認してみましょう。表示モードを［定義］から［データ］に切り替えてね！<figure>
-    <img src="/images/20130810154452.png"/> 
-</figure>
-なにか……入ってますね？　成功！　次回はこれを取り出して表示して見ることにしましょう。おつかれさまです。<a">
+
+
+<span style="color:#960050;background-color:#1e0010">にか……入ってますね？</span>　<span style="color:#960050;background-color:#1e0010">成功！</span>　<span style="color:#960050;background-color:#1e0010">次回はこれを取り出して表示して見ることにしましょう。おつかれさまです。</span>&lt;a href=<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/category/WebMatrix%203%20%E3%81%A7%20Wiki%20%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B&#34;</span>&gt;WebMatrix <span style="color:#ae81ff">3</span> <span style="color:#960050;background-color:#1e0010">で</span> Wiki <span style="color:#960050;background-color:#1e0010">クローンを作る</span>&lt;/a&gt;
+
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/08/11/021644/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/08/11/021644/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -185,7 +202,7 @@ WebMatrix でデータを扱うには、［データベース］というワー�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/08/09/224243/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/08/09/224243/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

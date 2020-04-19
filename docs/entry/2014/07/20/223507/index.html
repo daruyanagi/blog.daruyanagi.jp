@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/07/20/223507/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/07/20/223507/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の neue cc - ASP.NETでの定期的なモニタリング手法 でもう一度実装しなおしてみた。  
+            <meta name="description" content="WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の neue cc - ASP.NETでの定期的なモニタリング手法 でもう一度実装しなおしてみた。
+  br/&gt;
 ### Web.config ```xml xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?  .web&gt; debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt; .web&gt;
 .webServer&gt;  name=&quot;SchedulerModule&rdquo; type=&quot;SchedulerModule&rdquo;/&gt;
 .webServer&gt;
@@ -50,7 +51,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,14 +64,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net/">ASP.net</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/07/20/223507/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/07/20/223507/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：IHttpModule で定期実行を実装する</h1>
                 </a>
             </div>
@@ -92,10 +93,12 @@
 
         </div>
         <div class="entry__content">
-            <p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ</a> で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の <a href="http://neue.cc/2013/07/20_416.html">neue cc - ASP.NETでの定期的なモニタリング手法</a> でもう一度実装しなおしてみた。<figure>
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ</a> で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の <a href="http://neue.cc/2013/07/20_416.html">neue cc - ASP.NETでの定期的なモニタリング手法</a> でもう一度実装しなおしてみた。</p>
+<figure>
     <img src="/images/20140720222501.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <div class="section">
     ### Web.config
     ```xml
@@ -153,10 +156,14 @@ public class SchedulerModule : IHttpModule
     }
 }
 
-```SchedulerModule はこんな感じ。IHttpModule インターフェイス（Init、Dispose）を実装する。<figure>
+```SchedulerModule はこんな感じ。IHttpModule インターフェイス（Init、Dispose）を実装する。
+
+<figure>
     <img src="/images/20140720222920.png"/> 
 </figure>
-（ExpressWeb で動かして initializedModuleCount をインクリメント・デクリメントをメールで通知するようにしてみたらこんな感じ）SchedulerModule はいくつも作成（＆いくつも殺される）ので、ちゃんと数をカウントして、タイマーが大量生産されないように管理する必要があるそうな（← ASP.NET のライフサイクルをちゃんとわかってない。確かライフサイクルを書いたポスターがあったはずなので、今度確認しておこう）。
+
+
+ExpressWeb で動かして initializedModuleCount をインクリメント・デクリメントをメールで通知するようにしてみたらこんな感じ）SchedulerModule はいくつも作成（＆いくつも殺される）ので、ちゃんと数をカウントして、タイマーが大量生産されないように管理する必要があるそうな（← ASP.NET のライフサイクルをちゃんとわかってない。確かライフサイクルを書いたポスターがあったはずなので、今度確認しておこう）。
 
 &lt;/div&gt;
 
@@ -166,7 +173,7 @@ public class SchedulerModule : IHttpModule
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/21/001046/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/21/001046/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -175,7 +182,7 @@ public class SchedulerModule : IHttpModule
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/20/023328/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/20/023328/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

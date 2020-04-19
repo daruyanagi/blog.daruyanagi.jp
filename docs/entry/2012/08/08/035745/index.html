@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/08/035745/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/08/035745/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="あと、 @RenderPage(&quot;_Footer.cshtml&quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。  
+            <meta name="description" content="あと、 @RenderPage(&quot;_Footer.cshtml&quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。 WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。
+  br/&gt;
 ### 拡張メソッド まずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。 ```cs using System.Web.WebPages; static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data); } }
 ```html : : &amp;lt;div id=&quot;site-content&quot;&gt; &amp;lt;article id=&quot;site-body&quot;&gt; @RenderBody() &amp;lt;/article&gt; &amp;lt;aside id=&quot;site-sidebar&quot;&gt; @RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt; &amp;lt;/aside&gt; &amp;lt;/div&gt; &amp;lt;footer id=&quot;site-footer&quot;&gt; @this." />
         
@@ -48,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +62,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +79,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/08/035745/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/08/035745/" >
                     <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（2）</h1>
                 </a>
             </div>
@@ -96,10 +97,12 @@
 
     WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ
 </code></pre>
-<p>これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。<figure>
+<p>これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。</p>
+<figure>
     <img src="/images/20120808030122.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <div class="section">
     ### 拡張メソッド
     まずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。
@@ -226,7 +229,7 @@ return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data);
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/08/043041/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/08/043041/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -235,7 +238,7 @@ return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data);
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/07/054832/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/07/054832/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

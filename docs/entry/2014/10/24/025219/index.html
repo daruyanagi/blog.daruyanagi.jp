@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/10/24/025219/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/10/24/025219/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,8 @@
 
         
             <meta name="description" content="WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
-### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。  ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;" />
+### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
+ ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;" />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/virustoral/">VirusToral </a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/virustoral/">VirusToral </a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/10/24/025219/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/10/24/025219/" >
                     <h1 class="entry__header-title-link-text">VirusTotal API を使ってみる</h1>
                 </a>
             </div>
@@ -102,10 +103,11 @@
 </div>
 <div class="section">
     ### 準備
-    <figure>
+<figure>
     <img src="/images/20141024021938.png"/> 
 </figure>
-まずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
+
+<p>ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。</p>
 </div>
 <div class="section">
     ### VirusToral にファイルのスキャンをお願いする
@@ -129,7 +131,14 @@ public async Task&lt;dynamic> RequestFileScan(string filename)
 }
 </code></pre>
 <p>}</p>
-<pre><code class="language-HttpClient" data-lang="HttpClient"></code></pre><p>{&ldquo;response_code&rdquo;: 1,
+<pre><code class="language-HttpClient" data-lang="HttpClient">
+<figure>
+    <img src="/images/20141024024314.png"/> 
+</figure>
+
+
+なみに、返り値の Json の中身はこんな感じです。
+</code></pre><p>{&ldquo;response_code&rdquo;: 1,
 &ldquo;verbose_msg&rdquo;: &ldquo;Scan request successfully queued, come back later for the report&rdquo;,
 &ldquo;resource&rdquo;: &ldquo;999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0&rdquo;,
 &ldquo;scan_id&rdquo;: &ldquo;999f7d93aa3d4a1a94cccfb4ea96bc2e28fd48020a481aa2dc7e215f3ce27bc0-1324376258&rdquo;,
@@ -138,6 +147,13 @@ public async Task&lt;dynamic> RequestFileScan(string filename)
 &ldquo;sha1&rdquo;: &ldquo;2cc875bca8030d745adfd14388b8c001471c2474&rdquo;,
 &ldquo;md5&rdquo;: &ldquo;4a00e1a3a14e4fec6f2b353b4f20bb73&rdquo;}</p>
 <pre><code class="language-response_code" data-lang="response_code">
+<figure>
+    <img src="/images/20141024023747.png"/> 
+</figure>
+
+
+ポートは scan_id で問い合わせますので、どこかに保存しておきましょう。
+
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### VirusToral のスキャンレポートを取得する
@@ -202,10 +218,33 @@ public async Task&amp;lt;dynamic&gt; GetFileScanResults(string id)
 <p>&ldquo;permalink&rdquo;: &ldquo;<a href="https://www.virustotal.com/file/52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c/analysis/1273894724/%22">https://www.virustotal.com/file/52d3df0ed60c46f336c131bf2ca454f73bafdc4b04dfa2aea80746f5ba9e6d1c/analysis/1273894724/&quot;</a>
 }</p>
 <pre><code class="language-permalink" data-lang="permalink">
+<figure>
+    <img src="/images/20141024025040.png"/> 
+</figure>
+
+
+otal はスキャンに利用したウイルス対策エンジンの数、positives はそのなかで指定したファイルがマルウェアだと答えた（陽性）エンジンの数です。ウイルス対策エンジンのバージョンや、検知したウイルスを彼らが何と呼んでいるかも取得できますね。
+
+<figure>
+    <img src="/images/20141024023722.png"/> 
+</figure>
+
+
+イルススキャンをリクエストしてレポートが出来上がるまでには少し時間がかかるので、気を付けましょう。まだレポートができあがっていない場合は、「おとといこいや（意訳）」という verbose_msg がいただけます（response_code は -2 かな）。
+
+<figure>
+    <img src="/images/20141024024537.png"/> 
+</figure>
+
+
+とは適当にデータバインディングして、それっぽく UI を作ってください。簡単ですけど、今日はこの辺で。
+
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### だるやなぎはマスコットアプリ文化祭 2014を応援しています
-    &lt;iframe src=&quot;http://hatenablog.com/embed?url=http%3A%2F%2Fpronama.github.io%2Fmascot-apps-contest%2F2014%2F&quot; title=&quot;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;a href=&quot;http://pronama.github.io/mascot-apps-contest/2014/&quot;&gt;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&lt;/a&gt;&lt;/iframe&gt;謎の「だるやなぎ部門」には素敵なプレゼントを用意しています。ぜひ参加してみてくださいね。<figure>
+    &lt;iframe src=&quot;http://hatenablog.com/embed?url=http%3A%2F%2Fpronama.github.io%2Fmascot-apps-contest%2F2014%2F&quot; title=&quot;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;a href=&quot;http://pronama.github.io/mascot-apps-contest/2014/&quot;&gt;マスコットアプリ文化祭 2014 (Mascot Character Apps Contest)&lt;/a&gt;&lt;/iframe&gt;謎の「だるやなぎ部門」には素敵なプレゼントを用意しています。ぜひ参加してみてくださいね。
+
+<figure>
     <img src="/images/20141024024829.png"/> 
 </figure>
 
@@ -218,7 +257,7 @@ public async Task&amp;lt;dynamic&gt; GetFileScanResults(string id)
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/10/24/045957/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/10/24/045957/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -227,7 +266,7 @@ public async Task&amp;lt;dynamic&gt; GetFileScanResults(string id)
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/10/20/213054/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/10/20/213054/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

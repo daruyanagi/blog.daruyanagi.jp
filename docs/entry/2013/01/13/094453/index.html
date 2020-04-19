@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/01/13/094453/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/01/13/094453/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +18,10 @@
         
 
         
-            <meta name="description" content="WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、
- https://addons.mozilla.org/ja/firefox/addon/poster/ という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで  わざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。  IIS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。 ```xml xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?  .web&gt; debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt; .web&gt;
-.webServer&gt;  name=&quot;WebDAV&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-Integrated-4.0&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&rdquo; path=&rdquo;.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; modules=&quot;IsapiModule&rdquo; scriptProcessor=&rdquo;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&rdquo; preCondition=&quot;classicMode,runtimeVersionv4.0,bitness32&rdquo; responseBufferLimit=&quot;0&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&rdquo; path=&rdquo;.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; modules=&quot;IsapiModule&rdquo; scriptProcessor=&rdquo;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&rdquo; preCondition=&quot;classicMode,runtimeVersionv4.0,bitness64&rdquo; responseBufferLimit=&quot;0&rdquo; /&gt; name=&quot;ExtensionlessUrlHandler-Integrated-4.0&rdquo; path=&rdquo;*.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; type=&quot;System." />
+            <meta name="description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/11/060424&quot;&gt;WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、
+ https://addons.mozilla.org/ja/firefox/addon/poster/ という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで   ざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。
+  IS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。
+&lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&#34;true&#34; targetFramework=&#34;4.0&#34; /&gt; .web&gt; .webServer&gt; &lt;handlers&gt;&lt;/handlers&gt; name=&#34;WebDAV&#34; /&gt; name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; /&gt; name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; /&gt; name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; /&gt; name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness32&#34; responseBufferLimit=&#34;0&#34; /&gt; name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness64&#34; responseBufferLimit=&#34;0&#34; /&gt; name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; path=&#34;*." />
         
 
         
@@ -48,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +62,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +79,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/01/13/094453/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/01/13/094453/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション （4）</h1>
                 </a>
             </div>
@@ -90,54 +91,68 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20130113093131.png"/> 
 </figure>
-<a href="https://blog.daruyanagi.jp/entry/2013/01/11/060424">WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ</a> の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、</p>
+
+<p>a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/11/060424&quot;&gt;WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ</a> の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、</p>
 <ul>
 <li><a href="https://addons.mozilla.org/ja/firefox/addon/poster/">https://addons.mozilla.org/ja/firefox/addon/poster/</a></li>
-</ul>という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで<figure>
+</ul>という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで
+<figure>
     <img src="/images/20130113093440.png"/> 
 </figure>
-わざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。<figure>
+
+<p>ざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。</p>
+<figure>
     <img src="/images/20130113093755.png"/> 
 </figure>
-IIS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。
-```xml
-<!--?-->xml version="1.0" encoding="utf-8"?>
-<p><configuration></configuration>
-.web&gt;
-debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt;
-.web&gt;</p>
-<p>.webServer&gt;
-<handlers></handlers>
-name=&quot;WebDAV&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-Integrated-4.0&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&rdquo; path=&rdquo;<em>.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; modules=&quot;IsapiModule&rdquo; scriptProcessor=&rdquo;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&rdquo; preCondition=&quot;classicMode,runtimeVersionv4.0,bitness32&rdquo; responseBufferLimit=&quot;0&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&rdquo; path=&rdquo;</em>.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; modules=&quot;IsapiModule&rdquo; scriptProcessor=&rdquo;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&rdquo; preCondition=&quot;classicMode,runtimeVersionv4.0,bitness64&rdquo; responseBufferLimit=&quot;0&rdquo; /&gt;
-name=&quot;ExtensionlessUrlHandler-Integrated-4.0&rdquo; path=&rdquo;*.&rdquo; verb=&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&rdquo; type=&quot;System.Web.Handlers.TransferRequestHandler&rdquo; preCondition=&quot;integratedMode,runtimeVersionv4.0&rdquo; /&gt;</p>
-<pre><code>&lt;modules&gt;&lt;/modules&gt;
-  name=&quot;WebDAVModule&quot; /&gt;
-</code></pre>
-<p>.webServer&gt;</p>
-<pre><code class="language-さっぱりわかんないけど、WebDAV" data-lang="さっぱりわかんないけど、WebDAV">
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://bradkingsley.com/putpostdelete-verb-errors-on-site/&quot;&gt;PUT/POST/DELETE Verb Errors On Site | ASPNetFAQ.com: What is ASP.NET?&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;<figure>
+
+<p>IS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
+
+<span style="color:#f92672">&lt;configuration&gt;&lt;/configuration&gt;</span>
+  .web&gt;
+    debug=&#34;true&#34; targetFramework=&#34;4.0&#34; /&gt;
+  .web&gt;
+
+  .webServer&gt;
+    <span style="color:#f92672">&lt;handlers&gt;&lt;/handlers&gt;</span>
+      name=&#34;WebDAV&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness32&#34; responseBufferLimit=&#34;0&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness64&#34; responseBufferLimit=&#34;0&#34; /&gt;
+      name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; type=&#34;System.Web.Handlers.TransferRequestHandler&#34; preCondition=&#34;integratedMode,runtimeVersionv4.0&#34; /&gt;
+    
+    <span style="color:#f92672">&lt;modules&gt;&lt;/modules&gt;</span>
+      name=&#34;WebDAVModule&#34; /&gt;
+    
+  .webServer&gt;
+
+
+```さっぱりわかんないけど、WebDAV モジュールを切っておくのがコツみたい。
+
+<span style="color:#f92672">&lt;ul&gt;</span>
+<span style="color:#f92672">&lt;li&gt;&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;http://bradkingsley.com/putpostdelete-verb-errors-on-site/&#34;</span><span style="color:#f92672">&gt;</span>PUT/POST/DELETE Verb Errors On Site | ASPNetFAQ.com: What is ASP.NET?<span style="color:#f92672">&lt;/a&gt;&lt;/li&gt;</span>
+<span style="color:#f92672">&lt;/ul&gt;</span>
+
+<figure>
     <img src="/images/20130113094219.png"/> 
 </figure>
-手元の環境では、ちゃんと動いたっぽい。
 
 
-</code></pre>
+元の環境では、ちゃんと動いたっぽい。
+
+
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/13/203653/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/13/203653/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -146,7 +161,7 @@ name=&quot;ExtensionlessUrlHandler-Integrated-4.0&rdquo; path=&rdquo;*.&rdquo; v
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/11/060424/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/11/060424/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/12/16/181852/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/12/16/181852/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記 を読んで存在を知った。
+            <meta name="description" content="a href=&quot;http://nakaji.hatenablog.com/entry/2014/12/16/090000&quot;&gt;SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記 を読んで存在を知った。
 &gt; 産学官で構成する愛媛県公衆無線LAN推進協議会では、外国人観光客や県内外の旅行者、地域住民等が無料で利用できるWi-Fiスポットの整備を民設民営で進めることにより、その利便性を確保し、愛媛県内の地域活性化を図る「えひめFreeWi-Fiプロジェクト」を推進しています。 愛媛県庁／えひめFree Wi-Fiサービス提供箇所等のお知らせ  “利便性を確保し”とか“地域活性化を図る”とかいってる割りには、クソ不便なテーブルデータしか用意してないのって、ほんとお役所だなーと思いますね。というわけで、なかじが作ってくれたコードをまるパクリして、それを Google Map へマッピングしてみた。これで、ちょっとは利便性が向上するんじゃないだろうか。マッピングのライブラリは、
  サンプル１ - 「googleマップで複数住所を一括表示」の作り方 - 緑里庵 をもらってきた。ちょっとコードが古いので、TypeScript で書き直したりしてみたい。Web ページのコードはこんな感じ（spotList あたりのコードとか汚いけど）。WebMatrix（ASP.NET Web Pages）はこういう“ペライチ”のページを作るときに便利よね。 ```cs # ~/Default.cshtml @using System.Xml.Linq @using Sgml
 @{ var urlString = &ldquo;http://www.pref.ehime.jp/h12600/wifi/osirase260822.html&quot;;
@@ -50,7 +50,7 @@ XDocument xml; using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd 
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,7 +63,7 @@ XDocument xml; using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd 
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -73,7 +73,7 @@ XDocument xml; using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd 
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/12/16/181852/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/12/16/181852/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：　@nakaji のコードをパクって「えひめFreeWi-Fi」スポットを Google Map へマッピング</h1>
                 </a>
             </div>
@@ -85,10 +85,11 @@ XDocument xml; using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd 
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20140728155412.jpg"/> 
 </figure>
-<a href="http://nakaji.hatenablog.com/entry/2014/12/16/090000">SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記</a> を読んで存在を知った。</p>
+
+<p>a href=&quot;http://nakaji.hatenablog.com/entry/2014/12/16/090000&quot;&gt;SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記</a> を読んで存在を知った。</p>
 <pre><code>&gt;
     産学官で構成する愛媛県公衆無線LAN推進協議会では、外国人観光客や県内外の旅行者、地域住民等が無料で利用できるWi-Fiスポットの整備を民設民営で進めることにより、その利便性を確保し、愛媛県内の地域活性化を図る「えひめFreeWi-Fiプロジェクト」を推進しています。
 
@@ -152,17 +153,20 @@ var spotList = string.Join(&quot;\r\n&quot;, spots.Select(_ =&gt; _.Address.Repl
 &amp;lt;/body&gt;
 </code></pre>
 <p>&lt;/html&gt;</p>
-<pre><code class="language-<figure>
+<pre><code>
+<figure>
     <img src="/images/20141216181643.png"/> 
 </figure>
-割とたくさんあるんやなー。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> 俺かやろうとしてたことを・・・(ToT)</p>&mdash; なかじ@儲からないサービス担当 (@nakaji) <a href="https://twitter.com/nakaji/status/544782999317778434?ref_src=twsrc%5Etfw">December 16, 2014</a></blockquote>
+
+
+とたくさんあるんやなー。
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> 俺かやろうとしてたことを・・・(ToT)</p>&mdash; なかじ@儲からないサービス担当 (@nakaji) <a href="https://twitter.com/nakaji/status/544782999317778434?ref_src=twsrc%5Etfw">December 16, 2014</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-まじ申し訳ないけど、割とやっつけ仕事なので、キレイに仕上げてくれていいのよ？" data-lang="<figure>
-    <img src="/images/20141216181643.png"/> 
-</figure>
-割とたくさんあるんやなー。<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> 俺かやろうとしてたことを・・・(ToT)</p>&mdash; なかじ@儲からないサービス担当 (@nakaji) <a href="https://twitter.com/nakaji/status/544782999317778434?ref_src=twsrc%5Etfw">December 16, 2014</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-まじ申し訳ないけど、割とやっつけ仕事なので、キレイに仕上げてくれていいのよ？">
+
+
+じ申し訳ないけど、割とやっつけ仕事なので、キレイに仕上げてくれていいのよ？
+
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://ehime-wifi.azurewebsites.net/&quot;&gt;http://ehime-wifi.azurewebsites.net/&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
@@ -173,7 +177,7 @@ var spotList = string.Join(&quot;\r\n&quot;, spots.Select(_ =&gt; _.Address.Repl
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/12/17/194006/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/12/17/194006/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -182,7 +186,7 @@ var spotList = string.Join(&quot;\r\n&quot;, spots.Select(_ =&gt; _.Address.Repl
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/12/16/161819/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/12/16/161819/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

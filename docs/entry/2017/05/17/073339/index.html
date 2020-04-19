@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/05/17/073339/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -50,7 +50,7 @@ Write-Host &quot;&rdquo;" />
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,7 +63,7 @@ Write-Host &quot;&rdquo;" />
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
                                     </li>
                                 
                             
@@ -73,7 +73,7 @@ Write-Host &quot;&rdquo;" />
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/05/17/073339/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" >
                     <h1 class="entry__header-title-link-text">PowerShell：環境構築を（なるべく）自動化する</h1>
                 </a>
             </div>
@@ -134,14 +134,22 @@ New-Item -Type SymbolicLink -Path &ldquo;Screenshots&rdquo; -Value &ldquo;$Home\
 <p>Write-Host &quot;&rdquo;</p>
 <p>Write-Host &ldquo;セットアップが終了しました。キーを押すと終了します。&rdquo;
 $host.UI.ReadLine()</p>
-<pre><code class="language-このスクリプトを管理者権限で起動すればよいのだけど、PowerShell" data-lang="このスクリプトを管理者権限で起動すればよいのだけど、PowerShell"></code></pre><p>@powershell -NoProfile -ExecutionPolicy RemoteSigned -File &ldquo;C:\Users\Hideto\OneDrive\Initialize.ps1&rdquo;</p>
-<pre><code class="language-<figure>
+<pre><code class="language-このスクリプトを管理者権限で起動すればよいのだけど、PowerShell" data-lang="このスクリプトを管理者権限で起動すればよいのだけど、PowerShell">
+<figure>
+    <img src="/images/20170517072412.png"/> 
+</figure>
+
+
+―というわけで、スクリプトをキックするためのバッチファイルも書いた。
+</code></pre><p>@powershell -NoProfile -ExecutionPolicy RemoteSigned -File &ldquo;C:\Users\Hideto\OneDrive\Initialize.ps1&rdquo;</p>
+<pre><code>
+<figure>
     <img src="/images/20170517072704.png"/> 
 </figure>
-Surface" data-lang="<figure>
-    <img src="/images/20170517072704.png"/> 
-</figure>
-Surface">&lt;div class=&quot;footnote&quot;&gt;
+
+
+urface 3 を初期化してテストした後に、デスクトップ PC でも試してみたのだけど、&lt;code&gt;choco install -y dropbox&lt;/code&gt; が失敗して面倒くさいことになった&lt;a href=&quot;#f-63094833&quot; name=&quot;fn-63094833&quot; title=&quot;利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決&quot;&gt;*1&lt;/a&gt;以外は、割とスムーズにいった。実は以前からところどころを自動化していたのだけど、ちゃんとメンテナンスすればいろいろ楽になるかなーと思った。Windows ストアからのインストールもコマンドでできたらいいんだけど……かつて「OneGet」で Windows ストアをプロバイダーにできるようになるとか聞いた覚えがあるんだが、どうなったんだろう。
+&lt;div class=&quot;footnote&quot;&gt;
 &lt;a href=&quot;#fn-63094833&quot; name=&quot;f-63094833&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決&lt;/span&gt;
 &lt;/div&gt;
 
@@ -151,7 +159,7 @@ Surface">&lt;div class=&quot;footnote&quot;&gt;
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/05/18/014141/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/05/18/014141/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -160,7 +168,7 @@ Surface">&lt;div class=&quot;footnote&quot;&gt;
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/05/16/041039/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/05/16/041039/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

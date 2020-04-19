@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/11/15/160504/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/11/15/160504/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="  テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。  要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。
-&amp;lt;script&gt; $(window).bind(&#34;resize ready&#34;, function(event){ $(&amp;#39;#Content&amp;#39;).height( $(&amp;#39;#Content&amp;#39;).height() &#43; $(window).height() - $(document.body).height() ); }); &amp;lt;/script&gt; ```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。  ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。 " />
+            <meta name="description" content="  キストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。
+  はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。
+&amp;lt;script&gt; $(window).bind(&#34;resize ready&#34;, function(event){ $(&amp;#39;#Content&amp;#39;).height( $(&amp;#39;#Content&amp;#39;).height() &#43; $(window).height() - $(document.body).height() ); }); &amp;lt;/script&gt; ```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。   よっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。 " />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +61,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/javascript/">JavaScript </a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/javascript/">JavaScript </a>
                                     </li>
                                 
                             
@@ -70,7 +71,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/11/15/160504/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/11/15/160504/" >
                     <h1 class="entry__header-title-link-text">テキストエリアの高さをウィンドウサイズに合わせて調節したい</h1>
                 </a>
             </div>
@@ -82,13 +83,16 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20141115155110.png"/> 
 </figure>
-テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。<figure>
+
+<p>キストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。</p>
+<figure>
     <img src="/images/20141115155122.png"/> 
 </figure>
-要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。</p>
+
+<p>はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
     <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#34;resize ready&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>){
         <span style="color:#a6e22e">$</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Content</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">height</span>(
@@ -99,10 +103,14 @@
     });
 <span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#960050;background-color:#1e0010">/script&gt;</span>
 
-<span style="color:#e6db74">```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。<figure>
+<span style="color:#e6db74">```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"><figure>
     <img src="/images/20141115160100.png"/> 
 </figure>
-ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。
+
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">よっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。
 </span><span style="color:#e6db74">
 </span><span style="color:#e6db74">
 </span></code></pre></div>
@@ -111,7 +119,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/11/19/181233/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/11/19/181233/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -120,7 +128,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/11/14/194808/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/11/14/194808/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

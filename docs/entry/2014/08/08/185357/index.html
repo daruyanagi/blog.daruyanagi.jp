@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/08/08/185357/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/08/08/185357/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,8 @@
 
         
             <meta name="description" content="oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly. oEmbed  要はこういうのです。
-# はてな記法の場合 https://twitter.com/daruyanagi/status/497645195769298944:embed ```&gt;乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。 &lt;ul&gt; &lt;li&gt;API Endpoint があらかじめ公開されており、それを叩く&lt;/li&gt; &lt;li&gt;link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く&lt;/li&gt; &lt;/ul&gt;両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、&lt;a href=&quot;https://dev." />
+# はてな記法の場合 https://twitter.com/daruyanagi/status/497645195769298944:embed  乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日
+ URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。" />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +61,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -70,7 +71,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/08/08/185357/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/08/08/185357/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 3：oEmbed ヘルパーを作ってみた</h1>
                 </a>
             </div>
@@ -91,34 +92,34 @@
 <p>要はこういうのです。</p>
 <pre><code># はてな記法の場合
 https://twitter.com/daruyanagi/status/497645195769298944:embed
-```&gt;乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。
-
-&lt;ul&gt;
-&lt;li&gt;API Endpoint があらかじめ公開されており、それを叩く&lt;/li&gt;
-&lt;li&gt;link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く&lt;/li&gt;
-&lt;/ul&gt;両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、&lt;a href=&quot;https://dev.twitter.com/docs/api/1/get/statuses/oembed&quot;&gt;一応公開されています&lt;/a&gt;が一般的な API に比べてちょっとめんどいので link タグ探した方がいい）もします。今回は後者だけ実装してみました。前者については、
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2013/07/18/033539&quot;&gt;WebMatrix 3: Windows Store oEmbed API を利用する - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;で一度やったことがあります。URL パターンとエンドポイントのディクショナリでももっておいて、URL がパターンにマッチした時はエンドポイントを叩く……みたいに実装すれば汎用的になるかと。
-
-&lt;div class=&quot;section&quot;&gt;
+</code></pre><blockquote>
+<p>乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。</p>
+<ul>
+<li>API Endpoint があらかじめ公開されており、それを叩く</li>
+<li>link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く</li>
+</ul>両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、<a href="https://dev.twitter.com/docs/api/1/get/statuses/oembed">一応公開されています</a>が一般的な API に比べてちょっとめんどいので link タグ探した方がいい）もします。今回は後者だけ実装してみました。前者については、
+<ul>
+<li><a href="https://blog.daruyanagi.jp/entry/2013/07/18/033539">WebMatrix 3: Windows Store oEmbed API を利用する - だるろぐ</a></li>
+</ul>で一度やったことがあります。URL パターンとエンドポイントのディクショナリでももっておいて、URL がパターンにマッチした時はエンドポイントを叩く……みたいに実装すれば汎用的になるかと。
+<div class="section">
     ### 準備
-    <figure>
+<figure>
     <img src="/images/20140808184043.png"/> 
 </figure>
-HTML から 
-```html
-&amp;lt;link rel=&quot;alternate&quot; type=&quot;application/json+oembed&quot; href=&quot;***&quot; title=&quot;***&quot;&gt;
 
-```みたいなのを探してとってくる必要があるので、スクレイパー御用達の &lt;a href=&quot;http://htmlagilitypack.codeplex.com/&quot;&gt;CodePlex Archive&lt;/a&gt; を NuGet で追加しておきます。
+<p>TML から</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;link rel=&#34;alternate&#34; type=&#34;application/json+oembed&#34; href=&#34;***&#34; title=&#34;***&#34;&gt;
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+```みたいなのを探してとってくる必要があるので、スクレイパー御用達の &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://htmlagilitypack.codeplex.com/&#34;</span>&gt;CodePlex Archive&lt;/<span style="color:#f92672">a</span>&gt; を NuGet で追加しておきます。
+
+&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
     ### コード
     んじゃ、ガリガリ書いていきます。
 
-&lt;div class=&quot;section&quot;&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
     #### ~/App_Code/OEmbed.cshtml
     まずは、ヘルパー部分を書き書き。
 ```cs
@@ -134,9 +135,9 @@ HTML から
             var document = new HtmlDocument();
             document.LoadHtml(html);
 
-            url = document.DocumentNode.Descendants(&quot;link&quot;)
-                .Where(_ =&gt; _.GetAttributeValue(&quot;type&quot;, string.Empty) == &quot;application/json+oembed&quot;)
-                .Select(_ =&gt; _.GetAttributeValue(&quot;href&quot;, string.Empty))
+            url = document.DocumentNode.Descendants(&#34;link&#34;)
+                .Where(_ =&gt; _.GetAttributeValue(&#34;type&#34;, string.Empty) == &#34;application/json+oembed&#34;)
+                .Select(_ =&gt; _.GetAttributeValue(&#34;href&#34;, string.Empty))
                 .First();
 
             var oembed_data = downloader.DownloadString(url);
@@ -153,34 +154,35 @@ HTML から
 
 ```oEmbed は XML 形式か JSON 形式でレスポンスを返すのですが、Twitter は JSON のみをサポートします。どのサービスも JSON には対応していることが多いので、JSON だけ処理すればたいていは十分です。あと、oembed_json.html を直接使うのは怖い。サニタイズしておいた方がいいかも。ほんとはキャッシュの仕組みとかも入れておきたいですね。
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+&lt;/<span style="color:#f92672">div</span>&gt;
+&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
     #### ~/Default.cshtml
     次にテスト用のページを書きかき。
 ```html
 
 
-&amp;lt;html lang=&quot;ja&quot;&gt;
+&amp;lt;html lang=&#34;ja&#34;&gt;
     &amp;lt;head&gt;
-&amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
+&amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt;
+        &amp;lt;meta charset=&#34;utf-8&#34; /&gt;
         &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
+        &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt;
     &amp;lt;/head&gt;
     &amp;lt;body&gt;
-        @OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/497645195769298944&quot;)
-        @OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/49764519576929894&quot;)
-        @OEmbed.GetHtml(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
+        @OEmbed.GetHtml(&#34;https://twitter.com/daruyanagi/status/497645195769298944&#34;)
+        @OEmbed.GetHtml(&#34;https://twitter.com/daruyanagi/status/49764519576929894&#34;)
+        @OEmbed.GetHtml(&#34;https://www.flickr.com/photos/daruyanagi/6219334657/&#34;)
     &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-</code></pre></div>
+</code></pre></div></div>
 <div class="section">
     #### 結果
-    <figure>
+<figure>
     <img src="/images/20140808184012.png"/> 
 </figure>
-2番目は URL を間違ってみた。3番目は oEmbed 対応だけど link タグ形式ではないサービス（Flickr）で試してみた。Flickr については、API Endpoint を叩いてーという処理が必要になりますね。
+
+<p>番目は URL を間違ってみた。3番目は oEmbed 対応だけど link タグ形式ではないサービス（Flickr）で試してみた。Flickr については、API Endpoint を叩いてーという処理が必要になりますね。</p>
 </div>
 </div>
 
@@ -189,7 +191,7 @@ HTML から
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/08/09/134217/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/08/09/134217/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -198,7 +200,7 @@ HTML から
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/08/08/081907/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/08/08/081907/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

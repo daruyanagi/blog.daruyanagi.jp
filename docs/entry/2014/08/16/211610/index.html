@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/08/16/211610/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/08/16/211610/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,8 @@
         
 
         
-            <meta name="description" content="  
-&gt; COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。    なんかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
+            <meta name="description" content="  br/&gt;
+&gt; COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。    んかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
 protected void OnPropertyChanged([CallerMemberName] string propertyName = null) { var eventHandler = this.PropertyChanged; if (eventHandler != null) { eventHandler(this, new PropertyChangedEventArgs(propertyName)); } } ```ここで InvalidCastException が出る……。&lt;a href=&#34;http://okazuki.hatenablog.com/entries/2012/10/13&#34;&gt;かずきのBlog@hatena&lt;/a&gt; ともちょっと違うのだけど、どうせ似たような原因だと思う。 &gt; 結果として別スレッドでコレクションを操作したため、エラーになるというWPFやSilverlightなどでおなじみのエラーパターンと同じでした。それにしても、何故InvalidCastExceptionなのだ！！ いろいろ試してみたが、結局、自分の場合は Visual Studio でデバッグ実行しているときだけ発生することが判明（？）。共有のテストをするときはデバッグ実行したアプリを終了してから行うという手段で回避できた。いつか根本的に解決できるようになりたいです（小並 " />
         
 
@@ -48,7 +48,7 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,7 +61,7 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/winrt/">WinRT</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/winrt/">WinRT</a>
                                     </li>
                                 
                             
@@ -71,7 +71,7 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/08/16/211610/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/08/16/211610/" >
                     <h1 class="entry__header-title-link-text">WinRT</h1>
                 </a>
             </div>
@@ -83,17 +83,19 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20140816205113.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <pre><code>&gt;
     COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。
 </code></pre>
-<p><figure>
+<figure>
     <img src="/images/20140816210519.png"/> 
 </figure>
-なんかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。</p>
+
+<p>んかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">void</span> OnPropertyChanged([CallerMemberName] <span style="color:#66d9ef">string</span> propertyName = <span style="color:#66d9ef">null</span>)
 {
     <span style="color:#66d9ef">var</span> eventHandler = <span style="color:#66d9ef">this</span>.PropertyChanged;
@@ -118,7 +120,7 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/08/16/214851/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/08/16/214851/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -127,7 +129,7 @@ protected void OnPropertyChanged([CallerMemberName] string propertyName = null) 
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/08/13/222321/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/08/13/222321/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

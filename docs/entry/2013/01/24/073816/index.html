@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/01/24/073816/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/01/24/073816/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +60,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -77,7 +77,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/01/24/073816/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/01/24/073816/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2：RESTful？な Web アプリケーション （5）</h1>
                 </a>
             </div>
@@ -390,107 +390,103 @@ catch (Exception e)
     }
 }
 
-```<figure>
+</code></pre><figure>
     <img src="/images/20130124072621.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20130124072619.png"/> 
 </figure>
-Content-Type によって応答が切り替わるようにしてみた。
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+<p>ontent-Type によって応答が切り替わるようにしてみた。</p>
+</div>
+<div class="section">
     ### ビュー
-    全部のっけても仕方ないので、~/Views/Posts/_ShowPost.cshtml&quot; だけを。
+    全部のっけても仕方ないので、~/Views/Posts/_ShowPost.cshtml" だけを。
 ```html
 @{
     var model = PageData.First().Value as Post; // もはやイディオムかな……
     Page.Title = model.Title;
     Page.PostId = model.Id;
-    Layout = &quot;~/_SiteLayout.cshtml&quot;;
+    Layout = "~/_SiteLayout.cshtml";
 }
-
-&amp;lt;h1&gt;@Page.Title&amp;lt;/h1&gt;
-
-@model.Body
-
-@section Dialog // 編集作業はモーダルダイアログで処理することにした
+<p>&lt;h1&gt;@Page.Title&lt;/h1&gt;</p>
+<p>@model.Body</p>
+<p>@section Dialog // 編集作業はモーダルダイアログで処理することにした
 {
-    &amp;lt;aside id=&quot;EditDocument&quot; class=&quot;modal&quot;&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;&gt;
-        $(function () {
-            $(&amp;#39;#edit-document&amp;#39;).click(function () {
-                $.ajax({
-                    url: &quot;@Request.Url.AbsolutePath&quot;,
-                    type: &amp;#39;POST&amp;#39;,
-                    data: {
-                        &amp;#39;_method&amp;#39;: &quot;PUT&quot;,
-                        &amp;#39;Title&amp;#39;: $(&amp;#39;#Edit-Title&amp;#39;).val(),
-                        &amp;#39;Body&amp;#39;: $(&amp;#39;#Edit-Body&amp;#39;).val(),
-                    },
-                    success: function (data) {
-                        var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39; + data.Id;
-                        window.location.replace(uri); // リダイレクト
-                    },
-                    error: function (data) {
-                        alert(&amp;#39;failure&amp;#39;);
-                    },
-                });
-            })
-        });
-        &amp;lt;/script&gt;
-	    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
-            &amp;lt;header class=&quot;modal-header&quot;&gt;
-                &amp;lt;h1&gt;&amp;lt;input type=&quot;text&quot; id=&quot;Edit-Title&quot; value=&quot;@model.Title&quot; /&gt;&amp;lt;/h1&gt;
-            &amp;lt;/header&gt;
-            &amp;lt;div class=&quot;modal-content&quot;&gt;
-                &amp;lt;textarea id=&quot;Edit-Body&quot; placeholder=&quot;なんか書いてもええんやでぇ&quot;&gt;@model.Body&amp;lt;/textarea&gt;
-            &amp;lt;/div&gt;
-		    &amp;lt;footer class=&quot;modal-footer&quot;&gt;
-                &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;edit-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
-                &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
-            &amp;lt;/footer&gt;
-	    &amp;lt;/div&gt;
-    &amp;lt;/aside&gt;
-
-    &amp;lt;aside id=&quot;RemoveDocument&quot; class=&quot;modal&quot;&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;&gt;
-        $(function () {
-            $(&amp;#39;#remove-document&amp;#39;).click( function () {
-                $.ajax({
-                    url: &quot;@Request.Url.AbsolutePath&quot;,
-                    type: &amp;#39;POST&amp;#39;,
-                    data: {
-                        &amp;#39;_method&amp;#39;: &quot;DELETE&quot;,
-                    },
-                    success: function (data) {
-                        var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39;;
-                        window.location.replace(uri);
-                    },
-                    error: function (data) {
-                        alert(&amp;#39;failure&amp;#39;);
-                    },
-                });
-            })
-        });
-        &amp;lt;/script&gt;
-	    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
-            &amp;lt;header class=&quot;modal-header&quot;&gt;
-		        &amp;lt;h1&gt;&amp;lt;span id=&quot;Delete-Title&quot; &gt;@model.Title&amp;lt;/span&gt; を削除しようとしています……&amp;lt;/h1&gt;
-            &amp;lt;/header&gt;
-            &amp;lt;div class=&quot;modal-content&quot;&gt;
-                &amp;lt;p&gt;本当に削除しますか？&amp;lt;/p&gt;
-            &amp;lt;/div&gt;
-		    &amp;lt;footer class=&quot;modal-footer&quot;&gt;
-                &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;remove-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
-                &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
-            &amp;lt;/footer&gt;
-	    &amp;lt;/div&gt;
-    &amp;lt;/aside&gt;
-}
-
-```普通の MVC フレームワークだと
-
+&lt;aside id=&quot;EditDocument&rdquo; class=&quot;modal&quot;&gt;
+&lt;script type=&quot;text/javascript&quot;&gt;
+$(function () {
+$('#edit-document').click(function () {
+$.ajax({
+url: &ldquo;@Request.Url.AbsolutePath&rdquo;,
+type: 'POST',
+data: {
+'_method': &ldquo;PUT&rdquo;,
+'Title': $('#Edit-Title').val(),
+'Body': $('#Edit-Body').val(),
+},
+success: function (data) {
+var uri = '@Request.Url.GetRoot()/Posts/' + data.Id;
+window.location.replace(uri); // リダイレクト
+},
+error: function (data) {
+alert('failure');
+},
+});
+})
+});
+&lt;/script&gt;
+&lt;div class=&quot;modal-wrapper&quot;&gt;
+&lt;header class=&quot;modal-header&quot;&gt;
+&lt;h1&gt;&lt;input type=&quot;text&rdquo; id=&quot;Edit-Title&rdquo; value=&rdquo;@model.Title&rdquo; /&gt;&lt;/h1&gt;
+&lt;/header&gt;
+&lt;div class=&quot;modal-content&quot;&gt;
+&lt;textarea id=&quot;Edit-Body&rdquo; placeholder=&quot;なんか書いてもええんやでぇ&quot;&gt;@model.Body&lt;/textarea&gt;
+&lt;/div&gt;
+&lt;footer class=&quot;modal-footer&quot;&gt;
+&lt;a href=&quot;javascript: void(0)&rdquo; id=&quot;edit-document&rdquo; class=&quot;button&quot;&gt;OK&lt;/a&gt;
+&lt;a href=&rdquo;#close&rdquo; title=&quot;Close&rdquo; class=&quot;button&quot;&gt;キャンセル&lt;/a&gt;
+&lt;/footer&gt;
+&lt;/div&gt;
+&lt;/aside&gt;</p>
+<pre><code>&amp;lt;aside id=&quot;RemoveDocument&quot; class=&quot;modal&quot;&gt;
+    &amp;lt;script type=&quot;text/javascript&quot;&gt;
+    $(function () {
+        $(&amp;#39;#remove-document&amp;#39;).click( function () {
+            $.ajax({
+                url: &quot;@Request.Url.AbsolutePath&quot;,
+                type: &amp;#39;POST&amp;#39;,
+                data: {
+                    &amp;#39;_method&amp;#39;: &quot;DELETE&quot;,
+                },
+                success: function (data) {
+                    var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39;;
+                    window.location.replace(uri);
+                },
+                error: function (data) {
+                    alert(&amp;#39;failure&amp;#39;);
+                },
+            });
+        })
+    });
+    &amp;lt;/script&gt;
+    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
+        &amp;lt;header class=&quot;modal-header&quot;&gt;
+            &amp;lt;h1&gt;&amp;lt;span id=&quot;Delete-Title&quot; &gt;@model.Title&amp;lt;/span&gt; を削除しようとしています……&amp;lt;/h1&gt;
+        &amp;lt;/header&gt;
+        &amp;lt;div class=&quot;modal-content&quot;&gt;
+            &amp;lt;p&gt;本当に削除しますか？&amp;lt;/p&gt;
+        &amp;lt;/div&gt;
+        &amp;lt;footer class=&quot;modal-footer&quot;&gt;
+            &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;remove-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
+            &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
+        &amp;lt;/footer&gt;
+    &amp;lt;/div&gt;
+&amp;lt;/aside&gt;
+</code></pre>
+<p>}</p>
+<pre><code class="language-普通の" data-lang="普通の">
 &lt;ul&gt;
 &lt;li&gt;GET /Posts/Edit/:Id&lt;/li&gt;
 &lt;/ul&gt;なんかで編集画面に遷移すると思うのだけど、今回は
@@ -507,7 +503,7 @@ Content-Type によって応答が切り替わるようにしてみた。
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/25/070238/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/25/070238/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -516,7 +512,7 @@ Content-Type によって応答が切り替わるようにしてみた。
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/24/063507/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/24/063507/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

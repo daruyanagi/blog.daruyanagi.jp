@@ -2,95 +2,106 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Visual Studio on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/visual-studio/</link>
+    <link>https://blog.daruyanagi.jp/tags/visual-studio/</link>
     <description>Recent content in Visual Studio on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sat, 15 Apr 2017 17:06:59 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/visual-studio/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>Azure Web App＋Job＋Table Storage ：Twitter の位置情報を拾ってマッピングする</title>
-      <link>https://daruyanagi.net/entry/2017/04/15/170659/</link>
+      <link>https://blog.daruyanagi.jp/entry/2017/04/15/170659/</link>
       <pubDate>Sat, 15 Apr 2017 17:06:59 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2017/04/15/170659/</guid>
-      <description>以前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
- Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   Twitter の位置情報は  Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2017/04/15/170659/</guid>
+      <description>前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
+ Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   witter の位置情報は
+ Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure.</description>
     </item>
     
     <item>
       <title>Visual Studio 2017 で Windows サービスを作った</title>
-      <link>https://daruyanagi.net/entry/2017/03/10/214227/</link>
+      <link>https://blog.daruyanagi.jp/entry/2017/03/10/214227/</link>
       <pubDate>Fri, 10 Mar 2017 21:42:27 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2017/03/10/214227/</guid>
-      <description>まぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
-### 今回の目標 実行ファイルが書き換わったら、トーストで通知してほしい。  ### プロジェクトを作成する   ［テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。  次に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。  すると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。  ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで） DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした） Description：システム内で EXE ファイルが変更されるのを監視します StartType：Automatic（これでたぶん自動実行されるはず） 最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。  ### サービスの登録とデバッグ   このままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。  まず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。  Debug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。 ``` ********************************************************************** ** Visual Studio 2017 Developer Command Prompt v15.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2017/03/10/214227/</guid>
+      <description>ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
+### 今回の目標 実行ファイルが書き換わったら、トーストで通知してほしい。  ### プロジェクトを作成する   テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。
+  に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。
+  ると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。
+ ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで） DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした） Description：システム内で EXE ファイルが変更されるのを監視します StartType：Automatic（これでたぶん自動実行されるはず） 最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。  ### サービスの登録とデバッグ   のままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。
+  ず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。
+  ebug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。</description>
     </item>
     
     <item>
       <title>WebMatrix とおさらばして、Visual Studio 2015 で ASP.NET Web Pages をはじめる</title>
-      <link>https://daruyanagi.net/entry/2017/02/12/100000/</link>
+      <link>https://blog.daruyanagi.jp/entry/2017/02/12/100000/</link>
       <pubDate>Sun, 12 Feb 2017 10:00:00 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2017/02/12/100000/</guid>
-      <description>長年愛用してきた「WebMatrix」ですが、昨年10月に2017年11月1日 でのサポート終了がアナウンスされました。
-&amp;gt; Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix. Formal support will end on November 1st, 2017. Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor! VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix team WebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums    すでにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2017/02/12/100000/</guid>
+      <description>年愛用してきた「WebMatrix」ですが、昨年10月に2017年11月1日 でのサポート終了がアナウンスされました。
+&amp;gt; Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix. Formal support will end on November 1st, 2017. Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor! VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix team WebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums    でにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS.</description>
     </item>
     
     <item>
       <title>忘れてる人がいるっぽいので言っとくけど、 アップグレード版 Visual Studio Professional 2013 がお安く買えるのは明日までらしいで。わしは忘れかけていた。</title>
-      <link>https://daruyanagi.net/entry/2014/01/30/183955/</link>
+      <link>https://blog.daruyanagi.jp/entry/2014/01/30/183955/</link>
       <pubDate>Thu, 30 Jan 2014 18:39:55 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2014/01/30/183955/</guid>
-      <description>  
+      <guid>https://blog.daruyanagi.jp/entry/2014/01/30/183955/</guid>
+      <description>  br/&amp;gt;
  Visual Studio Professional 2013 の購入 - Microsoft Store Japan オンライン ストア   Visual Studio Professional 2013アップグレードは、2013 年 11 月 1 日から 2014 年 1 月 31 日まで、または在庫のある限り有効です。特定の市場の Microsoft オンライン ストア内で注文することができます。Visual Studio Professional 2012からVisual Studio Professional 2013へのアップグレードをするお客様に限定されるプランです。 _¥12,383！　自分はさっき買えた1ので、まだ「在庫」はあるのだと思う2。急げ！あと、よくわからなかったのだが、「定価 : ¥37,590」って書いてあるのだけど、2月以降も定価でなら買えるのだろうか。それとも「アップグレード版は1月末で終わり！　ほんとは ¥37,590 で売るつもりだったけど、¥12,383 にしてあげるんだから許しなさいよねっ！」_ってことなんだろうか。自分は日本語が不自由なのでよくわからなかった。ちなみに、素で買う*3と _¥62,790！　_チロルチョコが 3139.5 個も買える。こんなに食ったら鼻血止まらへんな。
 *1:ダウンロード版 *2:在庫って DVD パッケージのことなのかな *3:アップグレード版ではなく通常版  </description>
     </item>
     
     <item>
       <title>Visual Studio 2013 向け VSCommands、Productivity Power Tools などなど</title>
-      <link>https://daruyanagi.net/entry/2013/11/22/215407/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/11/22/215407/</link>
       <pubDate>Fri, 22 Nov 2013 21:54:07 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/11/22/215407/</guid>
-      <description>### VSCommands for Visual Studio 2013   12.3.0.2（2013/11/20）大人気拡張機能の Visual Studio 2013 版。 &amp;gt;  CODE BLOCK END TAGGER FILE STRUCTURE SOLUTION BADGES SOLUTION BADGES - TOOLBAR SOLUTION BADTES - START PAGE ATTACH TO IIS MAIN MENU - HIDE MAIN MENU - CHANGE CASE OUTPUT WINDOWS COLORING SYNCHRONIZE SETTING BETWEEN MACHINES ZIP SOLUTION TOUCH SUPPORT
+      <guid>https://blog.daruyanagi.jp/entry/2013/11/22/215407/</guid>
+      <description>### VSCommands for Visual Studio 2013   2.3.0.2（2013/11/20）大人気拡張機能の Visual Studio 2013 版。
+&amp;gt;  CODE BLOCK END TAGGER FILE STRUCTURE SOLUTION BADGES SOLUTION BADGES - TOOLBAR SOLUTION BADTES - START PAGE ATTACH TO IIS MAIN MENU - HIDE MAIN MENU - CHANGE CASE OUTPUT WINDOWS COLORING SYNCHRONIZE SETTING BETWEEN MACHINES ZIP SOLUTION TOUCH SUPPORT
 そういえば Visual Studio 2013 のメインメニューって、英語版は大文字なんだよね（2012 もだったかな？）。あれは割りと気に入らないっていう人いそう。
- VSCommands for Visual Studio 2013 extension   ### Productivity Power Tools 2013   12.</description>
+ VSCommands for Visual Studio 2013 extension   ### Productivity Power Tools 2013   2.</description>
     </item>
     
     <item>
       <title>Visual Studio 2013 をさっそくインストールしてみたった。</title>
-      <link>https://daruyanagi.net/entry/2013/10/18/005647/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/10/18/005647/</link>
       <pubDate>Fri, 18 Oct 2013 00:56:47 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/10/18/005647/</guid>
-      <description>Windows 8.1 をさっそく入れてみた。 - だるろぐ ので、Windows 8.1 と同じく RTM だか GA だかした Visual Studio 2013 もインストールしてみた。VS 2013 の詳細については、すっかりお馴染みとなったソマセガー氏のブログでも読んでけれ。
+      <guid>https://blog.daruyanagi.jp/entry/2013/10/18/005647/</guid>
+      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/10/18/000952&amp;quot;&amp;gt;Windows 8.1 をさっそく入れてみた。 - だるろぐ ので、Windows 8.1 と同じく RTM だか GA だかした Visual Studio 2013 もインストールしてみた。VS 2013 の詳細については、すっかりお馴染みとなったソマセガー氏のブログでも読んでけれ。
 &amp;gt; I’m excited to announce that the final releases of Visual Studio 2013, .NET 4.5.1, and Team Foundation Server 2013 are now available for download! MSDN subscribers can download from the MSDN Subscriber Downloads page.Visual Studio 2013 is the best tool for developers and teams to build and deliver modern, connected applications on all of Microsoft’s platforms.</description>
     </item>
     
     <item>
       <title>プロ生ちゃんのボイスで Visual Studio のビルド通知を行う</title>
-      <link>https://daruyanagi.net/entry/2013/08/23/230002/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/08/23/230002/</link>
       <pubDate>Fri, 23 Aug 2013 23:00:02 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/08/23/230002/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2013/08/23/230002/</guid>
       <description>   というわけで、この度、IT系コミュニティ「プログラミング生放送」のキャラクター、プロ生ちゃんこと暮井 慧（くれい けい）のシステムボイスを無償公開します！　PC やスマホの一般的なサウンド設定、そして Visual Studio など開発用ツールのサウンド設定としても使える内容です。 プロ生ちゃんこと暮井 慧（CV 上坂すみれ）のシステムボイス無償公開のお知らせ！ | プログラミング生放送  プロ生ちゃん（CV: 上坂すみれ（https://twitter.com/Uesakasumire）さん）のシステムボイスが公開されました！　個人的にちょっと面白いなぁと思ったのは、「Visual Studio」用のサウンドが用意されていること。これを使うと、プロ生ちゃんがビルド通知してくれるようになるっぽい。
-### 使い方 「Visual Studio 2012」*1がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。  Express エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では  ビルドが取り消されました ビルド失敗 ビルド正常終了 という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。  ### 注意   配布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。  ### 最後に WebMatrix にもプログラム イベントがほしい！  上坂すみれが声を務める“プロ生ちゃん”のシステムボイスが無償公開 - 窓の杜  *1:「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証  </description>
+### 使い方 「Visual Studio 2012」*1がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。   xpress エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では
+ ビルドが取り消されました ビルド失敗 ビルド正常終了 という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。  ### 注意   布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。
+ ### 最後に WebMatrix にもプログラム イベントがほしい！  上坂すみれが声を務める“プロ生ちゃん”のシステムボイスが無償公開 - 窓の杜  *1:「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証  </description>
     </item>
     
     <item>
       <title>Highlight.js を NuGet パッケージにしてみました</title>
-      <link>https://daruyanagi.net/entry/2012/08/17/034631/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/08/17/034631/</link>
       <pubDate>Fri, 17 Aug 2012 03:46:31 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/08/17/034631/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/08/17/034631/</guid>
       <description>WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ と App_Code でサブフォルダーを利用する - だるろぐ で扱った Highlight.js を NuGet パッケージにしてみました。最初は Highlight.js の NuGet パッケージは存在しないと思い込んでいたのですが、ただ検索のやり方が悪かったようで、「Highlight」というパッケージがあったり、似たような機能を実現できそうな「ColorCode」というパッケージもみつけたのですが、見なかったふりをします。 nuget.org はまだちょっと検索機能がイケてないような気がしますね（責任転嫁）。
-### 準備 #### nuget.org のアカウントを作成 NuGet Gallery | Home でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。  アカウントページで API キーが取得できるので、それをローカル環境に登録します。 ``` nuget.exe setApiKey ********-****-****-****-************ nuget.exe push MyPackage.1.0.nupkg ```NuGet.exe を入手（http://nuget.codeplex.com/releases NuGet.exe Command Line）して、1行目を実行すればOKです*1。  #### パッケージに含めるファイルを用意 今回パッケージに含めるファイルは以下のとおりです。 ``` Highlight.js/ Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~/ 以下に展開されます） App_Code/ Highlight/ Highlight.cs Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.</description>
+### 準備 #### nuget.org のアカウントを作成 NuGet Gallery | Home でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。   カウントページで API キーが取得できるので、それをローカル環境に登録します。
+nuget.exe setApiKey ********-****-****-****-************ nuget.exe push MyPackage.1.0.nupkg ```NuGet.exe を入手（&amp;lt;a href=&amp;quot;http://nuget.codeplex.com/releases&amp;quot;&amp;gt;http://nuget.codeplex.com/releases&amp;lt;/a&amp;gt; NuGet.exe Command Line）して、1行目を実行すればOKです&amp;lt;a href=&amp;quot;#f-f45a0f4e&amp;quot; name=&amp;quot;fn-f45a0f4e&amp;quot; title=&amp;quot;初回起動時に実行ファイルのアップデートが行われます&amp;quot;&amp;gt;*1&amp;lt;/a&amp;gt;。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### パッケージに含めるファイルを用意 今回パッケージに含めるファイルは以下のとおりです。 Highlight.js/
+Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~/ 以下に展開されます） App_Code/ Highlight/ Highlight.cs Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.</description>
     </item>
     
   </channel>

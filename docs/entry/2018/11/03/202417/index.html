@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/11/03/202417/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/11/03/202417/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,7 @@
 
         
             <meta name="description" content="OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、AuthenticationMethod に Maximum を指定。
-$PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod MSChapv2 ` -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```これであっさり VPN を追加できたのだけど、うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい。ここのチェックボックスね。  GUI ではできないのかなぁ、と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど、どうにもかっこ悪いので Twitter で聞いてみたら、幸い返事がいただけた。&gt;もうお試しかもしれませんが、-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます。 pic.twitter.com/4LsYAR7Ulv— のらねこ！ C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=&#34;&#34; src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt; ぉ、`AuthenticationMethod` って複数設定できるのか！　ってことでちょい修正。 ```ps1 $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;テスト&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod Chap,MSChapv2 ` # ここ -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```確かめてみたところ、意図したとおりにチェックボックスがオンになっていた。やったねー！ちなみに ID とパスワードを設定するコマンドレットはないとのこと。 $RasExec = &ldquo;C:\windows\system32\rasdial." />
+$PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod MSChapv2 ` -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```これであっさり VPN を追加できたのだけど、うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい。ここのチェックボックスね。   UI ではできないのかなぁ、と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど、どうにもかっこ悪いので Twitter で聞いてみたら、幸い返事がいただけた。 &gt;もうお試しかもしれませんが、-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます。 pic.twitter.com/4LsYAR7Ulv— のらねこ！ C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=&#34;&#34; src=&#34;https://platform.twitter.com/widgets.js&#34; charset=&#34;utf-8&#34;&gt;&lt;/script&gt; ぉ、`AuthenticationMethod` って複数設定できるのか！　ってことでちょい修正。 ```ps1 $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;テスト&#34; Add-VpnConnection -Name $VpnName ` -ServerAddress $VpnUrl ` -RememberCredential -L2tpPsk $PreKey ` -AuthenticationMethod Chap,MSChapv2 ` # ここ -EncryptionLevel Maximum ` -TunnelType L2tp ` -Force ```確かめてみたところ、意図したとおりにチェックボックスがオンになっていた。やったねー！ちなみに ID とパスワードを設定するコマンドレットはないとのこと。 $RasExec = &ldquo;C:\windows\system32\rasdial." />
         
 
         
@@ -47,7 +47,7 @@ $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-Vpn
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +60,7 @@ $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-Vpn
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/powershell/">PowerShell</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/powershell/">PowerShell</a>
                                     </li>
                                 
                             
@@ -70,7 +70,7 @@ $PreKey = &#34;***&#34; $VpnUrl = &#34;***&#34; $VpnName = &#34;***&#34; Add-Vpn
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/11/03/202417/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/11/03/202417/" >
                     <h1 class="entry__header-title-link-text">PowerShall：VPN 接続をセットアップする</h1>
                 </a>
             </div>
@@ -96,10 +96,18 @@ Add-VpnConnection -Name $VpnName `
                   -TunnelType L2tp `
                   -Force
 
-```これであっさり VPN を追加できたのだけど<span style="color:#960050;background-color:#1e0010">、</span>うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい<span style="color:#960050;background-color:#1e0010">。</span>ここのチェックボックスね<span style="color:#960050;background-color:#1e0010">。</span><figure>
+```これであっさり VPN を追加できたのだけど<span style="color:#960050;background-color:#1e0010">、</span>うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい<span style="color:#960050;background-color:#1e0010">。</span>ここのチェックボックスね<span style="color:#960050;background-color:#1e0010">。</span>
+
+<figure>
     <img src="/images/20181103200617.png"/> 
 </figure>
-GUI ではできないのかなぁ<span style="color:#960050;background-color:#1e0010">、</span>と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど<span style="color:#960050;background-color:#1e0010">、</span>どうにもかっこ悪いので Twitter で聞いてみたら<span style="color:#960050;background-color:#1e0010">、</span>幸い返事がいただけた<span style="color:#960050;background-color:#1e0010">。</span>&gt;もうお試しかもしれませんが<span style="color:#960050;background-color:#1e0010">、</span>-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます<span style="color:#960050;background-color:#1e0010">。</span> pic.twitter.com/4LsYAR7Ulv<span style="color:#960050;background-color:#1e0010">—</span> のらねこ<span style="color:#960050;background-color:#1e0010">！</span> C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt; ぉ<span style="color:#960050;background-color:#1e0010">、</span>`AuthenticationMethod` って複数設定できるのか<span style="color:#960050;background-color:#1e0010">！</span>　ってことでちょい修正<span style="color:#960050;background-color:#1e0010">。</span>
+
+
+UI ではできないのかなぁ<span style="color:#960050;background-color:#1e0010">、</span>と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど<span style="color:#960050;background-color:#1e0010">、</span>どうにもかっこ悪いので Twitter で聞いてみたら<span style="color:#960050;background-color:#1e0010">、</span>幸い返事がいただけた<span style="color:#960050;background-color:#1e0010">。</span>
+
+&gt;もうお試しかもしれませんが<span style="color:#960050;background-color:#1e0010">、</span>-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます<span style="color:#960050;background-color:#1e0010">。</span> pic.twitter.com/4LsYAR7Ulv<span style="color:#960050;background-color:#1e0010">—</span> のらねこ<span style="color:#960050;background-color:#1e0010">！</span> C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;
+
+ ぉ<span style="color:#960050;background-color:#1e0010">、</span>`AuthenticationMethod` って複数設定できるのか<span style="color:#960050;background-color:#1e0010">！</span>　ってことでちょい修正<span style="color:#960050;background-color:#1e0010">。</span>
 ```ps1
 $PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
 
@@ -121,9 +129,20 @@ $VpnPass = &ldquo;</strong></em>&rdquo;</p>
 <p>#Add User &amp; Pass
 cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
 <pre><code class="language-上記サイトでは" data-lang="上記サイトでは">
+<figure>
+    <img src="/images/20181103201605.png"/> 
+</figure>
+
+
+の認証ダイアログで［資格情報を記憶する］とかいうチェックボックスがあれば便利なんだがな―って思ってたけど、1度繋ぐと保存されるのかな？　2回目は聞かれなかった気がする。とりあえずテストは完了したので、これを初期化スクリプトに追記して今日のお仕事は終わり。また便利になってしまった。
+
 &lt;div class=&quot;section&quot;&gt;
     ### 追伸
-    &gt;（もうめんどいからいいや）— だるやなぎ准将 (@daruyanagi) November 3, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt; 
+    
+
+&gt;（もうめんどいからいいや）— だるやなぎ准将 (@daruyanagi) November 3, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+ 
 
 &lt;/div&gt;
 
@@ -133,7 +152,7 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/11/04/031210/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/11/04/031210/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -142,7 +161,7 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/11/02/041440/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/11/02/041440/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

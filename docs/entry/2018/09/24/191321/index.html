@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/09/24/191321/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/09/24/191321/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,10 @@
 
         
             <meta name="description" content="「Amaguri」v1.0.0.0 - だるろぐWPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！
-### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018  最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――  なんだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。  ### &#34;プロセス起動&#34; に関連した System.Diagnostics.Process.Start への参照があります んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018  Desktop Bridge アプリは System." />
+### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。  プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 
+ 最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――
+  んだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。
+ ### &#34;プロセス起動&#34; に関連した System.Diagnostics.Process.Start への参照があります  んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018" />
         
 
         
@@ -47,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/amaguri/">Amaguri</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/amaguri/">Amaguri</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/uwp/">UWP</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
                                     </li>
                                 
                             
@@ -77,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/09/24/191321/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/09/24/191321/" >
                     <h1 class="entry__header-title-link-text">Amaguri をストアに申請しました（Desktop Bridge で2点躓きました……</h1>
                 </a>
             </div>
@@ -92,48 +95,60 @@
             <p><a href="https://blog.daruyanagi.jp/entry/2018/08/26/224927">「Amaguri」v1.0.0.0 - だるろぐ</a>WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！</p>
 <div class="section">
     ### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした
-    Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。>プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――<figure>
+    Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。
+<blockquote>
+<p>プロジェクト システムでエラーが発生しました。ターゲット フレームワーク '.NETCore,Version=v5.0' の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――</p>
+<figure>
     <img src="/images/20180924190106.png"/> 
 </figure>
-なんだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。
+
+<p>んだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。</p>
 </div>
 <div class="section">
     ### "プロセス起動" に関連した System.Diagnostics.Process.Start への参照があります
-    >んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> Desktop Bridge アプリは System.Diagnostics.Process.Start() で外部アプリを起動することができないらしい。ハイパーリンクをクリックしたらウチのサイトにジャンプするというだけの処理なのだけど……うーん。
-```cs
-private void Hyperlink_Click(object sender, RoutedEventArgs e)
+<blockquote>
+<p>んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>Desktop Bridge アプリは System.Diagnostics.Process.Start() で外部アプリを起動することができないらしい。ハイパーリンクをクリックしたらウチのサイトにジャンプするというだけの処理なのだけど……うーん。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Hyperlink_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
 {
-    System.Diagnostics.Process.Start("https://blog.daruyanagi.jp/");
+    System.Diagnostics.Process.Start(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>);
 }
-<pre><code class="language-最初はこの処理を削るしかないのかなと思っていたのですが、DesktopBridge.Helpers" data-lang="最初はこの処理を削るしかないのかなと思っていたのですが、DesktopBridge.Helpers">```cs
-private void Hyperlink_Click(object sender, RoutedEventArgs e)
+
+<span style="color:#960050;background-color:#1e0010">```最初はこの処理を削るしかないのかなと思っていたのですが、</span>DesktopBridge.Helpers <span style="color:#960050;background-color:#1e0010">という</span> NuGet <span style="color:#960050;background-color:#1e0010">を導入して「</span>UWP <span style="color:#960050;background-color:#1e0010">で実行されている時だけ</span> System.Diagnostics.Process.Start()  <span style="color:#960050;background-color:#1e0010">を実行しない」という処理を加えてみると、認定キットに合格することができました。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Hyperlink_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
 {
-    if (!IsRunningAsUwp())
+    <span style="color:#66d9ef">if</span> (!IsRunningAsUwp())
     {
-        System.Diagnostics.Process.Start(&quot;https://blog.daruyanagi.jp/&quot;);
+        System.Diagnostics.Process.Start(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>);
     }
 }
 
-public bool IsRunningAsUwp()
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> IsRunningAsUwp()
 {
-    DesktopBridge.Helpers helpers = new DesktopBridge.Helpers();
-    return helpers.IsRunningAsUwp();
+    DesktopBridge.Helpers helpers = <span style="color:#66d9ef">new</span> DesktopBridge.Helpers();
+    <span style="color:#66d9ef">return</span> helpers.IsRunningAsUwp();
 }
 
-```IsRunningAsUwp() は公式サイトにあるサンプルコードそのままです。ソースコードをのぞいてみたのですが、GetCurrentPackageFullName() という API を呼んでみてエラーが出るかどうかで判別してるようですね。なるほでぃうす。
-&lt;div class=&quot;github-card&quot; data-user=&quot;qmatteoq&quot; data-repo=&quot;DesktopBridgeHelpers&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/github-cards/latest/widget.js&quot;&gt;&lt;/script&gt;
-さてはて、S Mode でテストしてないので「クリップボードの画像をデスクトップに保存する」機能あたりでクラッシュしそうな気もするのですが、そのままストアに通ってくれるとありがたいなぁ。
+<span style="color:#960050;background-color:#1e0010">```</span>IsRunningAsUwp() <span style="color:#960050;background-color:#1e0010">は公式サイトにあるサンプルコードそのままです。ソースコードをのぞいてみたのですが、</span>GetCurrentPackageFullName() <span style="color:#960050;background-color:#1e0010">という</span> API <span style="color:#960050;background-color:#1e0010">を呼んでみてエラーが出るかどうかで判別してるようですね。なるほでぃうす。</span>
+&lt;div class=<span style="color:#e6db74">&#34;github-card&#34;</span> data-user=<span style="color:#e6db74">&#34;qmatteoq&#34;</span> data-repo=<span style="color:#e6db74">&#34;DesktopBridgeHelpers&#34;</span> data-width=<span style="color:#e6db74">&#34;400&#34;</span> data-height=<span style="color:#e6db74">&#34;&#34;</span> data-theme=<span style="color:#e6db74">&#34;default&#34;</span>&gt;&lt;/div
+
+&gt;
+&lt;script src=<span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/github-cards/latest/widget.js&#34;</span>&gt;&lt;/script&gt;
+<span style="color:#960050;background-color:#1e0010">さてはて、</span>S Mode <span style="color:#960050;background-color:#1e0010">でテストしてないので「クリップボードの画像をデスクトップに保存する」機能あたりでクラッシュしそうな気もするのですが、そのままストアに通ってくれるとありがたいなぁ。</span>
 
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/25/163814/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/25/163814/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -142,7 +157,7 @@ public bool IsRunningAsUwp()
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/24/134516/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/24/134516/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

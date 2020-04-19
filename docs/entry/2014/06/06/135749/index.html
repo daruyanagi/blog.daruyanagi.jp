@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/06/06/135749/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/06/06/135749/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,13 @@
         
 
         
-            <meta name="description" content="### 方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。  ### 準備   適当にコードを書いて実行すると、 &gt; アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。  というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT に解決策があった。まとめると、  プロジェクトを一度アンロードして……  *.csproj ファイルを編集し……  TargetPlatformVersion を 8.0 にする。
-&lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;&gt; Project=&#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&#34; Condition=&#34;Exists(&amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#39;)&#34; /&gt; &lt;propertygroup&gt;&lt;/propertygroup&gt; : : &lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;8.0 // &amp;lt;-- この行を追加 ```  で、もう一度プロジェクトを読み込んで［参照の追加］をすると、  ［Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows." />
+            <meta name="description" content="br/&gt;
+### 方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。  ### 準備   当にコードを書いて実行すると、
+&gt; アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。  というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT に解決策があった。まとめると、
+  ロジェクトを一度アンロードして……
+  *.csproj ファイルを編集し……
+  argetPlatformVersion を 8.0 にする。
+&lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt; ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;&gt; Project=&#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&#34; Condition=&#34;Exists(&amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#39;)&#34; /&gt; &lt;propertygroup&gt;&lt;/propertygroup&gt; : : &lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;8.0 // &amp;lt;-- この行を追加   、もう一度プロジェクトを読み込んで［参照の追加］をすると、" />
         
 
         
@@ -47,7 +52,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +65,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-runtime/">Windows Runtime</a>
                                     </li>
                                 
                             
@@ -70,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/06/06/135749/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/06/06/135749/" >
                     <h1 class="entry__header-title-link-text">インストール済みの Windows Store Apps を列挙する</h1>
                 </a>
             </div>
@@ -82,33 +87,41 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20140606135118.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <div class="section">
     ### 方針
     <a href="http://msdn.microsoft.com/ja-jp/library/windows/apps/br240968.aspx">PackageManager.FindPackagesForUser(String) Method (Windows)</a> を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。
 </div>
 <div class="section">
     ### 準備
-    <figure>
+<figure>
     <img src="/images/20140606133749.png"/> 
 </figure>
-適当にコードを書いて実行すると、
+
+<p>当にコードを書いて実行すると、</p>
 <pre><code>&gt;
     アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。
 </code></pre>
-<p>というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、<a href="http://www.atmarkit.co.jp/ait/articles/1304/26/news058_2.html">特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT</a> に解決策があった。まとめると、<figure>
+<p>というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、<a href="http://www.atmarkit.co.jp/ait/articles/1304/26/news058_2.html">特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT</a> に解決策があった。まとめると、</p>
+<figure>
     <img src="/images/20140606134302.png"/> 
 </figure>
-プロジェクトを一度アンロードして……<figure>
+
+<p>ロジェクトを一度アンロードして……</p>
+<figure>
     <img src="/images/20140606134305.png"/> 
 </figure>
- *.csproj ファイルを編集し……<figure>
+
+<p>*.csproj ファイルを編集し……</p>
+<figure>
     <img src="/images/20140606134309.png"/> 
 </figure>
-TargetPlatformVersion を 8.0 にする。</p>
+
+<p>argetPlatformVersion を 8.0 にする。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
 ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;&gt;
   Project=&#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&#34; Condition=&#34;Exists(&amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#39;)&#34; /&gt;
@@ -117,19 +130,23 @@ ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://sch
     :
     <span style="color:#f92672">&lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;</span>8.0 // &amp;lt;-- この行を追加
 
-```<figure>
+</code></pre></div><figure>
     <img src="/images/20140606134457.png"/> 
 </figure>
-で、もう一度プロジェクトを読み込んで［参照の追加］をすると、<figure>
+
+<p>、もう一度プロジェクトを読み込んで［参照の追加］をすると、</p>
+<figure>
     <img src="/images/20140606134515.png"/> 
 </figure>
-［Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows.Management と Windows.ApplicationModel を参照に追加。さらに、最初のビルドエラーで要求されていた System.Runtime も参照に追加しておく。<figure>
+
+<p>Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows.Management と Windows.ApplicationModel を参照に追加。さらに、最初のビルドエラーで要求されていた System.Runtime も参照に追加しておく。</p>
+<figure>
     <img src="/images/20140606134654.png"/> 
 </figure>
-“%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.dll”ファイルを指定して参照に加える。これで準備は完了。
 
-<span style="color:#f92672">&lt;/div&gt;</span>
-<span style="color:#f92672">&lt;div</span> <span style="color:#a6e22e">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#f92672">&gt;</span>
+<p>%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework.NETFramework\v4.5\Facades\System.Runtime.dll”ファイルを指定して参照に加える。これで準備は完了。</p>
+</div>
+<div class="section">
     ### コード
     ```cs
 using System;
@@ -137,56 +154,57 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
-namespace Sample3
+<p>namespace Sample3
 {
-    using Windows.Management.Deployment;
-
-    class Program
+using Windows.Management.Deployment;</p>
+<pre><code>class Program
+{
+    static void Main(string[] args)
     {
-        static void Main(string[] args)
+        var manager = new PackageManager();
+        var packages = manager.FindPackagesForUser(string.Empty);
+
+        foreach (var package in packages)
         {
-            var manager = new PackageManager();
-            var packages = manager.FindPackagesForUser(string.Empty);
-
-            foreach (var package in packages)
-            {
-                Console.WriteLine(package.DisplayName);
-                Console.WriteLine(package.Id.Name);
-                Console.WriteLine(package.Id.Publisher);
-                Console.WriteLine(package.Id.FullName);
-                Console.WriteLine(package.Id.FamilyName);
-                Console.WriteLine(package.Id.Version.Major);
-                Console.WriteLine(package.Id.Version.Minor);
-                Console.WriteLine(package.Id.Version.Build);
-                Console.WriteLine(package.Id.Version.Revision);
-                Console.WriteLine(package.Description);
-                Console.WriteLine(package.PublisherDisplayName);
-                Console.WriteLine(&#34;---&#34;);
-            }
-
-            Console.ReadKey();
+            Console.WriteLine(package.DisplayName);
+            Console.WriteLine(package.Id.Name);
+            Console.WriteLine(package.Id.Publisher);
+            Console.WriteLine(package.Id.FullName);
+            Console.WriteLine(package.Id.FamilyName);
+            Console.WriteLine(package.Id.Version.Major);
+            Console.WriteLine(package.Id.Version.Minor);
+            Console.WriteLine(package.Id.Version.Build);
+            Console.WriteLine(package.Id.Version.Revision);
+            Console.WriteLine(package.Description);
+            Console.WriteLine(package.PublisherDisplayName);
+            Console.WriteLine(&quot;---&quot;);
         }
+
+        Console.ReadKey();
     }
 }
-
-```適当にこんな感じにして実行。<figure>
+</code></pre>
+<p>}</p>
+<pre><code class="language-適当にこんな感じにして実行。" data-lang="適当にこんな感じにして実行。">
+<figure>
     <img src="/images/20140606135118.png"/> 
 </figure>
-package.DisplayName や package.Description などが表示されないが、この情報はそもそも提供されていないらしい。がっかりだ。ただ、 <span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;https://github.com/luisrigoni/metro-apps-list&#34;</span><span style="color:#f92672">&gt;</span>luisrigoni/metro-apps-list · GitHub<span style="color:#f92672">&lt;/a&gt;</span> で示されているように、Win32 API で PRI を読むなどすれば取得できないこともないらしい。だいぶ面倒だな……。
 
-<span style="color:#f92672">&lt;ul&gt;</span>
-<span style="color:#f92672">&lt;li&gt;&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx&#34;</span><span style="color:#f92672">&gt;</span>リソース管理システム (Windows)<span style="color:#f92672">&lt;/a&gt;&lt;/li&gt;</span>
-<span style="color:#f92672">&lt;/ul&gt;</span>
-<span style="color:#f92672">&lt;/div&gt;</span>
 
-</code></pre></div>
+ackage.DisplayName や package.Description などが表示されないが、この情報はそもそも提供されていないらしい。がっかりだ。ただ、 &lt;a href=&quot;https://github.com/luisrigoni/metro-apps-list&quot;&gt;luisrigoni/metro-apps-list · GitHub&lt;/a&gt; で示されているように、Win32 API で PRI を読むなどすれば取得できないこともないらしい。だいぶ面倒だな……。
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx&quot;&gt;リソース管理システム (Windows)&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/div&gt;
+
+</code></pre>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/06/07/171204/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/06/07/171204/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -195,7 +213,7 @@ package.DisplayName や package.Description などが表示されないが、こ
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/06/06/023509/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/06/06/023509/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/07/24/060000/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/07/24/060000/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="ワンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
-### APPX にパッケージングする   最近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、  アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト） ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト） WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る （必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する） みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、  Tonjiru ソリューション  Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx  という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。  ### 審査 パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日10日ぐらいたってストアを確認すると、起動しないといってリジェクトされていました……orzこの時点でやる気を失ってしまい、ほとんど放置状態だったのですが、忘れかけた頃に Microsoft からメールが届きました。  僕は英語を読めないのでよくわからんのですが、FullTrust 権限を許可するみたいなことが書いてあるみたいです。やる気がちょっと回復したので、申請に手を加えず再投稿。そしてまたリジェクトを食らいました。やる気ダダ下がり……。ただ、これは自分のミスで、ターゲットプラットフォームのチェックに Windows 10 Mobile が入っていたからでした。Win32/WPF アプリは W10M で使えないのでむべなるかな。ってか、それぐらい気を利かして、チェックを外してくれてもよかろうモノですが……まぁ、あっちの審査部門はそういうお役所仕事が役割なわけで、仕方ないですね。そこだけちゃんと修正して再提出してら、ストアに掲載されました。ぉ、わいの Desktop Bridge アプリがストアに上がったぞ。長かったー / “Tonjiru を入手 - Microsoft Store ja-JP” https://t." />
+            <meta name="description" content="ンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
+### APPX にパッケージングする   近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
+ アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト） ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト） WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る （必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する） みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、  Tonjiru ソリューション  Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx  という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。  ### 審査 パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。  自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日" />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -66,14 +67,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/tonjiru/">Tonjiru</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/uwp/">UWP</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
                                     </li>
                                 
                             
@@ -83,7 +84,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/07/24/060000/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/07/24/060000/" >
                     <h1 class="entry__header-title-link-text">7月18日：「Tonjiru」アプリがストアで公開されました（長かったー</h1>
                 </a>
             </div>
@@ -95,16 +96,18 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20180724032700.png"/> 
 </figure>
-ワンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。<a href="https://www.microsoft.com/ja-jp/p/tonjiru/9n2qr45vcmp1">Tonjiru を入手 - Microsoft Store ja-JP</a><br/></p>
+
+<p>ンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。<a href="https://www.microsoft.com/ja-jp/p/tonjiru/9n2qr45vcmp1">Tonjiru を入手 - Microsoft Store ja-JP</a><br/></p>
 <div class="section">
     ### APPX にパッケージングする
-    <figure>
+<figure>
     <img src="/images/20180724032856.png"/> 
 </figure>
-最近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については <a href="https://docs.microsoft.com/ja-jp/windows/uwp/porting/desktop-to-uwp-packaging-dot-net">Microsoft Docs</a> を参照してください。かいつまんで言うと、
+
+<p>近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については <a href="https://docs.microsoft.com/ja-jp/windows/uwp/porting/desktop-to-uwp-packaging-dot-net">Microsoft Docs</a> を参照してください。かいつまんで言うと、</p>
 <ul>
 <li>アプリを作る（Tonjiru ソリューション -> Tonjiru プロジェクト）</li>
 <li>ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション -> WindowsAppPackageプロジェクト）</li>
@@ -121,10 +124,20 @@
 </div>
 <div class="section">
     ### 審査
-    パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。>自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>10日ぐらいたってストアを確認すると、起動しないといってリジェクトされていました……orzこの時点でやる気を失ってしまい、ほとんど放置状態だったのですが、忘れかけた頃に Microsoft からメールが届きました。<figure>
+    パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。
+<blockquote>
+<p>自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>10日ぐらいたってストアを確認すると、起動しないといってリジェクトされていました……orzこの時点でやる気を失ってしまい、ほとんど放置状態だったのですが、忘れかけた頃に Microsoft からメールが届きました。</p>
+<figure>
     <img src="/images/20180724034849.png"/> 
 </figure>
-僕は英語を読めないのでよくわからんのですが、FullTrust 権限を許可するみたいなことが書いてあるみたいです。やる気がちょっと回復したので、申請に手を加えず再投稿。そしてまたリジェクトを食らいました。やる気ダダ下がり……。ただ、これは自分のミスで、ターゲットプラットフォームのチェックに Windows 10 Mobile が入っていたからでした。Win32/WPF アプリは W10M で使えないのでむべなるかな。ってか、それぐらい気を利かして、チェックを外してくれてもよかろうモノですが……まぁ、あっちの審査部門はそういうお役所仕事が役割なわけで、仕方ないですね。そこだけちゃんと修正して再提出してら、ストアに掲載されました。>ぉ、わいの Desktop Bridge アプリがストアに上がったぞ。長かったー / “Tonjiru を入手 - Microsoft Store ja-JP” https://t.co/OGgtrbq4dy— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年7月18日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>なんか1カ月以上かかったんですけど、まぁ、最初だし手際が悪いのは仕方ないね。次からはもっとすんなりいけそうな気がするので、またしょうもないアプリを作ってストアを賑わわせようかなって思います。
+
+<p>は英語を読めないのでよくわからんのですが、FullTrust 権限を許可するみたいなことが書いてあるみたいです。やる気がちょっと回復したので、申請に手を加えず再投稿。そしてまたリジェクトを食らいました。やる気ダダ下がり……。ただ、これは自分のミスで、ターゲットプラットフォームのチェックに Windows 10 Mobile が入っていたからでした。Win32/WPF アプリは W10M で使えないのでむべなるかな。ってか、それぐらい気を利かして、チェックを外してくれてもよかろうモノですが……まぁ、あっちの審査部門はそういうお役所仕事が役割なわけで、仕方ないですね。そこだけちゃんと修正して再提出してら、ストアに掲載されました。</p>
+<blockquote>
+<p>ぉ、わいの Desktop Bridge アプリがストアに上がったぞ。長かったー / “Tonjiru を入手 - Microsoft Store ja-JP” https://t.co/OGgtrbq4dy— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年7月18日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>なんか1カ月以上かかったんですけど、まぁ、最初だし手際が悪いのは仕方ないね。次からはもっとすんなりいけそうな気がするので、またしょうもないアプリを作ってストアを賑わわせようかなって思います。</p>
 </div>
 
         </div>
@@ -132,7 +145,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/07/26/175449/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/07/26/175449/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -141,7 +154,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/07/23/080802/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/07/23/080802/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

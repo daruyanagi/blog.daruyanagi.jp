@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/09/05/070245/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/09/05/070245/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="ちょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、WebMatrix 2：OAuth でログインする（２） - だるろぐ を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。
-### 下準備   まず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。  次に https://dev.twitter.com/apps/ でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。  Name: アプリの名前 Description: title Website: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる） Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい） Allow this application to be used to Sign in with Twitter: 無効化 アプリを登録したら、  Consumer key Consumer secret を取得し、~/_AppStart.cshtml で初期化を行う。 ```cs @{ // DB名: kenzo-memo." />
+            <meta name="description" content="ょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、WebMatrix 2：OAuth でログインする（２） - だるろぐ を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。
+### 下準備   ず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。
+  に https://dev.twitter.com/apps/ でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
+ Name: アプリの名前 Description: title Website: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる） Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい） Allow this application to be used to Sign in with Twitter: 無効化 アプリを登録したら、  Consumer key Consumer secret を取得し、~/_AppStart." />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,28 +62,28 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/twitter/">Twitter</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/twitter/">Twitter</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows/">Windows開発</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows/">Windows開発</a>
                                     </li>
                                 
                             
@@ -91,7 +93,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/09/05/070245/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/09/05/070245/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
                 </a>
             </div>
@@ -103,19 +105,23 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20130905061149.png"/> 
 </figure>
-ちょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、<a href="https://blog.daruyanagi.jp/entry/2013/02/03/160915">WebMatrix 2：OAuth でログインする（２） - だるろぐ</a> を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。</p>
+
+<p>ょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、<a href="https://blog.daruyanagi.jp/entry/2013/02/03/160915">WebMatrix 2：OAuth でログインする（２） - だるろぐ</a> を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。</p>
 <div class="section">
     ### 下準備
-    <figure>
+<figure>
     <img src="/images/20130905063705.png"/> 
 </figure>
-まず NuGet で <a href="http://www.nuget.org/packages/Microsoft.AspNet.WebPages.OAuth/">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。これで“スターター サイト”テンプレートでも使われている <a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx">OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a> が使えるようになる。<figure>
+
+<p>ず NuGet で <a href="http://www.nuget.org/packages/Microsoft.AspNet.WebPages.OAuth/">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。これで“スターター サイト”テンプレートでも使われている <a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx">OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a> が使えるようになる。</p>
+<figure>
     <img src="/images/20130905062911.png"/> 
 </figure>
-次に <a href="https://dev.twitter.com/apps/">https://dev.twitter.com/apps/</a> でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
+
+<p>に <a href="https://dev.twitter.com/apps/"><a href="https://dev.twitter.com/apps/">https://dev.twitter.com/apps/</a></a> でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。</p>
 <ul>
 <li>Name: アプリの名前</li>
 <li>Description: title</li>
@@ -141,10 +147,14 @@
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### ~/Default.cshtml
-    <figure>
+    
+
+<figure>
     <img src="/images/20130905061617.png"/> 
 </figure>
-ログインしていない場合はログインボタンを、ログインしている場合はログオフのリンクを表示するだけの簡単なコード。
+
+
+グインしていない場合はログインボタンを、ログインしている場合はログオフのリンクを表示するだけの簡単なコード。
 ```cs
 &amp;lt;!DOCTYPE html&gt;
 
@@ -183,10 +193,14 @@
     );
 }
 
-```**OAuthWebSecurity.RequestAuthentication** で Twitter へリクエストを投げる。<figure>
+```**OAuthWebSecurity.RequestAuthentication** で Twitter へリクエストを投げる。
+
+<figure>
     <img src="/images/20130905064446.png"/> 
 </figure>
-おなじみのこの画面へ飛ばされる。
+
+
+なじみのこの画面へ飛ばされる。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
@@ -247,32 +261,33 @@
     }
 }
 
-```<figure>
+</code></pre><figure>
     <img src="/images/20130905064840.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20130905064842.png"/> 
 </figure>
-成功するとこんなかんじにユーザーがデータベースに追加される。ちなみに result の中身はこんな感じ。<figure>
+
+<p>功するとこんなかんじにユーザーがデータベースに追加される。ちなみに result の中身はこんな感じ。</p>
+<figure>
     <img src="/images/20130905064941.png"/> 
 </figure>
-ObjectInfo.Print() はデバッグにとっても便利なヘルパーなのでぜひ覚えておいてね！
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+<p>bjectInfo.Print() はデバッグにとっても便利なヘルパーなのでぜひ覚えておいてね！</p>
+</div>
+<div class="section">
     ### ~/Logout.cshtml
     最後にログアウトの処理も書いておく。
 ```cs
 @{
     var returnUrl = Request.UrlReferrer.ToString();
+<pre><code>WebSecurity.Logout();
 
-    WebSecurity.Logout();
-
-    Response.Redirect(returnUrl);
-}
-
-```ログインの時はもっぱら &lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity(v=vs.111).aspx&quot;&gt;OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt; を使っていたけれど、ログアウトはいつもどおり &lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/webmatrix.webdata.websecurity(v=vs.111).aspx&quot;&gt;WebSecurity Class (WebMatrix.WebData) | Microsoft Docs&lt;/a&gt; が使える。
-
+Response.Redirect(returnUrl);
+</code></pre>
+<p>}</p>
+<pre><code class="language-ログインの時はもっぱら" data-lang="ログインの時はもっぱら">
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### まとめ
@@ -293,7 +308,7 @@ ObjectInfo.Print() はデバッグにとっても便利なヘルパーなので�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/07/045632/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/07/045632/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -302,7 +317,7 @@ ObjectInfo.Print() はデバッグにとっても便利なヘルパーなので�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/05/025249/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/05/025249/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/09/19/224430/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/09/19/224430/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
+            <meta name="description" content="ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
 ### AsyncOAuth を導入する さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。  neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。 ```cs var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret); var callbackUri = &#34;http://localhost/&#34;; var requestTokenResponse = await authorizer.GetRequestToken( &ldquo;https://www.hatena.com/oauth/initiate&quot;, new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;oauth_callback&rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;scope&rdquo;, &ldquo;read_public,write_public,read_private,write_private&rdquo; ) }));" />
         
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +60,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/uwp/">UWP</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
                                     </li>
                                 
                             
@@ -76,7 +76,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/09/19/224430/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/09/19/224430/" >
                     <h1 class="entry__header-title-link-text">UWP：はてなの oAuth 認証</h1>
                 </a>
             </div>
@@ -88,10 +88,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20160919220838.png"/> 
 </figure>
-プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。</p>
+
+<p>ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。</p>
 <div class="section">
     ### AsyncOAuth を導入する
     さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。
@@ -124,10 +125,14 @@ requestToken);</p>
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### WebAuthenticationBroker を使って認証する
-    <figure>
+    
+
+<figure>
     <img src="/images/20160919223009.png"/> 
 </figure>
-次は Web へアクセスして認証。UWP には WebAuthenticationBroker っていうダイアログを出す仕組み（それだけじゃないけど）が用意されているので、それを使うといい感じ。
+
+
+は Web へアクセスして認証。UWP には WebAuthenticationBroker っていうダイアログを出す仕組み（それだけじゃないけど）が用意されているので、それを使うといい感じ。
 ```cs
 // さっき取得したリクエストトークンを使って認証 URI を取得
 var authorizeUrl = authorizer.BuildAuthorizeUrl(
@@ -180,27 +185,30 @@ switch (webAuthenticationResult.ResponseStatus)
 </code></pre></div>
 <div class="section">
     ### ユーザー情報を取得
-    <figure>
+<figure>
     <img src="/images/20160919223808.png"/> 
 </figure>
-あとは OAuthUtility.CreateOAuthClient() でクライアントを取得してごにょごにょするだけ。このクライアントは AsyncOAuth が HttpClient にフィルター（？）をかましているだけなので、HttpClient みたいに GetAsync() とかできる。
-```cs
-var client = OAuthUtility.CreateOAuthClient(
+
+<p>とは OAuthUtility.CreateOAuthClient() でクライアントを取得してごにょごにょするだけ。このクライアントは AsyncOAuth が HttpClient にフィルター（？）をかましているだけなので、HttpClient みたいに GetAsync() とかできる。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> client = OAuthUtility.CreateOAuthClient(
     ConsumerKey, ConsumerSecret, AccessToken
 );
-<p>var json = await client.GetStringAsync(
-&ldquo;<a href="http://n.hatena.com/applications/my.json%22">http://n.hatena.com/applications/my.json&quot;</a>
-);</p>
-<pre><code class="language-これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。" data-lang="これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。">
+
+<span style="color:#66d9ef">var</span> json = <span style="color:#66d9ef">await</span> client.GetStringAsync(
+    <span style="color:#e6db74">&#34;http://n.hatena.com/applications/my.json&#34;</span>
+);
+
+<span style="color:#960050;background-color:#1e0010">```これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。</span>
+
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/09/23/212240/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/09/23/212240/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -209,7 +217,7 @@ var client = OAuthUtility.CreateOAuthClient(
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/privacy_policy/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/privacy_policy/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/06/24/215437/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/06/24/215437/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="Twitter で小耳にはさんだ「Web Starter Kit」を少し試してみました（別に WebMatrix で、じゃなくていいんだが）。いわゆるボイラープレート（テンプレみたいなもん）ですね。
+            <meta name="description" content="witter で小耳にはさんだ「Web Starter Kit」を少し試してみました（別に WebMatrix で、じゃなくていいんだが）。いわゆるボイラープレート（テンプレみたいなもん）ですね。
  Mobile-optimized HTML boilerplate Responsive multi-device layout Visual component style guide gulp.js build tooling (optional) LiveReload Cross-device synchronization of clicks, scrolls, navigation, and form-filling Image optimization JavaScript minification and optimization CSS optimization HTML minification PageSpeed performance reporting CSS autoprefixing というのが特徴らしい。ブラウザーサポートはこんな感じ。  IE10, IE11, IE Mobile 10 FF 30, 31 Chrome 34, 35 Safari 7, 8 Opera 23, 24 iOS Safari 7, 8 Opera Coast Android / Chrome 4." />
         
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +60,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -70,7 +70,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/06/24/215437/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/06/24/215437/" >
                     <h1 class="entry__header-title-link-text">Google の「Web Starter Kit」を WebMatrix で</h1>
                 </a>
             </div>
@@ -82,10 +82,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20140624213306.png"/> 
 </figure>
-Twitter で小耳にはさんだ「<a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a>」を少し試してみました（別に WebMatrix で、じゃなくていいんだが）。いわゆるボイラープレート（テンプレみたいなもん）ですね。</p>
+
+<p>witter で小耳にはさんだ「<a href="https://developers.google.com/web/starter-kit/">Web Starter Kit</a>」を少し試してみました（別に WebMatrix で、じゃなくていいんだが）。いわゆるボイラープレート（テンプレみたいなもん）ですね。</p>
 <ul>
 <li>Mobile-optimized HTML boilerplate</li>
 <li>Responsive multi-device layout</li>
@@ -110,46 +111,75 @@ Twitter で小耳にはさんだ「<a href="https://developers.google.com/web/st
 <li>Opera Coast</li>
 <li>Android / Chrome 4.4, 4.4.3</li>
 <li>Blackberry 1.0</li>
-</ul>IE11 で少しずれてるところがあった気もするけどキニシナイ。<figure>
+</ul>IE11 で少しずれてるところがあった気もするけどキニシナイ。
+<figure>
     <img src="/images/20140624213625.png"/> 
 </figure>
-さっそくダウンロードし、アーカイブを展開しました。よくわからんのがぐちゃぐちゃ入ってる（<a href="http://gulpjs.com/">gulp.js - the streaming build system</a> のためのファイルなんだろうか？）けど、メインは app フォルダの中身みたい。このフォルダをさっそく［Microsoft WebMatrix で Web サイトとして開く］。<figure>
+
+<p>っそくダウンロードし、アーカイブを展開しました。よくわからんのがぐちゃぐちゃ入ってる（<a href="http://gulpjs.com/">gulp.js - the streaming build system</a> のためのファイルなんだろうか？）けど、メインは app フォルダの中身みたい。このフォルダをさっそく［Microsoft WebMatrix で Web サイトとして開く］。</p>
+<figure>
     <img src="/images/20140624214238.png"/> 
 </figure>
-スクリプトはメニュー関連のが最小限度。スタイルシートは SCSS で書かれていて、CSS にコンパイルされています。ほかに Web フォントやらアイコンやらが少し。basic.html は HTML5 Boilerplate CSS を読み込んだだけのシンプルなスタイル。
+
+<p>クリプトはメニュー関連のが最小限度。スタイルシートは SCSS で書かれていて、CSS にコンパイルされています。ほかに Web フォントやらアイコンやらが少し。basic.html は HTML5 Boilerplate CSS を読み込んだだけのシンプルなスタイル。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- build:css styles/components/main.min.css --&gt;</span>
+&amp;lt;link rel=&#34;stylesheet&#34; href=&#34;styles/h5bp.css&#34;&gt;
+<span style="color:#75715e">&lt;!-- endbuild --&gt;</span>
+
+```inde.html はいろいろ読み込んで Google デザインっぽくしたやつ。
 ```html
-<!-- build:css styles/components/main.min.css -->
-&lt;link rel="stylesheet" href="styles/h5bp.css">
-<!-- endbuild -->
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-inde.html" data-lang="inde.html">```html
 <span style="color:#75715e">&lt;!-- build:css styles/components/main.min.css --&gt;</span>
 &amp;lt;link rel=&#34;stylesheet&#34; href=&#34;styles/h5bp.css&#34;&gt;
 &amp;lt;link rel=&#34;stylesheet&#34; href=&#34;styles/components/components.css&#34;&gt;
 &amp;lt;link rel=&#34;stylesheet&#34; href=&#34;styles/main.css&#34;&gt;
 <span style="color:#75715e">&lt;!-- endbuild --&gt;</span>
 
-```とりあえず実行。<figure>
+```とりあえず実行。
+
+<figure>
     <img src="/images/20140624214811.png"/> 
 </figure>
-Google っぽい。日本語フォントで使うなら、少しいろいろいじった方がバランスがいいかもしれないかなー。そういうセンスないからよくわかんないけど。スタイルガイドものぞいてみました。<figure>
+
+
+oogle っぽい。日本語フォントで使うなら、少しいろいろいじった方がバランスがいいかもしれないかなー。そういうセンスないからよくわかんないけど。スタイルガイドものぞいてみました。
+
+<figure>
     <img src="/images/20140624214745.png"/> 
 </figure>
-ボタン。とっても……Google っぽいです……。<figure>
+
+
+タン。とっても……Google っぽいです……。
+
+<figure>
     <img src="/images/20140624214917.png"/> 
 </figure>
-グリッド。ここらへんは Bootstrap とかでもお馴染み。ざっとしか見てないけど、2段～4段組みまで割りと柔軟にレイアウトできるみたい。<figure>
+
+
+リッド。ここらへんは Bootstrap とかでもお馴染み。ざっとしか見てないけど、2段～4段組みまで割りと柔軟にレイアウトできるみたい。
+
+<figure>
     <img src="/images/20140624215143.png"/> 
 </figure>
-カラー。色のセンスないので、こういうところだけでも真似してみたい。前景と背景だけ色決めて、ほかはアクセントカラーとその薄いバージョンをうまく使う感じで……。<figure>
+
+
+ラー。色のセンスないので、こういうところだけでも真似してみたい。前景と背景だけ色決めて、ほかはアクセントカラーとその薄いバージョンをうまく使う感じで……。
+
+<figure>
     <img src="/images/20140624215243.png"/> 
 </figure>
+
+
 <figure>
     <img src="/images/20140624215247.png"/> 
 </figure>
+
+
 <figure>
     <img src="/images/20140624215251.png"/> 
 </figure>
-あと、こういう機能紹介っぽい感じのページもいいなぁと思った。まるまる使うと Google 臭がスゴいのであんまり使わない気がするけれど、エッセンスだけでも取り込みたい。
+
+
+と、こういう機能紹介っぽい感じのページもいいなぁと思った。まるまる使うと Google 臭がスゴいのであんまり使わない気がするけれど、エッセンスだけでも取り込みたい。
 
 
 </code></pre></div>
@@ -158,7 +188,7 @@ Google っぽい。日本語フォントで使うなら、少しいろいろい�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/06/25/223855/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/06/25/223855/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -167,7 +197,7 @@ Google っぽい。日本語フォントで使うなら、少しいろいろい�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/06/22/182655/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/06/22/182655/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

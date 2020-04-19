@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/06/23/204520/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/06/23/204520/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,13 @@
         
 
         
-            <meta name="description" content="今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” https://t.co/3qCA4Fnozt— だるやなぎ 帝国元帥 (@daruyanagi) 2018年6月21日Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。
- ### SDK のインストール   とりあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。[ASP.NET - Get started in 10 minutes](https://www.microsoft.com/net/learn/apps/web/get-started/windows)なんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。    ちゃんとプルダウンに 2.1 がでてきたので切り替えました。    ### とりあえずデバッグ → エラー   とりあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。  それ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP.NET Core に内蔵の Webrick みたいなサーバーが使えるんだな（何度聞いても名前が覚えられないんだけど、Kestrel っていうらしい？）。  ### NuGet パッケージの入れ替え このままデプロイしちゃおうかなって思ったのですが、変なところでハマると嫌だなーと思い、しばやんのブログでもう一度いろいろ確かめました。[ASP." />
+            <meta name="description" content="今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” https://t.co/3qCA4Fnozt— だるやなぎ 帝国元帥 (@daruyanagi) 2018年6月21日
+ Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。
+### SDK のインストール   りあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。ASP.NET - Get started in 10 minutesなんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。
+    ゃんとプルダウンに 2.1 がでてきたので切り替えました。
+  br/&gt;
+ ### とりあえずデバッグ → エラー   りあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。
+  れ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP." />
         
 
         
@@ -47,7 +52,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +65,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-core/">ASP.NET Core</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-core/">ASP.NET Core</a>
                                     </li>
                                 
                             
@@ -70,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/06/23/204520/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/06/23/204520/" >
                     <h1 class="entry__header-title-link-text">ASP.NET Core：daruyanagi.jp を ASP.NET Core 2.1 へ移行させた</h1>
                 </a>
             </div>
@@ -83,33 +88,43 @@
         </div>
         <div class="entry__content">
             <blockquote>
-<p>今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” https://t.co/3qCA4Fnozt— だるやなぎ 帝国元帥 (@daruyanagi) 2018年6月21日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。</p>
+<p>今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” https://t.co/3qCA4Fnozt— だるやなぎ 帝国元帥 (@daruyanagi) 2018年6月21日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 </blockquote>
+<p>Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。</p>
 <div class="section">
     ### SDK のインストール
-    <figure>
+<figure>
     <img src="/images/20180623202128.png"/> 
 </figure>
-とりあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。[ASP.NET - Get started in 10 minutes](https://www.microsoft.com/net/learn/apps/web/get-started/windows)なんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。<figure>
+
+<p>りあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。<a href="https://www.microsoft.com/net/learn/apps/web/get-started/windows">ASP.NET - Get started in 10 minutes</a>なんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。</p>
+<figure>
     <img src="/images/20180623202320.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20180623202323.png"/> 
 </figure>
-ちゃんとプルダウンに 2.1 がでてきたので切り替えました。<figure>
+
+<p>ゃんとプルダウンに 2.1 がでてきたので切り替えました。</p>
+<figure>
     <img src="/images/20180623202524.png"/> 
 </figure>
-<br/>
+
+<p>br/&gt;</p>
 </div>
 <div class="section">
     ### とりあえずデバッグ → エラー
-    <figure>
+<figure>
     <img src="/images/20180623202603.png"/> 
 </figure>
-とりあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。<figure>
+
+<p>りあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。</p>
+<figure>
     <img src="/images/20180623202756.png"/> 
 </figure>
-それ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP.NET Core に内蔵の Webrick みたいなサーバーが使えるんだな（何度聞いても名前が覚えられないんだけど、<a href="https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x">Kestrel </a>っていうらしい？）。
+
+<p>れ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP.NET Core に内蔵の Webrick みたいなサーバーが使えるんだな（何度聞いても名前が覚えられないんだけど、<a href="https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&amp;tabs=aspnetcore2x">Kestrel </a>っていうらしい？）。</p>
 </div>
 <div class="section">
     ### NuGet パッケージの入れ替え
@@ -117,23 +132,34 @@
 <pre><code>&gt;
     ASP.NET Core 2.0 から Microsoft.AspNetCore.All という狂気に満ちたメタパッケージが用意されましたが、2.1 からはマイルドになった Microsoft.AspNetCore.App というメタパッケージが追加されました。
 </code></pre>
-<p>っていう部分はウチの環境でも対応しておいた方がいいかなって思ったので、NuGet パッケージを入れ替えました。<figure>
+<p>っていう部分はウチの環境でも対応しておいた方がいいかなって思ったので、NuGet パッケージを入れ替えました。</p>
+<figure>
     <img src="/images/20180623203608.png"/> 
 </figure>
-更新インジケーターが出ている Microsoft.AspNetCore.All をブッコ抜き、Microsoft.AspNetCore.App に入れ替えるだけ。これで狂気から解放されたようです。<figure>
+
+<p>新インジケーターが出ている Microsoft.AspNetCore.All をブッコ抜き、Microsoft.AspNetCore.App に入れ替えるだけ。これで狂気から解放されたようです。</p>
+<figure>
     <img src="/images/20180623203730.png"/> 
 </figure>
-これでウチの移行作業はだいたい終わりですが、リポジトリ上での変更はマジで<strong>ターゲット フレームワークの変更だけ</strong>でした。あとでいろいろ問題が出ないとも限らないけど、スクショとりながら進めるほどの作業でもなかった。</p>
+
+<p>れでウチの移行作業はだいたい終わりですが、リポジトリ上での変更はマジで<strong>ターゲット フレームワークの変更だけ</strong>でした。あとでいろいろ問題が出ないとも限らないけど、スクショとりながら進めるほどの作業でもなかった。</p>
 </div>
 <div class="section">
     ### Web Deploy できない問題
-    <figure>
+<figure>
     <img src="/images/20180623203918.png"/> 
 </figure>
-さて、あとはデプロイするだけなのですが、ウチの環境はいろいろ腐り始めてるっぽくてエラーがでる。[未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐ](https://blog.daruyanagi.jp/entry/2018/06/20/232113)一通りググってみたけどピッタリの解決策は見つからなくて、FTP でデプロイするという邪悪な方法でしのいできたのですが――>未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐGitHubからデプロイするようにするのはダメなのかしら？2018/06/20 23:50<script src="https://b.st-hatena.com/js/comment-widget.js" charset="utf-8" async=""></script><cite class="hatena-citation"><a href="http://b.hatena.ne.jp/entry/366160930/comment/nakaji999">b.hatena.ne.jp</a></cite>賢者の声がしたので、それに従ってみました。いや、前々からやろうと思ってたんだけど、なんかめんどくさくて後回しになってただけなんだからねっ！<figure>
+
+<p>て、あとはデプロイするだけなのですが、ウチの環境はいろいろ腐り始めてるっぽくてエラーがでる。<a href="https://blog.daruyanagi.jp/entry/2018/06/20/232113">未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐ</a>一通りググってみたけどピッタリの解決策は見つからなくて、FTP でデプロイするという邪悪な方法でしのいできたのですが――</p>
+<blockquote>
+<p>未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐGitHubからデプロイするようにするのはダメなのかしら？2018/06/20 23:50<script src="https://b.st-hatena.com/js/comment-widget.js" charset="utf-8" async=""></script></p>
+</blockquote>
+<p><cite class="hatena-citation"><a href="http://b.hatena.ne.jp/entry/366160930/comment/nakaji999">b.hatena.ne.jp</a></cite>賢者の声がしたので、それに従ってみました。いや、前々からやろうと思ってたんだけど、なんかめんどくさくて後回しになってただけなんだからねっ！</p>
+<figure>
     <img src="/images/20180623204237.png"/> 
 </figure>
-で、やってみたらフツーにイケました。ソースコード管理は GitHub でやってるし、こっちの方が断然いいな。ちゃんと master ブランチを触らない癖も付きそうだ。
+
+<p>、やってみたらフツーにイケました。ソースコード管理は GitHub でやってるし、こっちの方が断然いいな。ちゃんと master ブランチを触らない癖も付きそうだ。</p>
 </div>
 
         </div>
@@ -141,7 +167,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/06/26/182340/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/26/182340/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -150,7 +176,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/06/23/114536/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/23/114536/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

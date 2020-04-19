@@ -2,71 +2,78 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Google on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/google/</link>
+    <link>https://blog.daruyanagi.jp/tags/google/</link>
     <description>Recent content in Google on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 05 Sep 2018 16:15:31 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/google/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/google/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>「三重県民には無理に飲ませてはいけない」をグラフ化する</title>
-      <link>https://daruyanagi.net/entry/2017/01/03/145528/</link>
+      <link>https://blog.daruyanagi.jp/entry/2017/01/03/145528/</link>
       <pubDate>Tue, 03 Jan 2017 14:55:28 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2017/01/03/145528/</guid>
-      <description>### Excel の 3D Maps を利用する 詳しい方法は「Excel 2016の新機能「3Dマップ」の使い方。地図上にグラフを作成できる！ | できるネット」で紹介されている。  まずテーブルを作成。  次に［挿入］－［3D マップ］コマンドを選択。  「データ解析アドイン」を有効化するかどうか聞かれるので、［有効］ボタンを押す。  すると 3D Maps の編集画面が現れるので、ごにょごにょイジっていい感じにする。なんか塗りが適当だし、石川県・香川県・福岡県がなぜか欠落しているけど気にしない（詳しい人、直し方教えて）。  ### Google Chart を利用する JavaScript が書けるならこっちの方が簡単。 ```javascript &amp;lt;script src=&#34;https://www.google.com/jsapi&#34;&amp;lt;/script &amp;lt;script google.load(&amp;#39;visualization&amp;#39;, &amp;#39;1&amp;#39;, {packages:[&amp;#39;geochart&amp;#39;]}); google.setOnLoadCallback(graphChart); function graphChart() { var data = google.visualization.arrayToDataTable([ [&amp;ldquo;都道府県&amp;rdquo;, &amp;ldquo;データ&amp;rdquo;], [&amp;ldquo;秋田&amp;rdquo;, 76.7] , ： ： [&amp;ldquo;三重&amp;rdquo;, 39.7]
+      <guid>https://blog.daruyanagi.jp/entry/2017/01/03/145528/</guid>
+      <description>### Excel の 3D Maps を利用する 詳しい方法は「Excel 2016の新機能「3Dマップ」の使い方。地図上にグラフを作成できる！ | できるネット」で紹介されている。   ずテーブルを作成。
+  に［挿入］－［3D マップ］コマンドを選択。
+  データ解析アドイン」を有効化するかどうか聞かれるので、［有効］ボタンを押す。
+  ると 3D Maps の編集画面が現れるので、ごにょごにょイジっていい感じにする。なんか塗りが適当だし、石川県・香川県・福岡県がなぜか欠落しているけど気にしない（詳しい人、直し方教えて）。
+ ### Google Chart を利用する JavaScript が書けるならこっちの方が簡単。 ```javascript &amp;lt;script src=&#34;https://www.google.com/jsapi&#34;&amp;lt;/script &amp;lt;script google.load(&amp;#39;visualization&amp;#39;, &amp;#39;1&amp;#39;, {packages:[&amp;#39;geochart&amp;#39;]}); google.setOnLoadCallback(graphChart); function graphChart() { var data = google.visualization.arrayToDataTable([ [&amp;ldquo;都道府県&amp;rdquo;, &amp;ldquo;データ&amp;rdquo;], [&amp;ldquo;秋田&amp;rdquo;, 76.7] , ： ： [&amp;ldquo;三重&amp;rdquo;, 39.7]
 ]); var option = { region: &#39;JP&#39;, resolution: &#39;provinces&#39; };
-var chart = new google.visualization .GeoChart(document.getElementById(&#39;chart&#39;)); chart.draw(data, option); } &amp;lt;/script&amp;gt;</description>
+var chart = new google.</description>
     </item>
     
     <item>
       <title>WebMatrix：愛媛のニュースだけ読みたいので、Google ニュースから引っ張ってくる</title>
-      <link>https://daruyanagi.net/entry/2015/01/18/081720/</link>
+      <link>https://blog.daruyanagi.jp/entry/2015/01/18/081720/</link>
       <pubDate>Sun, 18 Jan 2015 08:17:20 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2015/01/18/081720/</guid>
-      <description>地元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。
+      <guid>https://blog.daruyanagi.jp/entry/2015/01/18/081720/</guid>
+      <description>元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。
 # ~/App_Code/GoogleNews.cshtml @using System.ServiceModel.Syndication @using System.Xml @helper Get(string query) { var url = string.Format( &amp;#34;http://news.google.com/news?q={0}&amp;amp;amp;output=rss&amp;#34;, query ); using (var reader = XmlReader.Create(url)) { var feed = SyndicationFeed.Load(reader); // @ObjectInfo.Print(feed);  var data = feed.Items.Select(_ =&amp;gt; new { Title = _.Title.Text, Summary = _.Summary.Text, PublishDate = _.PublishDate, Url = _.Links.First().Uri.ToString().Split(&amp;amp;#39;=&amp;amp;#39;).Last(), }); // @ObjectInfo.Print(data);  foreach (var d in data) { // &amp;lt;h2&amp;gt;&amp;lt;a href=&amp;#34;@d.Url&amp;#34;&amp;gt;@d.Title&amp;lt;/a&amp;gt;&amp;lt;/h2&amp;gt;  &amp;amp;lt;p&amp;gt;@Html.</description>
     </item>
     
     <item>
       <title>ブログにかっちょいいグラフを張り付ける</title>
-      <link>https://daruyanagi.net/entry/2015/01/05/163509/</link>
+      <link>https://blog.daruyanagi.jp/entry/2015/01/05/163509/</link>
       <pubDate>Mon, 05 Jan 2015 16:35:09 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2015/01/05/163509/</guid>
-      <description>去年 Amazonで使った金額を計算してみた。 - だるろぐ でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google ChartCharts | Google Developers で張り付けた方がカッコイイっぽいことに気付いた。  最近は Material Charts と呼ばれる SVG で実装されたリッチなグラフが書けるようになっている（そのため、古い Internet Explorer では表示できないので注意）。たとえば、グラフにマウスオーバーすると数値が表示されたり。かっちょいい。ただし、ベータ版であることには留意しておこう。
+      <guid>https://blog.daruyanagi.jp/entry/2015/01/05/163509/</guid>
+      <description>去年 Amazonで使った金額を計算してみた。 - だるろぐ でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google ChartCharts | Google Developers で張り付けた方がカッコイイっぽいことに気付いた。
+  近は Material Charts と呼ばれる SVG で実装されたリッチなグラフが書けるようになっている（そのため、古い Internet Explorer では表示できないので注意）。たとえば、グラフにマウスオーバーすると数値が表示されたり。かっちょいい。ただし、ベータ版であることには留意しておこう。
 ### コード ```javascript &amp;lt;script type=&#34;text/javascript&#34; src=&#34;https://www.google.com/jsapi&#34;&amp;lt;/script &amp;lt;script type=&#34;text/javascript&#34; google.load(&#34;visualization&#34;, &#34;1.1&#34;, {packages:[&#34;bar&#34;]}); google.setOnLoadCallback(drawChart); function drawChart() { var data = google.visualization.arrayToDataTable([ [&amp;amp;#39;Year&amp;amp;#39;, &amp;amp;#39;合計金額&amp;amp;#39;], [&amp;amp;#39;2006&amp;amp;#39;, 71180 ], [&amp;amp;#39;2007&amp;amp;#39;, 283066 ], [&amp;amp;#39;2008&amp;amp;#39;, 66638 ], [&amp;amp;#39;2009&amp;amp;#39;, 35289 ], [&amp;amp;#39;2010&amp;amp;#39;, 93949 ], [&amp;amp;#39;2010&amp;amp;#39;, 93949 ], [&amp;amp;#39;2011&amp;amp;#39;, 258747 ], [&amp;amp;#39;2012&amp;amp;#39;, 277831 ], [&amp;amp;#39;2013&amp;amp;#39;, 186103 ], [&amp;amp;#39;2014&amp;amp;#39;, 258747 ], ]); var options = { chart: { title: &amp;amp;#39;Amazon 年間消費金額&amp;amp;#39;, subtitle: &amp;amp;#39;2006-2014&amp;amp;#39;, } }; var chart = new google.</description>
     </item>
     
     <item>
       <title>古き良き Google Contacts に別れを</title>
-      <link>https://daruyanagi.net/entry/2013/12/09/213931/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/12/09/213931/</link>
       <pubDate>Mon, 09 Dec 2013 21:39:31 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/12/09/213931/</guid>
-      <description>The Old Google Contacts, No Longer Available によると、Google Contacts の古いユーザーインターフェイスが終わるのだそうな。まぁ、ダサかったし……。https://mail.google.com/mail/h/?v=cl にアクセスすれば、HTML 版としてあの懐かしいインターフェイスがまだ楽しめるらしい。</description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/12/09/213931/</guid>
+      <description>a href=&amp;quot;http://googlesystem.blogspot.jp/2013/12/the-old-google-contacts-no-longer.html&amp;quot;&amp;gt;The Old Google Contacts, No Longer Available によると、Google Contacts の古いユーザーインターフェイスが終わるのだそうな。まぁ、ダサかったし……。https://mail.google.com/mail/h/?v=cl にアクセスすれば、HTML 版としてあの懐かしいインターフェイスがまだ楽しめるらしい。</description>
     </item>
     
     <item>
       <title>Gmail </title>
-      <link>https://daruyanagi.net/entry/2013/09/25/113348/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/09/25/113348/</link>
       <pubDate>Wed, 25 Sep 2013 11:33:48 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/09/25/113348/</guid>
-      <description>  さきほど何気なく Gmail のチェックをしていたら、こんなボタンがついていることに気づいた。  これを押すと――  荷物の追跡が行える。ちょっとびっくりしたけど、これはだいぶ前（先月ぐらい？）に追加された機能みたい。こちらでは Internet Explorer 10、Mozilla Firefox 24、Google Chrome 29での動作を確認している。
- GMailでアマゾンの発送通知で「荷物を追跡」ボタンが表示されるって話 - 段ボール箱の中身 朝山貴生 - Google+ - すげぇ、Gmailのメール一覧でAmazonからの発送通知メールを開かずに、直接荷物の追跡へ行けるようになってる・・・… メールにマークアップを含めることで、受信トレイ内にアクションが追加できるとの吉。   Actions in the Inbox — Google Developers ただ、最近は iPhone でチェックしてしまうから気が付かないんだよなぁ。 </description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/09/25/113348/</guid>
+      <description>  きほど何気なく Gmail のチェックをしていたら、こんなボタンがついていることに気づいた。
+  れを押すと――
+  物の追跡が行える。ちょっとびっくりしたけど、これはだいぶ前（先月ぐらい？）に追加された機能みたい。こちらでは Internet Explorer 10、Mozilla Firefox 24、Google Chrome 29での動作を確認している。
+ GMailでアマゾンの発送通知で「荷物を追跡」ボタンが表示されるって話 - 段ボール箱の中身 朝山貴生 - Google+ - すげぇ、Gmailのメール一覧でAmazonからの発送通知メールを開かずに、直接荷物の追跡へ行けるようになってる・・・… メールにマークアップを含めることで、受信トレイ内にアクションが追加できるとの吉。    Actions in the Inbox — Google Developers ただ、最近は iPhone でチェックしてしまうから気が付かないんだよなぁ。 </description>
     </item>
     
     <item>
       <title>Google Publisher Toolbar 4.0</title>
-      <link>https://daruyanagi.net/entry/2013/05/23/073858/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/05/23/073858/</link>
       <pubDate>Thu, 23 May 2013 07:38:58 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/05/23/073858/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2013/05/23/073858/</guid>
       <description>&amp;gt; バージョン: 4.0.0  更新日: 2013年5月22日
 アカウントのサマリー、[広告の詳細] ウィンドウ、広告オーバーレイのデザインを一新 報告されたログイン問題を解決するために認証メカニズムを改善 [広告の詳細] ウィンドウで広告ネットワークを表示 [広告の詳細] ウィンドウから購入者単位でブロックが可能 フィードバック コメント用の新しいフィールド その他の小さなバグ修正
  Chrome Web Store - Google Publisher Toolbar  デザインが変わってちょっとびっくりした。個人的には認証メカニズムの改善がありがたい。以前のバージョンには、ログインしたにもかかわらず情報が取得できない不具合があった。</description>
@@ -74,11 +81,12 @@ var chart = new google.visualization .GeoChart(document.getElementById(&#39;char
     
     <item>
       <title>Google リーダーにフィードが登録できなくなった……</title>
-      <link>https://daruyanagi.net/entry/2013/03/22/072708/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/03/22/072708/</link>
       <pubDate>Fri, 22 Mar 2013 07:27:08 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/03/22/072708/</guid>
-      <description>  本格的に終わらせる気か……  とりあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「iGoogle」か「Google リーダー」かを選択するあのおなじみの画面からリンクをコピって編集した。
+      <guid>https://blog.daruyanagi.jp/entry/2013/03/22/072708/</guid>
+      <description>  格的に終わらせる気か……
+  りあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「iGoogle」か「Google リーダー」かを選択するあのおなじみの画面からリンクをコピって編集した。
 http://www.google.com/ig/addtoreader?&amp;amp;amp;feedurl=%s ```そのうちこの URL もなくなってしまうのかな。とりあえず、本当に死ぬまで Google リーダーは使い続けるつもり。代替サービスを見極めたいし、もしかしたら気が変わって存続してくれるとも限らない。 &amp;gt; 米Googleは13日、RSSリーダーサービス「Google Reader」を7月1日に終了すると発表した。サービス終了の理由についてGoogleは、利用が減少していることに加えて、同社のエネルギーを選択したプロダクトに注ぐためだと説明している。 RSSリーダー「Google Reader」が7月1日に終了 -INTERNET Watch </description>
     </item>
     

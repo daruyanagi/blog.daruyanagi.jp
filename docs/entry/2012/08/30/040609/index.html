@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/30/040609/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/30/040609/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,7 @@
 
         
             <meta name="description" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ の話は続く。
-# ~/_AppCode/Flash.cshtml @helper Read() /* Razor を書く */ { if (Session[&#34;flash&#34;] == null) { return; } // Razor では if 文の {} を省略できない。これ、マメな。  &amp;lt;div class=&#34;message info&#34;&gt;&amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt;&amp;lt;/div&gt; Session[&#34;flash&#34;] = null; } @functions /* 通常の C# 構文を書く */ { public static void Write(string value) { Session[&#34;flash&#34;] = value; } } ```この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。  とりあえず、 &lt;code&gt;@helper Hoge(args) {……}&lt;/code&gt; は &lt;code&gt;public static HelperResult Hoge(args) {……}&lt;/code&gt; （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。 ```cs @functions { public static HelperResult Read() { return new HelperResult(w =&gt; { if (Session[&#34;flash&#34;] == null) { return; } /* &lt;div class=&#34;message info&#34;&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt; @Session[&#34;flash&#34;] &lt;p&gt;&lt;/p&gt; */ WriteLiteralTo(w, &#34;\&#34;message info\&#34;&gt;&lt;p&gt;&#34;&lt;/p&gt;); WriteTo(w, Session[&#34;flash&#34;]); WriteLiteralTo(w, &#34;&lt;p&gt;&lt;/p&gt;&#34;); Session[&#34;flash&#34;] = null; }); } } ```というわけで書いてみたのがこれ（参考：&lt;a href=&#34;http://shiba-yan." />
+# ~/_AppCode/Flash.cshtml @helper Read() /* Razor を書く */ { if (Session[&#34;flash&#34;] == null) { return; } // Razor では if 文の {} を省略できない。これ、マメな。  &amp;lt;div class=&#34;message info&#34;&gt;&amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt;&amp;lt;/div&gt; Session[&#34;flash&#34;] = null; } @functions /* 通常の C# 構文を書く */ { public static void Write(string value) { Session[&#34;flash&#34;] = value; } } ```この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。   りあえず、 &lt;code&gt;@helper Hoge(args) {……}&lt;/code&gt; は &lt;code&gt;public static HelperResult Hoge(args) {……}&lt;/code&gt; （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。 ```cs @functions { public static HelperResult Read() { return new HelperResult(w =&gt; { if (Session[&#34;flash&#34;] == null) { return; } /* &lt;div class=&#34;message info&#34;&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt; @Session[&#34;flash&#34;] &lt;p&gt;&lt;/p&gt; */ WriteLiteralTo(w, &#34;\&#34;message info\&#34;&gt;&lt;p&gt;&#34;&lt;/p&gt;); WriteTo(w, Session[&#34;flash&#34;]); WriteLiteralTo(w, &#34;&lt;p&gt;&lt;/p&gt;&#34;); Session[&#34;flash&#34;] = null; }); } } ```というわけで書いてみたのがこれ（参考：&lt;a href=&#34;http://shiba-yan." />
         
 
         
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +60,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -77,7 +77,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/30/040609/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/30/040609/" >
                     <h1 class="entry__header-title-link-text">寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい（2） ―― @helper と @functions とわたし</h1>
                 </a>
             </div>
@@ -109,10 +109,14 @@
     }
 }
 
-<span style="color:#960050;background-color:#1e0010">```この</span> @helper <span style="color:#960050;background-color:#1e0010">ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは</span> Visual Studio <span style="color:#960050;background-color:#1e0010">のツールチップでのぞいてみた。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```この</span> @helper <span style="color:#960050;background-color:#1e0010">ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは</span> Visual Studio <span style="color:#960050;background-color:#1e0010">のツールチップでのぞいてみた。</span>
+
+<figure>
     <img src="/images/20120830023803.png"/> 
 </figure>
-とりあえず<span style="color:#960050;background-color:#1e0010">、</span> &lt;code&gt;@helper Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">は</span> &lt;code&gt;<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">（引数をとって</span> HelperResult <span style="color:#960050;background-color:#1e0010">を返す＋なんらかの処理）ということのようだ。実際、</span> @helper Read() <span style="color:#960050;background-color:#1e0010">は</span> @functions <span style="color:#960050;background-color:#1e0010">で表すこともできないことはない。</span>
+
+
+<span style="color:#960050;background-color:#1e0010">りあえず、</span> &lt;code&gt;@helper Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">は</span> &lt;code&gt;<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">（引数をとって</span> HelperResult <span style="color:#960050;background-color:#1e0010">を返す＋なんらかの処理）ということのようだ。実際、</span> @helper Read() <span style="color:#960050;background-color:#1e0010">は</span> @functions <span style="color:#960050;background-color:#1e0010">で表すこともできないことはない。</span>
 <span style="color:#960050;background-color:#1e0010">```</span>cs
 @functions
 {
@@ -134,10 +138,14 @@
     }
 }
 
-<span style="color:#960050;background-color:#1e0010">```というわけで書いてみたのがこれ（参考：</span>&lt;a href=<span style="color:#e6db74">&#34;http://shiba-yan.hatenablog.jp/entry/20110615/1308070842&#34;</span>&gt;Razor Deep Dive (<span style="color:#ae81ff">2</span>) - <span style="color:#960050;background-color:#1e0010">しばやん雑記</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">）。たぶんきっと内部ではこういうことをしているんだと思う（ラムダの引数</span> w <span style="color:#960050;background-color:#1e0010">は</span> TextWriter型<span style="color:#960050;background-color:#1e0010">）。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```というわけで書いてみたのがこれ（参考：</span>&lt;a href=<span style="color:#e6db74">&#34;http://shiba-yan.hatenablog.jp/entry/20110615/1308070842&#34;</span>&gt;Razor Deep Dive (<span style="color:#ae81ff">2</span>) - <span style="color:#960050;background-color:#1e0010">しばやん雑記</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">）。たぶんきっと内部ではこういうことをしているんだと思う（ラムダの引数</span> w <span style="color:#960050;background-color:#1e0010">は</span> TextWriter型<span style="color:#960050;background-color:#1e0010">）。</span>
+
+<figure>
     <img src="/images/20120830034439.png"/> 
 </figure>
-HelperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&lt;/a&gt;）っていうのは、WebPage を継承していて「Represents a base class for pages that is used when ASP.NET compiles a .cshtml or .vbhtml file and that exposes page-level and application-level properties and methods.」なんだそうな。あと、WriteLiteralTo() はエスケープされず、 WriteTo() はエスケープされないようだ。これで、Razor で書いた HTML タグはそのまま、外から与えられた変数（@Session[&#34;flash&#34;]）だけ無毒化される。ほへぇ。
+
+
+elperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&lt;/a&gt;）っていうのは、WebPage を継承していて「Represents a base class for pages that is used when ASP.NET compiles a .cshtml or .vbhtml file and that exposes page-level and application-level properties and methods.」なんだそうな。あと、WriteLiteralTo() はエスケープされず、 WriteTo() はエスケープされないようだ。これで、Razor で書いた HTML タグはそのまま、外から与えられた変数（@Session[&#34;flash&#34;]）だけ無毒化される。ほへぇ。
 </span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>cs
 @functions
 {
@@ -199,7 +207,7 @@ HelperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a h
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/31/031730/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/31/031730/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -208,7 +216,7 @@ HelperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a h
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/29/201834/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/29/201834/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

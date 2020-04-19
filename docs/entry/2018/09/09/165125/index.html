@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/09/09/165125/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/09/09/165125/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="追加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。
-### JR 四国 遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)  ### 伊予鉄 遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。  テーブルの解釈は多少面倒くさいけど、隣接セレクタ― &#34;th.rail3 &#43; td&#34; なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)  ### フェリー 防予フェリーだけ UTF-8 じゃなくてつらかった。そのほかの各航路は、単純に公式ページからスクレイピングするだけ。オレンジフェリーのサイトだけ少し重く、うちの環境でベンチマークをとると取得から解析まで2秒ぐらいかかった。  ### ANA 公式の運行状況ページで便名を指定して検索。[国内線運航状況のご案内サービス│航空券│ANA SKY WEB](https://www.ana.co.jp/fs/dom/jp/)裏で JSONP API を使っているので、それをそのまま使えばよい……が、情報過多なので解釈が少しつらい。ちなみに JSON → C# への変換は、 https://quicktype.io/ が激しくお勧め。シリアライズ・デシリアライズするメソッド付きで C# 型へとコンバートしてくれる。  ### JAL/JAC JAL - 運航状況のご案内（国内線） で便名を検索。あまりセンスのないテーブルをガリガリと解釈する必要があってすごくつらい。セレクターでやると body  table  tbody  tr:nth-child(2)  td:nth-child(3)みたいな感じ……ファック！あと、JAL と JAC は別で、airlineCode を間違えるとエラーになる。  ### Jet Star PC サイトは ASP." />
+            <meta name="description" content="加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。
+### JR 四国 遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)  ### 伊予鉄 遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。   ーブルの解釈は多少面倒くさいけど、隣接セレクタ― &quot;th.rail3 &#43; td&quot; なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)
+ ### フェリー 防予フェリーだけ UTF-8 じゃなくてつらかった。そのほかの各航路は、単純に公式ページからスクレイピングするだけ。オレンジフェリーのサイトだけ少し重く、うちの環境でベンチマークをとると取得から解析まで2秒ぐらいかかった。  ### ANA 公式の運行状況ページで便名を指定して検索。[国内線運航状況のご案内サービス│航空券│ANA SKY WEB](https://www.ana.co.jp/fs/dom/jp/)裏で JSONP API を使っているので、それをそのまま使えばよい……が、情報過多なので解釈が少しつらい。ちなみに JSON → C# への変換は、 https://quicktype.io/ が激しくお勧め。シリアライズ・デシリアライズするメソッド付きで C# 型へとコンバートしてくれる。  ### JAL/JAC JAL - 運航状況のご案内（国内線） で便名を検索。あまりセンスのないテーブルをガリガリと解釈する必要があってすごくつらい。セレクターでやると body  table  tbody  tr:nth-child(2)  td:nth-child(3)みたいな感じ……ファック！あと、JAL と JAC は別で、airlineCode を間違えるとエラーになる。  ### Jet Star PC サイトは ASP." />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +61,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/blazor/">Blazor</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/blazor/">Blazor</a>
                                     </li>
                                 
                             
@@ -73,7 +74,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/09/09/165125/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/09/09/165125/" >
                     <h1 class="entry__header-title-link-text">9月9日：大雨のおかげで遅延情報の収集がはかどった</h1>
                 </a>
             </div>
@@ -85,20 +86,23 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20180909162600.png"/> 
 </figure>
-追加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。<a href="https://blog.daruyanagi.jp/entry/2015/01/20/033210">あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐ</a>ただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。</p>
+
+<p>加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。<a href="https://blog.daruyanagi.jp/entry/2015/01/20/033210">あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐ</a>ただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。</p>
 <div class="section">
     ### JR 四国
     遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)<br/>
 </div>
 <div class="section">
     ### 伊予鉄
-    遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。<figure>
+    遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。
+<figure>
     <img src="/images/20180909163019.png"/> 
 </figure>
-テーブルの解釈は多少面倒くさいけど、隣接セレクタ― <code>"th.rail3 + td"</code> なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)
+
+<p>ーブルの解釈は多少面倒くさいけど、隣接セレクタ― <code>&quot;th.rail3 + td&quot;</code> なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)</p>
 </div>
 <div class="section">
     ### フェリー
@@ -128,7 +132,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/14/044640/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/14/044640/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -137,7 +141,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/08/233948/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/08/233948/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

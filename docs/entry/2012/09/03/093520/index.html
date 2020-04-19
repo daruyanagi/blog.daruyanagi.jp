@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/09/03/093520/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/03/093520/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ WebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐ とりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。 ### System.Web.Security.Roles ロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。 #### Roles.RoleExists() / Roles.CreateRole() まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。 ```cs @{ App.DATABASE = &#34;database&#34;; // &lt;-- カッコ悪いし、 App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめて App.ROLE_ADMIN = &#34;" />
+            <meta name="description" content="br/&gt;
+ WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ WebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐ とりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。 ### System.Web.Security.Roles ロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。 #### Roles.RoleExists() / Roles.CreateRole() まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。 ```cs @{ App.DATABASE = &#34;database&#34;; // &lt;-- カッコ悪いし、 App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめて App.ROLE_ADMIN = &#34;" />
         
 
         
@@ -46,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,14 +60,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -76,7 +77,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/09/03/093520/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/03/093520/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でユーザー認証機能（5） ―― ロール</h1>
                 </a>
             </div>
@@ -88,10 +89,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120829200628.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a></li>
 <li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ</a></li>
@@ -118,13 +120,14 @@ if (!Roles.RoleExists(App.ROLE_ADMIN)) // &amp;lt;-- ココ！
 }
 </code></pre>
 <p>}</p>
-<pre><code class="language-<figure>
+<pre><code>
+<figure>
     <img src="/images/20120903091135.png"/> 
 </figure>
-できたっぽい。拍子抜けしたぞなもし。" data-lang="<figure>
-    <img src="/images/20120903091135.png"/> 
-</figure>
-できたっぽい。拍子抜けしたぞなもし。">
+
+
+きたっぽい。拍子抜けしたぞなもし。
+
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     #### Roles.AddUserToRole()
@@ -151,65 +154,65 @@ catch (Exception e)
     ModelState.AddFormError(e.Message);
 }
 
-```<figure>
+</code></pre><figure>
     <img src="/images/20120903091712.png"/> 
 </figure>
-ちゃんと UserId 1 に RoleId 1（admin）が紐付けられた。ちなみに、複数のユーザーを一度にロールへ突っ込むためのメソッドもある。ちなみに、残念ながらユーザーの数を数えるメソッドは用意されていないみたいなので、これは SQL で書かないといけない。
-```cs
-@{
-    App.GetUserCount = (Func&amp;lt;int&gt;)GetUserCount; // &amp;lt;-- 個人的趣味
-}
+
+<p>ゃんと UserId 1 に RoleId 1（admin）が紐付けられた。ちなみに、複数のユーザーを一度にロールへ突っ込むためのメソッドもある。ちなみに、残念ながらユーザーの数を数えるメソッドは用意されていないみたいなので、これは SQL で書かないといけない。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
+    App.GetUserCount = (Func&amp;lt;<span style="color:#66d9ef">int</span>&gt;)GetUserCount; <span style="color:#75715e">// &amp;lt;-- 個人的趣味
+</span><span style="color:#75715e"></span>}
 
 @functions
 {
-    int GetUserCount()
+    <span style="color:#66d9ef">int</span> GetUserCount()
     {
-        const string sql = &quot;SELECT COUNT(*) FROM {0}&quot;;
-        return Database
+        <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> sql = <span style="color:#e6db74">&#34;SELECT COUNT(*) FROM {0}&#34;</span>;
+        <span style="color:#66d9ef">return</span> Database
             .Open(App.DATABASE)
-            .QueryValue(string.Format(sql, App.TABLE_USERS));
+            .QueryValue(<span style="color:#66d9ef">string</span>.Format(sql, App.TABLE_USERS));
     }
 }
 
-```でも、もしかしたらメソッドが用意されていない≒あんまりよくない実装 なのかもしれない。よく利用する処理なら、標準でメソッドが用意されているよね？&lt;a href=&quot;#f-ad523936&quot; name=&quot;fn-ad523936&quot; title=&quot;まぁ、案外そうとも限らないわけだけど&quot;&gt;*2&lt;/a&gt;　まぁ、それはまた今度考えよう。
+<span style="color:#960050;background-color:#1e0010">```でも、もしかしたらメソッドが用意されていない≒あんまりよくない実装</span> <span style="color:#960050;background-color:#1e0010">なのかもしれない。よく利用する処理なら、標準でメソッドが用意されているよね？</span>&lt;a href=<span style="color:#e6db74">&#34;#f-ad523936&#34;</span> name=<span style="color:#e6db74">&#34;fn-ad523936&#34;</span> title=<span style="color:#e6db74">&#34;まぁ、案外そうとも限らないわけだけど&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;　<span style="color:#960050;background-color:#1e0010">まぁ、それはまた今度考えよう。</span>
 
 &lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### Roles.IsUserInRole() / WebSecurity.RequireRoles()
-    んで、ロールが必要な処理には一行このように書き加えておく。この場合は、 Register.cshtml だね。 _PageStart.cshtml に書けば、フォルダ内の cshtml すべてに適用することもできる（はず、確かそうだった）。
-```cs
-@{
+&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
+    <span style="color:#960050;background-color:#1e0010">####</span> Roles.IsUserInRole() / WebSecurity.RequireRoles()
+    <span style="color:#960050;background-color:#1e0010">んで、ロールが必要な処理には一行このように書き加えておく。この場合は、</span> Register.cshtml <span style="color:#960050;background-color:#1e0010">だね。</span> _PageStart.cshtml <span style="color:#960050;background-color:#1e0010">に書けば、フォルダ内の</span> cshtml <span style="color:#960050;background-color:#1e0010">すべてに適用することもできる（はず、確かそうだった）。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">@</span>{
     WebSecurity.RequireRoles(App.ROLE_ADMIN);
 }
 
-```<figure>
+</code></pre></div><figure>
     <img src="/images/20120903091955.png"/> 
 </figure>
-必要なロールをもたなければ、ログインページにリダイレクトされる&lt;a href=&quot;#f-6b31afe3&quot; name=&quot;fn-6b31afe3&quot; title=&quot;今気付いたけど、 Log in to ってなんやねんｗ&quot;&gt;*3&lt;/a&gt;ようだ&lt;a href=&quot;#f-f34e9562&quot; name=&quot;fn-f34e9562&quot; title=&quot;既定では ~/Account/LogIn みたい&quot;&gt;*4&lt;/a&gt;。
-```cs
-@{
-    if (!Roles.IsUserInRole(App.ROLE_ADMIN))
+
+<p>要なロールをもたなければ、ログインページにリダイレクトされる<a href="#f-6b31afe3" name="fn-6b31afe3" title="今気付いたけど、 Log in to ってなんやねんｗ"><em>3</a>ようだ<a href="#f-f34e9562" name="fn-f34e9562" title="既定では ~/Account/LogIn みたい"></em>4</a>。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">if</span> (!Roles.IsUserInRole(App.ROLE_ADMIN))
     {
         :
         :
 
-```もちろん、ロールをもつかどうかの判定のみを行うこともできる。 &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/29/201834&quot;&gt;寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ&lt;/a&gt; などを使ってユーザーにメッセージを通知したい場合など、いきなりリダイレクトされると困る場合はこっちを使ったほうがよさげだな。
+<span style="color:#960050;background-color:#1e0010">```もちろん、ロールをもつかどうかの判定のみを行うこともできる。</span> &lt;a href=<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/08/29/201834&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">寄り道：</span> Rails <span style="color:#960050;background-color:#1e0010">の</span> Flash <span style="color:#960050;background-color:#1e0010">っぽい機能を</span> WebMatrix <span style="color:#960050;background-color:#1e0010">で使いたい</span> - <span style="color:#960050;background-color:#1e0010">だるろぐ</span>&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">などを使ってユーザーにメッセージを通知したい場合など、いきなりリダイレクトされると困る場合はこっちを使ったほうがよさげだな。</span>
 
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-f17309a6&quot; name=&quot;f-f17309a6&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;公式ドキュメントでデータベースを直接イジっていたのには、なにか理由があるのだろうか&lt;/span&gt;
-&lt;a href=&quot;#fn-ad523936&quot; name=&quot;f-ad523936&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;まぁ、案外そうとも限らないわけだけど&lt;/span&gt;
-&lt;a href=&quot;#fn-6b31afe3&quot; name=&quot;f-6b31afe3&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;今気付いたけど、 Log in to ってなんやねんｗ&lt;/span&gt;
-&lt;a href=&quot;#fn-f34e9562&quot; name=&quot;f-f34e9562&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;既定では ~/Account/LogIn みたい&lt;/span&gt;
+&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-f17309a6&#34;</span> name=<span style="color:#e6db74">&#34;f-f17309a6&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">公式ドキュメントでデータベースを直接イジっていたのには、なにか理由があるのだろうか</span>&lt;/span&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-ad523936&#34;</span> name=<span style="color:#e6db74">&#34;f-ad523936&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">まぁ、案外そうとも限らないわけだけど</span>&lt;/span&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-6b31afe3&#34;</span> name=<span style="color:#e6db74">&#34;f-6b31afe3&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">3</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">今気付いたけど、</span> Log <span style="color:#66d9ef">in</span> to <span style="color:#960050;background-color:#1e0010">ってなんやねんｗ</span>&lt;/span&gt;
+&lt;a href=<span style="color:#e6db74">&#34;#fn-f34e9562&#34;</span> name=<span style="color:#e6db74">&#34;f-f34e9562&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">4</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">既定では</span> ~/Account/LogIn <span style="color:#960050;background-color:#1e0010">みたい</span>&lt;/span&gt;
 &lt;/div&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/04/023414/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/04/023414/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -218,7 +221,7 @@ catch (Exception e)
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/02/202138/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/02/202138/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/08/26/202931/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/08/26/202931/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,11 @@
         
 
         
-            <meta name="description" content="今日は重い腰を上げて、たまっていたタスクをいっぺんに片づけた。
- メインのデスクトップ PC に貰い物のグラボを刺した（5月にもらったのに、そのまんま放置！　電源が足りててよかったー） Surface 3 を Windows 10 S（Insider Preview）にした（これはまた後日書くと思う） Surface Laptop を Windows 10 Pro にして、いろいろお仕事ができる環境にした 週末までに Amazon で買いあさった便利グッズで部屋を整理した ついでに、Surface Laptop ＋デュアルディスプレイ環境をより使いやすくするための AutoHotKey スクリプトをしこしこ書いてた。慣れないからやたら時間かかったけど、だいぶ使い勝手が上がった気がする。 ### マルチモニター環境でウィンドウを移動する Windows 10 では［Windows］＋［Shift］＋［→］キーや［Windows］＋［Shift］＋［←］キーで**“アクティブウィンドウを隣のモニターへ移動”**できるのだけど、このショートカットを押すのがめんどくさい。Surface Laptop のキーボードには、右［Windows］キーがないので、どうしても両手を使う必要がある。  というわけで、右側の［Shift］キーをと矢印キー（**要するにキーボードの右下らへん**）だけで移動できるようにした。 ``` &#43;Right::Send,{RWin Down}{RShift Down}{Right}{RShift Up}{RWin Up} ```［Windows］＋［Shift］＋［→］キーは#&#43;Rightと書けると思ったのだけど、それではうまくいかないみたいで、解決策を探すのにだいぶ時間を食ってしまった。でも、おかげでアクティブウィンドウを片手でほいほいモニター移動できるようになった。要らないウィンドウはポイだ！  ### ドックに接続せずに使うときは仮想デスクトップをバリバリ使う さて、ドックから外したときは画面が一つになってしまうので、代わりに仮想デスクトップをバリバリ使いたいよね。でも、仮想デスクトップ関連のホットキーも［Windows］キーを使うので、同じような問題に直面してしまう。というわけで、これも右手だけで行えるようにしてみた。 ``` ; Virtual desktop (Left Move) !Left::Send,#^{Left} AppsKey &amp; Left::Send,#^{Left} ; Virtual desktop (Right Move)
+            <meta name="description" content="日は重い腰を上げて、たまっていたタスクをいっぺんに片づけた。
+ メインのデスクトップ PC に貰い物のグラボを刺した（5月にもらったのに、そのまんま放置！　電源が足りててよかったー） Surface 3 を Windows 10 S（Insider Preview）にした（これはまた後日書くと思う） Surface Laptop を Windows 10 Pro にして、いろいろお仕事ができる環境にした 週末までに Amazon で買いあさった便利グッズで部屋を整理した ついでに、Surface Laptop ＋デュアルディスプレイ環境をより使いやすくするための AutoHotKey スクリプトをしこしこ書いてた。慣れないからやたら時間かかったけど、だいぶ使い勝手が上がった気がする。 ### マルチモニター環境でウィンドウを移動する Windows 10 では［Windows］＋［Shift］＋［→］キーや［Windows］＋［Shift］＋［←］キーで**“アクティブウィンドウを隣のモニターへ移動”**できるのだけど、このショートカットを押すのがめんどくさい。Surface Laptop のキーボードには、右［Windows］キーがないので、どうしても両手を使う必要がある。   いうわけで、右側の［Shift］キーをと矢印キー（要するにキーボードの右下らへん）だけで移動できるようにした。
+&gt;&#43;Right::Send,{RWin Down}{RShift Down}{Right}{RShift Up}{RWin Up} ```［Windows］＋［Shift］＋［→］キーは&lt;code&gt;#&#43;Right&lt;/code&gt;と書けると思ったのだけど、それではうまくいかないみたいで、解決策を探すのにだいぶ時間を食ってしまった。でも、おかげでアクティブウィンドウを片手でほいほいモニター移動できるようになった。要らないウィンドウはポイだ！ &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ドックに接続せずに使うときは仮想デスクトップをバリバリ使う さて、ドックから外したときは画面が一つになってしまうので、代わりに仮想デスクトップをバリバリ使いたいよね。でも、仮想デスクトップ関連のホットキーも［Windows］キーを使うので、同じような問題に直面してしまう。というわけで、これも右手だけで行えるようにしてみた。 ; Virtual desktop (Left Move)
+ !Left::Send,#^{Left} AppsKey &amp; Left::Send,#^{Left}
+ ; Virtual desktop (Right Move)
  !Right::Send,#^{Right} AppsKey &amp; Right::Send,#^{Right}" />
         
 
@@ -48,7 +51,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +64,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/autohotkey/">AutoHotkey</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/autohotkey/">AutoHotkey</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/surface-laptop/">Surface Laptop</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/surface-laptop/">Surface Laptop</a>
                                     </li>
                                 
                             
@@ -78,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/08/26/202931/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/08/26/202931/" >
                     <h1 class="entry__header-title-link-text">Surface Laptop ＋デュアルディスプレイ環境のための AHK スクリプトを書いた</h1>
                 </a>
             </div>
@@ -90,10 +93,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170821161957.jpg"/> 
 </figure>
-今日は重い腰を上げて、たまっていたタスクをいっぺんに片づけた。</p>
+
+<p>日は重い腰を上げて、たまっていたタスクをいっぺんに片づけた。</p>
 <ul>
 <li>メインのデスクトップ PC に貰い物のグラボを刺した（5月にもらったのに、そのまんま放置！　電源が足りててよかったー）</li>
 <li>Surface 3 を Windows 10 S（Insider Preview）にした（これはまた後日書くと思う）</li>
@@ -102,21 +106,24 @@
 </ul>ついでに、Surface Laptop ＋デュアルディスプレイ環境をより使いやすくするための AutoHotKey スクリプトをしこしこ書いてた。慣れないからやたら時間かかったけど、だいぶ使い勝手が上がった気がする。
 <div class="section">
     ### マルチモニター環境でウィンドウを移動する
-    Windows 10 では［Windows］＋［Shift］＋［→］キーや［Windows］＋［Shift］＋［←］キーで**“アクティブウィンドウを隣のモニターへ移動”**できるのだけど、このショートカットを押すのがめんどくさい。Surface Laptop のキーボードには、右［Windows］キーがないので、どうしても両手を使う必要がある。<figure>
+    Windows 10 では［Windows］＋［Shift］＋［→］キーや［Windows］＋［Shift］＋［←］キーで**“アクティブウィンドウを隣のモニターへ移動”**できるのだけど、このショートカットを押すのがめんどくさい。Surface Laptop のキーボードには、右［Windows］キーがないので、どうしても両手を使う必要がある。
+<figure>
     <img src="/images/20170826202400.png"/> 
 </figure>
-というわけで、右側の［Shift］キーをと矢印キー（**要するにキーボードの右下らへん**）だけで移動できるようにした。
-```
->+Right::Send,{RWin Down}{RShift Down}{Right}{RShift Up}{RWin Up}
-```［Windows］＋［Shift］＋［→］キーは<code>#+Right</code>と書けると思ったのだけど、それではうまくいかないみたいで、解決策を探すのにだいぶ時間を食ってしまった。でも、おかげでアクティブウィンドウを片手でほいほいモニター移動できるようになった。要らないウィンドウはポイだ！
-</div>
-<div class="section">
+
+<p>いうわけで、右側の［Shift］キーをと矢印キー（<strong>要するにキーボードの右下らへん</strong>）だけで移動できるようにした。</p>
+<pre><code>&gt;+Right::Send,{RWin Down}{RShift Down}{Right}{RShift Up}{RWin Up}
+```［Windows］＋［Shift］＋［→］キーは&lt;code&gt;#+Right&lt;/code&gt;と書けると思ったのだけど、それではうまくいかないみたいで、解決策を探すのにだいぶ時間を食ってしまった。でも、おかげでアクティブウィンドウを片手でほいほいモニター移動できるようになった。要らないウィンドウはポイだ！
+
+&lt;/div&gt;
+&lt;div class=&quot;section&quot;&gt;
     ### ドックに接続せずに使うときは仮想デスクトップをバリバリ使う
     さて、ドックから外したときは画面が一つになってしまうので、代わりに仮想デスクトップをバリバリ使いたいよね。でも、仮想デスクトップ関連のホットキーも［Windows］キーを使うので、同じような問題に直面してしまう。というわけで、これも右手だけで行えるようにしてみた。
-```
-; Virtual desktop (Left Move)
->!Left::Send,#^{Left}
-AppsKey &amp; Left::Send,#^{Left}
+</code></pre><p>; Virtual desktop (Left Move)</p>
+<blockquote>
+<p>!Left::Send,#^{Left}
+AppsKey &amp; Left::Send,#^{Left}</p>
+</blockquote>
 <p>; Virtual desktop (Right Move)</p>
 <blockquote>
 <p>!Right::Send,#^{Right}
@@ -138,10 +145,14 @@ AppsKey &amp; Down::Send,#^{F4}</p>
 &lt;li&gt;［←］キーで前の仮想デスクトップへ切り替え&lt;/li&gt;
 &lt;li&gt;［↑］キーで仮想デスクトップの作成&lt;/li&gt;
 &lt;li&gt;［↓］キーで仮想デスクトップの削除&lt;/li&gt;
-&lt;/ul&gt;に割り当ててみた（右［Alt］キーの代わりに［Apps］キーも使える。どっちにするか迷ったので、両方とも使えるようにした）。実は MacBook（BootCamp）は三本指ジェスチャーが使えないので、日頃から似たような AHK スクリプトを書いて使っている。[Macbook でサクッと Task View が呼べたらいいのになぁ、という話。 - だるろぐ](http://blog.daruyanagi.jp/entry/2016/10/05/213634)それに操作感が似ているので、個人的には割と使いやすい（慣れちゃったんだよね）。タッチパッドを三本指だの四本指だのでスワイプするよりも楽だと思うし（たまにミスるし、Surface Laptop のタッチパッドは Mac に比べると少し狭い）。<figure>
+&lt;/ul&gt;に割り当ててみた（右［Alt］キーの代わりに［Apps］キーも使える。どっちにするか迷ったので、両方とも使えるようにした）。実は MacBook（BootCamp）は三本指ジェスチャーが使えないので、日頃から似たような AHK スクリプトを書いて使っている。[Macbook でサクッと Task View が呼べたらいいのになぁ、という話。 - だるろぐ](http://blog.daruyanagi.jp/entry/2016/10/05/213634)それに操作感が似ているので、個人的には割と使いやすい（慣れちゃったんだよね）。タッチパッドを三本指だの四本指だのでスワイプするよりも楽だと思うし（たまにミスるし、Surface Laptop のタッチパッドは Mac に比べると少し狭い）。
+
+<figure>
     <img src="/images/20170826200522.png"/> 
 </figure>
-あと、仮想デスクトップを使うならおすすめの「**SylphyHorn**」も入れた。仮想デスクトップの番号を出したり、アクティブウィンドウを隣の仮想デスクトップへホットキーで飛ばしたり、仮想デスクトップの切り替えをローテーション（最後だったら最初に戻す）してくれる。[ホットキー一発で作業中のウィンドウを別の仮想デスクトップへ移動させる「SylphyHorn」NOT SUPPORTED](http://forest.watch.impress.co.jp/docs/review/755254.html)ストアで配布されてるのも素晴らしい……。[SylphyHorn を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/sylphyhorn/9nblggh58t01)さっき書いた**「ほかのモニターへアクティブウィンドウを移動させる」**機能は、ドックにつないでいないときは無駄なので、代わりに「SylphyHorn」の機能で隣の仮想デスクトップへ飛ばしてみるようにしてみた。
+
+
+と、仮想デスクトップを使うならおすすめの「**SylphyHorn**」も入れた。仮想デスクトップの番号を出したり、アクティブウィンドウを隣の仮想デスクトップへホットキーで飛ばしたり、仮想デスクトップの切り替えをローテーション（最後だったら最初に戻す）してくれる。[ホットキー一発で作業中のウィンドウを別の仮想デスクトップへ移動させる「SylphyHorn」NOT SUPPORTED](http://forest.watch.impress.co.jp/docs/review/755254.html)ストアで配布されてるのも素晴らしい……。[SylphyHorn を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/sylphyhorn/9nblggh58t01)さっき書いた**「ほかのモニターへアクティブウィンドウを移動させる」**機能は、ドックにつないでいないときは無駄なので、代わりに「SylphyHorn」の機能で隣の仮想デスクトップへ飛ばしてみるようにしてみた。
 </code></pre><p>IsMultimonitor()
 {
 sysget, cnt, MonitorCount
@@ -160,7 +171,9 @@ Send,{LWin Down}{LCtrl Down}{LAlt Down}{Right}{LAlt Up}{LCtrl Up}{LWin Up}
 }
 return</p>
 </blockquote>
-<pre><code class="language-コンテキストによって挙動が違うのはあまりよくないかもしれないけど、自分の中では**「邪魔なウィンドウをほかのモニター" data-lang="コンテキストによって挙動が違うのはあまりよくないかもしれないけど、自分の中では**「邪魔なウィンドウをほかのモニター">&lt;div class=&quot;github-card&quot; data-user=&quot;daruyanagi&quot; data-repo=&quot;DesktopHelper&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div&gt;
+<pre><code class="language-コンテキストによって挙動が違うのはあまりよくないかもしれないけど、自分の中では**「邪魔なウィンドウをほかのモニター" data-lang="コンテキストによって挙動が違うのはあまりよくないかもしれないけど、自分の中では**「邪魔なウィンドウをほかのモニター">&lt;div class=&quot;github-card&quot; data-user=&quot;daruyanagi&quot; data-repo=&quot;DesktopHelper&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div
+
+&gt;
 &lt;script src=&quot;https://cdn.jsdelivr.net/github-cards/latest/widget.js&quot;&gt;&lt;/script&gt;
 
 
@@ -172,7 +185,7 @@ return</p>
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/08/28/124221/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/08/28/124221/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -181,7 +194,7 @@ return</p>
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/08/21/160644/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/08/21/160644/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2015/07/05/220634/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/07/05/220634/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +18,13 @@
         
 
         
-            <meta name="description" content="みんなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。
-### とりあえずプロジェクトを作成する   まずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。  ちなみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。  このテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。  ### ページの追加   プロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。  あとは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。 ```cs @{ Layout = null; } &lt;!DOCTYPE html&gt;
-&lt;html&gt; &lt;head&gt; &lt;meta name=&quot;viewport&rdquo; content=&quot;width=device-width&rdquo; /&gt; &lt;title&gt;&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;div&gt;" />
+            <meta name="description" content="んなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。
+### とりあえずプロジェクトを作成する   ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。
+  なみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。
+  のテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。
+ ### ページの追加   ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。
+  とは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。
+@{ Layout = null; } &amp;lt;!DOCTYPE html&gt; &amp;lt;html&gt; &amp;lt;head&gt; &amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34; /&gt; &amp;lt;title&gt;&amp;lt;/title&gt; &amp;lt;/head&gt; &amp;lt;body&gt; &amp;lt;div&gt; &amp;lt;/div&gt; &amp;lt;/body&gt; &amp;lt;/html&gt; ```body が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。 ```cs @{ Layout = null; var message = &#34;Hello!" />
         
 
         
@@ -48,7 +52,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,7 +65,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.NET Web Pages </a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.NET Web Pages </a>
                                     </li>
                                 
                             
@@ -71,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2015/07/05/220634/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/07/05/220634/" >
                     <h1 class="entry__header-title-link-text">「Visual Studio Community」で ASP.NET Web Pages をはじめる</h1>
                 </a>
             </div>
@@ -83,108 +87,122 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20150705212532.png"/> 
 </figure>
-みんなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。</p>
+
+<p>んなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。</p>
 <div class="section">
     ### とりあえずプロジェクトを作成する
-    <figure>
+<figure>
     <img src="/images/20150705213348.png"/> 
 </figure>
-まずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。<figure>
+
+<p>ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。</p>
+<figure>
     <img src="/images/20150705213553.png"/> 
 </figure>
-ちなみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。<figure>
+
+<p>なみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。</p>
+<figure>
     <img src="/images/20150705213747.png"/> 
 </figure>
-このテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。
+
+<p>のテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。</p>
 </div>
 <div class="section">
     ### ページの追加
-    <figure>
+<figure>
     <img src="/images/20150705214139.png"/> 
 </figure>
-プロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。<figure>
+
+<p>ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。</p>
+<figure>
     <img src="/images/20150705214317.png"/> 
 </figure>
-あとは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。
-```cs
-@{
-    Layout = null;
-}
-<p>&lt;!DOCTYPE html&gt;</p>
-<p>&lt;html&gt;
-&lt;head&gt;
-&lt;meta name=&quot;viewport&rdquo; content=&quot;width=device-width&rdquo; /&gt;
-&lt;title&gt;&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
-&lt;div&gt;</p>
-<pre><code>&amp;lt;/div&gt;
-</code></pre>
-<p>&lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-body" data-lang="body">```cs
-@{
-    Layout = null;
-    var message = &quot;Hello! World&quot;; // 追加
+
+<p>とは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
+    Layout = <span style="color:#66d9ef">null</span>;
 }
 
 &amp;lt;!DOCTYPE html&gt;
 
 &amp;lt;html&gt;
 &amp;lt;head&gt;
-    &amp;lt;meta name=&quot;viewport&quot; content=&quot;width=device-width&quot; /&gt;
+    &amp;lt;meta name=<span style="color:#e6db74">&#34;viewport&#34;</span> content=<span style="color:#e6db74">&#34;width=device-width&#34;</span> /&gt;
     &amp;lt;title&gt;&amp;lt;/title&gt;
 &amp;lt;/head&gt;
 &amp;lt;body&gt;
     &amp;lt;div&gt;
-        @message &amp;lt;!-- 追加 --&gt;
+    
     &amp;lt;/div&gt;
 &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-```これで［F5］キーを押せば、&quot;Hello! World&quot; と書かれたサイトが立ち上がるはず――<figure>
+<span style="color:#960050;background-color:#1e0010">```</span>body <span style="color:#960050;background-color:#1e0010">が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    Layout = <span style="color:#66d9ef">null</span>;
+    <span style="color:#66d9ef">var</span> message = <span style="color:#e6db74">&#34;Hello! World&#34;</span>; <span style="color:#75715e">// 追加
+</span><span style="color:#75715e"></span>}
+
+&amp;lt;!DOCTYPE html&gt;
+
+&amp;lt;html&gt;
+&amp;lt;head&gt;
+    &amp;lt;meta name=<span style="color:#e6db74">&#34;viewport&#34;</span> content=<span style="color:#e6db74">&#34;width=device-width&#34;</span> /&gt;
+    &amp;lt;title&gt;&amp;lt;/title&gt;
+&amp;lt;/head&gt;
+&amp;lt;body&gt;
+    &amp;lt;div&gt;
+        @message &amp;lt;!-- <span style="color:#960050;background-color:#1e0010">追加</span> --&gt;
+    &amp;lt;/div&gt;
+&amp;lt;/body&gt;
+&amp;lt;/html&gt;
+
+<span style="color:#960050;background-color:#1e0010">```これで［</span>F5<span style="color:#960050;background-color:#1e0010">］キーを押せば、</span><span style="color:#e6db74">&#34;Hello! World&#34;</span> <span style="color:#960050;background-color:#1e0010">と書かれたサイトが立ち上がるはず――</span>
+
+<figure>
     <img src="/images/20150705214739.png"/> 
 </figure>
-――だったのですが、ダメでした。&lt;a href=&quot;http://go.microsoft.com/fwlink/?LinkId=254126&quot;&gt;http://go.microsoft.com/fwlink/?LinkId=254126&lt;/a&gt; を読めと言われるのでそれに目を通してみますと、Web.config で利用する ASP.NET Web Pages のバージョンを指定しろと書いてあります。仕方ないので、言われたとおりにキーを追加。
-```xml
-&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
+
+
+<span style="color:#960050;background-color:#1e0010">―だったのですが、ダメでした。</span>&lt;a href=<span style="color:#e6db74">&#34;http://go.microsoft.com/fwlink/?LinkId=254126&#34;</span>&gt;http:<span style="color:#75715e">//go.microsoft.com/fwlink/?LinkId=254126&lt;/a&gt; を読めと言われるのでそれに目を通してみますと、Web.config で利用する ASP.NET Web Pages のバージョンを指定しろと書いてあります。仕方ないので、言われたとおりにキーを追加。
+</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>xml
+&lt;!--?--&gt;xml version=<span style="color:#e6db74">&#34;1.0&#34;</span> encoding=<span style="color:#e6db74">&#34;utf-8&#34;</span>?&gt;
 &lt;!----&gt;
-  For more information on how to configure your ASP.NET application, please visit
-  http://go.microsoft.com/fwlink/?LinkId=169433
-  --&gt;
+  For more information <span style="color:#66d9ef">on</span> how to configure your ASP.NET application, please visit
+  http:<span style="color:#75715e">//go.microsoft.com/fwlink/?LinkId=169433
+</span><span style="color:#75715e"></span>  --&gt;
 &lt;configuration&gt;&lt;/configuration&gt;
   .web&gt;
-    debug=&quot;true&quot; targetFramework=&quot;4.5&quot; /&gt;
-    targetFramework=&quot;4.5&quot; /&gt;
+    debug=<span style="color:#e6db74">&#34;true&#34;</span> targetFramework=<span style="color:#e6db74">&#34;4.5&#34;</span> /&gt;
+    targetFramework=<span style="color:#e6db74">&#34;4.5&#34;</span> /&gt;
   .web&gt;
 
-  &lt;appsettings&gt;&lt;/appsettings&gt; &lt;!-- このセクションを追加 --&gt;
-    key=&quot;webPages:Version&quot; value=&quot;2.0&quot; /&gt;
+  &lt;appsettings&gt;&lt;/appsettings&gt; &lt;!-- <span style="color:#960050;background-color:#1e0010">このセクションを追加</span> --&gt;
+    key=<span style="color:#e6db74">&#34;webPages:Version&#34;</span> <span style="color:#66d9ef">value</span>=<span style="color:#e6db74">&#34;2.0&#34;</span> /&gt;
   
 
 
-```<figure>
+</code></pre></div><figure>
     <img src="/images/20150705215117.png"/> 
 </figure>
-すると、サイトが立ち上がりました！　めでたしめでたし！　あとは SQL CE データベースを読み書きできるようにしたり、その中身を見るためのよさげなツールを探したり（クッソめんどくせー！）、追加の NuGet パッケージを入れたりするだけですね。これで WebMatrix を窓からポイできます。スターターサイトなんかは、Yeoman かなにかで準備する感じになるのかなぁ……ちょっとずつ新しい流儀に慣れていかないとね。
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
+<p>ると、サイトが立ち上がりました！　めでたしめでたし！　あとは SQL CE データベースを読み書きできるようにしたり、その中身を見るためのよさげなツールを探したり（クッソめんどくせー！）、追加の NuGet パッケージを入れたりするだけですね。これで WebMatrix を窓からポイできます。スターターサイトなんかは、Yeoman かなにかで準備する感じになるのかなぁ……ちょっとずつ新しい流儀に慣れていかないとね。</p>
+</div>
+<div class="section">
     ### おまけ
-    ASP.NET Web Pages は .NET 言語で PHP っぽく Web ページのロジックを記述できるフレームワークです。PHP よりも安全に作られているので、お仕事で使わなければならないかわいそうな人でもなければ、こっちの方がお勧めデス。書き方は @shibayan のサイトでも参考にしてください。PHP の記法と比べながら簡単に解説してくれています。&lt;iframe src=&quot;http://blog.shibayan.jp/embed/20110714/1310652120&quot; title=&quot;PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記&quot; class=&quot;embed-card embed-blogcard&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;a href=&quot;http://blog.shibayan.jp/entry/20110714/1310652120&quot;&gt;PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記&lt;/a&gt;&lt;/iframe&gt;「（1）」って書いてあるのに続編がないのは気にしないでおきましょう。あとは&lt;iframe src=&quot;//hatenablog-parts.com/embed?url=http%3A%2F%2Fwebmatrix.g.hatena.ne.jp%2Fcx20%2F20110228%2F1298841518&quot; title=&quot;ASP.NET Razor 記法 基礎文法最速マスター - CX&amp;#39;s WebMatrix Diary&quot; class=&quot;embed-card embed-webcard&quot; scrolling=&quot;no&quot; frameborder=&quot;0&quot; style=&quot;display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&quot;&gt;&lt;a href=&quot;http://webmatrix.g.hatena.ne.jp/cx20/20110228/1298841518&quot;&gt;ASP.NET Razor 記法 基礎文法最速マスター - CX&amp;#39;s WebMatrix Diary&lt;/a&gt;&lt;/iframe&gt;なんかが詳しいかもしれません。
+    ASP.NET Web Pages は .NET 言語で PHP っぽく Web ページのロジックを記述できるフレームワークです。PHP よりも安全に作られているので、お仕事で使わなければならないかわいそうな人でもなければ、こっちの方がお勧めデス。書き方は @shibayan のサイトでも参考にしてください。PHP の記法と比べながら簡単に解説してくれています。<iframe src="http://blog.shibayan.jp/embed/20110714/1310652120" title="PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"><a href="http://blog.shibayan.jp/entry/20110714/1310652120">PHP と比較して覚える ASP.NET Web Pages (1) - しばやん雑記</a></iframe>「（1）」って書いてあるのに続編がないのは気にしないでおきましょう。あとは<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwebmatrix.g.hatena.ne.jp%2Fcx20%2F20110228%2F1298841518" title="ASP.NET Razor 記法 基礎文法最速マスター - CX&#39;s WebMatrix Diary" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="http://webmatrix.g.hatena.ne.jp/cx20/20110228/1298841518">ASP.NET Razor 記法 基礎文法最速マスター - CX&#39;s WebMatrix Diary</a></iframe>なんかが詳しいかもしれません。
+</div>
 
-&lt;/div&gt;
-
-</code></pre>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/07/06/185809/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/07/06/185809/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -193,7 +211,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/07/03/181444/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/07/03/181444/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

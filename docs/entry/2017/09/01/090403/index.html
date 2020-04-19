@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/09/01/090403/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/09/01/090403/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,12 @@
         
 
         
-            <meta name="description" content="  Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を3年ぶりにアップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。
- Release 4: 3.0 (17/08/29)  new design improve error handling  ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血  昔と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、**このアプリからまた［共有］機能が呼べる**ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。  一方、**ときどきデータがクリップボードにコピーされない**という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です*1。    整形ルールの管理画面も新しくなりました。昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。  あと、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（[【更新】Clipper - Windows Store Watch](http://store-watch.hatenadiary.jp/entry/2017/09/01/084209)[Clipper を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz) *1:WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除  " />
+            <meta name="description" content="  indows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を3年ぶりにアップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。
+ Release 4: 3.0 (17/08/29)  new design improve error handling  ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血   と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、このアプリからまた［共有］機能が呼べることです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。
+  方、ときどきデータがクリップボードにコピーされないという不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です*1。
+    形ルールの管理画面も新しくなりました。昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。
+  と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（【更新】Clipper - Windows Store WatchClipper を購入 - Microsoft ストア 日本
+*1:WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除  " />
         
 
         
@@ -47,7 +51,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +64,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/clipper/">Clipper</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/clipper/">Clipper</a>
                                     </li>
                                 
                             
@@ -70,7 +74,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/uwp/">UWP</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/uwp/">UWP</a>
                                     </li>
                                 
                             
@@ -80,7 +84,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/09/01/090403/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/09/01/090403/" >
                     <h1 class="entry__header-title-link-text">Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」v3.0.0 を公開しました</h1>
                 </a>
             </div>
@@ -92,32 +96,42 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170901084555.png"/> 
 </figure>
-Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を<strong>3年ぶりに</strong>アップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。</p>
+
+<p>indows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を<strong>3年ぶりに</strong>アップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。</p>
 <ul>
 <li>Release 4: 3.0 (17/08/29)
 <ul>
 <li>new design</li>
 <li>improve error handling</li>
 </ul></li>
-</ul>ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血<figure>
+</ul>ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血
+<figure>
     <img src="/images/20170901084843.png"/> 
 </figure>
-昔と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、**このアプリからまた［共有］機能が呼べる**ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。<figure>
+
+<p>と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、<strong>このアプリからまた［共有］機能が呼べる</strong>ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。</p>
+<figure>
     <img src="/images/20170901085337.png"/> 
 </figure>
-一方、**ときどきデータがクリップボードにコピーされない**という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です<a href="#f-341c777e" name="fn-341c777e" title="WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除">*1</a>。<figure>
+
+<p>方、<strong>ときどきデータがクリップボードにコピーされない</strong>という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です<a href="#f-341c777e" name="fn-341c777e" title="WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除">*1</a>。</p>
+<figure>
     <img src="/images/20170901084949.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20170901084951.png"/> 
 </figure>
-整形ルールの管理画面も新しくなりました。<a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" target="_blank"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png"/></a>昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。<figure>
+
+<p>形ルールの管理画面も新しくなりました。<a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" target="_blank"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png"/></a>昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。</p>
+<figure>
     <img src="/images/20170901085908.png"/> 
 </figure>
-あと、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（[【更新】Clipper - Windows Store Watch](http://store-watch.hatenadiary.jp/entry/2017/09/01/084209)[Clipper を購入 - Microsoft ストア 日本](https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz)
+
+<p>と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（<a href="http://store-watch.hatenadiary.jp/entry/2017/09/01/084209">【更新】Clipper - Windows Store Watch</a><a href="https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz">Clipper を購入 - Microsoft ストア 日本</a></p>
 <div class="footnote">
 <a href="#fn-341c777e" name="f-341c777e" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除</span>
 </div>
@@ -127,7 +141,7 @@ Windows の［共有］機能からシェアした URL を整形してクリッ�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/03/124251/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/03/124251/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -136,7 +150,7 @@ Windows の［共有］機能からシェアした URL を整形してクリッ�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/08/31/134930/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/08/31/134930/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

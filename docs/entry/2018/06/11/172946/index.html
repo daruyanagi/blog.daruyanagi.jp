@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/06/11/172946/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/06/11/172946/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,17 @@
         
 
         
-            <meta name="description" content="いつからなのかよくわからないのですが、独自ドメインで運用しているはてなブログ（blog.daruyanagi.jp）でも HTTPS 化のボタンが押せるようになっていたので、ノリでプチっと押してみました。&gt;ちょっとした好奇心がだるろぐを傷つけた pic.twitter.com/DIwS9zrxG8— だる☆やなぎ (@daruyanagi) 2018年6月11日みごと死にました……が、よくわかんないけどじきに直ったのでよし。でも、混在コンテンツ（mixed contents）があるみたいで、ページの一部が欠けている。&gt;いろいろ手をくわえなきゃだめだなぁ、めんど（ pic.twitter.com/5WINwMJpxA— だる☆やなぎ (@daruyanagi) 2018年6月11日どうやら AdSense のスクリプトを HTTP で読み込んでいるみたいなので、http:// というところを探して // に書き換えました。これで将来的に httpsx:// みたいな謎プロトコルが爆誕してもコードを修正せずに済むような気がする。&gt;AdSense はサクッと直したけど、画像はめんどいな？ pic.twitter.com/O7m3VoFnt5— だる☆やなぎ (@daruyanagi) 2018年6月11日これで広告は表示されるようになったのですが、まだどこか HTTP なリソースを読み込んでいるところがあるみたい。しょうがないので Google Chrome で［F12］キーを押して開発者ツールを起動。コンソールを眺めてみました。  最初の行に Mixed Contents の警告が出ていたので、リンクをクリックしてみます。  原因はお前か！！この画像は自分でコードを追加したのではなく、はてなブログのデザイン機能で背景に指定しているものです。自分ではいじれないので、もはやこれまでか……と思ったのですが、ふと一度削除して再登録してみると、HTTP じゃなくて HTTPS で読み込まれるようになりました。ただし、もとの画像は再登録で透過部分が黒くなってしまいます。まぁ、なにもなくてもいいのですが、それはそれで寂しいので、手持ちのしょぼい だるやなぎ 画像を登録しておきました。まぁ、枯れ木も山の賑わいってやつで。&gt;できたー！画像しょっぱくなったけどｗｗｗ pic.twitter.com/0L6vSXiT1V— だる☆やなぎ (@daruyanagi) 2018年6月11日個別ページではまだエラーが出るかもしれませんが、それはおいおい修正していくことにして、今回の任務はこれで完了。これでセキュアなだるろぐになった！――なお、メインページ（daruyanagi.jp：Azure Web Sites 製）は放置の模様。こっちもそのうち何とかしよう……Let&#39;s encrypt は触ったことないけど、こういうのも勉強になるはず。" />
+            <meta name="description" content="つからなのかよくわからないのですが、独自ドメインで運用しているはてなブログ（blog.daruyanagi.jp）でも HTTPS 化のボタンが押せるようになっていたので、ノリでプチっと押してみました。
+ ちょっとした好奇心がだるろぐを傷つけた pic.twitter.com/DIwS9zrxG8— だる☆やなぎ (@daruyanagi) 2018年6月11日
+ みごと死にました……が、よくわかんないけどじきに直ったのでよし。でも、混在コンテンツ（mixed contents）があるみたいで、ページの一部が欠けている。
+ いろいろ手をくわえなきゃだめだなぁ、めんど（ pic.twitter.com/5WINwMJpxA— だる☆やなぎ (@daruyanagi) 2018年6月11日
+ どうやら AdSense のスクリプトを HTTP で読み込んでいるみたいなので、http:// というところを探して // に書き換えました。これで将来的に httpsx:// みたいな謎プロトコルが爆誕してもコードを修正せずに済むような気がする。
+ AdSense はサクッと直したけど、画像はめんどいな？ pic.twitter.com/O7m3VoFnt5— だる☆やなぎ (@daruyanagi) 2018年6月11日
+ これで広告は表示されるようになったのですが、まだどこか HTTP なリソースを読み込んでいるところがあるみたい。しょうがないので Google Chrome で［F12］キーを押して開発者ツールを起動。コンソールを眺めてみました。
+  初の行に Mixed Contents の警告が出ていたので、リンクをクリックしてみます。
+  因はお前か！！この画像は自分でコードを追加したのではなく、はてなブログのデザイン機能で背景に指定しているものです。自分ではいじれないので、もはやこれまでか……と思ったのですが、ふと一度削除して再登録してみると、HTTP じゃなくて HTTPS で読み込まれるようになりました。ただし、もとの画像は再登録で透過部分が黒くなってしまいます。まぁ、なにもなくてもいいのですが、それはそれで寂しいので、手持ちのしょぼい だるやなぎ 画像を登録しておきました。まぁ、枯れ木も山の賑わいってやつで。
+ できたー！画像しょっぱくなったけどｗｗｗ pic.twitter.com/0L6vSXiT1V— だる☆やなぎ (@daruyanagi) 2018年6月11日
+ 個別ページではまだエラーが出るかもしれませんが、それはおいおい修正していくことにして、今回の任務はこれで完了。これでセキュアなだるろぐになった！――なお、メインページ（daruyanagi.jp：Azure Web Sites 製）は放置の模様。こっちもそのうち何とかしよう……Let&#39;s encrypt は触ったことないけど、こういうのも勉強になるはず。" />
         
 
         
@@ -46,7 +56,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -65,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/06/11/172946/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/06/11/172946/" >
                     <h1 class="entry__header-title-link-text">万歳＼(^o^)／　独自ドメインのはてなブログが HTTPS になりました。</h1>
                 </a>
             </div>
@@ -77,23 +87,44 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20180611171417.jpg"/> 
 </figure>
-いつからなのかよくわからないのですが、独自ドメインで運用しているはてなブログ（blog.daruyanagi.jp）でも HTTPS 化のボタンが押せるようになっていたので、ノリでプチっと押してみました。&gt;ちょっとした好奇心がだるろぐを傷つけた pic.twitter.com/DIwS9zrxG8— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>みごと死にました……が、よくわかんないけどじきに直ったのでよし。でも、混在コンテンツ（mixed contents）があるみたいで、ページの一部が欠けている。&gt;いろいろ手をくわえなきゃだめだなぁ、めんど（ pic.twitter.com/5WINwMJpxA— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>どうやら AdSense のスクリプトを HTTP で読み込んでいるみたいなので、<strong>http://</strong> というところを探して <strong>//</strong> に書き換えました。これで将来的に httpsx:// みたいな謎プロトコルが爆誕してもコードを修正せずに済むような気がする。&gt;AdSense はサクッと直したけど、画像はめんどいな？ pic.twitter.com/O7m3VoFnt5— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>これで広告は表示されるようになったのですが、まだどこか HTTP なリソースを読み込んでいるところがあるみたい。しょうがないので Google Chrome で［F12］キーを押して開発者ツールを起動。コンソールを眺めてみました。<figure>
+
+<p>つからなのかよくわからないのですが、独自ドメインで運用しているはてなブログ（blog.daruyanagi.jp）でも HTTPS 化のボタンが押せるようになっていたので、ノリでプチっと押してみました。</p>
+<blockquote>
+<p>ちょっとした好奇心がだるろぐを傷つけた pic.twitter.com/DIwS9zrxG8— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>みごと死にました……が、よくわかんないけどじきに直ったのでよし。でも、混在コンテンツ（mixed contents）があるみたいで、ページの一部が欠けている。</p>
+<blockquote>
+<p>いろいろ手をくわえなきゃだめだなぁ、めんど（ pic.twitter.com/5WINwMJpxA— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>どうやら AdSense のスクリプトを HTTP で読み込んでいるみたいなので、<strong>http://</strong> というところを探して <strong>//</strong> に書き換えました。これで将来的に httpsx:// みたいな謎プロトコルが爆誕してもコードを修正せずに済むような気がする。</p>
+<blockquote>
+<p>AdSense はサクッと直したけど、画像はめんどいな？ pic.twitter.com/O7m3VoFnt5— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>これで広告は表示されるようになったのですが、まだどこか HTTP なリソースを読み込んでいるところがあるみたい。しょうがないので Google Chrome で［F12］キーを押して開発者ツールを起動。コンソールを眺めてみました。</p>
+<figure>
     <img src="/images/20180611172131.png"/> 
 </figure>
-最初の行に Mixed Contents の警告が出ていたので、リンクをクリックしてみます。<figure>
+
+<p>初の行に Mixed Contents の警告が出ていたので、リンクをクリックしてみます。</p>
+<figure>
     <img src="/images/20180611172201.png"/> 
 </figure>
-原因はお前か！！この画像は自分でコードを追加したのではなく、はてなブログのデザイン機能で背景に指定しているものです。自分ではいじれないので、もはやこれまでか……と思ったのですが、ふと一度削除して再登録してみると、HTTP じゃなくて HTTPS で読み込まれるようになりました。ただし、もとの画像は再登録で透過部分が黒くなってしまいます。まぁ、なにもなくてもいいのですが、それはそれで寂しいので、手持ちのしょぼい だるやなぎ 画像を登録しておきました。まぁ、枯れ木も山の賑わいってやつで。&gt;できたー！画像しょっぱくなったけどｗｗｗ pic.twitter.com/0L6vSXiT1V— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>個別ページではまだエラーが出るかもしれませんが、それはおいおい修正していくことにして、今回の任務はこれで完了。これでセキュアなだるろぐになった！――なお、メインページ（daruyanagi.jp：Azure Web Sites 製）は放置の模様。こっちもそのうち何とかしよう……Let's encrypt は触ったことないけど、こういうのも勉強になるはず。</p>
+
+<p>因はお前か！！この画像は自分でコードを追加したのではなく、はてなブログのデザイン機能で背景に指定しているものです。自分ではいじれないので、もはやこれまでか……と思ったのですが、ふと一度削除して再登録してみると、HTTP じゃなくて HTTPS で読み込まれるようになりました。ただし、もとの画像は再登録で透過部分が黒くなってしまいます。まぁ、なにもなくてもいいのですが、それはそれで寂しいので、手持ちのしょぼい だるやなぎ 画像を登録しておきました。まぁ、枯れ木も山の賑わいってやつで。</p>
+<blockquote>
+<p>できたー！画像しょっぱくなったけどｗｗｗ pic.twitter.com/0L6vSXiT1V— だる☆やなぎ (@daruyanagi) 2018年6月11日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>個別ページではまだエラーが出るかもしれませんが、それはおいおい修正していくことにして、今回の任務はこれで完了。これでセキュアなだるろぐになった！――なお、メインページ（daruyanagi.jp：Azure Web Sites 製）は放置の模様。こっちもそのうち何とかしよう……Let's encrypt は触ったことないけど、こういうのも勉強になるはず。</p>
 
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/06/14/192708/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/14/192708/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -102,7 +133,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/06/10/125225/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/06/10/125225/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

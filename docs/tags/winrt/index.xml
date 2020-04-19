@@ -2,141 +2,153 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>WinRT on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/winrt/</link>
+    <link>https://blog.daruyanagi.jp/tags/winrt/</link>
     <description>Recent content in WinRT on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Wed, 20 Aug 2014 02:27:30 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/winrt/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/winrt/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>TwitterRT でストア アプリからお手軽ツイート（※要改修</title>
-      <link>https://daruyanagi.net/entry/2014/08/20/022730/</link>
+      <link>https://blog.daruyanagi.jp/entry/2014/08/20/022730/</link>
       <pubDate>Wed, 20 Aug 2014 02:27:30 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2014/08/20/022730/</guid>
-      <description>Windows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、TwitterRt - Tweet from Windows Metro Apps - Home。こういう感じの WebAuthenticationBroker を使った認証処理を一行で実現してくれるのがいい。
+      <guid>https://blog.daruyanagi.jp/entry/2014/08/20/022730/</guid>
+      <description>indows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、TwitterRt - Tweet from Windows Metro Apps - Home。こういう感じの WebAuthenticationBroker を使った認証処理を一行で実現してくれるのがいい。
 private TwitterRt t = new TwitterRt( &amp;#34;consumerKey&amp;#34;, &amp;#34;consumerSecret&amp;#34;, &amp;#34;callbackUrl&amp;#34; ); private async void Button1_Click(object sender, Windows.UI.Xaml.RoutedEventArgs args) { // 認証  await t.GainAccessToTwitter(); } private async void Button2_Click(object sender, Windows.UI.Xaml.RoutedEventArgs args) { // ツイート  await t.UpdateStatus(&amp;#34;Hello From TwitterRt&amp;#34;); } ```ソースコードを斜め読みしかしてないのだけど、認証処理で取得したトークンなんかは自動で ApplicationData.RoamingSettings に保存してくれるっぽい。一度どこかの端末で認証しておけば、ほかの端末でもそれが自動で同期されるはず。超便利だな。でも、残念ながらメンテナンスされていないようで、NuGet で取得したバイナリが動かない。しょうがないのでソースコードを落としてきてちょろちょろっと直した。 ```cs // 46行目ぐらい  // const string _updateStatusUrl = &amp;#34;https://api.twitter.com/1/statuses/update.json&amp;#34;; const string _updateStatusUrl = &amp;#34;https://api.</description>
     </item>
     
     <item>
       <title>WinRT：タスク &amp;#39;CreateAppStoreContainer&amp;#39; に失敗しました。</title>
-      <link>https://daruyanagi.net/entry/2014/08/16/214851/</link>
+      <link>https://blog.daruyanagi.jp/entry/2014/08/16/214851/</link>
       <pubDate>Sat, 16 Aug 2014 21:48:51 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2014/08/16/214851/</guid>
-      <description>  せっかくアプリを作ったのに、アップロードパッケージ（.appupload）が作成できませんがなでんがな！　ヒドい、ヒドすぎる！！
- Create App Package Bundle Creation Failed. Access is denied. Visual Studio Express 2013 for Windows Create app packages fails 0x8007005 Access is denied | Microsoft Connect ここら辺りをみてみたが、どうやら .appx ファイルにアクセス権限を手動で与えてやればいいようだ。  バイナリのフォルダを開き、.appx ファイルのアクセス権限を確かめる。  ぁー……なんでか知らんけど、空っぽやった。    Administrators にフルコントロールを与える。適当だけどこれでいいのかしら？  とりあえず、これでうまくいった。  バージョンを［自動的に増加］するオプションが有効な状態で一度バイナリを吐き、アップロードパッケージの作成に失敗したら一時的に無効にして再度挑戦するといい感じに成功する。ちょっとめんどくさいけど……。 </description>
+      <guid>https://blog.daruyanagi.jp/entry/2014/08/16/214851/</guid>
+      <description>っかくアプリを作ったのに、アップロードパッケージ（.appupload）が作成できませんがなでんがな！　ヒドい、ヒドすぎる！！
+ Create App Package Bundle Creation Failed. Access is denied. Visual Studio Express 2013 for Windows Create app packages fails 0x8007005 Access is denied | Microsoft Connect ここら辺りをみてみたが、どうやら .appx ファイルにアクセス権限を手動で与えてやればいいようだ。   イナリのフォルダを開き、.appx ファイルのアクセス権限を確かめる。
+  ー……なんでか知らんけど、空っぽやった。
+    dministrators にフルコントロールを与える。適当だけどこれでいいのかしら？
+  りあえず、これでうまくいった。
+  ージョンを［自動的に増加］するオプションが有効な状態で一度バイナリを吐き、アップロードパッケージの作成に失敗したら一時的に無効にして再度挑戦するといい感じに成功する。ちょっとめんどくさいけど……。</description>
     </item>
     
     <item>
       <title>WinRT</title>
-      <link>https://daruyanagi.net/entry/2014/08/16/211610/</link>
+      <link>https://blog.daruyanagi.jp/entry/2014/08/16/211610/</link>
       <pubDate>Sat, 16 Aug 2014 21:16:10 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2014/08/16/211610/</guid>
-      <description>  
-&amp;gt; COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。    なんかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
+      <guid>https://blog.daruyanagi.jp/entry/2014/08/16/211610/</guid>
+      <description>  br/&amp;gt;
+&amp;gt; COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。    んかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
 protected void OnPropertyChanged([CallerMemberName] string propertyName = null) { var eventHandler = this.PropertyChanged; if (eventHandler != null) { eventHandler(this, new PropertyChangedEventArgs(propertyName)); } } ```ここで InvalidCastException が出る……。&amp;lt;a href=&amp;#34;http://okazuki.hatenablog.com/entries/2012/10/13&amp;#34;&amp;gt;かずきのBlog@hatena&amp;lt;/a&amp;gt; ともちょっと違うのだけど、どうせ似たような原因だと思う。 &amp;gt; 結果として別スレッドでコレクションを操作したため、エラーになるというWPFやSilverlightなどでおなじみのエラーパターンと同じでした。それにしても、何故InvalidCastExceptionなのだ！！ いろいろ試してみたが、結局、自分の場合は Visual Studio でデバッグ実行しているときだけ発生することが判明（？）。共有のテストをするときはデバッグ実行したアプリを終了してから行うという手段で回避できた。いつか根本的に解決できるようになりたいです（小並 </description>
     </item>
     
     <item>
       <title>WinRT で使えるテキストエディターコンポーネント</title>
-      <link>https://daruyanagi.net/entry/2013/06/03/194733/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/06/03/194733/</link>
       <pubDate>Tue, 04 Jun 2013 19:18:19 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/06/03/194733/</guid>
-      <description>&amp;gt; さびねこにゃです。ストアアプリでエディターコンポーネントを作ったので、置いておきますね。http://sdrv.ms/12phlHk追記  WM_CHARに相当するイベントがないので、IME経由でしか文字入力ができません。
+      <guid>https://blog.daruyanagi.jp/entry/2013/06/03/194733/</guid>
+      <description>br/&amp;gt;
+&amp;gt; さびねこにゃです。ストアアプリでエディターコンポーネントを作ったので、置いておきますね。http://sdrv.ms/12phlHk追記  WM_CHARに相当するイベントがないので、IME経由でしか文字入力ができません。
  【1名様】 Metro で使える素敵なテキストエディターを作ってくれる方に、Samsung Series 7 Slate を差し上げます - だるろぐ  スゴい！　id:none_2271 さん、ありがとうございます！</description>
     </item>
     
     <item>
       <title>Windows Store Apps： オンスクリーンキーボードの存在を考慮したレイアウト（未解決 → 解決）</title>
-      <link>https://daruyanagi.net/entry/2013/05/09/215306/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/05/09/215306/</link>
       <pubDate>Thu, 09 May 2013 21:53:06 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/05/09/215306/</guid>
-      <description>Formula Pad 1.1.0 for Windows 8 - だるろぐ は大失敗だった。オンスクリーンキーボード（ソフトウェアキーボード）を表示した状態では、肝心の数式プレビューが見えないことがある。  理想としてはこうなってほしいわけだが。</description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/05/09/215306/</guid>
+      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/05/09/191152&amp;quot;&amp;gt;Formula Pad 1.1.0 for Windows 8 - だるろぐ は大失敗だった。オンスクリーンキーボード（ソフトウェアキーボード）を表示した状態では、肝心の数式プレビューが見えないことがある。
+  想としてはこうなってほしいわけだが。</description>
     </item>
     
     <item>
       <title>ちょっとしたサイドバーのようなものを出したい……</title>
-      <link>https://daruyanagi.net/entry/2012/10/03/083319/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/10/03/083319/</link>
       <pubDate>Wed, 03 Oct 2012 08:33:19 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/10/03/083319/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/10/03/083319/</guid>
       <description>書いたようで書いていなかったので。Windows ストアアプリでデータを入力する際、当初は入力ページに遷移していたのだけれど、ちょっと大げさかなと思う。そこで、一時的にサイドバーみたいなものをだして入力するインターフェイスを考えた。標準アプリでも、「カレンダー」なんかがそんな感じだよね。で、これを自分で実装しようとしたわけだ。AppBar を押したらアニメーション付きで表示して、フォーカスを失ったら閉じる。これが結構めんどくさくて、意図したとおりに動いてくれない。たとえば、サイドバーの表示中にチャームをだしても閉じてくれなかったり、サイドバー内でコントロールが変わった時に非表示になったり……でも、そんなダメなひとのために、NuGet Gallery | TCD.Controls 1.3.7 があるわけなんだな。これの Flyout コントロールを使うと、意図したことがとても簡単に実現できそうだ。SettingsContractWrapper – the easy way to integrate w/ settings « Kuchenzeit のサンプルがとてもわかりやすかったので、よくわかんない人は試してみたらいいかもしれない。設定コントラクトのラッパーなんかも用意されている。</description>
     </item>
     
     <item>
       <title>初めての Windows ストアアプリが無事ストアで公開されました ＼(＾o＾)／</title>
-      <link>https://daruyanagi.net/entry/2012/09/27/195233/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/27/195233/</link>
       <pubDate>Thu, 27 Sep 2012 19:52:33 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/27/195233/</guid>
-      <description>初めての Windows ストアアプリが公……うぎゃー！ - だるろぐ から3日、無事、ストアの審査を通過しました！
- http://apps.microsoft.com/webpdp/ja-JP/app/appbarbuttonstyles/24b07f02-446a-4861-b265-1d2fe4dd5383 普通の人にはまったく役に立たないし、普通じゃない人にもほとんど役に立たないアプリなのでダウンロードする必要はないです。ただ、これからもちょくちょく機能を実装して、ストアに通るか試すためにアップデートしようかなと思います。今回はそれよりも、 @ch3cooh 先生に習ってリジェクト理由とその対策を検討したいと思います（Windows ストア アプリがリジェクトされた - 酢ろぐ！）。 ### 認定レポート   審査が終わると、このような「認定レポート」がもらえます。リジェクト理由はその中に書いてあるのですけど、前回は以下の理由でリジェクトされていました。  お客様のアプリは、要件 1.1 を満たしていません。 お客様のアプリは、要件 1.2 を満たしていません。 お客様のアプリは、要件 4.1 を満たしていません。 お客様のアプリは、要件 6.3 を満たしていません。 では、順にみていきましょう。 #### 要件 1.1：アプリは、サポートしているすべての言語と市場で、ユーザーに独特かつ独創的な価値または実用性を提供しなければならない  #### 要件 1.2：ユーザーが Windows ストアからアプリを入手したとき、そのアプリは完全に機能しなければならない 確かに実用性には欠けるかもしれませんが、ほかに似たようなアプリがあるとは思えません。また、不完全な機能や実装予定の機能を付けた覚えもありません。レビュアーに「何ができるアプリなのか」があまり伝わっていなかったのかもしれません。僕のアプリの機能は、  StandardStyles.xaml で定義されている AppBarButtonStyle のカタログを提供すること スタイルを検索チャームで検索できること スタイルの XAML コードをクリップボードへコピーできること の3点。なので、まず英語での説明を1.5倍ぐらいに増やしました。あと、“Show samples of style”という表現が「不完全な機能」を連想させて誤解を生むかもしれないと思ったので、“Show catalog of styles”と細部の表現に気を使いました。英語としてはそんなに推敲してないし、ダメダメだと思いますけど、今回の審査には通ったのでまぁ、いいんじゃないでしょうか。  あと、クリップボードへコピーされたということがわかってもらえなかったのかもしれないと思ったので、トーストで通知するように改良しました。ちょっと過剰な対応かなと思ったけれど、こういう配慮が必要なのも含めて“Metro”デザインなのかもしれません。  #### 要件 4.1：プライバシーに関する次の要件に準拠しなければならない ストアアプリに提出した人で一番引っかかるのはこれなんじゃないでしょうか。  認定レポートに付属していたPDFによると、  4.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/27/195233/</guid>
+      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/09/24/210732&amp;quot;&amp;gt;初めての Windows ストアアプリが公……うぎゃー！ - だるろぐ から3日、無事、ストアの審査を通過しました！
+ http://apps.microsoft.com/webpdp/ja-JP/app/appbarbuttonstyles/24b07f02-446a-4861-b265-1d2fe4dd5383 普通の人にはまったく役に立たないし、普通じゃない人にもほとんど役に立たないアプリなのでダウンロードする必要はないです。ただ、これからもちょくちょく機能を実装して、ストアに通るか試すためにアップデートしようかなと思います。今回はそれよりも、 @ch3cooh 先生に習ってリジェクト理由とその対策を検討したいと思います（Windows ストア アプリがリジェクトされた - 酢ろぐ！）。 ### 認定レポート   査が終わると、このような「認定レポート」がもらえます。リジェクト理由はその中に書いてあるのですけど、前回は以下の理由でリジェクトされていました。
+ お客様のアプリは、要件 1.1 を満たしていません。 お客様のアプリは、要件 1.2 を満たしていません。 お客様のアプリは、要件 4.1 を満たしていません。 お客様のアプリは、要件 6.3 を満たしていません。 では、順にみていきましょう。 #### 要件 1.1：アプリは、サポートしているすべての言語と市場で、ユーザーに独特かつ独創的な価値または実用性を提供しなければならない  #### 要件 1.2：ユーザーが Windows ストアからアプリを入手したとき、そのアプリは完全に機能しなければならない 確かに実用性には欠けるかもしれませんが、ほかに似たようなアプリがあるとは思えません。また、不完全な機能や実装予定の機能を付けた覚えもありません。レビュアーに「何ができるアプリなのか」があまり伝わっていなかったのかもしれません。僕のアプリの機能は、  StandardStyles.xaml で定義されている AppBarButtonStyle のカタログを提供すること スタイルを検索チャームで検索できること スタイルの XAML コードをクリップボードへコピーできること の3点。なので、まず英語での説明を1.5倍ぐらいに増やしました。あと、“Show samples of style”という表現が「不完全な機能」を連想させて誤解を生むかもしれないと思ったので、“Show catalog of styles”と細部の表現に気を使いました。英語としてはそんなに推敲してないし、ダメダメだと思いますけど、今回の審査には通ったのでまぁ、いいんじゃないでしょうか。   と、クリップボードへコピーされたということがわかってもらえなかったのかもしれないと思ったので、トーストで通知するように改良しました。ちょっと過剰な対応かなと思ったけれど、こういう配慮が必要なのも含めて“Metro”デザインなのかもしれません。
+ #### 要件 4.1：プライバシーに関する次の要件に準拠しなければならない ストアアプリに提出した人で一番引っかかるのはこれなんじゃないでしょうか。   定レポートに付属していたPDFによると、</description>
     </item>
     
     <item>
       <title>Windows ストアアプリでデータベース（SQLite 3）を使う</title>
-      <link>https://daruyanagi.net/entry/2012/09/24/005447/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/24/005447/</link>
       <pubDate>Mon, 24 Sep 2012 00:54:47 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/24/005447/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/24/005447/</guid>
       <description>UPDATED HOWTO: SQLite with Windows 8 apps http://timheuer.com/blog/archive/2012/08/07/updated-how-to-using-sqlite-from-windows-store-apps.aspx@kaorun さんのはてブ経由で知った。前試したときはうまくいかなかったのだけど、今回はうまくできたっぽい。ポータブルなデータベースはやっぱりほしいよねぇ……。
 ### 拡張機能「SQLite for Windows Runtime」をインストール グローバルにインストールされるので、最初に一度やればよい。  ### NuGet パッケージ「sqlite-net」をインストール これはプロジェクトごとにインストール。マネージドで扱うためのラッパーのようで、C# のソースコードで提供されている。Visual Basic で使いたい場合は一工夫必要みたい。  ### 参照の追加 「Microsoft Visual C++ Runtime Pakage」と「SQLite for Windows Runtime」を参照に追加。  ### ビルドターゲットを変更 Any CPU では動かないので、ほかの適当なものに変えておく。まぁ、とりあえず x86 とかでいいんじゃないかな。  ### 動かしてみる。 空のテンプレートで、サンプルコードを試してみる。 ```cs namespace App1 { sealed partial class App : Application { public App() { this.InitializeComponent(); this.Suspending += OnSuspending;  LoadData(); } ： ： public void LoadData() { var dbPath = Path.</description>
     </item>
     
     <item>
       <title>オブジェクトを XML でシリアライズ</title>
-      <link>https://daruyanagi.net/entry/2012/09/23/234241/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/23/234241/</link>
       <pubDate>Sun, 23 Sep 2012 23:42:41 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/23/234241/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/23/234241/</guid>
       <description>WinRT のファイル操作はまだ慣れていないので、いちいち MSDN を徘徊しなくちゃいけないのでつらい。でも、ちょっとずつ覚えていかなければ。たとえば、.NET の XmlSerializer を使うときは Stream が必要なんだけれど、これは .NET のクラス。WinRT とどうやってつなげればいいんだろう……
 public async void Save(object o, string filename) { if (o == null) throw new ArgumentException(); try { // WinRT のファイル操作  var folder = ApplicationData.Current.LocalFolder; var file = await folder.CreateFileAsync( filename, CreationCollisionOption.ReplaceExisting ); // .NET の書き込み stream として開く  using (var stream = await file.OpenStreamForWriteAsync()) { // おなじみの .NET ！  new XmlSerializer(o.GetType()).Serialize(stream, o); } // *  } catch { throw; } } ```調べてみると、 WindowsRuntimeStorageExtensions（&amp;lt;a href=&amp;#34;http://msdn.</description>
     </item>
     
     <item>
       <title>WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす</title>
-      <link>https://daruyanagi.net/entry/2012/09/21/230552/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/21/230552/</link>
       <pubDate>Fri, 21 Sep 2012 23:05:52 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/21/230552/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/21/230552/</guid>
       <description>@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。2012-09-20 22:51:33 via Krile2 to @xin9le昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List を表示する ItemsPage.xaml と、そこで Group を選択して List&amp;lt;group.items&amp;gt; を表示する SplitPage.xaml が用意されている。&amp;lt;/group.items&amp;gt;いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは
 SampleDataSource List: SampleDataGroup (SampleDataCommon) List: SampleDataItem (SampleDataCommon) ```になってる。こういう感じに作ればいい。うちのアプリの場合は、 ```cs DataSource List: Vehicle (乗り物) List: RefuelLog (給油ログ) ```って感じになるかな。乗り物＝Group、給油ログ＝Itemというイメージ。んで、Group も Item も SampleDataCommon を継承している。要は **UniqueId、Title、Subtitle、Description、Image というプロパティを持ちなさい**ということだ。実装したら、テンプレートでバインドされますよ、と&amp;lt;a href=&amp;#34;#f1&amp;#34; name=&amp;#34;fn1&amp;#34; title=&amp;#34;SplitPage ではこれに加えて Content というプロパティも要求する&amp;#34;&amp;gt;*1&amp;lt;/a&amp;gt;。でも、だったらインターフェイスでもいいわけで、 ```cs namespace App5.Common { using Windows.UI.Xaml.Media; using Windows.UI.Xaml.Media.Imaging; public interface ITemplateGridViewItem { Guid UniqueId { get; } // &amp;amp;lt;- string は嫌だったので改造  string Title { get; } string Subtitle { get; } string Description { get; } ImageSource Image { get; } ITemplateGridViewItem Parent { get; } // &amp;amp;lt;- なくてもいい  } } ```というのを作って、Group/Item はこれを実装するということにした。乗り物データと給油ログデータが一つのデータから継承されてるってなんかアレだけど、インターフェイスなら個人的にしっくりくる。燃費管理アプリのデータには、タイトルやサブタイトルなどという概念はない。でも、そこは給油量（Amout）や日付（Date）といったふさわしいプロパティを別途もっておいて、 ```cs public string Title { get { return string.</description>
     </item>
     
     <item>
       <title>WinRT/XAML のお勉強 ―― 4つの表示状態</title>
-      <link>https://daruyanagi.net/entry/2012/09/20/233052/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/20/233052/</link>
       <pubDate>Thu, 20 Sep 2012 23:30:52 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/20/233052/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/20/233052/</guid>
       <description>Windows ストアアプリには4つの状態（VisualState）がある
  **FullScreenLandscape**：全画面表示（横） **FullScreenPortrait**：全画面表示（縦） **Snapped**：端に寄せる（幅300px） **Filled**：ほかのアプリを Snap した残りの領域に表示 これを一つのデザインで対応しようとするととても難しい、という話が前回（WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する - だるろぐ）だった。あれからいろいろ試したんだけれど、ひとつのデザインですべてをカバーしようとするより、4つの VisualState にそれぞれ個別にデザインを作って割り当てたほうがよさそうだ*1。じゃぁ、VisualState によってビューを切り替えるのってどうすればいいんだ？　ってのが今日の主題。 ```xml Style=&#34;{StaticResource LayoutRootStyle}&#34; .RowDefinitions Height=&#34;140&#34;/ Height=&#34;*&#34;/ .RowDefinitions &amp;lt;!-- Back button and page title --&amp;gt; &amp;lt;grid&amp;gt;&amp;lt;/grid&amp;gt; （ヘッダー。内容省略） x:Name=&amp;quot;FullScreenLandscapeGrid&amp;quot; Grid.Row=&amp;quot;1&amp;quot; Background=&amp;quot;Blue&amp;quot; /&amp;gt; x:Name=&amp;quot;FullScreenPortraitGrid&amp;quot; Grid.Row=&amp;quot;1&amp;quot; Background=&amp;quot;Yellow&amp;quot; Visibility=&amp;quot;Collapsed&amp;quot; /&amp;gt; x:Name=&amp;quot;SnappedGrid&amp;quot; Grid.Row=&amp;quot;1&amp;quot; Background=&amp;quot;Green&amp;quot; Visibility=&amp;quot;Collapsed&amp;quot; /&amp;gt; x:Name=&amp;quot;FilledGrid&amp;quot; Grid.Row=&amp;quot;1&amp;quot; Background=&amp;quot;Red&amp;quot; Visibility=&amp;quot;Collapsed&amp;quot; /&amp;gt;  ```xml .VisualStateGroups&amp;gt; &amp;lt;!-- Visual states reflect the application&#39;s view state --&amp;gt; x:Name=&amp;quot;ApplicationViewStates&amp;quot;&amp;gt; x:Name=&amp;quot;FullScreenLandscape&amp;quot;&amp;gt; （初期表示なので別に何もしないでいい感じ） &amp;lt;!-- The entire page respects the narrower 100-pixel margin convention for portrait --&amp;gt; // 全画面（横向きになったら……） x:Name=&amp;quot;FullScreenPortrait&amp;quot;&amp;gt; &amp;lt;storyboard&amp;gt;&amp;lt;/storyboard&amp;gt; （関係のないところ省略） // FullScreenLandscapeGrid を非表示に Storyboard.</description>
     </item>
     
     <item>
       <title>WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する</title>
-      <link>https://daruyanagi.net/entry/2012/09/20/022735/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/20/022735/</link>
       <pubDate>Thu, 20 Sep 2012 02:27:35 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/20/022735/</guid>
-      <description>  今作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
-### 回転と解像度   たとえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。  ### スナップ   Windows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。 ```xml x:Name=&#34;Snapped&#34;  Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/  Storyboard.TargetName=&amp;quot;pageTitle&amp;quot; Storyboard.TargetProperty=&amp;quot;Style&amp;quot;&amp;gt; KeyTime=&amp;quot;0&amp;quot; Value=&amp;quot;{StaticResource SnappedPageHeaderTextStyle}&amp;quot;/&amp;gt; Storyboard.TargetName=&amp;quot;contentGrid&amp;quot; Storyboard.TargetProperty=&amp;quot;Visibility&amp;quot;&amp;gt; KeyTime=&amp;quot;0&amp;quot; Value=&amp;quot;Collapsed&amp;quot;/&amp;gt; Storyboard.TargetName=&amp;quot;logListView&amp;quot; Storyboard.TargetProperty=&amp;quot;Visibility&amp;quot;&amp;gt; KeyTime=&amp;quot;0&amp;quot; Value=&amp;quot;Visible&amp;quot;/&amp;gt;  &amp;lt;/div&amp;gt; </description>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/20/022735/</guid>
+      <description>作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
+### 回転と解像度   とえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。
+ ### スナップ   indows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。
+&amp;lt;!-- The back button and title have different styles when snapped --&amp;gt; x:Name=&amp;#34;Snapped&amp;#34;&amp;gt; &amp;lt;storyboard&amp;gt;&amp;lt;/storyboard&amp;gt; Storyboard.TargetName=&amp;#34;backButton&amp;#34; Storyboard.TargetProperty=&amp;#34;Style&amp;#34;&amp;gt; KeyTime=&amp;#34;0&amp;#34; Value=&amp;#34;{StaticResource SnappedBackButtonStyle}&amp;#34;/&amp;gt; Storyboard.TargetName=&amp;#34;pageTitle&amp;#34; Storyboard.TargetProperty=&amp;#34;Style&amp;#34;&amp;gt; KeyTime=&amp;#34;0&amp;#34; Value=&amp;#34;{StaticResource SnappedPageHeaderTextStyle}&amp;#34;/&amp;gt; Storyboard.TargetName=&amp;#34;contentGrid&amp;#34; Storyboard.TargetProperty=&amp;#34;Visibility&amp;#34;&amp;gt; KeyTime=&amp;#34;0&amp;#34; Value=&amp;#34;Collapsed&amp;#34;/&amp;gt; Storyboard.TargetName=&amp;#34;logListView&amp;#34; Storyboard.TargetProperty=&amp;#34;Visibility&amp;#34;&amp;gt; KeyTime=&amp;#34;0&amp;#34; Value=&amp;#34;Visible&amp;#34;/&amp;gt; ```下の二つの ObjectAnimationUsingKeyFrames がそれで、contentGrid/logListView という二つのエレメントの Visibility を VisualState に応じて切り替えている。コードの意味はあんまりよくわかってなくて、辛うじて StoryBoard を知っている程度だけど、まぁ、コピペでいけるから今はそれでいいことにしておく。   indows ストアアプリは、こういうところが難しいなぁ、と思った。デスクトップアプリと違って、「未完成だけど公開してみます」というのはストアが認めてくれないわけで、ハードルはかなり高い。それに比べれば、開発者登録にお金が要るのはあまり大した問題じゃない気もする。けれど、一つアプリを完成させた（&amp;lt;a href=&amp;#34;https://blog.</description>
     </item>
     
     <item>
       <title>WinRT/XAML のお勉強 ―― データを視覚化したいなぁ</title>
-      <link>https://daruyanagi.net/entry/2012/09/20/002538/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/09/20/002538/</link>
       <pubDate>Thu, 20 Sep 2012 00:25:38 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/09/20/002538/</guid>
-      <description>燃費記録用の Windows ストアアプリを作ってみた - だるろぐ を作っていてふと思った。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &amp;ldquo;https://platform.twitter.com/widgets.js&amp;quot;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &amp;ldquo;script&amp;rdquo;, &amp;ldquo;twitter-wjs&amp;rdquo;)); twttr.ready(function (twttr) { var el = document.getElementsByClassName(&amp;lsquo;twitter-syntax-tweet-id-247909564761112576&amp;rsquo;); for (var i=0;i&amp;lt;el.length;i++) { if (!!el[i].getAttribute(&amp;lsquo;data-is-tweet-loaded&amp;rsquo;)){ continue; } el[i].setAttribute(&amp;lsquo;data-is-tweet-loaded&amp;rsquo;, &amp;lsquo;1&amp;rsquo;); twttr.widgets.createTweet(&amp;lsquo;247909564761112576&amp;rsquo;,el[i],{}); } });そうなんだ、それがあれば完璧になるんだ！　すると、すかさずナイスな情報を教えてもらえた。 window.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2012/09/20/002538/</guid>
+      <description>燃費記録用の Windows ストアアプリを作ってみた - だるろぐ&amp;lt;/a
+ を作っていてふと思った。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &amp;ldquo;https://platform.twitter.com/widgets.js&amp;quot;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &amp;ldquo;script&amp;rdquo;, &amp;ldquo;twitter-wjs&amp;rdquo;));
+  twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-247909564761112576&#39;); for (var i=0;iそうなんだ、それがあれば完璧になるんだ！　すると、すかさずナイスな情報を教えてもらえた。 window.twttr = (function(d, s, id) { var js, fjs = d.</description>
     </item>
     
   </channel>

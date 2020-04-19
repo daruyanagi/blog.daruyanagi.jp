@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/12/04/035903/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/12/04/035903/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,10 +18,9 @@
         
 
         
-            <meta name="description" content="  ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。
- Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動かすとこんな感じ。    機能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。 ```cs // _AppStart.cshtml @using System.Web.Routing
-@{ RouteTable.Routes.MapWebPageRoute( &ldquo;{rcPageName}/{rc0}/{rc1}&quot;, &ldquo;~/Default.cshtml&rdquo;, new { rcPageName = &ldquo;default&rdquo;, rc0=-1, rc1=-1 } ); }
-&lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&quot;&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; " />
+            <meta name="description" content="  SP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。
+ Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動かすとこんな感じ。     能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。
+// _AppStart.cshtml  @using System.Web.Routing @{ RouteTable.Routes.MapWebPageRoute( &#34;{rcPageName}/{rc0}/{rc1}&#34;, &#34;~/Default.cshtml&#34;, new { rcPageName = &#34;default&#34;, rc0=-1, rc1=-1 } ); } ```別に&lt;a href=&#34;https://blog.daruyanagi.jp/entry/2012/07/06/174414&#34;&gt;規約ベースのルーティング&lt;/a&gt;を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。 &lt;ul&gt; &lt;li&gt;&lt;a href=&#34;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&#34;&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt; " />
         
 
         
@@ -49,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -79,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/12/04/035903/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/12/04/035903/" >
                     <h1 class="entry__header-title-link-text">Razor で組まれた CMS「razorC.net CMS」</h1>
                 </a>
             </div>
@@ -91,45 +90,52 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20131204034929.png"/> 
 </figure>
-ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。</p>
+
+<p>SP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。</p>
 <ul>
 <li><a href="http://www.razorc.net/">Open Source ASP.net CMS for WebMatrix - razorC.net</a></li>
-</ul>実際に WebMatrix で動かすとこんな感じ。<figure>
+</ul>実際に WebMatrix で動かすとこんな感じ。
+<figure>
     <img src="/images/20131204035825.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20131204035237.png"/> 
 </figure>
-機能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。
-```cs
-// _AppStart.cshtml
-<p>@using System.Web.Routing</p>
-<p>@{ <br>
-RouteTable.Routes.MapWebPageRoute(
-&ldquo;{rcPageName}/{rc0}/{rc1}&quot;,
-&ldquo;~/Default.cshtml&rdquo;,
-new {
-rcPageName = &ldquo;default&rdquo;,
-rc0=-1,
-rc1=-1
+
+<p>能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// _AppStart.cshtml
+</span><span style="color:#75715e"></span>
+@using System.Web.Routing
+
+<span style="color:#960050;background-color:#1e0010">@</span>{    
+    RouteTable.Routes.MapWebPageRoute(
+        <span style="color:#e6db74">&#34;{rcPageName}/{rc0}/{rc1}&#34;</span>,
+        <span style="color:#e6db74">&#34;~/Default.cshtml&#34;</span>,
+        <span style="color:#66d9ef">new</span> {
+            rcPageName = <span style="color:#e6db74">&#34;default&#34;</span>,
+            rc0=-<span style="color:#ae81ff">1</span>,
+            rc1=-<span style="color:#ae81ff">1</span>
+        }
+    );
 }
-);
-}</p>
-<pre><code class="language-別に<a" data-lang="別に<a">
+
+<span style="color:#960050;background-color:#1e0010">```別に</span>&lt;a href=<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/07/06/174414&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">規約ベースのルーティング</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。</span>
+
 &lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&quot;&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&#34;</span>&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt;
 &lt;/ul&gt;
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/12/04/205535/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/12/04/205535/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -138,7 +144,7 @@ rc1=-1
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/12/04/033536/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/12/04/033536/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

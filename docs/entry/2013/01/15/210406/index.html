@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/01/15/210406/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/01/15/210406/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
+            <meta name="description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&quot;&gt;Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
  数式テキストの新規作成・開く・保存 編集機能（切り取り・コピー・貼り付けなど） 数式イメージのファイル保存・クリップボードへコピー なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。 ```cs private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Tab) { e.Handled = true; // 握りつぶす！  var text = FormulaText.Text; int start = FormulaText.SelectionStart; int end = -1; FormulaText.SelectionLength = 0; if ((Keyboard.Modifiers &amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift) { start = text.IndexOf(&amp;#39;{&amp;#39;, start); if (start &amp;lt; 0) return; FormulaText.SelectionStart = start &#43; 1; end = text." />
         
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,7 +63,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
@@ -73,7 +73,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/01/15/210406/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/01/15/210406/" >
                     <h1 class="entry__header-title-link-text">Google Chart を使った数式ツールを作ってみた（2）</h1>
                 </a>
             </div>
@@ -85,10 +85,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20130115205240.png"/> 
 </figure>
-<a href="https://blog.daruyanagi.jp/entry/2013/01/14/221302">Google Chart を使った数式ツールを作ってみた - だるろぐ</a> の続き。さすがにもう少し完成度を上げようと思って、</p>
+
+<p>a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&quot;&gt;Google Chart を使った数式ツールを作ってみた - だるろぐ</a> の続き。さすがにもう少し完成度を上げようと思って、</p>
 <ul>
 <li>数式テキストの新規作成・開く・保存</li>
 <li>編集機能（切り取り・コピー・貼り付けなど）</li>
@@ -122,19 +123,21 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
 }
 </code></pre>
 <p>}</p>
-<pre><code class="language-<figure>
+<pre><code>
+<figure>
     <img src="/images/20130115205746.png"/> 
 </figure>
-適当に書いたのだけど、これでも案外使える感じになった。ただ、<figure>
+
+
+当に書いたのだけど、これでも案外使える感じになった。ただ、
+
+<figure>
     <img src="/images/20130115205946.png"/> 
 </figure>
-ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{}" data-lang="<figure>
-    <img src="/images/20130115205746.png"/> 
-</figure>
-適当に書いたのだけど、これでも案外使える感じになった。ただ、<figure>
-    <img src="/images/20130115205946.png"/> 
-</figure>
-ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{}">
+
+
+スト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。
+
 
 </code></pre>
         </div>
@@ -142,7 +145,7 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/17/020941/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/17/020941/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -151,7 +154,7 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/14/221302/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/14/221302/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

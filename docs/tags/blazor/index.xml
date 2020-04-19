@@ -2,32 +2,33 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Blazor on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/blazor/</link>
+    <link>https://blog.daruyanagi.jp/tags/blazor/</link>
     <description>Recent content in Blazor on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Sun, 09 Sep 2018 16:51:25 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/blazor/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/blazor/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>9月9日：大雨のおかげで遅延情報の収集がはかどった</title>
-      <link>https://daruyanagi.net/entry/2018/09/09/165125/</link>
+      <link>https://blog.daruyanagi.jp/entry/2018/09/09/165125/</link>
       <pubDate>Sun, 09 Sep 2018 16:51:25 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2018/09/09/165125/</guid>
-      <description>追加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。
-### JR 四国 遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)  ### 伊予鉄 遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。  テーブルの解釈は多少面倒くさいけど、隣接セレクタ― &#34;th.rail3 + td&#34; なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)  ### フェリー 防予フェリーだけ UTF-8 じゃなくてつらかった。そのほかの各航路は、単純に公式ページからスクレイピングするだけ。オレンジフェリーのサイトだけ少し重く、うちの環境でベンチマークをとると取得から解析まで2秒ぐらいかかった。  ### ANA 公式の運行状況ページで便名を指定して検索。[国内線運航状況のご案内サービス│航空券│ANA SKY WEB](https://www.ana.co.jp/fs/dom/jp/)裏で JSONP API を使っているので、それをそのまま使えばよい……が、情報過多なので解釈が少しつらい。ちなみに JSON → C# への変換は、 https://quicktype.io/ が激しくお勧め。シリアライズ・デシリアライズするメソッド付きで C# 型へとコンバートしてくれる。  ### JAL/JAC JAL - 運航状況のご案内（国内線） で便名を検索。あまりセンスのないテーブルをガリガリと解釈する必要があってすごくつらい。セレクターでやると body  table  tbody  tr:nth-child(2)  td:nth-child(3)みたいな感じ……ファック！あと、JAL と JAC は別で、airlineCode を間違えるとエラーになる。  ### Jet Star PC サイトは ASP.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2018/09/09/165125/</guid>
+      <description>加の無職の仕事を請け負ったので、この週末はお仕事モード。その合間、気晴らしに、昨日から取り組んでいる Blazor のサイトをちまちまと作ってた。実は以前にもやったことがあるので、要領は得ている。あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた - だるろぐただ、当時のコードが残ってなかったのと、3年もあれば変わるところもあるので、そこら辺の調査に手間取った。
+### JR 四国 遅延情報は公式の運行情報ページからとれる。うちのサイトにも路線図入れたいけど、Canvas に描いて、遅延路線をスタイルしていくのが汎用的だろうか。[列車運行情報 - JR四国](http://www.jr-shikoku.co.jp/info/)  ### 伊予鉄 遅延情報は公式の運行情報ページからとれる。[電車・バス情報 | 伊予鉄](http://www.iyotetsu.co.jp/kinkyu/)遅延・運休があると路線ごとにテーブルで情報が掲載されるので、まずはテーブルのあるなしを判定するとよさげ。   ーブルの解釈は多少面倒くさいけど、隣接セレクタ― &amp;quot;th.rail3 + td&amp;quot; なんかを使えばいけるかと。今日は大雨のおかげであちこちに遅延が出てくれて、たくさんデータが取れてよかった( *´艸｀)
+ ### フェリー 防予フェリーだけ UTF-8 じゃなくてつらかった。そのほかの各航路は、単純に公式ページからスクレイピングするだけ。オレンジフェリーのサイトだけ少し重く、うちの環境でベンチマークをとると取得から解析まで2秒ぐらいかかった。  ### ANA 公式の運行状況ページで便名を指定して検索。[国内線運航状況のご案内サービス│航空券│ANA SKY WEB](https://www.ana.co.jp/fs/dom/jp/)裏で JSONP API を使っているので、それをそのまま使えばよい……が、情報過多なので解釈が少しつらい。ちなみに JSON → C# への変換は、 https://quicktype.io/ が激しくお勧め。シリアライズ・デシリアライズするメソッド付きで C# 型へとコンバートしてくれる。  ### JAL/JAC JAL - 運航状況のご案内（国内線） で便名を検索。あまりセンスのないテーブルをガリガリと解釈する必要があってすごくつらい。セレクターでやると body  table  tbody  tr:nth-child(2)  td:nth-child(3)みたいな感じ……ファック！あと、JAL と JAC は別で、airlineCode を間違えるとエラーになる。  ### Jet Star PC サイトは ASP.</description>
     </item>
     
     <item>
       <title>9月8日：巷もすなる Blazor というものを、おっさんもかいてみんとてするなり</title>
-      <link>https://daruyanagi.net/entry/2018/09/08/233948/</link>
+      <link>https://blog.daruyanagi.jp/entry/2018/09/08/233948/</link>
       <pubDate>Sat, 08 Sep 2018 23:39:48 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2018/09/08/233948/</guid>
-      <description>巷もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。
+      <guid>https://blog.daruyanagi.jp/entry/2018/09/08/233948/</guid>
+      <description>もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。
 ### @inject HttpClient Http DI で注入するとクライアントで HttpClient が使えるようになるんだけど、なんで @using じゃないのかなー……たぶん「HttpClient をクライアントで使うぜー、アセンブリをローカルへダウンロードしてくれー」って言わなきゃいけないからだな。  ### HtmlString エンコード済みの文字列を扱いたかったのだけど、MvcString や HtmlString がなかった。代わりにMarkupStringというのがあるので、それを使うといいらしい。 ```cs @((MarkupString)myMarkup) @functions { string myMarkup = &amp;ldquo;This is a markup string.
 &amp;rdquo;; }
 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### Loading...... クライアントに ```cs @if (obj == null) { &amp;amp;lt;p&amp;gt;Loading...&amp;amp;lt;/p&amp;gt; } else { &amp;amp;lt;p&amp;gt;@obj.Hoge&amp;amp;lt;/p&amp;gt; } ```などと書くと&amp;lt;code&amp;gt;obj&amp;lt;/code&amp;gt;にオブジェクトが格納されるまで「Loading...」と表示されるんだけど、これがなぜかよくわからんかった。で、いろいろこねくり回して気が付いたんだけど、&amp;lt;code&amp;gt;protected override async Task OnInitAsync()&amp;lt;/code&amp;gt;で変数を初期化するとビューがリロードされるのかもしれない。変数を複数用意して&amp;lt;code&amp;gt;OnInitAsync()&amp;lt;/code&amp;gt;で初期化してみたけど、XHR のときみたいにロードが完了した変数から表示されていくのではなく、すべての読み込みが完了してからページが書き換えられた。そうだとしたら、とくに難しくはない。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### ShiftJIS の扱い 今回は鉄道やフェリーの運行情報をスクレイピングするサイトを作っていたのだけど、1件だけ ShiftJIS なサイトがあった（ガッデム！）。ASP.</description>

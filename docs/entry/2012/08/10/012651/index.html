@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/10/012651/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/10/012651/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！*1
- ### @functions というわけで、レイアウトファイルで @functions を使ってみた。 ```cs &lt;!DOCTYPE html &lt;html lang=&rdquo;@App.Language&quot;&gt; &lt;head&gt; : : &lt;div id=&quot;site-content&quot;&gt; &lt;article id=&quot;site-body&quot;&gt; @RenderBody() &lt;/article&gt; &lt;aside id=&quot;site-sidebar&quot;&gt; @RenderSideBar() &lt;/aside&gt; &lt;/div&gt;
+            <meta name="description" content="だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日
+ 知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！*1
+### @functions というわけで、レイアウトファイルで @functions を使ってみた。 ```cs &lt;!DOCTYPE html &lt;html lang=&rdquo;@App.Language&quot;&gt; &lt;head&gt; : : &lt;div id=&quot;site-content&quot;&gt; &lt;article id=&quot;site-body&quot;&gt; @RenderBody() &lt;/article&gt; &lt;aside id=&quot;site-sidebar&quot;&gt; @RenderSideBar() &lt;/aside&gt; &lt;/div&gt;
  &amp;lt;footer id=&quot;site-footer&quot;&gt;  @RenderFooter() &lt;/footer&gt; &lt;/body&gt; &lt;/html&gt;
 @functions { public HelperResult RenderHeader() { return RenderPage(&quot;_Header.cshtml&rdquo;); } public HelperResult RenderNavigation() { return RenderPage(&quot;_Navigation.cshtml&rdquo;); } public HelperResult RenderSideBar() { return RenderPage(&quot;_SideBar.cshtml&rdquo;); } public HelperResult RenderFooter() { return RenderPage(&quot;_Footer." />
         
@@ -49,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -79,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/10/012651/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/10/012651/" >
                     <h1 class="entry__header-title-link-text">WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（3）</h1>
                 </a>
             </div>
@@ -92,8 +93,9 @@
         </div>
         <div class="entry__content">
             <blockquote>
-<p>だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！<a href="#f-d33ff292" name="fn-d33ff292" title="忘れてた">*1</a><br/></p>
+<p>だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
 </blockquote>
+<p>知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！<a href="#f-d33ff292" name="fn-d33ff292" title="忘れてた">*1</a><br/></p>
 <div class="section">
     ### @functions
     というわけで、レイアウトファイルで @functions を使ってみた。
@@ -141,10 +143,14 @@ return RenderPage(&quot;_Footer.cshtml&rdquo;);
 
         WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（2） - だるろぐ
     
-という懸念はないね。ながながとラムダ式を書くのはアレだけれど、一般的な関数ならばまぁ、いいや。あと、冒頭じゃなくて末尾に書けるのも何気に美味しい。レイアウトファイルのメインはあくまでも HTML ファイルだと思うし、ユーティリティ関数みたいなのは隅っこに書いておきたいって思う。 @{……} セクションで宣言した変数だと使う前に宣言しておかないとダメみたいだけれど、 @functions{……} で宣言した関数はあとで宣言してもいいみたいだ。<figure>
+という懸念はないね。ながながとラムダ式を書くのはアレだけれど、一般的な関数ならばまぁ、いいや。あと、冒頭じゃなくて末尾に書けるのも何気に美味しい。レイアウトファイルのメインはあくまでも HTML ファイルだと思うし、ユーティリティ関数みたいなのは隅っこに書いておきたいって思う。 @{……} セクションで宣言した変数だと使う前に宣言しておかないとダメみたいだけれど、 @functions{……} で宣言した関数はあとで宣言してもいいみたいだ。
+
+<figure>
     <img src="/images/20120810011157.png"/> 
 </figure>
-Visual Studio のツールチップでみてみたのだけれど、何がなんだかよくわかんないね。なんなんだろう、このテンポラリクラスは。こうなってくると、ちょっと中身を知りたくなってくる。あと、テンポラリクラス名でわかるかもしれないけれど、テーマ機能もつけてみた。
+
+
+isual Studio のツールチップでみてみたのだけれど、何がなんだかよくわかんないね。なんなんだろう、このテンポラリクラスは。こうなってくると、ちょっと中身を知りたくなってくる。あと、テンポラリクラス名でわかるかもしれないけれど、テーマ機能もつけてみた。
 
     &gt;
         今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。
@@ -163,7 +169,7 @@ Visual Studio のツールチップでみてみたのだけれど、何がなん
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/10/155258/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/10/155258/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -172,7 +178,7 @@ Visual Studio のツールチップでみてみたのだけれど、何がなん
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/09/201527/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/09/201527/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

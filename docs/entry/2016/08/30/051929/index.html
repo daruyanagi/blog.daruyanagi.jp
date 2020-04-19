@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/08/30/051929/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/08/30/051929/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,8 @@
 
         
             <meta name="description" content="せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
-#### 1. とりあえずローカルに発行してコミットする まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。 ``` # Click-Once directory # publish/ ```ついでに .gitattributes も編集しておく。 ``` *.manifest binary *.application binary *.deploy binary ```これをコミットして GitHub にプッシュしておく。  #### 2. ClickOnce のインストール フォルダーの URL を変更 GitHub に publish フォルダーがちゃんとアップロードされているのを確認。  ここからセットアップファイルの Raw URL を取得しておく。今回は  https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。  先ほど取得した Raw URL を cdn." />
+#### 1. とりあえずローカルに発行してコミットする まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。 ``` # Click-Once directory # publish/ ```ついでに .gitattributes も編集しておく。 ``` *.manifest binary *.application binary *.deploy binary ```これをコミットして GitHub にプッシュしておく。  #### 2. ClickOnce のインストール フォルダーの URL を変更 GitHub に publish フォルダーがちゃんとアップロードされているのを確認。   こからセットアップファイルの Raw URL を取得しておく。今回は
+ https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。   ほど取得した Raw URL を cdn." />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/clickonce/">ClickOnce</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/clickonce/">ClickOnce</a>
                                     </li>
                                 
                             
@@ -77,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/08/30/051929/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/08/30/051929/" >
                     <h1 class="entry__header-title-link-text">GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する</h1>
                 </a>
             </div>
@@ -105,22 +106,28 @@
 </div>
 <div class="section">
     #### 2. ClickOnce のインストール フォルダーの URL を変更
-    GitHub に publish フォルダーがちゃんとアップロードされているのを確認。<figure>
+    GitHub に publish フォルダーがちゃんとアップロードされているのを確認。
+<figure>
     <img src="/images/20160830051004.png"/> 
 </figure>
-ここからセットアップファイルの Raw URL を取得しておく。今回は
+
+<p>こからセットアップファイルの Raw URL を取得しておく。今回は</p>
 <ul>
 <li><a href="https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true">https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true</a></li>
-</ul>だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。<figure>
+</ul>だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。
+<figure>
     <img src="/images/20160830050910.png"/> 
 </figure>
-先ほど取得した Raw URL を cdn.rawgit.com に書き換えたり、blob を消したりごにょごにょ。
+
+<p>ほど取得した Raw URL を cdn.rawgit.com に書き換えたり、blob を消したりごにょごにょ。</p>
 <ul>
 <li><a href="https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/">https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/</a></li>
-</ul>cdn.rawgit.com だと ClickOnce 関連のファイルの Content-Type が適切に設定されているみたいで、インストールがうまくいく。<figure>
+</ul>cdn.rawgit.com だと ClickOnce 関連のファイルの Content-Type が適切に設定されているみたいで、インストールがうまくいく。
+<figure>
     <img src="/images/20160830051329.png"/> 
 </figure>
-これを保存、発行、コミット、プッシュして、GitHub からセットアップファイルをダウンロード・実行すると、ちゃんとインストール処理が始まるはず。インストール フォルダーの URL を設定すれば、アップデートの自動チェックも利用できるようになる(/・ω・)/
+
+<p>れを保存、発行、コミット、プッシュして、GitHub からセットアップファイルをダウンロード・実行すると、ちゃんとインストール処理が始まるはず。インストール フォルダーの URL を設定すれば、アップデートの自動チェックも利用できるようになる(/・ω・)/</p>
 </div>
 <div class="section">
     #### 追記（2016/08/31）
@@ -136,7 +143,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/08/31/023417/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/31/023417/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -145,7 +152,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/08/29/175526/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/29/175526/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

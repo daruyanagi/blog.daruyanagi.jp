@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/07/17/012107/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/07/17/012107/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,9 +19,10 @@
 
         
             <meta name="description" content="WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。
-### 基本    #### Default.cshtml ```html @using System.Configuration
+### 基本   br/&gt;
+#### Default.cshtml ```html @using System.Configuration
 &lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;/head&gt; &lt;body&gt; @ObjectInfo.Print(ConfigurationManager.AppSettings) &lt;/body&gt; &lt;/html&gt;
-&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### Web.config ```xml &lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt; .web&gt; file=&quot;Web2.config&quot;&gt; key=&quot;A&quot; value=&quot;a&quot;/&gt; key=&quot;B&quot; value=&quot;b&quot;/&gt; key=&quot;C&quot; value=&quot;c&quot;/&gt; key=&quot;D&quot; value=&quot;d&quot;/&gt; key=&quot;E&quot; value=&quot;e&quot;/&gt; key=&quot;F&quot; value=&quot;f&quot;/&gt; key=&quot;G&quot; value=&quot;g&quot;/&gt; ```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### 結果   たとえば、 ```cs var a = System." />
+&lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### Web.config ```xml &lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt; .web&gt; file=&quot;Web2.config&quot;&gt; key=&quot;A&quot; value=&quot;a&quot;/&gt; key=&quot;B&quot; value=&quot;b&quot;/&gt; key=&quot;C&quot; value=&quot;c&quot;/&gt; key=&quot;D&quot; value=&quot;d&quot;/&gt; key=&quot;E&quot; value=&quot;e&quot;/&gt; key=&quot;F&quot; value=&quot;f&quot;/&gt; key=&quot;G&quot; value=&quot;g&quot;/&gt; ```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; #### 結果   とえば、 ```cs var a = System." />
         
 
         
@@ -49,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -79,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/07/17/012107/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/07/17/012107/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：Web.config の appSettings を使いこなす</h1>
                 </a>
             </div>
@@ -94,10 +95,11 @@
             <p><a href="https://blog.daruyanagi.jp/entry/2014/07/15/224549">WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ</a> でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。</p>
 <div class="section">
     ### 基本
-    <figure>
+<figure>
     <img src="/images/20140717005913.png"/> 
 </figure>
-<br/>
+
+<p>br/&gt;</p>
 <div class="section">
     #### Default.cshtml
     ```html
@@ -139,10 +141,14 @@
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     #### 結果
-    <figure>
+    
+
+<figure>
     <img src="/images/20140717011748.png"/> 
 </figure>
-たとえば、
+
+
+とえば、
 ```cs
 var a = System.Configuration.ConfigurationManager.AppSettings[&quot;A&quot;];
 
@@ -152,10 +158,14 @@ var a = System.Configuration.ConfigurationManager.AppSettings[&quot;A&quot;];
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### 外部 .config ファイルを利用したアプリケーション設定のオーバーライド
-    <figure>
+    
+
+<figure>
     <img src="/images/20140717011257.png"/> 
 </figure>
-以下のような Web2.config ファイルを追加。
+
+
+下のような Web2.config ファイルを追加。
 
 &lt;div class=&quot;section&quot;&gt;
     #### Web2.config
@@ -171,10 +181,11 @@ var a = System.Configuration.ConfigurationManager.AppSettings[&quot;A&quot;];
 </code></pre></div>
 <div class="section">
     #### 結果
-    <figure>
+<figure>
     <img src="/images/20140717010123.png"/> 
 </figure>
-ConfigurationManager.AppSettings["E"] 以降の値が Web2.config の内容によって書き換えられる。Web.config の file 属性で指定した外部 .config ファイルが存在しない場合は、読み込み処理がスキップされる。
+
+<p>onfigurationManager.AppSettings[&ldquo;E&rdquo;] 以降の値が Web2.config の内容によって書き換えられる。Web.config の file 属性で指定した外部 .config ファイルが存在しない場合は、読み込み処理がスキップされる。</p>
 </div>
 </div>
 <div class="section">
@@ -192,10 +203,14 @@ key=&quot;G&rdquo; value=&quot;3&rdquo;/&gt;</p>
 <pre><code>&lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     #### 結果
-    <figure>
+    
+
+<figure>
     <img src="/images/20140717010556.png"/> 
 </figure>
-Web.config で記述したアプリケーション設定がクリアされる。要するに、ASP.NET は .config を読んで、appSettings セクションに書かれた add や clear といったコマンドを AppSettings（Dictionary 型）に対して行っているだけ。なので、
+
+
+eb.config で記述したアプリケーション設定がクリアされる。要するに、ASP.NET は .config を読んで、appSettings セクションに書かれた add や clear といったコマンドを AppSettings（Dictionary 型）に対して行っているだけ。なので、
 ```xml
 &lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
 
@@ -229,7 +244,7 @@ Web.config で記述したアプリケーション設定がクリアされる。
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/17/045321/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/17/045321/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -238,7 +253,7 @@ Web.config で記述したアプリケーション設定がクリアされる。
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/07/17/004650/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/07/17/004650/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

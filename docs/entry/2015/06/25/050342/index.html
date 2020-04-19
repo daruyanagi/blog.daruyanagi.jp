@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2015/06/25/050342/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/06/25/050342/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,7 @@
 
         
             <meta name="description" content="だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。
-&gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。 データ型    一方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。  SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。" />
+&gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。 データ型    方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。" />
         
 
         
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,21 +60,21 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/sql-ce/">SQL CE</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/sql-ce/">SQL CE</a>
                                     </li>
                                 
                             
@@ -84,7 +84,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2015/06/25/050342/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/06/25/050342/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：フィードを読み込んでデータベースへつっこむときに System.Data.SqlServerCe.SqlCeException が発生する。</h1>
                 </a>
             </div>
@@ -106,13 +106,16 @@
 
     データ型
 </code></pre>
-<p><figure>
+<figure>
     <img src="/images/20150625045042.png"/> 
 </figure>
-一方、C# の <code>default(DateTime)</code> は <code>0001/01/01 0:00:00</code>。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、<code>default(DateTime)</code> を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。<figure>
+
+<p>方、C# の <code>default(DateTime)</code> は <code>0001/01/01 0:00:00</code>。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、<code>default(DateTime)</code> を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。</p>
+<figure>
     <img src="/images/20150625050249.png"/> 
 </figure>
-SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</p>
+
+<p>QL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> min_date = <span style="color:#66d9ef">new</span> DateTime(<span style="color:#ae81ff">1753</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// ほんとは readonly でどこかに
 </span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> updated_at = item.LastUpdatedTime.UtcDateTime &amp;lt; min_date 
     ? <span style="color:#66d9ef">new</span> DateTimeOffset(DateTime.Now).UtcDateTime 
@@ -130,7 +133,7 @@ SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるか
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/06/25/200933/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/06/25/200933/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -139,7 +142,7 @@ SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるか
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/06/24/054542/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/06/24/054542/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

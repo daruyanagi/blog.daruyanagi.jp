@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/06/08/195054/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/06/08/195054/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式） ウィンドウ情報のファイル保存（JSON 形式） 通知機能 安定性の向上     ### WPF と起動オプション 起動時に［Shift］キーが押されていたら GUI を起動するという挙動は  App.xaml の StartupUri を削除 App.Startup でキーの押し下げ確認と MainWindow の自前生成 という感じで実現していたんだけど、起動オプションを付けたら破綻したので、  App.xaml の StartupUri を元に戻す App.xaml のビルドアクションを Page にして、main 関数を自分で書く という感じに変えた。 ```cs [System.STAThreadAttribute()] public static void Main() { var args = Environment.GetCommandLineArgs(); if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift) { var app = new Tonjiru." />
+            <meta name="description" content="br/&gt;
+ 起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式） ウィンドウ情報のファイル保存（JSON 形式） 通知機能 安定性の向上     ### WPF と起動オプション 起動時に［Shift］キーが押されていたら GUI を起動するという挙動は  App.xaml の StartupUri を削除 App.Startup でキーの押し下げ確認と MainWindow の自前生成 という感じで実現していたんだけど、起動オプションを付けたら破綻したので、  App.xaml の StartupUri を元に戻す App.xaml のビルドアクションを Page にして、main 関数を自分で書く という感じに変えた。 ```cs [System.STAThreadAttribute()] public static void Main() { var args = Environment.GetCommandLineArgs(); if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift) { var app = new Tonjiru." />
         
 
         
@@ -46,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/tonjiru/">Tonjiru</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/tonjiru/">Tonjiru</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
@@ -79,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/06/08/195054/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/06/08/195054/" >
                     <h1 class="entry__header-title-link-text">Tonjiru v1.2.0 ＋ WPF での起動オプション、ジャンプリスト、トースト</h1>
                 </a>
             </div>
@@ -91,10 +92,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170608192727.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <ul>
 <li>起動オプションの追加（/g で GUI 付きの起動）</li>
 <li>ジャンプリストへの対応（GUI 付きの起動を追加）</li>
@@ -103,7 +105,9 @@
 <li>通知機能</li>
 <li>安定性の向上</li>
 </ul>
-<div class="github-card" data-user="daruyanagi/Tonjiru/releases/tag" data-repo="v1.2.0" data-width="400" data-height="" data-theme="default"></div>
+<div class="github-card" data-user="daruyanagi/Tonjiru/releases/tag" data-repo="v1.2.0" data-width="400" data-height="" data-theme="default"></div
+<blockquote>
+</blockquote>
 <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 <br/>
 <div class="section">
@@ -191,10 +195,14 @@ using (var notify_icon = new System.Windows.Forms.NotifyIcon())
     notify_icon.ShowBalloonTip(3000);
 }
 
-```簡単だね！<figure>
+```簡単だね！
+
+<figure>
     <img src="/images/20170608194803.png"/> 
 </figure>
-ポイントは Visible を true にしておくこと（じゃないとトーストが出てこない）、最後に Visible を False にするか Dispose() すること（でないとトレイにアイコンがゾンビ）ぐらい。
+
+
+イントは Visible を true にしておくこと（じゃないとトーストが出てこない）、最後に Visible を False にするか Dispose() すること（でないとトレイにアイコンがゾンビ）ぐらい。
 
 &lt;/div&gt;
 
@@ -204,7 +212,7 @@ using (var notify_icon = new System.Windows.Forms.NotifyIcon())
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/06/09/175700/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/09/175700/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -213,7 +221,7 @@ using (var notify_icon = new System.Windows.Forms.NotifyIcon())
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/06/07/191844/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/06/07/191844/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

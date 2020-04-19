@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/09/01/060000/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/09/01/060000/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -46,7 +46,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,7 +59,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/clickonce/">ClickOnce</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/clickonce/">ClickOnce</a>
                                     </li>
                                 
                             
@@ -69,7 +69,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/09/01/060000/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/09/01/060000/" >
                     <h1 class="entry__header-title-link-text">GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する（2）</h1>
                 </a>
             </div>
@@ -91,25 +91,33 @@ The CDN caches files permanently based on their path. It ignores query strings. 
 
     Frequently Asked Questions · rgrove/rawgit Wiki · GitHub
 </code></pre>
-<p>つまり、一度 cdn.rawgit.com にキャッシュされてしまうと、その URL の内容は書き換えることができなくなる。うちの場合、v1.3.0.7 を github の master にマージした時点でその内容が cdn.rawgit.com にキャッシュされたので、そのあといくら github の master のバージョンをあげても、cdn.rawgit.com からダウンロードできるのは v1.3.0.7 のままだ。これではアップデートを配布することができない。しまったしまった、島倉千代子。というわけで、一工夫必要。今回は tag を使って新しい URL を作成し、それを ClickOnce のインストール フォルダーの URL に割り当ててみた。<figure>
+<p>つまり、一度 cdn.rawgit.com にキャッシュされてしまうと、その URL の内容は書き換えることができなくなる。うちの場合、v1.3.0.7 を github の master にマージした時点でその内容が cdn.rawgit.com にキャッシュされたので、そのあといくら github の master のバージョンをあげても、cdn.rawgit.com からダウンロードできるのは v1.3.0.7 のままだ。これではアップデートを配布することができない。しまったしまった、島倉千代子。というわけで、一工夫必要。今回は tag を使って新しい URL を作成し、それを ClickOnce のインストール フォルダーの URL に割り当ててみた。</p>
+<figure>
     <img src="/images/20160831224040.png"/> 
 </figure>
-まず、公開予定のバージョンを決める。そして、ClickOnce のインストール フォルダーの URL を master ではなくそのバージョン名にする。旧：</p>
+
+<p>ず、公開予定のバージョンを決める。そして、ClickOnce のインストール フォルダーの URL を master ではなくそのバージョン名にする。旧：</p>
 <ul>
 <li><a href="https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/">https://cdn.rawgit.com/daruyanagi/Aoba/master/Aoba/Aoba/publish/</a></li>
 </ul>新：
 <ul>
 <li><a href="https://cdn.rawgit.com/daruyanagi/Aoba/v1.4.3/Aoba/Aoba/publish/">https://cdn.rawgit.com/daruyanagi/Aoba/v1.4.3/Aoba/Aoba/publish/</a></li>
-</ul>この状態で ClickOnce を発行し、git にコミットして、GitHub と同期する。<figure>
+</ul>この状態で ClickOnce を発行し、git にコミットして、GitHub と同期する。
+<figure>
     <img src="/images/20160831224359.png"/> 
 </figure>
-次に、GitHub でリリースを作成する。このとき、タグはさっき決めた公開バージョン（v1.4.3）にしておく。これで完成(/・ω・)/すると、ClickOnce の setup.exe が新しく CDN にキャッシュされた .Application を読みに行くため、最新版がダウンロードされる。<figure>
+
+<p>に、GitHub でリリースを作成する。このとき、タグはさっき決めた公開バージョン（v1.4.3）にしておく。これで完成(/・ω・)/すると、ClickOnce の setup.exe が新しく CDN にキャッシュされた .Application を読みに行くため、最新版がダウンロードされる。</p>
+<figure>
     <img src="/images/20160831233640.png"/> 
 </figure>
-誰かが .Application を読む前に tag を作っておかないと、404 Not found でキャッシュされてしまう（？）ので最初からやり直しになるorz<figure>
+
+<p>かが .Application を読む前に tag を作っておかないと、404 Not found でキャッシュされてしまう（？）ので最初からやり直しになるorz</p>
+<figure>
     <img src="/images/20160831224533.png"/> 
 </figure>
-ちなみに、外部に公開するダウンロード URL は GitHub の raw ファイルにしておけば、毎回変更する必要がなくていい。インストール フォルダーの URL を書き換えるたびに setup.exe も新しくなるので。
+
+<p>なみに、外部に公開するダウンロード URL は GitHub の raw ファイルにしておけば、毎回変更する必要がなくていい。インストール フォルダーの URL を書き換えるたびに setup.exe も新しくなるので。</p>
 <ul>
 <li><a href="https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true">https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true</a></li>
 </ul>アップデートはうまくいかないかもだけど、ダウンロード・インストールによる手動更新は一応うまくいった感じなので、この状態で運用してみることにする。
@@ -119,7 +127,7 @@ The CDN caches files permanently based on their path. It ignores query strings. 
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/09/01/204619/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/09/01/204619/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -128,7 +136,7 @@ The CDN caches files permanently based on their path. It ignores query strings. 
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/08/31/180255/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/31/180255/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/09/19/195837/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/09/19/195837/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,9 @@
         
 
         
-            <meta name="description" content="だいぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
- デバッグビルドとリリースビルドの共存（開発の都合） 通知アイコンの改善 （タイマーの通算稼働時間のカウント） Updated を Pending に変えるまでの時間をグローバル設定から読み込むように ステータス色分けの改善 内部で保持している UTC を Local Time にちゃんと直して表示 コードの整理 **静的スクレイピング機能の追加** **プレビューの文字化けを修正** **更新ログウィンドウの追加** スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）     ### 静的スクレイピング機能の追加   PhantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。[C#でモダンにスクレイピングするならAngleSharp - Qiita](http://qiita.com/matarillo/items/a92e7efbfd2fdec62595)AngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。  ### プレビューの文字化けを修正 WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死 ```cs public class WebBrowserExtension { public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached( &#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged)); public static string GetHtml(DependencyObject obj) { return (string)obj." />
+            <meta name="description" content="いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
+ デバッグビルドとリリースビルドの共存（開発の都合） 通知アイコンの改善 （タイマーの通算稼働時間のカウント） Updated を Pending に変えるまでの時間をグローバル設定から読み込むように ステータス色分けの改善 内部で保持している UTC を Local Time にちゃんと直して表示 コードの整理 **静的スクレイピング機能の追加** **プレビューの文字化けを修正** **更新ログウィンドウの追加** スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）     ### 静的スクレイピング機能の追加   hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
+ ### プレビューの文字化けを修正 WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死 ```cs public class WebBrowserExtension { public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached( &#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged)); public static string GetHtml(DependencyObject obj) { return (string)obj." />
         
 
         
@@ -47,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,14 +64,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/omawari/">Omawari</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/omawari/">Omawari</a>
                                     </li>
                                 
                             
@@ -80,7 +81,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/09/19/195837/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/09/19/195837/" >
                     <h1 class="entry__header-title-link-text">Omawari 1.1：Web 更新を巡回するヤツ。静的スクレイピングとか追加した</h1>
                 </a>
             </div>
@@ -92,10 +93,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170919194055.png"/> 
 </figure>
-だいぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）</p>
+
+<p>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）</p>
 <ul>
 <li>デバッグビルドとリリースビルドの共存（開発の都合）</li>
 <li>通知アイコンの改善</li>
@@ -109,15 +111,18 @@
 <li>**更新ログウィンドウの追加**</li>
 <li>スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）</li>
 </ul>
-<div class="github-card" data-user="daruyanagi/Omawari/releases/tag" data-repo="v1.1" data-width="400" data-height="" data-theme="default"></div>
+<div class="github-card" data-user="daruyanagi/Omawari/releases/tag" data-repo="v1.1" data-width="400" data-height="" data-theme="default"></div
+<blockquote>
+</blockquote>
 <script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
 <br/>
 <div class="section">
     ### 静的スクレイピング機能の追加
-    <figure>
+<figure>
     <img src="/images/20170919194450.png"/> 
 </figure>
-PhantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。[C#でモダンにスクレイピングするならAngleSharp - Qiita](http://qiita.com/matarillo/items/a92e7efbfd2fdec62595)AngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
+
+<p>hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。<a href="http://qiita.com/matarillo/items/a92e7efbfd2fdec62595">C#でモダンにスクレイピングするならAngleSharp - Qiita</a>AngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。</p>
 </div>
 <div class="section">
     ### プレビューの文字化けを修正
@@ -176,10 +181,12 @@ browser.NavigateToString(html);
 <li>スタートアップ登録・解除機能</li>
 <li>5,000円ぐらいでアイコン作ってもらおうかな？</li>
 <li>Desktop Bridge に挑戦するときがきた！！</li>
-</ul><figure>
+</ul>
+<figure>
     <img src="/images/20170919195536.png"/> 
 </figure>
-Desktop Bridge を利用した WPF → UWP の移植は理想的にはこうなるらしいけど、やってるアプリ見たことないので、ちょっと挑戦してみようと思う。cmd とのやり取りは排除できないけど、それ以外の要素は UWP にできんことはない気がする。まぁ、早くても来年やね。
+
+<p>esktop Bridge を利用した WPF → UWP の移植は理想的にはこうなるらしいけど、やってるアプリ見たことないので、ちょっと挑戦してみようと思う。cmd とのやり取りは排除できないけど、それ以外の要素は UWP にできんことはない気がする。まぁ、早くても来年やね。</p>
 </div>
 
         </div>
@@ -187,7 +194,7 @@ Desktop Bridge を利用した WPF → UWP の移植は理想的にはこうな�
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/21/000957/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/21/000957/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -196,7 +203,7 @@ Desktop Bridge を利用した WPF → UWP の移植は理想的にはこうな�
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/18/172320/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/18/172320/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

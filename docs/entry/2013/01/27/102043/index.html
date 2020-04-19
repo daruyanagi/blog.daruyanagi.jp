@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/01/27/102043/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/01/27/102043/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,14 @@
         
 
         
-            <meta name="description" content="「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。   Twitter Facebook Microsoft（旧 Windows Live） Yahoo Google LinkedIn そのほかにも、カスタムプロバイダを自作して追加したりもできるみたいだけど、今回は、まぁ、いいや。 ### スターターテンプレート   で、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。  さっそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。  どうやら、“_AppStart.cshtml”*1でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。  とりあえず Twitter の API キーを取得して試したのだけど、うまくいかない*2。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……      いともあっさり動いた（右上に注目！）。  データベースにもちゃんと登録されている*3。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う*4。 *1:アプリケーションの起動時に実行される *2:わしが何かミスってるんだろう *3:UserId が 2 になっているのは、Twitter で試して失敗したためかな *4:実はもうだいたいできてるんだけど！  " />
+            <meta name="description" content="「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。
+   Twitter Facebook Microsoft（旧 Windows Live） Yahoo Google LinkedIn そのほかにも、カスタムプロバイダを自作して追加したりもできるみたいだけど、今回は、まぁ、いいや。 ### スターターテンプレート   、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。
+  っそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。
+  うやら、“_AppStart.cshtml”*1でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。
+  りあえず Twitter の API キーを取得して試したのだけど、うまくいかない*2。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……
+      ともあっさり動いた（右上に注目！）。
+  ータベースにもちゃんと登録されている3。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う4。
+*1:アプリケーションの起動時に実行される *2:わしが何かミスってるんだろう *3:UserId が 2 になっているのは、Twitter で試して失敗したためかな *4:実はもうだいたいできてるんだけど！  " />
         
 
         
@@ -46,7 +53,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,14 +66,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -76,7 +83,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/01/27/102043/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/01/27/102043/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 2：OAuth でログインする</h1>
                 </a>
             </div>
@@ -88,10 +95,11 @@
 
         </div>
         <div class="entry__content">
-            <p>「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。<figure>
+            <p>「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。</p>
+<figure>
     <img src="/images/20130127100427.png"/> 
 </figure>
-</p>
+
 <ul>
 <li>Twitter</li>
 <li>Facebook</li>
@@ -102,31 +110,44 @@
 </ul>そのほかにも、カスタムプロバイダを自作して追加したりもできるみたいだけど、今回は、まぁ、いいや。
 <div class="section">
     ### スターターテンプレート
-    <figure>
+<figure>
     <img src="/images/20130127095934.png"/> 
 </figure>
-で、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。<figure>
+
+<p>、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。</p>
+<figure>
     <img src="/images/20130127100804.png"/> 
 </figure>
-さっそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。<figure>
+
+<p>っそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。</p>
+<figure>
     <img src="/images/20130127100847.png"/> 
 </figure>
-どうやら、“_AppStart.cshtml”<a href="#f1" name="fn1" title="アプリケーションの起動時に実行される">*1</a>でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。<figure>
+
+<p>うやら、“_AppStart.cshtml”<a href="#f1" name="fn1" title="アプリケーションの起動時に実行される">*1</a>でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。</p>
+<figure>
     <img src="/images/20130127100700.png"/> 
 </figure>
-とりあえず Twitter の API キーを取得して試したのだけど、うまくいかない<a href="#f2" name="fn2" title="わしが何かミスってるんだろう">*2</a>。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……<figure>
+
+<p>りあえず Twitter の API キーを取得して試したのだけど、うまくいかない<a href="#f2" name="fn2" title="わしが何かミスってるんだろう">*2</a>。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……</p>
+<figure>
     <img src="/images/20130127101058.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20130127101110.png"/> 
 </figure>
+
 <figure>
     <img src="/images/20130127101114.png"/> 
 </figure>
-いともあっさり動いた（右上に注目！）。<figure>
+
+<p>ともあっさり動いた（右上に注目！）。</p>
+<figure>
     <img src="/images/20130127101234.png"/> 
 </figure>
-データベースにもちゃんと登録されている<a href="#f3" name="fn3" title="UserId が 2 になっているのは、Twitter で試して失敗したためかな">*3</a>。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う<a href="#f4" name="fn4" title="実はもうだいたいできてるんだけど！">*4</a>。
+
+<p>ータベースにもちゃんと登録されている<a href="#f3" name="fn3" title="UserId が 2 になっているのは、Twitter で試して失敗したためかな"><em>3</a>。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う<a href="#f4" name="fn4" title="実はもうだいたいできてるんだけど！"></em>4</a>。</p>
 </div><div class="footnote">
 <a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">アプリケーションの起動時に実行される</span>
 <a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">わしが何かミスってるんだろう</span>
@@ -139,7 +160,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/29/095805/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/29/095805/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -148,7 +169,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/01/25/085927/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/01/25/085927/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

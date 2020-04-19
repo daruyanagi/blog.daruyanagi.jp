@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/08/29/045312/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/08/29/045312/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,12 @@
         
 
         
-            <meta name="description" content="  連射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。  ビューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz  通知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。
-#### Git の使い方わからん GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。  直したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……  なんかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って*1、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。 *1:今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？  " />
+            <meta name="description" content="  射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。
+  ューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz
+  知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。
+#### Git の使い方わからん GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。   したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……
+  んかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って*1、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。
+*1:今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？  " />
         
 
         
@@ -47,7 +51,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,14 +64,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/github/">GitHub</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/github/">GitHub</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/aoba/">Aoba</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/aoba/">Aoba</a>
                                     </li>
                                 
                             
@@ -77,7 +81,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/wpf/">WPF</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/wpf/">WPF</a>
                                     </li>
                                 
                             
@@ -87,7 +91,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/08/29/045312/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/08/29/045312/" >
                     <h1 class="entry__header-title-link-text">Aoba 1.2.0：連射モードの追加と通知の改善 / GitHub で Pull Request を Merge できなくなった</h1>
                 </a>
             </div>
@@ -99,25 +103,34 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20160829043442.png"/> 
 </figure>
-連射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。<figure>
+
+<p>射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。</p>
+<figure>
     <img src="/images/20160829043648.png"/> 
 </figure>
-ビューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz<figure>
+
+<p>ューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz</p>
+<figure>
     <img src="/images/20160829043826.png"/> 
 </figure>
-通知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.2.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><br/></p>
+
+<p>知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.2.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><br/></p>
 <div class="section">
     #### Git の使い方わからん
-    GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。<figure>
+    GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。
+<figure>
     <img src="/images/20160829044207.png"/> 
 </figure>
-直したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……<figure>
+
+<p>したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……</p>
+<figure>
     <img src="/images/20160829044434.png"/> 
 </figure>
-なんかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って<a href="#f-c3e131e4" name="fn-c3e131e4" title="今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？">*1</a>、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。
+
+<p>んかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って<a href="#f-c3e131e4" name="fn-c3e131e4" title="今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？">*1</a>、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。</p>
 </div><div class="footnote">
 <a href="#fn-c3e131e4" name="f-c3e131e4" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？</span>
 </div>
@@ -127,7 +140,7 @@
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/08/29/175526/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/29/175526/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -136,7 +149,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/08/28/200000/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/08/28/200000/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

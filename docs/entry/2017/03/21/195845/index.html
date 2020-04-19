@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/03/21/195845/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/03/21/195845/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,7 +19,9 @@
 
         
             <meta name="description" content="「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。
-### PhantomJS とは ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。  http://phantomjs.org/ スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。  ### 使い方 まず NuGet で PhantomJS をとってきます。  すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。  次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。 ```javascript console.log(&#39;Hello, world!&#39;); phantom.exit(); ```cs public MainWindow() { InitializeComponent(); Loaded &#43;= MainWindow_Loaded; } private void MainWindow_Loaded(object sender, RoutedEventArgs e) { var result = ProcessScript(&quot;hello.js&quot;); System.Diagnostics.Debug.WriteLine(result); } private string ProcessScript(string script, params string[] args) { using (var process = new System." />
+### PhantomJS とは ぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。  http://phantomjs.org/ スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。  ### 使い方 まず NuGet で PhantomJS をとってきます。   ると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。
+  に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。
+console.log(&amp;#39;Hello, world!&amp;#39;); phantom.exit(); ```最初なので、動作確認をするだけです。これも phantomjs.exe と同様、コンパイル時に出力フォルダーへコピーされるようにしておけばいいと思います。次は、これを呼ぶための C# コードを書きます。標準出力でやり取りする感じにしてみました。 ```cs public MainWindow() { InitializeComponent(); Loaded &#43;= MainWindow_Loaded; } private void MainWindow_Loaded(object sender, RoutedEventArgs e) { var result = ProcessScript(&#34;hello." />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -63,7 +65,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/javascript/">JavaScript</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/javascript/">JavaScript</a>
                                     </li>
                                 
                             
@@ -73,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/03/21/195845/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/03/21/195845/" >
                     <h1 class="entry__header-title-link-text">WPF ＋ PhantomJS で Web ページの内容を取得してみる</h1>
                 </a>
             </div>
@@ -95,123 +97,131 @@
 </div>
 <div class="section">
     ### 使い方
-    まず NuGet で PhantomJS をとってきます。<figure>
+    まず NuGet で PhantomJS をとってきます。
+<figure>
     <img src="/images/20170321192456.png"/> 
 </figure>
-すると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。<figure>
+
+<p>ると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。</p>
+<figure>
     <img src="/images/20170321193813.png"/> 
 </figure>
-次に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。
-```javascript
-console.log(&#39;Hello, world!&#39;);
-phantom.exit();
-<pre><code class="language-最初なので、動作確認をするだけです。これも" data-lang="最初なので、動作確認をするだけです。これも">```cs
-public MainWindow()
-{
-    InitializeComponent();
 
-    Loaded += MainWindow_Loaded;
+<p>に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">Hello</span>, <span style="color:#a6e22e">world</span><span style="color:#f92672">!&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;);
+<span style="color:#a6e22e">phantom</span>.<span style="color:#a6e22e">exit</span>();
+
+<span style="color:#e6db74">```最初なので、動作確認をするだけです。これも phantomjs.exe と同様、コンパイル時に出力フォルダーへコピーされるようにしておけばいいと思います。次は、これを呼ぶための C# コードを書きます。標準出力でやり取りする感じにしてみました。
+</span><span style="color:#e6db74">```</span><span style="color:#a6e22e">cs</span>
+<span style="color:#66d9ef">public</span> <span style="color:#a6e22e">MainWindow</span>()
+{
+    <span style="color:#a6e22e">InitializeComponent</span>();
+
+    <span style="color:#a6e22e">Loaded</span> <span style="color:#f92672">+=</span> <span style="color:#a6e22e">MainWindow_Loaded</span>;
 }
 
-private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MainWindow_Loaded</span>(<span style="color:#a6e22e">object</span> <span style="color:#a6e22e">sender</span>, <span style="color:#a6e22e">RoutedEventArgs</span> <span style="color:#a6e22e">e</span>)
 {
-    var result = ProcessScript(&quot;hello.js&quot;);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ProcessScript</span>(<span style="color:#e6db74">&#34;hello.js&#34;</span>);
 
-    System.Diagnostics.Debug.WriteLine(result);
+    <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Diagnostics</span>.<span style="color:#a6e22e">Debug</span>.<span style="color:#a6e22e">WriteLine</span>(<span style="color:#a6e22e">result</span>);
 }
 
-private string ProcessScript(string script, params string[] args)
+<span style="color:#66d9ef">private</span> <span style="color:#a6e22e">string</span> <span style="color:#a6e22e">ProcessScript</span>(<span style="color:#a6e22e">string</span> <span style="color:#a6e22e">script</span>, <span style="color:#a6e22e">params</span> <span style="color:#a6e22e">string</span>[] <span style="color:#a6e22e">args</span>)
 {
-    using (var process = new System.Diagnostics.Process())
+    <span style="color:#a6e22e">using</span> (<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">process</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">new</span> <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Diagnostics</span>.<span style="color:#a6e22e">Process</span>())
     {
-        process.StartInfo.CreateNoWindow = true;
-        process.StartInfo.UseShellExecute = false;
-        process.StartInfo.RedirectStandardOutput = true;
-        process.StartInfo.RedirectStandardInput = false;
-        process.StartInfo.FileName = &quot;phantomjs.exe&quot;;
-        process.StartInfo.Arguments = $&quot;{script} {string.Join(&quot; &quot;, args)}&quot;;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">CreateNoWindow</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">UseShellExecute</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">RedirectStandardOutput</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">true</span>;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">RedirectStandardInput</span> <span style="color:#f92672">=</span> <span style="color:#66d9ef">false</span>;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">FileName</span> <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;phantomjs.exe&#34;</span>;
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StartInfo</span>.<span style="color:#a6e22e">Arguments</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">$</span><span style="color:#e6db74">&#34;{script} {string.Join(&#34;</span> <span style="color:#e6db74">&#34;, args)}&#34;</span>;
 
-        process.Start();
-        var result = process.StandardOutput.ReadToEnd();
-        process.WaitForExit();
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">Start</span>();
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">StandardOutput</span>.<span style="color:#a6e22e">ReadToEnd</span>();
+        <span style="color:#a6e22e">process</span>.<span style="color:#a6e22e">WaitForExit</span>();
 
-        System.Diagnostics.Debug.WriteLine($&quot;ProcessScript() -&gt; Code {process.ExitCode}: {process.ExitTime - process.StartTime} has elapsed.&quot;);
+        <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Diagnostics</span>.<span style="color:#a6e22e">Debug</span>.<span style="color:#a6e22e">WriteLine</span>(<span style="color:#a6e22e">$</span><span style="color:#e6db74">&#34;ProcessScript() -&gt; Code {process.ExitCode}: {process.ExitTime - process.StartTime} has elapsed.&#34;</span>);
 
-        return result;
+        <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">result</span>;
     }
 }
 
-```本当はパスの管理とかもう少し何とかしないとだめかもしれませんけど、まぁ、いいや。とりあえず、実行してみましょう。<figure>
+<span style="color:#e6db74">```本当はパスの管理とかもう少し何とかしないとだめかもしれませんけど、まぁ、いいや。とりあえず、実行してみましょう。
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74"><figure>
     <img src="/images/20170321194934.png"/> 
 </figure>
-&lt;br/&gt;
 
-```ps1
-&gt; ProcessScript() -&gt; Code 0: 00:00:01.7818442 has elapsed.
-&gt; Hello, world!
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">br/&gt;
+</span><span style="color:#e6db74">
+</span><span style="color:#e6db74">```</span><span style="color:#a6e22e">ps1</span>
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">ProcessScript</span>() <span style="color:#f92672">-&gt;</span> <span style="color:#a6e22e">Code</span> <span style="color:#ae81ff">0</span><span style="color:#f92672">:</span> <span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">00</span><span style="color:#f92672">:</span><span style="color:#ae81ff">01.7818442</span> <span style="color:#a6e22e">has</span> <span style="color:#a6e22e">elapsed</span>.
+<span style="color:#f92672">&gt;</span> <span style="color:#a6e22e">Hello</span>, <span style="color:#a6e22e">world</span><span style="color:#f92672">!</span>
 
-```いい感じになってる気がします。今度はちょっと複雑にしてみます。といっても、a.href の値を配列で受け取るだけです。
-```cs
-// MainWindow.cs
-
-private void MainWindow_Loaded(object sender, RoutedEventArgs e)
+<span style="color:#e6db74">```いい感じになってる気がします。今度はちょっと複雑にしてみます。といっても、a.href の値を配列で受け取るだけです。
+</span><span style="color:#e6db74">```</span><span style="color:#a6e22e">cs</span>
+<span style="color:#75715e">// MainWindow.cs
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> <span style="color:#a6e22e">MainWindow_Loaded</span>(<span style="color:#a6e22e">object</span> <span style="color:#a6e22e">sender</span>, <span style="color:#a6e22e">RoutedEventArgs</span> <span style="color:#a6e22e">e</span>)
 {
-    var result = ProcessScript(&quot;hello.js&quot;, &quot;なんか URL&quot;);
+    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">result</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">ProcessScript</span>(<span style="color:#e6db74">&#34;hello.js&#34;</span>, <span style="color:#e6db74">&#34;なんか URL&#34;</span>);
 
-    System.Diagnostics.Debug.WriteLine(result);
+    <span style="color:#a6e22e">System</span>.<span style="color:#a6e22e">Diagnostics</span>.<span style="color:#a6e22e">Debug</span>.<span style="color:#a6e22e">WriteLine</span>(<span style="color:#a6e22e">result</span>);
 }
 
-``````javascript
-// hello.js
+<span style="color:#e6db74">``````</span><span style="color:#a6e22e">javascript</span>
+<span style="color:#75715e">// hello.js
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">system</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">system</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;);
 
-var system = require(&amp;#39;system&amp;#39;);
-
-// 引数のチェック
-switch(system.args.length) {
-    case 2:
-        var url = system.args[1];
-        break;
-    default:
-        console.log(&amp;#39;error: invalid argument&amp;#39;);
-        phantom.exit(1);
-        break;
+<span style="color:#75715e">// 引数のチェック
+</span><span style="color:#75715e"></span><span style="color:#66d9ef">switch</span>(<span style="color:#a6e22e">system</span>.<span style="color:#a6e22e">args</span>.<span style="color:#a6e22e">length</span>) {
+    <span style="color:#66d9ef">case</span> <span style="color:#ae81ff">2</span><span style="color:#f92672">:</span>
+        <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">system</span>.<span style="color:#a6e22e">args</span>[<span style="color:#ae81ff">1</span>];
+        <span style="color:#66d9ef">break</span>;
+    <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+        <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">invalid</span> <span style="color:#a6e22e">argument</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;);
+        <span style="color:#a6e22e">phantom</span>.<span style="color:#a6e22e">exit</span>(<span style="color:#ae81ff">1</span>);
+        <span style="color:#66d9ef">break</span>;
 }
 
-var page = require(&amp;#39;webpage&amp;#39;).create();
+<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">page</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">webpage</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">create</span>();
 
-// Web Page を開く
-page.open(url, function (status) {
-    switch (status) {
-        case &amp;#39;success&amp;#39;:
-            var links = page.evaluate(function () {
-                return [].map.call(document.querySelectorAll(&amp;#39;a&amp;#39;), function (link) { return link.getAttribute(&amp;#39;href&amp;#39;); });
+<span style="color:#75715e">// Web Page を開く
+</span><span style="color:#75715e"></span><span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">open</span>(<span style="color:#a6e22e">url</span>, <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">status</span>) {
+    <span style="color:#66d9ef">switch</span> (<span style="color:#a6e22e">status</span>) {
+        <span style="color:#66d9ef">case</span> <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">success</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#f92672">:</span>
+            <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">links</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">evaluate</span>(<span style="color:#66d9ef">function</span> () {
+                <span style="color:#66d9ef">return</span> [].<span style="color:#a6e22e">map</span>.<span style="color:#a6e22e">call</span>(document.<span style="color:#a6e22e">querySelectorAll</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">a</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;), <span style="color:#66d9ef">function</span> (<span style="color:#a6e22e">link</span>) { <span style="color:#66d9ef">return</span> <span style="color:#a6e22e">link</span>.<span style="color:#a6e22e">getAttribute</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">href</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;); });
             });
-            console.log(JSON.stringify(links));
-            phantom.exit(0);
-            break;
-        default:
-            console.log(&amp;#39;error: page.open() &amp;#39; + status);
-            phantom.exit(1);
-            break;
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#a6e22e">JSON</span>.<span style="color:#a6e22e">stringify</span>(<span style="color:#a6e22e">links</span>));
+            <span style="color:#a6e22e">phantom</span>.<span style="color:#a6e22e">exit</span>(<span style="color:#ae81ff">0</span>);
+            <span style="color:#66d9ef">break</span>;
+        <span style="color:#66d9ef">default</span><span style="color:#f92672">:</span>
+            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">log</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">error</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">page</span>.<span style="color:#a6e22e">open</span>() <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; <span style="color:#f92672">+</span> <span style="color:#a6e22e">status</span>);
+            <span style="color:#a6e22e">phantom</span>.<span style="color:#a6e22e">exit</span>(<span style="color:#ae81ff">1</span>);
+            <span style="color:#66d9ef">break</span>;
     }
 });
 
-```<figure>
+</code></pre></div><figure>
     <img src="/images/20170321195239.png"/> 
 </figure>
-とりあえず動いている気がします。JavaScript がよくわからないのが困ったちゃんですが、まぁ、おいおいマスターしていけばいいよね。これでいろんなことに使える気がしてきました。
 
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-32b25991&quot; name=&quot;f-32b25991&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ヘッドレスっていうらしい&lt;/span&gt;
-&lt;/div&gt;
+<p>りあえず動いている気がします。JavaScript がよくわからないのが困ったちゃんですが、まぁ、おいおいマスターしていけばいいよね。これでいろんなことに使える気がしてきました。</p>
+</div><div class="footnote">
+<a href="#fn-32b25991" name="f-32b25991" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ヘッドレスっていうらしい</span>
+</div>
 
-</code></pre>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/03/24/193845/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/24/193845/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -220,7 +230,7 @@ page.open(url, function (status) {
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/03/21/152242/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/03/21/152242/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

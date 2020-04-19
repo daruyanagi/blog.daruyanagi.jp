@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/05/01/031148/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/05/01/031148/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="さてはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ*1、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。" />
+            <meta name="description" content="てはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ*1、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。" />
         
 
         
@@ -46,7 +46,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,7 +59,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows/">Windows ストア アプリ</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows/">Windows ストア アプリ</a>
                                     </li>
                                 
                             
@@ -75,7 +75,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/05/01/031148/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/05/01/031148/" >
                     <h1 class="entry__header-title-link-text">Windows Store Apps：Cookie を取得して、ログインが必要なページを閲覧する（はてなフォトライフ）</h1>
                 </a>
             </div>
@@ -87,17 +87,18 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20130501024203.png"/> 
 </figure>
-さてはて、<a href="https://blog.daruyanagi.jp/entry/2013/04/30/190004">Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ</a> で AtomPub API（<a href="http://developer.hatena.ne.jp/ja/documents/fotolife/apis/atom">はてなフォトライフAtomAPI - Hatena Developer Center</a>）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ<a href="#f-eed2f1fc" name="fn-eed2f1fc" title="うちの環境では hatena:imageurl の情報が欠損する">*1</a>、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。</p>
+
+<p>てはて、<a href="https://blog.daruyanagi.jp/entry/2013/04/30/190004">Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ</a> で AtomPub API（<a href="http://developer.hatena.ne.jp/ja/documents/fotolife/apis/atom">はてなフォトライフAtomAPI - Hatena Developer Center</a>）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ<a href="#f-eed2f1fc" name="fn-eed2f1fc" title="うちの環境では hatena:imageurl の情報が欠損する">*1</a>、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。</p>
 
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/05/01/193322/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/05/01/193322/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -106,7 +107,7 @@
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/04/30/190004/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/04/30/190004/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

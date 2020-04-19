@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/16/182105/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/16/182105/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +18,9 @@
         
 
         
-            <meta name="description" content="前回（WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。
+            <meta name="description" content="回（WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。
 ~/ App_Code/ Highlight.cshtml &amp;lt;-- ぇ？ Highlight/ Lisence Files Content/ /Highlight Theme Skins Scripts/ Highlight/ hilight.pack.js ```パッとみて「これイケてなくね」って思いません？ Highlight.cshtml は ~/App_Code/Highlight 以下の配置される方がキレイですよね。 ~/ App_Code/ Highlight/ Highlight.cshtml &lt;&ndash; こうだろ！ Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.pack.js
-```xml &lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&quot;false&quot;&gt; &lt;codesubdirectories&gt;&lt;/codesubdirectories&gt; directoryName=&quot;Highlight&quot;/&gt; .web&gt; ```~/App_Code/ フォルダーではソースコードの言語を自動判別してくれるのだけれど、サブフォルダーに分ければ異なる言語を混ぜて利用する、なんてこともできるらしい。へぇ、知らなかった。 &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&quot;&gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;  でも、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。 ```cs # Highlight." />
+```xml &lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt; &lt;configuration&gt;&lt;/configuration&gt; .web&gt; debug=&quot;false&quot;&gt; &lt;codesubdirectories&gt;&lt;/codesubdirectories&gt; directoryName=&quot;Highlight&quot;/&gt; .web&gt; ```~/App_Code/ フォルダーではソースコードの言語を自動判別してくれるのだけれど、サブフォルダーに分ければ異なる言語を混ぜて利用する、なんてこともできるらしい。へぇ、知らなかった。 &lt;ul&gt; &lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&quot;&gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&lt;/a&gt;&lt;/li&gt; &lt;/ul&gt;   も、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。 ```cs # Highlight." />
         
 
         
@@ -48,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,7 +61,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -71,7 +71,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/16/182105/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/16/182105/" >
                     <h1 class="entry__header-title-link-text">App_Code でサブフォルダーを利用する</h1>
                 </a>
             </div>
@@ -83,10 +83,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120816181253.png"/> 
 </figure>
-前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/16/155714">WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ</a>）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。</p>
+
+<p>回（<a href="https://blog.daruyanagi.jp/entry/2012/08/16/155714">WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ</a>）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。</p>
 <pre><code>~/
     App_Code/
         Highlight.cshtml &amp;lt;-- ぇ？
@@ -126,10 +127,14 @@ hilight.pack.js</p>
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&quot;&gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;<figure>
+&lt;/ul&gt;
+
+<figure>
     <img src="/images/20120816181753.png"/> 
 </figure>
-でも、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。
+
+
+も、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。
 ```cs
 # Highlight.cshtml
 
@@ -148,9 +153,15 @@ public static class Highlight
     const string STYLE_DIR = &quot;~/Content/Highlight/&quot;;
     const string SCRIPT_DIR = &quot;~/Scripts/Highlight/&quot;;
     const string HTML = @&quot;&lt;!-- for Highlight.js support --&gt;
-        &lt;link rel=&quot;&quot; stylesheet&quot;&quot;=&quot;&quot; href=&quot;&quot; {0}{1}.css&quot;&quot;=&quot;&quot;/&gt;
-        &lt;script src=&quot;&quot; {2}highlight.pack.js&quot;&quot;=&quot;&quot;&gt;&lt;/script&gt;
-        &lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;&quot;;
+        &lt;link rel=&quot;&quot; stylesheet&quot;&quot;=&quot;&quot; href=&quot;&quot; {0}{1}.css&quot;&quot;=&quot;&quot;/
+
+&gt;
+        &lt;script src=&quot;&quot; {2}highlight.pack.js&quot;&quot;=&quot;&quot;&gt;&lt;/script
+
+&gt;
+        &lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
+
+&quot;;
 
     public static HtmlString Include(string theme = &quot;default&quot;)
     {
@@ -174,7 +185,7 @@ public static class Highlight
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/17/034631/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/17/034631/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -183,7 +194,7 @@ public static class Highlight
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/16/162322/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/16/162322/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

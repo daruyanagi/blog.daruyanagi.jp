@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2016/06/03/190631/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2016/06/03/190631/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -48,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +61,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
@@ -78,7 +78,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2016/06/03/190631/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2016/06/03/190631/" >
                     <h1 class="entry__header-title-link-text">WebMatrix：フィードを読み込むときに System.Xml.XmlException が発生する</h1>
                 </a>
             </div>
@@ -105,10 +105,12 @@ Classes That Transform Syndication Feeds To/From XML</p>
 <strong>Atom10FeedFormatter</strong> - same as the Rss20FeedFormatter, but uses the Atom 1.0 standard.</p>
 <pre><code>    Syndicating and Consuming RSS 1.0 (RDF) Feeds in ASP.NET 3.5 - 4GuysFromRolla.com
 </code></pre>
-<p><strong>Rss10FeedFormatter</strong> は標準で用意されていないみたいなので、自分で実装する必要がある。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fmono0926%2FReactivePinboard%2Fblob%2Fmaster%2FReactivePinboard.PCL%2FRss10FeedFormatter.cs" title="mono0926/ReactivePinboard" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>幸い、コードが GitHub に転がっていたので拝借（見覚えのあるアイコンの人だなぁ……）。おおきにさんきゅーやで！<figure>
+<p><strong>Rss10FeedFormatter</strong> は標準で用意されていないみたいなので、自分で実装する必要がある。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fmono0926%2FReactivePinboard%2Fblob%2Fmaster%2FReactivePinboard.PCL%2FRss10FeedFormatter.cs" title="mono0926/ReactivePinboard" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>幸い、コードが GitHub に転がっていたので拝借（見覚えのあるアイコンの人だなぁ……）。おおきにさんきゅーやで！</p>
+<figure>
     <img src="/images/20160603190721.png"/> 
 </figure>
-これを以下のように呼び出してやれば、解決。めでたしめでたし。</p>
+
+<p>れを以下のように呼び出してやれば、解決。めでたしめでたし。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">try</span>
 {
     feed = SyndicationFeed.Load(reader);
@@ -127,7 +129,7 @@ Classes That Transform Syndication Feeds To/From XML</p>
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/06/04/054343/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/06/04/054343/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -136,7 +138,7 @@ Classes That Transform Syndication Feeds To/From XML</p>
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2016/06/02/113845/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2016/06/02/113845/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

@@ -2,90 +2,106 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Windows Azure on だるやなぎ</title>
-    <link>https://daruyanagi.net/tags/windows-azure/</link>
+    <link>https://blog.daruyanagi.jp/tags/windows-azure/</link>
     <description>Recent content in Windows Azure on だるやなぎ</description>
     <generator>Hugo -- gohugo.io</generator>
     <language>ja-jp</language>
     <lastBuildDate>Tue, 20 Jan 2015 03:32:10 +0000</lastBuildDate>
     
-	<atom:link href="https://daruyanagi.net/tags/windows-azure/index.xml" rel="self" type="application/rss+xml" />
+	<atom:link href="https://blog.daruyanagi.jp/tags/windows-azure/index.xml" rel="self" type="application/rss+xml" />
     
     
     <item>
       <title>あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた</title>
-      <link>https://daruyanagi.net/entry/2015/01/20/033210/</link>
+      <link>https://blog.daruyanagi.jp/entry/2015/01/20/033210/</link>
       <pubDate>Tue, 20 Jan 2015 03:32:10 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2015/01/20/033210/</guid>
-      <description>http://ehime-traffic.azurewebsites.net/ WebMatrix + Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。  サイトをスクレイピングして情報取得（鉄道、船、JAL） （非公開）API を叩いて JSON から情報取得（ANA、ピーチ） （ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1） スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。 ### 開発の流れ   運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。 ```cs using (var client = new WebClient()) { var response = client.DownloadString(url); var json = Json.Decode(response); var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(doc) // &amp;lt;div class=&amp;quot;ss_comment&amp;quot;&amp;gt;ここがほしいやで&amp;lt;/div&amp;gt; var message = doc.</description>
+      <guid>https://blog.daruyanagi.jp/entry/2015/01/20/033210/</guid>
+      <description>br/&amp;gt;
+ http://ehime-traffic.azurewebsites.net/ WebMatrix + Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。  サイトをスクレイピングして情報取得（鉄道、船、JAL） （非公開）API を叩いて JSON から情報取得（ANA、ピーチ） （ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1） スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。 ### 開発の流れ   行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。
+using (var client = new WebClient()) { var response = client.DownloadString(url); var json = Json.Decode(response); var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(doc) // &amp;lt;div class=&amp;#34;ss_comment&amp;#34;&amp;gt;ここがほしいやで&amp;lt;/div&amp;gt;  var message = doc.</description>
     </item>
     
     <item>
       <title>Dropbox ＋ Microsoft Azure でサイトを管理する</title>
-      <link>https://daruyanagi.net/entry/2014/05/03/082308/</link>
+      <link>https://blog.daruyanagi.jp/entry/2014/05/03/082308/</link>
       <pubDate>Sat, 03 May 2014 08:23:08 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2014/05/03/082308/</guid>
-      <description>  Windows Microsoft Azure Web サイト（MAWS）では、Dropbox のフォルダーとコードを同期して、サイトをデプロイすることができます。
- 複数の環境でソースコードを同期しておきたい Git とかよくわかんねーけど、Dropbox なら毎日使ってるぜ といったユーザーにお勧めかも。 ### サイトの作成   まず MAWS で新規サイトを作成してみました。［Web サイト］-［簡易作成］を選択し、  URL（サブドメイン）を決めるだけ（ほかはよくわからんのでそのままにした）。  できあがり。簡単すぎて鼻血が出そうでした。  ### Dropbox との連携   さっきの画面の下の方にある［ソース管理の統合］-［ソース管理からのデプロイの設定］を選択すると、どこに保存されているコードをサイトへデプロイするかが選べます。もちろん、今回は Dropbox を選択。  指示されるがままに Dropbox との連携処理を行うと……  なんかフォルダが作成されます。  確認してみると DROPBPBOX_ROOT\アプリ\Azure にサイトのフォルダがありますね（カタカナ！？）。これを WebMatrix でサイトとして開きます。で、なんでもいいので適当にファイルを置いてみてください。今回は“テストだよ！”と表示するだけの Default.cshtml をルートにおいています。  んで、サイトの管理画面（ブラウザー）に戻り、下の方にある［同期］ボタンを押してデプローイ！  無事サイトも動き出しました。たぶん、デプロイってコマンドでもできるよね。静的ページ（動的なのでもいいけど）を Dropbox で管理して、コマンドでデプロイするようにすればいい感じかもしれない。  </description>
+      <guid>https://blog.daruyanagi.jp/entry/2014/05/03/082308/</guid>
+      <description>  del&amp;gt;Windows Microsoft Azure Web サイト（MAWS）では、Dropbox のフォルダーとコードを同期して、サイトをデプロイすることができます。
+ 複数の環境でソースコードを同期しておきたい Git とかよくわかんねーけど、Dropbox なら毎日使ってるぜ といったユーザーにお勧めかも。 ### サイトの作成   ず MAWS で新規サイトを作成してみました。［Web サイト］-［簡易作成］を選択し、
+  RL（サブドメイン）を決めるだけ（ほかはよくわからんのでそのままにした）。
+  きあがり。簡単すぎて鼻血が出そうでした。
+ ### Dropbox との連携   っきの画面の下の方にある［ソース管理の統合］-［ソース管理からのデプロイの設定］を選択すると、どこに保存されているコードをサイトへデプロイするかが選べます。もちろん、今回は Dropbox を選択。
+  示されるがままに Dropbox との連携処理を行うと……
+  んかフォルダが作成されます。
+  認してみると DROPBPBOX_ROOT\アプリ\Azure にサイトのフォルダがありますね（カタカナ！？）。これを WebMatrix でサイトとして開きます。で、なんでもいいので適当にファイルを置いてみてください。今回は“テストだよ！”と表示するだけの Default.cshtml をルートにおいています。
+  で、サイトの管理画面（ブラウザー）に戻り、下の方にある［同期］ボタンを押してデプローイ！
+  事サイトも動き出しました。たぶん、デプロイってコマンドでもできるよね。静的ページ（動的なのでもいいけど）を Dropbox で管理して、コマンドでデプロイするようにすればいい感じかもしれない。
+ </description>
     </item>
     
     <item>
       <title>WebMatrix 3</title>
-      <link>https://daruyanagi.net/entry/2013/10/29/042614/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/10/29/042614/</link>
       <pubDate>Tue, 29 Oct 2013 04:26:14 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/10/29/042614/</guid>
-      <description>Windows Azure Web Sites はソース管理（GitHub とか CodePlex とか）からのデプロイが可能。前々から使ってみたかったがついつい後回しにしていたのだけど、これが超便利だった。</description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/10/29/042614/</guid>
+      <description>indows Azure Web Sites はソース管理（GitHub とか CodePlex とか）からのデプロイが可能。前々から使ってみたかったがついつい後回しにしていたのだけど、これが超便利だった。</description>
     </item>
     
     <item>
       <title>WebMatrix 3</title>
-      <link>https://daruyanagi.net/entry/2013/10/20/132105/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/10/20/132105/</link>
       <pubDate>Sun, 20 Oct 2013 13:21:05 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/10/20/132105/</guid>
-      <description>WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をとっぱらってみたのだけれど、やはり止まる。
+      <guid>https://blog.daruyanagi.jp/entry/2013/10/20/132105/</guid>
+      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/10/14/141550&amp;quot;&amp;gt;WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をとっぱらってみたのだけれど、やはり止まる。
 &amp;gt; Windows Azure Webサイトの無料や共有インスタンスの場合、５～20分ほどアクセスが無かった場合はシャットダウンされてリソースが解放されます。そーすると、初回アクセス時に、レスポンスが遅く感じる事象が発生します。Windows Azureモバイルサービスのジョブスケジューラーで15分起きにリクエストを送信することで、常時ウォームアップし続けることが可能になります。  素敵だけど、怒られそうな話ですね！
- Windows Azureで定期ジョブを実行する方法 - 蒼の王座  怒られたらイヤだけど、とりあえずこの方法を試してみた。結論的には、上手くいった。Twitter のメインアカウント（やなぎ ひでとし（柳 英俊） (@YanagiHidetoshi) | Twitter）に新着情報を配信できるようになった。  スケジューリングは毎分・毎時・毎日・毎月と要求時が設定できるみたい。正時にキッカリ実行したいなんて言う場合には使えないので、10分おきにサイトをキックするだけにして、定期実行の仕組みは自分で実装した（ついでにコードも前よりカッコよく、シンプルにしたった！）。  
-function warmup() { warmUpSite(&amp;#34;http://darufeed.azurewebsites.net/&amp;#34;); } function warmUpSite(url) { console.info(&amp;#34;warming up: &amp;#34; + url); var req = require(&amp;amp;#39;request&amp;amp;#39;); req.get({ url: url }, function(error, response, body) { if (!error) { console.info(&amp;#34;hot hot hot!</description>
+ Windows Azureで定期ジョブを実行する方法 - 蒼の王座  怒られたらイヤだけど、とりあえずこの方法を試してみた。結論的には、上手くいった。Twitter のメインアカウント（やなぎ ひでとし（柳 英俊） (@YanagiHidetoshi) | Twitter）に新着情報を配信できるようになった。
+  ケジューリングは毎分・毎時・毎日・毎月と要求時が設定できるみたい。正時にキッカリ実行したいなんて言う場合には使えないので、10分おきにサイトをキックするだけにして、定期実行の仕組みは自分で実装した（ついでにコードも前よりカッコよく、シンプルにしたった！）。
+  br/&amp;gt;
+function warmup() { warmUpSite(&amp;#34;http://darufeed.azurewebsites.net/&amp;#34;); } function warmUpSite(url) { console.info(&amp;#34;warming up: &amp;#34; + url); var req = require(&amp;amp;#39;request&amp;amp;#39;); req.get({ url: url }, function(error, response, body) { if (!error) { console.</description>
     </item>
     
     <item>
       <title>WebMatrix 3</title>
-      <link>https://daruyanagi.net/entry/2013/05/19/091940/</link>
+      <link>https://blog.daruyanagi.jp/entry/2013/05/19/091940/</link>
       <pubDate>Sun, 19 May 2013 09:19:40 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2013/05/19/091940/</guid>
-      <description>  気付いてなかったのだけど、WebMatrix から Windows Azure Web Sites へデプロイすると、［リモート］リボンにこんなボタンが追加されるんだね。管理ポータルをサクッと開ける。
-### ［管理］ボタン   ダッシュボードページをひらく。トラフィックなんかがみられる。  ### ［ドメイン］ボタン   構成ページを開く。“Share”以上のプランを選択している場合、カスタムドメインが設定できるらしい。貧乏だから試せない。  ### ［スケール］ボタン   負荷に応じてインスタンをが増やせる。貧乏だから試せない。  </description>
+      <guid>https://blog.daruyanagi.jp/entry/2013/05/19/091940/</guid>
+      <description>  付いてなかったのだけど、WebMatrix から Windows Azure Web Sites へデプロイすると、［リモート］リボンにこんなボタンが追加されるんだね。管理ポータルをサクッと開ける。
+### ［管理］ボタン   ッシュボードページをひらく。トラフィックなんかがみられる。
+ ### ［ドメイン］ボタン   成ページを開く。“Share”以上のプランを選択している場合、カスタムドメインが設定できるらしい。貧乏だから試せない。
+ ### ［スケール］ボタン   荷に応じてインスタンをが増やせる。貧乏だから試せない。
+ </description>
     </item>
     
     <item>
       <title>Windows Azure Web サイトが .NET Framework 4.5 に対応したそうなので、女の子を落としてみた</title>
-      <link>https://daruyanagi.net/entry/2012/10/31/210319/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/10/31/210319/</link>
       <pubDate>Wed, 31 Oct 2012 21:03:19 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/10/31/210319/</guid>
-      <description>Windows Azure Web サイト にて .NET 4.5 アプリケーションが配置可能になり、また Windows Azure クラウドサービスでも Windows Azure SDK 1.8 にて .NET Framework 4.5 および Guest OS 3.0 (Windows Server 2012 互換) のテンプレートが追加されています。 2012 年 10 月の Windows Azure 一斉アップデート : .NET 4.5 ＆ Windows Sever 2012 対応、SDK 1.8 リリース、管理ポータル日本語対応 – 青い空の向こうへ  Windows Azure Web サイトが .NET Framework 4.5 に対応したらしい。ついでに、管理ポータルが日本語に対応したそうな。ってことはですよ。_WebMatrix で女の子を落とす - だるろぐ をWindows Azure Web サイトへ配置できる！つまり、「Windows Azure で女の子が落せる」わけです。「親方！　空から女の子が！」_ってヤツですね！　なんと胸が熱い……。  （idea276-空から女の子ラジコン « もしもスイッチ｜おもちゃ｜玩具｜企画｜会社｜東京｜秋葉原｜ より）</description>
+      <guid>https://blog.daruyanagi.jp/entry/2012/10/31/210319/</guid>
+      <description>Windows Azure Web サイト にて .NET 4.5 アプリケーションが配置可能になり、また Windows Azure クラウドサービスでも Windows Azure SDK 1.8 にて .NET Framework 4.5 および Guest OS 3.0 (Windows Server 2012 互換) のテンプレートが追加されています。 2012 年 10 月の Windows Azure 一斉アップデート : .NET 4.5 ＆ Windows Sever 2012 対応、SDK 1.8 リリース、管理ポータル日本語対応 – 青い空の向こうへ  Windows Azure Web サイトが .NET Framework 4.5 に対応したらしい。ついでに、管理ポータルが日本語に対応したそうな。ってことはですよ。_WebMatrix で女の子を落とす - だるろぐ をWindows Azure Web サイトへ配置できる！つまり、「Windows Azure で女の子が落せる」わけです。「親方！　空から女の子が！」_ってヤツですね！　なんと胸が熱い……。</description>
     </item>
     
     <item>
       <title>#GoAzure の出落ち動画が公開されています</title>
-      <link>https://daruyanagi.net/entry/2012/07/27/212854/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/07/27/212854/</link>
       <pubDate>Fri, 27 Jul 2012 21:28:54 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/07/27/212854/</guid>
-      <description>#GoAzure に行ってきました！ - だるろぐ のセッション動画が公開されています（Go Azure | Channel 9）。
+      <guid>https://blog.daruyanagi.jp/entry/2012/07/27/212854/</guid>
+      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/06/30/211729&amp;quot;&amp;gt;#GoAzure に行ってきました！ - だるろぐ のセッション動画が公開されています（Go Azure | Channel 9）。
 &amp;gt; 出落ちとは何かと言うことについてご確認ください。 Go Azure on Channel 9 | OPCDiary  みんな確認すべきですネ。それは冗談としても、 Windows Azure って何か知りたい人にとっては必見の動画になっていると思います。この技術を無視するのは、本当にもったいないと思う！</description>
     </item>
     
     <item>
       <title>Windows Azure Web Sites と WebMatrix 2 の組み合わせはマーベラス！（2）</title>
-      <link>https://daruyanagi.net/entry/2012/07/04/205252/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/07/04/205252/</link>
       <pubDate>Fri, 27 Jul 2012 08:32:41 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/07/04/205252/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/07/04/205252/</guid>
       <description>Windows Azure Web Sites と WebMatrix 2 の組み合わせはマーベラス！ - だるろぐ では、
 &amp;gt; Azure で WordPress を導入した Web サイトを作成 → WebMatrix 2 でローカルにダウンロード → ごにょごにょして Azure へデプロイ  という方法をとったけど、
 &amp;gt; Azure で空の Web サイトを作成 → WebMatrix 2 でローカルにダウンロード → WordPress をインストールしてごにょごにょして Azure へデプロイ  ということも可能らしい。 #GoAzure に行ってきました！ - だるろぐ ではそうしてた気がする。とういうことで、やってみた。
@@ -94,59 +110,59 @@ function warmup() { warmUpSite(&amp;#34;http://darufeed.azurewebsites.net/&amp;#
     
     <item>
       <title>使いすぎに注意……</title>
-      <link>https://daruyanagi.net/entry/2012/07/06/040304/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/07/06/040304/</link>
       <pubDate>Fri, 06 Jul 2012 04:03:04 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/07/06/040304/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/07/06/040304/</guid>
       <description>やっとこさ、WordPress の［発行］までこぎつけたんだけど……発行した Web サイトにアクセスできない。管理ポータルを覗くと、転送量が 1782.90 MB に！ _ｶﾞ━━(;ﾟДﾟ)━━ﾝ!!　_見事、クォータの上限に達したようでござる。公開時の転送量もカウントされるのね……そりゃそうだな。ファイルもデータベースもデカかったからねぇ……しっかし、 Windows Azure って、無償期間が終わったらいくらかかるようになるんだろう……やっぱりちょっと心配になる。激安な ExpressWeb と比べるつもりはないけど、お財布にやさしい値段だったら嬉しいなぁ。とりあえず、 Windows Azure は少しお休みにして、明日はゆっくり掃除と洗濯と出張の準備でもしよう。</description>
     </item>
     
     <item>
       <title>XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！</title>
-      <link>https://daruyanagi.net/entry/2012/07/05/022927/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/07/05/022927/</link>
       <pubDate>Thu, 05 Jul 2012 02:29:27 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/07/05/022927/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/07/05/022927/</guid>
       <description>（Windows 8 の Metro アプリ「黒板」で書いてみました*1）前回（XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた - だるろぐ）は、XREA/CoreServer の WordPress 環境をローカルに保存して、 WebMatrix で動作可能な状態までメンテナンスし、 Windows Azure Websites へアップロードするというフローで、 WordPress の引っ越しを目論んだ……が最後の最後で失敗した。そのときのエラーログの一部がこれ。
 0:30:02: エラーの詳細: 0:30:02: An error occurred during execution of the database script. The error occurred between the following lines of the script: &amp;quot;145&amp;quot; and &amp;quot;255&amp;quot;. The verbose log might have more information about the error. The command started with the following: 0:30:02: &amp;quot;-- -- Dumping data for table `wp_morpheme` ```**wp_morpheme** テーブルってなんだろう。調べてみると、どうやら &amp;lt;a href=&amp;quot;http://wordpress.</description>
     </item>
     
     <item>
       <title>XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた</title>
-      <link>https://daruyanagi.net/entry/2012/07/05/015015/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/07/05/015015/</link>
       <pubDate>Thu, 05 Jul 2012 01:50:15 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/07/05/015015/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/07/05/015015/</guid>
       <description>近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。
 ### XREA/CoreServer からデータをバックアップ FTP 接続でファイルをローカルに保存。と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。  ### Windows Azure Websites で WordPress サイトを作成・ダウンロード ふつーに Windows Azure Websites で WordPress サイトを作成する。初期設定まで Azure 上でやっておいた。あとは WebMatrix でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の WordPress がローカルで動作する。  ### ファイルのコピーとデータベースのインポート、ローカルで WordPress を動作させる 先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。``` mysql -u root -p DB_NAME &amp;lt; DUMP_FILE_NAME ```WebMatrix のデータベースを開いて、旧Webサイトのドメインを“http://localhost:****”（テスト環境のIPアドレス）に書き換えておこう*1。この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。ちゃんと動いた！　WebMatrix では URL Rewrite が動かないようで、パーマリンクをカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。  ### Azure へ発行……失敗 あとは Windows Azure Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。 ``` 2012/07/05 0:12 0:18:17: Using ID &amp;#39;d4c71007-****&amp;#39; for connections to the remote server.</description>
     </item>
     
     <item>
       <title>#GoAzure に行ってきました！</title>
-      <link>https://daruyanagi.net/entry/2012/06/30/211729/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/06/30/211729/</link>
       <pubDate>Sat, 30 Jun 2012 21:17:29 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/06/30/211729/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/06/30/211729/</guid>
       <description>Widows Azure ユーザー コミュニティ イベント “Go Azure” | MSDN 行ってきました！　2日目はいろいろあって……行くつもりで家は出たけど、結局そのまま帰って自宅観戦しました。まぁ、会いたい人には昨日会えたし、オンライン参戦でもいいかなと。よく考えたら、写真を使っていいのか聞くの忘れたんで*1、こっそり使っても大丈夫そうなのを1枚だけ掲げておきます。個人的なクライマックスもコレだったかな？（笑　今までやってみたいとは思っていたのだけど、なんとなく後回しになっていた Windows Azure ですが、「そろそろ本格的に始めるべきだなぁ」と思わせる内容でした。（クラウド先進事例に見るPaaS/IaaSを選んだ理由 - 自前のアプリも動く「PaaS型」「IaaS型」躍進：ITpro より引用）よくこの業界では SaaS / PaaS / IaaS というそうですけど（この言葉は昔勉強会で @normalian さんに教えてもらった気がします）、 Windows Azure では PaaS / IaaS という部分を扱うみたいですね。
  SaaS：Hotmail / SkyDrive / Office Web Apps など **PaaS**：Web サイト（HTML / ASP.NET / PHP / node.js） **IaaS**：Vertual Machine（Windows / Linux） そのほかにも、 SQL データベース、仮想ネットワークなんてのもあるらしい。自社で管理しているサーバー（オンプレミス）と Windows Azure の境目がどんどんなくなって、違いは実体がどこにあるかというだけ。その点、攻殻機動隊みたいだなぁ、などというちょっと斜め上な感想も抱いたり。あとは人間がクラウドに行くだけだ！それはともかく。初心者やホビープログラマーにおすすめなのは、断然 Web サイト です。すでになじみのあるレンタルサーバーと使い勝手はほぼ一緒で、こと管理ポータルに至っては、それらよりもずっと使いやすい。バックボーンは Microsoft の仮想化技術なので、そんじゃそこらのホスティングサービスには負けない品質がある。そして、その利用をバックアップしてくれる素敵なツール「WebMatrix 2」がある。先ほどの図の PaaS の「アプリケーション」のところを拡大し（てぐちゃぐちゃにし）たと思ってください。辛うじてわかるとおり、「WebMatxix 2」では、大きく分けて4つのテクノロジーが利用できる。  Pure HTML Node.</description>
     </item>
     
     <item>
       <title>Windows Azure Web Sites と WebMatrix 2 の組み合わせはマーベラス！</title>
-      <link>https://daruyanagi.net/entry/2012/06/27/005203/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/06/27/005203/</link>
       <pubDate>Wed, 27 Jun 2012 00:52:03 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/06/27/005203/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/06/27/005203/</guid>
       <description>今日は、 Windows Azure Web Sites でサクッと WordPress をセットアップしてみた - だるろぐ をローカルにダウンロード・管理する。やっと「WebMatrix 2」の登場だ！　またインストールしていない人はしておくように。窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加
 ### リモートサイトへの接続 まず起動。［リモートサイト］を選択する。……とその前に、 Azure の管理ポータルで公開プロファイルをダウンロードしておく。なぜかというと……次で使うからだ。公開プロファイルを読み込めば、それだけで設定完了！　これすんごい楽チンじゃなイカ！ #### ちょっとトラブル…… しかし、うちの環境ではここで「WebMatrix 2」がフリーズ。原因は「Git for WebMatrix」だった。未導入の場合は問題なく作業を進められるんじゃいかな。うちの場合も、再起動すればそのまま作業を進めることができた。窓の杜 - 【REVIEW】バージョン管理システム「Git」を「WebMatrix 2」へ統合「Git for WebMatrix」話は変わるけど、拡張機能がクラッシュしたら次回起動時に無効化してくれるのは親切な設計だと思う。当たり前のことかもしれないけれど、当たり前にやってくれるアプリは少ない。まだリリース候補版だけど、なかなか完成度は高い。   ### Webサイトのダウンロード 気を取り直して作業再開。リモート接続が完了したら、［ダウンロード］ボタンを押してWebサイトをローカルへダウンロード。「Web配置」を利用しているので、データベースの内容もダウンロードできるのがうれしい。本番（リモート）環境とローカル環境のデータが同期できるため、より近い状態でテストできる。リモートへのデータ反映も［発行］（アップロード）で行える。ダウンロードの際は、必要なパッケージのインストール（依存性解決）も勝手にやってくれる。多少時間がかかる場合があるけれども、ちょっと我慢しよう。今回はそんなに時間がかからなかった。  ### Webサイトの管理と再発行 完成！　管理画面へのリンクがリボンに追加されている。あと、「WordPress」の独自関数を入力補完できるのも「WebMatrix 2」ならではといった感じ。今回は、 Azure でセットアップした「WordPress」のバージョンが少し古かったので、プラグイン・テーマともどもローカルでアップデートして、それを［発行］しておいた。リモートで直接アップデートするより、ローカルで一度相性を確認しておいたほうが安全だよね！  </description>
     </item>
     
     <item>
       <title>Windows Azure Web Sites でサクッと WordPress をセットアップしてみた</title>
-      <link>https://daruyanagi.net/entry/2012/06/25/214555/</link>
+      <link>https://blog.daruyanagi.jp/entry/2012/06/25/214555/</link>
       <pubDate>Mon, 25 Jun 2012 21:45:55 +0000</pubDate>
       
-      <guid>https://daruyanagi.net/entry/2012/06/25/214555/</guid>
+      <guid>https://blog.daruyanagi.jp/entry/2012/06/25/214555/</guid>
       <description>Windows Azure Web Sites でサクッと WordPress をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 Windows Live ID 1 とクレジットカード 2 が必要になるので、あらかじめ用意しておくこと。 Windows Azure: Microsoft&#39;s Cloud Platform | Cloud Hosting | Cloud Services  
 ### 3ヶ月無償評価版の登録 Windows Azure は3ヶ月無償で利用できるのだそうな。本番ではいくらかかるんだろう……この3ヶ月のうちにシミュレートできるといいのだけど。本人確認のためにクレジットカードがいるんだって。ここは素直に登録登録。設定はこれだけ。さっそく［管理］っていうところをクリックしてみる。  ### HTML5 で作成された Windows Azure の新しいポータル画面 以前までは Silverlight で作られていたという話だけど、新しいプレピューポータルは HTML5 で制作されている。クロスブラウザーでヌルヌル動くのが気持ちいいですね。ウィザードでチュートリアルが表示される。だいたいの使い方をこれで把握できる感じ。まぁ、実際に使ったほうが覚えるのは早いと思う。ぱっと見わかりやすいしね。  ### WordPress の設置 さっきのチュートリアルで、新規プロジェクトは左下の［New］アイコンから、と書いてあった気がするのでそれを選択。まずは［Web Sites］を選択し……次に［From Gallery］と続き……ギャラリーの中から WordPress をチョイス。 C# しかわかんないし Orchard CMS も考えたのだけど、まぁ、最初はやはり実績のある WordPress かなぁ、と。ほかにもいっぱいありそうだ。サブドメインとリージョンの選択。まだアジアのリージョンはないんだな……アメリカ西海岸が無難そうだ。MySQL サーバーの設定。データベース名は……ほかとかぶらなければなんでもいいんじゃないかな。できたっぽい。デプロイは1分もかからなかったと思う。あとは管理者アカウントの設定をすれば、見慣れた WordPress のサイトが現れる。ぶっちゃけ、裏が Windows Azure だってことを意識しなければ、ユーザーインターフェイスがカッコいい普通のレンタルサーバーって感じだ。 *1:Microsoft ID になるんだっけ？ *2:いきなり課金されることはないはず……  </description>
     </item>

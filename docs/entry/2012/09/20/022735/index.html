@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/09/20/022735/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/20/022735/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,10 @@
         
 
         
-            <meta name="description" content="  今作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
-### 回転と解像度   たとえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。  ### スナップ   Windows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。 ```xml x:Name=&#34;Snapped&#34;  Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/  Storyboard.TargetName=&quot;pageTitle&quot; Storyboard.TargetProperty=&quot;Style&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;{StaticResource SnappedPageHeaderTextStyle}&quot;/&gt; Storyboard.TargetName=&quot;contentGrid&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;Collapsed&quot;/&gt; Storyboard.TargetName=&quot;logListView&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt; KeyTime=&quot;0&quot; Value=&quot;Visible&quot;/&gt;  &lt;/div&gt; " />
+            <meta name="description" content="作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……
+### 回転と解像度   とえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。
+ ### スナップ   indows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも ViewState（どっかで聞いたような名前だけど気にしない） VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。
+&lt;!-- The back button and title have different styles when snapped --&gt; x:Name=&#34;Snapped&#34;&gt; &lt;storyboard&gt;&lt;/storyboard&gt; Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/&gt; Storyboard.TargetName=&#34;pageTitle&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedPageHeaderTextStyle}&#34;/&gt; Storyboard.TargetName=&#34;contentGrid&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;Collapsed&#34;/&gt; Storyboard.TargetName=&#34;logListView&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt; KeyTime=&#34;0&#34; Value=&#34;Visible&#34;/&gt; ```下の二つの ObjectAnimationUsingKeyFrames がそれで、contentGrid/logListView という二つのエレメントの Visibility を VisualState に応じて切り替えている。コードの意味はあんまりよくわかってなくて、辛うじて StoryBoard を知っている程度だけど、まぁ、コピペでいけるから今はそれでいいことにしておく。   indows ストアアプリは、こういうところが難しいなぁ、と思った。デスクトップアプリと違って、「未完成だけど公開してみます」というのはストアが認めてくれないわけで、ハードルはかなり高い。それに比べれば、開発者登録にお金が要るのはあまり大した問題じゃない気もする。けれど、一つアプリを完成させた（&lt;a href=&#34;https://blog." />
         
 
         
@@ -47,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +62,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/winrt/">WinRT</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/winrt/">WinRT</a>
                                     </li>
                                 
                             
@@ -70,7 +72,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/09/20/022735/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/022735/" >
                     <h1 class="entry__header-title-link-text">WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する</h1>
                 </a>
             </div>
@@ -82,49 +84,63 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20120917220924.png"/> 
 </figure>
-今作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……</p>
+
+<p>作ってる燃費管理アプリだけど、データの入出力と表示ぐらいまではあらかたできている。ただ、タッチ操作で日付や数値を入力するのは案外めんどい。 InputScope でソフトウェアキーボードの初期レイアウトを制御できるので多少マシにはなるけれど、やっぱりタッチ専用のユーザーインターフェイスがほしい。まぁ、でも、そこは妥協してもいい。問題は回転と解像度、スナップやでぇ……</p>
 <div class="section">
     ### 回転と解像度
-    <figure>
+<figure>
     <img src="/images/20120920020106.png"/> 
 </figure>
-たとえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。
+
+<p>とえば、さっきのアプリを90度回転させてみる。これは惨めだ……。解像度を大きくすると画面が間延びしたりするのも悲しい。XAML では、いわゆるテーブルレイアウトのようなことが可能な Grid が便利なのだけれど、あまり頼りすぎるとすぐに破たんする感じ。なるべく特定の解像度に依存しないフローレイアウトを行うようにしたいけれど……GridView を中心にしたほうがいいのかなぁ。</p>
 </div>
 <div class="section">
     ### スナップ
-    <figure>
+<figure>
     <img src="/images/20120917220217.png"/> 
 </figure>
-Windows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも <del>ViewState（どっかで聞いたような名前だけど気にしない）</del> VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。
-```xml
-<!-- The back button and title have different styles when snapped -->
-x:Name="Snapped">
-    <storyboard></storyboard>
-        Storyboard.TargetName="backButton" Storyboard.TargetProperty="Style">
-            KeyTime="0" Value="{StaticResource SnappedBackButtonStyle}"/>
-<pre><code>    Storyboard.TargetName=&quot;pageTitle&quot; Storyboard.TargetProperty=&quot;Style&quot;&gt;
-        KeyTime=&quot;0&quot; Value=&quot;{StaticResource SnappedPageHeaderTextStyle}&quot;/&gt;
-    
-                    
-    Storyboard.TargetName=&quot;contentGrid&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
-        KeyTime=&quot;0&quot; Value=&quot;Collapsed&quot;/&gt;
-    
-    Storyboard.TargetName=&quot;logListView&quot; Storyboard.TargetProperty=&quot;Visibility&quot;&gt;
-        KeyTime=&quot;0&quot; Value=&quot;Visible&quot;/&gt;
-</code></pre>
-<pre><code class="language-下の二つの" data-lang="下の二つの">
-&lt;/div&gt;
 
-</code></pre>
+<p>indows ストアアプリは、端っこに寄せる「スナップ」をサポートしなければならない。これを当初、HTML でいうレスポンシブレイアウト的な考えで対応しようと思っていたのだけれど、やってみるとあまり現実的ではない。というのも、さまざまな解像度に加え、回転まで考えると、考慮すべきケースが結構多くて手に負えなくなる。これを一つのビューで対応するのはできないこともないけど、結構大変だ。そこで標準のテンプレートをよく読んでみたところ、どうも <del>ViewState（どっかで聞いたような名前だけど気にしない）</del> VisualState という仕組みがあるらしい。要は、縦表示なのか、スナップ状態なのか、といった表示の状態を管理してくれる。これを利用して、スナップ状態の時だけ表示されるリストを作ってしまえばいい。それあったまいいね！　標準テンプレートの最後のほうにある XAML をちょいちょいっといじるといいみたい。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!-- The back button and title have different styles when snapped --&gt;</span>
+x:Name=&#34;Snapped&#34;&gt;
+    <span style="color:#f92672">&lt;storyboard&gt;&lt;/storyboard&gt;</span>
+        Storyboard.TargetName=&#34;backButton&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt;
+            KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedBackButtonStyle}&#34;/&gt;
+        
+        Storyboard.TargetName=&#34;pageTitle&#34; Storyboard.TargetProperty=&#34;Style&#34;&gt;
+            KeyTime=&#34;0&#34; Value=&#34;{StaticResource SnappedPageHeaderTextStyle}&#34;/&gt;
+        
+                        
+        Storyboard.TargetName=&#34;contentGrid&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt;
+            KeyTime=&#34;0&#34; Value=&#34;Collapsed&#34;/&gt;
+        
+        Storyboard.TargetName=&#34;logListView&#34; Storyboard.TargetProperty=&#34;Visibility&#34;&gt;
+            KeyTime=&#34;0&#34; Value=&#34;Visible&#34;/&gt;
+        
+    
+
+
+```下の二つの ObjectAnimationUsingKeyFrames がそれで、contentGrid/logListView という二つのエレメントの Visibility を VisualState に応じて切り替えている。コードの意味はあんまりよくわかってなくて、辛うじて StoryBoard を知っている程度だけど、まぁ、コピペでいけるから今はそれでいいことにしておく。
+
+<figure>
+    <img src="/images/20120920022229.png"/> 
+</figure>
+
+
+indows ストアアプリは、こういうところが難しいなぁ、と思った。デスクトップアプリと違って、「未完成だけど公開してみます」というのはストアが認めてくれないわけで、ハードルはかなり高い。それに比べれば、開発者登録にお金が要るのはあまり大した問題じゃない気もする。けれど、一つアプリを完成させた（<span style="color:#f92672">&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/09/18/075242&#34;</span><span style="color:#f92672">&gt;</span>初めての Windows ストアアプリを提出してみました - だるろぐ<span style="color:#f92672">&lt;/a&gt;</span>）おかげで、ちょっとだけ慣れてきたかもしれない。やっぱり案ずるより産むが横山やすしやでぇ。あとは WinRT &amp;lt;-&gt; .NET Framework の関係があまりよくわかってなくて、MSDN ライブラリで迷子になったりするのもつらい。最初はファイルをどうやって開けばいいのかもわからなかった。けれど、これは経験を積んでいけば解消できそうな問題かな。
+
+<span style="color:#f92672">&lt;/div&gt;</span>
+
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/20/233052/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -133,7 +149,7 @@ x:Name="Snapped">
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/20/002538/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/20/002538/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

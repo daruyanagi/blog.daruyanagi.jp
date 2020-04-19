@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/23/000547/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/23/000547/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -46,7 +46,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -65,7 +65,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/23/000547/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/23/000547/" >
                     <h1 class="entry__header-title-link-text">なぜ var d = new Dictionary&amp;lt;string, string&amp;gt; { { &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; }, { &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot; } } と書けるのか ―― コレクション初期化子</h1>
                 </a>
             </div>
@@ -145,7 +145,11 @@ x.Add(<span style="color:#e6db74">&#34;b&#34;</span>);
 &lt;/div&gt;
 &lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
     <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">足りない条件</span>
-    <span style="color:#960050;background-color:#1e0010">さて、</span> List <span style="color:#960050;background-color:#1e0010">の場合はだいたいわかりました。けれど、</span> Dictionary <span style="color:#960050;background-color:#1e0010">の場合はそれではまだ説明が足りないと思います。</span>&gt;@aetos382 @Grabacr07 <span style="color:#960050;background-color:#1e0010">そうなんですよね。たとえば</span> IEnumerable <span style="color:#960050;background-color:#1e0010">実装してて、</span>Add(arg1, arg2) <span style="color:#960050;background-color:#1e0010">ってシグネチャがあってれば</span>OK  <span style="color:#960050;background-color:#1e0010">とか、そういうルールあるのかなって—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;<span style="color:#960050;background-color:#1e0010">以下のコードで言えば、なぜ</span> { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> } <span style="color:#960050;background-color:#1e0010">なんて書けるのか、ちょっとわかりません。</span>
+    <span style="color:#960050;background-color:#1e0010">さて、</span> List <span style="color:#960050;background-color:#1e0010">の場合はだいたいわかりました。けれど、</span> Dictionary <span style="color:#960050;background-color:#1e0010">の場合はそれではまだ説明が足りないと思います。</span>
+
+&gt;@aetos382 @Grabacr07 <span style="color:#960050;background-color:#1e0010">そうなんですよね。たとえば</span> IEnumerable <span style="color:#960050;background-color:#1e0010">実装してて、</span>Add(arg1, arg2) <span style="color:#960050;background-color:#1e0010">ってシグネチャがあってれば</span>OK  <span style="color:#960050;background-color:#1e0010">とか、そういうルールあるのかなって—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;
+
+<span style="color:#960050;background-color:#1e0010">以下のコードで言えば、なぜ</span> { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> } <span style="color:#960050;background-color:#1e0010">なんて書けるのか、ちょっとわかりません。</span>
 <span style="color:#960050;background-color:#1e0010">```</span>cs
 <span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> Dictionary&amp;lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;
 { 
@@ -153,10 +157,18 @@ x.Add(<span style="color:#e6db74">&#34;b&#34;</span>);
 </span><span style="color:#75715e"></span>    { <span style="color:#e6db74">&#34;c&#34;</span>, <span style="color:#e6db74">&#34;d&#34;</span> }
 } 
 
-<span style="color:#960050;background-color:#1e0010">```すると、こんな助言をいただくなど。</span>&gt;@okazuki <span style="color:#960050;background-color:#1e0010">なるほどー</span> <span style="color:#960050;background-color:#1e0010">パラメーターはいくつでもいいのか—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;<span style="color:#960050;background-color:#1e0010">そういうわけで少し試してみました。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```すると、こんな助言をいただくなど。</span>
+
+&gt;@okazuki <span style="color:#960050;background-color:#1e0010">なるほどー</span> <span style="color:#960050;background-color:#1e0010">パラメーターはいくつでもいいのか—</span> <span style="color:#960050;background-color:#1e0010">だるやなぎ</span> <span style="color:#960050;background-color:#1e0010">に天使が舞い降りた！</span> (@daruyanagi) <span style="color:#ae81ff">2012</span><span style="color:#960050;background-color:#1e0010">年</span><span style="color:#ae81ff">8</span><span style="color:#960050;background-color:#1e0010">月</span><span style="color:#ae81ff">22</span><span style="color:#960050;background-color:#1e0010">日</span>&lt;script <span style="color:#66d9ef">async</span>=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;
+
+<span style="color:#960050;background-color:#1e0010">そういうわけで少し試してみました。</span>
+
+<figure>
     <img src="/images/20120822235621.png"/> 
 </figure>
-&lt;br/&gt;
+
+
+br/&gt;
 
 <span style="color:#960050;background-color:#1e0010">```</span>cs
 <span style="color:#66d9ef">using</span> System;
@@ -204,82 +216,88 @@ x.Add(<span style="color:#e6db74">&#34;b&#34;</span>);
     }
 }
 
-<span style="color:#960050;background-color:#1e0010">```</span><figure>
+</code></pre></div><figure>
     <img src="/images/20120822235856.png"/> 
 </figure>
-少しずつカラクリが見えてきました<span style="color:#960050;background-color:#1e0010">。</span>
 
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">####</span> { x } <span style="color:#960050;background-color:#1e0010">で</span> Add(x) <span style="color:#960050;background-color:#1e0010">が呼ばれる</span>
-    <span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> b = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { { <span style="color:#e6db74">&#34;c&#34;</span> }, { <span style="color:#e6db74">&#34;d&#34;</span> } };
+<p>しずつカラクリが見えてきました。</p>
+<div class="section">
+    #### { x } で Add(x) が呼ばれる
+    ```cs
+var b = new List&lt;string>() { { "c" }, { "d" } };
+<pre><code class="language-全然知らなかったのだけれど、こんな書き方もいけるのですね。つまり、" data-lang="全然知らなかったのだけれど、こんな書き方もいけるのですね。つまり、">```cs
+var a = new List&amp;lt;string&gt;() { &quot;a&quot;, &quot;b&quot; };
 
-<span style="color:#960050;background-color:#1e0010">```全然知らなかったのだけれど、こんな書き方もいけるのですね。つまり、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> a = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">string</span>&gt;() { <span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#e6db74">&#34;b&#34;</span> };
+```において、 &quot;a&quot; は { &quot;a&quot; } の省略記法と見なせそう。
+```cs
+var c = { 1 };
 
-<span style="color:#960050;background-color:#1e0010">```において、</span> <span style="color:#e6db74">&#34;a&#34;</span> <span style="color:#960050;background-color:#1e0010">は</span> { <span style="color:#e6db74">&#34;a&#34;</span> } <span style="color:#960050;background-color:#1e0010">の省略記法と見なせそう。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> c = { <span style="color:#ae81ff">1</span> };
+```さすがにこれはダメですね。 { } ではなく ( ) ならばそのままコンパイルできるのですが。
 
-<span style="color:#960050;background-color:#1e0010">```さすがにこれはダメですね。</span> { } <span style="color:#960050;background-color:#1e0010">ではなく</span> ( ) <span style="color:#960050;background-color:#1e0010">ならばそのままコンパイルできるのですが。</span><figure>
+<figure>
     <img src="/images/20120822235244.png"/> 
 </figure>
-ゴメンナサイ<span style="color:#960050;background-color:#1e0010">。</span>
+
+
+メンナサイ。
 
 &lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">####</span> <span style="color:#960050;background-color:#1e0010">中身はどうでもいい。とりあえず</span> IEnumerable <span style="color:#960050;background-color:#1e0010">を実装して</span> Add() <span style="color:#960050;background-color:#1e0010">書いとけ</span>
-    SampleClass <span style="color:#960050;background-color:#1e0010">は</span> IEnumerable&lt;<span style="color:#66d9ef">string</span>&gt; <span style="color:#960050;background-color:#1e0010">の出来損ないです。しかも、要素に一つの値しか取れないくせに</span> Add() <span style="color:#960050;background-color:#1e0010">の引数は二つもある！</span>&lt;/<span style="color:#66d9ef">string</span>&gt;
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleClass</span> : IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt;
+&lt;div class=&quot;section&quot;&gt;
+    #### 中身はどうでもいい。とりあえず IEnumerable を実装して Add() 書いとけ
+    SampleClass は IEnumerable&lt;string&gt; の出来損ないです。しかも、要素に一つの値しか取れないくせに Add() の引数は二つもある！&lt;/string&gt;
+```cs
+class SampleClass : IEnumerable&amp;lt;string&gt;
 {
-    <span style="color:#66d9ef">public</span> IEnumerator&amp;lt;<span style="color:#66d9ef">string</span>&gt; GetEnumerator()
-    { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+    public IEnumerator&amp;lt;string&gt; GetEnumerator()
+    { throw new NotImplementedException(); }
 
     IEnumerator GetEnumerator()
-    { <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> NotImplementedException(); }
+    { throw new NotImplementedException(); }
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Add(<span style="color:#66d9ef">string</span> arg1, <span style="color:#66d9ef">string</span> arg2)
-    { Debug.WriteLine(<span style="color:#e6db74">&#34;{0}, {1}&#34;</span>, arg1, arg2); }
+    public void Add(string arg1, string arg2)
+    { Debug.WriteLine(&quot;{0}, {1}&quot;, arg1, arg2); }
 }
 
-<span style="color:#960050;background-color:#1e0010">```それでも、これが動くんですね。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass() {
-    { <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span> }, { <span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span> }
+```それでも、これが動くんですね。
+```cs
+var d = new SampleClass() {
+    { &quot;o&quot;, &quot;p&quot; }, { &quot;q&quot;, &quot;r&quot; }
 };
 
-<span style="color:#960050;background-color:#1e0010">```ただ単に</span> Add() <span style="color:#960050;background-color:#1e0010">してるのを簡易記法で隠蔽しているだけだとわかれば、何も難しくありません。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass();
-d.Add(<span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span>); <span style="color:#75715e">// &amp;lt;-- 実際にはコレクションに値を追加していない！
-</span><span style="color:#75715e"></span>d.Add(<span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>);
+```ただ単に Add() してるのを簡易記法で隠蔽しているだけだとわかれば、何も難しくありません。
+```cs
+var d = new SampleClass();
+d.Add(&quot;o&quot;, &quot;p&quot;); // &amp;lt;-- 実際にはコレクションに値を追加していない！
+d.Add(&quot;q&quot;, &quot;r&quot;);
 
-<span style="color:#960050;background-color:#1e0010">```こういうのを糖衣構文（シンタックスシュガー）というのですね。ちなみに、引数の数を間違えると静的にチェックされ、さすがにコンパイルエラーになります。</span><figure>
+```こういうのを糖衣構文（シンタックスシュガー）というのですね。ちなみに、引数の数を間違えると静的にチェックされ、さすがにコンパイルエラーになります。
+
+<figure>
     <img src="/images/20120822235203.png"/> 
 </figure>
-&lt;br/&gt;
 
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">var</span> d = <span style="color:#66d9ef">new</span> SampleClass() {
-    { <span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74">&#34;p&#34;</span> }, { <span style="color:#e6db74">&#34;q&#34;</span>, <span style="color:#e6db74">&#34;r&#34;</span>, <span style="color:#e6db74">&#34;s&#34;</span> } <span style="color:#75715e">// &amp;lt;-- アウチ！
-</span><span style="color:#75715e"></span>};
 
-<span style="color:#960050;background-color:#1e0010">```ちょっと興味深かったのでまとめてみました。</span>
+br/&gt;
+
+```cs
+var d = new SampleClass() {
+    { &quot;o&quot;, &quot;p&quot; }, { &quot;q&quot;, &quot;r&quot;, &quot;s&quot; } // &amp;lt;-- アウチ！
+};
+
+```ちょっと興味深かったのでまとめてみました。
 
 &lt;/div&gt;
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-a4390923&#34;</span> name=<span style="color:#e6db74">&#34;f-a4390923&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;.NET Framework <span style="color:#ae81ff">3.5</span>&lt;/span&gt;
+&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
+&lt;a href=&quot;#fn-a4390923&quot; name=&quot;f-a4390923&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;.NET Framework 3.5&lt;/span&gt;
 &lt;/div&gt;
 
-</code></pre></div>
+</code></pre>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/23/010454/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/23/010454/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -288,7 +306,7 @@ d.Add(<span style="color:#e6db74">&#34;o&#34;</span>, <span style="color:#e6db74
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/22/090520/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/22/090520/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

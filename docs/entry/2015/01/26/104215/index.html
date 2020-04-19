@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2015/01/26/104215/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2015/01/26/104215/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,9 +18,9 @@
         
 
         
-            <meta name="description" content="WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。 - だるろぐ で喜んでたら、今朝は伊予鉄にも遅れが出た。これで、伊予鉄の運行情報もとれるぞ！
+            <meta name="description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2015/01/25/143744&quot;&gt;WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。 - だるろぐ で喜んでたら、今朝は伊予鉄にも遅れが出た。これで、伊予鉄の運行情報もとれるぞ！
  電車・バス情報 | 伊予鉄 伊予鉄の運行情報ページの構造は、 ```html &lt;p class=&#34;about&#34;電車・バス　現在通常通り運行しております。&lt;/p &lt;p class=&#34;date&#34;2015/01/26(月) 10:26&lt;/p &lt;table class=default&gt; : : &lt;/table&gt;
-```cs public static List&amp;lt;DelayInfo&gt; GetIyotestu() { const string name = &quot;伊予鉄&quot;; const string url = &quot;http://www.iyotetsu.co.jp/kinkyu/&quot;; return GetDelayInfo(name, url, Encoding.UTF8, _ =&gt; { var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(_); try { // 遅延情報のテーブルを取得。発見できなければ例外 → 正常運行 var rows = doc .DocumentNode // table.default のなかにある tr タグを取得 .SelectNodes(@&quot;//table[@class=&quot;&quot;default&quot;&quot;]//tr&quot;) // テキストノードなどは読み飛ばす ." />
+```cs public static List&amp;lt;DelayInfo&gt; GetIyotestu() { const string name = &quot;伊予鉄&quot;; const string url = &quot;http://www.iyotetsu.co.jp/kinkyu/&quot;; return GetDelayInfo(name, url, Encoding.UTF8, _ =&gt; { var doc = new HtmlAgilityPack.HtmlDocument(); doc.LoadHtml(_); try { // 遅延情報のテーブルを取得。発見できなければ例外 → 正常運行 var rows = doc .DocumentNode // table.default のなかにある tr タグを取得 ." />
         
 
         
@@ -48,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,7 +61,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -71,7 +71,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2015/01/26/104215/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2015/01/26/104215/" >
                     <h1 class="entry__header-title-link-text">WebMatrix： 伊予鉄も止まったので、早速、遅延情報をゲットしてみる。</h1>
                 </a>
             </div>
@@ -83,10 +83,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20150126102626.png"/> 
 </figure>
-<a href="https://blog.daruyanagi.jp/entry/2015/01/25/143744">WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。 - だるろぐ</a> で喜んでたら、今朝は伊予鉄にも遅れが出た。これで、伊予鉄の運行情報もとれるぞ！</p>
+
+<p>a href=&quot;https://blog.daruyanagi.jp/entry/2015/01/25/143744&quot;&gt;WebMatrix： JR四国が止まったので、運行情報の取得プログラム作るのが捗った。 - だるろぐ</a> で喜んでたら、今朝は伊予鉄にも遅れが出た。これで、伊予鉄の運行情報もとれるぞ！</p>
 <ul>
 <li><a href="http://www.iyotetsu.co.jp/kinkyu/">電車・バス情報 | 伊予鉄</a></li>
 </ul>伊予鉄の運行情報ページの構造は、
@@ -167,10 +168,14 @@ public static List&amp;lt;DelayInfo&gt; GetIyotestu()
     });
 }
 
-```GetDelayInfo(name, url, encodsing, processor) は、指定した URL からソースコードの取得を取得するもので、キャッシュを Get/Set も行う（定型処理なので分離した）。HTML の解釈を string processor(string src) に委譲しているので、今回はその中身だけを書けばよい。とくに難しいことはないのだけど、ただ一点、テーブルのセルがところどころ結合されている関係で、列によって取得したい情報のセルのインデックスがずれる。しかし、後ろから数えた場合のインデックスは変わらないので、Reverse() してから読んでやればいい。<figure>
+```GetDelayInfo(name, url, encodsing, processor) は、指定した URL からソースコードの取得を取得するもので、キャッシュを Get/Set も行う（定型処理なので分離した）。HTML の解釈を string processor(string src) に委譲しているので、今回はその中身だけを書けばよい。とくに難しいことはないのだけど、ただ一点、テーブルのセルがところどころ結合されている関係で、列によって取得したい情報のセルのインデックスがずれる。しかし、後ろから数えた場合のインデックスは変わらないので、Reverse() してから読んでやればいい。
+
+<figure>
     <img src="/images/20150126104125.png"/> 
 </figure>
-これで数日様子を見てみる。
+
+
+れで数日様子を見てみる。
 
 
 </code></pre>
@@ -179,7 +184,7 @@ public static List&amp;lt;DelayInfo&gt; GetIyotestu()
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/01/28/191731/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/01/28/191731/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -188,7 +193,7 @@ public static List&amp;lt;DelayInfo&gt; GetIyotestu()
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2015/01/25/143744/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2015/01/25/143744/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

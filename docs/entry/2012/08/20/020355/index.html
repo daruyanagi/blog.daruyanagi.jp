@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/20/020355/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/20/020355/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -20,8 +20,8 @@
         
             <meta name="description" content="まずはお詫びを。
 &gt; あと、最初から複数ファイルのアップデートに対応できるように記述している。 WebMatrix でファイルのアップロード - だるろぐWebMatrix でファイルのアップロード - だるろぐ  あれはウソだ。いや、複数ファイルのアップロード自体はできるのだけれど、結果を返す処理が単体ファイルを前提としていたので最後のファイルの結果しか得られない。正しくは、
-var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように Upload.cshtml はめでたく複数ファイルのアップロードに対応できたし、 Ajax には Json で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。  初期状態。  ファイルをドラッグ＆ドロップ。これにはもちろん、 Drag &amp;amp; Drop の API を利用する。画像のプレビューは HTML5 の File Reader API を利用して実装してある。JavaScript は見よう見まねで書いてみたけれどなかなか難しい……けれど、 cshtml ならば自動補完機能の恩恵をうけることができるのでまだマシ。jQuery だと $.event.props.push(&#39;dataTransfer&#39;);
- Ajax&#34; data-lang=&#34;という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。  Ajax&#34;```cs # Upload.cs @using System.IO @functions { private enum Result { Success = 0, Error = -1, }; private const string OUTPUT_DIR = &quot;~/Files/&quot;; private Dictionary&amp;lt;string, string&gt; AllowedFileType = new Dictionary&amp;lt;string, string&gt;(); private void VerifyOutputDir(string path) { if (!" />
+var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように Upload.cshtml はめでたく複数ファイルのアップロードに対応できたし、 Ajax には Json で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。   期状態。   ァイルをドラッグ＆ドロップ。これにはもちろん、 Drag &amp;amp; Drop の API を利用する。画像のプレビューは HTML5 の File Reader API を利用して実装してある。JavaScript は見よう見まねで書いてみたけれどなかなか難しい……けれど、 cshtml ならば自動補完機能の恩恵をうけることができるのでまだマシ。jQuery だと $.event.props.push(&#39;dataTransfer&#39;);
+  jax でファイルを Upload.cshtml へ送ると、画面遷移なしで結果が表示される。これには FormData という仕組みを利用した。まぁ、ここで JavaScript の話をする気はないので本題に入るけど、これ。   カいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている&lt;a href=&quot;#f-b7512c63&quot; name=&quot;fn-b7512c63&quot; title=&quot;例外自体は IIS のリクエストのサイズ制限を緩和すれば抑制できるはず&quot;&gt;*1&lt;/a&gt;。 ```cs # Upload." />
         
 
         
@@ -49,7 +49,7 @@ var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファ�
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,14 +62,14 @@ var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファ�
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-mvc-3/">ASP.net MVC 3</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-mvc-3/">ASP.net MVC 3</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -79,7 +79,7 @@ var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファ�
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/20/020355/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/020355/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でファイルのアップロード（2）</h1>
                 </a>
             </div>
@@ -100,21 +100,37 @@ var model = new List&amp;lt;dynamic&gt;(); ```とでもして、複数のファ�
 <p>あれはウソだ。いや、複数ファイルのアップロード自体はできるのだけれど、結果を返す処理が単体ファイルを前提としていたので最後のファイルの結果しか得られない。正しくは、</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> model = <span style="color:#66d9ef">new</span> List&amp;lt;<span style="color:#66d9ef">dynamic</span>&gt;();
 
-<span style="color:#960050;background-color:#1e0010">```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように</span> Upload.cshtml <span style="color:#960050;background-color:#1e0010">はめでたく複数ファイルのアップロードに対応できたし、</span> Ajax <span style="color:#960050;background-color:#1e0010">には</span> Json <span style="color:#960050;background-color:#1e0010">で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように</span> Upload.cshtml <span style="color:#960050;background-color:#1e0010">はめでたく複数ファイルのアップロードに対応できたし、</span> Ajax <span style="color:#960050;background-color:#1e0010">には</span> Json <span style="color:#960050;background-color:#1e0010">で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。</span>
+
+<figure>
     <img src="/images/20120820014053.png"/> 
 </figure>
-初期状態<span style="color:#960050;background-color:#1e0010">。</span><figure>
+
+
+<span style="color:#960050;background-color:#1e0010">期状態。</span>
+
+<figure>
     <img src="/images/20120820014058.png"/> 
 </figure>
-ファイルをドラッグ<span style="color:#960050;background-color:#1e0010">＆ドロップ。これにはもちろん、</span> Drag &amp;amp; Drop <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用する。画像のプレビューは</span> HTML5 <span style="color:#960050;background-color:#1e0010">の</span> File Reader API <span style="color:#960050;background-color:#1e0010">を利用して実装してある。</span>JavaScript <span style="color:#960050;background-color:#1e0010">は見よう見まねで書いてみたけれどなかなか難しい……けれど、</span> cshtml <span style="color:#960050;background-color:#1e0010">ならば自動補完機能の恩恵をうけることができるのでまだマシ。</span>jQuery <span style="color:#960050;background-color:#1e0010">だと</span>
+
+
+<span style="color:#960050;background-color:#1e0010">ァイルをドラッグ＆ドロップ。これにはもちろん、</span> Drag &amp;amp; Drop <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用する。画像のプレビューは</span> HTML5 <span style="color:#960050;background-color:#1e0010">の</span> File Reader API <span style="color:#960050;background-color:#1e0010">を利用して実装してある。</span>JavaScript <span style="color:#960050;background-color:#1e0010">は見よう見まねで書いてみたけれどなかなか難しい……けれど、</span> cshtml <span style="color:#960050;background-color:#1e0010">ならば自動補完機能の恩恵をうけることができるのでまだマシ。</span>jQuery <span style="color:#960050;background-color:#1e0010">だと</span>
 </code></pre></div><p>$.event.props.push('dataTransfer');</p>
-<pre><code class="language-という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
+<pre><code class="language-という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。" data-lang="という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。">
+<figure>
     <img src="/images/20120820014101.png"/> 
 </figure>
-Ajax" data-lang="という呪文を唱えないと動かないのを知らなくて、かなり悩んだ。<figure>
-    <img src="/images/20120820014101.png"/> 
+
+
+jax でファイルを Upload.cshtml へ送ると、画面遷移なしで結果が表示される。これには FormData という仕組みを利用した。まぁ、ここで JavaScript の話をする気はないので本題に入るけど、これ。
+
+<figure>
+    <img src="/images/20120820014842.png"/> 
 </figure>
-Ajax">```cs
+
+
+カいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている&lt;a href=&quot;#f-b7512c63&quot; name=&quot;fn-b7512c63&quot; title=&quot;例外自体は IIS のリクエストのサイズ制限を緩和すれば抑制できるはず&quot;&gt;*1&lt;/a&gt;。
+```cs
 # Upload.cs
 
 @using System.IO
@@ -265,7 +281,7 @@ Ajax">```cs
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/20/202253/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/202253/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -274,7 +290,7 @@ Ajax">```cs
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/19/130606/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/19/130606/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

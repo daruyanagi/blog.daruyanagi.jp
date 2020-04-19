@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2017/09/08/235450/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2017/09/08/235450/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,8 @@
         
 
         
-            <meta name="description" content="（Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。  ASP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ
+            <meta name="description" content="Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。
+  SP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ
 ### 基本的な流れ PhantomJS.exe にスクリプトと Uri とセレクターを渡し、標準出力を介して結果（JSON）を得る。標準出力には PhantomJS が吐くエラーが混じることがあるので、適当な正規表現で除去しておく。  ### Index.cshtml コードビハインド？　MVVM じゃない方の ViewModel？　なんて言っていいのかは知らんけど（変な言葉遣いしたらその手のケーサツが来そうだし）、Index.cshtml の裏はこんな感じ。 ```cs // index.cshtml.cs using System; using System.Collections.Generic; using System.Linq; using System.Threading.Tasks; using Microsoft.AspNetCore.Mvc; using Microsoft.AspNetCore.Mvc.RazorPages; using System.Diagnostics; using System.IO;
 namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindProperty] public Uri Target { get; set; }" />
         
@@ -48,7 +49,7 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,7 +62,7 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-core-razor-page/">ASP.NET Core Razor Page</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-core-razor-page/">ASP.NET Core Razor Page</a>
                                     </li>
                                 
                             
@@ -71,7 +72,7 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2017/09/08/235450/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2017/09/08/235450/" >
                     <h1 class="entry__header-title-link-text">Razor Pages：PhantomJS で動的サイトをスクレイピングする</h1>
                 </a>
             </div>
@@ -83,13 +84,16 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20170908233127.png"/> 
 </figure>
-（Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。<figure>
+
+<p>Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。</p>
+<figure>
     <img src="/images/20170908233703.png"/> 
 </figure>
-ASP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。<a href="http://blog.daruyanagi.jp/entry/2017/08/15/043634">空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ</a><br/></p>
+
+<p>SP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。<a href="http://blog.daruyanagi.jp/entry/2017/08/15/043634">空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ</a><br/></p>
 <div class="section">
     ### 基本的な流れ
     PhantomJS.exe にスクリプトと Uri とセレクターを渡し、標準出力を介して結果（JSON）を得る。標準出力には PhantomJS が吐くエラーが混じることがあるので、適当な正規表現で除去しておく。
@@ -246,7 +250,7 @@ page.open(url, function (status) {
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/09/171921/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/09/171921/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -255,7 +259,7 @@ page.open(url, function (status) {
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2017/09/06/170158/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2017/09/06/170158/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

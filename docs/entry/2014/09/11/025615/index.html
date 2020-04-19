@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2014/09/11/025615/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2014/09/11/025615/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -47,7 +47,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,7 +60,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows-runtime/">Windows Runtime</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows-runtime/">Windows Runtime</a>
                                     </li>
                                 
                             
@@ -70,7 +70,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2014/09/11/025615/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2014/09/11/025615/" >
                     <h1 class="entry__header-title-link-text">WinRT：システムにインストールされた Windows ストア アプリを列挙する（2）</h1>
                 </a>
             </div>
@@ -141,13 +141,24 @@ public partial class MainWindow : Window
 </code></pre>
 <p>}</p>
 <pre><code class="language-相変わらずダックタイピングでコーディングしてるので汚いけど、基本的に" data-lang="相変わらずダックタイピングでコーディングしてるので汚いけど、基本的に">
+<figure>
+    <img src="/images/20140911023459.png"/> 
+</figure>
+
+
+ゃんととれているみたい。Description はない場合も多い。タイルの背景色も取得したかったけれど、書いてない AppxManifest.xml も少なくない感じ。もうちょっと調査してみよう。
+
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### resources.pri を読んでリソース文字列を取得する
-    <figure>
+    
+
+<figure>
     <img src="/images/20140911023541.png"/> 
 </figure>
-さっきのでだいたいうまくいったかなと思ったのだけど、DisplayName は（おそらく多言語対応のため）ms-resource で指定されている場合がある。ガッデム！
+
+
+っきのでだいたいうまくいったかなと思ったのだけど、DisplayName は（おそらく多言語対応のため）ms-resource で指定されている場合がある。ガッデム！
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx&quot;&gt;Resource Management System | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
@@ -225,18 +236,26 @@ namespace WinRTAppsUpdateChecker
     }
 }
 
-```リソースのパスの指定がよくわかんなかったのだけど、いろいろ試した結果、これでイケている感じ。ms-resource の読み込み処理はべた書きしたけど、ViewModel をちゃんとクラス化するときに関数にパッケージングして、Description などがリソースで指定されているときにも対応できるようにしておけばいいと思う。<figure>
+```リソースのパスの指定がよくわかんなかったのだけど、いろいろ試した結果、これでイケている感じ。ms-resource の読み込み処理はべた書きしたけど、ViewModel をちゃんとクラス化するときに関数にパッケージングして、Description などがリソースで指定されているときにも対応できるようにしておけばいいと思う。
+
+<figure>
     <img src="/images/20140911025259.png"/> 
 </figure>
-ちゃんと名前もとれている感じ。よくみたら WinJS の名前が取れてないケド、見ないことにした。
+
+
+ゃんと名前もとれている感じ。よくみたら WinJS の名前が取れてないケド、見ないことにした。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### 追記（2014/09/11 03:08）
-    <figure>
+    
+
+<figure>
     <img src="/images/20140911030830.png"/> 
 </figure>
-リソースパスの指定方法をちょっと変えたら、WinJS にも対応できた。
+
+
+ソースパスの指定方法をちょっと変えたら、WinJS にも対応できた。
 ```cs
 var resourceKey = (result.DisplayName as string).Split(&amp;#39;:&amp;#39;).Last();
 if (!resourceKey.StartsWith(&quot;/&quot;)) resourceKey = &quot;/resources/&quot; + resourceKey;
@@ -252,7 +271,7 @@ var resourcePath = string.Format(&quot;@{{{0}? ms-resource://{1}{2}}}&quot;, pri
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/09/13/202504/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/09/13/202504/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -261,7 +280,7 @@ var resourcePath = string.Format(&quot;@{{{0}? ms-resource://{1}{2}}}&quot;, pri
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2014/09/10/030408/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2014/09/10/030408/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

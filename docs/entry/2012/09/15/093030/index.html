@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/09/15/093030/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/09/15/093030/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -19,8 +19,10 @@
 
         
             <meta name="description" content="@chack411 さん曰く、 http://nuget.org/packages/Microsoft.AspNet.Web.Optimization を使うのが正しいそうです（ありがとうございます！）。また後日試してみましょう。 CSS / Javascript の Bunlde と Minify を WebMatrix で利用する - だるろぐ  というわけで試してみたよ。
-### NuGet のインストール   合言葉は「Optimization」！　検索で出てきた**2番目**の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、  どれを使うべきか どうやって使うのか がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う*1し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか*2、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。  依存関係で入ってくる「WebGrease」は、Minify *3を行うコマンドラインツールみたい。http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspxMicrosoft の中の人が作ってるみたいだね。  ### 基本的な使い方 ```html # ~/Views/Shared/_SiteLayout.cshtml @using System.Web.Optimization // Web.config いじれば要らないかな
-@{ // Script をバンドル BundleTable.Bundles.Add( new ScriptBundle(&ldquo;~/Scripts/jQuery&rdquo;) .Include(&ldquo;~/Scripts/jquery-{version}.js&rdquo;));" />
+### NuGet のインストール   言葉は「Optimization」！　検索で出てきた2番目の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、
+ どれを使うべきか どうやって使うのか がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う*1し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか*2、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。   存関係で入ってくる「WebGrease」は、Minify *3を行うコマンドラインツールみたい。http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspxMicrosoft の中の人が作ってるみたいだね。
+ ### 基本的な使い方 ```html # ~/Views/Shared/_SiteLayout.cshtml @using System.Web.Optimization // Web.config いじれば要らないかな
+@{ // Script をバンドル BundleTable.Bundles.Add( new ScriptBundle(&ldquo;~/Scripts/jQuery&rdquo;) ." />
         
 
         
@@ -48,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +63,14 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +80,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/09/15/093030/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/09/15/093030/" >
                     <h1 class="entry__header-title-link-text">CSS / Javascript の Bunlde と Minify を WebMatrix で利用する（2）</h1>
                 </a>
             </div>
@@ -99,17 +101,20 @@
 <p>というわけで試してみたよ。</p>
 <div class="section">
     ### NuGet のインストール
-    <figure>
+<figure>
     <img src="/images/20120915085309.png"/> 
 </figure>
-合言葉は「Optimization」！　検索で出てきた**2番目**の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、
+
+<p>言葉は「Optimization」！　検索で出てきた<strong>2番目</strong>の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、</p>
 <ul>
 <li>どれを使うべきか</li>
 <li>どうやって使うのか</li>
-</ul>がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う<a href="#f-7ccd8146" name="fn-7ccd8146" title="開発終了したけどすぐに消すわけにはいかない、ということはあると思う">*1</a>し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか<a href="#f-0b5f8be8" name="fn-0b5f8be8" title="GitHub みたいなやつだね！">*2</a>、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。<figure>
+</ul>がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う<a href="#f-7ccd8146" name="fn-7ccd8146" title="開発終了したけどすぐに消すわけにはいかない、ということはあると思う">*1</a>し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか<a href="#f-0b5f8be8" name="fn-0b5f8be8" title="GitHub みたいなやつだね！">*2</a>、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。
+<figure>
     <img src="/images/20120915090021.png"/> 
 </figure>
-依存関係で入ってくる「WebGrease」は、Minify <a href="#f-c5e4a6fe" name="fn-c5e4a6fe" title="余計なコメントや改行・空白を削るなどしてペイロードを軽くすること">*3</a>を行うコマンドラインツールみたい。<a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx">http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx</a>Microsoft の中の人が作ってるみたいだね。
+
+<p>存関係で入ってくる「WebGrease」は、Minify <a href="#f-c5e4a6fe" name="fn-c5e4a6fe" title="余計なコメントや改行・空白を削るなどしてペイロードを軽くすること">*3</a>を行うコマンドラインツールみたい。<a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx"><a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx">http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx</a></a>Microsoft の中の人が作ってるみたいだね。</p>
 </div>
 <div class="section">
     ### 基本的な使い方
@@ -149,23 +154,39 @@ BundleTable.Bundles.Add(
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### 実際の出力と BundleTable.EnableOptimizations
-    で、実際の出力はどうなるかというと、 @Scripts.Render(&quot;~/Scripts/jQuery&quot;) の場合はこんな感じ。<figure>
+    で、実際の出力はどうなるかというと、 @Scripts.Render(&quot;~/Scripts/jQuery&quot;) の場合はこんな感じ。
+
+<figure>
     <img src="/images/20120915091457.png"/> 
 </figure>
-おおー、最新版が読み込まれているぞ。けれど、 Minify まではされていない。Minify までしてほしい場合は、
+
+
+おー、最新版が読み込まれているぞ。けれど、 Minify まではされていない。Minify までしてほしい場合は、
 ```cs
     BundleTable.EnableOptimizations = true;
 
-```しておく。すると、出力はこんな感じに変わる。<figure>
+```しておく。すると、出力はこんな感じに変わる。
+
+<figure>
     <img src="/images/20120915091631.png"/> 
 </figure>
-スクリプトの内容はこんな感じ。<figure>
+
+
+クリプトの内容はこんな感じ。
+
+<figure>
     <img src="/images/20120915091656.png"/> 
 </figure>
-改行が飛んでいるので少しわかりにくいけれど、最適化を有効にしない場合はこんな感じ。<figure>
+
+
+行が飛んでいるので少しわかりにくいけれど、最適化を有効にしない場合はこんな感じ。
+
+<figure>
     <img src="/images/20120915091732.png"/> 
 </figure>
-著作権表示などのコメントがいっぱい残っているのがわかる。「Microsoft ASP.NET Web Optimization Framework」を利用したら、こういうのを全部取って、リソースの転送量を抑えてくれるので便利！……というわけで、今回はおしまい。ASP.NET MVC4 だとこうのも標準で入っているみたい。メイドの人が言ってた。&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20111103/1320331131&quot;&gt;Microsoft.Web.Optimization で JavaScript と CSS の最適化を行う - しばやん雑記&lt;/a&gt;WebMatrix は標準で Application_Start / RegisterBundles() みたいなのが標準では用意されていないけれど、なんなら自分で作ってもいいね。まぁ、そんなのが必要になるぐらいキッチリとデカいアプリケーションを書きたくなったら、自然と MVC みたいなフレームワーク＋ IDE 支援がほしくなると思う。それまでは、WebMatrix でお勉強するのもありだと思うよ。
+
+
+作権表示などのコメントがいっぱい残っているのがわかる。「Microsoft ASP.NET Web Optimization Framework」を利用したら、こういうのを全部取って、リソースの転送量を抑えてくれるので便利！……というわけで、今回はおしまい。ASP.NET MVC4 だとこうのも標準で入っているみたい。メイドの人が言ってた。&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20111103/1320331131&quot;&gt;Microsoft.Web.Optimization で JavaScript と CSS の最適化を行う - しばやん雑記&lt;/a&gt;WebMatrix は標準で Application_Start / RegisterBundles() みたいなのが標準では用意されていないけれど、なんなら自分で作ってもいいね。まぁ、そんなのが必要になるぐらいキッチリとデカいアプリケーションを書きたくなったら、自然と MVC みたいなフレームワーク＋ IDE 支援がほしくなると思う。それまでは、WebMatrix でお勉強するのもありだと思うよ。
 
 &lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
 &lt;a href=&quot;#fn-7ccd8146&quot; name=&quot;f-7ccd8146&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;開発終了したけどすぐに消すわけにはいかない、ということはあると思う&lt;/span&gt;
@@ -179,7 +200,7 @@ BundleTable.Bundles.Add(
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/16/001625/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/16/001625/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -188,7 +209,7 @@ BundleTable.Bundles.Add(
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/09/14/093750/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/09/14/093750/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

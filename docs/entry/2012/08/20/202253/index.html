@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2012/08/20/202253/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2012/08/20/202253/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,12 @@
         
 
         
-            <meta name="description" content="まずはお詫びを。  
-&gt; ASP.NET Web Helpers Library という NuGet をインストールすると、（FileUpload ヘルパーを利用して）複数ファイルのアップロードに対応した Form タグを簡単に生成できる。でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。なんか動的に生成されるノードの名前がカブってるし、あんまりよくわかんなかった。 WebMatrix でファイルのアップロード - だるろぐ  そしたらツッコミをもらった。&gt;だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。  確かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は
+            <meta name="description" content="まずはお詫びを。
+  br/&gt;
+&gt; ASP.NET Web Helpers Library という NuGet をインストールすると、（FileUpload ヘルパーを利用して）複数ファイルのアップロードに対応した Form タグを簡単に生成できる。でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。なんか動的に生成されるノードの名前がカブってるし、あんまりよくわかんなかった。 WebMatrix でファイルのアップロード - だるろぐ  そしたらツッコミをもらった。
+ だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日
+ 最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。
+  かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は
 using System.Collections.Generic; using System.Web; public static class HttpFileCollectionBaseExtension { public static IEnumerable&amp;lt;HttpPostedFileBase&gt; ToEnumerable( this HttpFileCollectionBase target) { foreach (var key in target.AllKeys) //--&gt; Key で……  { yield return target[key]; } } } ```ではなくて、 ```cs using System." />
         
 
@@ -48,7 +52,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -61,14 +65,14 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
@@ -78,7 +82,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2012/08/20/202253/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/202253/" >
                     <h1 class="entry__header-title-link-text">WebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う</h1>
                 </a>
             </div>
@@ -90,19 +94,27 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
 
         </div>
         <div class="entry__content">
-            <p>まずはお詫びを。<figure>
+            <p>まずはお詫びを。</p>
+<figure>
     <img src="/images/20120819115634.png"/> 
 </figure>
-<br/></p>
+
+<p>br/&gt;</p>
 <pre><code>&gt;
     ASP.NET Web Helpers Library という NuGet をインストールすると、（FileUpload ヘルパーを利用して）複数ファイルのアップロードに対応した Form タグを簡単に生成できる。でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。なんか動的に生成されるノードの名前がカブってるし、あんまりよくわかんなかった。
 
     WebMatrix でファイルのアップロード - だるろぐ
 </code></pre>
-<p>そしたらツッコミをもらった。&gt;だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。<figure>
+<p>そしたらツッコミをもらった。</p>
+<blockquote>
+<p>だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</blockquote>
+<p>最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。</p>
+<figure>
     <img src="/images/20120820201127.png"/> 
 </figure>
-確かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は</p>
+
+<p>かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Collections.Generic;
 <span style="color:#66d9ef">using</span> System.Web;
 
@@ -207,10 +219,14 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
     &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-<span style="color:#960050;background-color:#1e0010">```結果はこんな感じ。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```結果はこんな感じ。</span>
+
+<figure>
     <img src="/images/20120820201550.png"/> 
 </figure>
-できた<span style="color:#960050;background-color:#1e0010">！</span>
+
+
+<span style="color:#960050;background-color:#1e0010">きた！</span>
 
 &lt;ul&gt;
 &lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://shiba-yan.hatenablog.jp/entry/20110702/1309532938&#34;</span>&gt;HTML5 <span style="color:#960050;background-color:#1e0010">の</span> Drag and Drop API <span style="color:#960050;background-color:#1e0010">と</span> File API <span style="color:#960050;background-color:#1e0010">を使ってファイルアップロードを実装する</span> - <span style="color:#960050;background-color:#1e0010">しばやん雑記</span>&lt;/a&gt;&lt;/li&gt;
@@ -222,7 +238,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/20/210729/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/210729/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -231,7 +247,7 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2012/08/20/020355/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2012/08/20/020355/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

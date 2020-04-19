@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/09/12/001254/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/09/12/001254/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,8 +18,11 @@
         
 
         
-            <meta name="description" content="WebMatrix 3: Twitter でログインする - だるろぐ でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。  AccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。  まず、これ。アプリが Twitter へアクセスするために必要。
- ConsumerKey ConsumerSecret 次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。  AccessKey AccessKeySecret アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。  通信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。 ```cs // ~/App_Code/TwitterClient.cs using DotNetOpenAuth.AspNet; using DotNetOpenAuth.AspNet.Clients; using DotNetOpenAuth.Messaging; using DotNetOpenAuth.OAuth; using DotNetOpenAuth.OAuth.ChannelElements; using DotNetOpenAuth." />
+            <meta name="description" content="WebMatrix 3: Twitter でログインする - だるろぐ でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。
+  ccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。
+  ず、これ。アプリが Twitter へアクセスするために必要。
+ ConsumerKey ConsumerSecret 次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。  AccessKey AccessKeySecret アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。   信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
+// ~/App_Code/TwitterClient.cs  using DotNetOpenAuth.AspNet; using DotNetOpenAuth.AspNet.Clients; using DotNetOpenAuth.Messaging; using DotNetOpenAuth." />
         
 
         
@@ -47,7 +50,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -60,28 +63,28 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/windows/">Windows開発</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/windows/">Windows開発</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net/">ASP.net</a>
                                     </li>
                                 
                             
@@ -91,7 +94,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/09/12/001254/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/09/12/001254/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
                 </a>
             </div>
@@ -103,13 +106,17 @@
 
         </div>
         <div class="entry__content">
-            <p><a href="https://blog.daruyanagi.jp/entry/2013/09/05/070245">WebMatrix 3: Twitter でログインする - だるろぐ</a> でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。<figure>
+            <p><a href="https://blog.daruyanagi.jp/entry/2013/09/05/070245">WebMatrix 3: Twitter でログインする - だるろぐ</a> でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。</p>
+<figure>
     <img src="/images/20130905064941.png"/> 
 </figure>
-AccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。<figure>
+
+<p>ccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。</p>
+<figure>
     <img src="/images/20130911233354.png"/> 
 </figure>
-まず、これ。アプリが Twitter へアクセスするために必要。</p>
+
+<p>ず、これ。アプリが Twitter へアクセスするために必要。</p>
 <ul>
 <li>ConsumerKey</li>
 <li>ConsumerSecret</li>
@@ -117,139 +124,166 @@ AccessTokenSecret が取れない。自分もあんまりよくわかってい�
 <ul>
 <li>AccessKey</li>
 <li>AccessKeySecret</li>
-</ul>アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。<figure>
+</ul>アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。
+<figure>
     <img src="/images/20130912000225.png"/> 
 </figure>
-通信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
-```cs
-// ~/App_Code/TwitterClient.cs
-<p>using DotNetOpenAuth.AspNet;
-using DotNetOpenAuth.AspNet.Clients;
-using DotNetOpenAuth.Messaging;
-using DotNetOpenAuth.OAuth;
-using DotNetOpenAuth.OAuth.ChannelElements;
-using DotNetOpenAuth.OAuth.Messages;
-using System.Collections.Generic;</p>
-<p>// <a href="http://stackoverflow.com/questions/12198734/getting-twitter-access-secret-using-dotnetopenauth-in-mvc4">http://stackoverflow.com/questions/12198734/getting-twitter-access-secret-using-dotnetopenauth-in-mvc4</a></p>
-<p>public class TwitterClient : OAuthClient
-{
-/// &lt;summary&gt;
-/// The description of Twitter's OAuth protocol URIs for use with their &ldquo;Sign in with Twitter&rdquo; feature.
-/// &lt;/summary&gt;
-public static readonly ServiceProviderDescription TwitterServiceDescription = new ServiceProviderDescription
-{
-RequestTokenEndpoint =
-new MessageReceivingEndpoint(
-&ldquo;<a href="https://api.twitter.com/oauth/request_token%22,">https://api.twitter.com/oauth/request_token&quot;,</a>
-HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
-UserAuthorizationEndpoint =
-new MessageReceivingEndpoint(
-&ldquo;<a href="https://api.twitter.com/oauth/authenticate%22,">https://api.twitter.com/oauth/authenticate&quot;,</a>
-HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
-AccessTokenEndpoint =
-new MessageReceivingEndpoint(
-&ldquo;<a href="https://api.twitter.com/oauth/access_token%22,">https://api.twitter.com/oauth/access_token&quot;,</a>
-HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
-TamperProtectionElements = new ITamperProtectionChannelBindingElement[] { new HmacSha1SigningBindingElement() },
-};</p>
-<pre><code>public TwitterClient(string consumerKey, string consumerSecret) :
-    base(&quot;twitter&quot;, TwitterServiceDescription, consumerKey, consumerSecret) { }
-protected override AuthenticationResult VerifyAuthenticationCore(AuthorizedTokenResponse response)
-{
-    string accessToken = response.AccessToken;
-    string accessSecret = (response as ITokenSecretContainingMessage).TokenSecret;
-    string userId = response.ExtraData[&quot;user_id&quot;];
-    string userName = response.ExtraData[&quot;screen_name&quot;];
 
-    var extraData = new Dictionary&amp;lt;string, string&gt;()
-                        {
-                            {&quot;accesstoken&quot;, accessToken},
-                            {&quot;accesssecret&quot;, accessSecret}
-                        };
-    return new AuthenticationResult(
-        isSuccessful: true,
-        provider: ProviderName,
-        providerUserId: userId,
-        userName: userName,
-        extraData: extraData);
+<p>信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// ~/App_Code/TwitterClient.cs
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.AspNet;
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.AspNet.Clients;
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.Messaging;
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.OAuth;
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.OAuth.ChannelElements;
+<span style="color:#66d9ef">using</span> DotNetOpenAuth.OAuth.Messages;
+<span style="color:#66d9ef">using</span> System.Collections.Generic;
+
+<span style="color:#75715e">// http://stackoverflow.com/questions/12198734/getting-twitter-access-secret-using-dotnetopenauth-in-mvc4
+</span><span style="color:#75715e"></span>
+<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">TwitterClient</span> : OAuthClient
+{
+    <span style="color:#75715e">/// &amp;lt;summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// The description of Twitter&amp;#39;s OAuth protocol URIs for use with their &#34;Sign in with Twitter&#34; feature.
+</span><span style="color:#75715e"></span>    <span style="color:#75715e">/// &amp;lt;/summary&gt;
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> ServiceProviderDescription TwitterServiceDescription = <span style="color:#66d9ef">new</span> ServiceProviderDescription
+    {
+        RequestTokenEndpoint =
+            <span style="color:#66d9ef">new</span> MessageReceivingEndpoint(
+                <span style="color:#e6db74">&#34;https://api.twitter.com/oauth/request_token&#34;</span>,
+                HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+        UserAuthorizationEndpoint =
+            <span style="color:#66d9ef">new</span> MessageReceivingEndpoint(
+                <span style="color:#e6db74">&#34;https://api.twitter.com/oauth/authenticate&#34;</span>,
+                HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+        AccessTokenEndpoint =
+            <span style="color:#66d9ef">new</span> MessageReceivingEndpoint(
+                <span style="color:#e6db74">&#34;https://api.twitter.com/oauth/access_token&#34;</span>,
+                HttpDeliveryMethods.GetRequest | HttpDeliveryMethods.AuthorizationHeaderRequest),
+        TamperProtectionElements = <span style="color:#66d9ef">new</span> ITamperProtectionChannelBindingElement[] { <span style="color:#66d9ef">new</span> HmacSha1SigningBindingElement() },
+    };
+
+    <span style="color:#66d9ef">public</span> TwitterClient(<span style="color:#66d9ef">string</span> consumerKey, <span style="color:#66d9ef">string</span> consumerSecret) :
+        <span style="color:#66d9ef">base</span>(<span style="color:#e6db74">&#34;twitter&#34;</span>, TwitterServiceDescription, consumerKey, consumerSecret) { }
+    <span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> AuthenticationResult VerifyAuthenticationCore(AuthorizedTokenResponse response)
+    {
+        <span style="color:#66d9ef">string</span> accessToken = response.AccessToken;
+        <span style="color:#66d9ef">string</span> accessSecret = (response <span style="color:#66d9ef">as</span> ITokenSecretContainingMessage).TokenSecret;
+        <span style="color:#66d9ef">string</span> userId = response.ExtraData[<span style="color:#e6db74">&#34;user_id&#34;</span>];
+        <span style="color:#66d9ef">string</span> userName = response.ExtraData[<span style="color:#e6db74">&#34;screen_name&#34;</span>];
+
+        <span style="color:#66d9ef">var</span> extraData = <span style="color:#66d9ef">new</span> Dictionary&amp;lt;<span style="color:#66d9ef">string</span>, <span style="color:#66d9ef">string</span>&gt;()
+                            {
+                                {<span style="color:#e6db74">&#34;accesstoken&#34;</span>, accessToken},
+                                {<span style="color:#e6db74">&#34;accesssecret&#34;</span>, accessSecret}
+                            };
+        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> AuthenticationResult(
+            isSuccessful: <span style="color:#66d9ef">true</span>,
+            provider: ProviderName,
+            providerUserId: userId,
+            userName: userName,
+            extraData: extraData);
+    }
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-結果はこんな感じ。いつもどおり" data-lang="結果はこんな感じ。いつもどおり">```cs
-@{
-    var returnUrl = Request[&quot;returnUrl&quot;];
 
-    // ログインの検証
-    var result = OAuthWebSecurity.VerifyAuthentication(  
-         Href(&quot;LogonCallBack&quot;, new { ReturnUrl = returnUrl })
+<span style="color:#960050;background-color:#1e0010">```結果はこんな感じ。いつもどおり</span> ObjectInfo.Print() <span style="color:#960050;background-color:#1e0010">で中身を見てみたよ。</span>
+
+<figure>
+    <img src="/images/20130912115257.png"/> 
+</figure>
+
+
+<span style="color:#960050;background-color:#1e0010">装としてどうするのが理想的なのかはよくわからないけれど、とりあえずユーザーを管理するテーブルを拡張して、アクセスキーを保管しておくのとかどうでしょうか。</span>
+<span style="color:#960050;background-color:#1e0010">```</span>cs
+<span style="color:#960050;background-color:#1e0010">@</span>{
+    <span style="color:#66d9ef">var</span> returnUrl = Request[<span style="color:#e6db74">&#34;returnUrl&#34;</span>];
+
+    <span style="color:#75715e">// ログインの検証
+</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> result = OAuthWebSecurity.VerifyAuthentication(  
+         Href(<span style="color:#e6db74">&#34;LogonCallBack&#34;</span>, <span style="color:#66d9ef">new</span> { ReturnUrl = returnUrl })
     );
 
-    if (result.IsSuccessful)
+    <span style="color:#66d9ef">if</span> (result.IsSuccessful)
     {
-        // ログインが成功すると、
-        // - provider: twitter
-        // - ProviderUserId: twitter の ID
-        // - UserName: twitter のスクリーンネーム
-        // の3つが得られる。自動補完が効かないので変数に入れとく
-        var provider = result.Provider;
-        var providerUserId = result.ProviderUserId;
-        var userName = result.UserName;
-        var accessToken = result.ExtraData[&quot;accesstoken&quot;];
-        var accessTokenSecret = result.ExtraData[&quot;accesssecret&quot;];
+        <span style="color:#75715e">// ログインが成功すると、
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// - provider: twitter
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// - ProviderUserId: twitter の ID
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// - UserName: twitter のスクリーンネーム
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// の3つが得られる。自動補完が効かないので変数に入れとく
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> provider = result.Provider;
+        <span style="color:#66d9ef">var</span> providerUserId = result.ProviderUserId;
+        <span style="color:#66d9ef">var</span> userName = result.UserName;
+        <span style="color:#66d9ef">var</span> accessToken = result.ExtraData[<span style="color:#e6db74">&#34;accesstoken&#34;</span>];
+        <span style="color:#66d9ef">var</span> accessTokenSecret = result.ExtraData[<span style="color:#e6db74">&#34;accesssecret&#34;</span>];
 
         &amp;lt;p&gt;@ObjectInfo.Print(result.ExtraData)&amp;lt;/p&gt;
 
-        // ユーザー名が Users テーブルに存在しない場合、
-        // あらかじめユーザー名を追加しておく。
-        // でないと CreateOrUpdateAccount() でコケる
-        using (var db = Database.Open(&quot;kenzou-memo&quot;))
+        <span style="color:#75715e">// ユーザー名が Users テーブルに存在しない場合、
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// あらかじめユーザー名を追加しておく。
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// でないと CreateOrUpdateAccount() でコケる
+</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> db = Database.Open(<span style="color:#e6db74">&#34;kenzou-memo&#34;</span>))
         {
-            const string SELECT = &quot;SELECT * FROM USERS WHERE Name=@0&quot;;
-            const string INSERT = &quot;INSERT INTO Users (Name, AccessToken, AccessTokenSecret) VALUES (@0, @1, @2)&quot;;
-            const string UPDATE = &quot;UPDATE Users SET AccessToken=@1, AccessTokenSecret=@2 WHERE Name=@0&quot;;
+            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> SELECT = <span style="color:#e6db74">&#34;SELECT * FROM USERS WHERE Name=@0&#34;</span>;
+            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> INSERT = <span style="color:#e6db74">&#34;INSERT INTO Users (Name, AccessToken, AccessTokenSecret) VALUES (@0, @1, @2)&#34;</span>;
+            <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> UPDATE = <span style="color:#e6db74">&#34;UPDATE Users SET AccessToken=@1, AccessTokenSecret=@2 WHERE Name=@0&#34;</span>;
 
-            if (db.QuerySingle(SELECT, userName) == null) // この処理を追加してみました
-            {
+            <span style="color:#66d9ef">if</span> (db.QuerySingle(SELECT, userName) == <span style="color:#66d9ef">null</span>) <span style="color:#75715e">// この処理を追加してみました
+</span><span style="color:#75715e"></span>            {
                 db.Execute(INSERT, userName, accessToken, accessTokenSecret);
             }
-            else
+            <span style="color:#66d9ef">else</span>
             {
                 db.Execute(UPDATE, userName, accessToken, accessTokenSecret);
             }
         }
 
-        // CreateOrUpdate とか言ってるけど、
-        // やってることは Users テーブルと内部管理テーブルの紐づけ
-        OAuthWebSecurity.CreateOrUpdateAccount(
+        <span style="color:#75715e">// CreateOrUpdate とか言ってるけど、
+</span><span style="color:#75715e"></span>        <span style="color:#75715e">// やってることは Users テーブルと内部管理テーブルの紐づけ
+</span><span style="color:#75715e"></span>        OAuthWebSecurity.CreateOrUpdateAccount(
             provider,
             providerUserId,
             userName);
 
-        // ログインチケットの発行
-        OAuthWebSecurity.Login(
+        <span style="color:#75715e">// ログインチケットの発行
+</span><span style="color:#75715e"></span>        OAuthWebSecurity.Login(
             provider,
             providerUserId,
-            createPersistentCookie: true);
+            createPersistentCookie: <span style="color:#66d9ef">true</span>);
 
         Response.Redirect(returnUrl);        
     }
-    else
+    <span style="color:#66d9ef">else</span>
     {
-        // ログインに失敗したときの処理
-    }
+        <span style="color:#75715e">// ログインに失敗したときの処理
+</span><span style="color:#75715e"></span>    }
 }
 
-```自分でプロバイダーを実装するのはそこはかとなくめんどくさいけれど、丸コピで動くのでまぁ、よし。プロバイダーをどうやって実装するのかも少し分かったし。練習として、ほかのサービスを実装してみるのもよいかもしれない。最近なんかだと GitHub なんかが需要ありそうだ。&lt;br/&gt;
-&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007236440428544');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007236440428544',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007236440428544&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007426748600320');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007426748600320',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007426748600320&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-376007600665415680');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('376007600665415680',el[i],{});        }    });&lt;/script&gt;&lt;div class=&quot;twitter-syntax-tweet-id-376007600665415680&quot;&gt;&lt;/div&gt;
+<span style="color:#960050;background-color:#1e0010">```自分でプロバイダーを実装するのはそこはかとなくめんどくさいけれど、丸コピで動くのでまぁ、よし。プロバイダーをどうやって実装するのかも少し分かったし。練習として、ほかのサービスを実装してみるのもよいかもしれない。最近なんかだと</span> GitHub <span style="color:#960050;background-color:#1e0010">なんかが需要ありそうだ。</span>&lt;br/
+
+&gt;
+&lt;script&gt;    window.twttr = (function(d, s, id) {        <span style="color:#66d9ef">var</span> js, fjs = d.getElementsByTagName(s)[<span style="color:#ae81ff">0</span>],            t = window.twttr || {};        <span style="color:#66d9ef">if</span> (d.getElementById(id)) <span style="color:#66d9ef">return</span> t;        js = d.createElement(s);        js.id = id;        js.src = <span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span>;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        <span style="color:#66d9ef">return</span> t;    }(document, <span style="color:#e6db74">&#34;script&#34;</span>, <span style="color:#e6db74">&#34;twitter-wjs&#34;</span>));&lt;/script&gt;
+
+&lt;script&gt;    twttr.ready(function (twttr) {        <span style="color:#66d9ef">var</span> el = document.getElementsByClassName(<span style="color:#960050;background-color:#1e0010">&#39;</span>twitter-syntax-tweet-id-<span style="color:#ae81ff">376007236440428544</span><span style="color:#960050;background-color:#1e0010">&#39;</span>);        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i=<span style="color:#ae81ff">0</span>;i&lt;el.length;i++) {            <span style="color:#66d9ef">if</span> (!!el[i].getAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>)){                <span style="color:#66d9ef">continue</span>;            }            el[i].setAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>);            twttr.widgets.createTweet(<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">376007236440428544</span><span style="color:#960050;background-color:#1e0010">&#39;</span>,el[i],{});        }    });&lt;/script&gt;
+
+&lt;div class=<span style="color:#e6db74">&#34;twitter-syntax-tweet-id-376007236440428544&#34;</span>&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        <span style="color:#66d9ef">var</span> js, fjs = d.getElementsByTagName(s)[<span style="color:#ae81ff">0</span>],            t = window.twttr || {};        <span style="color:#66d9ef">if</span> (d.getElementById(id)) <span style="color:#66d9ef">return</span> t;        js = d.createElement(s);        js.id = id;        js.src = <span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span>;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        <span style="color:#66d9ef">return</span> t;    }(document, <span style="color:#e6db74">&#34;script&#34;</span>, <span style="color:#e6db74">&#34;twitter-wjs&#34;</span>));&lt;/script&gt;
+
+&lt;script&gt;    twttr.ready(function (twttr) {        <span style="color:#66d9ef">var</span> el = document.getElementsByClassName(<span style="color:#960050;background-color:#1e0010">&#39;</span>twitter-syntax-tweet-id-<span style="color:#ae81ff">376007426748600320</span><span style="color:#960050;background-color:#1e0010">&#39;</span>);        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i=<span style="color:#ae81ff">0</span>;i&lt;el.length;i++) {            <span style="color:#66d9ef">if</span> (!!el[i].getAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>)){                <span style="color:#66d9ef">continue</span>;            }            el[i].setAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>);            twttr.widgets.createTweet(<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">376007426748600320</span><span style="color:#960050;background-color:#1e0010">&#39;</span>,el[i],{});        }    });&lt;/script&gt;
+
+&lt;div class=<span style="color:#e6db74">&#34;twitter-syntax-tweet-id-376007426748600320&#34;</span>&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        <span style="color:#66d9ef">var</span> js, fjs = d.getElementsByTagName(s)[<span style="color:#ae81ff">0</span>],            t = window.twttr || {};        <span style="color:#66d9ef">if</span> (d.getElementById(id)) <span style="color:#66d9ef">return</span> t;        js = d.createElement(s);        js.id = id;        js.src = <span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span>;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        <span style="color:#66d9ef">return</span> t;    }(document, <span style="color:#e6db74">&#34;script&#34;</span>, <span style="color:#e6db74">&#34;twitter-wjs&#34;</span>));&lt;/script&gt;
+
+&lt;script&gt;    twttr.ready(function (twttr) {        <span style="color:#66d9ef">var</span> el = document.getElementsByClassName(<span style="color:#960050;background-color:#1e0010">&#39;</span>twitter-syntax-tweet-id-<span style="color:#ae81ff">376007600665415680</span><span style="color:#960050;background-color:#1e0010">&#39;</span>);        <span style="color:#66d9ef">for</span> (<span style="color:#66d9ef">var</span> i=<span style="color:#ae81ff">0</span>;i&lt;el.length;i++) {            <span style="color:#66d9ef">if</span> (!!el[i].getAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>)){                <span style="color:#66d9ef">continue</span>;            }            el[i].setAttribute(<span style="color:#960050;background-color:#1e0010">&#39;</span>data-<span style="color:#66d9ef">is</span>-tweet-loaded<span style="color:#960050;background-color:#1e0010">&#39;</span>, <span style="color:#e6db74">&#39;1&#39;</span>);            twttr.widgets.createTweet(<span style="color:#960050;background-color:#1e0010">&#39;</span><span style="color:#ae81ff">376007600665415680</span><span style="color:#960050;background-color:#1e0010">&#39;</span>,el[i],{});        }    });&lt;/script&gt;
+
+&lt;div class=<span style="color:#e6db74">&#34;twitter-syntax-tweet-id-376007600665415680&#34;</span>&gt;&lt;/div&gt;
 
 
-</code></pre>
+</code></pre></div>
         </div>
         <div class="entry__footer">
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/12/015252/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/12/015252/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -258,7 +292,7 @@ protected override AuthenticationResult VerifyAuthenticationCore(AuthorizedToken
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/10/080230/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/10/080230/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

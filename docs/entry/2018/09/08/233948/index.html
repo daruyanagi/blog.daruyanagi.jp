@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2018/09/08/233948/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2018/09/08/233948/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,7 @@
         
 
         
-            <meta name="description" content="巷もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。
+            <meta name="description" content="もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。
 ### @inject HttpClient Http DI で注入するとクライアントで HttpClient が使えるようになるんだけど、なんで @using じゃないのかなー……たぶん「HttpClient をクライアントで使うぜー、アセンブリをローカルへダウンロードしてくれー」って言わなきゃいけないからだな。  ### HtmlString エンコード済みの文字列を扱いたかったのだけど、MvcString や HtmlString がなかった。代わりにMarkupStringというのがあるので、それを使うといいらしい。 ```cs @((MarkupString)myMarkup) @functions { string myMarkup = &ldquo;This is a markup string.
 &rdquo;; }
 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### Loading...... クライアントに ```cs @if (obj == null) { &amp;lt;p&gt;Loading...&amp;lt;/p&gt; } else { &amp;lt;p&gt;@obj.Hoge&amp;lt;/p&gt; } ```などと書くと&lt;code&gt;obj&lt;/code&gt;にオブジェクトが格納されるまで「Loading...」と表示されるんだけど、これがなぜかよくわからんかった。で、いろいろこねくり回して気が付いたんだけど、&lt;code&gt;protected override async Task OnInitAsync()&lt;/code&gt;で変数を初期化するとビューがリロードされるのかもしれない。変数を複数用意して&lt;code&gt;OnInitAsync()&lt;/code&gt;で初期化してみたけど、XHR のときみたいにロードが完了した変数から表示されていくのではなく、すべての読み込みが完了してからページが書き換えられた。そうだとしたら、とくに難しくはない。 &lt;/div&gt; &lt;div class=&quot;section&quot;&gt; ### ShiftJIS の扱い 今回は鉄道やフェリーの運行情報をスクレイピングするサイトを作っていたのだけど、1件だけ ShiftJIS なサイトがあった（ガッデム！）。ASP." />
@@ -49,7 +49,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -62,7 +62,7 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/blazor/">Blazor</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/blazor/">Blazor</a>
                                     </li>
                                 
                             
@@ -72,7 +72,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2018/09/08/233948/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2018/09/08/233948/" >
                     <h1 class="entry__header-title-link-text">9月8日：巷もすなる Blazor というものを、おっさんもかいてみんとてするなり</h1>
                 </a>
             </div>
@@ -84,10 +84,11 @@
 
         </div>
         <div class="entry__content">
-            <p><figure>
+            <figure>
     <img src="/images/20180908230602.png"/> 
 </figure>
-巷もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。<a href="https://blog.daruyanagi.jp/entry/2018/09/06/004356">9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐ</a>ちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。</p>
+
+<p>もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。<a href="https://blog.daruyanagi.jp/entry/2018/09/06/004356">9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐ</a>ちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。</p>
 <div class="section">
     ### @inject HttpClient Http
     DI で注入するとクライアントで HttpClient が使えるようになるんだけど、なんで @using じゃないのかなー……たぶん「HttpClient をクライアントで使うぜー、アセンブリをローカルへダウンロードしてくれー」って言わなきゃいけないからだな。
@@ -134,7 +135,11 @@ var text = await reader.ReadToEndAsync());
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
     ### nuget の構成が無効です。
-    &gt;nuget の構成が無効です。 pic.twitter.com/4yuTN4BAws— だるやなぎ准将 (@daruyanagi) September 8, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt; 一瞬焦ったけど、Visual Studio の再起動で治った。
+    
+
+&gt;nuget の構成が無効です。 pic.twitter.com/4yuTN4BAws— だるやなぎ准将 (@daruyanagi) September 8, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
+
+ 一瞬焦ったけど、Visual Studio の再起動で治った。
 
 &lt;/div&gt;
 &lt;div class=&quot;section&quot;&gt;
@@ -160,7 +165,7 @@ var text = await reader.ReadToEndAsync());
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/09/165125/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/09/165125/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -169,7 +174,7 @@ var text = await reader.ReadToEndAsync());
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2018/09/08/113213/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2018/09/08/113213/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

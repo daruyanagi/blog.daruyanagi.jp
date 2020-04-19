@@ -2,8 +2,8 @@
 <html lang="ja">
     <head>
         <meta charset="UTF-8">
-        <base href="https://daruyanagi.net/" />
-        <link rel="canonical" href="https://daruyanagi.net/entry/2013/09/29/122508/" />
+        <base href="https://blog.daruyanagi.jp/" />
+        <link rel="canonical" href="https://blog.daruyanagi.jp/entry/2013/09/29/122508/" />
 
         <meta name="viewport" content="width=device-width,initial-scale=1">
 
@@ -18,7 +18,9 @@
         
 
         
-            <meta name="description" content="ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。  #App_Code/Logger.cshtml @helper Write(string message) { System.IO.File.AppendAllText( Server.MapPath(&#34;~/log.txt&#34;), string.Format(&#34;{0}:\t{1}\r\n&#34;, DateTime.Now, message) ); } ```これを Default.cshtml でテストしてみた。  ```html @{ Logger.Write(&#34;冒頭のコードブロック内で記述&#34;); } &amp;lt;html lang=&#34;ja&#34;&gt; &amp;lt;head&gt; &amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt; &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @Logger.Write(&#34;Body 内で記述&#34;) &amp;lt;/body&gt; &amp;lt;/html&gt; ```結果はというと――  ――冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。 ```html @{ @Logger.Write(&#34;冒頭のコードブロック内で記述&#34;); } ```  Logger.Write() のまえに @ を足せば実行される。 ```html @{ @( Logger.Write(&#34;冒頭のコードブロック内で記述&#34;) ) } ```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。 " />
+            <meta name="description" content="ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。
+  #App_Code/Logger.cshtml @helper Write(string message) { System.IO.File.AppendAllText( Server.MapPath(&#34;~/log.txt&#34;), string.Format(&#34;{0}:\t{1}\r\n&#34;, DateTime.Now, message) ); } ```これを Default.cshtml でテストしてみた。   ```html @{ Logger.Write(&#34;冒頭のコードブロック内で記述&#34;); } &amp;lt;html lang=&#34;ja&#34;&gt; &amp;lt;head&gt; &amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt; &amp;lt;meta charset=&#34;utf-8&#34; /&gt; &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt; &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt; &amp;lt;/head&gt; &amp;lt;body&gt; @Logger.Write(&#34;Body 内で記述&#34;) &amp;lt;/body&gt; &amp;lt;/html&gt; ```結果はというと――   ―冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。 ```html @{ @Logger.Write(&#34;冒頭のコードブロック内で記述&#34;); }   ogger.Write() のまえに @ を足せば実行される。
+@{ @( Logger.Write(&#34;冒頭のコードブロック内で記述&#34;) ) } ```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。 " />
         
 
         
@@ -46,7 +48,7 @@
                 
                     <div class="entry__header-taxonomies-category">
                         <span class="entry__header-taxonomies-category-title">
-                            <a class="entry__header-taxonomies-category-title-link" href="https://daruyanagi.net/entry/">
+                            <a class="entry__header-taxonomies-category-title-link" href="https://blog.daruyanagi.jp/entry/">
                                 Entries
                             </a>
                         </span>
@@ -59,21 +61,21 @@
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/webmatrix/">WebMatrix</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/webmatrix/">WebMatrix</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net-web-pages/">ASP.net Web Pages</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net-web-pages/">ASP.net Web Pages</a>
                                     </li>
                                 
                             
                                 
                                 
                                     <li class="entry__header-taxonomies-tags-list-item">
-                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://daruyanagi.net/tags/asp.net/">ASP.net</a>
+                                        <a class="entry__header-taxonomies-tags-list-itelink" href="https://blog.daruyanagi.jp/tags/asp.net/">ASP.net</a>
                                     </li>
                                 
                             
@@ -83,7 +85,7 @@
             </div>
 
             <div class="entry__header-title">
-                <a class="entry__header-title-link" href="https://daruyanagi.net/entry/2013/09/29/122508/" >
+                <a class="entry__header-title-link" href="https://blog.daruyanagi.jp/entry/2013/09/29/122508/" >
                     <h1 class="entry__header-title-link-text">WebMatrix 3</h1>
                 </a>
             </div>
@@ -95,10 +97,11 @@
 
         </div>
         <div class="entry__content">
-            <p>ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。<figure>
+            <p>ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。</p>
+<figure>
     <img src="/images/20130929121802.png"/> 
 </figure>
-</p>
+
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span>App_Code/Logger.cshtml
 
 @helper Write(<span style="color:#66d9ef">string</span> message)
@@ -109,7 +112,9 @@
     );
 }
 
-<span style="color:#960050;background-color:#1e0010">```これを</span> Default.cshtml <span style="color:#960050;background-color:#1e0010">でテストしてみた。</span><figure>
+<span style="color:#960050;background-color:#1e0010">```これを</span> Default.cshtml <span style="color:#960050;background-color:#1e0010">でテストしてみた。</span>
+
+<figure>
     <img src="/images/20130929122015.png"/> 
 </figure>
 
@@ -132,27 +137,31 @@
     &amp;lt;/body&gt;
 &amp;lt;/html&gt;
 
-<span style="color:#960050;background-color:#1e0010">```結果はというと――</span><figure>
+<span style="color:#960050;background-color:#1e0010">```結果はというと――</span>
+
+<figure>
     <img src="/images/20130929122031.png"/> 
 </figure>
-<span style="color:#960050;background-color:#1e0010">――冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。</span>
+
+
+<span style="color:#960050;background-color:#1e0010">―冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。</span>
 <span style="color:#960050;background-color:#1e0010">```</span>html
 <span style="color:#960050;background-color:#1e0010">@</span>{
      @Logger.Write(<span style="color:#e6db74">&#34;冒頭のコードブロック内で記述&#34;</span>);
 }
 
-<span style="color:#960050;background-color:#1e0010">```</span><figure>
+</code></pre></div><figure>
     <img src="/images/20130929122557.png"/> 
 </figure>
-Logger.Write() <span style="color:#960050;background-color:#1e0010">のまえに</span> <span style="color:#960050;background-color:#1e0010">@</span> <span style="color:#960050;background-color:#1e0010">を足せば実行される。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-<span style="color:#960050;background-color:#1e0010">@</span>{
-     <span style="color:#960050;background-color:#1e0010">@</span>(
-         Logger.Write(<span style="color:#e6db74">&#34;冒頭のコードブロック内で記述&#34;</span>)
+
+<p>ogger.Write() のまえに @ を足せば実行される。</p>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">@{
+     @(
+         Logger.Write(&#34;冒頭のコードブロック内で記述&#34;)
      )
 }
 
-<span style="color:#960050;background-color:#1e0010">```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ</span> Razor <span style="color:#960050;background-color:#1e0010">がわかってないな。</span>
+```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。
 
 
 </code></pre></div>
@@ -161,7 +170,7 @@ Logger.Write() <span style="color:#960050;background-color:#1e0010">のまえに
             
             <div class="entry__footer-navigation">
                 <span class="entry__footer-prev">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/29/174957/">&laquo; 前の記事</a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/29/174957/">&laquo; 前の記事</a> 
                 </span>
                 <span class="entry__footer-lastmod">
                     
@@ -170,7 +179,7 @@ Logger.Write() <span style="color:#960050;background-color:#1e0010">のまえに
                     
                 </span>
                 <span class="entry__footer-next">
-                     <a class="entry__page-navigation-link" href="https://daruyanagi.net/entry/2013/09/28/152204/">次の記事 &raquo; </a> 
+                     <a class="entry__page-navigation-link" href="https://blog.daruyanagi.jp/entry/2013/09/28/152204/">次の記事 &raquo; </a> 
                 </span>
             </div>
         </div>

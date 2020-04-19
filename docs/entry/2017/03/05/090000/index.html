@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>PowerShell：メールが文字化けする</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2017/03/05
+        </time>        
+    </p>
+
     <p>PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。</p>
 <pre><code>&gt;
     NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。
@@ -115,6 +124,8 @@ $subject = $title | Encode-MailHeader | Encode-MailHeader
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1> パスに無効な文字が含まれています。</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2012/02/25
+        </time>        
+    </p>
+
     <div class="section">
     ### 状況
     コントローラーで View(model) を返す。model は string型 で、ローカルにあるテキストファイルを読み込んだ内容が格納されている。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120225/20120225161522.png" alt="f:id:daruyanagi:20120225161522p:plain" title="f:id:daruyanagi:20120225161522p:plain" class="hatena-fotolife"/>ビュー側でこれを @Html.Raw(Model) すると、「パスに無効な文字が含まれています。」というエラーが表示される。
@@ -94,6 +103,8 @@ return View(new HtmlString(content));
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1> ASP.net MVC 3 で Dropbox を利用する</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2012/02/25
+        </time>        
+    </p>
+
     <p>自家製の Wiki システムを ASP.net MVC 3 で作ってて、「リビジョン管理機能がほしいですなぁ」と思った。そこで試行錯誤したのだけど、だんだん面倒になってきた。そしたら思いついた。_「Dropbox に記事を保存すれば勝手にリビジョン管理してくれるんだから、そっちにバックアップ取ればいいじゃん」__「そもそも Dropbox をデータベースとして使えばよくね？」_というわけで、とりあえず Dropbox を使うところから始めてみた。</p>
 <div class="section">
     ### 準備
@@ -160,6 +169,8 @@ return View(model);
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

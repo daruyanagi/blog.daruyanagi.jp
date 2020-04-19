@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>ASP.NET Core MVC で RSS を出力する（適当版）</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2017/06/29
+        </time>        
+    </p>
+
     <p><a href="http://blog.daruyanagi.jp/entry/2017/06/27/021736">空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ</a>前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移植しました。でも、WebMatrix で作ったフィード配信機能が動作しない……。<a href="http://blog.daruyanagi.jp/entry/2013/04/17/065153">WebMatrix 3: RSS フィードを出力する - だるろぐ</a><a href="http://blog.daruyanagi.jp/entry/2013/04/18/031339">WebMatrix 3: RSS フィードを出力する（解決編） - だるろぐ</a>というわけで、こっちも簡易的な対策を行いました。ちょっと調べた限りでは、</p>
 <ul>
 <li>Response は使えない → Context.Response を代わりに使う</li>
@@ -127,6 +136,8 @@ public class FeedController : Controller
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

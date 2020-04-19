@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>PowerShall：VPN 接続をセットアップする</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2018/11/03
+        </time>        
+    </p>
+
     <p>OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。<a href="https://nasunoblog.blogspot.com/2016/03/howto-add-vpn-adaptor-using-powershell.html">PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記</a>必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、<code>AuthenticationMethod</code> に <code>Maximum</code> を指定。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
 
@@ -129,6 +138,8 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>WebMatrix 3</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2013/04/17
+        </time>        
+    </p>
+
     <p>とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（<a href="https://blog.daruyanagi.jp/entry/2012/02/02/225759">RSS 2.0 を実装する - だるろぐ</a>）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.IO
 @using System.Xml
@@ -113,6 +122,8 @@
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

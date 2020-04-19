@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2012/09/21
+        </time>        
+    </p>
+
     <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"/><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。<a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193" class="twitter-user-screen-name">xin9le</a></div></div>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<group> を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;</group><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"/>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">SampleDataSource
     List: SampleDataGroup (SampleDataCommon)
@@ -128,6 +137,8 @@ DataSource
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

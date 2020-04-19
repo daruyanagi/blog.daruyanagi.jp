@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>PowerShell：陸上自衛隊のイラク派遣日報をまとめてダウンロードする</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2018/04/17
+        </time>        
+    </p>
+
     <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$source = <span style="color:#e6db74">&#34;https://www.asahi.com/articles/ASL4J669JL4JUEHF016.html&#34;</span>
 $folder = <span style="color:#e6db74">&#34;C:\Users\Hideto\pdf&#34;</span>
 
@@ -97,6 +106,8 @@ $urls = $result.Links.href | Get-Unique |  where { $_ <span style="color:#f92672
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

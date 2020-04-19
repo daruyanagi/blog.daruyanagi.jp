@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>失敗の数だけ強くなりたい</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2012/07/24
+        </time>        
+    </p>
+
     <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120724/20120724200928.png" alt="f:id:daruyanagi:20120724200928p:plain" title="f:id:daruyanagi:20120724200928p:plain" class="hatena-fotolife"/>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている<a href="#f1" name="fn1" title="歳もとったし">*1</a>。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。<strong>MainWindow.xaml</strong></p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#f92672">&lt;grid&gt;&lt;/grid&gt;</span>
     Name=&#34;listBoxGists&#34;&gt;
@@ -197,6 +206,8 @@ public struct Gist
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

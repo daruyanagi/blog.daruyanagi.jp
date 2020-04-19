@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布する</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2016/08/30
+        </time>        
+    </p>
+
     <p>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。<iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2016%2F08%2F29%2F175526" title="Aoba 1.3.0：艦これの画面をビデオキャプチャーできるようにした / Screna っていうライブラリが超便利 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe>自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。<iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F13512029%2Fis-it-possible-to-offer-a-clickonce-installer-on-github" title="Is it possible to offer a ClickOnce installer on Github?" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さすがやでぇ。以下はそれを試してみたよっていう話。</p>
 <div class="section">
     #### 1. とりあえずローカルに発行してコミットする
@@ -112,6 +121,8 @@
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

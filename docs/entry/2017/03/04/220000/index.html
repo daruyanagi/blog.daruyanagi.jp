@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>PowerShell：ストアアプリのセール情報を取得する</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2017/03/04
+        </time>        
+    </p>
+
     <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># スクリプトと同じパスにある StoreApps.txt から URL を読み込む</span>
 $path = $PSScriptRoot | Join-Path -ChildPath <span style="color:#e6db74">&#34;StoreApps.txt&#34;</span>
 $urls = (Get-Content $path) <span style="color:#f92672">-as</span> <span style="color:#66d9ef">[string[]]</span>
@@ -205,6 +214,8 @@ $url`:embed（はてな記法
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

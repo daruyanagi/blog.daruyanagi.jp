@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>WebMatrix で URL 書き換え</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2011/11/10
+        </time>        
+    </p>
+
     <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-12.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-12-500x379.png" alt="" title="sshot-12" width="500" height="379" class="alignnone size-medium wp-image-420"/></a>前回 <a href="#f1" name="fn1" title="WebMatrix + Markdown で手軽に更新できる（？）Webサイトを作る - blog.daruyanagi.net"><em>1</a> の宿題。 WebMatrix で URL Rewrite をやりたいなぁーと言ってそのまま言いっ放しだったのでやってみた。とはいえ、WebMatrix は APS.NET 技術をベースにしているので、そのやり方がそのまま使える。まぁ、わしは ASP.NET とかあまりわからないので、Google さまに聞きながら書いたのだけど。ともかく、<strong><a href="http://sample.com/Pages/Hoge"><a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a></a> (<a href="http://sample.com/Pages.cshtml/Hoge"><a href="http://sample.com/Pages.cshtml/Hoge">http://sample.com/Pages.cshtml/Hoge</a></a>)</strong> を __<a href="http://sample.com/Hoge"><a href="http://sample.com/Hoge">http://sample.com/Hoge</a></a>__に飛ばしたい場合は、Web.comfig <a href="#f2" name="fn2" title="Apacheで言えは .htaccess"></em>2</a> へ以下のように記述するだけでよい。</p>
 <pre><code>	&amp;lt;?xml version=&quot;1.0&quot;?&gt;
 	&amp;lt;configuration&gt;
@@ -89,6 +98,8 @@
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

@@ -60,6 +60,15 @@
 
         <main>
 <article>
+    <h1>オブジェクトを XML でシリアライズ</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            2012/09/23
+        </time>        
+    </p>
+
     <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120923/20120923232820.png" alt="f:id:daruyanagi:20120923232820p:plain" title="f:id:daruyanagi:20120923232820p:plain" class="hatena-fotolife"/>WinRT のファイル操作はまだ慣れていないので、いちいち MSDN を徘徊しなくちゃいけないのでつらい。でも、ちょっとずつ覚えていかなければ。たとえば、.NET の XmlSerializer を使うときは Stream が必要なんだけれど、これは .NET のクラス。WinRT とどうやってつなげればいいんだろう……</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">void</span> Save(<span style="color:#66d9ef">object</span> o, <span style="color:#66d9ef">string</span> filename)
 {
@@ -110,6 +119,8 @@ dialog.Commands.Add(<span style="color:#66d9ef">new</span> UICommand(<span style
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

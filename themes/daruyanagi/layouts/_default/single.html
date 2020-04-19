@@ -1,10 +1,21 @@
 {{ define "main" }}
 <article>
+    <h1>{{.Title}}</h1>
+    
+    <p class="published">
+        <time>
+            公開日：
+            {{.Date.Format "2006/01/02"}}
+        </time>        
+    </p>
+
     {{ .Content }}
 </article>
 
 <section>
     <style>
+        article p.published { text-align: right; }
+
         .spacer { margin: auto 1em;}
     </style>
 

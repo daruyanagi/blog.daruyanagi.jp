@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html><link rel="icon" href="https://via.placeholder.com/70x70">
+<link rel="stylesheet" href="https://andybrewer.github.io/mvp/mvp.css">
+
+<meta charset="utf-8">
+<meta name="description" content="My description">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Searches - だるろぐ - だるやなぎのブログ</title>
+
+<style>
+    nav {
+        margin-bottom: 0;
+    }
+
+    body {
+        font-family: "UD デジタル 教科書体 NP-R", Arial, Helvetica, sans-serif;
+    }
+
+    table {
+        margin: 2em auto;
+        border: none;
+    }
+
+    th, td, tr {
+        text-align: right !important;
+        padding: 1rem !important;
+    }
+
+    td {
+        border-bottom: 1px solid gray;
+    }
+</style>
+
+
+    
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<body>
+        <header><nav>
+    <a href="/"><img alt="Logo" src="/logo.png" height="70"></a>
+    
+</nav>
+
+<h1>だるろぐ - だるやなぎのブログ</h1>
+
+<p></p>
+
+
+
+<hr></header>
+
+        <main>
+
+<script src="data.js"></script>
+
+
+<form method="get" onsubmit="search()" >
+  <p>検索キーワードを入力してください（複数のキーワードにはまだ対応していません）</p>
+  <input id="q" name="q" type="text" autocomplete="off" autofocus placeholder="検索ワード" />
+  <input type="submit" value="Search" />
+</form>
+
+<article>
+  <h1>Searches</h1>
+  <p id="inputWord"></span> <span id="resultCount"></p>
+  <div id="result"></div>
+</article>
+
+<style>
+  input { display: inline-block;}
+  b { color: red; }
+</style>
+
+<script>
+
+var query = getParameterByName("q");
+document.getElementById("q").value = query;
+
+var result = searchData(query);
+var html = createHtml(result);
+showResult(html);
+showResultCount(result.length, data.length);
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function searchData(query) {
+  
+  
+  var result = [];
+
+  query = query.trim();
+  if (query.length < 1) {
+    return result;
+  }
+  var re = new RegExp(query, 'i');
+  for (var i = 0; i < data.length; ++i) {
+    var pos = data[i].body.search(re);
+    if (pos != -1) {
+      result.push([i, pos, pos + query.length]);
+    }
+  }
+  return result;
+}
+
+function createHtml(result) {
+  var htmls = [];
+  for (var i = 0; i < result.length; ++i) {
+    var dataIndex = result[i][0];
+    var startPos = result[i][1];
+    var endPos = result[i][2];
+    var url = data[dataIndex].url;
+    var title = "#" + data[dataIndex].title;
+    var body = data[dataIndex].body;
+    htmls.push(createEntry(url, title, body, startPos, endPos));
+  }
+  return "<ol>" + htmls.join('') + "</ol>";
+}
+
+function createEntry(url, title, body, startPos, endPos) {
+  return '' +
+    '<li class="item">' +
+    '<h2><a class="item_title" href="' + url + '">' + title + '</a></h2>' +
+    '<p class="item_excerpt">' + excerpt(body, startPos, endPos) + '</p>' +
+    '</li>';
+}
+
+function excerpt(body, startPos, endPos) {
+  return [
+    body.substring(startPos - 30, startPos),
+    '<b>', body.substring(startPos, endPos), '</b>',
+    body.substring(endPos, endPos + 200)
+  ].join('');
+}
+
+function showResult(html) {
+  var el = document.getElementById('result');
+  el.innerHTML = html;
+}
+
+function showResultCount(count, total) {
+  var el = document.getElementById('resultCount');
+  el.innerHTML = '<b>' + count + '</b> 件見つかりました（' + total + '件中）';
+}
+</script>
+
+
+        </main>
+        
+        <footer><hr>
+<p>
+    <a href="/about">daruyanagi</a> &copy; 2007-2020
+</p></footer>
+    </body>
+</html>

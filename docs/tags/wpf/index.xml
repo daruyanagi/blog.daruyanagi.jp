@@ -18,8 +18,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/08/26/224927/</guid>
       <description>  てなブログ1ってクリップボードから張り付けて画像をアップロードできるけど、ファイルサイズに制限があるじゃないですか2。いちいち縮小するのが面倒だったので、クリップボードに格納された画像のサイズが大きい場合は勝手に縮小するアプリを作りました。縮小したくないときは［Shift］キーを押すと、一時的に機能を止めることができます。あと、ついでなのでデスクトップへ保存する機能も付けました。たとえば［PrintScreen］キーを押すとスクリーンショットが自動でデスクトップに保存されます。そう、Mac みたいにね。デスクトップをキャプチャーするとき、あの機能って邪魔だと思うんだけど、確かに便利なことも多いので……もちろん、設定画面で無効化できます。
-  WPF なので TransformedBitmap で縮小をしていたんですけど、Winsnap というスクショツールで取得した画像をコピーするとなぜか全体が黒くなってしまう？　調べたけどよくわからなかったので、System.Drawing.Bitmap に変換して縮小しました。一通り動くまでは一瞬だったけど、この原因調査に半日消えちゃったよ！ちなみに、名前は「クリップボード、クリップボード、クリッ……そういえばそろそろクリの季節だなー、甘栗食べたいなー」と思ってつけました。
-*1:フォトライフ？ *2:エラーメッセージをちゃんと出してくれないから気づかないけど  </description>
+ WPF なので TransformedBitmap で縮小をしていたんですけど、Winsnap というスクショツールで取得した画像をコピーするとなぜか全体が黒くなってしまう？　調べたけどよくわからなかったので、System.Drawing.Bitmap に変換して縮小しました。一通り動くまでは一瞬だったけど、この原因調査に半日消えちゃったよ！ちなみに、名前は「クリップボード、クリップボード、クリッ……そういえばそろそろクリの季節だなー、甘栗食べたいなー」と思ってつけました。
+*1:フォトライフ？*2:エラーメッセージをちゃんと出してくれないから気づかないけど</description>
     </item>
     
     <item>
@@ -29,8 +29,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/19/195837/</guid>
       <description>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
- デバッグビルドとリリースビルドの共存（開発の都合） 通知アイコンの改善 （タイマーの通算稼働時間のカウント） Updated を Pending に変えるまでの時間をグローバル設定から読み込むように ステータス色分けの改善 内部で保持している UTC を Local Time にちゃんと直して表示 コードの整理 **静的スクレイピング機能の追加** **プレビューの文字化けを修正** **更新ログウィンドウの追加** スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）     ### 静的スクレイピング機能の追加   hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
- ### プレビューの文字化けを修正 WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死 ```cs public class WebBrowserExtension { public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached( &#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged)); public static string GetHtml(DependencyObject obj) { return (string)obj.</description>
+デバッグビルドとリリースビルドの共存（開発の都合）通知アイコンの改善（タイマーの通算稼働時間のカウント）Updated を Pending に変えるまでの時間をグローバル設定から読み込むようにステータス色分けの改善内部で保持している UTC を Local Time にちゃんと直して表示コードの整理**静的スクレイピング機能の追加****プレビューの文字化けを修正****更新ログウィンドウの追加**スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？） ### 静的スクレイピング機能の追加  hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
+### プレビューの文字化けを修正WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死```cspublic class WebBrowserExtension{public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(&#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged));public static string GetHtml(DependencyObject obj){return (string)obj.</description>
     </item>
     
     <item>
@@ -42,8 +42,8 @@
       <description>  の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） - だるろぐ動かなかったので（そりゃそうか？）、WPF アプリケーションにしました。
   ーゲットとなる URI を登録すると、定期的にスクレイピングしてくれます。CSS セレクターが使えるので、ページの一部分だけ保存することが可能です*1。あと、シングルページアプリケーションのために、動的サイトをスクレイピングする機能を追加しました。
   ーカルに保存したログは、Diff をとってみることができます*2。データフォルダーをオンラインストレージに指定しておくと（初回利用時に選択できます）、複数環境でデータを同期できて便利かもしれない。
-  コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。
-*1:全部を保存するときは“document”とか“body”とかしておけばいいと思う。そういえば試してないけど *2:文字化けする……右クリックメニューからエンコーディングを UTF-8 にすると治せます  </description>
+ コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。
+*1:全部を保存するときは“document”とか“body”とかしておけばいいと思う。そういえば試してないけど*2:文字化けする……右クリックメニューからエンコーディングを UTF-8 にすると治せます</description>
     </item>
     
     <item>
@@ -53,8 +53,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/15/235744/</guid>
       <description>  週は身内に不幸があったりちょっと情緒不安定だったので、手慰みに Windows 10 のスクリーンショット機能をジャンプリストから利用できるようにするツールを作ってみました。「ネイティブ機能を利用する」という手抜きシンプルさがウリです。
-  ツールの名前は、大阪へ向かうフェリーのレストランで「撮る……撮る……」と名前を考えながら晩飯を選んでいたら、いつの間にかお盆の上に焼き鳥があったという故事から採っています。
-### なぜ作ったのか [ツールなしで“矩形キャプチャー”が可能！「Creators Update」に新搭載されたスクリーンショット機能が便利【やじうまの杜】](http://forest.watch.impress.co.jp/docs/serial/yajiuma/1061300.html)Windows 10 Creators Update 以降では OS ネイティブのスクリーンショット機能が拡充されていますが、  キーボードショートカットを覚えるのが面倒 クリップボードへコピーされた画像をファイル化するのが面倒 スクリーンショットフォルダーがどこにあるのか分からん＆開くのが面倒 なのではないかと思い作ってみました。あと、常駐しないのもよいところかな。逆にジャンプリストの利用が前提になっているのはマイナスかもね。なお、作った本人は「WinSnap」という有償ツールを愛用しているので、この手のツールは要らない模様（ぉ  ### 使い方  とりあえず実行する 設定ダイアログが表示されるのでタスクバーにピン留め 次回からはジャンプリストから Windows 10 ネイティブのスクリーンショット機能を呼び出せます   ### 機能  Windows 10 ネイティブのスクリーンショット機能を呼び出します  アクティブウィンドウをクリップボードへコピー デスクトップ全体をクリップボードへコピー デスクトップ全体をスクリーンショットフォルダーへ保存（Windows 8以降？が必要） デスクトップを矩形選択してクリップボードへコピー（Windows 10 Creators Update 以降が必要）  クリップボードに格納されている画像をスクリーンショットフォルダーへ保存 スクリーンショットフォルダーを開く カウントダウン実行 常駐しません スペシャルサンクス：オレンジフェリーの無料 Wi-Fi  ### 蛇足：メッセージポンプ このアプリは Tonjiru と似たような方法で起動オプションを実装＆ジャンプリストから呼べるように作ってありますが、App クラスを生成せずにカウントダウンを行おうとするとうまくいきませんでした。DispatchTimer ってメッセージポンプがないとダメなのかな（よくわかってない）。ShowDialog() でもいけるやろ、と思ったのですがそっちもダメだったので、おとなしく App.Run() しています。ここを削ればもう少し高速化できるんじゃないかなーと思うのですが、まぁ、そこまでやらんでもいいかな。  </description>
+ ツールの名前は、大阪へ向かうフェリーのレストランで「撮る……撮る……」と名前を考えながら晩飯を選んでいたら、いつの間にかお盆の上に焼き鳥があったという故事から採っています。
+### なぜ作ったのか[ツールなしで“矩形キャプチャー”が可能！「Creators Update」に新搭載されたスクリーンショット機能が便利【やじうまの杜】](http://forest.watch.impress.co.jp/docs/serial/yajiuma/1061300.html)Windows 10 Creators Update 以降では OS ネイティブのスクリーンショット機能が拡充されていますが、キーボードショートカットを覚えるのが面倒クリップボードへコピーされた画像をファイル化するのが面倒スクリーンショットフォルダーがどこにあるのか分からん＆開くのが面倒なのではないかと思い作ってみました。あと、常駐しないのもよいところかな。逆にジャンプリストの利用が前提になっているのはマイナスかもね。なお、作った本人は「WinSnap」という有償ツールを愛用しているので、この手のツールは要らない模様（ぉ### 使い方とりあえず実行する設定ダイアログが表示されるのでタスクバーにピン留め次回からはジャンプリストから Windows 10 ネイティブのスクリーンショット機能を呼び出せます### 機能Windows 10 ネイティブのスクリーンショット機能を呼び出しますアクティブウィンドウをクリップボードへコピーデスクトップ全体をクリップボードへコピーデスクトップ全体をスクリーンショットフォルダーへ保存（Windows 8以降？が必要）デスクトップを矩形選択してクリップボードへコピー（Windows 10 Creators Update 以降が必要）クリップボードに格納されている画像をスクリーンショットフォルダーへ保存スクリーンショットフォルダーを開くカウントダウン実行常駐しませんスペシャルサンクス：オレンジフェリーの無料 Wi-Fi### 蛇足：メッセージポンプこのアプリは Tonjiru と似たような方法で起動オプションを実装＆ジャンプリストから呼べるように作ってありますが、App クラスを生成せずにカウントダウンを行おうとするとうまくいきませんでした。DispatchTimer ってメッセージポンプがないとダメなのかな（よくわかってない）。ShowDialog() でもいけるやろ、と思ったのですがそっちもダメだったので、おとなしく App.Run() しています。ここを削ればもう少し高速化できるんじゃないかなーと思うのですが、まぁ、そこまでやらんでもいいかな。</description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/08/195054/</guid>
       <description>br/&amp;gt;
- 起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式） ウィンドウ情報のファイル保存（JSON 形式） 通知機能 安定性の向上     ### WPF と起動オプション 起動時に［Shift］キーが押されていたら GUI を起動するという挙動は  App.xaml の StartupUri を削除 App.Startup でキーの押し下げ確認と MainWindow の自前生成 という感じで実現していたんだけど、起動オプションを付けたら破綻したので、  App.xaml の StartupUri を元に戻す App.xaml のビルドアクションを Page にして、main 関数を自分で書く という感じに変えた。 ```cs [System.STAThreadAttribute()] public static void Main() { var args = Environment.GetCommandLineArgs(); if (args.Contains(&amp;quot;/g&amp;quot;) || (Control.ModifierKeys &amp;amp;amp; Keys.Shift) == Keys.Shift) { var app = new Tonjiru.</description>
+起動オプションの追加（/g で GUI 付きの起動）ジャンプリストへの対応（GUI 付きの起動を追加）ウィンドウ情報のクリップボードコピー（JSON 形式）ウィンドウ情報のファイル保存（JSON 形式）通知機能安定性の向上 ### WPF と起動オプション起動時に［Shift］キーが押されていたら GUI を起動するという挙動はApp.xaml の StartupUri を削除App.Startup でキーの押し下げ確認と MainWindow の自前生成という感じで実現していたんだけど、起動オプションを付けたら破綻したので、App.xaml の StartupUri を元に戻すApp.xaml のビルドアクションを Page にして、main 関数を自分で書くという感じに変えた。```cs[System.STAThreadAttribute()]public static void Main(){var args = Environment.GetCommandLineArgs();if (args.Contains(&amp;quot;/g&amp;quot;) || (Control.ModifierKeys &amp;amp;amp; Keys.Shift) == Keys.Shift){var app = new Tonjiru.</description>
     </item>
     
     <item>
@@ -75,7 +75,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2017/06/06/220256/</guid>
       <description>いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。
   応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。
-### 与太話その一：ストアアプリへの対応 EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。 ```cs private static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam) { var builder = new StringBuilder(256); GetClassName(handle, builder, builder.Capacity); // ストアアプリのためのハック -&amp;gt; &amp;quot;Windows.UI.Core.CoreWindow&amp;quot; を探す if (builder.ToString() == &amp;quot;Windows.UI.Core.CoreWindow&amp;quot;) { int process_id; GetWindowThreadProcessId(handle, out processId); process = Process.GetProcessById(process_id); // プロセス情報を保管 if (process != null) return false; // Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう } return true;  }</description>
+### 与太話その一：ストアアプリへの対応EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。```csprivate static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam){var builder = new StringBuilder(256);GetClassName(handle, builder, builder.Capacity);// ストアアプリのためのハック -&amp;gt; &amp;quot;Windows.UI.Core.CoreWindow&amp;quot; を探すif (builder.ToString() == &amp;quot;Windows.UI.Core.CoreWindow&amp;quot;){int process_id;GetWindowThreadProcessId(handle, out processId);process = Process.GetProcessById(process_id); // プロセス情報を保管if (process != null) return false;// Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう}return true; }</description>
     </item>
     
     <item>
@@ -85,8 +85,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/03/202159/</guid>
       <description>  りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。
- ダウンロード GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。   UI クライアントをいくつか比較してみたけど、CloudBerry Explorer というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。
-### 更新点  Twitter 投稿画面の改善 Gif キャプチャー機能 設定の保存 コードのリファクタリング Twitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、  スクショをリスト List&amp;lt;string でもっておく ViewModel で int SelectedIndex をもつ Image に List[SelectedIndex] をバインド ボタンに SelectedIndex を ++/-- するコマンドをバインドしていい感じに配置 するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。  </description>
+ダウンロードGitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。  UI クライアントをいくつか比較してみたけど、CloudBerry Explorer というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。
+### 更新点Twitter 投稿画面の改善Gif キャプチャー機能設定の保存コードのリファクタリングTwitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、スクショをリスト List&amp;lt;string でもっておくViewModel で int SelectedIndex をもつImage に List[SelectedIndex] をバインドボタンに SelectedIndex を ++/-- するコマンドをバインドしていい感じに配置するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。</description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/01/204619/</guid>
       <description>  じさんでも簡単に Twitter を組み込めると人気の CoreTweet で投稿機能を組み込んだよ。メッセージの文字数制限チェックが甘いとか、細部でダメなところも多いけど、気を付けていれば問題ない（ぁCoreTweet については酢酸先生のまとめを参考にするとよいかも。必要なことはすべて酢酸先生（たち）が教えてくれた。あと、Tokens.Create() で作成したトークンがログイン可能なのかを調べる手段がわからなかったのだけど、以下のサイトが参考になった。Tokens.Create() はいろいろ組み立てるだけ。検証は Account.VerifyCredentials() を使う、と（頭にメモメモほかには
- Properties.Default.Settings を書き込んだら Save() しなきゃ保存されない。すっかり忘れてて悩んだ Twitter から取得したトークンを Properties.Default.Settings に書き込んだら設定ファイルを .gitignore しとかないと GitHub で全裸公開しちゃうことになる（キーをリセットしたよ ViewModel からウィンドウを閉じる方法はいろいろあるが、ボタンに CommandParameter={Binding Window1} して Command 側で (Window1 as Window).Close() するのが一番簡単っぽい というあたりが今回の気付き。マイナーバージョンがインクリメントされているのは、GitHub に置いたファイルを ClickOnce で配布できないかを試したから。結論的には、「自動更新機能は使えないかもだけど、インストーラーで配布することはできる。毎回 ZIP を作るのよりはマシだし、使う側も便利かな」って感じ。自動更新機能は次回からは削除する。ちなみに、今回からは ZIP での配布はない。ほしいかな？　この前のプロ生＋わんくま大阪で PowerShell を少し学んだので、パッケージするスクリプトでも書いてみるか。アプリのダウンロードは【こちら】から。 ### 主な変更点  Twitter投稿機能を付けた ClickOnce での配布 ちょっとコードを整理した（今度真面目にやる） タブレットモードで利用したときのちょっとした不具合を修正 GIF キャプチャー機能をつけたら、だいたいやりたいことは終わりだな。  </description>
+Properties.Default.Settings を書き込んだら Save() しなきゃ保存されない。すっかり忘れてて悩んだTwitter から取得したトークンを Properties.Default.Settings に書き込んだら設定ファイルを .gitignore しとかないと GitHub で全裸公開しちゃうことになる（キーをリセットしたよViewModel からウィンドウを閉じる方法はいろいろあるが、ボタンに CommandParameter={Binding Window1} して Command 側で (Window1 as Window).Close() するのが一番簡単っぽいというあたりが今回の気付き。マイナーバージョンがインクリメントされているのは、GitHub に置いたファイルを ClickOnce で配布できないかを試したから。結論的には、「自動更新機能は使えないかもだけど、インストーラーで配布することはできる。毎回 ZIP を作るのよりはマシだし、使う側も便利かな」って感じ。自動更新機能は次回からは削除する。ちなみに、今回からは ZIP での配布はない。ほしいかな？　この前のプロ生＋わんくま大阪で PowerShell を少し学んだので、パッケージするスクリプトでも書いてみるか。アプリのダウンロードは【こちら】から。### 主な変更点Twitter投稿機能を付けたClickOnce での配布ちょっとコードを整理した（今度真面目にやる）タブレットモードで利用したときのちょっとした不具合を修正GIF キャプチャー機能をつけたら、だいたいやりたいことは終わりだな。</description>
     </item>
     
     <item>
@@ -106,8 +106,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2016/08/30/051929/</guid>
       <description>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
-#### 1. とりあえずローカルに発行してコミットする まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。 ``` # Click-Once directory # publish/ ```ついでに .gitattributes も編集しておく。 ``` *.manifest binary *.application binary *.deploy binary ```これをコミットして GitHub にプッシュしておく。  #### 2. ClickOnce のインストール フォルダーの URL を変更 GitHub に publish フォルダーがちゃんとアップロードされているのを確認。   こからセットアップファイルの Raw URL を取得しておく。今回は
- https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。   ほど取得した Raw URL を cdn.</description>
+#### 1. とりあえずローカルに発行してコミットするまず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。```# Click-Once directory# publish/```ついでに .gitattributes も編集しておく。```*.manifest binary*.application binary*.deploy binary```これをコミットして GitHub にプッシュしておく。#### 2. ClickOnce のインストール フォルダーの URL を変更GitHub に publish フォルダーがちゃんとアップロードされているのを確認。  こからセットアップファイルの Raw URL を取得しておく。今回は
+https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=trueだった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。  ほど取得した Raw URL を cdn.</description>
     </item>
     
     <item>
@@ -118,7 +118,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2016/08/29/175526/</guid>
       <description>これの画面を音声付きで動画キャプチャーできるようにしたよ。それに伴い、UI をいろいろ変更。
   画は My Video\Aoba に保存される。もちろん、ボタン一発で開けるようにしてある。フレームレートは弄れるけど、今のところフォーマットは AVI（MotionJPEG）で固定。 設定画面作るのめんどいからね、しょうがないね。
-#### スクリーンキャプチャー用のライブラリ Screna 今回は Screna というライブラリのお世話になった。NuGet で簡単にインストールできる点、動画キャプチャーをサポートしている点などがいい感じ。C# でキャプチャーする方法はいろいろ紹介されてるけど、現時点ではこれが割とモダンだと思った。FFmpeg で MP4 圧縮もできるみたいだけど、今回はそこまでは試していない。基本的な使い方はこんな感じ（公式のサンプルそのまま）。まず AVI サポートのために Screna.SharpAvi を NuGet でインストール。 ``` Install-Package Screna.SharpAvi ```次にネームスペースを追加。 ```cs using Screna; using Screna.Avi; ```cs // どの画像をとってくるかを決める IImageProvider を初期化 var provider = new ScreenProvider(); // デスクトップ全体をキャプチャー // 動画を書き込む AviWriter を初期化 var VideoWriter = new AviWriter(&amp;quot;output.avi&amp;quot;, AviCodec.MotionJpeg); // レコーダーを作って録画開始 var Recorder = new Recorder(VideoWriter, provider, 10); Recorder.Start(); // なにかの処理 Recorder.</description>
+#### スクリーンキャプチャー用のライブラリ Screna今回は Screna というライブラリのお世話になった。NuGet で簡単にインストールできる点、動画キャプチャーをサポートしている点などがいい感じ。C# でキャプチャーする方法はいろいろ紹介されてるけど、現時点ではこれが割とモダンだと思った。FFmpeg で MP4 圧縮もできるみたいだけど、今回はそこまでは試していない。基本的な使い方はこんな感じ（公式のサンプルそのまま）。まず AVI サポートのために Screna.SharpAvi を NuGet でインストール。```Install-Package Screna.SharpAvi```次にネームスペースを追加。```csusing Screna;using Screna.Avi;```cs// どの画像をとってくるかを決める IImageProvider を初期化var provider = new ScreenProvider(); // デスクトップ全体をキャプチャー// 動画を書き込む AviWriter を初期化var VideoWriter = new AviWriter(&amp;quot;output.avi&amp;quot;, AviCodec.MotionJpeg);// レコーダーを作って録画開始var Recorder = new Recorder(VideoWriter, provider, 10);Recorder.Start();// なにかの処理Recorder.</description>
     </item>
     
     <item>
@@ -130,9 +130,9 @@
       <description>  射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。
   ューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz
   知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。
-#### Git の使い方わからん GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。   したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……
+#### Git の使い方わからんGitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。  したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……
   んかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って*1、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。
-*1:今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？  </description>
+*1:今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？</description>
     </item>
     
     <item>
@@ -142,9 +142,9 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2016/08/28/155619/</guid>
       <description>  休み中にオンラインストレージの掃除やツールのアップデートをやっていたのだけど、愛用していた艦これのキャプチャーツールが動かなくなったので、WPF で自作した。一応自分ところでは動いているのだけど（Windows 10 version 1607＋Visual Studio 2015 Update 3で動作確認）、参照の不足なんかで動かないことがあるかもしれない。使い方は
- 一番左の検知ボタンを押してゲーム画面の範囲を検出する 検出に成功すると、キャプチャーボタンが有効化される キャプチャーボタンを押す だけ。キャプチャーが成功すると、トーストが出る（なので、Windows 8 以降じゃないと動かないと思う）。   ーストをクリックすると、キャプチャーした画像にアクセスできる。
+一番左の検知ボタンを押してゲーム画面の範囲を検出する検出に成功すると、キャプチャーボタンが有効化されるキャプチャーボタンを押すだけ。キャプチャーが成功すると、トーストが出る（なので、Windows 8 以降じゃないと動かないと思う）。  ーストをクリックすると、キャプチャーした画像にアクセスできる。
   応、頑張った点としては
- マルチモニター対応（自分が Surface 3 or サブディスプレイで遊んでるので スケーリングとか拡大表示にも対応してるかも（大きさは決め打ちにしていない  ゲーム画面の左上ピクセルかなーって感じのピクセルを探して、そこからある程度デカい矩形を検出 そんな感じで割と適当なのと、ちょっと処理が遅いかなって感じなので、気が向いたら改善するかも  みたいな感じ。簡易なロジック自体は割と簡単にできたけど、UI を整えたりなんだかんだで（WPF でトーストのだしかたわかんねぇ……ぐちゃぐちゃ参照を追加したけど、ここでちょっと間違ってる気がする）、半日ぐらいかかった（  #### 追伸 Visual Studio の GitHub 拡張を使ってみたけど、やっぱり自分には GitHub アプリの方が使いやすいかな……。  #### 追記 タブレットモードでも最前面表示されるように改修。  WindowStyle を ToolWindow にする ShowTaskbar を false にする でいけるっぽい。  </description>
+マルチモニター対応（自分が Surface 3 or サブディスプレイで遊んでるのでスケーリングとか拡大表示にも対応してるかも（大きさは決め打ちにしていないゲーム画面の左上ピクセルかなーって感じのピクセルを探して、そこからある程度デカい矩形を検出そんな感じで割と適当なのと、ちょっと処理が遅いかなって感じなので、気が向いたら改善するかもみたいな感じ。簡易なロジック自体は割と簡単にできたけど、UI を整えたりなんだかんだで（WPF でトーストのだしかたわかんねぇ……ぐちゃぐちゃ参照を追加したけど、ここでちょっと間違ってる気がする）、半日ぐらいかかった（#### 追伸Visual Studio の GitHub 拡張を使ってみたけど、やっぱり自分には GitHub アプリの方が使いやすいかな……。#### 追記タブレットモードでも最前面表示されるように改修。WindowStyle を ToolWindow にするShowTaskbar を false にするでいけるっぽい。</description>
     </item>
     
     <item>
@@ -154,8 +154,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/10/24/025219/</guid>
       <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
-### VirusTotal とは 指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。  Public API version 2.0 - VirusTotal これを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。  ### 準備   ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
- ### VirusToral にファイルのスキャンをお願いする VirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。 ``` https://www.virustotal.com/vtapi/v2/file/scan ```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。 ```cs public async Task&amp;lt;dynamic RequestFileScan(string filename) { using (var http = new HttpClient()) { var uri = &#34;</description>
+### VirusTotal とは指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。Public API version 2.0 - VirusTotalこれを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。### 準備  ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
+### VirusToral にファイルのスキャンをお願いするVirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。```https://www.virustotal.com/vtapi/v2/file/scan```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。```cspublic async Task&amp;lt;dynamic RequestFileScan(string filename){using (var http = new HttpClient()){var uri = &#34;</description>
     </item>
     
     <item>
@@ -166,7 +166,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2013/05/02/021238/</guid>
       <description>  キストボックスに TeX 記法で数式を入力すると、それを画像にしてくれます。数式画像はクリップボードへコピーしたり、ファイルとして保存可能。数式テキストを“はてな記法”でコピーすることもできます*1。“Google Chart API”を利用しているので、ネットワーク回線が必須。
   得な機能として、
-text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;); text = text.Replace(@&amp;#34;\lor&amp;#34;, @&amp;#34;\vee&amp;#34;); text = text.Replace(@&amp;#34;\lnot&amp;#34;, @&amp;#34;\neg&amp;#34;); ```という処理が入っています。“Google Chart API”や“はてな”では使えない“\land（論理和）”“\lor（論理積）”“\lnot（否定）”が使えます。 </description>
+text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;);text = text.Replace(@&amp;#34;\lor&amp;#34;, @&amp;#34;\vee&amp;#34;);text = text.Replace(@&amp;#34;\lnot&amp;#34;, @&amp;#34;\neg&amp;#34;);```という処理が入っています。“Google Chart API”や“はてな”では使えない“\land（論理和）”“\lor（論理積）”“\lnot（否定）”が使えます。</description>
     </item>
     
     <item>
@@ -176,8 +176,8 @@ text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;); text =
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/17/065707/</guid>
       <description>br/&amp;gt;
-&amp;gt; ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。 Google Chart を使った数式ツールを作ってみた（2） - だるろぐ  構文解析というか、対応する { と } をペアにして、その出現位置をメモる方向で考えてみた。括弧の種類が増えていけば破たんするけれど、とりあえず最初は動けばいいや。アルゴリズムは、
- テキストを先頭から一文字ずつ取り出して、 { だったら [i, ?] をリストに保存。（i は { の出現位置、? は } の位置を保存するプレースホルダ） } だったら最後の ? へ出現位置を保存。 これを文末まで繰り返す。 みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。たとえば、   0 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15   \ f r a c { \ f r a c { } { } }  だったら、   { の出現位置 （対応する）} の出現位置   5 15   11 12   13 14  こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、?</description>
+&amp;gt;ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。Google Chart を使った数式ツールを作ってみた（2） - だるろぐ 構文解析というか、対応する { と } をペアにして、その出現位置をメモる方向で考えてみた。括弧の種類が増えていけば破たんするけれど、とりあえず最初は動けばいいや。アルゴリズムは、
+テキストを先頭から一文字ずつ取り出して、{ だったら [i, ?] をリストに保存。（i は { の出現位置、? は } の位置を保存するプレースホルダ）} だったら最後の ? へ出現位置を保存。これを文末まで繰り返す。みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。たとえば、0123456789101112131415\frac{\frac{}{}}だったら、{ の出現位置（対応する）} の出現位置51511121314こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、?</description>
     </item>
     
     <item>
@@ -187,7 +187,7 @@ text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;); text =
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/15/210406/</guid>
       <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&amp;quot;&amp;gt;Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
- 数式テキストの新規作成・開く・保存 編集機能（切り取り・コピー・貼り付けなど） 数式イメージのファイル保存・クリップボードへコピー なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。 ```cs private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e) { if (e.Key == Key.Tab) { e.Handled = true; // 握りつぶす！  var text = FormulaText.Text; int start = FormulaText.SelectionStart; int end = -1; FormulaText.SelectionLength = 0; if ((Keyboard.Modifiers &amp;amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift) { start = text.IndexOf(&amp;amp;#39;{&amp;amp;#39;, start); if (start &amp;amp;lt; 0) return; FormulaText.SelectionStart = start + 1; end = text.</description>
+数式テキストの新規作成・開く・保存編集機能（切り取り・コピー・貼り付けなど）数式イメージのファイル保存・クリップボードへコピーなんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。```csprivate void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e){if (e.Key == Key.Tab){e.Handled = true; // 握りつぶす！ var text = FormulaText.Text;int start = FormulaText.SelectionStart;int end = -1;FormulaText.SelectionLength = 0;if ((Keyboard.Modifiers &amp;amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift){start = text.IndexOf(&amp;amp;#39;{&amp;amp;#39;, start);if (start &amp;amp;lt; 0) return;FormulaText.SelectionStart = start + 1;end = text.</description>
     </item>
     
     <item>
@@ -197,7 +197,7 @@ text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;); text =
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/14/221302/</guid>
       <description>御飯食べた後にさくっと作ってみた（参考：WebMatrix で数式を表現する（１） - だるろぐ）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。
- 仮定 &#34;Assumption&#34; (A) モーダスポネンス &#34;Modus Ponendo Ponens&#34; (MPP) 二重否定 &#34;Double Negation&#34; (DN) 条件付き証明 &#34;Conditional Proof&#34; (CP) ∧-導入 &#34;∧-introduction&#34; (∧I) ∧-除去 &#34;∧-elimination&#34; (∧E) ∨-導入 &#34;∨-introduction&#34; (∨I) ∨-除去 &#34;∨-elimination&#34; (∨E) 背理法 &#34;Ad Absurdum&#34; (RAA) これぐらいしかないんだから覚えられるはず (;´Д｀) ```cs private void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e) { const string API = &#34;http://chart.apis.google.com/chart?cht={0}&amp;amp;chl={1}&#34;; var cht = &#34;tx&#34;; var chl = HttpUtility.UrlEncode(FormulaText.Text); var uri = new Uri(string.Format(API, cht, chl)); FormulaImage.Source = new BitmapImage(uri);  }</description>
+仮定 &#34;Assumption&#34; (A)モーダスポネンス &#34;Modus Ponendo Ponens&#34; (MPP)二重否定 &#34;Double Negation&#34; (DN)条件付き証明 &#34;Conditional Proof&#34; (CP)∧-導入 &#34;∧-introduction&#34; (∧I)∧-除去 &#34;∧-elimination&#34; (∧E)∨-導入 &#34;∨-introduction&#34; (∨I)∨-除去 &#34;∨-elimination&#34; (∨E)背理法 &#34;Ad Absurdum&#34; (RAA)これぐらいしかないんだから覚えられるはず (;´Д｀)```csprivate void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e){const string API = &#34;http://chart.apis.google.com/chart?cht={0}&amp;amp;chl={1}&#34;;var cht = &#34;tx&#34;;var chl = HttpUtility.UrlEncode(FormulaText.Text);var uri = new Uri(string.Format(API, cht, chl));FormulaImage.Source = new BitmapImage(uri); }</description>
     </item>
     
     <item>
@@ -206,8 +206,8 @@ text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;); text =
       <pubDate>Fri, 31 Aug 2012 11:29:58 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/31/112958/</guid>
-      <description>（SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。 SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記  そういえば、前回（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。
-public partial class MainWindow : Window { HubConnection connection; IHubProxy sample; public MainWindow() { InitializeComponent(); // サーバーに接続して sample ハブをげっと  connection = new HubConnection(&amp;#34;http://localhost:63112/&amp;#34;); sample = connection.CreateProxy(&amp;#34;sample&amp;#34;); connection.Start(); /* この3つは順番を守ること！ */ // sample ハブで Echo() が呼ばれたら……  sample.</description>
+      <description>（SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記 そういえば、前回（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。
+public partial class MainWindow : Window{HubConnection connection;IHubProxy sample;public MainWindow(){InitializeComponent();// サーバーに接続して sample ハブをげっと connection = new HubConnection(&amp;#34;http://localhost:63112/&amp;#34;);sample = connection.CreateProxy(&amp;#34;sample&amp;#34;);connection.Start(); /* この3つは順番を守ること！ */// sample ハブで Echo() が呼ばれたら…… sample.</description>
     </item>
     
     <item>
@@ -217,7 +217,7 @@ public partial class MainWindow : Window { HubConnection connection; IHubProxy s
       
       <guid>https://blog.daruyanagi.jp/entry/2012/07/24/201150/</guid>
       <description>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
-&amp;lt;grid&amp;gt;&amp;lt;/grid&amp;gt; Name=&amp;#34;listBoxGists&amp;#34;&amp;gt; ```**MainWindow.xaml.cs** ```cs using System.Net; using Newtonsoft.Json; /// &amp;amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); } private void MainWindow_Loaded( object sender, RoutedEventArgs e) { var client = new WebClient(); client.DownloadStringCompleted += (_sender, _e) =&amp;gt; { listBoxGists.ItemsSource = JsonConvert .DeserializeObject&amp;amp;lt;Gist[]&amp;gt;(_e.Result); }; client.</description>
+&amp;lt;grid&amp;gt;&amp;lt;/grid&amp;gt;Name=&amp;#34;listBoxGists&amp;#34;&amp;gt;```**MainWindow.xaml.cs**```csusing System.Net;using Newtonsoft.Json;/// &amp;amp;lt;summary&amp;gt;/// MainWindow.xaml の相互作用ロジック/// &amp;amp;lt;/summary&amp;gt;public partial class MainWindow : Window{public MainWindow(){InitializeComponent();}private void MainWindow_Loaded(object sender, RoutedEventArgs e){var client = new WebClient();client.DownloadStringCompleted += (_sender, _e) =&amp;gt;{listBoxGists.ItemsSource = JsonConvert.DeserializeObject&amp;amp;lt;Gist[]&amp;gt;(_e.Result);};client.</description>
     </item>
     
     <item>
@@ -226,9 +226,9 @@ public partial class MainWindow : Window { HubConnection connection; IHubProxy s
       <pubDate>Sat, 17 Mar 2012 20:49:50 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/03/17/204950/</guid>
-      <description>﻿&amp;amp;lt;Application x:Class=&amp;quot;SoundKeyboard2012.App&amp;quot; xmlns=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot; xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot; StartupUri=&amp;quot;MainWindow.xaml&amp;quot;&amp;gt; &amp;amp;lt;Application.Resources&amp;gt; &amp;amp;lt;/Application.Resources&amp;gt; &amp;amp;lt;/Application&amp;gt; こう書いたら、MainWindow がメインウィンドウになると思うじゃないですか。けれど、WPF って「最初に生成されたウインドウがメインウィンドウになる」んだね。Windows型のメンバ変数をフィールドで初期化していた（ public Window HogeWindow = new HogeWindow() ）ので、デバッグ時の動作（MainWindow.xaml がメインウィンドウ）と、リリースバイナリの動作（HogeDialog.xamlがメインウィンドウ）が違っていて、ちょっと困った。
-```  private void Application_Startup(object sender, StartupEventArgs e) { MainWindow = new MainWindow(); }
-明示的にメインウィンドウを指定してあげれば問題ない。 &amp;gt; StartupUri を宣言で設定してもプログラムで設定しても、対応する UI リソースは Startup イベントが処理されるまで読み込まれません。 したがって、Startup の処理時には、Windows プロパティまたは MainWindow プロパティからのウィンドウにアクセスできません。 Application.StartupUri プロパティ (System.Windows) &amp;gt; MainWindow には、AppDomain でインスタンス化される最初の Window オブジェクトへの参照が自動的に設定されます。 Application.MainWindow プロパティ (System.Windows) </description>
+      <description>﻿&amp;amp;lt;Application x:Class=&amp;quot;SoundKeyboard2012.App&amp;quot;xmlns=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;StartupUri=&amp;quot;MainWindow.xaml&amp;quot;&amp;gt;&amp;amp;lt;Application.Resources&amp;gt;&amp;amp;lt;/Application.Resources&amp;gt;&amp;amp;lt;/Application&amp;gt;こう書いたら、MainWindow がメインウィンドウになると思うじゃないですか。けれど、WPF って「最初に生成されたウインドウがメインウィンドウになる」んだね。Windows型のメンバ変数をフィールドで初期化していた（ public Window HogeWindow = new HogeWindow() ）ので、デバッグ時の動作（MainWindow.xaml がメインウィンドウ）と、リリースバイナリの動作（HogeDialog.xamlがメインウィンドウ）が違っていて、ちょっと困った。
+``` private void Application_Startup(object sender, StartupEventArgs e) { MainWindow = new MainWindow(); }
+明示的にメインウィンドウを指定してあげれば問題ない。&amp;gt;StartupUri を宣言で設定してもプログラムで設定しても、対応する UI リソースは Startup イベントが処理されるまで読み込まれません。 したがって、Startup の処理時には、Windows プロパティまたは MainWindow プロパティからのウィンドウにアクセスできません。Application.StartupUri プロパティ (System.Windows)&amp;gt;MainWindow には、AppDomain でインスタンス化される最初の Window オブジェクトへの参照が自動的に設定されます。Application.MainWindow プロパティ (System.Windows)</description>
     </item>
     
     <item>
@@ -238,9 +238,9 @@ public partial class MainWindow : Window { HubConnection connection; IHubProxy s
       
       <guid>https://blog.daruyanagi.jp/entry/2012/03/16/002534/</guid>
       <description>INotifyPropertyChanged の実装って面倒じゃないですか。
-```  public class Person : INotifyPropertyChanged { public event PropertyChangedEventHandler PropertyChanged;
-public string GivenNames { get; set; } public string FamilyName { get; set; } public string FullName { get { return string.Format(&amp;quot;{0} {1}&amp;quot;, GivenNames, FamilyName); } }  }
-これが、 ``` public class Person : INotifyPropertyChanged { public event PropertyChangedEventHandler PropertyChanged; string givenNames; public string GivenNames { get { return givenNames; } set { if (value !</description>
+``` public class Person : INotifyPropertyChanged { public event PropertyChangedEventHandler PropertyChanged;
+public string GivenNames { get; set; }public string FamilyName { get; set; }public string FullName{get{return string.Format(&amp;quot;{0} {1}&amp;quot;, GivenNames, FamilyName);}} }
+これが、```public class Person : INotifyPropertyChanged{public event PropertyChangedEventHandler PropertyChanged;string givenNames;public string GivenNames{get { return givenNames; }set{if (value !</description>
     </item>
     
     <item>
@@ -250,10 +250,10 @@ public string GivenNames { get; set; } public string FamilyName { get; set; } pu
       
       <guid>https://blog.daruyanagi.jp/entry/2012/03/12/003836/</guid>
       <description>VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspxMicrosoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。
-```  using Microsoft.VisualBasic.ApplicationServices;
+``` using Microsoft.VisualBasic.ApplicationServices;
 namespace Type08ScreenCapture { /// &amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); }
- private void Window_Loaded( object sender, RoutedEventArgs e) { DataContext = new AssemblyInfo( System.Reflection.Assembly.GetExecutingAssembly()); }  ： ：
-あとは XAML 側でバインディングしていく。&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt; ``` &amp;amp;lt;TextBlock Margin=&amp;quot;24&amp;quot; Text=&amp;quot;{Binding ProductName}&amp;quot; /&amp;gt; バインディングヒャッホイ！「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。</description>
+ private void Window_Loaded(object sender, RoutedEventArgs e){DataContext = new AssemblyInfo(System.Reflection.Assembly.GetExecutingAssembly());} ： ：
+あとは XAML 側でバインディングしていく。&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;```&amp;amp;lt;TextBlock Margin=&amp;quot;24&amp;quot; Text=&amp;quot;{Binding ProductName}&amp;quot; /&amp;gt;バインディングヒャッホイ！「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。</description>
     </item>
     
   </channel>

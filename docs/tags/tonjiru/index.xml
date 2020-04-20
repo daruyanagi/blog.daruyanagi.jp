@@ -39,8 +39,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/07/24/060000/</guid>
       <description>ンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
-### APPX にパッケージングする   近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
- アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト） ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト） WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る （必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する） みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、  Tonjiru ソリューション  Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx  という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。  ### 審査 パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。  自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日</description>
+### APPX にパッケージングする  近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
+アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト）ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト）WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る（必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する）みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、Tonjiru ソリューションTonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exeTonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appxという構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。### 審査パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。 自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日</description>
     </item>
     
     <item>
@@ -50,8 +50,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/06/10/125225/</guid>
       <description>  ンクリックでまとめてウィンドウを閉じてデスクトップをきれいにするツールです。除外リストで閉じては困るウィンドウをのけておくことができます。
-    UI モードをデフォルトに（［Shift］キーを押すか /s スイッチで UI レスモード実行ができます） すべてのウィンドウを閉じるけど「Tonjiru」は終了しないコマンドを追加 リフレッシュコマンドを非同期に（結構時間がかかるので） UWP アプリが閉じてくれない不具合を修正（SendMessage じゃなくてKill することにした） デフォルトウィンドウサイズを少し大きく ついでに APPX でパッケージングして、ストアに出してみました！！   めてだったけど、最新版の「Visual Studio」にはパッケージングのためのテンプレートがあるので結構簡単です。
- Visual Studio を使ったアプリのパッケージ化 (デスクトップ ブリッジ) - UWP app developer | Microsoft Docs  </description>
+ UI モードをデフォルトに（［Shift］キーを押すか /s スイッチで UI レスモード実行ができます）すべてのウィンドウを閉じるけど「Tonjiru」は終了しないコマンドを追加リフレッシュコマンドを非同期に（結構時間がかかるので）UWP アプリが閉じてくれない不具合を修正（SendMessage じゃなくてKill することにした）デフォルトウィンドウサイズを少し大きくついでに APPX でパッケージングして、ストアに出してみました！！  めてだったけど、最新版の「Visual Studio」にはパッケージングのためのテンプレートがあるので結構簡単です。
+Visual Studio を使ったアプリのパッケージ化 (デスクトップ ブリッジ) - UWP app developer | Microsoft Docs</description>
     </item>
     
     <item>
@@ -62,7 +62,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2017/06/09/175700/</guid>
       <description>こに日本語の UI があるじゃろ（＾ｖ＾）　これをこうして――
   うじゃ（＾ｖ＾）！
-  やり方は @Grabacr07 先生のをほぼパクった。WPF アプリの国際化 (多言語対応) と、実行中の動的な言語切り替え | grabacr.nétしっかしこれ、リソース作るの面倒やな……みんなよくやると思うわ。最近プログラミングしてなかったので練習で作り始めたしょうもないツールなのに、作ってるうちにちょっと楽しくなっちゃった、いろいろ手を加えすぎた気がするけど、それもこれでひと段落にしようと思う（できたら Chocolatey パッケージを作ってみたいってのはあるけど）。</description>
+ やり方は @Grabacr07 先生のをほぼパクった。WPF アプリの国際化 (多言語対応) と、実行中の動的な言語切り替え | grabacr.nétしっかしこれ、リソース作るの面倒やな……みんなよくやると思うわ。最近プログラミングしてなかったので練習で作り始めたしょうもないツールなのに、作ってるうちにちょっと楽しくなっちゃった、いろいろ手を加えすぎた気がするけど、それもこれでひと段落にしようと思う（できたら Chocolatey パッケージを作ってみたいってのはあるけど）。</description>
     </item>
     
     <item>
@@ -72,7 +72,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/08/195054/</guid>
       <description>br/&amp;gt;
- 起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式） ウィンドウ情報のファイル保存（JSON 形式） 通知機能 安定性の向上     ### WPF と起動オプション 起動時に［Shift］キーが押されていたら GUI を起動するという挙動は  App.xaml の StartupUri を削除 App.Startup でキーの押し下げ確認と MainWindow の自前生成 という感じで実現していたんだけど、起動オプションを付けたら破綻したので、  App.xaml の StartupUri を元に戻す App.xaml のビルドアクションを Page にして、main 関数を自分で書く という感じに変えた。 ```cs [System.STAThreadAttribute()] public static void Main() { var args = Environment.GetCommandLineArgs(); if (args.Contains(&amp;quot;/g&amp;quot;) || (Control.ModifierKeys &amp;amp;amp; Keys.Shift) == Keys.Shift) { var app = new Tonjiru.</description>
+起動オプションの追加（/g で GUI 付きの起動）ジャンプリストへの対応（GUI 付きの起動を追加）ウィンドウ情報のクリップボードコピー（JSON 形式）ウィンドウ情報のファイル保存（JSON 形式）通知機能安定性の向上 ### WPF と起動オプション起動時に［Shift］キーが押されていたら GUI を起動するという挙動はApp.xaml の StartupUri を削除App.Startup でキーの押し下げ確認と MainWindow の自前生成という感じで実現していたんだけど、起動オプションを付けたら破綻したので、App.xaml の StartupUri を元に戻すApp.xaml のビルドアクションを Page にして、main 関数を自分で書くという感じに変えた。```cs[System.STAThreadAttribute()]public static void Main(){var args = Environment.GetCommandLineArgs();if (args.Contains(&amp;quot;/g&amp;quot;) || (Control.ModifierKeys &amp;amp;amp; Keys.Shift) == Keys.Shift){var app = new Tonjiru.</description>
     </item>
     
     <item>
@@ -82,10 +82,10 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/07/191844/</guid>
       <description>br/&amp;gt;
- アイコンを付けた SendMessage と PostMessage を選択できるように 不具合の修正 SendMessage だと相手がメッセージの処理を完了するまで制御が返ってこないので、PostMessage を使う方がいいかなって思った。    ### 関係のない話：GitHub Flow × GitHub for Windows &amp;gt; GitHub Flowとは何だろうか？  masterブランチのものは何であれデプロイ可能である 新しい何かに取り組む際は、説明的な名前のブランチをmasterから作成する（例: new-oauth2-scopes） 作成したブランチにローカルでコミットし、サーバー上の同じ名前のブランチにも定期的に作業内容をpushする フィードバックや助言が欲しい時、ブランチをマージしてもよいと思ったときは、 プルリクエスト を作成する 他の誰かがレビューをして機能にOKを出してくれたら、あなたはコードをmasterへマージすることができる マージをしてmasterへpushしたら、直ちにデプロイをする これがフローのすべてだ。
- GitHub Flow (Japanese translation) · GitHub  去年ぐらいからこれを実践している（つもり）なのだけど、如何せん、一人でやっているのであまり自信がない。ので、自分のやり方をさらしておく。
-#### 1. 何か改善を思いついたら issue にメモする   の作業が一番面倒くさい……なにかいいアプリ（できればモバイル）があればいいんだけどな。
- #### 2. GitHub for Windows を起動して Sync   マンドだと間違えるマンなので、GUI クライアントを使う。GitHub for Windows（現行安定版）を起動したらこまめに Sync しておく。</description>
+アイコンを付けたSendMessage と PostMessage を選択できるように不具合の修正SendMessage だと相手がメッセージの処理を完了するまで制御が返ってこないので、PostMessage を使う方がいいかなって思った。 ### 関係のない話：GitHub Flow × GitHub for Windows&amp;gt;GitHub Flowとは何だろうか？ masterブランチのものは何であれデプロイ可能である 新しい何かに取り組む際は、説明的な名前のブランチをmasterから作成する（例: new-oauth2-scopes） 作成したブランチにローカルでコミットし、サーバー上の同じ名前のブランチにも定期的に作業内容をpushする フィードバックや助言が欲しい時、ブランチをマージしてもよいと思ったときは、 プルリクエスト を作成する 他の誰かがレビューをして機能にOKを出してくれたら、あなたはコードをmasterへマージすることができる マージをしてmasterへpushしたら、直ちにデプロイをする これがフローのすべてだ。
+ GitHub Flow (Japanese translation) · GitHub 去年ぐらいからこれを実践している（つもり）なのだけど、如何せん、一人でやっているのであまり自信がない。ので、自分のやり方をさらしておく。
+#### 1. 何か改善を思いついたら issue にメモする  の作業が一番面倒くさい……なにかいいアプリ（できればモバイル）があればいいんだけどな。
+#### 2. GitHub for Windows を起動して Sync  マンドだと間違えるマンなので、GUI クライアントを使う。GitHub for Windows（現行安定版）を起動したらこまめに Sync しておく。</description>
     </item>
     
     <item>
@@ -96,7 +96,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2017/06/06/220256/</guid>
       <description>いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。
   応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。
-### 与太話その一：ストアアプリへの対応 EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。 ```cs private static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam) { var builder = new StringBuilder(256); GetClassName(handle, builder, builder.Capacity); // ストアアプリのためのハック -&amp;gt; &amp;quot;Windows.UI.Core.CoreWindow&amp;quot; を探す if (builder.ToString() == &amp;quot;Windows.UI.Core.CoreWindow&amp;quot;) { int process_id; GetWindowThreadProcessId(handle, out processId); process = Process.GetProcessById(process_id); // プロセス情報を保管 if (process != null) return false; // Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう } return true;  }</description>
+### 与太話その一：ストアアプリへの対応EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。```csprivate static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam){var builder = new StringBuilder(256);GetClassName(handle, builder, builder.Capacity);// ストアアプリのためのハック -&amp;gt; &amp;quot;Windows.UI.Core.CoreWindow&amp;quot; を探すif (builder.ToString() == &amp;quot;Windows.UI.Core.CoreWindow&amp;quot;){int process_id;GetWindowThreadProcessId(handle, out processId);process = Process.GetProcessById(process_id); // プロセス情報を保管if (process != null) return false;// Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう}return true; }</description>
     </item>
     
   </channel>

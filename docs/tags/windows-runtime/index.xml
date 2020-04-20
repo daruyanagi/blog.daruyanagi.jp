@@ -18,9 +18,9 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/10/12/135537/</guid>
       <description>  a href=&amp;quot;https://blog.daruyanagi.jp/entry/2014/10/12/133551&amp;quot;&amp;gt;Mihari 1.0.0.0 - だるろぐ を ClickOnce で配置しようと思ったら、エラーが出てビルドできなくなった。
-&amp;gt; マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;amp;#39;…\Windows.winmd&amp;amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。  ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。
-#### 解決策   アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。
- Microsoft Connect is Retired - Collaborate | Microsoft Docs WindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。  </description>
+&amp;gt;マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;amp;#39;…\Windows.winmd&amp;amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。 ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。
+#### 解決策  アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。
+Microsoft Connect is Retired - Collaborate | Microsoft DocsWindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。</description>
     </item>
     
     <item>
@@ -30,7 +30,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/09/11/025615/</guid>
       <description>WinRT：システムにインストールされた Windows ストア アプリを列挙する - だるろぐ で未解決だった問題を解決しておく。
-### AppxManifest.xml を読んで DisplayName などを取得する とりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。 ```cs namespace WinRTAppsUpdateChecker { using System.IO; using System.Xml.Linq; using Windows.Management.Deployment; /// &amp;amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); var manager = new PackageManager(); var packages = manager .FindPackagesForUser(string.Empty) .Select(_ =&amp;gt; { dynamic result = new System.Dynamic.ExpandoObject(); result.Id = _.Id; try { var path = _.</description>
+### AppxManifest.xml を読んで DisplayName などを取得するとりあえず動けばいいので、dynamic（System.Dynamic.ExpandoObject）に AppxManifest.xml で読み込んだ DisplayName、Description、Logo などをぶち込んで ViewModel を作った。```csnamespace WinRTAppsUpdateChecker{using System.IO;using System.Xml.Linq;using Windows.Management.Deployment;/// &amp;amp;lt;summary&amp;gt;/// MainWindow.xaml の相互作用ロジック/// &amp;amp;lt;/summary&amp;gt;public partial class MainWindow : Window{public MainWindow(){InitializeComponent();var manager = new PackageManager();var packages = manager.FindPackagesForUser(string.Empty).Select(_ =&amp;gt; {dynamic result = new System.Dynamic.ExpandoObject();result.Id = _.Id;try{var path = _.</description>
     </item>
     
     <item>
@@ -40,11 +40,11 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/09/10/021908/</guid>
       <description>WPF アプリケーションからシステムにインストールされた Windows ストア アプリを列挙するには、この Windows Runtime API を使えばいいらしい。
- PackageManager.FindPackagesForUser(String) Method (Windows) ちなみに、Windows ストア アプリからは利用できないとのこと。 ### 準備 というわけで、この API を使うために諸々の準備を行う。 #### ターゲットプラットフォームバージョンを指定 まず *.csproj ファイルをテキストエディターなどで開き、ターゲットプラットフォームとして Windows 8 以降を指定する。   ロジェクトを一度アンロード。
+PackageManager.FindPackagesForUser(String) Method (Windows)ちなみに、Windows ストア アプリからは利用できないとのこと。### 準備というわけで、この API を使うために諸々の準備を行う。#### ターゲットプラットフォームバージョンを指定まず *.csproj ファイルをテキストエディターなどで開き、ターゲットプラットフォームとして Windows 8 以降を指定する。  ロジェクトを一度アンロード。
   ロジェクトフォルダをエクスプローラで開く。いつからかコンテキストメニューにこのコマンドが追加されていてうれしい。
   argetPlatformVersionTargetPlatformSDK.TargetPlatformVersion プロパティ (Microsoft.Build.Utilities) を記述して保存。プロジェクトをリロード。
- #### winmd を参照に追加   に、winmd を参照に追加。パスが長いけれど、コモンダイアログで winmd を検索すれば簡単に見つかる。これで IntelliSense で PackageManager クラスが補完できるようになるはず。デスクトップアプリから Windows Runtime API を使う時には、毎回こういう作業が必要になるみたい。知らんけど。
-  ### コーディング これで準備はだいたい完了なので、コードを記述していく。 #### コードビハインド 簡便のため、ViewModel は匿名型で済ませる。 ```cs namespace WinRTAppsUpdateChecker { using Windows.</description>
+#### winmd を参照に追加  に、winmd を参照に追加。パスが長いけれど、コモンダイアログで winmd を検索すれば簡単に見つかる。これで IntelliSense で PackageManager クラスが補完できるようになるはず。デスクトップアプリから Windows Runtime API を使う時には、毎回こういう作業が必要になるみたい。知らんけど。
+### コーディングこれで準備はだいたい完了なので、コードを記述していく。#### コードビハインド簡便のため、ViewModel は匿名型で済ませる。```csnamespace WinRTAppsUpdateChecker{using Windows.</description>
     </item>
     
     <item>
@@ -54,7 +54,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/07/03/033712/</guid>
       <description>オープン拡張辞書を Windows Runtime アプリで読み書きする（3） - だるろぐ でオープン拡張辞書の読み込みは成功したので、今度は書き込み。
-public static async void Save(string filename) { XNamespace ns1 = &amp;#34;http://www.microsoft.com/ime/dctx&amp;#34;; var xml = new XDocument( new XDeclaration(&amp;#34;1.0&amp;#34;, &amp;#34;utf-8&amp;#34;, &amp;#34;yes&amp;#34;), new XComment(&amp;#34;Build by Open Extended Dictionary Editor for WinRT&amp;#34;), new XElement(ns1 + &amp;#34;Dictionary&amp;#34;, new XAttribute(XNamespace.Xmlns + &amp;#34;ns1&amp;#34;, ns1), new XElement(ns1 + &amp;#34;DictionaryHeader&amp;#34;, new XElement(ns1 + &amp;#34;DictionaryGUID&amp;#34;, dictionary.DictionaryGuid), new XElement(ns1 + &amp;#34;DictionaryLanguage&amp;#34;, dictionary.DictionaryLanguage), new XElement(ns1 + &amp;#34;DictionaryVersion&amp;#34;, dictionary.DictionaryVersion), new XElement(ns1 + &amp;#34;CommentInsertion&amp;#34;, dictionary.CommentInsertion), dictionary.DictionaryInfo.Select(_ =&amp;gt; new XElement(ns1 + &amp;#34;DictionaryInfo&amp;#34;, new XAttribute(&amp;#34;Language&amp;#34;, _.</description>
+public static async void Save(string filename){XNamespace ns1 = &amp;#34;http://www.microsoft.com/ime/dctx&amp;#34;;var xml = new XDocument(new XDeclaration(&amp;#34;1.0&amp;#34;, &amp;#34;utf-8&amp;#34;, &amp;#34;yes&amp;#34;),new XComment(&amp;#34;Build by Open Extended Dictionary Editor for WinRT&amp;#34;),new XElement(ns1 + &amp;#34;Dictionary&amp;#34;, new XAttribute(XNamespace.Xmlns + &amp;#34;ns1&amp;#34;, ns1),new XElement(ns1 + &amp;#34;DictionaryHeader&amp;#34;,new XElement(ns1 + &amp;#34;DictionaryGUID&amp;#34;, dictionary.DictionaryGuid),new XElement(ns1 + &amp;#34;DictionaryLanguage&amp;#34;, dictionary.DictionaryLanguage),new XElement(ns1 + &amp;#34;DictionaryVersion&amp;#34;, dictionary.DictionaryVersion),new XElement(ns1 + &amp;#34;CommentInsertion&amp;#34;, dictionary.CommentInsertion),dictionary.DictionaryInfo.Select(_ =&amp;gt; new XElement(ns1 + &amp;#34;DictionaryInfo&amp;#34;,new XAttribute(&amp;#34;Language&amp;#34;, _.</description>
     </item>
     
     <item>
@@ -64,7 +64,7 @@ public static async void Save(string filename) { XNamespace ns1 = &amp;#34;http:
       
       <guid>https://blog.daruyanagi.jp/entry/2014/06/21/133254/</guid>
       <description>オープン拡張辞書を Windows Runtime アプリで読み書きする（2） - だるろぐ の続き。今度は第二の方法「XDocument を使う」でやってみる。
-public static void Load(string path = @&amp;#34;Assets\Sample.dctx&amp;#34;) { var xml = XDocument.Load(Path.Combine(Package.Current.InstalledLocation.Path, path)); XNamespace ns1 = &amp;#34;http://www.microsoft.com/ime/dctx&amp;#34;; var header = xml.Root.Element(ns1 + &amp;#34;DictionaryHeader&amp;#34;); dictionary.DictionaryGuid = header.Element(ns1 + &amp;#34;DictionaryGUID&amp;#34;).Value; dictionary.DictionaryLanguage = header.Element(ns1 + &amp;#34;DictionaryLanguage&amp;#34;).Value; dictionary.DictionaryVersion = header.Element(ns1 + &amp;#34;DictionaryVersion&amp;#34;).Value; dictionary.DictionaryInfo = header.Elements(ns1 + &amp;#34;DictionaryInfo&amp;#34;) .ToDictionary( _ =&amp;gt; _.Attribute(&amp;#34;Language&amp;#34;).Value, _ =&amp;gt; new OpenExtendedDictionaryInfo() { ShortName = _.Element(ns1 + &amp;#34;ShortName&amp;#34;).Value, LongName = _.Element(ns1 + &amp;#34;LongName&amp;#34;).Value, Description = _.</description>
+public static void Load(string path = @&amp;#34;Assets\Sample.dctx&amp;#34;){var xml = XDocument.Load(Path.Combine(Package.Current.InstalledLocation.Path, path));XNamespace ns1 = &amp;#34;http://www.microsoft.com/ime/dctx&amp;#34;;var header = xml.Root.Element(ns1 + &amp;#34;DictionaryHeader&amp;#34;);dictionary.DictionaryGuid = header.Element(ns1 + &amp;#34;DictionaryGUID&amp;#34;).Value;dictionary.DictionaryLanguage = header.Element(ns1 + &amp;#34;DictionaryLanguage&amp;#34;).Value;dictionary.DictionaryVersion = header.Element(ns1 + &amp;#34;DictionaryVersion&amp;#34;).Value;dictionary.DictionaryInfo = header.Elements(ns1 + &amp;#34;DictionaryInfo&amp;#34;).ToDictionary(_ =&amp;gt; _.Attribute(&amp;#34;Language&amp;#34;).Value, _ =&amp;gt; new OpenExtendedDictionaryInfo(){ShortName = _.Element(ns1 + &amp;#34;ShortName&amp;#34;).Value,LongName = _.Element(ns1 + &amp;#34;LongName&amp;#34;).Value,Description = _.</description>
     </item>
     
     <item>
@@ -74,7 +74,7 @@ public static void Load(string path = @&amp;#34;Assets\Sample.dctx&amp;#34;) { v
       
       <guid>https://blog.daruyanagi.jp/entry/2014/06/20/160824/</guid>
       <description>オープン拡張辞書を Windows Runtime アプリで読み書きする（1） - だるろぐ の続き。まずは第一の手段「XmlDocument を使う」で実装してみた。
-public static async void Load(string path) { var file = await Package.Current.InstalledLocation.GetFileAsync(path); var text = await Windows.Storage.FileIO.ReadTextAsync(file); var xml = new XmlDocument(); var settings = new XmlLoadSettings(); xml.LoadXml(text, settings); var dictionary = new OpenExtendedDictionary(); dictionary.DictionaryGuid = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryGUID&amp;#34;).First().InnerText; dictionary.DictionaryLanguage = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryLanguage&amp;#34;).First().InnerText; dictionary.DictionaryVersion = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryVersion&amp;#34;).First().InnerText; dictionary.DictionaryInfo.Language = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryInfo&amp;#34;)[0].Attributes[0].NodeValue.AsString(); dictionary.DictionaryInfo.ShortName = xml.GetElementsByTagName(&amp;#34;ns1:ShortName&amp;#34;).First().InnerText; dictionary.DictionaryInfo.LongName = xml.GetElementsByTagName(&amp;#34;ns1:LongName&amp;#34;).First().InnerText; dictionary.DictionaryInfo.Description = xml.GetElementsByTagName(&amp;#34;ns1:Description&amp;#34;).First().InnerText; dictionary.DictionaryInfo.Copyright = xml.GetElementsByTagName(&amp;#34;ns1:Copyright&amp;#34;).First().InnerText; dictionary.DictionaryEntries = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryEntry&amp;#34;) .Select(entry =&amp;gt; new OpenExtendedDictionaryEntry { PartOfSpeech = entry.</description>
+public static async void Load(string path){var file = await Package.Current.InstalledLocation.GetFileAsync(path);var text = await Windows.Storage.FileIO.ReadTextAsync(file);var xml = new XmlDocument();var settings = new XmlLoadSettings();xml.LoadXml(text, settings);var dictionary = new OpenExtendedDictionary();dictionary.DictionaryGuid = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryGUID&amp;#34;).First().InnerText;dictionary.DictionaryLanguage = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryLanguage&amp;#34;).First().InnerText;dictionary.DictionaryVersion = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryVersion&amp;#34;).First().InnerText;dictionary.DictionaryInfo.Language = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryInfo&amp;#34;)[0].Attributes[0].NodeValue.AsString();dictionary.DictionaryInfo.ShortName = xml.GetElementsByTagName(&amp;#34;ns1:ShortName&amp;#34;).First().InnerText;dictionary.DictionaryInfo.LongName = xml.GetElementsByTagName(&amp;#34;ns1:LongName&amp;#34;).First().InnerText;dictionary.DictionaryInfo.Description = xml.GetElementsByTagName(&amp;#34;ns1:Description&amp;#34;).First().InnerText;dictionary.DictionaryInfo.Copyright = xml.GetElementsByTagName(&amp;#34;ns1:Copyright&amp;#34;).First().InnerText;dictionary.DictionaryEntries = xml.GetElementsByTagName(&amp;#34;ns1:DictionaryEntry&amp;#34;).Select(entry =&amp;gt; new OpenExtendedDictionaryEntry{PartOfSpeech = entry.</description>
     </item>
     
     <item>
@@ -83,8 +83,8 @@ public static async void Load(string path) { var file = await Package.Current.In
       <pubDate>Thu, 19 Jun 2014 21:00:43 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2014/06/19/210043/</guid>
-      <description>オープン拡張辞書は、Microsoft IMEの追加辞書を作成、共有する機能です。簡単にインストールができるので、Webページや共有フォルダーに置いたり、メールに添付して配布したり、シーンに応じて多様な方法で共有と配布ができます。 Microsoft IME オープン拡張辞書について  Windows 8 以降だと OS 標準の IME で使えるのに、割りと流行ってない感じ。もっと使われないともったいなーと思ったので、こいつが編集できる Windows ストア アプリでも作ろうと思い立った。オープン拡張辞書には二種類ある。
- .dctx：　UTF-8 でエンコードされた XML ファイル .dctxc：　.dctx を ZIP で圧縮したもの あと署名を付けると収録できる単語数が増えるとか（署名されていない場合は1万語まで）いろいろあるのだけど、これはまぁ、今のところどうでもいい。今回はとりあえず .dctx が読めることを目標にする。ZIP うんぬんは、まぁ、.NET Framework 4.5 でごにょごにょすれば割と簡単にできるのだろう（慢心とりあえずはクラス作りから。 ```cs public class OpenExtendedDictionary { public OpenExtendedDictionary() { DictionaryInfo = new OpenExtendedDictionaryInfo(); } public string DictionaryGuid { get; set; } public string DictionaryLanguage { get; set; } public string DictionaryVersion { get; set; } public bool CommentInsertion { get; set; } public OpenExtendedDictionaryInfo DictionaryInfo { get; set; } public ObservableCollection&amp;amp;lt;OpenExtendedDictionaryEntry&amp;gt; DictionaryEntries { get; set; }  }</description>
+      <description>オープン拡張辞書は、Microsoft IMEの追加辞書を作成、共有する機能です。簡単にインストールができるので、Webページや共有フォルダーに置いたり、メールに添付して配布したり、シーンに応じて多様な方法で共有と配布ができます。Microsoft IME オープン拡張辞書について Windows 8 以降だと OS 標準の IME で使えるのに、割りと流行ってない感じ。もっと使われないともったいなーと思ったので、こいつが編集できる Windows ストア アプリでも作ろうと思い立った。オープン拡張辞書には二種類ある。
+.dctx：　UTF-8 でエンコードされた XML ファイル.dctxc：　.dctx を ZIP で圧縮したものあと署名を付けると収録できる単語数が増えるとか（署名されていない場合は1万語まで）いろいろあるのだけど、これはまぁ、今のところどうでもいい。今回はとりあえず .dctx が読めることを目標にする。ZIP うんぬんは、まぁ、.NET Framework 4.5 でごにょごにょすれば割と簡単にできるのだろう（慢心とりあえずはクラス作りから。```cspublic class OpenExtendedDictionary{public OpenExtendedDictionary(){DictionaryInfo = new OpenExtendedDictionaryInfo();}public string DictionaryGuid { get; set; }public string DictionaryLanguage { get; set; }public string DictionaryVersion { get; set; }public bool CommentInsertion { get; set; }public OpenExtendedDictionaryInfo DictionaryInfo { get; set; }public ObservableCollection&amp;amp;lt;OpenExtendedDictionaryEntry&amp;gt; DictionaryEntries { get; set; } }</description>
     </item>
     
     <item>
@@ -94,12 +94,12 @@ public static async void Load(string path) { var file = await Package.Current.In
       
       <guid>https://blog.daruyanagi.jp/entry/2014/06/06/135749/</guid>
       <description>br/&amp;gt;
-### 方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。  ### 準備   当にコードを書いて実行すると、
-&amp;gt; アセンブリ &amp;amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;amp;#39; への参照を追加してください。  というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT に解決策があった。まとめると、
+### 方針PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。### 準備  当にコードを書いて実行すると、
+&amp;gt;アセンブリ &amp;amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;amp;#39; への参照を追加してください。 というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT に解決策があった。まとめると、
   ロジェクトを一度アンロードして……
   *.csproj ファイルを編集し……
   argetPlatformVersion を 8.0 にする。
-&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; ToolsVersion=&amp;#34;12.0&amp;#34; DefaultTargets=&amp;#34;Build&amp;#34; xmlns=&amp;#34;http://schemas.microsoft.com/developer/msbuild/2003&amp;#34;&amp;gt; Project=&amp;#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#34; Condition=&amp;#34;Exists(&amp;amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;amp;#39;)&amp;#34; /&amp;gt; &amp;lt;propertygroup&amp;gt;&amp;lt;/propertygroup&amp;gt; : : &amp;lt;targetplatformversion&amp;gt;&amp;lt;/targetplatformversion&amp;gt;8.0 // &amp;amp;lt;-- この行を追加   、もう一度プロジェクトを読み込んで［参照の追加］をすると、</description>
+&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;ToolsVersion=&amp;#34;12.0&amp;#34; DefaultTargets=&amp;#34;Build&amp;#34; xmlns=&amp;#34;http://schemas.microsoft.com/developer/msbuild/2003&amp;#34;&amp;gt;Project=&amp;#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#34; Condition=&amp;#34;Exists(&amp;amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;amp;#39;)&amp;#34; /&amp;gt;&amp;lt;propertygroup&amp;gt;&amp;lt;/propertygroup&amp;gt;::&amp;lt;targetplatformversion&amp;gt;&amp;lt;/targetplatformversion&amp;gt;8.0 // &amp;amp;lt;-- この行を追加  、もう一度プロジェクトを読み込んで［参照の追加］をすると、</description>
     </item>
     
   </channel>

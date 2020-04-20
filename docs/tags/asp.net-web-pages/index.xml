@@ -18,7 +18,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</guid>
       <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
-### プロジェクトの作成   ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
+### プロジェクトの作成  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
   リューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。
   りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。
   br/&amp;gt;</description>
@@ -31,8 +31,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/04/15/170659/</guid>
       <description>前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
- Daruyanagi API : Check-ins ぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ ### Twitter の位置情報   witter の位置情報は
- Place：大まかな位置を共有（矩形） Coordinates：経度・緯度を正確に共有（点） の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。 ```cs public static void CollectCheckIns() { // CONNECTION_STRING は Azure Table Storage の接続文字列 // // Web Jobs プロジェクトを作成 // ・単なるコンソールアプリみたい // // NuGet で // ・CoreTweet：Twitter のライブラリ // ・WindowsAzure.</description>
+Daruyanagi API : Check-insぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ### Twitter の位置情報  witter の位置情報は
+Place：大まかな位置を共有（矩形）Coordinates：経度・緯度を正確に共有（点）の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。```cspublic static void CollectCheckIns(){// CONNECTION_STRING は Azure Table Storage の接続文字列//// Web Jobs プロジェクトを作成// ・単なるコンソールアプリみたい//// NuGet で// ・CoreTweet：Twitter のライブラリ// ・WindowsAzure.</description>
     </item>
     
     <item>
@@ -42,11 +42,11 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/03/26/234347/</guid>
       <description>まり気付かれてない気がしますが（こっそりやったので！）、はてなブログのドメインをお引越ししました。はてなブログを独自ドメインにする話はよく見かけますが、独自ドメインで運用していたはてなブログを別のドメインへ移動させた例はあまりないかもしれないので、メモがてら残しておきます。とはいえ、心配したようなトラブルもとくに起こりませんでした。1時間ちょっと はてなブログ がダウンしたのと、AdSense がちょっと減ったような気がする程度です。
-### 以前の状態と解決すべき課題 以前は  daruyanagi**.net**：メインのブログ（WordPress） daruyanagi**.jp**：はてなブログ という運用をしていたのですが（こういうちょっと謎な構造になっていたのは、もっぱら歴史的な事情によります）、WordPress よりも はてなブログの方が管理が楽だったこともあり、いつしか daruyanagi.jp がメインに。持て余していた daruyanagi.net をポートフォリオサイト（というか自己紹介サイト）っぽい感じにして使っていたのですが、とある日、ドメインの延長手続きを失念してしまい、daruyanagi.net を失ってしまいました。   在は水素水を布教するサイトになっています。そんなわけで、
- daruyanagi.jp：はてなブログ **about.**daruyanagi.jp：自己紹介サイト というよくわからない構造になってしまい、ちょっと困っていました。できればこれを  **blog.**daruyanagi.jp：はてなブログ daruyanagi.jp：自己紹介サイト という感じに整理したかった。あと、トップドメインで はてなブログ を運用するのはあまりよくないので直したかった、というのもあります。 &amp;gt; ※はてなブログでは、サブドメインを使用しないexample.comでブログを運用すると、ドメイン名の仕組み上、トラブルの原因になることがあります。取得したドメインの前に、必ずサブドメイン（wwwやblogなど）を付加してください。 はてなブログを独自ドメインで利用する - はてなブログ ヘルプ  Twitter で煽られるのも悲しいですしね！
+### 以前の状態と解決すべき課題以前はdaruyanagi**.net**：メインのブログ（WordPress）daruyanagi**.jp**：はてなブログという運用をしていたのですが（こういうちょっと謎な構造になっていたのは、もっぱら歴史的な事情によります）、WordPress よりも はてなブログの方が管理が楽だったこともあり、いつしか daruyanagi.jp がメインに。持て余していた daruyanagi.net をポートフォリオサイト（というか自己紹介サイト）っぽい感じにして使っていたのですが、とある日、ドメインの延長手続きを失念してしまい、daruyanagi.net を失ってしまいました。  在は水素水を布教するサイトになっています。そんなわけで、
+daruyanagi.jp：はてなブログ**about.**daruyanagi.jp：自己紹介サイトというよくわからない構造になってしまい、ちょっと困っていました。できればこれを**blog.**daruyanagi.jp：はてなブログdaruyanagi.jp：自己紹介サイトという感じに整理したかった。あと、トップドメインで はてなブログ を運用するのはあまりよくないので直したかった、というのもあります。&amp;gt;※はてなブログでは、サブドメインを使用しないexample.comでブログを運用すると、ドメイン名の仕組み上、トラブルの原因になることがあります。取得したドメインの前に、必ずサブドメイン（wwwやblogなど）を付加してください。はてなブログを独自ドメインで利用する - はてなブログ ヘルプ Twitter で煽られるのも悲しいですしね！
 RFC 違反ドメイン
 &amp;mdash; しばやん (@shibayan) March 25, 2017  br/&amp;gt;
- ### WebMatrix × ASP.NET Web Pages で自己紹介サイトを構築し、Azure へ配置する というわけで、サイトのお引越し処理です。やらなければいけないのは以下の2つになります。  はてなブログを daruyanagi.jp から blog.daruyanagi.jp へ移動  独自ドメインの割り当てを解除し、daruyanagi.hatenablog.com に戻す DNS設定を行う はてなブログに新しい独自ドメインを割り当てる  自己紹介サイトを daruyanagi.</description>
+### WebMatrix × ASP.NET Web Pages で自己紹介サイトを構築し、Azure へ配置するというわけで、サイトのお引越し処理です。やらなければいけないのは以下の2つになります。はてなブログを daruyanagi.jp から blog.daruyanagi.jp へ移動独自ドメインの割り当てを解除し、daruyanagi.hatenablog.com に戻すDNS設定を行うはてなブログに新しい独自ドメインを割り当てる自己紹介サイトを daruyanagi.</description>
     </item>
     
     <item>
@@ -56,7 +56,7 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2017/02/12/100000/</guid>
       <description>年愛用してきた「WebMatrix」ですが、昨年10月に2017年11月1日 でのサポート終了がアナウンスされました。
-&amp;gt; Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix. Formal support will end on November 1st, 2017. Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor! VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix team WebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums    でにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS.</description>
+&amp;gt;Hi everyoneAfter a long and successful run, Microsoft has decided to end formal support of WebMatrix. Formal support will end on November 1st, 2017. Community support will continue on the WebMatrix forums Please take a look at Visual Studio Code, our new, free, open source, multi-platform editor! VS Code support git integration, extensions and a whole bunch of other great features!Thanks!The WebMatrix teamWebMatrix formal support ends November 1st, 2017 : The Official Microsoft IIS Forums   でにテンプレートをダウンロードする際に 404 が発生することが多くなったほか、拡張機能のダウンロード提供が終了しており、第一線で使うにはつらい状況になっています。そろそろ乗り換えを検討すべきでしょう。Microsoft は後継ソフトとして「Visual Studio Code」を推奨していますが、これは統合ターミナルでバリバリとコマンドを打つ感じなので、GUI に甘やかされた僕にはしんどい感じ（最近「Express」を少し触っているのですが、そっちの文化にあわせるなら割と使いやすいですけどねー）。いずれ慣れないといけないなーとは思うんですが、APS.</description>
     </item>
     
     <item>
@@ -66,8 +66,8 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2016/06/03/190631/</guid>
       <description>ASP.NET Web Pages 製の BOT が、ある日を境に突然、System.Xml.XmlException エラーを吐くようになった。
-&amp;gt; The element with name &amp;amp;#39;RDF&amp;amp;#39; and namespace &amp;amp;#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&amp;amp;#39; is not an allowed feed format.  某サイトのリニューアルで、RSS 2.0 が RSS 1.0 になったせいでフィードが読めなくなったらしい／(^o^)＼
-&amp;gt; Classes That Model Syndication Feeds and Items  SyndicationFeed - represents a syndication feed. Has properties like Title, Description, Links, and Items. The Items property represents the collection of content items expressed in the feed. SyndicationItem - represents a specific syndication feed item and includes properties like Title, Summary, PublishDate, Authors, and so on.</description>
+&amp;gt;The element with name &amp;amp;#39;RDF&amp;amp;#39; and namespace &amp;amp;#39;http://www.w3.org/1999/02/22-rdf-syntax-ns#&amp;amp;#39; is not an allowed feed format.  某サイトのリニューアルで、RSS 2.0 が RSS 1.0 になったせいでフィードが読めなくなったらしい／(^o^)＼
+&amp;gt;Classes That Model Syndication Feeds and Items SyndicationFeed - represents a syndication feed. Has properties like Title, Description, Links, and Items. The Items property represents the collection of content items expressed in the feed. SyndicationItem - represents a specific syndication feed item and includes properties like Title, Summary, PublishDate, Authors, and so on.</description>
     </item>
     
     <item>
@@ -77,9 +77,9 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2015/09/19/203816/</guid>
       <description>  週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？
-### 最初に作ったヤツ   SP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。
- http://akashi.azurewebsites.net/   ### 二番目に作ったヤツ   、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。
- http://akashiarsenal.azurewebsites.net/ ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　 </description>
+### 最初に作ったヤツ  SP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。
+http://akashi.azurewebsites.net/### 二番目に作ったヤツ  、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。
+http://akashiarsenal.azurewebsites.net/ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　</description>
     </item>
     
     <item>
@@ -89,7 +89,7 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2015/09/13/032922/</guid>
       <description>  iki エンジンなんかを作るときなど、「ドット（.）」を URL に含めたい場合は、Web.config に一行、以下のように加えるといいみたい。
-&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt; &amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt; .webServer&amp;gt; runAllManagedModulesForAllRequests=&amp;#34;true&amp;#34; /&amp;gt; .webServer&amp;gt; ```静的リソースまでアプリケーションで処理するようになる（？）ので、効率が悪そうだけど。もっとちゃんと対策したければ、以下の URL が参考になりそう。&amp;lt;iframe src=&amp;#34;//hatenablog-parts.com/embed?url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F11728846%2Fdots-in-url-causes-404-with-asp-net-mvc-and-iis&amp;#34; title=&amp;#34;Dots in URL causes 404 with ASP.NET mvc and IIS&amp;#34; class=&amp;#34;embed-card embed-webcard&amp;#34; scrolling=&amp;#34;no&amp;#34; frameborder=&amp;#34;0&amp;#34; style=&amp;#34;display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&amp;#34;&amp;gt;&amp;lt;/iframe&amp;gt; </description>
+&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;UTF-8&amp;#34;?&amp;gt;&amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt;.webServer&amp;gt;runAllManagedModulesForAllRequests=&amp;#34;true&amp;#34; /&amp;gt;.webServer&amp;gt;```静的リソースまでアプリケーションで処理するようになる（？）ので、効率が悪そうだけど。もっとちゃんと対策したければ、以下の URL が参考になりそう。&amp;lt;iframe src=&amp;#34;//hatenablog-parts.com/embed?url=http%3A%2F%2Fstackoverflow.com%2Fquestions%2F11728846%2Fdots-in-url-causes-404-with-asp-net-mvc-and-iis&amp;#34; title=&amp;#34;Dots in URL causes 404 with ASP.NET mvc and IIS&amp;#34; class=&amp;#34;embed-card embed-webcard&amp;#34; scrolling=&amp;#34;no&amp;#34; frameborder=&amp;#34;0&amp;#34; style=&amp;#34;display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;&amp;#34;&amp;gt;&amp;lt;/iframe&amp;gt;</description>
     </item>
     
     <item>
@@ -99,12 +99,12 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2015/07/05/220634/</guid>
       <description>んなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。
-### とりあえずプロジェクトを作成する   ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。
+### とりあえずプロジェクトを作成する  ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。
   なみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。
   のテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。
- ### ページの追加   ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。
+### ページの追加  ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。
   とは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。
-@{ Layout = null; } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; &amp;amp;lt;div&amp;gt; &amp;amp;lt;/div&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```body が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。 ```cs @{ Layout = null; var message = &amp;#34;Hello!</description>
+@{Layout = null;}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta name=&amp;#34;viewport&amp;#34; content=&amp;#34;width=device-width&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;&amp;amp;lt;div&amp;gt;&amp;amp;lt;/div&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```body が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。```cs@{Layout = null;var message = &amp;#34;Hello!</description>
     </item>
     
     <item>
@@ -114,7 +114,7 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2015/06/25/050342/</guid>
       <description>だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。
-&amp;gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。 データ型    方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。</description>
+&amp;gt;### datetime300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。データ型   方、C# の default(DateTime) は 0001/01/01 0:00:00。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、default(DateTime) を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。</description>
     </item>
     
     <item>
@@ -124,7 +124,7 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2014/08/12/194954/</guid>
       <description>WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ の続き。今回は Flickr の埋め込みをやってみようかと思う。
-### ~/App_Code/OEmbed.cshtml ```cs @helper Flickr(string url) { const string API_ENDPOINT = &#34;http://www.flickr.com/services/oembed/&#34;; using (var downloader = new WebClient()) { try { // URL を組み立てて JSON の oEmbed データを取得 var request = string.Format(&amp;quot;{0}?url={1}&amp;amp;amp;format={2}&amp;quot;, API_ENDPOINT, url, &amp;quot;json&amp;quot;); var oembed_data = downloader.DownloadString(request); var oembed_json = Json.Decode(oembed_data); @ObjectInfo.Print(oembed_json) // デバッグのため var embed_type = oembed_json.type as string; switch (embed_type) // photo と video の二種類がある { case &amp;quot;photo&amp;quot;:  &amp;lt;figure&amp;gt; &amp;lt;img src=&#39;@oembed_json.</description>
+### ~/App_Code/OEmbed.cshtml```cs@helper Flickr(string url) {const string API_ENDPOINT = &#34;http://www.flickr.com/services/oembed/&#34;;using (var downloader = new WebClient()){try{// URL を組み立てて JSON の oEmbed データを取得var request = string.Format(&amp;quot;{0}?url={1}&amp;amp;amp;format={2}&amp;quot;, API_ENDPOINT, url, &amp;quot;json&amp;quot;);var oembed_data = downloader.DownloadString(request);var oembed_json = Json.Decode(oembed_data);@ObjectInfo.Print(oembed_json) // デバッグのためvar embed_type = oembed_json.type as string;switch (embed_type) // photo と video の二種類がある{case &amp;quot;photo&amp;quot;: &amp;lt;figure&amp;gt; &amp;lt;img src=&#39;@oembed_json.</description>
     </item>
     
     <item>
@@ -134,10 +134,10 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2014/07/17/012107/</guid>
       <description>WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。
-### 基本   br/&amp;gt;
-#### Default.cshtml ```html @using System.Configuration
+### 基本  br/&amp;gt;
+#### Default.cshtml```html@using System.Configuration
 &amp;lt;html lang=&amp;quot;ja&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;rdquo; /&amp;gt; &amp;lt;title&amp;gt;マイ サイトのタイトル&amp;lt;/title&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; @ObjectInfo.Print(ConfigurationManager.AppSettings) &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### Web.config ```xml &amp;lt;!--?--&amp;gt;xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt; &amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt; .web&amp;gt; debug=&amp;quot;true&amp;quot; targetFramework=&amp;quot;4.0&amp;quot; /&amp;gt; .web&amp;gt; file=&amp;quot;Web2.config&amp;quot;&amp;gt; key=&amp;quot;A&amp;quot; value=&amp;quot;a&amp;quot;/&amp;gt; key=&amp;quot;B&amp;quot; value=&amp;quot;b&amp;quot;/&amp;gt; key=&amp;quot;C&amp;quot; value=&amp;quot;c&amp;quot;/&amp;gt; key=&amp;quot;D&amp;quot; value=&amp;quot;d&amp;quot;/&amp;gt; key=&amp;quot;E&amp;quot; value=&amp;quot;e&amp;quot;/&amp;gt; key=&amp;quot;F&amp;quot; value=&amp;quot;f&amp;quot;/&amp;gt; key=&amp;quot;G&amp;quot; value=&amp;quot;g&amp;quot;/&amp;gt; ```appSettings セクションにアプリケーション設定を記述。&amp;lt;code&amp;gt;file=&amp;quot;Web2.config&amp;quot;&amp;lt;/code&amp;gt; は後述。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### 結果   とえば、 ```cs var a = System.</description>
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### Web.config```xml&amp;lt;!--?--&amp;gt;xml version=&amp;quot;1.0&amp;quot; encoding=&amp;quot;utf-8&amp;quot;?&amp;gt;&amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt;.web&amp;gt;debug=&amp;quot;true&amp;quot; targetFramework=&amp;quot;4.0&amp;quot; /&amp;gt;.web&amp;gt;file=&amp;quot;Web2.config&amp;quot;&amp;gt;key=&amp;quot;A&amp;quot; value=&amp;quot;a&amp;quot;/&amp;gt;key=&amp;quot;B&amp;quot; value=&amp;quot;b&amp;quot;/&amp;gt;key=&amp;quot;C&amp;quot; value=&amp;quot;c&amp;quot;/&amp;gt;key=&amp;quot;D&amp;quot; value=&amp;quot;d&amp;quot;/&amp;gt;key=&amp;quot;E&amp;quot; value=&amp;quot;e&amp;quot;/&amp;gt;key=&amp;quot;F&amp;quot; value=&amp;quot;f&amp;quot;/&amp;gt;key=&amp;quot;G&amp;quot; value=&amp;quot;g&amp;quot;/&amp;gt;```appSettings セクションにアプリケーション設定を記述。&amp;lt;code&amp;gt;file=&amp;quot;Web2.config&amp;quot;&amp;lt;/code&amp;gt; は後述。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### 結果  とえば、```csvar a = System.</description>
     </item>
     
     <item>
@@ -147,9 +147,9 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2014/07/15/224549/</guid>
       <description>たとえば Twitter BOT を作っている場合に、
- ローカルテスト中は、テスト用に作成したアカウントでポスト リモート展開中は、本番用のアカウントでポスト したい。Visual Studio だったらデプロイ時に XDT で Web.config を書き換えられるので簡単だけど、わしはそれを WebMatrix でやりたいのさ。で、AppSettings についていろいろ調べてたのだけど…… &amp;gt; ##### file 属性 カスタム アプリケーションの構成設定を含む外部ファイルへの相対パスを指定します。指定されたファイルには、、、および の各要素で指定されたものと同じ種類の設定が含まれ、これらの要素と同じキーと値のペア形式を使用します。指定するパスはメイン構成ファイルへの相対パスです。Windows フォーム アプリケーションの場合は、アプリケーションの構成ファイルの場所ではなく、バイナリ フォルダ (/bin/debug など) になります。Web フォーム アプリケーションの場合は、web.config ファイルが置かれているアプリケーション ルートへの相対パスになります。  指定されたファイルが見つからない場合、ランタイムはこの属性を無視します。
- &amp;lt;appsettings&amp;gt; 要素 &amp;lt;/appsettings&amp;gt;  これは使えそう。方針はこんな感じ。
- ローカルテスト時：Web.config（テスト用の Twitter アカウントの設定を記述） リモートテスト時：Web.config ＋ RemoteOnly.config（本番用の Twitter アカウントの設定で上書き） 発行のときにリモートの RemoteOnly.config を消さないように気を付けなきゃいけない運用上の注意はあるけれど、これは割とイケるのではないか。 ### Web.config appSettings にテスト用アカウントの設定を記述。 ```xml xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?  .web&amp;gt; debug=&amp;quot;true&amp;rdquo; targetFramework=&amp;quot;4.0&amp;rdquo; /&amp;gt; mode=&amp;quot;Off&amp;rdquo; /&amp;gt; .web&amp;gt;</description>
+ローカルテスト中は、テスト用に作成したアカウントでポストリモート展開中は、本番用のアカウントでポストしたい。Visual Studio だったらデプロイ時に XDT で Web.config を書き換えられるので簡単だけど、わしはそれを WebMatrix でやりたいのさ。で、AppSettings についていろいろ調べてたのだけど……&amp;gt;##### file 属性カスタム アプリケーションの構成設定を含む外部ファイルへの相対パスを指定します。指定されたファイルには、、、および の各要素で指定されたものと同じ種類の設定が含まれ、これらの要素と同じキーと値のペア形式を使用します。指定するパスはメイン構成ファイルへの相対パスです。Windows フォーム アプリケーションの場合は、アプリケーションの構成ファイルの場所ではなく、バイナリ フォルダ (/bin/debug など) になります。Web フォーム アプリケーションの場合は、web.config ファイルが置かれているアプリケーション ルートへの相対パスになります。 指定されたファイルが見つからない場合、ランタイムはこの属性を無視します。
+ &amp;lt;appsettings&amp;gt; 要素&amp;lt;/appsettings&amp;gt; これは使えそう。方針はこんな感じ。
+ローカルテスト時：Web.config（テスト用の Twitter アカウントの設定を記述）リモートテスト時：Web.config ＋ RemoteOnly.config（本番用の Twitter アカウントの設定で上書き）発行のときにリモートの RemoteOnly.config を消さないように気を付けなきゃいけない運用上の注意はあるけれど、これは割とイケるのではないか。### Web.configappSettings にテスト用アカウントの設定を記述。```xmlxml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;? .web&amp;gt; debug=&amp;quot;true&amp;rdquo; targetFramework=&amp;quot;4.0&amp;rdquo; /&amp;gt; mode=&amp;quot;Off&amp;rdquo; /&amp;gt; .web&amp;gt;</description>
     </item>
     
     <item>
@@ -159,8 +159,8 @@ RFC 違反ドメイン
       
       <guid>https://blog.daruyanagi.jp/entry/2014/07/03/035624/</guid>
       <description>りあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。
-# ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &amp;amp;lt;ruby&amp;gt;&amp;amp;lt;rb&amp;gt;@text&amp;amp;lt;/rb&amp;gt;&amp;amp;lt;rp&amp;gt;（&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;@ruby&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;）&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt; } ```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。 ```cs # ~/Test.cshtml @{ } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @Ruby.GetHtml(&amp;#34;柳 英俊&amp;#34;, &amp;#34;やなぎ ひでとし&amp;#34;) &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt;   ※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。
-### ちょっとハッテン ```cs # ~/App_Code/HtmlHelperExtensions.cs using System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html;
+# ~/Ruby.cshtml@helper GetHtml(string text, string ruby){&amp;amp;lt;ruby&amp;gt;&amp;amp;lt;rb&amp;gt;@text&amp;amp;lt;/rb&amp;gt;&amp;amp;lt;rp&amp;gt;（&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;@ruby&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;）&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt;}```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。```cs# ~/Test.cshtml@{}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@Ruby.GetHtml(&amp;#34;柳 英俊&amp;#34;, &amp;#34;やなぎ ひでとし&amp;#34;)&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;  ※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。
+### ちょっとハッテン```cs# ~/App_Code/HtmlHelperExtensions.csusing System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html;
 public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby) { return new HtmlString(string.</description>
     </item>
     
@@ -171,7 +171,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2014/03/14/182000/</guid>
       <description>見事 WebMatrix で Gmail 経由のアラートメールが送れたわけだが（WebMatrix: Gmail 経由でアラートメールを送る - だるろぐ）、このやり方には一つ欠点（？　というか、仕様だな）があった。たとえば、以下のようなコード。タイマーでとあるジョブ（必ず失敗する）を処理し、エラーが発生したらエラーメールを送る。
-@{ WebMail.SmtpServer=&amp;#34;smtp.gmail.com&amp;#34;; WebMail.SmtpPort = 587; WebMail.EnableSsl=true; WebMail.UserName=&amp;#34;***&amp;#34;; WebMail.From=&amp;#34;***@gmail.com&amp;#34;; WebMail.Password=&amp;#34;***&amp;#34;; var timer = new System.Timers.Timer(1000 * 60); timer.Elapsed += (sender, args) =&amp;gt; { try { throw new Exception(); } catch (Exception e) { WebMail.Send(&amp;#34;***@***.com&amp;#34;, e.Message, e.StackTrace); } }; timer.Start(); } ```これは失敗する。しかも、WebMatrix だと例外が捕捉できないので気づきにくい。   くわからんけれど、WebMail は &amp;lt;a href=&amp;#34;http://msdn.microsoft.com/ja-jp/library/system.web.helpers(v=vs.111).aspx&amp;#34;&amp;gt;System.Web.Helpers Namespace () | Microsoft Docs&amp;lt;/a&amp;gt; に属するみたいで、Page のスレッドじゃないと動作しないのかもしれない。そういえば昔、こういうシチュエーションで Server.MapPath() が使えなかった覚えがある。 &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### 解決策 System.</description>
+@{WebMail.SmtpServer=&amp;#34;smtp.gmail.com&amp;#34;;WebMail.SmtpPort = 587;WebMail.EnableSsl=true; WebMail.UserName=&amp;#34;***&amp;#34;;WebMail.From=&amp;#34;***@gmail.com&amp;#34;; WebMail.Password=&amp;#34;***&amp;#34;;var timer = new System.Timers.Timer(1000 * 60);timer.Elapsed += (sender, args) =&amp;gt;{try{throw new Exception();}catch (Exception e){WebMail.Send(&amp;#34;***@***.com&amp;#34;, e.Message, e.StackTrace);}};timer.Start();}```これは失敗する。しかも、WebMatrix だと例外が捕捉できないので気づきにくい。  くわからんけれど、WebMail は &amp;lt;a href=&amp;#34;http://msdn.microsoft.com/ja-jp/library/system.web.helpers(v=vs.111).aspx&amp;#34;&amp;gt;System.Web.Helpers Namespace () | Microsoft Docs&amp;lt;/a&amp;gt; に属するみたいで、Page のスレッドじゃないと動作しないのかもしれない。そういえば昔、こういうシチュエーションで Server.MapPath() が使えなかった覚えがある。&amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt;### 解決策System.</description>
     </item>
     
     <item>
@@ -181,7 +181,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2014/03/08/220723/</guid>
       <description>Hidetoshi Yanagi（無職） (YanagiHidetoshi) on Twitter に仕掛けておいた Twitter Bot が少しおかしいことに気が付いた。このブログのフィードだけ配信されていない。アプリが吐いたログを見ると、どうやらツイートが長すぎたようだ。修正、修正っと。で、この問題は解決したのだけど、こういうことはメールでお知らせしてほしいなと思う。WebMatrix/ASP.NET Web Pages では簡単にメールが遅れるので、使わないなんて損だ。以下は Gmail の SMTP サーバーを利用する場合。最初に WebMail クラスの設定をしておく。
-// _AppStart.cshtml  @{ WebMail.SmtpServer=&amp;#34;smtp.gmail.com&amp;#34;; WebMail.SmtpPort = 587; WebMail.EnableSsl=true; WebMail.UserName=&amp;#34;***&amp;#34;; WebMail.From=&amp;#34;***@gmail.com&amp;#34;; WebMail.Password=&amp;#34;***&amp;#34;; } ```使い方はこんな感じ。 ```cs @{ try { （なんかエラーの起こりそうな処理） } catch (Exception e) { WebMail.Send( to: &amp;#34;***@***.**&amp;#34;, subject: &amp;#34;Error が起こったで！&amp;#34;, body: e.Message ); } }   っそく ALTER TABLE が失敗したメールが来た ／(＾o＾)＼</description>
+// _AppStart.cshtml@{WebMail.SmtpServer=&amp;#34;smtp.gmail.com&amp;#34;;WebMail.SmtpPort = 587;WebMail.EnableSsl=true; WebMail.UserName=&amp;#34;***&amp;#34;;WebMail.From=&amp;#34;***@gmail.com&amp;#34;; WebMail.Password=&amp;#34;***&amp;#34;;}```使い方はこんな感じ。```cs@{try{（なんかエラーの起こりそうな処理）}catch (Exception e){WebMail.Send(to: &amp;#34;***@***.**&amp;#34;,subject: &amp;#34;Error が起こったで！&amp;#34;,body: e.Message);}}  っそく ALTER TABLE が失敗したメールが来た ／(＾o＾)＼</description>
     </item>
     
     <item>
@@ -191,8 +191,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/12/11/015827/</guid>
       <description>この記事は One ASP.NET Advent Calendar 2013 の11日目の記事です。@ono さん、ありがとうございます！
-&amp;gt; ASP.NET Web Pagesは4番目の選択肢です。Razorのシンタックスのおかげで、PHPやクラシックASPに似た開発経験を提供してくれます。 Microsoftの技術の活用方法  どうも恐縮です！　“4番目の選択肢”が大好きな @daruyanagi です。ウェブベースのアプリを作るとき、ASP.NET Web Pages は LightSwitch の次にお勧めデス。とくに動的な“ペライチ”*1のサイトを作るにはピッタリで、MVC とか API とか Single Page Application とかわかんない僕でも少しはわかるぐらいの簡単さ。これから広大な One ASP.NET の海に漕ぎ出そうという入門者にはピッタリの技術なのではないかと思います。とくに年頃の娘さんにはお勧めしたいですね！――ま、そんなことは置いておいて。今日は ASP.NET Web Pages におけるルーティングの話です。“ペライチ”のサイトを作るには実はあまり関係ないのですけど、データベースを扱うページを作る場合、知っておくと URL がカッコいいサイトが作れるのではないでしょうか。SEO にもいいらしいです。知らんけど。
-### 規約ベースのルーティング 勝手にそう呼んでみましたが、ASP.NET Web Pages で一番簡単かつ基礎となるルーティングです。ASP.NET Web Pages は _/Default/あ/い/う/え/お _というリソースへのリクエストを受け取ると、_~/Default/あ/い/う/え/お.cshtml _を探しに行きます。なければ _~/Default/あ/い/う/え.cshtml_ を、次は _~/Default/あ/い/う.cshtml_ を……。そしてついにこんな **~/Default.cshtml** を発見します。 ```html &amp;lt;html lang=&amp;quot;ja&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;rdquo; /&amp;gt; &amp;lt;title&amp;gt;マイ サイトのタイトル&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;quot;~/favicon.</description>
+&amp;gt;ASP.NET Web Pagesは4番目の選択肢です。Razorのシンタックスのおかげで、PHPやクラシックASPに似た開発経験を提供してくれます。Microsoftの技術の活用方法 どうも恐縮です！　“4番目の選択肢”が大好きな @daruyanagi です。ウェブベースのアプリを作るとき、ASP.NET Web Pages は LightSwitch の次にお勧めデス。とくに動的な“ペライチ”*1のサイトを作るにはピッタリで、MVC とか API とか Single Page Application とかわかんない僕でも少しはわかるぐらいの簡単さ。これから広大な One ASP.NET の海に漕ぎ出そうという入門者にはピッタリの技術なのではないかと思います。とくに年頃の娘さんにはお勧めしたいですね！――ま、そんなことは置いておいて。今日は ASP.NET Web Pages におけるルーティングの話です。“ペライチ”のサイトを作るには実はあまり関係ないのですけど、データベースを扱うページを作る場合、知っておくと URL がカッコいいサイトが作れるのではないでしょうか。SEO にもいいらしいです。知らんけど。
+### 規約ベースのルーティング勝手にそう呼んでみましたが、ASP.NET Web Pages で一番簡単かつ基礎となるルーティングです。ASP.NET Web Pages は _/Default/あ/い/う/え/お _というリソースへのリクエストを受け取ると、_~/Default/あ/い/う/え/お.cshtml _を探しに行きます。なければ _~/Default/あ/い/う/え.cshtml_ を、次は _~/Default/あ/い/う.cshtml_ を……。そしてついにこんな **~/Default.cshtml** を発見します。```html&amp;lt;html lang=&amp;quot;ja&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;rdquo; /&amp;gt; &amp;lt;title&amp;gt;マイ サイトのタイトル&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;quot;~/favicon.</description>
     </item>
     
     <item>
@@ -202,8 +202,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/12/04/035903/</guid>
       <description>  SP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。
- Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動かすとこんな感じ。     能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。
-// _AppStart.cshtml  @using System.Web.Routing @{ RouteTable.Routes.MapWebPageRoute( &amp;#34;{rcPageName}/{rc0}/{rc1}&amp;#34;, &amp;#34;~/Default.cshtml&amp;#34;, new { rcPageName = &amp;#34;default&amp;#34;, rc0=-1, rc1=-1 } ); } ```別に&amp;lt;a href=&amp;#34;https://blog.daruyanagi.jp/entry/2012/07/06/174414&amp;#34;&amp;gt;規約ベースのルーティング&amp;lt;/a&amp;gt;を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;#34;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&amp;#34;&amp;gt;More Flexible Routing For ASP.NET Web Pages&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt; </description>
+Open Source ASP.net CMS for WebMatrix - razorC.net実際に WebMatrix で動かすとこんな感じ。    能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。
+// _AppStart.cshtml@using System.Web.Routing@{ RouteTable.Routes.MapWebPageRoute(&amp;#34;{rcPageName}/{rc0}/{rc1}&amp;#34;,&amp;#34;~/Default.cshtml&amp;#34;,new {rcPageName = &amp;#34;default&amp;#34;,rc0=-1,rc1=-1});}```別に&amp;lt;a href=&amp;#34;https://blog.daruyanagi.jp/entry/2012/07/06/174414&amp;#34;&amp;gt;規約ベースのルーティング&amp;lt;/a&amp;gt;を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;a href=&amp;#34;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&amp;#34;&amp;gt;More Flexible Routing For ASP.NET Web Pages&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;</description>
     </item>
     
     <item>
@@ -231,7 +231,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/10/14/004317/</guid>
       <description>的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。
-@using System.Drawing @{ var text = UrlData[0] == string.Empty ? &amp;#34;Sample&amp;#34; : UrlData[0]; try { var bitmap = new Bitmap(600, 480); using (var g = Graphics.FromImage(bitmap)) { using (var font = newFont(&amp;#34;Meiryo&amp;#34;, 24)) { var rect = new RectangleF(0, 0, 600, 480); var format = StringFormat.GenericDefault; format.Alignment = StringAlignment.Center; format.LineAlignment = StringAlignment.Center; g.FillRectangle( Brushes.CornflowerBlue, rect ); g.DrawString( text, font, Brushes.AntiqueWhite, rect, format ); } } bitmap.Save( Response.OutputStream, Imaging.</description>
+@using System.Drawing@{var text = UrlData[0] == string.Empty ? &amp;#34;Sample&amp;#34; : UrlData[0];try{var bitmap = new Bitmap(600, 480);using (var g = Graphics.FromImage(bitmap)) {using (var font = newFont(&amp;#34;Meiryo&amp;#34;, 24)) {var rect = new RectangleF(0, 0, 600, 480);var format = StringFormat.GenericDefault;format.Alignment = StringAlignment.Center;format.LineAlignment = StringAlignment.Center;g.FillRectangle(Brushes.CornflowerBlue,rect);g.DrawString(text, font, Brushes.AntiqueWhite,rect, format);} }bitmap.Save(Response.OutputStream,Imaging.</description>
     </item>
     
     <item>
@@ -242,7 +242,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       <guid>https://blog.daruyanagi.jp/entry/2013/10/01/081913/</guid>
       <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/09/29/122508&amp;quot;&amp;gt;WebMatrix 3: @ でハマる - だるろぐ&amp;lt;/a
  の続き。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &amp;ldquo;https://platform.twitter.com/widgets.js&amp;quot;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &amp;ldquo;script&amp;rdquo;, &amp;ldquo;twitter-wjs&amp;rdquo;));
-  twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-384486530380611584&#39;); for (var i=0;iというアドバイスをもらった。あ、たぶんそれだ。というわけで書き直した。 ### 旧バージョン（Logger.cshtml） ```cs #App_Code/Logger.</description>
+  twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-384486530380611584&#39;); for (var i=0;iというアドバイスをもらった。あ、たぶんそれだ。というわけで書き直した。### 旧バージョン（Logger.cshtml）```cs#App_Code/Logger.</description>
     </item>
     
     <item>
@@ -252,8 +252,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/09/29/122508/</guid>
       <description>ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。
-  #App_Code/Logger.cshtml @helper Write(string message) { System.IO.File.AppendAllText( Server.MapPath(&amp;#34;~/log.txt&amp;#34;), string.Format(&amp;#34;{0}:\t{1}\r\n&amp;#34;, DateTime.Now, message) ); } ```これを Default.cshtml でテストしてみた。   ```html @{ Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;); } &amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;/&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt; &amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @Logger.Write(&amp;#34;Body 内で記述&amp;#34;) &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```結果はというと――   ―冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。 ```html @{ @Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;); }   ogger.Write() のまえに @ を足せば実行される。
-@{ @( Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;) ) } ```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。 </description>
+  #App_Code/Logger.cshtml@helper Write(string message){System.IO.File.AppendAllText(Server.MapPath(&amp;#34;~/log.txt&amp;#34;),string.Format(&amp;#34;{0}:\t{1}\r\n&amp;#34;, DateTime.Now, message));}```これを Default.cshtml でテストしてみた。  ```html@{Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;);}&amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;/&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt;&amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@Logger.Write(&amp;#34;Body 内で記述&amp;#34;)&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```結果はというと――  ―冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。```html@{@Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;);}  ogger.Write() のまえに @ を足せば実行される。
+@{@(Logger.Write(&amp;#34;冒頭のコードブロック内で記述&amp;#34;))}```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。</description>
     </item>
     
     <item>
@@ -265,8 +265,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       <description>WebMatrix 3: Twitter でログインする - だるろぐ でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。
   ccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。
   ず、これ。アプリが Twitter へアクセスするために必要。
- ConsumerKey ConsumerSecret 次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。  AccessKey AccessKeySecret アプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。   信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
-// ~/App_Code/TwitterClient.cs  using DotNetOpenAuth.AspNet; using DotNetOpenAuth.AspNet.Clients; using DotNetOpenAuth.Messaging; using DotNetOpenAuth.</description>
+ConsumerKeyConsumerSecret次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。AccessKeyAccessKeySecretアプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。  信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
+// ~/App_Code/TwitterClient.csusing DotNetOpenAuth.AspNet;using DotNetOpenAuth.AspNet.Clients;using DotNetOpenAuth.Messaging;using DotNetOpenAuth.</description>
     </item>
     
     <item>
@@ -276,7 +276,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/09/07/055029/</guid>
       <description>またま Tweetinvi a friendly Twitter C# API - Home というのをみかけたのだけど、割と便利だった。
-@{ var token = new TwitterToken.Token( &amp;#34;*****************Pj5ecAhlw3SqBPU5qHtBUSiTQDcgmUzBU&amp;#34;, &amp;#34;*****************RZSPVglcM0TfE7mPCFzm334rw&amp;#34;, &amp;#34;*****************cSizQ&amp;#34;, &amp;#34;*****************zws06agyxRXImPk9sfETNQeg&amp;#34;); if (IsPost) { var tweet = new Tweetinvi.Tweet(&amp;#34;てすてす&amp;#34;); tweet.Publish(token); } } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;/&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt; &amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; &amp;amp;lt;ul&amp;gt; @foreach (var tweet in new Tweetinvi.User(&amp;#34;daruyanagi&amp;#34;, token).GetUserTimeline()) { &amp;amp;lt;li&amp;gt;@tweet.Text&amp;amp;lt;/li&amp;gt; } &amp;amp;lt;/ul&amp;gt; &amp;amp;lt;form action=&amp;#34;&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt; &amp;amp;lt;input type=&amp;#34;submit&amp;#34; /&amp;gt; &amp;amp;lt;/form&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt;   ET でタイムラインを表示（なんかゴミ（\）が入ってるけど、バグかな。あとで報告しよう）。POST でツイート。てすてす2013-09-07 05:45:16 via 建造メモTwitter 系のライブラリってピンキリだけど、これは UserStreams も扱えるようで、悪くない感じかな。デスクトップアプリにも組み込める、というか、PIN の認証はあるけど Web アプリの認証は今のところ未実装みたいなので、どっちかっていうと今のところデスクトップアプリ向けって感じ。</description>
+@{var token = new TwitterToken.Token(&amp;#34;*****************Pj5ecAhlw3SqBPU5qHtBUSiTQDcgmUzBU&amp;#34;, &amp;#34;*****************RZSPVglcM0TfE7mPCFzm334rw&amp;#34;, &amp;#34;*****************cSizQ&amp;#34;, &amp;#34;*****************zws06agyxRXImPk9sfETNQeg&amp;#34;);if (IsPost){var tweet = new Tweetinvi.Tweet(&amp;#34;てすてす&amp;#34;);tweet.Publish(token);}}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta http-equiv=&amp;#34;Content-Type&amp;#34; content=&amp;#34;text/html; charset=utf-8&amp;#34;/&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt;&amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;&amp;amp;lt;ul&amp;gt;@foreach (var tweet in new Tweetinvi.User(&amp;#34;daruyanagi&amp;#34;, token).GetUserTimeline()){&amp;amp;lt;li&amp;gt;@tweet.Text&amp;amp;lt;/li&amp;gt;}&amp;amp;lt;/ul&amp;gt;&amp;amp;lt;form action=&amp;#34;&amp;#34; method=&amp;#34;post&amp;#34;&amp;gt;&amp;amp;lt;input type=&amp;#34;submit&amp;#34; /&amp;gt;&amp;amp;lt;/form&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;  ET でタイムラインを表示（なんかゴミ（\）が入ってるけど、バグかな。あとで報告しよう）。POST でツイート。てすてす2013-09-07 05:45:16 via 建造メモTwitter 系のライブラリってピンキリだけど、これは UserStreams も扱えるようで、悪くない感じかな。デスクトップアプリにも組み込める、というか、PIN の認証はあるけど Web アプリの認証は今のところ未実装みたいなので、どっちかっていうと今のところデスクトップアプリ向けって感じ。</description>
     </item>
     
     <item>
@@ -286,9 +286,9 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/09/05/070245/</guid>
       <description>ょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、WebMatrix 2：OAuth でログインする（２） - だるろぐ を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。
-### 下準備   ず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。
+### 下準備  ず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。
   に https://dev.twitter.com/apps/ でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
- Name: アプリの名前 Description: title Website: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる） Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい） Allow this application to be used to Sign in with Twitter: 無効化 アプリを登録したら、  Consumer key Consumer secret を取得し、~/_AppStart.</description>
+Name: アプリの名前Description: titleWebsite: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる）Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい）Allow this application to be used to Sign in with Twitter: 無効化アプリを登録したら、Consumer keyConsumer secretを取得し、~/_AppStart.</description>
     </item>
     
     <item>
@@ -297,8 +297,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       <pubDate>Mon, 02 Sep 2013 04:06:14 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/09/02/040614/</guid>
-      <description>  &amp;gt; 本日、はてなブログを「ブログ グループ」に参加させる際に、ブログ記事のカテゴリーを指定できるようにしました。自分のブログで「写真」カテゴリーにある記事だけを「写真」グループに参加させる、といったことができます。 ブログ グループに参加する際に、記事のカテゴリーを指定できるようにしました - はてなブログ開発ブログ  グッジョブ！　ずっと要望していた昨日なのでとても嬉しい。
- ASP.NET Web Pages - はてなブログ グループ WebMatrix - はてなブログ グループ まだ僕しかいないけど！はてなグループには RSS もあるので、お前の日記になんぞ興味ないよ、WebMatrix や ASP.NET Web Pages のことだけ書けよ、という人がいたらそっちを購読してくだサイ。また、参加者も募集しています！ </description>
+      <description>  &amp;gt;本日、はてなブログを「ブログ グループ」に参加させる際に、ブログ記事のカテゴリーを指定できるようにしました。自分のブログで「写真」カテゴリーにある記事だけを「写真」グループに参加させる、といったことができます。ブログ グループに参加する際に、記事のカテゴリーを指定できるようにしました - はてなブログ開発ブログ グッジョブ！　ずっと要望していた昨日なのでとても嬉しい。
+ASP.NET Web Pages - はてなブログ グループWebMatrix - はてなブログ グループまだ僕しかいないけど！はてなグループには RSS もあるので、お前の日記になんぞ興味ないよ、WebMatrix や ASP.NET Web Pages のことだけ書けよ、という人がいたらそっちを購読してくだサイ。また、参加者も募集しています！</description>
     </item>
     
     <item>
@@ -308,12 +308,12 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/08/10/155243/</guid>
       <description>前回（WebMatrix 3 で Wiki クローンを作る vol.0 - だるろぐ）からすでに1ヶ月たちましたが、だいたいこんなペースで、気が向いたときにやっていくと思います。すまんやで！さて、今回はデータの読み書きです。Wiki と言えば、データはテキストとして保存するるタイプが多いんですかね？　まぁ、それでもいいんですけど、WebMatrix では SQL Server Compact Edition（SQL CE と略されることが多いです）が簡単に扱えるので、それを利用したいと思います。SQL CE というのは Microsoft SQL Server 兄弟の末弟で、SQLite みたいにポータブルに扱えるタイプのデータベースです。ちなみに、WebMatrix はそのお兄さん（SQL Server）や、お兄さんのライバル（MySQL）なんかともなかよくできるのですけれど、ああいうのはインストールとかセッティングとかメンテナンスとか面倒ですよね。その点、SQL CE はデータベースファイルをひとつポンと作るだけなので楽ちんです。ちなみに、タダ。
-### データベースの作成   ebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。
+### データベースの作成  ebMatrix でデータを扱うには、［データベース］というワークスペースを選択します。
   は、さっそくデータベースを作りましょう。データベースのファイル名はなんでもいいです。今回はプロジェクト名そのままの“Green Tights.sdf”にしました。続いてテーブルの作成。
   回はこんなかんじにしてみました。ついでにテーブルの定義も作っておきましょう。テーブルの名前は“Post”で、投稿を管理するテーブルです。
- PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。 Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。 RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？ CreatedAt：datetime（日時）型。その名の通り作成日時です。 UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。 これを“Post”という名前で作っておきます。  ### データの入力画面の作成   ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。
+PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？CreatedAt：datetime（日時）型。その名の通り作成日時です。UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。これを“Post”という名前で作っておきます。### データの入力画面の作成  ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。
   ードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
-@{ if (IsPost) // POST 要求だけを受け付けましょう  { // Request[&amp;#34;name&amp;#34;] で送られてきた名前を取得。  // POST データなら Request.</description>
+@{if (IsPost) // POST 要求だけを受け付けましょう {// Request[&amp;#34;name&amp;#34;] で送られてきた名前を取得。 // POST データなら Request.</description>
     </item>
     
     <item>
@@ -323,8 +323,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/07/24/070906/</guid>
       <description>  a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/07/18/033539&amp;quot;&amp;gt;WebMatrix 3: Windows Store oEmbed API を利用する - だるろぐ を NuGet にして NuGet Gallery で公開しました。
- NuGet Gallery | WSoEmbed 1.0.2 前回の記事からの変更点は、System.Threading.Thread.CurrentThread.CurrentUICulture で言語を取得して URL をビルドするようにしたことのみ。 ```cs @WindowsStore.GetHtml(APP_URL) @WindowsStore.GetHtml(&amp;ldquo;8289549f-9bae-4d44-9a5c-63d9c3a79f35&amp;rdquo;)
- </description>
+NuGet Gallery | WSoEmbed 1.0.2前回の記事からの変更点は、System.Threading.Thread.CurrentThread.CurrentUICulture で言語を取得して URL をビルドするようにしたことのみ。```cs@WindowsStore.GetHtml(APP_URL)@WindowsStore.GetHtml(&amp;ldquo;8289549f-9bae-4d44-9a5c-63d9c3a79f35&amp;rdquo;)
+</description>
     </item>
     
     <item>
@@ -334,7 +334,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/07/18/033539/</guid>
       <description>Windows Store oEmbed API は、なかなかいいですね。ブログにこんなかんじでストアアプリの情報が貼り付けられます。使い方などは以下の URL を参照してください。
- Windows Store oEmbed API として公開しなおしました - しばやん雑記 Windows ストアの内容を埋め込める oEmbed API を作った - しばやん雑記 またストアアプリを作りたくなりました（ぁ ### WebMatrix 3 で Windows Store oEmbed API を利用する Windows Store oEmbed API と jquery-oembed を組み合わせて使う方法 - しばやん雑記 のように JavaScript（クライアントサイド）で利用するのがよいと思いますが、C#（サーバーサイド）で使うこともできます。説明するのは面倒なので、コードだけおいておきます。APS.NET の“空のサイト”を作成し、Default.cshtml を以下のように編集してください。 ```html @{ const string API_ENDPOINT = @&#34;http://wsoembed.com/oembed&#34;; const string APP_URL = @&#34;http://apps.microsoft.com/windows/ja-jp/app/86b6ecdc-e810-4aa2-9bdb-bb0da5b34737&#34;; var url = string.Format(&amp;quot;{0}?url={1}&amp;quot;, API_ENDPOINT, APP_URL); var response = string.Empty; using (var downloader = new WebClient(){ Encoding = System.</description>
+Windows Store oEmbed API として公開しなおしました - しばやん雑記Windows ストアの内容を埋め込める oEmbed API を作った - しばやん雑記またストアアプリを作りたくなりました（ぁ### WebMatrix 3 で Windows Store oEmbed API を利用するWindows Store oEmbed API と jquery-oembed を組み合わせて使う方法 - しばやん雑記 のように JavaScript（クライアントサイド）で利用するのがよいと思いますが、C#（サーバーサイド）で使うこともできます。説明するのは面倒なので、コードだけおいておきます。APS.NET の“空のサイト”を作成し、Default.cshtml を以下のように編集してください。```html@{const string API_ENDPOINT = @&#34;http://wsoembed.com/oembed&#34;;const string APP_URL = @&#34;http://apps.microsoft.com/windows/ja-jp/app/86b6ecdc-e810-4aa2-9bdb-bb0da5b34737&#34;;var url = string.Format(&amp;quot;{0}?url={1}&amp;quot;, API_ENDPOINT, APP_URL);var response = string.Empty;using (var downloader = new WebClient(){ Encoding = System.</description>
     </item>
     
     <item>
@@ -344,8 +344,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/07/17/054740/</guid>
       <description>br/&amp;gt;
-&amp;gt; Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。 http://tam.qmix.org/wiki/Minki00.html  昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります*1。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（WebMatrix 3 で Wiki クローンを作る）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。
-### 必要なもの  Microsoft Developer これだけです。できれば http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web があるといろいろ便利。フレームワークには ASP.NET Web Pages 2 | Microsoft Docs を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。  ### プロジェクトの新規作成   ンプレートギャラリーから……
+&amp;gt;Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。http://tam.qmix.org/wiki/Minki00.html 昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります*1。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（WebMatrix 3 で Wiki クローンを作る）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。
+### 必要なものMicrosoft Developerこれだけです。できれば http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web があるといろいろ便利。フレームワークには ASP.NET Web Pages 2 | Microsoft Docs を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。### プロジェクトの新規作成  ンプレートギャラリーから……
   SP.</description>
     </item>
     
@@ -364,8 +364,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       <pubDate>Sat, 18 May 2013 21:26:34 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/05/18/212634/</guid>
-      <description>  &amp;gt; 必ず X-Content-Type-Options: nosniff レスポンスヘッダをつけるようにしましょう 機密情報を含むJSONには X-Content-Type-Options: nosniff をつけるべき - 葉っぱ日記  とのことなので、ASP.NET でカスタム HTTP ヘッダを追加する方法 - しばやん雑記 を参考に X-Content-Type-Options: nosniff を付ける NuGet を作っておいた。
- NuGet Gallery | nosniff 1.0.1 Web.config.transform を記述しただけのシンプルなものだけど、いかがでしょうかね。   </description>
+      <description>  &amp;gt;必ず X-Content-Type-Options: nosniff レスポンスヘッダをつけるようにしましょう機密情報を含むJSONには X-Content-Type-Options: nosniff をつけるべき - 葉っぱ日記 とのことなので、ASP.NET でカスタム HTTP ヘッダを追加する方法 - しばやん雑記 を参考に X-Content-Type-Options: nosniff を付ける NuGet を作っておいた。
+NuGet Gallery | nosniff 1.0.1Web.config.transform を記述しただけのシンプルなものだけど、いかがでしょうかね。  </description>
     </item>
     
     <item>
@@ -375,8 +375,8 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/05/10/085706/</guid>
       <description>br/&amp;gt;
-&amp;gt; Nancy is a lightweight, low-ceremony, framework for building HTTP based services on .Net and Mono. The goal of the framework is to stay out of the way as much as possible and provide a super-duper-happy-path to all interactions. Hosting Nancy with asp.net · NancyFx/Nancy Wiki · GitHub  Scott Hanselman 氏のブログ（One ASP.NET: Nancy.Templates for Visual Studio - Scott Hanselman）で知ったのですが、 「Nancy」なんてのがあるんですね！
- Nancy - Lightweight Web Framework for .</description>
+&amp;gt;Nancy is a lightweight, low-ceremony, framework for building HTTP based services on .Net and Mono. The goal of the framework is to stay out of the way as much as possible and provide a super-duper-happy-path to all interactions.Hosting Nancy with asp.net · NancyFx/Nancy Wiki · GitHub Scott Hanselman 氏のブログ（One ASP.NET: Nancy.Templates for Visual Studio - Scott Hanselman）で知ったのですが、 「Nancy」なんてのがあるんですね！
+Nancy - Lightweight Web Framework for .</description>
     </item>
     
     <item>
@@ -386,7 +386,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/05/07/214301/</guid>
       <description>ずはここから。
- http://download.daruyanagi.net/ 仕組み的には Markdown テキストを App_Text フォルダに入れておいて、それを HTML に変換しています。Helper でプラグインっぽく拡張できるのがちょっと自慢。  WebMatrix 2: Markdown を汎用的に拡張する仕組みを考えてみる - だるろぐ ソーシャル関連のボタンは、この一連の記事で実装してみたものを使っています。  WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐ WebMatrix 3: JSON と JSONP - だるろぐ フィードの出力は以下の記事で実装したものをベースにしています。  WebMatrix 3: RSS フィードを出力する - だるろぐ 今のところキャッシュ機能がないのでそれをつけようかなぁ、と。それ以外にも不満な部分が結構あるので、このサイトで十分に基本機能を練って NuGet パッケージにし、ほかのサイトにも展開していきたいと思います。  WebMatrix：NuGet サーバーをたてる - だるろぐ WordPress のような既存の大規模 CMS を使うのもいいけど、自分で少しずつ実装した方が“自分の手のひらの上で動かしている”感じがあって僕は好きです。Windows Azure Web Sites を使って Dropbox からデプロイできたら便利そうなのだけど、ボクのお給料では Azure の維持は少し大変そうなので泣く泣く断念しました。おちんぎんほしぃなりぃ。 #### P.</description>
+http://download.daruyanagi.net/仕組み的には Markdown テキストを App_Text フォルダに入れておいて、それを HTML に変換しています。Helper でプラグインっぽく拡張できるのがちょっと自慢。WebMatrix 2: Markdown を汎用的に拡張する仕組みを考えてみる - だるろぐソーシャル関連のボタンは、この一連の記事で実装してみたものを使っています。WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐWebMatrix 3: JSON と JSONP - だるろぐフィードの出力は以下の記事で実装したものをベースにしています。WebMatrix 3: RSS フィードを出力する - だるろぐ今のところキャッシュ機能がないのでそれをつけようかなぁ、と。それ以外にも不満な部分が結構あるので、このサイトで十分に基本機能を練って NuGet パッケージにし、ほかのサイトにも展開していきたいと思います。WebMatrix：NuGet サーバーをたてる - だるろぐWordPress のような既存の大規模 CMS を使うのもいいけど、自分で少しずつ実装した方が“自分の手のひらの上で動かしている”感じがあって僕は好きです。Windows Azure Web Sites を使って Dropbox からデプロイできたら便利そうなのだけど、ボクのお給料では Azure の維持は少し大変そうなので泣く泣く断念しました。おちんぎんほしぃなりぃ。#### P.</description>
     </item>
     
     <item>
@@ -396,9 +396,9 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/22/200709/</guid>
       <description>  br/&amp;gt;
- WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐ 一連の記事では、FeedCount の結果を JSON でやり取りしていました。 ### JSON #### サーバーサイド ```cs // ~/FeedCount.cshtml Response.Clear(); Response.ContentType = &amp;ldquo;application/json&amp;rdquo;; Response.Write(Json.Encode(data)); Response.End();
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### 渡されるデータ（例） ```javascript {&amp;quot;livedoor&amp;quot;:6,&amp;quot;total&amp;quot;:6}  #### クライアントサイド ```javascript // ~/Script/SocialButtons.js $.ajax({ url: &#39;/FeedCount/&#39; + url, dataType: &#39;json&#39;, success: function (json) { element.text(json.total || 0); } });
-&amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; </description>
+WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐ一連の記事では、FeedCount の結果を JSON でやり取りしていました。### JSON#### サーバーサイド```cs// ~/FeedCount.cshtmlResponse.Clear(); Response.ContentType = &amp;ldquo;application/json&amp;rdquo;; Response.Write(Json.Encode(data)); Response.End();
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### 渡されるデータ（例）```javascript{&amp;quot;livedoor&amp;quot;:6,&amp;quot;total&amp;quot;:6}#### クライアントサイド```javascript// ~/Script/SocialButtons.js$.ajax({ url: &#39;/FeedCount/&#39; + url, dataType: &#39;json&#39;, success: function (json) { element.text(json.total || 0); } });
+&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;</description>
     </item>
     
     <item>
@@ -408,7 +408,7 @@ public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this H
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/21/143904/</guid>
       <description>  a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/04/20/224501&amp;quot;&amp;gt;WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ の補足。
-http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような URL を受け取ると、 &amp;gt; 危険な可能性のある Request.Path 値がクライアント (:) から検出されました。 というエラーが出てしまいます。これは ASP.NET のセキュリティ機能のようですね。ただ、自分は Web 系のセキュリティにあまり詳しくないので、これがどのように悪用できるのかさっぱりわからないのですが……（SQLインジェクションかなにかかなぁ？）。いい本をご存知でしたら、どなたか教えてください。とりあえず、今回はこれを解除してしまいます。あとは自己責任で…… </description>
+http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/```このような URL を受け取ると、&amp;gt;危険な可能性のある Request.Path 値がクライアント (:) から検出されました。というエラーが出てしまいます。これは ASP.NET のセキュリティ機能のようですね。ただ、自分は Web 系のセキュリティにあまり詳しくないので、これがどのように悪用できるのかさっぱりわからないのですが……（SQLインジェクションかなにかかなぁ？）。いい本をご存知でしたら、どなたか教えてください。とりあえず、今回はこれを解除してしまいます。あとは自己責任で……</description>
     </item>
     
     <item>
@@ -427,7 +427,7 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/18/031339/</guid>
       <description>br/&amp;gt;
-&amp;gt; できた！と思ったけど、Internet Explorer ではちゃんと表示できない。なんか XML が尻切れトンボで出力されておる…… WebMatrix 3: RSS フィードを出力する - だるろぐ  この問題を解決しておきましょう。</description>
+&amp;gt;できた！と思ったけど、Internet Explorer ではちゃんと表示できない。なんか XML が尻切れトンボで出力されておる……WebMatrix 3: RSS フィードを出力する - だるろぐ この問題を解決しておきましょう。</description>
     </item>
     
     <item>
@@ -437,7 +437,7 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/17/065153/</guid>
       <description>とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（RSS 2.0 を実装する - だるろぐ）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。
-@using System.IO @using System.Xml @using System.ServiceModel.Syndication @{ var url = new Uri(Request.Url.Scheme + &amp;#34;://&amp;#34; + Request.Url.Authority); // ココらへんはあんまり気にしないで  var files = Directory.GetFiles(Server.MapPath(&amp;#34;~/App_Text/&amp;#34;)) .Select(_ =&amp;gt; new FileInfo(_)) .Where(_ =&amp;gt; !_.Name.StartsWith(&amp;#34;_&amp;#34;)) .OrderByDescending(_ =&amp;gt; _.LastWriteTime) .Take(10); var feed = new SyndicationFeed(App.Title, App.Description, new Uri(url, &amp;#34;Feed&amp;#34;)) { Copyright = new TextSyndicationContent(App.Copyright.ToString()), Items = files.Select(file =&amp;gt; { var name = Path.GetFileNameWithoutExtension(file.FullName); // ファイルの内容を読み込んで自作の Markdown エンジンにかけている  var content = TextFormatEngine.</description>
+@using System.IO@using System.Xml@using System.ServiceModel.Syndication@{var url = new Uri(Request.Url.Scheme + &amp;#34;://&amp;#34; + Request.Url.Authority);// ココらへんはあんまり気にしないで var files = Directory.GetFiles(Server.MapPath(&amp;#34;~/App_Text/&amp;#34;)).Select(_ =&amp;gt; new FileInfo(_)).Where(_ =&amp;gt; !_.Name.StartsWith(&amp;#34;_&amp;#34;)).OrderByDescending(_ =&amp;gt; _.LastWriteTime).Take(10);var feed = new SyndicationFeed(App.Title, App.Description, new Uri(url, &amp;#34;Feed&amp;#34;)){Copyright = new TextSyndicationContent(App.Copyright.ToString()),Items = files.Select(file =&amp;gt;{var name = Path.GetFileNameWithoutExtension(file.FullName);// ファイルの内容を読み込んで自作の Markdown エンジンにかけている var content = TextFormatEngine.</description>
     </item>
     
     <item>
@@ -447,7 +447,7 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/06/130738/</guid>
       <description>  eb.config の appSettings セクションをもとにクラスを生成してくれる T4 テンプレート SwissKnife.T4.AppSettings がよさげなので、これが WebMatrix 3 も使えないかなぁ、といろいろ試してみた。
- Web.config から AppSettings クラスを生成する T4 を NuGet で公開しました - しばやん雑記  </description>
+Web.config から AppSettings クラスを生成する T4 を NuGet で公開しました - しばやん雑記</description>
     </item>
     
     <item>
@@ -456,7 +456,7 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       <pubDate>Tue, 26 Mar 2013 21:32:38 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/26/213238/</guid>
-      <description> Microsoft.Web.Infrastructure Microsoft.Web.Infrastructure.DynamicModuleHelper Microsoft.Web.Infrastructure.DynamicValidationHelper Microsoft.Web.WebPages.OAuth System.Web.Helpers System.Web.Mvc System.Web.Razor System.Web.Razor.Editor System.Web.Razor.Generator System.Web.Razor.Parser System.Web.Razor.Parser.SyntaxTree System.Web.Razor.Text System.Web.Razor.Tokenizer System.Web.Razor.Tokenizer.Symbols System.Web.WebPages System.Web.WebPages.Administration System.Web.WebPages.Administration.PackageManager System.Web.WebPages.Deployment System.Web.WebPages.Html System.Web.WebPages.Instrumentation System.Web.WebPages.Razor System.Web.WebPages.Razor.Configuration System.Web.WebPages.Scope WebMatrix.Data WebMatrix.WebData 一応抜き書きしてみたけれど、あんまり役に立つ感じじゃなかった。WebSecurity クラスが WebMatrix.WebData 名前空間にあるっていうのは、最初しっくりこなかったなぁ。  ASP.NET Web Pages 2 リファレンス  </description>
+      <description>Microsoft.Web.InfrastructureMicrosoft.Web.Infrastructure.DynamicModuleHelperMicrosoft.Web.Infrastructure.DynamicValidationHelperMicrosoft.Web.WebPages.OAuthSystem.Web.HelpersSystem.Web.MvcSystem.Web.RazorSystem.Web.Razor.EditorSystem.Web.Razor.GeneratorSystem.Web.Razor.ParserSystem.Web.Razor.Parser.SyntaxTreeSystem.Web.Razor.TextSystem.Web.Razor.TokenizerSystem.Web.Razor.Tokenizer.SymbolsSystem.Web.WebPagesSystem.Web.WebPages.AdministrationSystem.Web.WebPages.Administration.PackageManagerSystem.Web.WebPages.DeploymentSystem.Web.WebPages.HtmlSystem.Web.WebPages.InstrumentationSystem.Web.WebPages.RazorSystem.Web.WebPages.Razor.ConfigurationSystem.Web.WebPages.ScopeWebMatrix.DataWebMatrix.WebData一応抜き書きしてみたけれど、あんまり役に立つ感じじゃなかった。WebSecurity クラスが WebMatrix.WebData 名前空間にあるっていうのは、最初しっくりこなかったなぁ。ASP.NET Web Pages 2 リファレンス</description>
     </item>
     
     <item>
@@ -465,9 +465,9 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       <pubDate>Tue, 26 Mar 2013 07:45:17 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/26/074517/</guid>
-      <description>### WebMatrix と ASP.NET Web Pages   br/&amp;gt;
- ASP.NET Web ページとは - だるろぐ WebMatrix とは - だるろぐ これでだいたい ASP.NET Web Pages と WebMatrix の違いは説明できるかなぁ、と思う。  WebMatrix は ASP.NET Web Pages の開発**も**できる開発環境 ASP.NET Web Pages は WebMatrix で**も**使えるフレームワーク ってな感じですね。   SP.NET Web Pages そのものは開発環境に依存しない。
- Microsoft .NET Framework 4 以降 ASP.NET MVC (ASP.NET Web Pages もインストールされる) IIS Express Microsoft SQL Server Compact 4.0（使わないなら入れなくていいと思う） と、ソースコードを記述するためのテキストエディターがあればよい。必要なコンポーネントは Web Platform Installer : The Official Microsoft IIS Site で個別にインストール可能で、 ``` iisexpress.</description>
+      <description>### WebMatrix と ASP.NET Web Pages  br/&amp;gt;
+ASP.NET Web ページとは - だるろぐWebMatrix とは - だるろぐこれでだいたい ASP.NET Web Pages と WebMatrix の違いは説明できるかなぁ、と思う。WebMatrix は ASP.NET Web Pages の開発**も**できる開発環境ASP.NET Web Pages は WebMatrix で**も**使えるフレームワークってな感じですね。  SP.NET Web Pages そのものは開発環境に依存しない。
+Microsoft .NET Framework 4 以降ASP.NET MVC (ASP.NET Web Pages もインストールされる)IIS ExpressMicrosoft SQL Server Compact 4.0（使わないなら入れなくていいと思う）と、ソースコードを記述するためのテキストエディターがあればよい。必要なコンポーネントは Web Platform Installer : The Official Microsoft IIS Site で個別にインストール可能で、```iisexpress.</description>
     </item>
     
     <item>
@@ -476,8 +476,8 @@ http://localhost:11330/FeedCount/https://blog.daruyanagi.jp/ ```このような 
       <pubDate>Sun, 24 Mar 2013 20:04:29 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/24/200429/</guid>
-      <description>### Request &amp;gt; QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。 HttpRequest クラス (System.Web)  Default.cshtml?Hoge=Fuga というリクエストがあった時、
-Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られる。つまり、 ```cs Request.QueryString[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```これと同様。ちなみに、存在しないキーを指定すると ```cs Request[&amp;#34;HogeHoge&amp;#34;] =&amp;gt; string.Empty ```が返る。null じゃないのか！ null だったら、 ```cs var text = Request[&amp;#34;Hoge&amp;#34;] ?? &amp;#34;初期値&amp;#34;; ```って書けるのになぁ。まぁ、いろいろ大人の事情があるんだろう。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### Request.QueryString と Request.Form QueryString でも Form でも &amp;#34;Hoge&amp;#34; というキーが含まれているとき、Request[&amp;#34;Hoge&amp;#34;] では Request.QueryString[&amp;#34;Hoge&amp;#34;] の値が返る。つまり、優先度は ```cs QueryString &amp;gt; Form ```であるらしい。QueryString 、Form、Cookies、ServerVariables がどの順番で優先されるのかは知らないけれど、まぁ、この順番なんだろうなって気はしてる（試してない）。ついつい Form[] を多用するのだけれど、こういうのが分かってないとたまにハマるみたい orz &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt; ### Request.QueryString[] におけるキーの重複 では、 Default.</description>
+      <description>### Request&amp;gt;QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。HttpRequest クラス (System.Web) Default.cshtml?Hoge=Fuga というリクエストがあった時、
+Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られる。つまり、```csRequest.QueryString[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```これと同様。ちなみに、存在しないキーを指定すると```csRequest[&amp;#34;HogeHoge&amp;#34;] =&amp;gt; string.Empty```が返る。null じゃないのか！ null だったら、```csvar text = Request[&amp;#34;Hoge&amp;#34;] ?? &amp;#34;初期値&amp;#34;;```って書けるのになぁ。まぁ、いろいろ大人の事情があるんだろう。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt;### Request.QueryString と Request.FormQueryString でも Form でも &amp;#34;Hoge&amp;#34; というキーが含まれているとき、Request[&amp;#34;Hoge&amp;#34;] では Request.QueryString[&amp;#34;Hoge&amp;#34;] の値が返る。つまり、優先度は```csQueryString &amp;gt; Form```であるらしい。QueryString 、Form、Cookies、ServerVariables がどの順番で優先されるのかは知らないけれど、まぁ、この順番なんだろうなって気はしてる（試してない）。ついつい Form[] を多用するのだけれど、こういうのが分かってないとたまにハマるみたい orz&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt;### Request.QueryString[] におけるキーの重複では、Default.</description>
     </item>
     
     <item>
@@ -487,8 +487,8 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/20/064753/</guid>
       <description>a href=&amp;quot;http://msdn.microsoft.com/ja-jp/library/fddycb06(v=vs.100).aspx&amp;quot;&amp;gt;ASP.NET Web ページ （ASP.NET Web Pages）という技術をほかの人に説明するとき、どうすればいいんだろう？　と最近考えているけど、ぶっちゃけよくわからん。一応 MSDN ではこのように紹介されている。
-&amp;gt; ASP.NET Web ページは、Web アプリケーションのプログラミング可能なユーザー インターフェイスとして使用します。 ASP.NET Web ページは、ブラウザーまたはクライアント デバイスでユーザーに情報を表示し、サーバー側コードを使用してアプリケーション ロジックを実装します。 ASP.NET Web ページの特徴を次に示します。  Microsoft の ASP.NET テクノロジに基づいており、サーバー上で動作するコードがブラウザーまたはクライアント デバイスに対して動的に Web ページ出力を生成します。 すべてのブラウザーまたはモバイル デバイスと互換性があります。 ASP.NET Web ページは、スタイルやレイアウトなどの機能に対して正しいブラウザー準拠 HTML を自動的に表示します。 Microsoft Visual Basic や Microsoft Visual C# など、.NET 共通言語ランタイムによってサポートされているすべての言語と互換性があります。 Microsoft .NET Framework 上に構築されています。 これにより、マネージ環境、タイプ セーフ、継承などのフレームワークの利点を利用できます。 高い柔軟性。ユーザーが作成したコントロールやサードパーティ製のコントロールを Web フォーム ページに追加できます。
- ASP.NET Web ページの概要  なるほど、よくわからん。困ったので、今度は緑タイツ（の片割れ）が授けてくれた“秘伝の書”（P.24）を開いてみた。プログラミングMicrosoft ASP.NET 4 (マイクロソフト公式解説書)作者: ディノエスポシト,クイープ出版社/メーカー: 日経BP社発売日: 2012/01/26メディア: 単行本購入: 2人 クリック: 8回この商品を含むブログ (4件) を見る</description>
+&amp;gt;ASP.NET Web ページは、Web アプリケーションのプログラミング可能なユーザー インターフェイスとして使用します。 ASP.NET Web ページは、ブラウザーまたはクライアント デバイスでユーザーに情報を表示し、サーバー側コードを使用してアプリケーション ロジックを実装します。 ASP.NET Web ページの特徴を次に示します。 Microsoft の ASP.NET テクノロジに基づいており、サーバー上で動作するコードがブラウザーまたはクライアント デバイスに対して動的に Web ページ出力を生成します。 すべてのブラウザーまたはモバイル デバイスと互換性があります。 ASP.NET Web ページは、スタイルやレイアウトなどの機能に対して正しいブラウザー準拠 HTML を自動的に表示します。 Microsoft Visual Basic や Microsoft Visual C# など、.NET 共通言語ランタイムによってサポートされているすべての言語と互換性があります。 Microsoft .NET Framework 上に構築されています。 これにより、マネージ環境、タイプ セーフ、継承などのフレームワークの利点を利用できます。 高い柔軟性。ユーザーが作成したコントロールやサードパーティ製のコントロールを Web フォーム ページに追加できます。
+ ASP.NET Web ページの概要 なるほど、よくわからん。困ったので、今度は緑タイツ（の片割れ）が授けてくれた“秘伝の書”（P.24）を開いてみた。プログラミングMicrosoft ASP.NET 4 (マイクロソフト公式解説書)作者: ディノエスポシト,クイープ出版社/メーカー: 日経BP社発売日: 2012/01/26メディア: 単行本購入: 2人 クリック: 8回この商品を含むブログ (4件) を見る</description>
     </item>
     
     <item>
@@ -498,7 +498,7 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/15/033129/</guid>
       <description>witter の Web UI で改行が使えるようになったとのことで、タイムラインが縦書きでいっぱいです。それをみていたら、自分も漢詩なんかが縦書きで投稿できるアプリがほしくなりました。
- 縦書き - @daruyanagi  ### Inside Tategaki #### 拡張メソッド さっそく中身を紹介したいのですが、その前に拡張メソッドをいくつか用意しておきます。クラス名が体を表していないのは見逃してください。拡張メソッドのクラス名なんか飾りなんですよ！  Transpose() : 行と列を逆にします Join() : string.Join() を &#34;hoge&#34;.Join() で呼び出す Times()：string * int がほしかった **~/App_Code/EnumerableExtensions.cs** ```cs using System; using System.Collections.Generic; using System.Linq; using System.Web; public static class EnumerableExtensions { public static IEnumerable&amp;lt;IEnumerable&amp;lt;T&amp;raquo; Transpose&amp;lt;T&amp;gt;( this IEnumerable&amp;lt;IEnumerable&amp;lt;T&amp;raquo; source) { return from row in source from col in row.Select( (x, i) =&amp;gt; new KeyValuePair&amp;lt;int, T&amp;gt;(i, x)) group col.</description>
+縦書き - @daruyanagi### Inside Tategaki#### 拡張メソッドさっそく中身を紹介したいのですが、その前に拡張メソッドをいくつか用意しておきます。クラス名が体を表していないのは見逃してください。拡張メソッドのクラス名なんか飾りなんですよ！Transpose() : 行と列を逆にしますJoin() : string.Join() を &#34;hoge&#34;.Join() で呼び出すTimes()：string * int がほしかった**~/App_Code/EnumerableExtensions.cs**```csusing System;using System.Collections.Generic;using System.Linq;using System.Web;public static class EnumerableExtensions { public static IEnumerable&amp;lt;IEnumerable&amp;lt;T&amp;raquo; Transpose&amp;lt;T&amp;gt;( this IEnumerable&amp;lt;IEnumerable&amp;lt;T&amp;raquo; source) { return from row in source from col in row.Select( (x, i) =&amp;gt; new KeyValuePair&amp;lt;int, T&amp;gt;(i, x)) group col.</description>
     </item>
     
     <item>
@@ -508,8 +508,8 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/02/24/154553/</guid>
       <description>Markdown は覚えやすくて書きやすいのだけれど、とても非力に感じる。一応 HTML タグの埋め込みも可能なので、原理的にはなんでも書けるのだけれど、たとえばルビを振りたい場合、
-国民の&amp;amp;lt;ruby&amp;gt;税金&amp;amp;lt;rp&amp;gt;(&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;ぜいきん&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;)&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt;を２億円使うなんて ```などといちいち書くのは、読みにくいし第一めんどくさい。もっと簡単に、たとえば、 ```html 国民の[[ruby|税金|ぜいきん]]を２億円使うなんて ```などのような、&amp;lt;code&amp;gt;[[コマンド|引数1|引数2...]] &amp;lt;/code&amp;gt;といった記法で書ければどうだろう。なるべく規約ベースとし、Hoge コマンドは Hoge / HogeHelper ヘルパーの GetHtml() メソッドを呼び出すようにする。 ```cs # App_Code/RubyHelper.cshtml @helper GetHtml(string text, string ruby){ &amp;amp;lt;ruby&amp;gt;@text&amp;amp;lt;rp&amp;gt;(&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;@ruby&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;)&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt; } ```これならば、Markdown の拡張だけでなく、普通の cshtml でも利用できてよいと思う。 ```html 国民の@RubyHelper.GetHtml(&amp;#34;税金&amp;#34;, &amp;#34;ぜいきん&amp;#34;)を２億円使うなんて ### 実装 とりあえずこんな感じにしてみた。 ```cs @using System.IO @using System.Reflection @using System.Text.RegularExpressions @functions { private string Camelize(string input) { if (input.Length == 0) return input;
- var chars = input.ToArray(); chars[0] = char.ToUpper(chars[0]); return string.Join(string.Empty, chars); }  }</description>
+国民の&amp;amp;lt;ruby&amp;gt;税金&amp;amp;lt;rp&amp;gt;(&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;ぜいきん&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;)&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt;を２億円使うなんて```などといちいち書くのは、読みにくいし第一めんどくさい。もっと簡単に、たとえば、```html国民の[[ruby|税金|ぜいきん]]を２億円使うなんて```などのような、&amp;lt;code&amp;gt;[[コマンド|引数1|引数2...]] &amp;lt;/code&amp;gt;といった記法で書ければどうだろう。なるべく規約ベースとし、Hoge コマンドは Hoge / HogeHelper ヘルパーの GetHtml() メソッドを呼び出すようにする。```cs# App_Code/RubyHelper.cshtml@helper GetHtml(string text, string ruby){&amp;amp;lt;ruby&amp;gt;@text&amp;amp;lt;rp&amp;gt;(&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;rt&amp;gt;@ruby&amp;amp;lt;/rt&amp;gt;&amp;amp;lt;rp&amp;gt;)&amp;amp;lt;/rp&amp;gt;&amp;amp;lt;/ruby&amp;gt;}```これならば、Markdown の拡張だけでなく、普通の cshtml でも利用できてよいと思う。```html国民の@RubyHelper.GetHtml(&amp;#34;税金&amp;#34;, &amp;#34;ぜいきん&amp;#34;)を２億円使うなんて### 実装とりあえずこんな感じにしてみた。```cs@using System.IO@using System.Reflection@using System.Text.RegularExpressions@functions { private string Camelize(string input) { if (input.Length == 0) return input;
+ var chars = input.ToArray();chars[0] = char.ToUpper(chars[0]);return string.Join(string.Empty, chars);} }</description>
     </item>
     
     <item>
@@ -519,10 +519,10 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/02/03/160915/</guid>
       <description>WebMatrix 2：OAuth でログインする - だるろぐ の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。
-### NuGet で必要なものをインストール   uGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。
+### NuGet で必要なものをインストール  uGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。
   れをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。
- ### ~/_AppStart.cshtml Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。 ```cs @{ // いろんなところで使うので、グローバルにアクセスできるようにしとくか App.Database = &#34;Database&#34;; // ユーザー管理用のテーブルを初期化・作成 WebSecurity.InitializeDatabaseConnection( App.Database, &amp;quot;UserProfile&amp;quot;, &amp;quot;UserId&amp;quot;, &amp;quot;UserName&amp;quot;, autoCreateTables: true); // Google の OAuth を使います！ OAuthWebSecurity.RegisterGoogleClient();  }
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### ~/Account/Login.</description>
+### ~/_AppStart.cshtmlWeb サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。```cs@{// いろんなところで使うので、グローバルにアクセスできるようにしとくかApp.Database = &#34;Database&#34;;// ユーザー管理用のテーブルを初期化・作成WebSecurity.InitializeDatabaseConnection(App.Database,&amp;quot;UserProfile&amp;quot;, &amp;quot;UserId&amp;quot;, &amp;quot;UserName&amp;quot;,autoCreateTables: true);// Google の OAuth を使います！OAuthWebSecurity.RegisterGoogleClient(); }
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### ~/Account/Login.</description>
     </item>
     
     <item>
@@ -532,13 +532,13 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/27/102043/</guid>
       <description>「WebMatrix 2」と「ASP.NET Web Pages」を組み合わせれば、Web サイトへ OAuth 認証の機能を簡単に追加できる。標準で対応するプロバイダは以下の通り。
-   Twitter Facebook Microsoft（旧 Windows Live） Yahoo Google LinkedIn そのほかにも、カスタムプロバイダを自作して追加したりもできるみたいだけど、今回は、まぁ、いいや。 ### スターターテンプレート   、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。
+  TwitterFacebookMicrosoft（旧 Windows Live）YahooGoogleLinkedInそのほかにも、カスタムプロバイダを自作して追加したりもできるみたいだけど、今回は、まぁ、いいや。### スターターテンプレート  、問題はどうやって使うのか、だけど、「WebMatrix 2」の“スターター”テンプレートが格好の例となっているので、まずはこれを敵情視察したい。
   っそく、画面右上の［ログイン］を押すが……Twitter も Facebook も使えないじゃないか。
   うやら、“_AppStart.cshtml”*1でプロバイダを有効化する必要があるらしい（知ってた）。有効化したいプロバイダをコメントアウトしてリロードすれば、ちゃんと使えるようになる。
   りあえず Twitter の API キーを取得して試したのだけど、うまくいかない*2。今回は原因を突き止めるのも面倒なので、API キーの要らない Google で試してみたが……
       ともあっさり動いた（右上に注目！）。
   ータベースにもちゃんと登録されている3。Google に認証を委譲したので、こちら側にはパスワードが保存されていない。さて、“スターター”テンプレートから不要なものを削り、必要なものを足してアプリを作ってもいいのだけど、それも面倒そうだし、一から勉強する意味でも、次回は“空のサイト”テンプレートで Google 認証によるログインまでを実装しようかな、と思う4。
-*1:アプリケーションの起動時に実行される *2:わしが何かミスってるんだろう *3:UserId が 2 になっているのは、Twitter で試して失敗したためかな *4:実はもうだいたいできてるんだけど！  </description>
+*1:アプリケーションの起動時に実行される*2:わしが何かミスってるんだろう*3:UserId が 2 になっているのは、Twitter で試して失敗したためかな*4:実はもうだいたいできてるんだけど！</description>
     </item>
     
     <item>
@@ -548,7 +548,7 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/24/073816/</guid>
       <description>WebMatrix 2：RESTful？な Web アプリケーション （4） - だるろぐ の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。
- http://daruyanagi-sample1.azurewebsites.net/Posts モーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は WebMatrix でほかの Web サイトのデザインをパク……じゃなくて、参考にさせていただく - だるろぐ を参照。 ### データベースとのやり取り ~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。 ```cs using System; using System.Collections.Generic; using System.Linq; using System.Web.WebPages; using WebMatrix.Data; public class Post { // ここら辺はテーブルの構造をそのまま定義 public long Id { get; set; } public string Title { get; set; } public string Body { get; set; } public DateTime CreatedAt { get; set; } public DateTime UpdatedAt { get; set; }</description>
+http://daruyanagi-sample1.azurewebsites.net/Postsモーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は WebMatrix でほかの Web サイトのデザインをパク……じゃなくて、参考にさせていただく - だるろぐ を参照。### データベースとのやり取り~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。```csusing System;using System.Collections.Generic;using System.Linq;using System.Web.WebPages;using WebMatrix.Data;public class Post { // ここら辺はテーブルの構造をそのまま定義 public long Id { get; set; } public string Title { get; set; } public string Body { get; set; } public DateTime CreatedAt { get; set; } public DateTime UpdatedAt { get; set; }</description>
     </item>
     
     <item>
@@ -560,12 +560,12 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       <description>ょっと調べ物をしていて、http://cereda.github.com/arara/ というサイトを見つけたのだけど、このデザインがシンプルながら結構いけているな、と思った。
   リッキーなマークアップが少なくて、ちゃんとセマンティック。印刷時の見栄えも素直だ。
     により素晴らしいのはレスポンシブなところ。ブラウザーの横幅に応じて、デザインが適したものに変わる。多少気になるところもないとは言えないけれど、これはぜひパクらせて参考にさせていただきたい。
-### まずはダウンロード   にはともあれ、まずはダウンロードやな。“Web ページ、完全”で HTML とそのほかのリソース（CSS/JavaScriptや画像ファイルなど）をゲット。
+### まずはダウンロード  にはともあれ、まずはダウンロードやな。“Web ページ、完全”で HTML とそのほかのリソース（CSS/JavaScriptや画像ファイルなど）をゲット。
   に作業用のフォルダを作って、ダウンロードした HTML ファイルを移動させる。リソースが保存されたフォルダ（今回の場合“arara by cereda_files”フォルダ）は、NTFS の“代替データストリーム”という仕組みで関連付けられているので、HTML ファイルを移動させればそれについてくる。
   業フォルダの中身はこんな感じになっているはず。
- ### 作業フォルダを Web サイトとして開く   いて、これを WebMatrix で開く。フォルダのコンテクストメニューから［Open as a Web Site with Microsoft WebMatrix］を選択しよう。
+### 作業フォルダを Web サイトとして開く  いて、これを WebMatrix で開く。フォルダのコンテクストメニューから［Open as a Web Site with Microsoft WebMatrix］を選択しよう。
   れでやりたい放題だな！
- WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ WebMatrix 2：フォルダーから Web サイトを作成する場合の注意点 - だるろぐ   ### 少し手を入れる   すがにこのままホスティングサービスへアップロードして使うのはダサいので、少しだけ手を入れよう。ASP.</description>
+WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐWebMatrix 2：フォルダーから Web サイトを作成する場合の注意点 - だるろぐ### 少し手を入れる  すがにこのままホスティングサービスへアップロードして使うのはダサいので、少しだけ手を入れよう。ASP.</description>
     </item>
     
     <item>
@@ -575,9 +575,9 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/13/094453/</guid>
       <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/01/11/060424&amp;quot;&amp;gt;WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、
- https://addons.mozilla.org/ja/firefox/addon/poster/ という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで   ざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。
+https://addons.mozilla.org/ja/firefox/addon/poster/という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで  ざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。
   IS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。
-&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; &amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt; .web&amp;gt; debug=&amp;#34;true&amp;#34; targetFramework=&amp;#34;4.0&amp;#34; /&amp;gt; .web&amp;gt; .webServer&amp;gt; &amp;lt;handlers&amp;gt;&amp;lt;/handlers&amp;gt; name=&amp;#34;WebDAV&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-Integrated-4.0&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&amp;#34; path=&amp;#34;*.&amp;#34; verb=&amp;#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&amp;#34; modules=&amp;#34;IsapiModule&amp;#34; scriptProcessor=&amp;#34;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&amp;#34; preCondition=&amp;#34;classicMode,runtimeVersionv4.0,bitness32&amp;#34; responseBufferLimit=&amp;#34;0&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&amp;#34; path=&amp;#34;*.&amp;#34; verb=&amp;#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&amp;#34; modules=&amp;#34;IsapiModule&amp;#34; scriptProcessor=&amp;#34;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&amp;#34; preCondition=&amp;#34;classicMode,runtimeVersionv4.0,bitness64&amp;#34; responseBufferLimit=&amp;#34;0&amp;#34; /&amp;gt; name=&amp;#34;ExtensionlessUrlHandler-Integrated-4.0&amp;#34; path=&amp;#34;*.</description>
+&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;&amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt;.web&amp;gt;debug=&amp;#34;true&amp;#34; targetFramework=&amp;#34;4.0&amp;#34; /&amp;gt;.web&amp;gt;.webServer&amp;gt;&amp;lt;handlers&amp;gt;&amp;lt;/handlers&amp;gt;name=&amp;#34;WebDAV&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-Integrated-4.0&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&amp;#34; path=&amp;#34;*.&amp;#34; verb=&amp;#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&amp;#34; modules=&amp;#34;IsapiModule&amp;#34; scriptProcessor=&amp;#34;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&amp;#34; preCondition=&amp;#34;classicMode,runtimeVersionv4.0,bitness32&amp;#34; responseBufferLimit=&amp;#34;0&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&amp;#34; path=&amp;#34;*.&amp;#34; verb=&amp;#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&amp;#34; modules=&amp;#34;IsapiModule&amp;#34; scriptProcessor=&amp;#34;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&amp;#34; preCondition=&amp;#34;classicMode,runtimeVersionv4.0,bitness64&amp;#34; responseBufferLimit=&amp;#34;0&amp;#34; /&amp;gt;name=&amp;#34;ExtensionlessUrlHandler-Integrated-4.0&amp;#34; path=&amp;#34;*.</description>
     </item>
     
     <item>
@@ -587,8 +587,8 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/11/060424/</guid>
       <description>WebMatrix 2：RESTful？な Web アプリケーション （2） - だるろぐ の続き。日中戦争、ベトナム戦争並みに泥沼化してきたけど、突き進んでいこう！
-### PUT/DELETE メソッドを扱えるようにする とりあえず、前回の宿題をさっさと終わらせる。 ```cs @{ Layout = &#34;_SiteLayout.cshtml&#34;; // POST で PUT/DELETE を代用 string method = Request.HttpMethod.ToUpper(); if (IsPost &amp;amp;amp;&amp;amp;amp; Request[&amp;quot;_method&amp;quot;] != null) { method = Request[&amp;quot;_method&amp;quot;].ToUpper(); }  }
-```cs @switch (method) { case &amp;quot;GET&amp;quot;: // いろいろ break; case &amp;quot;POST&amp;quot;: // さまざま break; case &amp;quot;PUT&amp;quot;: // ほげほげ break; case &amp;quot;DELETE&amp;quot;: // ふがふが break; default: throw new Exception(&amp;quot;なにいってんだおまえ&amp;quot;); } ```――ダサいな！たまたま今日、北陸の女神様のブログ（&amp;lt;a href=&amp;quot;http://d.hatena.ne.jp/miso_soup3/20130110/1357822008&amp;quot;&amp;gt;ASP.NET WEB API ルーティングについていろいろ - miso_soup3 Blog&amp;lt;/a&amp;gt;）を読んでいたのだけど、ASP.</description>
+### PUT/DELETE メソッドを扱えるようにするとりあえず、前回の宿題をさっさと終わらせる。```cs@{Layout = &#34;_SiteLayout.cshtml&#34;;// POST で PUT/DELETE を代用string method = Request.HttpMethod.ToUpper();if (IsPost &amp;amp;amp;&amp;amp;amp; Request[&amp;quot;_method&amp;quot;] != null) {method = Request[&amp;quot;_method&amp;quot;].ToUpper();} }
+```cs@switch (method){case &amp;quot;GET&amp;quot;:// いろいろbreak;case &amp;quot;POST&amp;quot;:// さまざまbreak;case &amp;quot;PUT&amp;quot;:// ほげほげbreak;case &amp;quot;DELETE&amp;quot;:// ふがふがbreak;default:throw new Exception(&amp;quot;なにいってんだおまえ&amp;quot;);}```――ダサいな！たまたま今日、北陸の女神様のブログ（&amp;lt;a href=&amp;quot;http://d.hatena.ne.jp/miso_soup3/20130110/1357822008&amp;quot;&amp;gt;ASP.NET WEB API ルーティングについていろいろ - miso_soup3 Blog&amp;lt;/a&amp;gt;）を読んでいたのだけど、ASP.</description>
     </item>
     
     <item>
@@ -598,9 +598,9 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/11/041856/</guid>
       <description>WebMatrix 2：RESTful？な Web アプリケーション - だるろぐ の続き。とりあえず、
- /Posts/ - GET:List /Posts/:id - GET:Show /Posts/New - GET:New, POST:Create /Posts/Edit/:id - GET:Edit, POST:Update /Posts/Remove/:id - GET:Remove, POST:DELETE って感じにマッピングされるように頑張ってみた。 ```cs # ~/Posts.cshtml @{ Layout = &amp;ldquo;_SiteLayout.cshtml&amp;rdquo;; }
+/Posts/ - GET:List/Posts/:id - GET:Show/Posts/New - GET:New, POST:Create/Posts/Edit/:id - GET:Edit, POST:Update/Posts/Remove/:id - GET:Remove, POST:DELETEって感じにマッピングされるように頑張ってみた。```cs# ~/Posts.cshtml@{ Layout = &amp;ldquo;_SiteLayout.cshtml&amp;rdquo;; }
 @try{ switch (UrlData[0].ToUpper()) { case &amp;ldquo;&amp;quot;: // &amp;lt;- / へアクセスするととりあえず UrlData[0] には string.empty が入るっぽい case &amp;ldquo;LIST&amp;rdquo;: if (!IsPost) // GET { @List() } else // POST { throw new ApplicationException(); } break;
- case &amp;quot;NEW&amp;quot;: case &amp;quot;CREATE&amp;quot;: // &amp;amp;lt;- ビューを書き換えるのがめんどいので if (!</description>
+ case &amp;quot;NEW&amp;quot;:case &amp;quot;CREATE&amp;quot;: // &amp;amp;lt;- ビューを書き換えるのがめんどいのでif (!</description>
     </item>
     
     <item>
@@ -610,11 +610,11 @@ Request[&amp;#34;Hoge&amp;#34;] =&amp;gt; &amp;#34;Fuga&amp;#34; ```が得られ
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/07/025136/</guid>
       <description>br/&amp;gt;
-&amp;gt; たとえば、  ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。
+&amp;gt;たとえば、 ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。
 ~/Posts/Default.cshtml を作成して、
 UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ページの表示 という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。
- WebMatrix 2 / Razor：switch と RenderPage() - だるろぐ  _これはウソだ。_申し訳ない。まぁ、別に正しいことを書いているブログではないので、いいと言えばいいんだけど。正しくは、
- ~/Posts.cshtml を作成するだね。ほかにもウソがあるのだけど、それはまた別のエントリーでフォローするから！――なにはともあれ。この ~/Posts.cshtml をガリガリ書いていけば、いわゆる RESTful な Web アプリケーションが書けるのではないかと思いついた。RESTful の厳密な定義は知らないけど、だいたい  Lists：GET /Posts Show：GET /Posts/:id New： POST /Posts Edit：PUT /Posts/:id Remove：DELETE /Posts/:id みたいな感じだよね。だったら、下のような感じで書けばいいんじゃないか（本質に関係ない部分は削ってる）。 ```cs @try{ switch (Request.HttpMethod.ToUpper()) { case &#34;GET&#34;: switch (UrlData.Count) { case 0: // GET Posts/ @List() break; case 1: switch (UrlData[0].</description>
+ WebMatrix 2 / Razor：switch と RenderPage() - だるろぐ _これはウソだ。_申し訳ない。まぁ、別に正しいことを書いているブログではないので、いいと言えばいいんだけど。正しくは、
+~/Posts.cshtmlを作成するだね。ほかにもウソがあるのだけど、それはまた別のエントリーでフォローするから！――なにはともあれ。この ~/Posts.cshtml をガリガリ書いていけば、いわゆる RESTful な Web アプリケーションが書けるのではないかと思いついた。RESTful の厳密な定義は知らないけど、だいたいLists：GET /PostsShow：GET /Posts/:idNew： POST /PostsEdit：PUT /Posts/:idRemove：DELETE /Posts/:idみたいな感じだよね。だったら、下のような感じで書けばいいんじゃないか（本質に関係ない部分は削ってる）。```cs@try{switch (Request.HttpMethod.ToUpper()){case &#34;GET&#34;:switch (UrlData.Count){case 0: // GET Posts/ @List()break;case 1:switch (UrlData[0].</description>
     </item>
     
     <item>
@@ -624,7 +624,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/06/051815/</guid>
       <description>とえば、
- ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。  ~/Posts/Default.cshtml を作成して、  UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ページの表示 という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() = 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。 ```cs @{ var db = Database.Open(&#34;db&#34;); var query = &#34;SELECT * FROM Post ORDER BY CreatedAt DESC&#34;; var posts = db.Query(query); } @switch (UrlData.Count) { case 0: foreach (var post in posts) { @RenderPage(&amp;quot;_Single.</description>
+~/Posts/ …… ページリストの表示~/Posts/:id …… 個別ページの表示というのをやってみたいとき。~/Posts/Default.cshtmlを作成して、UrlData.Count() == 0 ……ページリストの表示UrlData.Count() == 1 ……個別ページの表示という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() = 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。```cs@{var db = Database.Open(&#34;db&#34;);var query = &#34;SELECT * FROM Post ORDER BY CreatedAt DESC&#34;;var posts = db.Query(query);}@switch (UrlData.Count) { case 0: foreach (var post in posts) { @RenderPage(&amp;quot;_Single.</description>
     </item>
     
     <item>
@@ -633,7 +633,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <pubDate>Sat, 05 Jan 2013 05:00:56 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/01/05/050056/</guid>
-      <description>@{ var hello = &amp;#34;Hello!&amp;#34;; } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt; &amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; &amp;amp;lt;p&amp;gt;@hello World!&amp;amp;lt;/p&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```これの結果は、当然“Hello! World!”ですね。   て、Razor 構文で変数を埋め込んだ ```cs &amp;amp;lt;p&amp;gt;@hello World!&amp;amp;lt;/p&amp;gt; ```の部分は、 ```cs &amp;amp;lt;p&amp;gt;@(hello) World!&amp;amp;lt;/p&amp;gt; ```とも書いていい、というか、もともとこの形の省略なんだな（たぶん）。括弧を省略した場合は、スペースや記号（要は C# の変数に使えない文字）、HTML タグの手前で一度区切られ、評価が行われる。だから、もし Hello! と World! の間にスペースを入れたくなければ、@(hello)World! と書いて明示的に括弧で区切りを示さなければならない。じゃないと、@(helloWorld)! と解釈される。@() の内容は、その値が評価され（ToString() だと思えばいい）、無毒化のうえ（つまり HtmlEncode() やな）出力される。逆に言えば、@() の内容は値をもつ変数か関数でなくてはならない。一方、@{} の中には文を記述する。文というのは、要は ; で終わっていたり、{} で囲まれたコードの塊。たとえば、Razor で括弧を省略せずに for 文を書くときは {} が使える。 ```cs &amp;amp;lt;ul&amp;gt; @{ for(int i = 0; i &amp;amp;lt; 10; i++) { &amp;amp;lt;li&amp;gt;@(i)&amp;amp;lt;/li&amp;gt; } } &amp;amp;lt;/ul&amp;gt; ```わざわざこのように読みにくく書くことはないけど（ひとによってはこっちの方がいいか？）。ちなみに、for や if のあとの {} の中身はまた少し特殊で（だから省略できないんだな……）、@{} 外と同じ感じで評価される。つまり、HTML タグと @() が使える。まぁ、理屈より書いて慣れた方が早い。Don&amp;amp;#39;t think, feel!</description>
+      <description>@{var hello = &amp;#34;Hello!&amp;#34;;}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt;&amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;&amp;amp;lt;p&amp;gt;@hello World!&amp;amp;lt;/p&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```これの結果は、当然“Hello! World!”ですね。  て、Razor 構文で変数を埋め込んだ```cs&amp;amp;lt;p&amp;gt;@hello World!&amp;amp;lt;/p&amp;gt;```の部分は、```cs&amp;amp;lt;p&amp;gt;@(hello) World!&amp;amp;lt;/p&amp;gt;```とも書いていい、というか、もともとこの形の省略なんだな（たぶん）。括弧を省略した場合は、スペースや記号（要は C# の変数に使えない文字）、HTML タグの手前で一度区切られ、評価が行われる。だから、もし Hello! と World! の間にスペースを入れたくなければ、@(hello)World! と書いて明示的に括弧で区切りを示さなければならない。じゃないと、@(helloWorld)! と解釈される。@() の内容は、その値が評価され（ToString() だと思えばいい）、無毒化のうえ（つまり HtmlEncode() やな）出力される。逆に言えば、@() の内容は値をもつ変数か関数でなくてはならない。一方、@{} の中には文を記述する。文というのは、要は ; で終わっていたり、{} で囲まれたコードの塊。たとえば、Razor で括弧を省略せずに for 文を書くときは {} が使える。```cs&amp;amp;lt;ul&amp;gt;@{for(int i = 0; i &amp;amp;lt; 10; i++){&amp;amp;lt;li&amp;gt;@(i)&amp;amp;lt;/li&amp;gt;}} &amp;amp;lt;/ul&amp;gt;```わざわざこのように読みにくく書くことはないけど（ひとによってはこっちの方がいいか？）。ちなみに、for や if のあとの {} の中身はまた少し特殊で（だから省略できないんだな……）、@{} 外と同じ感じで評価される。つまり、HTML タグと @() が使える。まぁ、理屈より書いて慣れた方が早い。Don&amp;amp;#39;t think, feel!</description>
     </item>
     
     <item>
@@ -643,7 +643,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/12/27/070246/</guid>
       <description>WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。
-@Code Dim s = &amp;#34;Hello! World&amp;#34; &amp;amp;#39; 追加 End Code &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @s &amp;amp;lt;!-- 追加 --&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは &amp;lt;a href=&amp;#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&amp;#34;&amp;gt;VB Razor構文 基礎文法 総まとめ - ＠IT&amp;lt;/a&amp;gt; でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。あと、前回は言わなかったけれど &amp;amp;lt;% … %&amp;gt; という ASP.</description>
+@CodeDim s = &amp;#34;Hello! World&amp;#34; &amp;amp;#39; 追加End Code&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@s &amp;amp;lt;!-- 追加 --&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは &amp;lt;a href=&amp;#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&amp;#34;&amp;gt;VB Razor構文 基礎文法 総まとめ - ＠IT&amp;lt;/a&amp;gt; でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。あと、前回は言わなかったけれど &amp;amp;lt;% … %&amp;gt; という ASP.</description>
     </item>
     
     <item>
@@ -654,7 +654,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <guid>https://blog.daruyanagi.jp/entry/2012/12/24/185100/</guid>
       <description>々回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。
   br/&amp;gt;
-#### 1. NuGet が使えない リボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。  #### 2. 実環境で動かすにはコンポーネントが足りません ［テンプレート］ボタンからサイトを作成すると、 App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されます。しかし、空のフォルダーから Web サイトを作るとこれらが追加されないため、たとえば FTP でファイルをサーバーへ丸コピしても動作しません。ローカルでは「WebMatrix 2」が気を利かせてくれるのでちゃんと動くのですけど。  ### 解決策   いうわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります*1。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。
+#### 1. NuGet が使えないリボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。#### 2. 実環境で動かすにはコンポーネントが足りません［テンプレート］ボタンからサイトを作成すると、 App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されます。しかし、空のフォルダーから Web サイトを作るとこれらが追加されないため、たとえば FTP でファイルをサーバーへ丸コピしても動作しません。ローカルでは「WebMatrix 2」が気を利かせてくれるのでちゃんと動くのですけど。### 解決策  いうわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります*1。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。
   だし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。</description>
     </item>
     
@@ -665,8 +665,8 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/12/11/085125/</guid>
       <description>前回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる*1。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。
- データベースと連携できる ほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる*2 Web サイト共通の部分（パラメーターやデザイン）が一元管理できる 状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン） 世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている*3。空のフォルダーから作成した Web サイト でも簡単に利用できる。 ### ASP.NET（C#）*4   張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“Razor”と呼ばれるシンプルな構文で記述できる。
-@{ var s = &amp;#34;Hello! World&amp;#34;; // 追加 } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @s &amp;amp;lt;!-- 追加 --&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt;   張子を省略してもアクセスできる。</description>
+データベースと連携できるほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる*2Web サイト共通の部分（パラメーターやデザイン）が一元管理できる状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン）世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている*3。空のフォルダーから作成した Web サイト でも簡単に利用できる。### ASP.NET（C#）*4  張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“Razor”と呼ばれるシンプルな構文で記述できる。
+@{var s = &amp;#34;Hello! World&amp;#34;; // 追加}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@s &amp;amp;lt;!-- 追加 --&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;  張子を省略してもアクセスできる。</description>
     </item>
     
     <item>
@@ -676,8 +676,8 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/11/16/044615/</guid>
       <description>WebMatrix で数式を表現する（１） - だるろぐ の続き。前回の方法は、Google の気分次第でいつでも廃止されちゃいます。というわけでもう少し調べたところ、MathJax.js という素敵な JavaScript ライブラリがあるそうなので、こっちを使うほうがいいのかも。
- http://www.mathjax.org/ MathJaxの使い方 たとえばこんな感じ。   br/&amp;gt;
-# Default.cshtml @{ } &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;script src=&amp;#34;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;#34;&amp;gt; &amp;amp;lt;/script&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; \(\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}\) &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```\(……\) で囲まれた部分が TeX 記法の数式として扱われ、文系人間にも読める形へ変換されます。もはや WebMatrix （ASP.NET Web Page）である必要すらない、とても汎用的な方法ですね！難点と言えば、複雑怪奇ゲロゲロな HTML タグが吐き出されることと、ちょっと余計な機能が多すぎるかな、といった点でしょうか。ほとんど難癖に近いですけれど。あと思いつくのは &amp;lt;a href=&amp;#34;http://blogs.wankuma.com/pizyumi/archive/2012/05/19/271826.aspx&amp;#34;&amp;gt;while(true);&amp;lt;/a&amp;gt; のような方法を利用して、サーバー側でレンダリングする方法でしょうか。そっちのほうが WebMatrix とは思いますが、ちょっとめんどくさいですね。 </description>
+http://www.mathjax.org/MathJaxの使い方たとえばこんな感じ。  br/&amp;gt;
+# Default.cshtml@{}&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;script src=&amp;#34;http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS_HTML&amp;#34;&amp;gt;&amp;amp;lt;/script&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;\(\sum_{n=1}^\infty \frac{1}{n^2} = \frac{\pi^2}{6}\)&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```\(……\) で囲まれた部分が TeX 記法の数式として扱われ、文系人間にも読める形へ変換されます。もはや WebMatrix （ASP.NET Web Page）である必要すらない、とても汎用的な方法ですね！難点と言えば、複雑怪奇ゲロゲロな HTML タグが吐き出されることと、ちょっと余計な機能が多すぎるかな、といった点でしょうか。ほとんど難癖に近いですけれど。あと思いつくのは &amp;lt;a href=&amp;#34;http://blogs.wankuma.com/pizyumi/archive/2012/05/19/271826.aspx&amp;#34;&amp;gt;while(true);&amp;lt;/a&amp;gt; のような方法を利用して、サーバー側でレンダリングする方法でしょうか。そっちのほうが WebMatrix とは思いますが、ちょっとめんどくさいですね。</description>
     </item>
     
     <item>
@@ -687,10 +687,10 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/11/16/042840/</guid>
       <description>まず考えられる方法は Google Chart Tools — Google Developers を利用することです。TeX の数式を画像ファイルに変換してくれます。
- Mathematical Formulas - Infographics (Deprecated) — Google Developers Deprecated（非推奨）になっているのが気になりますけれど、まぁ、使えなくなるまで使えばいいんじゃないでしょうか。TeX による数式表現は業界標準（？）でもあるんで、万が一使えなくなってもいろいろ対処法はあるかと。あと、はてな記法でも使えるので覚えておくと使うことがあるかもしれない。必要なパラメーターは、  cht=tx chl=DATA で、DATA は TeX による数式表現を URL エンコードしたものになります。たとえばこんな感じ。```html # Default.cshtml @{
+Mathematical Formulas - Infographics (Deprecated) — Google DevelopersDeprecated（非推奨）になっているのが気になりますけれど、まぁ、使えなくなるまで使えばいいんじゃないでしょうか。TeX による数式表現は業界標準（？）でもあるんで、万が一使えなくなってもいろいろ対処法はあるかと。あと、はてな記法でも使えるので覚えておくと使うことがあるかもしれない。必要なパラメーターは、cht=txchl=DATAで、DATA は TeX による数式表現を URL エンコードしたものになります。たとえばこんな感じ。```html# Default.cshtml@{
 }
 &amp;lt;html lang=&amp;quot;ja&amp;quot;&amp;gt; &amp;lt;head&amp;gt; &amp;lt;meta charset=&amp;quot;utf-8&amp;rdquo; /&amp;gt; &amp;lt;title&amp;gt;マイ サイトのタイトル&amp;lt;/title&amp;gt; &amp;lt;link href=&amp;quot;~/favicon.ico&amp;rdquo; rel=&amp;quot;shortcut icon&amp;rdquo; type=&amp;quot;image/x-icon&amp;rdquo; /&amp;gt; &amp;lt;/head&amp;gt; &amp;lt;body&amp;gt; &amp;lt;img src=&amp;quot;http://chart.apis.google.com/chart?cht=tx&amp;amp;chl=@UrlEncode(@&amp;quot;\bar{H}{n+2}(x) = \sqrt{\frac{2}{n+2}} x \bar{H}{n+1}(x) \sqrt{\frac{n+1}{n+2}} \bar{H}_n(x)&amp;quot;);&amp;rdquo; /&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;
-&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;\hoge：文字 hoge の埋め込み（\alpha で α）&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;\hoge{}：引数をとって hoge る（\sqrt{0} なら √ {0}、\frac{0}{1} なら分数 {0} / {1} ）&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;^{Hoge}：上付き文字（指数とか）&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;_{hoge}：下付き文字（添え字とか）&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;の4つだけ覚えている。あとはググる。 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### ヘルパー化 さて、毎回イメージタグを書くのは不毛なので、これをヘルパー化することを考えましょう。たとえばこんな感じ。 ```html #App_Code\GoogleChart.</description>
+&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;\hoge：文字 hoge の埋め込み（\alpha で α）&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;\hoge{}：引数をとって hoge る（\sqrt{0} なら √ {0}、\frac{0}{1} なら分数 {0} / {1} ）&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;^{Hoge}：上付き文字（指数とか）&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;_{hoge}：下付き文字（添え字とか）&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;の4つだけ覚えている。あとはググる。&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### ヘルパー化さて、毎回イメージタグを書くのは不毛なので、これをヘルパー化することを考えましょう。たとえばこんな感じ。```html#App_Code\GoogleChart.</description>
     </item>
     
     <item>
@@ -701,10 +701,10 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <guid>https://blog.daruyanagi.jp/entry/2012/10/20/213231/</guid>
       <description>wget http://localhost/onnnanoko.zip で女の子落とせる
 &amp;mdash; Be玉🥀🐝🐈🖤🦔 (@BeMarble) October 19, 2012  れは羨ましい！　わしも女の子落としたい！――できれば、WebMatrix で。
-### ヤりたいこと まぁ、あらかじめ女の子を Zip で固めておいてアクセスし、「ほら、落ちてきました！」でもいいんだけど、せっかく WebMatrix でやるんだから圧縮ぐらいはオンデマンドでやってみたい。というわけで、  http:// localhost: **** へアクセスすると Grirls フォルダに入っている女の子たちが Zip でまるごと圧縮されて 落ちてくる！（onnanoko.zip） が今回の目標。  ### 何も考えずに書いてみる ```cs #Default.cshtml /* 全部消して以下のコードに置き換える */ @using System.IO @using System.IO.Compression
+### ヤりたいことまぁ、あらかじめ女の子を Zip で固めておいてアクセスし、「ほら、落ちてきました！」でもいいんだけど、せっかく WebMatrix でやるんだから圧縮ぐらいはオンデマンドでやってみたい。というわけで、http:// localhost: **** へアクセスするとGrirls フォルダに入っている女の子たちがZip でまるごと圧縮されて落ちてくる！（onnanoko.zip）が今回の目標。### 何も考えずに書いてみる```cs#Default.cshtml /* 全部消して以下のコードに置き換える */@using System.IO @using System.IO.Compression
 @{ string dir = Server.MapPath(&amp;ldquo;~/Girls&amp;rdquo;); string zip = Server.MapPath(&amp;ldquo;~/Onnanoko.zip&amp;rdquo;);
-// ~/Girls を ~/Onnanoko.zip へ圧縮 ZipFile.CreateFromDirectory(dir, zip); // ~/Onnanoko.zip をダウンロード Response.Redirect(&amp;quot;~/Onnanoko.zip&amp;quot;);  }
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### .NET Framework 4.</description>
+// ~/Girls を ~/Onnanoko.zip へ圧縮ZipFile.CreateFromDirectory(dir, zip);// ~/Onnanoko.zip をダウンロードResponse.Redirect(&amp;quot;~/Onnanoko.zip&amp;quot;); }
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### .NET Framework 4.</description>
     </item>
     
     <item>
@@ -713,9 +713,9 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <pubDate>Wed, 17 Oct 2012 22:45:55 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/10/17/224555/</guid>
-      <description>RazorPDFはASP.NET MVCのRazor ViewEngineを利用してPDFファイルを出力します。  ViewにはiTextXMLというXMLをPDFに変換するライブラリーを使用します。 もともとSparkというViewEngineにあった機能を移植したものになります。 ぱっと探してみましたけど、ソースコードがどうやら公開されていないですね。
- ASP.NET MVCでPDFを出力する（RazorPDF） « 84zume Works  Razor と XML の組み合わせで PDF ドキュメントを出力できる。素敵だなぁ。ASP.NET MVC 向けなので、WebMatrix（ASP.NET Web Page）ではちょっと使えなさそうなのが残念だけど。でも、PDF を吐くだけだったら WebMatrix でもできるよ！（対抗意識調べてみると、「iTextSharp」というライブラリを使えばよさそう。ラッキーなことに NuGet も用意されていて、ライブラリのインストール自体は簡単。いつも通り、ASP.NET の「空のサイト」テンプレートでごにょごにょとサンプルを書いてみた。
-# Default.cshtml @using iTextSharp.text @using iTextSharp.text.pdf @{ // ドキュメントを作成  Document doc = new Document(); // 作成したドキュメントと Response.OutputStream を  // 結び付ける Writer オブジェクトを取得  PdfWriter.GetInstance(doc, Response.OutputStream); // 開け、ゴマ！  doc.Open(); // あとは、チャプターを追加してみたり……  var p1 = new Paragraph(&amp;#34;Chapter 1.</description>
+      <description>RazorPDFはASP.NET MVCのRazor ViewEngineを利用してPDFファイルを出力します。 ViewにはiTextXMLというXMLをPDFに変換するライブラリーを使用します。 もともとSparkというViewEngineにあった機能を移植したものになります。 ぱっと探してみましたけど、ソースコードがどうやら公開されていないですね。
+ ASP.NET MVCでPDFを出力する（RazorPDF） « 84zume Works Razor と XML の組み合わせで PDF ドキュメントを出力できる。素敵だなぁ。ASP.NET MVC 向けなので、WebMatrix（ASP.NET Web Page）ではちょっと使えなさそうなのが残念だけど。でも、PDF を吐くだけだったら WebMatrix でもできるよ！（対抗意識調べてみると、「iTextSharp」というライブラリを使えばよさそう。ラッキーなことに NuGet も用意されていて、ライブラリのインストール自体は簡単。いつも通り、ASP.NET の「空のサイト」テンプレートでごにょごにょとサンプルを書いてみた。
+# Default.cshtml@using iTextSharp.text@using iTextSharp.text.pdf@{// ドキュメントを作成 Document doc = new Document();// 作成したドキュメントと Response.OutputStream を // 結び付ける Writer オブジェクトを取得 PdfWriter.GetInstance(doc, Response.OutputStream);// 開け、ゴマ！ doc.Open();// あとは、チャプターを追加してみたり…… var p1 = new Paragraph(&amp;#34;Chapter 1.</description>
     </item>
     
     <item>
@@ -725,7 +725,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/10/09/232117/</guid>
       <description>GitHub - jekyll/jekyll: Jekyll is a blog-aware static site generator in Ruby というのは、Markdown ドキュメントを置いておくとそれを HTML に変換しておいてくれる静的コンテンツの生成システムらしい。Jekyll ドキュメントはこんなかんじ。
---- layout: post title: テスト投稿タイトル date: 2012-04-01 09:00:00 category : サンプル tags : [intro, 初心者, jekyll, tutorial] --- テスト投稿本文 - a - b - c [http://daruyanagi.net](http://daruyanagi.net/) ```Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。&amp;lt;a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/09/27/213159&amp;quot;&amp;gt;SignalR + WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ&amp;lt;/a&amp;gt; などと組み合わせたら面白いものができそうな気がする。 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### 必要なライブラリ &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;MarkdownSharp&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;YamlSerializer for .NET（&amp;lt;a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/10/07/113945&amp;quot;&amp;gt;WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ&amp;lt;/a&amp;gt;）&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;どちらも NuGet で取得できる。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### サンプルコード 先ほどの Jekyll ドキュメントを ~/Default.</description>
+---layout: posttitle: テスト投稿タイトルdate: 2012-04-01 09:00:00category : サンプルtags : [intro, 初心者, jekyll, tutorial]---テスト投稿本文- a- b- c[http://daruyanagi.net](http://daruyanagi.net/)```Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。&amp;lt;a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/09/27/213159&amp;quot;&amp;gt;SignalR + WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ&amp;lt;/a&amp;gt; などと組み合わせたら面白いものができそうな気がする。&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### 必要なライブラリ&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;MarkdownSharp&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;YamlSerializer for .NET（&amp;lt;a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/10/07/113945&amp;quot;&amp;gt;WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ&amp;lt;/a&amp;gt;）&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;どちらも NuGet で取得できる。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### サンプルコード先ほどの Jekyll ドキュメントを ~/Default.</description>
     </item>
     
     <item>
@@ -735,9 +735,9 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/10/07/113945/</guid>
       <description>ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。
-### YAML って？ &amp;gt; YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。  ほんとう？　それを確かめるためにちょっと比較してみました。例は XMLの論考: YAMLはXMLに改良を加える のものをベースに、XML-JSON相互変換ツール - Bluehawk&#39;s lab. で作成した JSON 形式のものを追加してあります。
-#### XML で表現した場合 ```xml xml version=&#34;1.0&#34;?   id=&#34;kramnik&#34; name=&#34;Vladimir Kramnik&#34; rating=&#34;2700&#34; status=&#34;GM&#34; / id=&#34;fritz&#34; name=&#34;Deep Fritz&#34; rating=&#34;2700&#34; status=&#34;Computer&#34; / id=&#34;mertz&#34; name=&#34;David Mertz&#34; rating=&#34;1400&#34; status=&#34;Amateur&#34; /   2002-10-04 refid=&amp;quot;fritz&amp;rdquo; /&amp;gt; refid=&amp;quot;kramnik&amp;rdquo; /&amp;gt; Draw
-&amp;lt;match&amp;gt;&amp;lt;/match&amp;gt; &amp;lt;date&amp;gt;&amp;lt;/date&amp;gt;2002-10-06 refid=&amp;quot;kramnik&amp;quot; /&amp;gt; refid=&amp;quot;fritz&amp;quot; /&amp;gt; &amp;lt;result&amp;gt;&amp;lt;/result&amp;gt;White  &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### JSON で表現した場合 ``` { &amp;quot;club&amp;quot;: { &amp;quot;players&amp;quot;: { &amp;quot;player&amp;quot;: [ { &amp;quot;-id&amp;quot;: &amp;quot;kramnik&amp;quot;, &amp;quot;-name&amp;quot;: &amp;quot;Vladimir Kramnik&amp;quot;, &amp;quot;-rating&amp;quot;: &amp;quot;2700&amp;quot;, &amp;quot;-status&amp;quot;: &amp;quot;GM&amp;quot; }, { &amp;quot;-id&amp;quot;: &amp;quot;fritz&amp;quot;, &amp;quot;-name&amp;quot;: &amp;quot;Deep Fritz&amp;quot;, &amp;quot;-rating&amp;quot;: &amp;quot;2700&amp;quot;, &amp;quot;-status&amp;quot;: &amp;quot;Computer&amp;quot; }, { &amp;quot;-id&amp;quot;: &amp;quot;mertz&amp;quot;, &amp;quot;-name&amp;quot;: &amp;quot;David Mertz&amp;quot;, &amp;quot;-rating&amp;quot;: &amp;quot;1400&amp;quot;, &amp;quot;-status&amp;quot;: &amp;quot;Amateur&amp;quot; } ] }, &amp;quot;matches&amp;quot;: { &amp;quot;match&amp;quot;: [ { &amp;quot;Date&amp;quot;: &amp;quot;2002-10-04&amp;quot;, &amp;quot;White&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;fritz&amp;quot; }, &amp;quot;Black&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;kramnik&amp;quot; }, &amp;quot;Result&amp;quot;: &amp;quot;Draw&amp;quot; }, { &amp;quot;Date&amp;quot;: &amp;quot;2002-10-06&amp;quot;, &amp;quot;White&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;kramnik&amp;quot; }, &amp;quot;Black&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;fritz&amp;quot; }, &amp;quot;Result&amp;quot;: &amp;quot;White&amp;quot; } ] } } } ```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### YAML で表現した場合 ```yaml --- players: Vladimir Kramnik: &amp;amp;amp;kramnik rating: 2700 status: GM Deep Fritz: &amp;amp;amp;fritz rating: 2700 status: Computer David Mertz: &amp;amp;amp;mertz rating: 1400 status: Amateur matches: - Date: 2002-10-04 White: *fritz Black: *kramnik Result: Draw - Date: 2002-10-06 White: *kramnik Black: *fritz Result: White ```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://jp.</description>
+### YAML って？&amp;gt;YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。 ほんとう？　それを確かめるためにちょっと比較してみました。例は XMLの論考: YAMLはXMLに改良を加える のものをベースに、XML-JSON相互変換ツール - Bluehawk&#39;s lab. で作成した JSON 形式のものを追加してあります。
+#### XML で表現した場合```xmlxml version=&#34;1.0&#34;?id=&#34;kramnik&#34;name=&#34;Vladimir Kramnik&#34;rating=&#34;2700&#34;status=&#34;GM&#34; /id=&#34;fritz&#34;name=&#34;Deep Fritz&#34;rating=&#34;2700&#34;status=&#34;Computer&#34; /id=&#34;mertz&#34;name=&#34;David Mertz&#34;rating=&#34;1400&#34;status=&#34;Amateur&#34; /  2002-10-04 refid=&amp;quot;fritz&amp;rdquo; /&amp;gt; refid=&amp;quot;kramnik&amp;rdquo; /&amp;gt; Draw
+&amp;lt;match&amp;gt;&amp;lt;/match&amp;gt;&amp;lt;date&amp;gt;&amp;lt;/date&amp;gt;2002-10-06refid=&amp;quot;kramnik&amp;quot; /&amp;gt;refid=&amp;quot;fritz&amp;quot; /&amp;gt;&amp;lt;result&amp;gt;&amp;lt;/result&amp;gt;White &amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### JSON で表現した場合```{&amp;quot;club&amp;quot;: {&amp;quot;players&amp;quot;: {&amp;quot;player&amp;quot;: [{&amp;quot;-id&amp;quot;: &amp;quot;kramnik&amp;quot;,&amp;quot;-name&amp;quot;: &amp;quot;Vladimir Kramnik&amp;quot;,&amp;quot;-rating&amp;quot;: &amp;quot;2700&amp;quot;,&amp;quot;-status&amp;quot;: &amp;quot;GM&amp;quot;},{&amp;quot;-id&amp;quot;: &amp;quot;fritz&amp;quot;,&amp;quot;-name&amp;quot;: &amp;quot;Deep Fritz&amp;quot;,&amp;quot;-rating&amp;quot;: &amp;quot;2700&amp;quot;,&amp;quot;-status&amp;quot;: &amp;quot;Computer&amp;quot;},{&amp;quot;-id&amp;quot;: &amp;quot;mertz&amp;quot;,&amp;quot;-name&amp;quot;: &amp;quot;David Mertz&amp;quot;,&amp;quot;-rating&amp;quot;: &amp;quot;1400&amp;quot;,&amp;quot;-status&amp;quot;: &amp;quot;Amateur&amp;quot;}]},&amp;quot;matches&amp;quot;: {&amp;quot;match&amp;quot;: [{&amp;quot;Date&amp;quot;: &amp;quot;2002-10-04&amp;quot;,&amp;quot;White&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;fritz&amp;quot; },&amp;quot;Black&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;kramnik&amp;quot; },&amp;quot;Result&amp;quot;: &amp;quot;Draw&amp;quot;},{&amp;quot;Date&amp;quot;: &amp;quot;2002-10-06&amp;quot;,&amp;quot;White&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;kramnik&amp;quot; },&amp;quot;Black&amp;quot;: { &amp;quot;-refid&amp;quot;: &amp;quot;fritz&amp;quot; },&amp;quot;Result&amp;quot;: &amp;quot;White&amp;quot;}]}}}```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### YAML で表現した場合```yaml---players:Vladimir Kramnik: &amp;amp;amp;kramnikrating: 2700status: GMDeep Fritz: &amp;amp;amp;fritzrating: 2700status: ComputerDavid Mertz: &amp;amp;amp;mertzrating: 1400status: Amateurmatches:-Date: 2002-10-04White: *fritzBlack: *kramnikResult: Draw-Date: 2002-10-06White: *kramnikBlack: *fritzResult: White```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://jp.</description>
     </item>
     
     <item>
@@ -747,7 +747,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/10/06/190144/</guid>
       <description>Developer Camp 2012 Japan Fall に参加してきました！（1日目） - だるろぐ でやってたデモを真似してみた。
-# Default.cshtml @using System.IO @using System.Diagnostics @{ // 結果を出力するファイルのパスを決める  var path = HttpContext.Current.Server.MapPath(&amp;#34;~/result.txt&amp;#34;); // dir c:\ &amp;gt; result.txt を実行（ /c は実行して終了するオプション）  Process.Start(&amp;#34;cmd&amp;#34;, @&amp;#34;/c dir c:\ &amp;gt; &amp;#34; + path).WaitForExit(); // result.txt　を読み込む  var result = File.ReadAllText(path); } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt; &amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; &amp;amp;lt;pre&amp;gt;&amp;amp;lt;code style=&amp;#34;font-family: Consolas, monospace;&amp;#34;&amp;gt; @result &amp;amp;lt;/code&amp;gt;&amp;amp;lt;/pre&amp;gt; &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt;   ぉ！　サーバーの C ドライブ直下の内容がみえてる！　これをああしたりこうしたりすれば ruby が動いちゃったりするのか（ゲフンゲフンでも、よい子は真似しないように。実際のデモでは WaitForExit() をし忘れて result.</description>
+# Default.cshtml@using System.IO@using System.Diagnostics@{// 結果を出力するファイルのパスを決める var path = HttpContext.Current.Server.MapPath(&amp;#34;~/result.txt&amp;#34;);// dir c:\ &amp;gt; result.txt を実行（ /c は実行して終了するオプション） Process.Start(&amp;#34;cmd&amp;#34;, @&amp;#34;/c dir c:\ &amp;gt; &amp;#34; + path).WaitForExit();// result.txt　を読み込む var result = File.ReadAllText(path);}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt;&amp;amp;lt;link href=&amp;#34;~/favicon.ico&amp;#34; rel=&amp;#34;shortcut icon&amp;#34; type=&amp;#34;image/x-icon&amp;#34; /&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;&amp;amp;lt;pre&amp;gt;&amp;amp;lt;code style=&amp;#34;font-family: Consolas, monospace;&amp;#34;&amp;gt;@result&amp;amp;lt;/code&amp;gt;&amp;amp;lt;/pre&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;  ぉ！　サーバーの C ドライブ直下の内容がみえてる！　これをああしたりこうしたりすれば ruby が動いちゃったりするのか（ゲフンゲフンでも、よい子は真似しないように。実際のデモでは WaitForExit() をし忘れて result.</description>
     </item>
     
     <item>
@@ -756,10 +756,10 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <pubDate>Sat, 15 Sep 2012 09:30:30 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/15/093030/</guid>
-      <description>@chack411 さん曰く、 http://nuget.org/packages/Microsoft.AspNet.Web.Optimization を使うのが正しいそうです（ありがとうございます！）。また後日試してみましょう。 CSS / Javascript の Bunlde と Minify を WebMatrix で利用する - だるろぐ  というわけで試してみたよ。
-### NuGet のインストール   言葉は「Optimization」！　検索で出てきた2番目の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、
- どれを使うべきか どうやって使うのか がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う*1し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか*2、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。   存関係で入ってくる「WebGrease」は、Minify *3を行うコマンドラインツールみたい。http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspxMicrosoft の中の人が作ってるみたいだね。
- ### 基本的な使い方 ```html # ~/Views/Shared/_SiteLayout.cshtml @using System.Web.Optimization // Web.config いじれば要らないかな
+      <description>@chack411 さん曰く、 http://nuget.org/packages/Microsoft.AspNet.Web.Optimization を使うのが正しいそうです（ありがとうございます！）。また後日試してみましょう。CSS / Javascript の Bunlde と Minify を WebMatrix で利用する - だるろぐ というわけで試してみたよ。
+### NuGet のインストール  言葉は「Optimization」！　検索で出てきた2番目の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、
+どれを使うべきかどうやって使うのかがわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う*1し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか*2、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。  存関係で入ってくる「WebGrease」は、Minify *3を行うコマンドラインツールみたい。http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspxMicrosoft の中の人が作ってるみたいだね。
+### 基本的な使い方```html# ~/Views/Shared/_SiteLayout.cshtml@using System.Web.Optimization // Web.config いじれば要らないかな
 @{ // Script をバンドル BundleTable.Bundles.Add( new ScriptBundle(&amp;ldquo;~/Scripts/jQuery&amp;rdquo;) .</description>
     </item>
     
@@ -770,7 +770,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/10/062101/</guid>
       <description>ほんとは OAuth を早く試してみたいのだけれど……残念ながらこの通りなので。NuGet Gallery にいくとこのバージョンは存在するのだけど、何がおかしいのだろうか。とりあえず報告しておいた。
-### Bunlde ＋ Minify ＝ Optimization さてはて。というわけで、最後にやってみたかった CSS / Javascript の Bunlde とMinify を試してみる。 Minify はコードの可読性のためにもうけられたコメントや改行なんかを取っ払ってファイルサイズを小さくすること。 Bundle はヘルパーやパーシャルビューからメインテンプレートにリソースを登録可能にする CSS / Javascript の管理機能だと思えばいいと思う。ちいさなリソースをまとめて（Bunlde）ドバッと送信しちゃえば、多少パフォーマンスも上がるしねぇ。あと、 jQuery なんかはファイル名にバージョンナンバーが含まれていて、アップデートするたびに手動でリンクも書き換えなくちゃならないのだけど、そういう管理も少し楽になる。 ``` bundles.Add( new ScriptBundle(&#34;~/bundles/jquery&#34;, jqueryCdnPath) .Include(&#34;~/Scripts/jquery-{version}.js&#34;)); ```  ### 公式の Optimization ライブラリ とはいえ、最後にしたのにはわけがあって……名前がコロコロ変わっているうえ、まだ v1.0 に到達していないというありさま（http://nuget.org/packages/microsoft.web.optimization）。WebMatrix からも一応（一番古いのを）使うことはできるのだけど……もう少し様子見が必要かな。今回はそのまま突っ切っちゃうけど、将来的にはこんな感じにできるんだよっていう参考程度に。 MVC 4 だったらもう使えるのかなぁ。  ### Microsoft.Web.Optimization まず、Microsoft.Web.Optimization をインストール。 ``` # ＿AppStart.cshtml @using Microsoft.Web.Optimization
+### Bunlde ＋ Minify ＝ Optimizationさてはて。というわけで、最後にやってみたかった CSS / Javascript の Bunlde とMinify を試してみる。 Minify はコードの可読性のためにもうけられたコメントや改行なんかを取っ払ってファイルサイズを小さくすること。 Bundle はヘルパーやパーシャルビューからメインテンプレートにリソースを登録可能にする CSS / Javascript の管理機能だと思えばいいと思う。ちいさなリソースをまとめて（Bunlde）ドバッと送信しちゃえば、多少パフォーマンスも上がるしねぇ。あと、 jQuery なんかはファイル名にバージョンナンバーが含まれていて、アップデートするたびに手動でリンクも書き換えなくちゃならないのだけど、そういう管理も少し楽になる。```bundles.Add(new ScriptBundle(&#34;~/bundles/jquery&#34;, jqueryCdnPath).Include(&#34;~/Scripts/jquery-{version}.js&#34;));```### 公式の Optimization ライブラリとはいえ、最後にしたのにはわけがあって……名前がコロコロ変わっているうえ、まだ v1.0 に到達していないというありさま（http://nuget.org/packages/microsoft.web.optimization）。WebMatrix からも一応（一番古いのを）使うことはできるのだけど……もう少し様子見が必要かな。今回はそのまま突っ切っちゃうけど、将来的にはこんな感じにできるんだよっていう参考程度に。 MVC 4 だったらもう使えるのかなぁ。### Microsoft.Web.Optimizationまず、Microsoft.Web.Optimization をインストール。```# ＿AppStart.cshtml@using Microsoft.Web.Optimization
 @{ var csses = new Bundle(&amp;ldquo;~/css&amp;rdquo;, typeof(CssMinify)); // 仮想パス csses.AddDirectory(&amp;ldquo;~/Content/&amp;quot;, &amp;ldquo;*.css&amp;rdquo;, true); // ファイル登録 BundleTable.</description>
     </item>
     
@@ -781,9 +781,9 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/07/212936/</guid>
       <description>br/&amp;gt;
-&amp;gt; サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。 http://blog.jp.twitter.com/2012/09/blog-post.html    っそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
-### ちょっとした注意   *ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
-@@daruyanagi // -&amp;gt; &amp;quot;@daruyanagi&amp;quot; ```と @ を重ねて書けばいい。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### もちろんヘルパーにしてみる…… と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。 ```cs # ~/App_Code/Twitter.EmbededTimeline.chtml @helper GetHtml( string id, string url, string text = null, int? width = null, int? height = null, string lang = null, string theme = null, string link_color = null, string[] related = null, string aria_polite = null) { if (string.</description>
+&amp;gt;サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。http://blog.jp.twitter.com/2012/09/blog-post.html   っそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
+### ちょっとした注意  *ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
+@@daruyanagi // -&amp;gt; &amp;quot;@daruyanagi&amp;quot; ```と @ を重ねて書けばいい。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### もちろんヘルパーにしてみる……と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。```cs# ~/App_Code/Twitter.EmbededTimeline.chtml@helper GetHtml(string id, string url, string text = null,int? width = null, int? height = null, string lang = null,string theme = null, string link_color = null,string[] related = null, string aria_polite = null){if (string.</description>
     </item>
     
     <item>
@@ -793,8 +793,8 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/05/050157/</guid>
       <description>Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 http://dummyimage.com はある。こいつはパラメータを与えて URL を投げるだけで、いろんなサイズ・色のダミーイメージをじぇねれいと*1してくれるクールなサービスなんだ。
-### もっとクールに でも、まさか WebMatrix を使っているおシャレさんのなかに、 &amp;lt;img src=&#34;htt... だなんて毎度いちいち手入力してるヤツはいないよな。もちろん、ヘルパーにしておいて自動補完機能に入力させるハズだ。機械でできることを手でやるのはアホのすることだ*2。 ```cs #~/App_Code/DummyImage.cshtml @helper GetHtml(string args, object attrs = null) { if (attrs != null) { attrs = string.Join(&amp;rdquo; &amp;ldquo;, attrs .GetType() .GetProperties() .Select(_ =&amp;gt; string.Format( &amp;ldquo;{0}=&amp;quot;{1}&amp;quot;&amp;quot;, _.Name, _.GetValue(attrs) ) ) ); } &amp;lt;img src=&amp;quot;http://www.dummyimage.com/@Html.Raw(@args)&amp;rdquo; @Html.Raw(attrs) /&amp;gt; }
-```cs @DummyImage.GetHtml(&amp;quot;640x16:9&amp;quot;) ```と書くだけ&amp;lt;a href=&amp;quot;#f3&amp;quot; name=&amp;quot;fn3&amp;quot; title=&amp;quot;実質的にはほとんど @ , dumm... , g, &amp;quot; 640x16:9&amp;quot;=&amp;quot;&amp;quot; と入力するだけ！&amp;quot;=&amp;quot;&amp;quot;&amp;gt;*3&amp;lt;/a&amp;gt;で、実行時に ```cs &amp;amp;lt;img src=&amp;quot;http://www.dummyimage.com/640x16:9&amp;quot; /&amp;gt; ```のような HTML コードへ展開される。画像タグに alt 属性をつけなければ瞬時に息絶える W3C 原理主義者や、 style を埋め込みたいなんていうわがままさんはこんな感じで書けばいい。 ```cs @DummyImage.</description>
+### もっとクールにでも、まさか WebMatrix を使っているおシャレさんのなかに、 &amp;lt;img src=&#34;htt... だなんて毎度いちいち手入力してるヤツはいないよな。もちろん、ヘルパーにしておいて自動補完機能に入力させるハズだ。機械でできることを手でやるのはアホのすることだ*2。```cs#~/App_Code/DummyImage.cshtml@helper GetHtml(string args, object attrs = null) { if (attrs != null) { attrs = string.Join(&amp;rdquo; &amp;ldquo;, attrs .GetType() .GetProperties() .Select(_ =&amp;gt; string.Format( &amp;ldquo;{0}=&amp;quot;{1}&amp;quot;&amp;quot;, _.Name, _.GetValue(attrs) ) ) ); } &amp;lt;img src=&amp;quot;http://www.dummyimage.com/@Html.Raw(@args)&amp;rdquo; @Html.Raw(attrs) /&amp;gt; }
+```cs@DummyImage.GetHtml(&amp;quot;640x16:9&amp;quot;)```と書くだけ&amp;lt;a href=&amp;quot;#f3&amp;quot; name=&amp;quot;fn3&amp;quot; title=&amp;quot;実質的にはほとんど @ , dumm... , g, &amp;quot; 640x16:9&amp;quot;=&amp;quot;&amp;quot; と入力するだけ！&amp;quot;=&amp;quot;&amp;quot;&amp;gt;*3&amp;lt;/a&amp;gt;で、実行時に```cs&amp;amp;lt;img src=&amp;quot;http://www.dummyimage.com/640x16:9&amp;quot; /&amp;gt;```のような HTML コードへ展開される。画像タグに alt 属性をつけなければ瞬時に息絶える W3C 原理主義者や、 style を埋め込みたいなんていうわがままさんはこんな感じで書けばいい。```cs@DummyImage.</description>
     </item>
     
     <item>
@@ -803,8 +803,8 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       <pubDate>Tue, 04 Sep 2012 02:34:14 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/04/023414/</guid>
-      <description>WebMatrix 2 では Twitter や Facebook など、外部サービスの OAuth 認証を使ってログインできるサイトも簡単に作れるらしい。というわけで試すことにした。いつもどおり Empty Site テンプレートから Webサイトを作成。ついで DotNetOpenAuth extension for ASP.NET (WebPages) を NuGet でインストール。ガッデム！／(^o^)＼ NuGet が古いらしいぞ。確かに Empty Site テンプレートに含まれるのは 1.6.2 と相当古い。とっくに 2.0 も出てるのにな。しかし、なんで［更新プログラム］のところに出てこないのだろう。自動でアップデートできないじゃないか。一度アンインストールして、再度インストールしてみるかな。&amp;gt; #### Dependencies  Microsoft.AspNet.WebPages (≥ 2.0.20710.0 &amp;amp;&amp;amp; &amp;lt; 2.1) NuGet.Core (≥ 1.6.2 &amp;amp;&amp;amp; &amp;lt; 1.7)
- NuGet Gallery | Microsoft ASP.NET Web Pages 2 Administration 2.0.20713.0  ジーザス！／(^o^)＼ これが依存性地獄か！うまくいっているときには気にならないが、こういう状況になると WebMatrix に搭載されている NuGet クライアントは非常に非力かつ情報不足に感じられて、使うのが辛くなる。とりあえず、このパッケージが何をしているのかは知らんが、ぶっこ抜くことにした。なに、困ったら初めからやり直せば良い ( ｰ`дｰ´)ｷﾘｯ ＜失うものなどなにもないんだ！ウェルダン！＼(^o^)／ これで NuGet.Core のバージョンが 2.0.1 になった。これでもう一度インストールを……ゴッドイズデス！／(^o^)＼ NuGet.</description>
+      <description>WebMatrix 2 では Twitter や Facebook など、外部サービスの OAuth 認証を使ってログインできるサイトも簡単に作れるらしい。というわけで試すことにした。いつもどおり Empty Site テンプレートから Webサイトを作成。ついで DotNetOpenAuth extension for ASP.NET (WebPages) を NuGet でインストール。ガッデム！／(^o^)＼ NuGet が古いらしいぞ。確かに Empty Site テンプレートに含まれるのは 1.6.2 と相当古い。とっくに 2.0 も出てるのにな。しかし、なんで［更新プログラム］のところに出てこないのだろう。自動でアップデートできないじゃないか。一度アンインストールして、再度インストールしてみるかな。&amp;gt;#### Dependencies Microsoft.AspNet.WebPages (≥ 2.0.20710.0 &amp;amp;&amp;amp; &amp;lt; 2.1) NuGet.Core (≥ 1.6.2 &amp;amp;&amp;amp; &amp;lt; 1.7)
+ NuGet Gallery | Microsoft ASP.NET Web Pages 2 Administration 2.0.20713.0 ジーザス！／(^o^)＼ これが依存性地獄か！うまくいっているときには気にならないが、こういう状況になると WebMatrix に搭載されている NuGet クライアントは非常に非力かつ情報不足に感じられて、使うのが辛くなる。とりあえず、このパッケージが何をしているのかは知らんが、ぶっこ抜くことにした。なに、困ったら初めからやり直せば良い ( ｰ`дｰ´)ｷﾘｯ ＜失うものなどなにもないんだ！ウェルダン！＼(^o^)／ これで NuGet.Core のバージョンが 2.0.1 になった。これでもう一度インストールを……ゴッドイズデス！／(^o^)＼ NuGet.</description>
     </item>
     
     <item>
@@ -814,7 +814,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/03/093520/</guid>
       <description>br/&amp;gt;
- WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ WebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐ とりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。 ### System.Web.Security.Roles ロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。 #### Roles.RoleExists() / Roles.CreateRole() まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。 ```cs @{ App.DATABASE = &#34;database&#34;; // &amp;lt;-- カッコ悪いし、 App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめて App.ROLE_ADMIN = &#34;</description>
+WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐWebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐWebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐWebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐとりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。### System.Web.Security.Rolesロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。#### Roles.RoleExists() / Roles.CreateRole()まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。```cs@{App.DATABASE = &#34;database&#34;; // &amp;lt;-- カッコ悪いし、App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめてApp.ROLE_ADMIN = &#34;</description>
     </item>
     
     <item>
@@ -824,7 +824,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/30/040609/</guid>
       <description>寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ の話は続く。
-# ~/_AppCode/Flash.cshtml @helper Read() /* Razor を書く */ { if (Session[&amp;#34;flash&amp;#34;] == null) { return; } // Razor では if 文の {} を省略できない。これ、マメな。  &amp;amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt;&amp;amp;lt;p&amp;gt;@Session[&amp;#34;flash&amp;#34;]&amp;amp;lt;/p&amp;gt;&amp;amp;lt;/div&amp;gt; Session[&amp;#34;flash&amp;#34;] = null; } @functions /* 通常の C# 構文を書く */ { public static void Write(string value) { Session[&amp;#34;flash&amp;#34;] = value; } } ```この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。   りあえず、 &amp;lt;code&amp;gt;@helper Hoge(args) {……}&amp;lt;/code&amp;gt; は &amp;lt;code&amp;gt;public static HelperResult Hoge(args) {……}&amp;lt;/code&amp;gt; （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。 ```cs @functions { public static HelperResult Read() { return new HelperResult(w =&amp;gt; { if (Session[&amp;#34;flash&amp;#34;] == null) { return; } /* &amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt; @Session[&amp;#34;flash&amp;#34;] &amp;lt;p&amp;gt;&amp;lt;/p&amp;gt; */ WriteLiteralTo(w, &amp;#34;\&amp;#34;message info\&amp;#34;&amp;gt;&amp;lt;p&amp;gt;&amp;#34;&amp;lt;/p&amp;gt;); WriteTo(w, Session[&amp;#34;flash&amp;#34;]); WriteLiteralTo(w, &amp;#34;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;#34;); Session[&amp;#34;flash&amp;#34;] = null; }); } } ```というわけで書いてみたのがこれ（参考：&amp;lt;a href=&amp;#34;http://shiba-yan.</description>
+# ~/_AppCode/Flash.cshtml@helper Read()/* Razor を書く */ {if (Session[&amp;#34;flash&amp;#34;] == null) { return; }// Razor では if 文の {} を省略できない。これ、マメな。 &amp;amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt;&amp;amp;lt;p&amp;gt;@Session[&amp;#34;flash&amp;#34;]&amp;amp;lt;/p&amp;gt;&amp;amp;lt;/div&amp;gt;Session[&amp;#34;flash&amp;#34;] = null;}@functions/* 通常の C# 構文を書く */ {public static void Write(string value){Session[&amp;#34;flash&amp;#34;] = value;}}```この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。  りあえず、 &amp;lt;code&amp;gt;@helper Hoge(args) {……}&amp;lt;/code&amp;gt; は &amp;lt;code&amp;gt;public static HelperResult Hoge(args) {……}&amp;lt;/code&amp;gt; （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。```cs@functions{public static HelperResult Read(){return new HelperResult(w =&amp;gt;{if (Session[&amp;#34;flash&amp;#34;] == null) { return; }/* &amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;lt;/div&amp;gt;@Session[&amp;#34;flash&amp;#34;]&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt; */WriteLiteralTo(w, &amp;#34;\&amp;#34;message info\&amp;#34;&amp;gt;&amp;lt;p&amp;gt;&amp;#34;&amp;lt;/p&amp;gt;);WriteTo(w, Session[&amp;#34;flash&amp;#34;]); WriteLiteralTo(w, &amp;#34;&amp;lt;p&amp;gt;&amp;lt;/p&amp;gt;&amp;#34;);Session[&amp;#34;flash&amp;#34;] = null;});}}```というわけで書いてみたのがこれ（参考：&amp;lt;a href=&amp;#34;http://shiba-yan.</description>
     </item>
     
     <item>
@@ -834,9 +834,9 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/29/201834/</guid>
       <description>Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、
-&amp;gt;  ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。 コントローラでflashメッセージを設定し、ビューで表示する。 flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。 設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。 普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。
- flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション  というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。
-# Logout.cshtml @{ WebSecurity.Logout(); Session[&amp;#34;flash&amp;#34;] = &amp;#34;Good bye!&amp;#34;; // &amp;amp;lt;-- ココ！  Response.Redirect(Request[&amp;#34;ReturnUrl&amp;#34;] ?? &amp;#34;~/&amp;#34;); } ```実装には Session を利用した。 Session[&amp;#34;flash&amp;#34;] にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。 ```cs # ＿SiteLayout.cshtml &amp;amp;lt;body&amp;gt; @if (Session[&amp;#34;flash&amp;#34;] != null) { &amp;amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt; &amp;amp;lt;p&amp;gt;@Session[&amp;#34;flash&amp;#34;]&amp;amp;lt;/p&amp;gt; // &amp;amp;lt;-- 読みだして……  &amp;amp;lt;/div&amp;gt; Session[&amp;#34;flash&amp;#34;] = null; // &amp;amp;lt;-- 消す！……  } @RenderBody() &amp;amp;lt;/body&amp;gt; ```表示する側では、かならず Session[&amp;#34;flash&amp;#34;] をクリアしておく。これで Session[&amp;#34;flash&amp;#34;] の内容が表示されるのは一度きりになるはず。&amp;lt;img src=&amp;#34;http://cdn-ak.</description>
+&amp;gt; ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。 コントローラでflashメッセージを設定し、ビューで表示する。 flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。 設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。 普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。
+ flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。
+# Logout.cshtml@{WebSecurity.Logout();Session[&amp;#34;flash&amp;#34;] = &amp;#34;Good bye!&amp;#34;; // &amp;amp;lt;-- ココ！ Response.Redirect(Request[&amp;#34;ReturnUrl&amp;#34;] ?? &amp;#34;~/&amp;#34;);}```実装には Session を利用した。 Session[&amp;#34;flash&amp;#34;] にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。```cs# ＿SiteLayout.cshtml&amp;amp;lt;body&amp;gt;@if (Session[&amp;#34;flash&amp;#34;] != null){&amp;amp;lt;div class=&amp;#34;message info&amp;#34;&amp;gt;&amp;amp;lt;p&amp;gt;@Session[&amp;#34;flash&amp;#34;]&amp;amp;lt;/p&amp;gt; // &amp;amp;lt;-- 読みだして…… &amp;amp;lt;/div&amp;gt;Session[&amp;#34;flash&amp;#34;] = null; // &amp;amp;lt;-- 消す！…… }@RenderBody()&amp;amp;lt;/body&amp;gt;```表示する側では、かならず Session[&amp;#34;flash&amp;#34;] をクリアしておく。これで Session[&amp;#34;flash&amp;#34;] の内容が表示されるのは一度きりになるはず。&amp;lt;img src=&amp;#34;http://cdn-ak.</description>
     </item>
     
     <item>
@@ -846,7 +846,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/28/191129/</guid>
       <description>WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ で無事ユーザー登録ができ、ログインされた。という訳で今回はログアウトを実装しなければならない。
-# Logout.cshtml @{ WebSecurity.Logout(); var returnUrl = Request.QueryString[&amp;#34;ReturnUrl&amp;#34;]; Response.Redirect(returnUrl.IsEmpty() ? &amp;#34;~/&amp;#34; : returnUrl); } ```おわり！　ほんとにこれだけだよ……。一応、 Logout?ReturnUrl=~/Account/Login なんかで ~/Account/Login へリダイレクトされるようにしてみたけど。ちなみに、ログイン処理は少し長くなった。 ```cs # Login.cshtml @{ var name = &amp;#34;&amp;#34;; var password = &amp;#34;&amp;#34;; var rememberMe = true; Validation.RequireField( &amp;#34;name&amp;#34;, &amp;#34;You must specify an name address.&amp;#34;); Validation.RequireField( &amp;#34;password&amp;#34;, &amp;#34;You must specify a password.&amp;#34;); if (IsPost) { name = Request.Form[&amp;#34;name&amp;#34;]; password = Request.Form[&amp;#34;password&amp;#34;]; rememberMe = Request.Form[&amp;#34;rememberMe&amp;#34;].AsBool(); if (Validation.</description>
+# Logout.cshtml@{WebSecurity.Logout();var returnUrl = Request.QueryString[&amp;#34;ReturnUrl&amp;#34;];Response.Redirect(returnUrl.IsEmpty() ? &amp;#34;~/&amp;#34; : returnUrl);}```おわり！　ほんとにこれだけだよ……。一応、 Logout?ReturnUrl=~/Account/Login なんかで ~/Account/Login へリダイレクトされるようにしてみたけど。ちなみに、ログイン処理は少し長くなった。```cs# Login.cshtml@{var name = &amp;#34;&amp;#34;;var password = &amp;#34;&amp;#34;;var rememberMe = true;Validation.RequireField(&amp;#34;name&amp;#34;, &amp;#34;You must specify an name address.&amp;#34;);Validation.RequireField(&amp;#34;password&amp;#34;, &amp;#34;You must specify a password.&amp;#34;);if (IsPost){name = Request.Form[&amp;#34;name&amp;#34;];password = Request.Form[&amp;#34;password&amp;#34;];rememberMe = Request.Form[&amp;#34;rememberMe&amp;#34;].AsBool();if (Validation.</description>
     </item>
     
     <item>
@@ -856,7 +856,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/25/003421/</guid>
       <description>br/&amp;gt;
- WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ のんびりやっていこう。今回はユーザー登録するで。 ```cs @{ var name = &#34;&#34;; var password = &#34;&#34;; var confirmPassword = &#34;&#34;; if (IsPost) { name = Request.Form[&amp;quot;name&amp;quot;]; password = Request.Form[&amp;quot;password&amp;quot;]; confirmPassword = Request.Form[&amp;quot;confirmPassword&amp;quot;]; // ここでバリデーション（値が妥当なものか検証）する if (Validation.IsValid()) { if (WebSecurity.GetUserId(name) &amp;gt; -1) { ModelState.AddFormError(&amp;quot;Username alredy exists&amp;quot;); } else { try { WebSecurity.CreateUserAndAccount( name, password, new { Name = name }); WebSecurity.</description>
+WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐWebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐのんびりやっていこう。今回はユーザー登録するで。```cs@{var name = &#34;&#34;;var password = &#34;&#34;;var confirmPassword = &#34;&#34;;if (IsPost){name = Request.Form[&amp;quot;name&amp;quot;];password = Request.Form[&amp;quot;password&amp;quot;];confirmPassword = Request.Form[&amp;quot;confirmPassword&amp;quot;];// ここでバリデーション（値が妥当なものか検証）するif (Validation.IsValid()){if (WebSecurity.GetUserId(name) &amp;gt; -1){ModelState.AddFormError(&amp;quot;Username alredy exists&amp;quot;);}else{try{WebSecurity.CreateUserAndAccount(name, password, new { Name = name });WebSecurity.</description>
     </item>
     
     <item>
@@ -866,7 +866,7 @@ UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 …�
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/24/105121/</guid>
       <description>さて、前回（WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。
-using System; using System.Web; namespace WebMatrix.WebData { public static class WebSecurity { public static readonly string EnableSimpleMembershipKey; ```WebSecurity は静的クラスです。“EnableSimpleMembershipKey”はよくわかりませんが、 readonly だしとくにわからなくても問題無さそう。 AppSetting から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。 ASP.NET の認証システムは全然わかってないけれど、おいおい解決していきたいです。 ```cs public static int CurrentUserId { get; } public static string CurrentUserName { get; } public static bool HasUserId { get; } public static bool Initialized { get; } public static bool IsAuthenticated { get; } ```お次はプロパティ群ですね。 CurrentUser に関するさまざまな情報を取得できます。 Initialized だけは &amp;lt;a href=&amp;#34;http://msdn.</description>
+using System;using System.Web;namespace WebMatrix.WebData{public static class WebSecurity{public static readonly string EnableSimpleMembershipKey;```WebSecurity は静的クラスです。“EnableSimpleMembershipKey”はよくわかりませんが、 readonly だしとくにわからなくても問題無さそう。 AppSetting から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。 ASP.NET の認証システムは全然わかってないけれど、おいおい解決していきたいです。```cspublic static int CurrentUserId { get; }public static string CurrentUserName { get; }public static bool HasUserId { get; }public static bool Initialized { get; }public static bool IsAuthenticated { get; }```お次はプロパティ群ですね。 CurrentUser に関するさまざまな情報を取得できます。 Initialized だけは &amp;lt;a href=&amp;#34;http://msdn.</description>
     </item>
     
     <item>
@@ -875,8 +875,8 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
       <pubDate>Fri, 24 Aug 2012 09:50:23 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/24/095023/</guid>
-      <description>お次はユーザー認証機能に挑戦しますかね？　Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。というわけで、“Startar Site”テンプレートをみながら勉強しようかなぁ、と思ったのだけど……ナンテコッタイ／(^o^)＼　ソースを見てみたら文字化けしてたり改行が吹っ飛んでたりで、一部ソースコードがぶっ壊れていた。修正を試みたのだけれど、途中で「いや待て、“Empty Site”から自分で作ったほうが勉強になるかもしれない」と思い直し、まっさらなWebサイトを作ってユーザー認証機能を追加してみることにした。### データベースを作成 まずはユーザー情報を格納するデータベースを作成。名前は……思いつかなかったから“database.sdf”でいいや。リネームした時のことを考えて、データベース名は App に格納しておくことにした。アプリケーションの起動時に実行される _AppStart.cshtml に記述しておく。 ```cs #_AppStart.cshtml @{ App.Database = &amp;ldquo;database&amp;rdquo;; // 拡張子は要らないっぽい }
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### ユーザー情報テーブルを作成 次に、認証情報を保存しておくテーブルを作成する。 WebMatrix では WebSecurity Helper というお手軽な認証システムがあるらしい。“Startar Site”テンプレートでも利用されていたのでそれを使おう。 WebSecurity.InitializeDatabaseConnection() でユーザー情報を管理するテーブルが初期化されるみたい。 ```cs #_AppStart.cshtml @{ App.Database = &amp;quot;database&amp;quot;; WebSecurity.InitializeDatabaseConnection( App.Database, // データベース名 &amp;quot;Users&amp;quot;, // テーブル名 &amp;quot;UserId&amp;quot;, // ID を格納するカラム &amp;quot;Name&amp;quot;, // 一意なユーザー名を格納するカラム true // テーブルがなかったら作れ ); } ```しかし、「WebSecurity などというクラスは知らない」と怒られてしまう。デフォルトでは入っていないのね……&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093457.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120824093457p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120824093457p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;“Startar Site”テンプレートを「Visual Studio」でみてみたら、 WebMatrix.WebData.dll というアセンブリが必要であるらしい。これもどうせ NuGet で取得できるんでしょ？ わかってる、わかってる！ &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### Microsoft ASP.</description>
+      <description>お次はユーザー認証機能に挑戦しますかね？　Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。というわけで、“Startar Site”テンプレートをみながら勉強しようかなぁ、と思ったのだけど……ナンテコッタイ／(^o^)＼　ソースを見てみたら文字化けしてたり改行が吹っ飛んでたりで、一部ソースコードがぶっ壊れていた。修正を試みたのだけれど、途中で「いや待て、“Empty Site”から自分で作ったほうが勉強になるかもしれない」と思い直し、まっさらなWebサイトを作ってユーザー認証機能を追加してみることにした。### データベースを作成まずはユーザー情報を格納するデータベースを作成。名前は……思いつかなかったから“database.sdf”でいいや。リネームした時のことを考えて、データベース名は App に格納しておくことにした。アプリケーションの起動時に実行される _AppStart.cshtml に記述しておく。```cs#_AppStart.cshtml@{ App.Database = &amp;ldquo;database&amp;rdquo;; // 拡張子は要らないっぽい }
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### ユーザー情報テーブルを作成次に、認証情報を保存しておくテーブルを作成する。 WebMatrix では WebSecurity Helper というお手軽な認証システムがあるらしい。“Startar Site”テンプレートでも利用されていたのでそれを使おう。 WebSecurity.InitializeDatabaseConnection() でユーザー情報を管理するテーブルが初期化されるみたい。```cs#_AppStart.cshtml@{App.Database = &amp;quot;database&amp;quot;;WebSecurity.InitializeDatabaseConnection(App.Database, // データベース名&amp;quot;Users&amp;quot;, // テーブル名&amp;quot;UserId&amp;quot;, // ID を格納するカラム&amp;quot;Name&amp;quot;, // 一意なユーザー名を格納するカラムtrue // テーブルがなかったら作れ);}```しかし、「WebSecurity などというクラスは知らない」と怒られてしまう。デフォルトでは入っていないのね……&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093457.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120824093457p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120824093457p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;“Startar Site”テンプレートを「Visual Studio」でみてみたら、 WebMatrix.WebData.dll というアセンブリが必要であるらしい。これもどうせ NuGet で取得できるんでしょ？ わかってる、わかってる！&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### Microsoft ASP.</description>
     </item>
     
     <item>
@@ -885,7 +885,7 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
       <pubDate>Wed, 22 Aug 2012 07:33:42 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/22/073342/</guid>
-      <description>WebMatrix でファイルのアップロード - だるろぐ WebMatrix でファイルのアップロード（2） - だるろぐ WebMatrix でファイルのアップロード（2） の補足 - だるろぐ WebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う - だるろぐ 以上の内容を NuGet パッケージ（https://nuget.org/packages/DADIU/1.1.0）にしてみました*1。記事では端折った JavaScript なんかも含まれているので*2、もし興味があればみていただければと。 ### インストール方法   テンプレート］ボタンを押す。
+      <description>WebMatrix でファイルのアップロード - だるろぐWebMatrix でファイルのアップロード（2） - だるろぐWebMatrix でファイルのアップロード（2） の補足 - だるろぐWebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う - だるろぐ以上の内容を NuGet パッケージ（https://nuget.org/packages/DADIU/1.1.0）にしてみました*1。記事では端折った JavaScript なんかも含まれているので*2、もし興味があればみていただければと。### インストール方法  テンプレート］ボタンを押す。
   ンプレートを選択。好きなモノを選んでいいですが、試すだけなら“Empty Site”が無難ですね。
   ファイル］タブを選択。そうしないと［NuGet］ボタンが出てこないみたい*3。
   NuGet］ボタンを押す。
@@ -894,7 +894,7 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
   回は依存パッケージのインストールも使ってみました（jQuery と HttpFileCollectionBaseExtension）。もしインストールされていない場合は自動で依存性が解決され、ダウンロード・セットアップされます。
   ンストールが成功（するといいな）！　いろいろファイルが追加されているはずです。
   ンプルは“DADIU.sample”にあるので、ブラウザーで実行してフォルダへアクセスしてください。対応ブラウザーは Google Chrome / FireFox （Opera/IE10？）です。「WebMatrix 2」ではインストール済みのブラウザーのなかから好きなブラウザーを選んで実行できるのが便利ですねぇ。
- ### これまでの記事のウソポイント ぶっちゃけこのブログは結構ウソも書いています（ごめんなさい！）*5。あんまり完成度を意識してたら、アウトプットなんかできませんからね！*6　とはいえ、ほんとごめんなさい的な記述もあるので、気付いたところだけ直しておきます*7。 #### NuGet Package Explorer   br/&amp;gt;</description>
+### これまでの記事のウソポイントぶっちゃけこのブログは結構ウソも書いています（ごめんなさい！）*5。あんまり完成度を意識してたら、アウトプットなんかできませんからね！*6　とはいえ、ほんとごめんなさい的な記述もあるので、気付いたところだけ直しておきます*7。#### NuGet Package Explorer  br/&amp;gt;</description>
     </item>
     
     <item>
@@ -904,7 +904,7 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/21/092916/</guid>
       <description>そういえば、アップロードしたファイルの表示をやっていなかった*1。アップロードフォルダには画像ファイルしかないはずなので、今回は img タグで決め打ちしていいかな。
-# List.cshtml @functions { private const string OUTPUT_DIR = &amp;#34;~/Files/&amp;#34;; } @{ var dir = Server.MapPath(OUTPUT_DIR); var files = new System.IO.DirectoryInfo(dir) .EnumerateFiles() .Select((f) =&amp;gt; VirtualPathUtility .ToAbsolute(OUTPUT_DIR + f.Name)); } &amp;amp;lt;!DOCTYPE html&amp;gt; &amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt; &amp;amp;lt;head&amp;gt; &amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt; &amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt; &amp;amp;lt;style&amp;gt; a { display: block; float: left; height: 48px; width: 48px; margin: 6px; text-align: center; } a img { max-height: 48px; max-width: 48px; border: none; } &amp;amp;lt;/style&amp;gt; &amp;amp;lt;/head&amp;gt; &amp;amp;lt;body&amp;gt; @foreach (var file in files) { &amp;amp;lt;a href=&amp;#34;@file&amp;#34;&amp;gt;&amp;amp;lt;img src=&amp;#34;@file&amp;#34; /&amp;gt;&amp;amp;lt;/a&amp;gt; } &amp;amp;lt;/body&amp;gt; &amp;amp;lt;/html&amp;gt; ```結果はこんな感じ。&amp;lt;img src=&amp;#34;http://cdn-ak.</description>
+# List.cshtml@functions {private const string OUTPUT_DIR = &amp;#34;~/Files/&amp;#34;;}@{var dir = Server.MapPath(OUTPUT_DIR);var files = new System.IO.DirectoryInfo(dir).EnumerateFiles().Select((f) =&amp;gt; VirtualPathUtility.ToAbsolute(OUTPUT_DIR + f.Name));}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;style&amp;gt;a {display: block;float: left;height: 48px; width: 48px;margin: 6px;text-align: center;}a img {max-height: 48px; max-width: 48px;border: none;}&amp;amp;lt;/style&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@foreach (var file in files){&amp;amp;lt;a href=&amp;#34;@file&amp;#34;&amp;gt;&amp;amp;lt;img src=&amp;#34;@file&amp;#34; /&amp;gt;&amp;amp;lt;/a&amp;gt;}&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```結果はこんな感じ。&amp;lt;img src=&amp;#34;http://cdn-ak.</description>
     </item>
     
     <item>
@@ -914,8 +914,8 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/20/210729/</guid>
       <description>  br/&amp;gt;
-&amp;gt; デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。 WebMatrix でファイルのアップロード（2） - だるろぐ  思いついたのだけれど、無理してビューまたは Json を返そうとしなくてもステータスコードだけ返せばいいな。最初にわざとエラーを発生させるコードを書いてそこで return してしまえば、 try……catch 文のネストを減らせるし。
-@{ try // Catch Request-too-long Error  { var dummy = Request.Files; } catch (Exception e) { Response.StatusCode = (int) HttpStatusCode.InternalServerError; Response.Write(e.Message); return; } if (IsPost) { ： ： ```これをするとどうなるのかというと、   ず、デカいファイルを投げる（既定では約4MB以上）。   ーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。   .ajax() の error プロパティでそれを拾って……   TML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。 </description>
+&amp;gt;デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。WebMatrix でファイルのアップロード（2） - だるろぐ 思いついたのだけれど、無理してビューまたは Json を返そうとしなくてもステータスコードだけ返せばいいな。最初にわざとエラーを発生させるコードを書いてそこで return してしまえば、 try……catch 文のネストを減らせるし。
+@{try // Catch Request-too-long Error {var dummy = Request.Files;}catch (Exception e){Response.StatusCode = (int) HttpStatusCode.InternalServerError;Response.Write(e.Message);return;}if (IsPost){：：```これをするとどうなるのかというと、  ず、デカいファイルを投げる（既定では約4MB以上）。  ーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。  .ajax() の error プロパティでそれを拾って……  TML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。</description>
     </item>
     
     <item>
@@ -926,11 +926,11 @@ using System; using System.Web; namespace WebMatrix.WebData { public static clas
       <guid>https://blog.daruyanagi.jp/entry/2012/08/20/202253/</guid>
       <description>まずはお詫びを。
   br/&amp;gt;
-&amp;gt; ASP.NET Web Helpers Library という NuGet をインストールすると、（FileUpload ヘルパーを利用して）複数ファイルのアップロードに対応した Form タグを簡単に生成できる。でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。なんか動的に生成されるノードの名前がカブってるし、あんまりよくわかんなかった。 WebMatrix でファイルのアップロード - だるろぐ  そしたらツッコミをもらった。
+&amp;gt;ASP.NET Web Helpers Library という NuGet をインストールすると、（FileUpload ヘルパーを利用して）複数ファイルのアップロードに対応した Form タグを簡単に生成できる。でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。なんか動的に生成されるノードの名前がカブってるし、あんまりよくわかんなかった。WebMatrix でファイルのアップロード - だるろぐ そしたらツッコミをもらった。
  だるさん、HTML の name 属性の値は重複してもいいんやで— しばやん (@shibayan) 2012年8月19日
  最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。
   かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は
-using System.Collections.Generic; using System.Web; public static class HttpFileCollectionBaseExtension { public static IEnumerable&amp;amp;lt;HttpPostedFileBase&amp;gt; ToEnumerable( this HttpFileCollectionBase target) { foreach (var key in target.AllKeys) //--&amp;gt; Key で……  { yield return target[key]; } } } ```ではなくて、 ```cs using System.</description>
+using System.Collections.Generic;using System.Web;public static class HttpFileCollectionBaseExtension{public static IEnumerable&amp;amp;lt;HttpPostedFileBase&amp;gt; ToEnumerable(this HttpFileCollectionBase target){foreach (var key in target.AllKeys) //--&amp;gt; Key で…… {yield return target[key];}}}```ではなくて、```csusing System.</description>
     </item>
     
     <item>
@@ -940,9 +940,9 @@ using System.Collections.Generic; using System.Web; public static class HttpFile
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/17/034631/</guid>
       <description>WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ と App_Code でサブフォルダーを利用する - だるろぐ で扱った Highlight.js を NuGet パッケージにしてみました。最初は Highlight.js の NuGet パッケージは存在しないと思い込んでいたのですが、ただ検索のやり方が悪かったようで、「Highlight」というパッケージがあったり、似たような機能を実現できそうな「ColorCode」というパッケージもみつけたのですが、見なかったふりをします。 nuget.org はまだちょっと検索機能がイケてないような気がしますね（責任転嫁）。
-### 準備 #### nuget.org のアカウントを作成 NuGet Gallery | Home でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。   カウントページで API キーが取得できるので、それをローカル環境に登録します。
-nuget.exe setApiKey ********-****-****-****-************ nuget.exe push MyPackage.1.0.nupkg ```NuGet.exe を入手（&amp;lt;a href=&amp;quot;http://nuget.codeplex.com/releases&amp;quot;&amp;gt;http://nuget.codeplex.com/releases&amp;lt;/a&amp;gt; NuGet.exe Command Line）して、1行目を実行すればOKです&amp;lt;a href=&amp;quot;#f-f45a0f4e&amp;quot; name=&amp;quot;fn-f45a0f4e&amp;quot; title=&amp;quot;初回起動時に実行ファイルのアップデートが行われます&amp;quot;&amp;gt;*1&amp;lt;/a&amp;gt;。 &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### パッケージに含めるファイルを用意 今回パッケージに含めるファイルは以下のとおりです。 Highlight.js/
-Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~/ 以下に展開されます） App_Code/ Highlight/ Highlight.cs Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.</description>
+### 準備#### nuget.org のアカウントを作成NuGet Gallery | Home でアカウントを作成してください。だいぶ前にやったのでやり方は忘れましたが、難しくはないはずです。  カウントページで API キーが取得できるので、それをローカル環境に登録します。
+nuget.exe setApiKey ********-****-****-****-************nuget.exe push MyPackage.1.0.nupkg```NuGet.exe を入手（&amp;lt;a href=&amp;quot;http://nuget.codeplex.com/releases&amp;quot;&amp;gt;http://nuget.codeplex.com/releases&amp;lt;/a&amp;gt; NuGet.exe Command Line）して、1行目を実行すればOKです&amp;lt;a href=&amp;quot;#f-f45a0f4e&amp;quot; name=&amp;quot;fn-f45a0f4e&amp;quot; title=&amp;quot;初回起動時に実行ファイルのアップデートが行われます&amp;quot;&amp;gt;*1&amp;lt;/a&amp;gt;。&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### パッケージに含めるファイルを用意今回パッケージに含めるファイルは以下のとおりです。Highlight.js/
+Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！content/（ ~/ 以下に展開されます）App_Code/Highlight/Highlight.csLisence FilesContent/Highlight/Theme SkinsScripts/Highlight/hilight.</description>
     </item>
     
     <item>
@@ -952,8 +952,8 @@ Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/16/182105/</guid>
       <description>回（WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。
-~/ App_Code/ Highlight.cshtml &amp;amp;lt;-- ぇ？ Highlight/ Lisence Files Content/ /Highlight Theme Skins Scripts/ Highlight/ hilight.pack.js ```パッとみて「これイケてなくね」って思いません？ Highlight.cshtml は ~/App_Code/Highlight 以下の配置される方がキレイですよね。 ~/ App_Code/ Highlight/ Highlight.cshtml &amp;lt;&amp;ndash; こうだろ！ Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.pack.js
-```xml &amp;lt;!--?--&amp;gt;xml version=&amp;quot;1.0&amp;quot;?&amp;gt; &amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt; .web&amp;gt; debug=&amp;quot;false&amp;quot;&amp;gt; &amp;lt;codesubdirectories&amp;gt;&amp;lt;/codesubdirectories&amp;gt; directoryName=&amp;quot;Highlight&amp;quot;/&amp;gt; .web&amp;gt; ```~/App_Code/ フォルダーではソースコードの言語を自動判別してくれるのだけれど、サブフォルダーに分ければ異なる言語を混ぜて利用する、なんてこともできるらしい。へぇ、知らなかった。 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&amp;quot;&amp;gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;   も、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。 ```cs # Highlight.</description>
+~/App_Code/Highlight.cshtml &amp;amp;lt;-- ぇ？Highlight/Lisence FilesContent//HighlightTheme SkinsScripts/Highlight/hilight.pack.js```パッとみて「これイケてなくね」って思いません？ Highlight.cshtml は ~/App_Code/Highlight 以下の配置される方がキレイですよね。~/ App_Code/ Highlight/ Highlight.cshtml &amp;lt;&amp;ndash; こうだろ！ Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.pack.js
+```xml&amp;lt;!--?--&amp;gt;xml version=&amp;quot;1.0&amp;quot;?&amp;gt;&amp;lt;configuration&amp;gt;&amp;lt;/configuration&amp;gt;.web&amp;gt;debug=&amp;quot;false&amp;quot;&amp;gt;&amp;lt;codesubdirectories&amp;gt;&amp;lt;/codesubdirectories&amp;gt;directoryName=&amp;quot;Highlight&amp;quot;/&amp;gt;.web&amp;gt;```~/App_Code/ フォルダーではソースコードの言語を自動判別してくれるのだけれど、サブフォルダーに分ければ異なる言語を混ぜて利用する、なんてこともできるらしい。へぇ、知らなかった。&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&amp;quot;&amp;gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;  も、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。```cs# Highlight.</description>
     </item>
     
     <item>
@@ -963,7 +963,7 @@ Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/16/155714/</guid>
       <description>前回（WebMatrix で Markdown を使おう！ - だるろぐ）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。
-# Markdown.cs using System; using System.IO; using System.Text; using System.Web; /// &amp;amp;lt;summary&amp;gt; /// Summary description for ClassName /// &amp;amp;lt;/summary&amp;gt; public static class Markdown { private static readonly MarkdownSharp.Markdown md = new MarkdownSharp.Markdown(); private static readonly Encoding encoding = Encoding.UTF8; public static HtmlString Parse(string input) { return new HtmlString(md.Transform(input)); } public static HtmlString LoadFromFile(string path) { return Parse(File.ReadAllText(path, encoding)); } } ```で、 Web ページ側ではこんな感じに使います。 ```cs # Page.</description>
+# Markdown.csusing System;using System.IO;using System.Text;using System.Web;/// &amp;amp;lt;summary&amp;gt;/// Summary description for ClassName/// &amp;amp;lt;/summary&amp;gt;public static class Markdown{private static readonly MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();private static readonly Encoding encoding = Encoding.UTF8;public static HtmlString Parse(string input){return new HtmlString(md.Transform(input));}public static HtmlString LoadFromFile(string path){return Parse(File.ReadAllText(path, encoding));}}```で、 Web ページ側ではこんな感じに使います。```cs# Page.</description>
     </item>
     
     <item>
@@ -972,11 +972,11 @@ Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~
       <pubDate>Thu, 16 Aug 2012 04:30:12 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/16/043012/</guid>
-      <description>**Markdown** は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装飾がヒントになっており、変換元テキストから変換したあとの HTML マークアップの見当がつけやすく、覚えるのが比較的容易です*1。最近では GitHub などで Wiki 記法として用いられることが多くなっているので、覚えておいて損はないです。  この Markdown パーサーを「WebMatrix 2」で使ってみましょう（所要時間5分）。
-### 準備 まず、 Empty Site テンプレートから新規サイトを作成し*2、適当にフォルダーを作って Markdown テキストのサンプルを配置します。   回、サンプルは http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text （テキスト形式、UTF-8エンコード）をお借りしました。ちなみに、 “.md” や “.markdown” といった拡張子*3のファイルを「WebMatrix 2」で開くには、コンテキストメニューから［WebMatrix で開く］を選択します。つぎに、パーサーをインストール。 NuGet で「MarkdownSharp」パッケージを選択しましょう。
+      <description>**Markdown** は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装飾がヒントになっており、変換元テキストから変換したあとの HTML マークアップの見当がつけやすく、覚えるのが比較的容易です*1。最近では GitHub などで Wiki 記法として用いられることが多くなっているので、覚えておいて損はないです。 この Markdown パーサーを「WebMatrix 2」で使ってみましょう（所要時間5分）。
+### 準備まず、 Empty Site テンプレートから新規サイトを作成し*2、適当にフォルダーを作って Markdown テキストのサンプルを配置します。  回、サンプルは http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text （テキスト形式、UTF-8エンコード）をお借りしました。ちなみに、 “.md” や “.markdown” といった拡張子*3のファイルを「WebMatrix 2」で開くには、コンテキストメニューから［WebMatrix で開く］を選択します。つぎに、パーサーをインストール。 NuGet で「MarkdownSharp」パッケージを選択しましょう。
   a href=&amp;quot;https://blog.daruyanagi.jp/entry/2012/02/12/213437&amp;quot;&amp;gt;C# の Markdown エンジン - だるろぐ にはいくつかあるのですが、「MarkdownSharp」がもっとも無難だと思います。
   ンストールはとっても簡単。勝手にレポジトリからダウンロード・セットアップされます。ほかのパッケージが必要であれば*4、そのパッケージも自動でセットアップされます。パッケージは自分でも作れるので、やってみると面白いですネ。これで準備は完了。
- ### コーディング Default.cshtml を開いて、以下のように記述します。 Markdown テキストのサンプルへのパスは適当に環境に合わせて変えてください*5。 ```cs @{ var markdown = new MarkdownSharp.Markdown(); var path = Server.</description>
+### コーディングDefault.cshtml を開いて、以下のように記述します。 Markdown テキストのサンプルへのパスは適当に環境に合わせて変えてください*5。```cs@{var markdown = new MarkdownSharp.Markdown();var path = Server.</description>
     </item>
     
     <item>
@@ -985,10 +985,10 @@ Highlight.js.nuspec &amp;amp;lt;-- あとで作りましょう！ content/ （ ~
       <pubDate>Wed, 15 Aug 2012 16:19:32 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/15/161932/</guid>
-      <description>**LESS** はスタイルシートで variables、mixins、operations、functions などを使えるように拡張した“The dynamic stylesheet language”です。ソースコードは“.less”ファイルに記述し、コンパイラで“.css”へ変換して利用します。変換はサーバーサイドだけでなく、 JavaScript を利用してクライアントサイドで行うことも可能*1。結局、何が言いたいかというと、大規模なスタイルシートを書く場合にあるとかんなり便利です。  「WebMatrix 2」ではこの LESS が簡単に使えるんですよネ。まずは、［拡張機能］ボタンから「OrangeBits Compiler」をインストール。あんまり関係ないけれど、［拡張機能］と［NuGet］は最初ちょっと混乱してしまうかもしれない。でもとりあえず、
- ［拡張機能］：「WebMatrix 2」そのものをパワーアップ ［NuGet］：「WebMatrix 2」で編集している“プロジェクト”を簡単に拡張 という感じでとらえておけばいいと思う。 ### .less ファイルを記述 ```css # Sample.less @theme-color: blue;
+      <description>**LESS** はスタイルシートで variables、mixins、operations、functions などを使えるように拡張した“The dynamic stylesheet language”です。ソースコードは“.less”ファイルに記述し、コンパイラで“.css”へ変換して利用します。変換はサーバーサイドだけでなく、 JavaScript を利用してクライアントサイドで行うことも可能*1。結局、何が言いたいかというと、大規模なスタイルシートを書く場合にあるとかんなり便利です。 「WebMatrix 2」ではこの LESS が簡単に使えるんですよネ。まずは、［拡張機能］ボタンから「OrangeBits Compiler」をインストール。あんまり関係ないけれど、［拡張機能］と［NuGet］は最初ちょっと混乱してしまうかもしれない。でもとりあえず、
+［拡張機能］：「WebMatrix 2」そのものをパワーアップ［NuGet］：「WebMatrix 2」で編集している“プロジェクト”を簡単に拡張という感じでとらえておけばいいと思う。### .less ファイルを記述```css# Sample.less@theme-color: blue;
 body { background-color: @theme-color; }
-&amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### .css ファイルへの自動コンパイル “Sample.less”を記述すると“Sample.css”が自動生成されるので、その中身を見てみよう。&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120815/20120815160117.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120815160117p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120815160117p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;ちゃんと @theme-color 変数が blue に置き換えられているのがわかる。 ```css /* ------------------------------------------------------------------------- * !!! AUTOMATICALLY GENERATED CODE !!! * ------------------------------------------------------------------------- * This file was automatically generated by the OrangeBits compiler.</description>
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### .css ファイルへの自動コンパイル“Sample.less”を記述すると“Sample.css”が自動生成されるので、その中身を見てみよう。&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120815/20120815160117.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120815160117p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120815160117p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;ちゃんと @theme-color 変数が blue に置き換えられているのがわかる。```css/* -------------------------------------------------------------------------* !!! AUTOMATICALLY GENERATED CODE !!!* -------------------------------------------------------------------------* This file was automatically generated by the OrangeBits compiler.</description>
     </item>
     
     <item>
@@ -997,12 +997,12 @@ body { background-color: @theme-color; }
       <pubDate>Wed, 15 Aug 2012 05:12:37 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/15/051237/</guid>
-      <description>今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。 WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  というわけで、今回はテーマ機能を（試しに）作ってみた。
+      <description>今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ というわけで、今回はテーマ機能を（試しに）作ってみた。
   br/&amp;gt;
- “~/Themes/”フォルダにテーマフォルダを作成（今回は Basic と Default） それぞれのテーマフォルダにレイアウトファイル、スタイルシート、リソースなどをまとめる “App.Theme”にテーマフォルダの名前を入れれば、サイト全体のテーマが切り替わる カッコいいか悪いかは知らないけど、とりあえず書いてみた。 ```cs # _AppStart.cshtml @{ /* Configure App Setting */ App.Theme = &amp;ldquo;Default&amp;rdquo;; }
+“~/Themes/”フォルダにテーマフォルダを作成（今回は Basic と Default）それぞれのテーマフォルダにレイアウトファイル、スタイルシート、リソースなどをまとめる“App.Theme”にテーマフォルダの名前を入れれば、サイト全体のテーマが切り替わるカッコいいか悪いかは知らないけど、とりあえず書いてみた。```cs# _AppStart.cshtml@{ /* Configure App Setting */ App.Theme = &amp;ldquo;Default&amp;rdquo;; }
 @using System.IO;
 @{ /* Define Utilities */ const string ThemeBaseDir = &amp;ldquo;~/Themes/&amp;quot;; const string ThemeLayoutFile = &amp;ldquo;_Layout.cshtml&amp;rdquo;;
-App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUtility.ToAbsolute( Path.Combine(ThemeBaseDir, App.Theme) ) ); App.GetLayoutPath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUtility.</description>
+App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt;VirtualPathUtility.ToAbsolute(Path.Combine(ThemeBaseDir, App.Theme)));App.GetLayoutPath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt;VirtualPathUtility.</description>
     </item>
     
     <item>
@@ -1013,8 +1013,8 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       <guid>https://blog.daruyanagi.jp/entry/2012/08/10/012651/</guid>
       <description>だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日
  知ってたさ！　でも、なんか Func&amp;lt;&amp;gt; ってカッコいいから使ってみたかったんだよ！*1
-### @functions というわけで、レイアウトファイルで @functions を使ってみた。 ```cs &amp;lt;!DOCTYPE html &amp;lt;html lang=&amp;rdquo;@App.Language&amp;quot;&amp;gt; &amp;lt;head&amp;gt; : : &amp;lt;div id=&amp;quot;site-content&amp;quot;&amp;gt; &amp;lt;article id=&amp;quot;site-body&amp;quot;&amp;gt; @RenderBody() &amp;lt;/article&amp;gt; &amp;lt;aside id=&amp;quot;site-sidebar&amp;quot;&amp;gt; @RenderSideBar() &amp;lt;/aside&amp;gt; &amp;lt;/div&amp;gt;
- &amp;amp;lt;footer id=&amp;quot;site-footer&amp;quot;&amp;gt;  @RenderFooter() &amp;lt;/footer&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;
+### @functionsというわけで、レイアウトファイルで @functions を使ってみた。```cs&amp;lt;!DOCTYPE html&amp;lt;html lang=&amp;rdquo;@App.Language&amp;quot;&amp;gt; &amp;lt;head&amp;gt; : : &amp;lt;div id=&amp;quot;site-content&amp;quot;&amp;gt; &amp;lt;article id=&amp;quot;site-body&amp;quot;&amp;gt; @RenderBody() &amp;lt;/article&amp;gt; &amp;lt;aside id=&amp;quot;site-sidebar&amp;quot;&amp;gt; @RenderSideBar() &amp;lt;/aside&amp;gt; &amp;lt;/div&amp;gt;
+ &amp;amp;lt;footer id=&amp;quot;site-footer&amp;quot;&amp;gt; @RenderFooter() &amp;lt;/footer&amp;gt; &amp;lt;/body&amp;gt; &amp;lt;/html&amp;gt;
 @functions { public HelperResult RenderHeader() { return RenderPage(&amp;quot;_Header.cshtml&amp;rdquo;); } public HelperResult RenderNavigation() { return RenderPage(&amp;quot;_Navigation.cshtml&amp;rdquo;); } public HelperResult RenderSideBar() { return RenderPage(&amp;quot;_SideBar.cshtml&amp;rdquo;); } public HelperResult RenderFooter() { return RenderPage(&amp;quot;_Footer.</description>
     </item>
     
@@ -1024,10 +1024,10 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       <pubDate>Wed, 08 Aug 2012 03:57:45 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/08/035745/</guid>
-      <description>あと、 @RenderPage(&amp;quot;_Footer.cshtml&amp;quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。 WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ  これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。
+      <description>あと、 @RenderPage(&amp;quot;_Footer.cshtml&amp;quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。
   br/&amp;gt;
-### 拡張メソッド まずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。 ```cs using System.Web.WebPages; static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&amp;quot;_Footer.cshtml&amp;rdquo;, data); } }
-```html : : &amp;amp;lt;div id=&amp;quot;site-content&amp;quot;&amp;gt; &amp;amp;lt;article id=&amp;quot;site-body&amp;quot;&amp;gt; @RenderBody() &amp;amp;lt;/article&amp;gt; &amp;amp;lt;aside id=&amp;quot;site-sidebar&amp;quot;&amp;gt; @RenderPage(&amp;quot;_SideBar.cshtml&amp;quot;) &amp;lt;!-- 古い書き方 --&amp;gt; &amp;amp;lt;/aside&amp;gt; &amp;amp;lt;/div&amp;gt; &amp;amp;lt;footer id=&amp;quot;site-footer&amp;quot;&amp;gt; @this.</description>
+### 拡張メソッドまずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。```csusing System.Web.WebPages;static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&amp;quot;_Footer.cshtml&amp;rdquo;, data); } }
+```html::&amp;amp;lt;div id=&amp;quot;site-content&amp;quot;&amp;gt;&amp;amp;lt;article id=&amp;quot;site-body&amp;quot;&amp;gt;@RenderBody()&amp;amp;lt;/article&amp;gt;&amp;amp;lt;aside id=&amp;quot;site-sidebar&amp;quot;&amp;gt;@RenderPage(&amp;quot;_SideBar.cshtml&amp;quot;) &amp;lt;!-- 古い書き方 --&amp;gt;&amp;amp;lt;/aside&amp;gt;&amp;amp;lt;/div&amp;gt;&amp;amp;lt;footer id=&amp;quot;site-footer&amp;quot;&amp;gt;@this.</description>
     </item>
     
     <item>
@@ -1036,8 +1036,8 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       <pubDate>Tue, 07 Aug 2012 05:48:32 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/07/054832/</guid>
-      <description>Razor 構文を使用する ASP.NET Web Pages は web framework および WebMatrix の一部で、Windows を使用した Web サイトの構築で必要なすべてが含まれます。 Download: Razor 構文を使用する ASP.NET Web Pages - Microsoft Download Center - Download Details  WebMatrix + ASP.NET Web Pages でキレイにコーディングしたいなぁ、と思うのだけれど、どうするのが正しいのかよくわからない。自分なりのテンプレみたいなのがほしいんだけれどね。
-### 設定の共通化 まず、 Web サイト全体の設定は一元管理したい。たぶん、これは“_AppStart.cshtml”に記述するのが正しいのだろう。 ```cs @{ App.Title = &#34;daruyanagi.net&#34;; App.Author = &#34;daruyanagi&#34;; App.Language = &#34;ja&#34;; App.Encoding = &#34;utf-8&#34;; App.Copyright = &#34;Copyright © 2012 daruyanagi. All rights reserved.&#34;; App.Description = &#34;This is the web site of Hidetoshi Yanagi a.</description>
+      <description>Razor 構文を使用する ASP.NET Web Pages は web framework および WebMatrix の一部で、Windows を使用した Web サイトの構築で必要なすべてが含まれます。Download: Razor 構文を使用する ASP.NET Web Pages - Microsoft Download Center - Download Details WebMatrix + ASP.NET Web Pages でキレイにコーディングしたいなぁ、と思うのだけれど、どうするのが正しいのかよくわからない。自分なりのテンプレみたいなのがほしいんだけれどね。
+### 設定の共通化まず、 Web サイト全体の設定は一元管理したい。たぶん、これは“_AppStart.cshtml”に記述するのが正しいのだろう。```cs@{App.Title = &#34;daruyanagi.net&#34;;App.Author = &#34;daruyanagi&#34;;App.Language = &#34;ja&#34;;App.Encoding = &#34;utf-8&#34;;App.Copyright = &#34;Copyright © 2012 daruyanagi. All rights reserved.&#34;;App.Description = &#34;This is the web site of Hidetoshi Yanagi a.</description>
     </item>
     
     <item>
@@ -1046,8 +1046,8 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       <pubDate>Fri, 06 Jul 2012 17:44:14 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/07/06/174414/</guid>
-      <description>### 保護されたファイル・フォルダ 一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセスされては困るファイルやフォルダは、特定のフォルダに格納したり、ファイル名を規約に従ってつければいい。 #### bin にはアクセスできない bin にはコンパイルされたアセンブリが格納されているので、当然アクセスが禁止されている。  #### App_Data / App_Code にはアクセスできない  **App_Data**：アプリケーションのデータを格納（データベースなど） **App_Code**：アプリケーションのソースコードを格納（ヘルパーなど） 外からみえたら困るので、やっぱりアクセスが禁止されている。  #### 名前が「_」から始まるファイルにはアクセスできない  **_AppStart.cshcml**：アプリケーションが起動するとき一度だけ実行される（グローバル変数の初期化、Web サービスの API キー格納など） **_PageStart.cshtml**：配置されたフォルダ以下にあるページが表示されるごとに実行される（レイアウトの指定やキャッシュコントロール、アクセス制御など） 正直なところ _PageStart.cshtml でアクセス制御ができるのは知らなかったかも。今度使っちゃおう。 ```cs @{ Response.CacheControl = &#34;no-cache&#34;; if (!WebSecurity.IsAuthenticated) { Response.Redirect(&amp;quot;~/Account/Login&amp;quot;); }  }
-&amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://msdn.microsoft.com/ja-jp/asp.net/hh180208.aspx&amp;quot;&amp;gt;第 18 章 サイト全体の動作をカスタマイズする | Razor 構文と ASP.NET Web ページ&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;そのほか、レイアウトファイル（たとえば“_Layout.cshtml”）や部分ビュー（たとえば“_Partial.cshtml”）も、外部に公開する必要はないので名前の先頭に「_」をつけることが多い。また、一時的に Web ページを非公開にする場合にも、リネームだけで対応できるので便利。ちなみに、コードからはちゃんとアクセスできるのでご安心を。 &amp;lt;/div&amp;gt; &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### 名前の解決 いくつかのルールはあるが、あまり難しくはない。工夫次第では URL をクール＆クリーンに保つことができる。 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; #### 静的な解決 まずは、存在するファイル・フォルダへのアクセスの規則を確認する。 &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ##### 拡張子ありのファイルアクセス &amp;lt;img src=&amp;quot;http://cdn-ak.</description>
+      <description>### 保護されたファイル・フォルダ一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセスされては困るファイルやフォルダは、特定のフォルダに格納したり、ファイル名を規約に従ってつければいい。#### bin にはアクセスできないbin にはコンパイルされたアセンブリが格納されているので、当然アクセスが禁止されている。#### App_Data / App_Code にはアクセスできない**App_Data**：アプリケーションのデータを格納（データベースなど）**App_Code**：アプリケーションのソースコードを格納（ヘルパーなど）外からみえたら困るので、やっぱりアクセスが禁止されている。#### 名前が「_」から始まるファイルにはアクセスできない**_AppStart.cshcml**：アプリケーションが起動するとき一度だけ実行される（グローバル変数の初期化、Web サービスの API キー格納など）**_PageStart.cshtml**：配置されたフォルダ以下にあるページが表示されるごとに実行される（レイアウトの指定やキャッシュコントロール、アクセス制御など）正直なところ _PageStart.cshtml でアクセス制御ができるのは知らなかったかも。今度使っちゃおう。```cs@{Response.CacheControl = &#34;no-cache&#34;;if (!WebSecurity.IsAuthenticated) {Response.Redirect(&amp;quot;~/Account/Login&amp;quot;);} }
+&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;&amp;lt;a href=&amp;quot;http://msdn.microsoft.com/ja-jp/asp.net/hh180208.aspx&amp;quot;&amp;gt;第 18 章 サイト全体の動作をカスタマイズする | Razor 構文と ASP.NET Web ページ&amp;lt;/a&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;そのほか、レイアウトファイル（たとえば“_Layout.cshtml”）や部分ビュー（たとえば“_Partial.cshtml”）も、外部に公開する必要はないので名前の先頭に「_」をつけることが多い。また、一時的に Web ページを非公開にする場合にも、リネームだけで対応できるので便利。ちなみに、コードからはちゃんとアクセスできるのでご安心を。&amp;lt;/div&amp;gt;&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### 名前の解決いくつかのルールはあるが、あまり難しくはない。工夫次第では URL をクール＆クリーンに保つことができる。&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### 静的な解決まずは、存在するファイル・フォルダへのアクセスの規則を確認する。&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;##### 拡張子ありのファイルアクセス&amp;lt;img src=&amp;quot;http://cdn-ak.</description>
     </item>
     
     <item>
@@ -1056,7 +1056,7 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       <pubDate>Wed, 30 May 2012 01:58:21 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/05/30/015821/</guid>
-      <description>プログラミングMicrosoft ASP.NET MVC ASP.NET MVC 3対応版 (マイクロソフト公式解説書)作者: Dino Esposito,日本マイクロソフト井上章監訳,株式会社クイープ出版社/メーカー: 日経BP社発売日: 2012/05/08メディア: 単行本 クリック: 8回この商品を含むブログ (3件) を見る久しぶりに ASP.NET MVC のプログラミング欲が湧いたのだけど、なぜだかふと手が止まってしまったので、予定を変更して布団にもぐりこみ、 WWD いってきたよ！ - だるろぐ で買ってきた本を読むことにした。実はまだ第2章までしか読んでないのだけど*1、それでも知らないことだらけだった*2。僕は「説明書を読まずにやる」タイプなので、今まで困った時に Web で調べてそれをそのまま使ってたことが多く*3、動いたところで満足しちゃって、実は意味が分かってなかったりすることが多いみたい。また、断片的な知識の集まりになってしまっているので、実は相互に関連があったりすることに気づいていない。そこら辺をカバーしてくれる本書のような存在はありがたい。今まで泥臭いことやってたわ……orz  第1部　ASP.NET MVCの基礎  第1章　ASP.NET MVCのコントローラー 第2章　ASP.NET MVCのビュー 第3章　モデルバインディングアーキテクチャ 第4章　入力フォーム  第2部　ASP.MVCのソフトウェアデザイン  第5章　ASP.NET MVCアプリケーションの機能 第6章　アプリケーションのセキュリティ 第7章　ASP.NET MVCコントローラーの設計上の注意点 第8章　ASP.NET MVCのコントローラーのカスタマイズ 第9章　ASP.NET MVCでのテストとテスタビリティ  第3部　クライアントサイドプログラミング  第10章　より効果的なJavaScript  付録  付録A　ASP.NET MVC 4の概要  目次を読んで気が付いたけど、データベース（Entity Framework）関連の話はないみたい？　ここだけはちょっと自分でやらなきゃという感じだけど、ASP.</description>
+      <description>プログラミングMicrosoft ASP.NET MVC ASP.NET MVC 3対応版 (マイクロソフト公式解説書)作者: Dino Esposito,日本マイクロソフト井上章監訳,株式会社クイープ出版社/メーカー: 日経BP社発売日: 2012/05/08メディア: 単行本 クリック: 8回この商品を含むブログ (3件) を見る久しぶりに ASP.NET MVC のプログラミング欲が湧いたのだけど、なぜだかふと手が止まってしまったので、予定を変更して布団にもぐりこみ、 WWD いってきたよ！ - だるろぐ で買ってきた本を読むことにした。実はまだ第2章までしか読んでないのだけど*1、それでも知らないことだらけだった*2。僕は「説明書を読まずにやる」タイプなので、今まで困った時に Web で調べてそれをそのまま使ってたことが多く*3、動いたところで満足しちゃって、実は意味が分かってなかったりすることが多いみたい。また、断片的な知識の集まりになってしまっているので、実は相互に関連があったりすることに気づいていない。そこら辺をカバーしてくれる本書のような存在はありがたい。今まで泥臭いことやってたわ……orz第1部　ASP.NET MVCの基礎第1章　ASP.NET MVCのコントローラー第2章　ASP.NET MVCのビュー第3章　モデルバインディングアーキテクチャ第4章　入力フォーム第2部　ASP.MVCのソフトウェアデザイン第5章　ASP.NET MVCアプリケーションの機能第6章　アプリケーションのセキュリティ第7章　ASP.NET MVCコントローラーの設計上の注意点第8章　ASP.NET MVCのコントローラーのカスタマイズ第9章　ASP.NET MVCでのテストとテスタビリティ第3部　クライアントサイドプログラミング第10章　より効果的なJavaScript付録付録A　ASP.NET MVC 4の概要目次を読んで気が付いたけど、データベース（Entity Framework）関連の話はないみたい？　ここだけはちょっと自分でやらなきゃという感じだけど、ASP.</description>
     </item>
     
     <item>
@@ -1066,11 +1066,11 @@ App.GetThemePath = new Func&amp;amp;lt;string&amp;gt;(() =&amp;gt; VirtualPathUt
       
       <guid>https://blog.daruyanagi.jp/entry/2012/02/19/022206/</guid>
       <description>ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。
-### ページ単位でバリデーションを無効にする web.config に設定を記述する。 ```xml  &amp;lt;configuration&amp;gt; &amp;lt;system.web&amp;gt; &amp;lt;httpRuntime requestValidationMode=&amp;quot;2.0&amp;rdquo; /&amp;gt; &amp;lt;pages validateRequest=&amp;quot;false&amp;quot;&amp;gt; &amp;lt;/pages&amp;gt; &amp;lt;/system.web&amp;gt; &amp;lt;/configuration&amp;gt;
- &amp;lt;/div&amp;gt; &amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt; ### メソッド単位でバリデーションを無効にする。 POSTメソッドをまるごと。 ```cs [HttpPost] [ValidateInput(false)] public ViewResult Edit(FormCollection form) { } ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow
- ### フォームデータ単位でバリデーションを無効にする。 Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。コントローラーで使ってみる。 ```cs  using System.Web.Helpers;
+### ページ単位でバリデーションを無効にするweb.config に設定を記述する。```xml &amp;lt;configuration&amp;gt; &amp;lt;system.web&amp;gt; &amp;lt;httpRuntime requestValidationMode=&amp;quot;2.0&amp;rdquo; /&amp;gt; &amp;lt;pages validateRequest=&amp;quot;false&amp;quot;&amp;gt; &amp;lt;/pages&amp;gt; &amp;lt;/system.web&amp;gt; &amp;lt;/configuration&amp;gt;
+&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### メソッド単位でバリデーションを無効にする。POSTメソッドをまるごと。```cs[HttpPost][ValidateInput(false)]public ViewResult Edit(FormCollection form){}ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow
+### フォームデータ単位でバリデーションを無効にする。Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。コントローラーで使ってみる。```cs using System.Web.Helpers;
 var hoge = Request.Unvalidated().Form[&amp;ldquo;hoge&amp;rdquo;];
-ビューでも使えるんだね。 ``` @Request.Unvalidated(&amp;quot;html&amp;quot;) &amp;amp;lt;form method=&amp;quot;post&amp;quot;&amp;gt; &amp;amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;html&amp;quot; /&amp;gt; &amp;amp;lt;input type=&amp;quot;submit&amp;quot; /&amp;gt; &amp;amp;lt;/form&amp;gt; System.</description>
+ビューでも使えるんだね。```@Request.Unvalidated(&amp;quot;html&amp;quot;)&amp;amp;lt;form method=&amp;quot;post&amp;quot;&amp;gt;&amp;amp;lt;input type=&amp;quot;text&amp;quot; name=&amp;quot;html&amp;quot; /&amp;gt;&amp;amp;lt;input type=&amp;quot;submit&amp;quot; /&amp;gt;&amp;amp;lt;/form&amp;gt;System.</description>
     </item>
     
   </channel>

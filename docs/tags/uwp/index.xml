@@ -18,9 +18,9 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2020/02/05/182710/</guid>
       <description>ログ掲載のために画像をリサイズするだけのアプリ「Shriken」をリリースしました。「スマホ同期」で［共有］→ 画像をリサイズしてクリップボードへコピー → はてなブログへ貼り付ける というプロセスがちょっとだけ簡単になります*1。Shriken を入手 - Microsoft Store ja-JPとりあえずストアに出して、Surface Pro X で使いたいと思い（だから ARM64 ビルドもあるよ！）、不安定な機能は全部削除しているので、普通の人はあまりこれのお世話になることはないと思いますが、将来的には以下の機能が実装される予定です。
- クロップ 閲覧時のズーム ペンによる注釈 顔認識と笑い男化   笑い男機能つけといた pic.twitter.com/jRU3ibh8lA— 新型だるやなぎウイルス (@daruyanagi) 2020年1月12日
+クロップ閲覧時のズームペンによる注釈顔認識と笑い男化 笑い男機能つけといた pic.twitter.com/jRU3ibh8lA— 新型だるやなぎウイルス (@daruyanagi) 2020年1月12日
  ここまで完成すれば、まぁ、需要はなくもないんじゃないでしょうか。ちなみに、名前が Shuriken ではなく Shriken なのは、他の人に名前がとられてたからです。でも、Shrink image からもじって付けようと思ってたので、あまり問題はない（キリッ
-### 開発秘（？）話 久しぶりの UWP 開発だったので、どんな UI にしていいのかさっぱりわかりませんでした。  基本機能はできたので、UI をどうにかする（UWP の UI ってどうデザインすればスタンダードなのか、さっぱり忘れた） pic.twitter.com/GgKE3nFn6R— 新型だるやなぎウイルス (@daruyanagi) 2020年1月2日
+### 開発秘（？）話久しぶりの UWP 開発だったので、どんな UI にしていいのかさっぱりわかりませんでした。 基本機能はできたので、UI をどうにかする（UWP の UI ってどうデザインすればスタンダードなのか、さっぱり忘れた） pic.twitter.com/GgKE3nFn6R— 新型だるやなぎウイルス (@daruyanagi) 2020年1月2日
   がんばって UI をマシにしてみた pic.twitter.com/C1Alq1DvsY— 新型だるやなぎウイルス (@daruyanagi) 2020年1月3日
  いろいろ試行錯誤した結果、標準アプリである「フォト」に似せればいいか、という考えに落ちつくまでに、View は3回ぐらい作り直しました。そのおかげで、最初はコードビハインドにべた書きしていた ViewModel、Model も分離されるようになり（だって、View 作り直すたびにコードビハインドをコピペするの大変じゃん？）、（あくまで個人的には）いい感じに設計できました。怪我の功名ってやつですね。機能追加してもそうそう破綻しなさそうです。
  ぇ、ドキュメントサイトからコントロールギャラリーアプリを起動して実際に挙動を確かめられるの、めっちゃ素敵やんhttps://t.</description>
@@ -33,7 +33,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2020/01/06/172012/</guid>
       <description>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。
- ［共有］コマンドに対応（必須） シンプル。ブログへのアップロードに使いそうな機能しか追加しない  画像の縮小（できた） 画像の回転（すぐできそうだけどやってない） 顔認識して隠す（進捗半分） 画像のクロップ（優先度低）  UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。 ### Win2D を使う そういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。 ```cs // https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmap public static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight) { using (var resourceCreator = CanvasDevice.GetSharedDevice()) using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap)) using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi)) using (var drawingSession = canvasRenderTarget.</description>
+［共有］コマンドに対応（必須）シンプル。ブログへのアップロードに使いそうな機能しか追加しない画像の縮小（できた）画像の回転（すぐできそうだけどやってない）顔認識して隠す（進捗半分）画像のクロップ（優先度低）UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。### Win2D を使うそういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。```cs// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmappublic static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight) { using (var resourceCreator = CanvasDevice.GetSharedDevice()) using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap)) using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi)) using (var drawingSession = canvasRenderTarget.</description>
     </item>
     
     <item>
@@ -43,10 +43,10 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/09/24/191321/</guid>
       <description>「Amaguri」v1.0.0.0 - だるろぐWPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！
-### ターゲット フレームワーク &amp;#39;.NETCore,Version=v5.0&amp;#39; の mscorlib を解決できませんでした Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。  プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 
+### ターゲット フレームワーク &amp;#39;.NETCore,Version=v5.0&amp;#39; の mscorlib を解決できませんでしたWindows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。 プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 
  最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――
   んだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。
- ### &#34;プロセス起動&#34; に関連した System.Diagnostics.Process.Start への参照があります  んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018</description>
+### &#34;プロセス起動&#34; に関連した System.Diagnostics.Process.Start への参照があります んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018</description>
     </item>
     
     <item>
@@ -56,8 +56,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/07/24/060000/</guid>
       <description>ンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
-### APPX にパッケージングする   近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
- アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト） ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト） WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る （必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する） みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、  Tonjiru ソリューション  Tonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exe Tonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appx  という構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。  ### 審査 パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。  自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日</description>
+### APPX にパッケージングする  近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
+アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト）ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト）WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る（必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する）みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、Tonjiru ソリューションTonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exeTonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appxという構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。### 審査パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。 自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日</description>
     </item>
     
     <item>
@@ -67,7 +67,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/06/09/163500/</guid>
       <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
-&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34; &amp;gt; &amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt; Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt; &amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt; &amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34; Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt; &amp;amp;lt;desktop:FullTrustProcess&amp;gt; &amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt; &amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Active&amp;#34; Parameters=&amp;#34;/a&amp;#34;/&amp;gt; &amp;amp;lt;/desktop:FullTrustProcess&amp;gt; &amp;amp;lt;/desktop:Extension&amp;gt; ```それを使えばいいみたい。 ```cs private async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e) { await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&amp;#34;Desktop&amp;#34;); } ```これをコンソールアプリで受けてみると、こんな感じになった。 ```cs namespace Yakitori.Console { class Program { static void Main(string[] args) { foreach (var arg in args) { System.Console.WriteLine(arg); } System.Console.ReadKey(); } } } ```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。   </description>
+&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34;&amp;gt;&amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt;Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt;&amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt;&amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34;Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt;&amp;amp;lt;desktop:FullTrustProcess&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Active&amp;#34; Parameters=&amp;#34;/a&amp;#34;/&amp;gt;&amp;amp;lt;/desktop:FullTrustProcess&amp;gt;&amp;amp;lt;/desktop:Extension&amp;gt;```それを使えばいいみたい。```csprivate async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e){await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&amp;#34;Desktop&amp;#34;);}```これをコンソールアプリで受けてみると、こんな感じになった。```csnamespace Yakitori.Console{class Program{static void Main(string[] args){foreach (var arg in args){System.Console.WriteLine(arg);}System.Console.ReadKey();}}}```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。  </description>
     </item>
     
     <item>
@@ -77,11 +77,11 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/01/090403/</guid>
       <description>  indows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を3年ぶりにアップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。
- Release 4: 3.0 (17/08/29)  new design improve error handling  ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血   と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、このアプリからまた［共有］機能が呼べることです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。
+Release 4: 3.0 (17/08/29)new designimprove error handlingほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血  と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、このアプリからまた［共有］機能が呼べることです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。
   方、ときどきデータがクリップボードにコピーされないという不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です*1。
     形ルールの管理画面も新しくなりました。昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。
   と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（【更新】Clipper - Windows Store WatchClipper を購入 - Microsoft ストア 日本
-*1:WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除  </description>
+*1:WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除</description>
     </item>
     
     <item>
@@ -91,7 +91,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/24/232557/</guid>
       <description>AML をガリガリ書いてビルドすると、こんなエラーが出た。
-&amp;gt; オブジェクト参照がオブジェクト インスタンスに設定されていません。  エラーの説明がふんわりし過ぎていて、場所すら特定できない。ソースコードはコンパイルされているみたいなので、XAML の実行時エラーっぽいが……しょうがないのであちこちコメントアウトしながら、がんばって場所を特定した。
+&amp;gt;オブジェクト参照がオブジェクト インスタンスに設定されていません。 エラーの説明がふんわりし過ぎていて、場所すら特定できない。ソースコードはコンパイルされているみたいなので、XAML の実行時エラーっぽいが……しょうがないのであちこちコメントアウトしながら、がんばって場所を特定した。
   うやら、このコメント部分が原因らしい。ぱっと見、問題はなさそうにも見えるが――
   インディングしていた Checked の定義を見て悟った。イベントにプロパティをバインドしている……orzChecked イベントを IsChecked プロパティに書き換えることで問題は解消されました＼(＾o＾)／</description>
     </item>
@@ -103,7 +103,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/03/18/030810/</guid>
       <description>WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。
-public sealed partial class MainPage : Page { public MainPage() { this.InitializeComponent(); Loaded += MainPage_Loaded; } private void MainPage_Loaded(object sender, RoutedEventArgs e) { var browser = new WebView(); var url = &amp;#34;https://google.co.jp/&amp;#34;; var xpath = &amp;#34;//h1&amp;#34;; var result_type = &amp;#34;XPathResult.FIRST_ORDERED_NODE_TYPE&amp;#34;; var function = $&amp;#34;document.evaluate(&amp;#34; + &amp;#34;&amp;amp;#39;{xpath}&amp;amp;#39;, &amp;amp;#39;document&amp;amp;#39;, null, {result_type}, null&amp;#34; + &amp;#34;).singleNodeValue.innerHTML;&amp;#34;; browser.NavigationCompleted += async (s, args) =&amp;gt; { if (!args.IsSuccess) throw new Exception(); var html = await browser.</description>
+public sealed partial class MainPage : Page{public MainPage(){this.InitializeComponent();Loaded += MainPage_Loaded;}private void MainPage_Loaded(object sender, RoutedEventArgs e){var browser = new WebView();var url = &amp;#34;https://google.co.jp/&amp;#34;;var xpath = &amp;#34;//h1&amp;#34;;var result_type = &amp;#34;XPathResult.FIRST_ORDERED_NODE_TYPE&amp;#34;;var function = $&amp;#34;document.evaluate(&amp;#34; + &amp;#34;&amp;amp;#39;{xpath}&amp;amp;#39;, &amp;amp;#39;document&amp;amp;#39;, null, {result_type}, null&amp;#34; + &amp;#34;).singleNodeValue.innerHTML;&amp;#34;;browser.NavigationCompleted += async (s, args) =&amp;gt;{if (!args.IsSuccess) throw new Exception();var html = await browser.</description>
     </item>
     
     <item>
@@ -113,11 +113,11 @@ public sealed partial class MainPage : Page { public MainPage() { this.Initializ
       
       <guid>https://blog.daruyanagi.jp/entry/2016/10/11/201541/</guid>
       <description>  00円って書いてあるけど、「無料評価版」を使えばずっとタダです。Abema.Alart – Microsoft ストアの Windows アプリ最近“だるろぐ”の収益が落ちてきているので、ビール代をカンパしてください。
-### 「Abema.Alart」の使い方   動するとこういう画面が出るので、好みの番組を選択して――
+### 「Abema.Alart」の使い方  動するとこういう画面が出るので、好みの番組を選択して――
   組の詳細画面で［視聴予約する］ボタンをクリック（初回利用時にバルーンで教えてくれます）。ダイアログで「登録しました」って出れば成功（過去の番組であれば失敗するはずです。重複登録のチェックを忘れていたので、次のバージョンにはつける予定）。
   間になると、トーストで通知してくれます。［視聴する］ボタンを押すと既定のブラウザーで番組を閲覧できます。
   聴予約の取り消しにも対応しています。でも、週末高松・神戸に遊びにっている間、船の中でいいアイデアが浮かびましたので、また改訂版を出すつもり。次回はもう少しエレガントになっていると思います。
- ### 失敗したこと 単語の綴り間違ってた。  </description>
+### 失敗したこと単語の綴り間違ってた。</description>
     </item>
     
     <item>
@@ -127,7 +127,7 @@ public sealed partial class MainPage : Page { public MainPage() { this.Initializ
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/19/224430/</guid>
       <description>ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
-### AsyncOAuth を導入する さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。  neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。 ```cs var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret); var callbackUri = &#34;http://localhost/&#34;; var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
+### AsyncOAuth を導入するさて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリUWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。```csvar authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);var callbackUri = &#34;http://localhost/&#34;;var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
     </item>
     
     <item>
@@ -137,7 +137,7 @@ public sealed partial class MainPage : Page { public MainPage() { this.Initializ
       
       <guid>https://blog.daruyanagi.jp/entry/2016/04/12/171903/</guid>
       <description>回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。
-x:Class=&amp;#34;Hateboo.UserControls.TextBoxWithCounter&amp;#34; xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34; xmlns:x=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;#34; xmlns:local=&amp;#34;using:Hateboo.UserControls&amp;#34; xmlns:d=&amp;#34;http://schemas.microsoft.com/expression/blend/2008&amp;#34; xmlns:mc=&amp;#34;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;#34; mc:Ignorable=&amp;#34;d&amp;#34; d:DesignHeight=&amp;#34;300&amp;#34; d:DesignWidth=&amp;#34;400&amp;#34;&amp;gt; &amp;lt;stackpanel&amp;gt;&amp;lt;/stackpanel&amp;gt; x:Name=&amp;#34;textBox&amp;#34; TextChanged=&amp;#34;textBox_TextChanged&amp;#34; /&amp;gt; Orientation=&amp;#34;Horizontal&amp;#34; HorizontalAlignment=&amp;#34;Right&amp;#34;&amp;gt; x:Name=&amp;#34;textBlockCurrent&amp;#34;&amp;gt;0 &amp;lt;textblock&amp;gt;&amp;lt;/textblock&amp;gt;/ x:Name=&amp;#34;textBlockMax&amp;#34;&amp;gt;0 ```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、 &amp;lt;ul&amp;gt; &amp;lt;li&amp;gt;Text：TextBox の内容&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Current：現在の TextBox 文字数&amp;lt;/li&amp;gt; &amp;lt;li&amp;gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&amp;lt;/li&amp;gt; &amp;lt;/ul&amp;gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。 ```cs // 依存関係プロパティ public static readonly DependencyProperty MaxProperty = DependencyProperty.Register( &amp;#34;Max&amp;#34;,　// Max という名前の…… typeof(int),　// int 型の CLR プロパティを…… typeof(TextBoxWithCounter), // クラスに登録するやで― new PropertyMetadata(0)); // CLR プロパティ public int Max { get { return (int)GetValue(MaxProperty); } set { SetValue(MaxProperty, value); textBlockMax.</description>
+x:Class=&amp;#34;Hateboo.UserControls.TextBoxWithCounter&amp;#34;xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34;xmlns:x=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;#34;xmlns:local=&amp;#34;using:Hateboo.UserControls&amp;#34;xmlns:d=&amp;#34;http://schemas.microsoft.com/expression/blend/2008&amp;#34;xmlns:mc=&amp;#34;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;#34;mc:Ignorable=&amp;#34;d&amp;#34;d:DesignHeight=&amp;#34;300&amp;#34;d:DesignWidth=&amp;#34;400&amp;#34;&amp;gt;&amp;lt;stackpanel&amp;gt;&amp;lt;/stackpanel&amp;gt;x:Name=&amp;#34;textBox&amp;#34; TextChanged=&amp;#34;textBox_TextChanged&amp;#34; /&amp;gt;Orientation=&amp;#34;Horizontal&amp;#34; HorizontalAlignment=&amp;#34;Right&amp;#34;&amp;gt;x:Name=&amp;#34;textBlockCurrent&amp;#34;&amp;gt;0&amp;lt;textblock&amp;gt;&amp;lt;/textblock&amp;gt;/x:Name=&amp;#34;textBlockMax&amp;#34;&amp;gt;0```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;Text：TextBox の内容&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Current：現在の TextBox 文字数&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。```cs// 依存関係プロパティpublic static readonly DependencyProperty MaxProperty = DependencyProperty.Register(&amp;#34;Max&amp;#34;,　// Max という名前の……typeof(int),　// int 型の CLR プロパティを……typeof(TextBoxWithCounter), // クラスに登録するやで―new PropertyMetadata(0));// CLR プロパティpublic int Max{get { return (int)GetValue(MaxProperty); }set{SetValue(MaxProperty, value);textBlockMax.</description>
     </item>
     
     <item>
@@ -147,7 +147,7 @@ x:Class=&amp;#34;Hateboo.UserControls.TextBoxWithCounter&amp;#34; xmlns=&amp;#34
       
       <guid>https://blog.daruyanagi.jp/entry/2016/04/05/050000/</guid>
       <description>画面に「保存しました」っていうメッセージを出したいけれど、いつまでも表示されてるのも鬱陶しいので、たとえば3秒後に消したい、みたいな。
-public class MainPageViewModel : BindableBase { private string message = string.Empty; public string Message { get { return message; } set { SetProperty(ref message, value); } } private void ShowMessage(string message) { Message = message; var timer = new DispatcherTimer() { Interval = TimeSpan.FromSeconds(3), }; timer.Tick += (e, args) =&amp;gt; { Message = string.Empty; }; timer.Start(); } } ```とにかく DispatcherTimer というのを使うと、遅延タスクみたいなのを実装できるみたい。Message プロパティの setter に処理をぶち込んでもいいかも？　どういう書き方がキレイな書き方なのかまだよくわかんないな。上級者は ReactibeExtension みたいなのを使いこなして、スッキリ書いちゃうのかもしれないが……。あと、ほんとは XAML だけでできればカッコいいのだろうけれど、自分には無理だった。で、テキトーに作ってみてから思ったのだけど、こういうのはユーザーコントロールにしておけばよさげだよね。というわけで、次回はユーザーコントロールでも作ってみる。 </description>
+public class MainPageViewModel : BindableBase{private string message = string.Empty;public string Message{get { return message; }set { SetProperty(ref message, value); }}private void ShowMessage(string message){Message = message;var timer = new DispatcherTimer(){Interval = TimeSpan.FromSeconds(3),};timer.Tick += (e, args) =&amp;gt; { Message = string.Empty; };timer.Start();}}```とにかく DispatcherTimer というのを使うと、遅延タスクみたいなのを実装できるみたい。Message プロパティの setter に処理をぶち込んでもいいかも？　どういう書き方がキレイな書き方なのかまだよくわかんないな。上級者は ReactibeExtension みたいなのを使いこなして、スッキリ書いちゃうのかもしれないが……。あと、ほんとは XAML だけでできればカッコいいのだろうけれど、自分には無理だった。で、テキトーに作ってみてから思ったのだけど、こういうのはユーザーコントロールにしておけばよさげだよね。というわけで、次回はユーザーコントロールでも作ってみる。</description>
     </item>
     
     <item>
@@ -157,7 +157,7 @@ public class MainPageViewModel : BindableBase { private string message = string.
       
       <guid>https://blog.daruyanagi.jp/entry/2016/04/02/061512/</guid>
       <description>グったら自分のブログが出てきて白目。フォトライフの記事だったが、これをブックマーク向けにちょろっと編集するだけで動いた。ただし、
- パスワードによる WSSE 認証は終了 → API キーを代わりに利用する UA がセットされていないと 500 が返ってくる？ → 適当にセット はてながステータスコード100 continueをサポートしていない → 無効にする といった手直しをする必要があったけれど。たとえば、ブックマークの編集はこんな感じ ```cs private const string API_ENDPOINT = &#34;http://b.hatena.ne.jp/atom/&#34;; private const string API_POST_URL = API_ENDPOINT + &#34;post&#34;; private const string API_EDIT_URL = API_ENDPOINT + &#34;edit&#34;; private const string USER_AGENT = &#34;Hateboo&#34;; private const string XML_ACCEPT_TYPE = &#34;application/x.atom+xml, application/xml, text/xml, */*&#34;; private const string XML_CONTENT_TYPE = &#34;application/x.atom+xml&#34;; private const string XML_PAYLOAD = &#34;</description>
+パスワードによる WSSE 認証は終了 → API キーを代わりに利用するUA がセットされていないと 500 が返ってくる？ → 適当にセットはてながステータスコード100 continueをサポートしていない → 無効にするといった手直しをする必要があったけれど。たとえば、ブックマークの編集はこんな感じ```csprivate const string API_ENDPOINT = &#34;http://b.hatena.ne.jp/atom/&#34;;private const string API_POST_URL = API_ENDPOINT + &#34;post&#34;;private const string API_EDIT_URL = API_ENDPOINT + &#34;edit&#34;;private const string USER_AGENT = &#34;Hateboo&#34;;private const string XML_ACCEPT_TYPE = &#34;application/x.atom+xml, application/xml, text/xml, */*&#34;;private const string XML_CONTENT_TYPE = &#34;application/x.atom+xml&#34;;private const string XML_PAYLOAD= &#34;</description>
     </item>
     
     <item>
@@ -167,12 +167,12 @@ public class MainPageViewModel : BindableBase { private string message = string.
       
       <guid>https://blog.daruyanagi.jp/entry/2016/03/22/165453/</guid>
       <description>かつてこんなアプリを Windows 8.x 向けに作った。閲覧ページのタイトルや URL を指定した書式でクリップボードへコピーするというもので、
-&amp;gt; 簡単に言うと、［共有］チャームから  Create Link - Chrome Web Store Make Link :: Add-ons for Firefoxhttps://addons.mozilla.org/ja/firefox/addon/make-link/ をするアプリです。
+&amp;gt;簡単に言うと、［共有］チャームから Create Link - Chrome Web Store Make Link :: Add-ons for Firefoxhttps://addons.mozilla.org/ja/firefox/addon/make-link/ をするアプリです。
 これを Windows 10（UWP）に移植しようかと思う。MADOSMA が W10M になったので、ちょっとやる気が出ているのだ！
-### とりあえず古いアプリをそのまま Windows 10 で実行してみた   indows 8.x のフルスクリーンを前提に作ってあるので、Windows 10 の Windowed モードには収まりきらず、横スクロールが発生している。そもそも、このアプリを作った時は画面遷移のやり方がよく分かっていなかったので、すべての操作が一枚のページで行えるように設計されている。そのため、要素が若干詰め込み過ぎ。開発者の能力不足のせいで、ユーザーに不便を強いている部分だ。
+### とりあえず古いアプリをそのまま Windows 10 で実行してみた  indows 8.x のフルスクリーンを前提に作ってあるので、Windows 10 の Windowed モードには収まりきらず、横スクロールが発生している。そもそも、このアプリを作った時は画面遷移のやり方がよく分かっていなかったので、すべての操作が一枚のページで行えるように設計されている。そのため、要素が若干詰め込み過ぎ。開発者の能力不足のせいで、ユーザーに不便を強いている部分だ。
   と、アプリケーションバーを使ってみたかったという理由でアプリケーションバーを採用したのだけど、初期状態で必要なコマンドが表示されていないのは不親切だと思った。右クリックすれば出てくるんだけど……わかんないよな、普通。というか、初めからこのアプリには、このユーザーインターフェイスは適してなかった。開発者のエゴが、ユーザーに不便を強いている部分だ。
   上には謎のハンバーガーボタンが追加されていて、共有チャームなどのコマンドはここに押し込められている。共有チャームはオワコン。
- ### そのまま UWP に移植してみた   規に UWP プロジェクトを作成し、ほとんどコピペで移植してみた。アプリケーションバーが謎なことになっている以外は、Windows 8.x 時代とほぼ同様に動いているように見える。若干一部の機能がちゃんと動いていないらしいが、それは要調査。それにしても、似ているようで細かい挙動が変わっているのは、本当に面倒くさい。とくに Windows 8.x 向けのサンプルが手元ではそのまま動かなくて、StackOverFlow を歩き回っても解決策が見つからないのにはイライラさせられた。質問はあっても、回答はなかったり。まだまだみんな UWP のノウハウは蓄積できていないみたいなので、自分で頑張るしかない（一部のブログ書いてくれてる開発者には感謝、感謝だなぁ）。ただ、Windows 10 Mobile でも普通に動くのはいいと思った。ユーザーインターフェイスがデスクトップ向けなのですこぶる使いにくいけれど、MADOSMA にデプロイすれば普通に動く。最初はデスクトップとモバイル両対応のユーザーインターフェイスを作り直す苦労を思って気が重くなったが、モバイルファーストで作り直せば、あとはデスクトップはそれをそのまま使えばいいと気づいてからはちょっと気が楽になった。UWP が許す機能の範囲でならば、新しいアプリケーションは UWP で作った方が得だな。今度休みが取れたときに、いろいろ調査を進めようと思う。</description>
+### そのまま UWP に移植してみた  規に UWP プロジェクトを作成し、ほとんどコピペで移植してみた。アプリケーションバーが謎なことになっている以外は、Windows 8.x 時代とほぼ同様に動いているように見える。若干一部の機能がちゃんと動いていないらしいが、それは要調査。それにしても、似ているようで細かい挙動が変わっているのは、本当に面倒くさい。とくに Windows 8.x 向けのサンプルが手元ではそのまま動かなくて、StackOverFlow を歩き回っても解決策が見つからないのにはイライラさせられた。質問はあっても、回答はなかったり。まだまだみんな UWP のノウハウは蓄積できていないみたいなので、自分で頑張るしかない（一部のブログ書いてくれてる開発者には感謝、感謝だなぁ）。ただ、Windows 10 Mobile でも普通に動くのはいいと思った。ユーザーインターフェイスがデスクトップ向けなのですこぶる使いにくいけれど、MADOSMA にデプロイすれば普通に動く。最初はデスクトップとモバイル両対応のユーザーインターフェイスを作り直す苦労を思って気が重くなったが、モバイルファーストで作り直せば、あとはデスクトップはそれをそのまま使えばいいと気づいてからはちょっと気が楽になった。UWP が許す機能の範囲でならば、新しいアプリケーションは UWP で作った方が得だな。今度休みが取れたときに、いろいろ調査を進めようと思う。</description>
     </item>
     
   </channel>

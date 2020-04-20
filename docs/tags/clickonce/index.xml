@@ -17,7 +17,7 @@
       <pubDate>Thu, 01 Sep 2016 06:00:00 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/01/060000/</guid>
-      <description>この前、GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布してみたが、実は不完全だった。 &amp;gt; ### How long does the CDN cache files? How can I make it refresh my file? The CDN caches files permanently based on their path. It ignores query strings. This is done to improve performance and to make it possible for the CDN to handle massive amounts of traffic without causing excessive load on RawGit or GitHub&amp;amp;#39;s servers.To ensure that the CDN always serves the version of the file you want, use a git tag or commit hash in the file&amp;amp;#39;s path instead of a branch name, and update the URL if you push a new version of the file.</description>
+      <description>この前、GitHub にホストしている Windows デスクトップアプリを ClickOnce で配布してみたが、実は不完全だった。&amp;gt;### How long does the CDN cache files? How can I make it refresh my file?The CDN caches files permanently based on their path. It ignores query strings. This is done to improve performance and to make it possible for the CDN to handle massive amounts of traffic without causing excessive load on RawGit or GitHub&amp;amp;#39;s servers.To ensure that the CDN always serves the version of the file you want, use a git tag or commit hash in the file&amp;amp;#39;s path instead of a branch name, and update the URL if you push a new version of the file.</description>
     </item>
     
     <item>
@@ -27,8 +27,8 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2016/08/30/051929/</guid>
       <description>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
-#### 1. とりあえずローカルに発行してコミットする まず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。 ``` # Click-Once directory # publish/ ```ついでに .gitattributes も編集しておく。 ``` *.manifest binary *.application binary *.deploy binary ```これをコミットして GitHub にプッシュしておく。  #### 2. ClickOnce のインストール フォルダーの URL を変更 GitHub に publish フォルダーがちゃんとアップロードされているのを確認。   こからセットアップファイルの Raw URL を取得しておく。今回は
- https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=true だった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。   ほど取得した Raw URL を cdn.</description>
+#### 1. とりあえずローカルに発行してコミットするまず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。```# Click-Once directory# publish/```ついでに .gitattributes も編集しておく。```*.manifest binary*.application binary*.deploy binary```これをコミットして GitHub にプッシュしておく。#### 2. ClickOnce のインストール フォルダーの URL を変更GitHub に publish フォルダーがちゃんとアップロードされているのを確認。  こからセットアップファイルの Raw URL を取得しておく。今回は
+https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=trueだった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。  ほど取得した Raw URL を cdn.</description>
     </item>
     
     <item>
@@ -38,9 +38,9 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2014/10/12/135537/</guid>
       <description>  a href=&amp;quot;https://blog.daruyanagi.jp/entry/2014/10/12/133551&amp;quot;&amp;gt;Mihari 1.0.0.0 - だるろぐ を ClickOnce で配置しようと思ったら、エラーが出てビルドできなくなった。
-&amp;gt; マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;amp;#39;…\Windows.winmd&amp;amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。  ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。
-#### 解決策   アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。
- Microsoft Connect is Retired - Collaborate | Microsoft Docs WindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。  </description>
+&amp;gt;マニフェストの生成エラーです。ファイルまたはアセンブリ &amp;amp;#39;…\Windows.winmd&amp;amp;#39;、またはその依存関係の 1 つが読み込めませんでした。間違ったフォーマットのプログラムを読み込もうとしました。 ガッデム！　ClickOnce のセキュリティ設定を無効にするとビルドはできるようになるのだけど、［発行ウィザード］で配置しようとするとセキュリティ設定が勝手に有効になってビルドに失敗し、配置できない。
+#### 解決策  アプリケーション ファイル］ボタンを押して、Windows.winmd を除外すればいいらしい。
+Microsoft Connect is Retired - Collaborate | Microsoft DocsWindowsRuntime を使ったデスクトップアプリケーションを ClickOnce で配布しようとするときは注意なのかも。で、ClickOnce ってメンテされてる気配がないのだけど大丈夫なのかな……個人的には気に入っているのだけど。</description>
     </item>
     
   </channel>

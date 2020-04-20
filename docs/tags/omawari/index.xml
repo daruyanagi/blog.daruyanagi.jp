@@ -18,7 +18,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2017/10/06/094818/</guid>
       <description>部的なところはあまりいじらず、今まで放置してたユーザーインターフェイスの改善（？）を行いました。あと、ぬるぽエラーをちまちま殺したり。
- 複数環境での起動を考慮する 各部の名称を整理・わかりやすくする ローカルフォルダーや親ルールにアクセスするボタンを追加 ログウィンドウに前後移動機能を追加 既存のウィンドウがあれば新規に開かずアクティブにする New/No Changed ステータスの新設 アプリケーションアイコンの追加 データフォルダーを開くコマンドを新設 ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも 日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。    ### Chocolatey パッケージ化の準備 実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツの Windows 版ですね。Chocolatey のパッケージは、  パッケージに全部ファイルを入れちゃう リモートに置いてあるインストーラーを叩く という2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exeついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。 ```ps1 # Add-AzureAccount $StorageAccountName = &amp;ldquo;yanagi&amp;rdquo; $StorageAccountKey = &amp;ldquo;***&amp;rdquo; $ContainerName = &amp;ldquo;clickonce-omawari&amp;rdquo;
+複数環境での起動を考慮する各部の名称を整理・わかりやすくするローカルフォルダーや親ルールにアクセスするボタンを追加ログウィンドウに前後移動機能を追加既存のウィンドウがあれば新規に開かずアクティブにするNew/No Changed ステータスの新設アプリケーションアイコンの追加データフォルダーを開くコマンドを新設ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。 ### Chocolatey パッケージ化の準備実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツのWindows 版ですね。Chocolatey のパッケージは、パッケージに全部ファイルを入れちゃうリモートに置いてあるインストーラーを叩くという2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exeついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。```ps1# Add-AzureAccount$StorageAccountName = &amp;ldquo;yanagi&amp;rdquo; $StorageAccountKey = &amp;ldquo;***&amp;rdquo; $ContainerName = &amp;ldquo;clickonce-omawari&amp;rdquo;
 $binRootDirectory = &amp;ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\bin&amp;rdquo; $publishRootDirectory = &amp;ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\Publish&amp;rdquo;
 function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )</description>
     </item>
@@ -30,8 +30,8 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       
       <guid>https://blog.daruyanagi.jp/entry/2017/10/01/123530/</guid>
       <description>面構成をわかりやすくしてみました。
- メイン画面（チェックルールの一覧）  チェックルールの詳細画面（ログの一覧）  ログの詳細画面   ひたすら XAML を書き換える作業は辛かったぴょん……でも、ログの詳細画面ではどのログと Diff をとってるのかわかりやすくなったと思う。これまでは作った自分でさえよくわかっていないかった。   とは削除確認ダイアログ（＋データも同時に消すか確認）を作ったり、内部的なエラーハンドリングを改善したり、いろいろ。
-  また、今回から ClickOnce を Azure に置くことにしました（https://yanagi.blob.core.windows.net/clickonce-omawari/Omawari.application）。次回リリースしたときにうまくアップデートされるといいなぁ。できたら、これを Chocoraley パッケージにするつもりです。</description>
+メイン画面（チェックルールの一覧）チェックルールの詳細画面（ログの一覧）ログの詳細画面ひたすら XAML を書き換える作業は辛かったぴょん……でも、ログの詳細画面ではどのログと Diff をとってるのかわかりやすくなったと思う。これまでは作った自分でさえよくわかっていないかった。  とは削除確認ダイアログ（＋データも同時に消すか確認）を作ったり、内部的なエラーハンドリングを改善したり、いろいろ。
+ また、今回から ClickOnce を Azure に置くことにしました（https://yanagi.blob.core.windows.net/clickonce-omawari/Omawari.application）。次回リリースしたときにうまくアップデートされるといいなぁ。できたら、これを Chocoraley パッケージにするつもりです。</description>
     </item>
     
     <item>
@@ -41,8 +41,8 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/23/140731/</guid>
       <description>br/&amp;gt;
- メインリストビューに Last Update 欄を設ける  それに伴うコード整理 Refresh ボタンは不要になったので廃止  通知トレイで DEBUG モードなのがわかるように ファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）  それに伴うリグレッションの修正 ついでにステータスバーに総稼働時間を表示するように  リファクタリング Click Once がめんどいのでやめた（ごめんなさい！）     ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした   lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。
-# 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &amp;#34;Omawari\bin&amp;#34; # 入力フォルダー $src = Join-Path $root &amp;#34;Release&amp;#34; # 出力フォルダー $version = (Get-ItemProperty (Join-Path $src &amp;#34;Omawari.exe&amp;#34;)).VersionInfo.FileVersion $dest = Join-Path $root Omawari-$version.</description>
+メインリストビューに Last Update 欄を設けるそれに伴うコード整理Refresh ボタンは不要になったので廃止通知トレイで DEBUG モードなのがわかるようにファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）それに伴うリグレッションの修正ついでにステータスバーに総稼働時間を表示するようにリファクタリングClick Once がめんどいのでやめた（ごめんなさい！） ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした  lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。
+# 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &amp;#34;Omawari\bin&amp;#34;# 入力フォルダー $src = Join-Path $root &amp;#34;Release&amp;#34;# 出力フォルダー $version = (Get-ItemProperty (Join-Path $src &amp;#34;Omawari.exe&amp;#34;)).VersionInfo.FileVersion$dest = Join-Path $root Omawari-$version.</description>
     </item>
     
     <item>
@@ -52,8 +52,8 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/19/195837/</guid>
       <description>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
- デバッグビルドとリリースビルドの共存（開発の都合） 通知アイコンの改善 （タイマーの通算稼働時間のカウント） Updated を Pending に変えるまでの時間をグローバル設定から読み込むように ステータス色分けの改善 内部で保持している UTC を Local Time にちゃんと直して表示 コードの整理 **静的スクレイピング機能の追加** **プレビューの文字化けを修正** **更新ログウィンドウの追加** スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？）     ### 静的スクレイピング機能の追加   hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
- ### プレビューの文字化けを修正 WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死 ```cs public class WebBrowserExtension { public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached( &#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged)); public static string GetHtml(DependencyObject obj) { return (string)obj.</description>
+デバッグビルドとリリースビルドの共存（開発の都合）通知アイコンの改善（タイマーの通算稼働時間のカウント）Updated を Pending に変えるまでの時間をグローバル設定から読み込むようにステータス色分けの改善内部で保持している UTC を Local Time にちゃんと直して表示コードの整理**静的スクレイピング機能の追加****プレビューの文字化けを修正****更新ログウィンドウの追加**スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？） ### 静的スクレイピング機能の追加  hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
+### プレビューの文字化けを修正WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死```cspublic class WebBrowserExtension{public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(&#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged));public static string GetHtml(DependencyObject obj){return (string)obj.</description>
     </item>
     
     <item>
@@ -65,8 +65,8 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       <description>  の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） - だるろぐ動かなかったので（そりゃそうか？）、WPF アプリケーションにしました。
   ーゲットとなる URI を登録すると、定期的にスクレイピングしてくれます。CSS セレクターが使えるので、ページの一部分だけ保存することが可能です*1。あと、シングルページアプリケーションのために、動的サイトをスクレイピングする機能を追加しました。
   ーカルに保存したログは、Diff をとってみることができます*2。データフォルダーをオンラインストレージに指定しておくと（初回利用時に選択できます）、複数環境でデータを同期できて便利かもしれない。
-  コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。
-*1:全部を保存するときは“document”とか“body”とかしておけばいいと思う。そういえば試してないけど *2:文字化けする……右クリックメニューからエンコーディングを UTF-8 にすると治せます  </description>
+ コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。
+*1:全部を保存するときは“document”とか“body”とかしておけばいいと思う。そういえば試してないけど*2:文字化けする……右クリックメニューからエンコーディングを UTF-8 にすると治せます</description>
     </item>
     
   </channel>

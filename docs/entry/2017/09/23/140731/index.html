@@ -101,26 +101,26 @@
 </figure>
 
 <p>lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
 $root = Join-Path $PSScriptRoot <span style="color:#e6db74">&#34;Omawari\bin&#34;</span>
 
-<span style="color:#75715e"># 入力フォルダー</span>
+<span style="color:#75715e"># 入力フォルダー</span>
 $src = Join-Path $root <span style="color:#e6db74">&#34;Release&#34;</span>
 
-<span style="color:#75715e"># 出力フォルダー</span>
+<span style="color:#75715e"># 出力フォルダー</span>
 $version = (Get-ItemProperty (Join-Path $src <span style="color:#e6db74">&#34;Omawari.exe&#34;</span>)).VersionInfo.FileVersion
 $dest = Join-Path $root Omawari-$version.zip
 
-<span style="color:#75715e"># ZIP で圧縮</span>
+<span style="color:#75715e"># ZIP で圧縮</span>
 Compress-Archive -Path $src/* -DestinationPath $dest
 
-<span style="color:#75715e"># フォルダーを開く</span>
+<span style="color:#75715e"># フォルダーを開く</span>
 Invoke-Item $root
 
 ```リリースビルドの実行ファイルのバージョンを読んで Omawari-*.*.*.*.zip という名前の ZIP アーカイブに圧縮するだけ<span style="color:#960050;background-color:#1e0010">。</span>この程度の&lt;br/&gt;
  PowerShell なら割と書けるようになってきた<span style="color:#960050;background-color:#1e0010">！（</span>バージョンの取得の仕方はググったけど<span style="color:#960050;background-color:#1e0010">……）</span>コレでもアップデートは面倒なので<span style="color:#960050;background-color:#1e0010">、</span>Chocolatey パッケージにすることも画策してる<span style="color:#960050;background-color:#1e0010">。</span>
 
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>&mdash; 40やなぎ ♨🍊🐟🇯🇵 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736?ref_src=twsrc%5Etfw">September 22, 2017</a></blockquote>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>&mdash; #だるやなぎ40 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736?ref_src=twsrc%5Etfw">September 22, 2017</a></blockquote>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 
 

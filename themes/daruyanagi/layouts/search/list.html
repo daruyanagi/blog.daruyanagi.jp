@@ -1,0 +1,103 @@
+{{ define "main" }}
+
+<script src="data.js"></script>
+
+
+<form method="get" onsubmit="search()" >
+  <p>検索キーワードを入力してください（複数のキーワードにはまだ対応していません）</p>
+  <input id="q" name="q" type="text" autocomplete="off" autofocus placeholder="検索ワード" />
+  <input type="submit" value="Search" />
+</form>
+
+<article>
+  <h1>{{ .Page.Title }}</h1>
+  <p id="inputWord"></span> <span id="resultCount"></p>
+  <div id="result"></div>
+</article>
+
+<style>
+  input { display: inline-block;}
+  b { color: red; }
+</style>
+
+<script>
+
+var query = getParameterByName("q");
+document.getElementById("q").value = query;
+
+var result = searchData(query);
+var html = createHtml(result);
+showResult(html);
+showResultCount(result.length, data.length);
+
+function getParameterByName(name, url) {
+    if (!url) url = window.location.href;
+    name = name.replace(/[\[\]]/g, '\\$&');
+    var regex = new RegExp('[?&]' + name + '(=([^&#]*)|&|#|$)'),
+        results = regex.exec(url);
+    if (!results) return null;
+    if (!results[2]) return '';
+    return decodeURIComponent(results[2].replace(/\+/g, ' '));
+}
+
+function searchData(query) {
+  // 検索にヒットした情報を下記のような配列として格納していく
+  // [データのインデックス, 文字の開始位置, 文字の終了位置]
+  var result = [];
+
+  query = query.trim();
+  if (query.length < 1) {
+    return result;
+  }
+  var re = new RegExp(query, 'i');
+  for (var i = 0; i < data.length; ++i) {
+    var pos = data[i].body.search(re);
+    if (pos != -1) {
+      result.push([i, pos, pos + query.length]);
+    }
+  }
+  return result;
+}
+
+function createHtml(result) {
+  var htmls = [];
+  for (var i = 0; i < result.length; ++i) {
+    var dataIndex = result[i][0];
+    var startPos = result[i][1];
+    var endPos = result[i][2];
+    var url = data[dataIndex].url;
+    var title = "#" + data[dataIndex].title;
+    var body = data[dataIndex].body;
+    htmls.push(createEntry(url, title, body, startPos, endPos));
+  }
+  return "<ol>" + htmls.join('') + "</ol>";
+}
+
+function createEntry(url, title, body, startPos, endPos) {
+  return '' +
+    '<li class="item">' +
+    '<h2><a class="item_title" href="' + url + '">' + title + '</a></h2>' +
+    '<p class="item_excerpt">' + excerpt(body, startPos, endPos) + '</p>' +
+    '</li>';
+}
+
+function excerpt(body, startPos, endPos) {
+  return [
+    body.substring(startPos - 30, startPos),
+    '<b>', body.substring(startPos, endPos), '</b>',
+    body.substring(endPos, endPos + 200)
+  ].join('');
+}
+
+function showResult(html) {
+  var el = document.getElementById('result');
+  el.innerHTML = html;
+}
+
+function showResultCount(count, total) {
+  var el = document.getElementById('resultCount');
+  el.innerHTML = '<b>' + count + '</b> 件見つかりました（' + total + '件中）';
+}
+</script>
+
+{{end}}

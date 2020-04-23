@@ -1,0 +1,15 @@
+{{/* エスケープ処理（改行を空白化、前後の空白削除、連続する空白を集約） */}}
+{{ define "escape" }}
+  {{- trim (replace . "\n" " ") " " | replaceRE " +" " " | jsonify -}}
+{{ end }}
+
+var data = [
+{{- range $index, $page := .Site.Pages }}
+  {
+    url: {{ $page.Permalink | jsonify }},
+    title: {{ $page.Title | jsonify }},
+    date: {{ $page.Date | jsonify }},
+    body: {{ template "escape" (printf "%s %s" $page.Title $page.Plain) }}
+  },
+{{- end }}
+];

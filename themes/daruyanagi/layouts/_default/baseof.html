@@ -1,17 +1,65 @@
-<!DOCTYPE html>
-<html>
-    {{- partial "head.html" . -}}
-    <body>
-        <header>
-            {{- partial "header.html" . -}}
-        </header>
 
-        <main>
-            {{- block "main" . }}{{- end }}
-        </main>
-        
-        <footer>
-            {{- partial "footer.html" . -}}
-        </footer>
-    </body>
+<!doctype html>
+<html lang="en">
+  <head>
+    {{- partial "head.html" . -}}
+
+    <style>
+      .bd-placeholder-img {
+        font-size: 1.125rem;
+        text-anchor: middle;
+        -webkit-user-select: none;
+        -moz-user-select: none;
+        -ms-user-select: none;
+        user-select: none;
+      }
+
+      @media (min-width: 768px) {
+        .bd-placeholder-img-lg {
+          font-size: 3.5rem;
+        }
+      }
+    </style>
+
+    <!-- Custom styles for this template -->
+    <link href="/css/styles.css" rel="stylesheet">
+  
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a href="/" class="navbar-brand"><img src="/logo.png" height="30" alt=""> {{ .Site.Title }}</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <span  class="navbar-text">{{ .Site.Params.Description }}</span>
+                    </li>
+                </ul>
+
+            <form class="form-inline" action="/search">
+                <div class="input-group">
+                  <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Find</button>
+                  </div>
+                </div>
+            </form>
+            </div>   
+        </div>
+    </nav>
+
+    <main role="main">
+        {{- block "main" . }}{{- end }}
+    </main>
+
+    <footer class="text-muted"></footer>
+        {{- partial "footer.html" . -}}
+    </footer>
+
+    <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
 </html>

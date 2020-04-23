@@ -1,18 +1,63 @@
 {{ define "main" }}
-<article>
-    {{ .Content }}
-</article>
 
-<section>
-    <h2>新着記事</h2>
-    <ul>
-      {{ range first 10 .Site.RegularPages.ByDate.Reverse }}
-        <li>
-          <b><a href="{{.RelPermalink}}"><time>{{.Date.Format "2006-01-02"}}</time>：{{.Title}}</a></b>
-          
-        </li>
-      {{ end }}
-    </ul> 
+<section class="jumbotron">
+  <div class="container">
+    <h1 class="text-center">{{ .Title }}</h1>
+    <p class="lead text-muted">
+      {{ .Content }}
+      <!--
+    <p class="text-center">
+      <a href="/about" class="btn btn-primary my-2">詳細</a>
+    </p>-->
+  </div>
 </section>
+
+<div class="album py-5 bg-light">
+  <div class="container">
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+        style="display:block; text-align:center;"
+        data-ad-layout="in-article"
+        data-ad-format="fluid"
+        data-ad-client="ca-pub-0944887782985208"
+        data-ad-slot="1874908316"></ins>
+    <script>
+        (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <h2 class="text-center" style="margin-bottom: 3rem;">新着記事</h2>
+    <div class="row">
+
+      {{ range first 11 .Site.RegularPages.ByDate.Reverse }}
+    
+        <div class="col-md-4">
+          <div class="card mb-4 shadow-sm" style="min-height: 300px;">
+            <img class="card-img-top" src="" alt="">
+            <div class="card-body">
+              <h5 class="card-title">{{ .Title }}</h5>
+              <small class="text-muted"><time>{{.Date.Format "2006-01-02"}}</time></small>
+              <p class="card-text">{{slicestr .Summary 0 80}}</p>
+              <a href="{{.RelPermalink}}" class="btn btn-primary">読む</a>
+            </div>
+          </div>
+        </div>      
+
+      {{ end }}
+
+      <div class="col-md-4">
+        <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+        <ins class="adsbygoogle"
+            style="display:block; text-align:center;"
+            data-ad-layout="in-article"
+            data-ad-format="fluid"
+            data-ad-client="ca-pub-0944887782985208"
+            data-ad-slot="7395662458"></ins>
+        <script>
+            (adsbygoogle = window.adsbygoogle || []).push({});
+        </script>
+      </div>      
+    </div>
+  </div>
+</div>
 
 {{end}}

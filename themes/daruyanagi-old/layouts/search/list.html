@@ -1,20 +1,19 @@
 {{ define "main" }}
 
-
-  <form method="get" onsubmit="search()" style="visibility: collapse;" >
-    <input id="q" name="q" type="text" autocomplete="off" autofocus placeholder="検索ワード" />
-    <input type="submit" value="Search" />
-  </form>
-
-<article class="container">
-    <p id="inputWord"></span> <span id="resultCount"></p>
-    <div id="result"></div>
-</article>
-
 <script src="data.js"></script>
 
 
+<form method="get" onsubmit="search()" >
+  <p>検索キーワードを入力してください（複数のキーワードにはまだ対応していません）</p>
+  <input id="q" name="q" type="text" autocomplete="off" autofocus placeholder="検索ワード" />
+  <input type="submit" value="Search" />
+</form>
 
+<article>
+  <h1>{{ .Page.Title }}</h1>
+  <p id="inputWord"></span> <span id="resultCount"></p>
+  <div id="result"></div>
+</article>
 
 <style>
   input { display: inline-block;}

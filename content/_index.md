@@ -1,5 +1,5 @@
 ---
-title: "Home"
+title: "だるろぐ へようこそ"
 date: 2020-03-28T02:13:27+09:00
 draft: false
 ---

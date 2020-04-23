@@ -1,9 +1,10 @@
 {{ define "main" }}
-<article class="container" style="margin-top: 3rem;">
+<article>
     <h1>{{.Title}}</h1>
     
-    <p class="published text-right">
-        公開日：<time>
+    <p class="published">
+        <time>
+            公開日：
             {{.Date.Format "2006/01/02"}}
         </time>        
     </p>
@@ -11,17 +12,22 @@
     {{ .Content }}
 </article>
 
-<section class="container text-center"> 
+<section>
+    <style>
+        article p.published { text-align: right; }
+
+        .spacer { margin: auto 1em;}
+    </style>
 
     <p>
         {{ with .PrevInSection }}
         <a href="{{ .Permalink }}">&laquo; Older</a>
         {{ end }}
-        <span > - </span>
-            <a href="/">Home</a>
-        <span > - </span>
-            <a href="#">Top</a>
-        <span > - </span>
+        <span class="spacer">|</span>
+        <a href="/">Home</a>
+        <span class="spacer">|</span>
+        <a href="#">Top</a>
+        <span class="spacer">|</span>
         {{ with .NextInSection }}
             <a href="{{ .Permalink }}">Newer &raquo;</a>
         {{ end }}

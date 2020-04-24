@@ -4,11 +4,19 @@
     
     <p class="published text-right">
         公開日：<time>
-            {{.Date.Format "2006/01/02"}}
+            {{ .Date.Format "2006/01/02"}}
         </time>        
     </p>
 
     {{ .Content }}
+
+    <footer class="text-right">
+        <p>
+            <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
+            / 
+            最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
+        </p>
+    </footer>
 </article>
 
 <section class="container text-center"> 
@@ -18,9 +26,7 @@
         <a href="{{ .Permalink }}">&laquo; Older</a>
         {{ end }}
         <span > - </span>
-            <a href="/">Home</a>
-        <span > - </span>
-            <a href="#">Top</a>
+            <a href="/">🏠 Home</a>
         <span > - </span>
         {{ with .NextInSection }}
             <a href="{{ .Permalink }}">Newer &raquo;</a>

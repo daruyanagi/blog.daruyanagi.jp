@@ -123,15 +123,5 @@ getElementByID -&amp;gt; IHTMLDocument3_getElementByID
       <description># スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &amp;#34;StoreApps.txt&amp;#34;$urls = (Get-Content $path) -as [string[]]# デバッグ用のサンプル # $urls =@( # &amp;#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&amp;#34; # ) foreach ($url in $urls){try{$request = Invoke-WebRequest $url# アプリ名を取得 $title = $request.AllElements.FindById(&amp;#34;page-title&amp;#34;).innerText# ParsedHtml もめっちゃ便利やったぞ！ # 例：打消し線の付いた定価タグを取得 $body = $request.ParsedHtml$price_node = $body.getElementsByTagName(&amp;#34;s&amp;#34;) | where { $_.getAttributeNode(&amp;#34;class&amp;#34;).Value -eq &amp;#34;srv_saleprice&amp;#34;}# 定価が打ち消されていたらセール中ってこと if ($price_node){$price = $price_node.</description>
     </item>
     
-    <item>
-      <title>PowerShell：Windows ストアのアプリの更新履歴をチェックする</title>
-      <link>https://blog.daruyanagi.jp/entry/2017/03/03/145454/</link>
-      <pubDate>Fri, 03 Mar 2017 14:54:54 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2017/03/03/145454/</guid>
-      <description>れをチェックするツールがほしかったんだけど、WPF や ASP.NET Web Pages ではストアに「おまえ BOT だろ」と怒られてうまくいかなかった。けれど、似たようなコードを PowerShell で試すと、なぜかうまくいく……。原因はわかんないけど（調べる気が起きない）、PowerShell でできるんなら、PowerShell でやるか―って感じで頑張ってみた。基本方針は
-ストアから #version-notes をスクレイピングして保存新旧 #version-notes を比較してステータス（!?*+-）をつける結果を PSCustomｍObject の配列で返すって感じ。```function Check-WindowsStore{$urls =@(&#34;https://www.microsoft.com/ja-jp/store/p/swarm/9wzdncrdrsq1&#34;,:（途中省略）)# 重複は無駄なので削る$urls = $urls | Get-Uniqueforeach ($url in $urls){try{# ストアからテキストをダウンロード $request = Invoke-WebRequest -Uri $url# アプリの表示名を記憶$title = $request.AllElements.FindById(&amp;quot;page-title&amp;quot;).innerText# 新しいバージョンノートを記憶$new = $request.AllElements.FindById(&amp;quot;version-notes&amp;quot;).innerTextif ($new){# 最初だけ：更新履歴を保存する .</description>
-    </item>
-    
   </channel>
 </rss>

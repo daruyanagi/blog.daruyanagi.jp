@@ -134,74 +134,5 @@ public class Startup{public void ConfigureServices(IServiceCollection services
     *発行先の追加ファイルを削除する**という日本語がイマイチよくわからなかったのですが、動いたからこれでいいんだろうと思う。</description>
     </item>
     
-    <item>
-      <title>Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる</title>
-      <link>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</link>
-      <pubDate>Tue, 15 Aug 2017 03:20:10 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</guid>
-      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
-### プロジェクトの作成  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
-  リューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。
-  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。</description>
-    </item>
-    
-    <item>
-      <title>ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする</title>
-      <link>https://blog.daruyanagi.jp/entry/2017/07/17/143323/</link>
-      <pubDate>Mon, 17 Jul 2017 14:33:23 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2017/07/17/143323/</guid>
-      <description>6月末、事情があって急遽 daruyanagi.jp を ASP.NET Core MVC で書き直した。空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐしかし、このとき daruyanagi.jp → blog.daruyanagi.jp へのリダイレクト機能を実装していなかった。はてなブログのドメインを daruyanagi.jp から blog.daruyanagi.jp へ引越しした - だるろぐGoogle Search Console から“「404」ページの増加”というメールが来た - だるろぐリンク先を読むのがめんどくさい人のために、事情をかいつまんでいうと、
-むかし、はてなブログを daruyanagi.jp で運営していたはてなブログをサブドメインなしで運用するのは非推奨だったので、blog.daruyanagi.jp へ移した当然ながら大量のリンク切れが発生これを解消するため、daruyanagi.jp にリダイレクト機能を組み込んでいた（ASP.NET Web Pages 製）ASP.NET Web Pages 製 daruyanagi.jp を ASP.NET Core MVC 製にする過程で、リダイレクト機能を省略したVisual Studio 2017 Update 3 が正式版になれば、ASP.NET Web Pages のような機能が IDE 側でサポートされるという話を聞いたので、それを待ってから実装してもいいかなと思っていたのだけど、なかなかこない＆ブログにリンク切れが多くて使いにくかったので、とりあえずやっつけの対策を施した。まず、ルーティングの書き換え。今回は /entry だけを対策しておく（ほんとは他の URL にも対策を施さないといけないけれど、今回は一番困るやつだけ対策）。```cs// {Root}/startup.</description>
-    </item>
-    
-    <item>
-      <title>ASP.NET Core MVC で RSS を出力する（適当版）</title>
-      <link>https://blog.daruyanagi.jp/entry/2017/06/29/030457/</link>
-      <pubDate>Thu, 29 Jun 2017 03:04:57 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2017/06/29/030457/</guid>
-      <description>空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移植しました。でも、WebMatrix で作ったフィード配信機能が動作しない……。WebMatrix 3: RSS フィードを出力する - だるろぐWebMatrix 3: RSS フィードを出力する（解決編） - だるろぐというわけで、こっちも簡易的な対策を行いました。ちょっと調べた限りでは、
-Response は使えない → Context.Response を代わりに使うSystem.ServiceModel.Syndication は .NET Core 1.1 で実装されていない → 自分で XML を組み立てるでイケそう。というわけで、まずはモデルっぽいもの（/Models/FeedItem.cs）を準備。```cspublic class FeedItem{public string Link { get; set; }public string Title { get; set; }public HtmlString Content { get; set; }public DateTime PublishDate { get; set; }}```cspublic class FeedController : Controller{public async Task&amp;amp;lt;IActionResult&amp;gt; Index(){var feeds = new List&amp;amp;lt;FeedItem&amp;gt;();// FeedItem を適当に Add() してね！return View(feeds);}}```最後にビュー（/Views/Feed/Index.</description>
-    </item>
-    
-    <item>
-      <title>空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで</title>
-      <link>https://blog.daruyanagi.jp/entry/2017/06/27/021736/</link>
-      <pubDate>Tue, 27 Jun 2017 02:17:36 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2017/06/27/021736/</guid>
-      <description>チの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。
-### 前提条件と大まかな流れまず Visual Studio 2017 Community の「ASP.NET と Web 開発」というワークロードがインストールされている環境を用意（これだけで足りんかったらごめんな、正直よくわかってないんや）。空のテンプレートを作成し、トップページの Index.cshtml を表示するところまで頑張ります。### 実装#### 空のテンプレートを作成  ず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。
-.NET Core.NET Frameworkの 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。  NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。
-  ロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。</description>
-    </item>
-    
-    <item>
-      <title>ASP.NET Core なるものを Visual Studio Code でしてみむとするなり（2）</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/07/02/204626/</link>
-      <pubDate>Sat, 02 Jul 2016 20:46:26 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/07/02/204626/</guid>
-      <description>### .NET Core SDK for Windows のインストール  NET Core SDK Installer をダウンロードしてインストールする。
-GitHub - dotnet/cli: This repo contains the .NET Core command-line (CLI) tools, used for building .NET Core apps and libraries through your development flow (compiling, NuGet package management, running, testing, ...).これで dotnet コマンドが利用できるようになる。  br/&amp;gt;
-### プロジェクトの作成と実行今回は %USERPROFILE%\Projects にサンプルというプロジェクトを作成する。#### プロジェクトフォルダーの作成と移動```C:\Users\Hidetoshi\Projectsmkdir SampleC:\Users\Hidetoshi\Projects&amp;gt;cd Sample
-&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;#### プロジェクトの作成　dotnet new -t web```C:\Users\Hidetoshi\Projects\Sample&amp;gt;dotnet new -t webCreated new C# project in C:\Users\Hidetoshi\Projects\Sample.</description>
-    </item>
-    
-    <item>
-      <title>ASP.NET Core なるものを Visual Studio Code でしてみむとするなり</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/07/02/142117/</link>
-      <pubDate>Sat, 02 Jul 2016 14:21:17 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/07/02/142117/</guid>
-      <description>をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は
-Introduction to ASP.NET Core — ASP.NET documentationにほぼ書かれているので、そっちを読む方がよい。### .NET Core SDK for Windows のインストール  ずはこれが必要らしい。“Preview 2”とか書いてあるけど気にせずインストールした。
-.NET - Powerful Open Source Developmentセットアップは一瞬で終わる。#### 追記  れをインストールすると dnvm（DotNet Version Manager）コマンドが利用できるようになるのかな？
-### Chocolatey のインストール  こからは node.js や npm のセットアップに入るのだが、コマンドラインでやってしまいたいので、Chocolatey をインストールする。
-ChocolateyChocolatey というのは Linux で言うところの yum や apt-get みたいなもの（Linux はあんまり知らんけど）。管理者権限で「コマンド プロンプト」を起動し、Chocolatery の公式サイトに書いてある呪文を入力する。```Microsoft Windows [Version 10.</description>
-    </item>
-    
   </channel>
 </rss>

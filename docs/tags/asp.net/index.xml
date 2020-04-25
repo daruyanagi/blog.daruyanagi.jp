@@ -121,88 +121,5 @@
 &amp;gt;SignalR は、このあと見て行くように、単なる WebSocket 開発のためだけのライブラリーではなく、さらに多くの付加価値を含んだ上位のフレームワークです。抽象度も高く、日本語のエンコードなど含めプリミティブな処理を開発者が記述する必要はありません。WebSocket サーバー開発 : SignalR とクロス ブラウザーへの対応 - 松崎 剛 Blog - Site Home - MSDN Blogs&amp;gt;SignalR という非同期でリアルタイムな双方向通信を実現するライブラリが面白そうなので試してみました。作者は ASP.NET チームの Damian Edwards 氏と David Fowler 氏です。SignalR を簡単に使ってみた - まめしば雑記 二日目はオンライン参加だったので、セッションが終わってすぐ手元のPCで実際にサンプルを試してみた。まず、 NuGet で SignalR のサンプルをインストール。依存関係のあるものも自動ででろでろっとダウンロード・インストールされる。サンプルは株価の上がり下がりを表示するもので、サーバー側からデータが送られてきてクライアント側（Webブラウザー）の表示が更新されるという、要はプッシュ通知のデモになっている。見てるだけでもちょっと楽しい。SignalR のもう一つのキモは、ブラウザーが対応する技術に応じて Web Socket やフレームを使い分けてくれるところ。これを確かめるために、今回は「IE Tester」というツールを利用してみた。My DebugBar | IETester / Browser Compatibility Check for Internet Explorer Versions from 5.</description>
     </item>
     
-    <item>
-      <title>WebMatrix 2 RC でサクッとWebサイトをオシャレにしてみた</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/06/20/060353/</link>
-      <pubDate>Wed, 20 Jun 2012 06:03:53 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/06/20/060353/</guid>
-      <description>みてくれたまえ。これが昨日までの http://download.daruyanagi.net/ だ。ワイルドだろ？*1　さすがにこれを放置するのも何なので、WebMatrix 2.0 Release Candidate でキレイにしてみることにした。
-### なにはともあれインストールまず、WebMatrix 2 を WebMatrix 2 からダウンロードしてくれたまえ。うちの場合は、なんか2・3回インストーラーを実行するハメになったけど（なんでだ？）、まぁ、すんなり入る。### Webサイト側でリモート管理を有効にするレンタルサーバーはもちろん、ASP.NET がお安く使える 高機能・激安 Windows レンタルサーバー ExpressWeb を使ってるよな？　Web配置で楽をしましょう。設定ファイルをダウンロードしておくとあとで捗る。### WebサイトのダウンロードWebMatrix でリモートサイトを開く。さっきダウンロードしておいた設定ファイルを読みこめば、かなり楽ちん。リモート管理のアカウント情報を入力するだけで済む。無事接続できた。このまま作業をしてもいいのだけど、やっぱりローカルにコピーを作っておいたほうが何かと安全なのでダウンロードしておく。これがやたら時間かかる。なぜか使ってもいない MySQL もインストールされるし。まぁ、細かいことは気にしない。 ASP.NET 4 のインストールにも失敗したけど、とくに問題なく動いているみたい。@daruyanagi そういう時は、MySQLのサイトで日本のサーバーから落とすのが早いっす。
-&amp;mdash; ウェブマトリクスマン(緑のタイツマン (@WebMatrixMan) June 19, 2012  ebMatrixman はほんとデキる子だな。
-### Git for WebMatrix のインストールこの作業はスキップしていいのだけど、どうせならバージョン管理できるようにしておけばロールバックとか楽になるよね。というわけで、拡張機能ギャラリーから「Git for WebMatrix」をインストールしておく。リリース当初はハングアップしたりして大変だったけど、週明けのバージョンアップでかなり使えるようになった。### Twitter Bootstrap のインストールWebMatrix 2 では NuGet もよりお手軽に利用できるようになっている。どこかの誰かが作ってくれた便利ツールが自由に使えるというわけだ！　使わないなんて損、損。今回は、デザインセンスのない開発者御用達のCSSフレームワーク Twitter Bootstrap を利用してみた。 WebMatrix 2 は LESS なんかも扱えるから、今後はカスタマイズ可能な Bootstrap なんかも利用できるようになるかも。夢が広がる……### コーディングさて、ようやくコーディングのお時間なのだけど……基本的には Bootstrap, from Twitter （サンプル）のソースコードをガバっとコピペしてチョチョイのちょいとイジるだけ。一瞬で終わってしまった。#### _Layout.</description>
-    </item>
-    
-    <item>
-      <title>YouTube の URL を動画タグへ変換する（oEmbed）</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/03/06/011745/</link>
-      <pubDate>Tue, 06 Mar 2012 01:17:45 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/03/06/011745/</guid>
-      <description>Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、Flickr の写真の場合と少し違うところ&amp;lt;a href=&amp;rdquo;#f1&amp;rdquo; name=&amp;quot;fn1&amp;rdquo; title=&amp;quot;Flickr も動画に対応しているのだけど、type==&amp;rdquo; video&amp;quot;=&amp;rdquo;&amp;rdquo; の場合はやっぱり=&amp;rdquo;&amp;rdquo; url=&amp;rdquo;&amp;rdquo; ではなく=&amp;rdquo;&amp;rdquo; html=&amp;rdquo;&amp;rdquo; を使う&amp;quot;=&amp;quot;&amp;ldquo;&amp;gt;*1。type には、ほかに rich だの link だのがあるっぽい。詳しくは oEmbed に全部書いてあるので参照のこと。
-``` private static readonly string SERVICE_ENDPOINT = @&amp;ldquo;http://www.youtube.com/oembed&amp;quot;; private static readonly string FORMAT_URL = @&amp;quot;{0}?url={1}&amp;amp;maxwidth={2}&amp;amp;maxheight={3}&amp;amp;format={4}&amp;quot;;
-public static string FORMAT_HTML_VIDEO_TAG = @&amp;rdquo; &amp;lt;blockquote class=&#39;youtube youtube-video&#39;&amp;gt; &amp;lt;p&amp;gt;{0}&amp;lt;p&amp;gt; &amp;lt;p&amp;gt;&amp;lt;small&amp;gt;{1} by &amp;lt;a href=&#39;{3}&#39;&amp;gt;{2}&amp;lt;/a&amp;gt;&amp;lt;/small&amp;gt;&amp;lt;p&amp;gt; &amp;lt;/blockquote&amp;gt; &amp;ldquo;; public static string FORMAT_ERROR = @&amp;quot;&amp;lt;p class=&#39;error&#39;&amp;gt;{0}&amp;lt;/p&amp;gt;&amp;rdquo;;</description>
-    </item>
-    
-    <item>
-      <title>Flickr の URL を画像タグへ変換する（oEmbed）</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/03/03/225037/</link>
-      <pubDate>Sat, 03 Mar 2012 22:50:37 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/03/03/225037/</guid>
-      <description>eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を サードパーティ上で、写真自体の埋め込みに変換したいときに、 埋め込みに必要なパラメータを取得するためのプロトコルみたいです。
- URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World 前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。
-``` using System; using System.Collections.Generic; using System.Linq; using System.Web;
-using Codeplex.Data; using System.Net;
-public static class FlickrHelper { private static readonly string Endpoint = @&amp;ldquo;http://www.flickr.com/services/oembed&amp;quot;; public static string FORMAT_URL = @&amp;quot;{0}?url={1}&amp;amp;maxwidth={2}&amp;amp;maxheight={3}&amp;amp;format={4}&amp;quot;; public static string FORMAT_HTML_TAG = @&amp;rdquo; &amp;lt;blockquote&amp;gt; &amp;lt;p&amp;gt;&amp;lt;img src=&#39;{0}&#39; alt=&#39;{1}&#39; /&amp;gt;&amp;lt;p&amp;gt; &amp;lt;p&amp;gt;&amp;lt;small&amp;gt;{1} by &amp;lt;a href=&#39;{3}&#39;&amp;gt;{2}&amp;lt;/a&amp;gt;&amp;lt;/small&amp;gt;&amp;lt;p&amp;gt; &amp;lt;/blockquote&amp;gt; &amp;ldquo;; public static string FORMAT_ERROR = @&amp;quot;&amp;lt;p class=&#39;error&#39;&amp;gt;{0}&amp;lt;/p&amp;gt;&amp;rdquo;;</description>
-    </item>
-    
-    <item>
-      <title> ASP.NET MVC 3 で Dropbox の OAuth 認証を使う</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/02/28/012843/</link>
-      <pubDate>Tue, 28 Feb 2012 01:28:43 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/02/28/012843/</guid>
-      <description>今回は Sharpbox を使って、Webサイトに Dropbox を利用したログイン機能を追加します。まず、 SessionController というコントローラを作成して、Create()、AuthorizationCallBack()、Delete() の3つのメソッドを作成しました。/Session/Create が /LogOn に、/Session/Delete が /LogOff にあたります*1。ビューへ適当に @Request.IsAuthenticated を埋め込んでいるのでわかりにくいですけど、今は False 、つまりログインしていない状態です。では、 Create() から。
-### /Session/Create``` // // GET: /Session/Create -&amp;gt; map route /LogOn
-public ActionResult Create() { string app_key = &amp;ldquo;&amp;quot;; string app_secret = &amp;ldquo;&amp;quot;;
-// 0. load the configDropBoxConfiguration config = DropBoxConfiguration.GetStandardConfiguration();config.AuthorizationCallBack = new Uri(Request.Url, &amp;quot;AuthorizationCallBack&amp;quot;);// 1. get the request token from dropboxDropBoxRequestToken requestToken = DropBoxStorageProviderTools.</description>
-    </item>
-    
-    <item>
-      <title> favicon.ico を置いてないといちいちルーティングに引っかかってめんどくさい</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/02/25/193453/</link>
-      <pubDate>Sat, 25 Feb 2012 19:34:53 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/02/25/193453/</guid>
-      <description>_エラー：データが見つからないぜ → favicon.ico がルーティングに引っかかってました！_ というのがめんどくさい時は、
-``` Global.asax public static void RegisterRoutes(RouteCollection routes) { routes.IgnoreRoute(&amp;quot;{resource}.axd/{*pathInfo}&amp;quot;); routes.IgnoreRoute(&amp;ldquo;favicon.ico&amp;rdquo;); :
-と、favicon.ico を無視するルーティングを一行書き加えておくとイイ。via &amp;lt;a href=&amp;quot;http://stackoverflow.com/questions/6596715/favicon-icon-mvc3-asp-net&amp;quot;&amp;gt;Favicon Icon-MVC3 ASP.NET - Stack Overflow&amp;lt;/a&amp;gt;</description>
-    </item>
-    
-    <item>
-      <title> パスに無効な文字が含まれています。</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/02/25/162246/</link>
-      <pubDate>Sat, 25 Feb 2012 16:22:46 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/02/25/162246/</guid>
-      <description>### 状況コントローラーで View(model) を返す。model は string型 で、ローカルにあるテキストファイルを読み込んだ内容が格納されている。ビュー側でこれを @Html.Raw(Model) すると、「パスに無効な文字が含まれています。」というエラーが表示される。``` Controller return View(content);
-View @model string
-@Html.Raw(Model)
-&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### 解決モデルを HtmlString型 に変更すると、エラーが表示されなくなった。```## Controllerreturn View(new HtmlString(content));## View@model HtmlString@ModelテキストがHTMLタグ（危険な文字列）を含んでいたので、ASP.net がエラーを吐いてくれたのかな？
-危険な可能性のある Request.Form 値がクライアントから検出されました - だるろぐ</description>
-    </item>
-    
-    <item>
-      <title> ASP.net MVC 3 で Dropbox を利用する</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/02/25/084211/</link>
-      <pubDate>Sat, 25 Feb 2012 08:42:11 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/02/25/084211/</guid>
-      <description>自家製の Wiki システムを ASP.net MVC 3 で作ってて、「リビジョン管理機能がほしいですなぁ」と思った。そこで試行錯誤したのだけど、だんだん面倒になってきた。そしたら思いついた。_「Dropbox に記事を保存すれば勝手にリビジョン管理してくれるんだから、そっちにバックアップ取ればいいじゃん」__「そもそも Dropbox をデータベースとして使えばよくね？」_というわけで、とりあえず Dropbox を使うところから始めてみた。
-### 準備まず、アプリケーションの作成。別に認証機能は要らないや。今回は SharpBox (http://sharpbox.codeplex.com/) を使って楽をすることにした。NuGetでさくっとインストール。あと、https://www2.dropbox.com/developers/apps でアプリの登録をしておくのも忘れずに。APIキーをここで取得しておく必要がある。### コード#### コントローラーまず、Homeコントローラーを作る。なぜ Home という名前なのかというと、Global.asax を書き換えるのが面倒くさいからですね。わかります。スキャフォールディングも使って楽をしましょう。Index メソッドを書く。とりあえず動かしているだけなのでごちゃごちゃしているけど、接続→ルートの取得→（ファイルアップロード）→ファイルの列挙 という操作をしているだけ。あとでモデルへ追いだそう。``` public ActionResult Index() { var storage = new CloudStorage(); var config = CloudStorage.GetCloudConfigurationEasy(nSupportedCloudConfigurations.DropBox);
-// load a valid security token from fileICloudStorageAccessToken accessToken;using (var fs = System.IO.File.Open(Server.MapPath(&amp;quot;~/App_Data/DropBoxToken&amp;quot;),System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.None)){accessToken = storage.DeserializeSecurityToken(fs);}// open the connectionvar storageToken = storage.</description>
-    </item>
-    
   </channel>
 </rss>

@@ -121,140 +121,5 @@
 #### スクリーンキャプチャー用のライブラリ Screna今回は Screna というライブラリのお世話になった。NuGet で簡単にインストールできる点、動画キャプチャーをサポートしている点などがいい感じ。C# でキャプチャーする方法はいろいろ紹介されてるけど、現時点ではこれが割とモダンだと思った。FFmpeg で MP4 圧縮もできるみたいだけど、今回はそこまでは試していない。基本的な使い方はこんな感じ（公式のサンプルそのまま）。まず AVI サポートのために Screna.SharpAvi を NuGet でインストール。```Install-Package Screna.SharpAvi```次にネームスペースを追加。```csusing Screna;using Screna.Avi;```cs// どの画像をとってくるかを決める IImageProvider を初期化var provider = new ScreenProvider(); // デスクトップ全体をキャプチャー// 動画を書き込む AviWriter を初期化var VideoWriter = new AviWriter(&amp;quot;output.avi&amp;quot;, AviCodec.MotionJpeg);// レコーダーを作って録画開始var Recorder = new Recorder(VideoWriter, provider, 10);Recorder.Start();// なにかの処理Recorder.</description>
     </item>
     
-    <item>
-      <title>Aoba 1.2.0：連射モードの追加と通知の改善 / GitHub で Pull Request を Merge できなくなった</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/08/29/045312/</link>
-      <pubDate>Mon, 29 Aug 2016 04:53:12 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/08/29/045312/</guid>
-      <description>  射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。
-  ューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz
-  知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。
-#### Git の使い方わからんGitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。  したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……
-  んかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って*1、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。
-*1:今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？</description>
-    </item>
-    
-    <item>
-      <title>艦これのスクリーンショットを撮れるツールを自作した</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/08/28/155619/</link>
-      <pubDate>Sun, 28 Aug 2016 15:56:19 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/08/28/155619/</guid>
-      <description>  休み中にオンラインストレージの掃除やツールのアップデートをやっていたのだけど、愛用していた艦これのキャプチャーツールが動かなくなったので、WPF で自作した。一応自分ところでは動いているのだけど（Windows 10 version 1607＋Visual Studio 2015 Update 3で動作確認）、参照の不足なんかで動かないことがあるかもしれない。使い方は
-一番左の検知ボタンを押してゲーム画面の範囲を検出する検出に成功すると、キャプチャーボタンが有効化されるキャプチャーボタンを押すだけ。キャプチャーが成功すると、トーストが出る（なので、Windows 8 以降じゃないと動かないと思う）。  ーストをクリックすると、キャプチャーした画像にアクセスできる。
-  応、頑張った点としては
-マルチモニター対応（自分が Surface 3 or サブディスプレイで遊んでるのでスケーリングとか拡大表示にも対応してるかも（大きさは決め打ちにしていないゲーム画面の左上ピクセルかなーって感じのピクセルを探して、そこからある程度デカい矩形を検出そんな感じで割と適当なのと、ちょっと処理が遅いかなって感じなので、気が向いたら改善するかもみたいな感じ。簡易なロジック自体は割と簡単にできたけど、UI を整えたりなんだかんだで（WPF でトーストのだしかたわかんねぇ……ぐちゃぐちゃ参照を追加したけど、ここでちょっと間違ってる気がする）、半日ぐらいかかった（#### 追伸Visual Studio の GitHub 拡張を使ってみたけど、やっぱり自分には GitHub アプリの方が使いやすいかな……。#### 追記タブレットモードでも最前面表示されるように改修。WindowStyle を ToolWindow にするShowTaskbar を false にするでいけるっぽい。</description>
-    </item>
-    
-    <item>
-      <title>VirusTotal API を使ってみる</title>
-      <link>https://blog.daruyanagi.jp/entry/2014/10/24/025219/</link>
-      <pubDate>Fri, 24 Oct 2014 02:52:19 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2014/10/24/025219/</guid>
-      <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
-### VirusTotal とは指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。Public API version 2.0 - VirusTotalこれを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。### 準備  ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
-### VirusToral にファイルのスキャンをお願いするVirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。```https://www.virustotal.com/vtapi/v2/file/scan```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。```cspublic async Task&amp;lt;dynamic RequestFileScan(string filename){using (var http = new HttpClient()){var uri = &#34;</description>
-    </item>
-    
-    <item>
-      <title>Formula Pad 1.0.1</title>
-      <link>https://blog.daruyanagi.jp/entry/2013/05/02/021238/</link>
-      <pubDate>Thu, 02 May 2013 02:12:38 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2013/05/02/021238/</guid>
-      <description>  キストボックスに TeX 記法で数式を入力すると、それを画像にしてくれます。数式画像はクリップボードへコピーしたり、ファイルとして保存可能。数式テキストを“はてな記法”でコピーすることもできます*1。“Google Chart API”を利用しているので、ネットワーク回線が必須。
-  得な機能として、
-text = text.Replace(@&amp;#34;\land&amp;#34;, @&amp;#34;\wedge&amp;#34;);text = text.Replace(@&amp;#34;\lor&amp;#34;, @&amp;#34;\vee&amp;#34;);text = text.Replace(@&amp;#34;\lnot&amp;#34;, @&amp;#34;\neg&amp;#34;);```という処理が入っています。“Google Chart API”や“はてな”では使えない“\land（論理和）”“\lor（論理積）”“\lnot（否定）”が使えます。</description>
-    </item>
-    
-    <item>
-      <title>Google Chart を使った数式ツールを作ってみた（3） </title>
-      <link>https://blog.daruyanagi.jp/entry/2013/01/17/065707/</link>
-      <pubDate>Thu, 17 Jan 2013 06:57:07 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2013/01/17/065707/</guid>
-      <description>br/&amp;gt;
-&amp;gt;ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。Google Chart を使った数式ツールを作ってみた（2） - だるろぐ 構文解析というか、対応する { と } をペアにして、その出現位置をメモる方向で考えてみた。括弧の種類が増えていけば破たんするけれど、とりあえず最初は動けばいいや。アルゴリズムは、
-テキストを先頭から一文字ずつ取り出して、{ だったら [i, ?] をリストに保存。（i は { の出現位置、? は } の位置を保存するプレースホルダ）} だったら最後の ? へ出現位置を保存。これを文末まで繰り返す。みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。たとえば、0123456789101112131415\frac{\frac{}{}}だったら、{ の出現位置（対応する）} の出現位置51511121314こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、?</description>
-    </item>
-    
-    <item>
-      <title>Google Chart を使った数式ツールを作ってみた（2）</title>
-      <link>https://blog.daruyanagi.jp/entry/2013/01/15/210406/</link>
-      <pubDate>Tue, 15 Jan 2013 21:04:06 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2013/01/15/210406/</guid>
-      <description>a href=&amp;quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&amp;quot;&amp;gt;Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、
-数式テキストの新規作成・開く・保存編集機能（切り取り・コピー・貼り付けなど）数式イメージのファイル保存・クリップボードへコピーなんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。```csprivate void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e){if (e.Key == Key.Tab){e.Handled = true; // 握りつぶす！ var text = FormulaText.Text;int start = FormulaText.SelectionStart;int end = -1;FormulaText.SelectionLength = 0;if ((Keyboard.Modifiers &amp;amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift){start = text.IndexOf(&amp;amp;#39;{&amp;amp;#39;, start);if (start &amp;amp;lt; 0) return;FormulaText.SelectionStart = start + 1;end = text.</description>
-    </item>
-    
-    <item>
-      <title>Google Chart を使った数式ツールを作ってみた</title>
-      <link>https://blog.daruyanagi.jp/entry/2013/01/14/221302/</link>
-      <pubDate>Mon, 14 Jan 2013 22:13:02 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2013/01/14/221302/</guid>
-      <description>御飯食べた後にさくっと作ってみた（参考：WebMatrix で数式を表現する（１） - だるろぐ）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。
-仮定 &#34;Assumption&#34; (A)モーダスポネンス &#34;Modus Ponendo Ponens&#34; (MPP)二重否定 &#34;Double Negation&#34; (DN)条件付き証明 &#34;Conditional Proof&#34; (CP)∧-導入 &#34;∧-introduction&#34; (∧I)∧-除去 &#34;∧-elimination&#34; (∧E)∨-導入 &#34;∨-introduction&#34; (∨I)∨-除去 &#34;∨-elimination&#34; (∨E)背理法 &#34;Ad Absurdum&#34; (RAA)これぐらいしかないんだから覚えられるはず (;´Д｀)```csprivate void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e){const string API = &#34;http://chart.apis.google.com/chart?cht={0}&amp;amp;chl={1}&#34;;var cht = &#34;tx&#34;;var chl = HttpUtility.UrlEncode(FormulaText.Text);var uri = new Uri(string.Format(API, cht, chl));FormulaImage.Source = new BitmapImage(uri); }</description>
-    </item>
-    
-    <item>
-      <title>SignalR を .NET（WPF）からも使ってみた</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/08/31/112958/</link>
-      <pubDate>Fri, 31 Aug 2012 11:29:58 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/08/31/112958/</guid>
-      <description>（SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記 そういえば、前回（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。
-public partial class MainWindow : Window{HubConnection connection;IHubProxy sample;public MainWindow(){InitializeComponent();// サーバーに接続して sample ハブをげっと connection = new HubConnection(&amp;#34;http://localhost:63112/&amp;#34;);sample = connection.CreateProxy(&amp;#34;sample&amp;#34;);connection.Start(); /* この3つは順番を守ること！ */// sample ハブで Echo() が呼ばれたら…… sample.</description>
-    </item>
-    
-    <item>
-      <title>失敗の数だけ強くなりたい</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/07/24/201150/</link>
-      <pubDate>Tue, 24 Jul 2012 20:11:50 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/07/24/201150/</guid>
-      <description>朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
-&amp;lt;grid&amp;gt;&amp;lt;/grid&amp;gt;Name=&amp;#34;listBoxGists&amp;#34;&amp;gt;```**MainWindow.xaml.cs**```csusing System.Net;using Newtonsoft.Json;/// &amp;amp;lt;summary&amp;gt;/// MainWindow.xaml の相互作用ロジック/// &amp;amp;lt;/summary&amp;gt;public partial class MainWindow : Window{public MainWindow(){InitializeComponent();}private void MainWindow_Loaded(object sender, RoutedEventArgs e){var client = new WebClient();client.DownloadStringCompleted += (_sender, _e) =&amp;gt;{listBoxGists.ItemsSource = JsonConvert.DeserializeObject&amp;amp;lt;Gist[]&amp;gt;(_e.Result);};client.</description>
-    </item>
-    
-    <item>
-      <title> 最初に生成されたウィンドウがメインウィンドウ</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/03/17/204950/</link>
-      <pubDate>Sat, 17 Mar 2012 20:49:50 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/03/17/204950/</guid>
-      <description>﻿&amp;amp;lt;Application x:Class=&amp;quot;SoundKeyboard2012.App&amp;quot;xmlns=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;quot;xmlns:x=&amp;quot;http://schemas.microsoft.com/winfx/2006/xaml&amp;quot;StartupUri=&amp;quot;MainWindow.xaml&amp;quot;&amp;gt;&amp;amp;lt;Application.Resources&amp;gt;&amp;amp;lt;/Application.Resources&amp;gt;&amp;amp;lt;/Application&amp;gt;こう書いたら、MainWindow がメインウィンドウになると思うじゃないですか。けれど、WPF って「最初に生成されたウインドウがメインウィンドウになる」んだね。Windows型のメンバ変数をフィールドで初期化していた（ public Window HogeWindow = new HogeWindow() ）ので、デバッグ時の動作（MainWindow.xaml がメインウィンドウ）と、リリースバイナリの動作（HogeDialog.xamlがメインウィンドウ）が違っていて、ちょっと困った。
-``` private void Application_Startup(object sender, StartupEventArgs e) { MainWindow = new MainWindow(); }
-明示的にメインウィンドウを指定してあげれば問題ない。&amp;gt;StartupUri を宣言で設定してもプログラムで設定しても、対応する UI リソースは Startup イベントが処理されるまで読み込まれません。 したがって、Startup の処理時には、Windows プロパティまたは MainWindow プロパティからのウィンドウにアクセスできません。Application.StartupUri プロパティ (System.Windows)&amp;gt;MainWindow には、AppDomain でインスタンス化される最初の Window オブジェクトへの参照が自動的に設定されます。Application.MainWindow プロパティ (System.Windows)</description>
-    </item>
-    
-    <item>
-      <title> Notify Property Weaver で楽ちんに INotifyPropertyChanged を実装する</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/03/16/002534/</link>
-      <pubDate>Fri, 16 Mar 2012 00:25:34 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/03/16/002534/</guid>
-      <description>INotifyPropertyChanged の実装って面倒じゃないですか。
-``` public class Person : INotifyPropertyChanged { public event PropertyChangedEventHandler PropertyChanged;
-public string GivenNames { get; set; }public string FamilyName { get; set; }public string FullName{get{return string.Format(&amp;quot;{0} {1}&amp;quot;, GivenNames, FamilyName);}} }
-これが、```public class Person : INotifyPropertyChanged{public event PropertyChangedEventHandler PropertyChanged;string givenNames;public string GivenNames{get { return givenNames; }set{if (value !</description>
-    </item>
-    
-    <item>
-      <title>WPFでバージョン情報ダイアログをつくる</title>
-      <link>https://blog.daruyanagi.jp/entry/2012/03/12/003836/</link>
-      <pubDate>Mon, 12 Mar 2012 00:38:36 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2012/03/12/003836/</guid>
-      <description>VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspxMicrosoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。
-``` using Microsoft.VisualBasic.ApplicationServices;
-namespace Type08ScreenCapture { /// &amp;lt;summary&amp;gt; /// MainWindow.xaml の相互作用ロジック /// &amp;lt;/summary&amp;gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); }
- private void Window_Loaded(object sender, RoutedEventArgs e){DataContext = new AssemblyInfo(System.Reflection.Assembly.GetExecutingAssembly());} ： ：
-あとは XAML 側でバインディングしていく。&amp;lt;img src=&amp;quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&amp;quot; alt=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; title=&amp;quot;f:id:daruyanagi:20120312003119p:plain&amp;quot; class=&amp;quot;hatena-fotolife&amp;quot;/&amp;gt;```&amp;amp;lt;TextBlock Margin=&amp;quot;24&amp;quot; Text=&amp;quot;{Binding ProductName}&amp;quot; /&amp;gt;バインディングヒャッホイ！「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。</description>
-    </item>
-    
   </channel>
 </rss>

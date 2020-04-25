@@ -129,50 +129,5 @@ public sealed partial class MainPage : Page{public MainPage(){this.Initializ
 ### AsyncOAuth を導入するさて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリUWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。```csvar authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);var callbackUri = &#34;http://localhost/&#34;;var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
     </item>
     
-    <item>
-      <title>UWP：ユーザーコントロールを作ってみる</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/04/12/171903/</link>
-      <pubDate>Tue, 12 Apr 2016 17:19:03 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/04/12/171903/</guid>
-      <description>回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。
-x:Class=&amp;#34;Hateboo.UserControls.TextBoxWithCounter&amp;#34;xmlns=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&amp;#34;xmlns:x=&amp;#34;http://schemas.microsoft.com/winfx/2006/xaml&amp;#34;xmlns:local=&amp;#34;using:Hateboo.UserControls&amp;#34;xmlns:d=&amp;#34;http://schemas.microsoft.com/expression/blend/2008&amp;#34;xmlns:mc=&amp;#34;http://schemas.openxmlformats.org/markup-compatibility/2006&amp;#34;mc:Ignorable=&amp;#34;d&amp;#34;d:DesignHeight=&amp;#34;300&amp;#34;d:DesignWidth=&amp;#34;400&amp;#34;&amp;gt;&amp;lt;stackpanel&amp;gt;&amp;lt;/stackpanel&amp;gt;x:Name=&amp;#34;textBox&amp;#34; TextChanged=&amp;#34;textBox_TextChanged&amp;#34; /&amp;gt;Orientation=&amp;#34;Horizontal&amp;#34; HorizontalAlignment=&amp;#34;Right&amp;#34;&amp;gt;x:Name=&amp;#34;textBlockCurrent&amp;#34;&amp;gt;0&amp;lt;textblock&amp;gt;&amp;lt;/textblock&amp;gt;/x:Name=&amp;#34;textBlockMax&amp;#34;&amp;gt;0```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;Text：TextBox の内容&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Current：現在の TextBox 文字数&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。```cs// 依存関係プロパティpublic static readonly DependencyProperty MaxProperty = DependencyProperty.Register(&amp;#34;Max&amp;#34;,　// Max という名前の……typeof(int),　// int 型の CLR プロパティを……typeof(TextBoxWithCounter), // クラスに登録するやで―new PropertyMetadata(0));// CLR プロパティpublic int Max{get { return (int)GetValue(MaxProperty); }set{SetValue(MaxProperty, value);textBlockMax.</description>
-    </item>
-    
-    <item>
-      <title>UWP：一定時間が経過すると勝手に消えるメッセージを実装する</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/04/05/050000/</link>
-      <pubDate>Tue, 05 Apr 2016 05:00:00 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/04/05/050000/</guid>
-      <description>画面に「保存しました」っていうメッセージを出したいけれど、いつまでも表示されてるのも鬱陶しいので、たとえば3秒後に消したい、みたいな。
-public class MainPageViewModel : BindableBase{private string message = string.Empty;public string Message{get { return message; }set { SetProperty(ref message, value); }}private void ShowMessage(string message){Message = message;var timer = new DispatcherTimer(){Interval = TimeSpan.FromSeconds(3),};timer.Tick += (e, args) =&amp;gt; { Message = string.Empty; };timer.Start();}}```とにかく DispatcherTimer というのを使うと、遅延タスクみたいなのを実装できるみたい。Message プロパティの setter に処理をぶち込んでもいいかも？　どういう書き方がキレイな書き方なのかまだよくわかんないな。上級者は ReactibeExtension みたいなのを使いこなして、スッキリ書いちゃうのかもしれないが……。あと、ほんとは XAML だけでできればカッコいいのだろうけれど、自分には無理だった。で、テキトーに作ってみてから思ったのだけど、こういうのはユーザーコントロールにしておけばよさげだよね。というわけで、次回はユーザーコントロールでも作ってみる。</description>
-    </item>
-    
-    <item>
-      <title>UWP：はてなブックマークアプリを作るときのメモ</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/04/02/061512/</link>
-      <pubDate>Sat, 02 Apr 2016 06:15:12 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/04/02/061512/</guid>
-      <description>グったら自分のブログが出てきて白目。フォトライフの記事だったが、これをブックマーク向けにちょろっと編集するだけで動いた。ただし、
-パスワードによる WSSE 認証は終了 → API キーを代わりに利用するUA がセットされていないと 500 が返ってくる？ → 適当にセットはてながステータスコード100 continueをサポートしていない → 無効にするといった手直しをする必要があったけれど。たとえば、ブックマークの編集はこんな感じ```csprivate const string API_ENDPOINT = &#34;http://b.hatena.ne.jp/atom/&#34;;private const string API_POST_URL = API_ENDPOINT + &#34;post&#34;;private const string API_EDIT_URL = API_ENDPOINT + &#34;edit&#34;;private const string USER_AGENT = &#34;Hateboo&#34;;private const string XML_ACCEPT_TYPE = &#34;application/x.atom+xml, application/xml, text/xml, */*&#34;;private const string XML_CONTENT_TYPE = &#34;application/x.atom+xml&#34;;private const string XML_PAYLOAD= &#34;</description>
-    </item>
-    
-    <item>
-      <title>Windows 8.x を UWP へ移植しようとするフリだけしてみた。</title>
-      <link>https://blog.daruyanagi.jp/entry/2016/03/22/165453/</link>
-      <pubDate>Tue, 22 Mar 2016 16:54:53 +0000</pubDate>
-      
-      <guid>https://blog.daruyanagi.jp/entry/2016/03/22/165453/</guid>
-      <description>かつてこんなアプリを Windows 8.x 向けに作った。閲覧ページのタイトルや URL を指定した書式でクリップボードへコピーするというもので、
-&amp;gt;簡単に言うと、［共有］チャームから Create Link - Chrome Web Store Make Link :: Add-ons for Firefoxhttps://addons.mozilla.org/ja/firefox/addon/make-link/ をするアプリです。
-これを Windows 10（UWP）に移植しようかと思う。MADOSMA が W10M になったので、ちょっとやる気が出ているのだ！
-### とりあえず古いアプリをそのまま Windows 10 で実行してみた  indows 8.x のフルスクリーンを前提に作ってあるので、Windows 10 の Windowed モードには収まりきらず、横スクロールが発生している。そもそも、このアプリを作った時は画面遷移のやり方がよく分かっていなかったので、すべての操作が一枚のページで行えるように設計されている。そのため、要素が若干詰め込み過ぎ。開発者の能力不足のせいで、ユーザーに不便を強いている部分だ。
-  と、アプリケーションバーを使ってみたかったという理由でアプリケーションバーを採用したのだけど、初期状態で必要なコマンドが表示されていないのは不親切だと思った。右クリックすれば出てくるんだけど……わかんないよな、普通。というか、初めからこのアプリには、このユーザーインターフェイスは適してなかった。開発者のエゴが、ユーザーに不便を強いている部分だ。
-  上には謎のハンバーガーボタンが追加されていて、共有チャームなどのコマンドはここに押し込められている。共有チャームはオワコン。
-### そのまま UWP に移植してみた  規に UWP プロジェクトを作成し、ほとんどコピペで移植してみた。アプリケーションバーが謎なことになっている以外は、Windows 8.x 時代とほぼ同様に動いているように見える。若干一部の機能がちゃんと動いていないらしいが、それは要調査。それにしても、似ているようで細かい挙動が変わっているのは、本当に面倒くさい。とくに Windows 8.x 向けのサンプルが手元ではそのまま動かなくて、StackOverFlow を歩き回っても解決策が見つからないのにはイライラさせられた。質問はあっても、回答はなかったり。まだまだみんな UWP のノウハウは蓄積できていないみたいなので、自分で頑張るしかない（一部のブログ書いてくれてる開発者には感謝、感謝だなぁ）。ただ、Windows 10 Mobile でも普通に動くのはいいと思った。ユーザーインターフェイスがデスクトップ向けなのですこぶる使いにくいけれど、MADOSMA にデプロイすれば普通に動く。最初はデスクトップとモバイル両対応のユーザーインターフェイスを作り直す苦労を思って気が重くなったが、モバイルファーストで作り直せば、あとはデスクトップはそれをそのまま使えばいいと気づいてからはちょっと気が楽になった。UWP が許す機能の範囲でならば、新しいアプリケーションは UWP で作った方が得だな。今度休みが取れたときに、いろいろ調査を進めようと思う。</description>
-    </item>
-    
   </channel>
 </rss>

@@ -1,8 +1,8 @@
 {{ $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) }}
-{{ $small := $image.Resize "480x360 jpg" }}
-{{ $medium := $image.Resize "800x600 jpg" }}
-{{ $large := $image.Resize "1024x768 jpg" }}
-{{ $exlarge := $image.Resize "1800x1600 jpg" }}
+{{ $small := $image.Fit  "480x360 jpg" }}
+{{ $medium := $image.Fit  "800x600 jpg" }}
+{{ $large := $image.Fit  "1024x768 jpg" }}
+{{ $exlarge := $image.Fit  "1800x1600 jpg" }}
 {{ $alt := .PlainText | safeHTML }}
 
 <figure class="figure text-center">

@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/15/005152/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content=" RSS を処理する" />
+    <meta name="og:description" content="今日の10分プログラミングは、RSSを取得してリストタグに変換しようの巻。
+```cs using System; using System.Collections.Generic; using System.Linq; using System.Web;
+using System.Web.Mvc; using System.Xml; using System.ServiceModel.Syndication;
+namespace Daruyanagi { public static class FeedHelper { public static string GetHtml(string url, int count = 10) { var div = new TagBuilder(&ldquo;div&rdquo;); div.Attributes.Add(&ldquo;class&rdquo;, &ldquo;feed&rdquo;);
+ using (var reader = XmlReader.Create(url)){var feed = SyndicationFeed.Load(reader);var h2 = new TagBuilder(&quot;h2&quot;);h2.InnerHtml = feed.Title.Text;div.InnerHtml &#43;= h2.ToString();var ul = new TagBuilder(&quot;ul&quot;);foreach (var i in feed." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

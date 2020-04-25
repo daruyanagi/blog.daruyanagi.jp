@@ -33,7 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/10/20/132105/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 3" />
+    <meta name="og:description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/10/14/141550&quot;&gt;WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をとっぱらってみたのだけれど、やはり止まる。
+&gt;Windows Azure Webサイトの無料や共有インスタンスの場合、５～20分ほどアクセスが無かった場合はシャットダウンされてリソースが解放されます。そーすると、初回アクセス時に、レスポンスが遅く感じる事象が発生します。Windows Azureモバイルサービスのジョブスケジューラーで15分起きにリクエストを送信することで、常時ウォームアップし続けることが可能になります。  素敵だけど、怒られそうな話ですね！
+ Windows Azureで定期ジョブを実行する方法 - 蒼の王座 怒られたらイヤだけど、とりあえずこの方法を試してみた。結論的には、上手くいった。Twitter のメインアカウント（やなぎ ひでとし（柳 英俊） (@YanagiHidetoshi) | Twitter）に新着情報を配信できるようになった。
+  ケジューリングは毎分・毎時・毎日・毎月と要求時が設定できるみたい。正時にキッカリ実行したいなんて言う場合には使えないので、10分おきにサイトをキックするだけにして、定期実行の仕組みは自分で実装した（ついでにコードも前よりカッコよく、シンプルにしたった！）。
+  br/&gt;
+function warmup() {warmUpSite(&#34;http://darufeed.azurewebsites.net/&#34;);}function warmUpSite(url) {console.info(&#34;warming up: &#34; &#43; url);var req = require(&amp;#39;request&amp;#39;);req.get({ url: url }, function(error, response, body) {if (!error) {console." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

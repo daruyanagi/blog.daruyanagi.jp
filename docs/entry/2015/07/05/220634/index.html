@@ -33,7 +33,22 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2015/07/05/220634/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="「Visual Studio Community」で ASP.NET Web Pages をはじめる" />
+    <meta name="og:description" content="んなも大好きな「WebMatrix」ですが、そろそろ本格的に“なかったこと”になっているような気がしてならない今日この頃。代わりとなるのはおそらく「Visual Studio Code」なのでしょうが、まだちょっとベータ版なので、今回は定評のありまくる「Visual Studio Community」で ASP.NET Web Pages をはじめる方法を調べてみました。「WebMatrix」で“空のサイト”に相当するものを作るのが今回の目標です。
+### とりあえずプロジェクトを作成する  ずはプロジェクトを作成する必要があります。プロジェクトの新規作成ダイアログで［Templates］－［Visual C#］－［Web］－［Visual Studio 2012］とツリーを辿り、「ASP.NET Empty Web Application」を選択します。Visual Basic じゃないと死んでしまう病に冒されている人は、［Visual C#］の代わりに［Visual Basic］を選択するとよいでしょう。
+  なみに、［Templates］－［Visual C#］－［Web］にある「ASP.NET Web Application」テンプレートを使っても構いません。
+  のテンプレートを選択すると、プロジェクトの種類なんかを選べるダイアログが現れるので、ここで「Empty」を選択すればさっきと同じ結果になると思います（厳密にくらべたわけじゃないから知らんけど）。このダイアログからプロジェクトを作ると Azure Web Sites も同時に作れるので、必要な場合はこっちを選ぶと手間が省けるかも。
+### ページの追加  ロジェクトを作成したら、ページの追加。コンテストメニューを開いて［Add］－［MVC 5 View Page (Razor)］を選択します。
+  とは名前を付けると、cshtml ファイルが生成されます。ASP.NET（Web Pages）の流儀にしたがって、最初のファイルの名前は Default.cshtml にしておきましょうか。中身はこんな感じです。
+@{Layout = null;}&amp;lt;!DOCTYPE html&gt;&amp;lt;html&gt;&amp;lt;head&gt;&amp;lt;meta name=&#34;viewport&#34; content=&#34;width=device-width&#34; /&gt;&amp;lt;title&gt;&amp;lt;/title&gt;&amp;lt;/head&gt;&amp;lt;body&gt;&amp;lt;div&gt;&amp;lt;/div&gt;&amp;lt;/body&gt;&amp;lt;/html&gt;```body が空っぽなので、ついでにこんな感じでサンプルコードを加えておきます。```cs@{Layout = null;var message = &#34;Hello!" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

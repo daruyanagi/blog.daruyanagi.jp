@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/06/24/232557/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="XAML：オブジェクト参照がオブジェクト インスタンスに設定されていません。" />
+    <meta name="og:description" content="AML をガリガリ書いてビルドすると、こんなエラーが出た。
+&gt;オブジェクト参照がオブジェクト インスタンスに設定されていません。 エラーの説明がふんわりし過ぎていて、場所すら特定できない。ソースコードはコンパイルされているみたいなので、XAML の実行時エラーっぽいが……しょうがないのであちこちコメントアウトしながら、がんばって場所を特定した。
+  うやら、このコメント部分が原因らしい。ぱっと見、問題はなさそうにも見えるが――
+  インディングしていた Checked の定義を見て悟った。イベントにプロパティをバインドしている……orzChecked イベントを IsChecked プロパティに書き換えることで問題は解消されました＼(＾o＾)／" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

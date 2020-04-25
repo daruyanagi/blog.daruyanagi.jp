@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/06/27/021736/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで" />
+    <meta name="og:description" content="チの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。
+### 前提条件と大まかな流れまず Visual Studio 2017 Community の「ASP.NET と Web 開発」というワークロードがインストールされている環境を用意（これだけで足りんかったらごめんな、正直よくわかってないんや）。空のテンプレートを作成し、トップページの Index.cshtml を表示するところまで頑張ります。### 実装#### 空のテンプレートを作成  ず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。
+.NET Core.NET Frameworkの 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。  NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。
+  ロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

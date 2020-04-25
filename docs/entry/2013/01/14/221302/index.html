@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/01/14/221302/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Google Chart を使った数式ツールを作ってみた" />
+    <meta name="og:description" content="御飯食べた後にさくっと作ってみた（参考：WebMatrix で数式を表現する（１） - だるろぐ）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。
+仮定 &#34;Assumption&#34; (A)モーダスポネンス &#34;Modus Ponendo Ponens&#34; (MPP)二重否定 &#34;Double Negation&#34; (DN)条件付き証明 &#34;Conditional Proof&#34; (CP)∧-導入 &#34;∧-introduction&#34; (∧I)∧-除去 &#34;∧-elimination&#34; (∧E)∨-導入 &#34;∨-introduction&#34; (∨I)∨-除去 &#34;∨-elimination&#34; (∨E)背理法 &#34;Ad Absurdum&#34; (RAA)これぐらいしかないんだから覚えられるはず (;´Д｀)```csprivate void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e){const string API = &#34;http://chart.apis.google.com/chart?cht={0}&amp;chl={1}&#34;;var cht = &#34;tx&#34;;var chl = HttpUtility.UrlEncode(FormulaText.Text);var uri = new Uri(string.Format(API, cht, chl));FormulaImage.Source = new BitmapImage(uri); }" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

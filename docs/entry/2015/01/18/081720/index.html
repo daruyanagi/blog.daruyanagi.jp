@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2015/01/18/081720/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix：愛媛のニュースだけ読みたいので、Google ニュースから引っ張ってくる" />
+    <meta name="og:description" content="元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。
+# ~/App_Code/GoogleNews.cshtml@using System.ServiceModel.Syndication@using System.Xml@helper Get(string query){var url = string.Format(&#34;http://news.google.com/news?q={0}&amp;amp;output=rss&#34;,query);using (var reader = XmlReader.Create(url)){var feed = SyndicationFeed.Load(reader);// @ObjectInfo.Print(feed);var data = feed.Items.Select(_ =&gt; new {Title = _.Title.Text,Summary = _.Summary.Text,PublishDate = _.PublishDate,Url = _.Links.First().Uri.ToString().Split(&amp;#39;=&amp;#39;).Last(),});// @ObjectInfo.Print(data);foreach (var d in data){// &lt;h2&gt;&lt;a href=&#34;@d.Url&#34;&gt;@d.Title&lt;/a&gt;&lt;/h2&gt; &amp;lt;p&gt;@Html." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

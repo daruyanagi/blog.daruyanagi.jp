@@ -4,6 +4,15 @@
   <head>
     {{- partial "head.html" . -}}
 
+    <meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="{{ .Permalink }}" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="{{ .Title }}" />
+    <meta name="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+    <meta name="og:image" content="{{ if .Params.eyecatch }}{{ .Site.Params.og_image | absURL }}{{ else }}{{ .Params.eyecatch | absURL }}{{ end }}" />
+
     <style>
       .bd-placeholder-img {
         font-size: 1.125rem;

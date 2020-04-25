@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/25/084211/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content=" ASP.net MVC 3 で Dropbox を利用する" />
+    <meta name="og:description" content="自家製の Wiki システムを ASP.net MVC 3 で作ってて、「リビジョン管理機能がほしいですなぁ」と思った。そこで試行錯誤したのだけど、だんだん面倒になってきた。そしたら思いついた。_「Dropbox に記事を保存すれば勝手にリビジョン管理してくれるんだから、そっちにバックアップ取ればいいじゃん」__「そもそも Dropbox をデータベースとして使えばよくね？」_というわけで、とりあえず Dropbox を使うところから始めてみた。
+### 準備まず、アプリケーションの作成。別に認証機能は要らないや。今回は SharpBox (http://sharpbox.codeplex.com/) を使って楽をすることにした。NuGetでさくっとインストール。あと、https://www2.dropbox.com/developers/apps でアプリの登録をしておくのも忘れずに。APIキーをここで取得しておく必要がある。### コード#### コントローラーまず、Homeコントローラーを作る。なぜ Home という名前なのかというと、Global.asax を書き換えるのが面倒くさいからですね。わかります。スキャフォールディングも使って楽をしましょう。Index メソッドを書く。とりあえず動かしているだけなのでごちゃごちゃしているけど、接続→ルートの取得→（ファイルアップロード）→ファイルの列挙 という操作をしているだけ。あとでモデルへ追いだそう。``` public ActionResult Index() { var storage = new CloudStorage(); var config = CloudStorage.GetCloudConfigurationEasy(nSupportedCloudConfigurations.DropBox);
+// load a valid security token from fileICloudStorageAccessToken accessToken;using (var fs = System.IO.File.Open(Server.MapPath(&quot;~/App_Data/DropBoxToken&quot;),System.IO.FileMode.Open,System.IO.FileAccess.Read,System.IO.FileShare.None)){accessToken = storage.DeserializeSecurityToken(fs);}// open the connectionvar storageToken = storage." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

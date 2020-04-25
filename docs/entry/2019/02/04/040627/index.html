@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2019/02/04/040627/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Connected Devices プラットフォーム というサービスが CPU を浪費する" />
+    <meta name="og:description" content="  indows 19H1（Fast、Build 18323）で Connected Devices プラットフォーム というサービスがずっと CPU を食っていたので対処。Connected Devices Platform: Excessive CPU UsageMicrosoft Community でそれらしき解決策が載っていたので、今回はその通りにした。
+  md.exe を管理者権限で起動し、以下のコマンドを入力（大文字小文字は関係ない）。
+Sfc.exe /ScanNowDism.exe /Online /Cleanup-Image /StartComponentCleanupDism.exe /Online /Cleanup-Image /RestoreHealth```んで、一応 OS を再起動する。  りあえず収まった気がする。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

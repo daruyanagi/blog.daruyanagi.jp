@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/02/26/205208/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="意図が明確なコード" />
+    <meta name="og:description" content="WebMatrix 2: Markdown を汎用的に拡張する仕組みを考えてみる - だるろぐ でこんなコードを書いた。
+// 型名-型ディクショナリから、メソッド// (Type: p[0]).GetHtml(p[1], p[2]...) // をもつ HtmlHelper を探すvar result = helper_table.FirstOrDefault(name =&gt;{if (type_table.TryGetValue(name, out helper)){args = p.Skip(1).ToArray();method = helper.GetMethod(&#34;GetHtml&#34;,args.Select(_ =&gt; _.GetType()).ToArray());}return method != null;});// 見つからなかった場合は、既定の型・メソッドを利用するif (string.IsNullOrEmpty(result)) {helper = typeof(LinkHelper);args = p;method = helper.GetMethod(&#34;GetHtml&#34;,args.Select(_ =&gt; _.GetType()).ToArray());}```お詫びして訂正いたします。```cs// 型名-型ディクショナリから、メソッド// (Type: p[0])." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

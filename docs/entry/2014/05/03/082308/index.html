@@ -33,7 +33,26 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/05/03/082308/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Dropbox ＋ Microsoft Azure でサイトを管理する" />
+    <meta name="og:description" content="  del&gt;Windows Microsoft Azure Web サイト（MAWS）では、Dropbox のフォルダーとコードを同期して、サイトをデプロイすることができます。
+複数の環境でソースコードを同期しておきたいGit とかよくわかんねーけど、Dropbox なら毎日使ってるぜといったユーザーにお勧めかも。### サイトの作成  ず MAWS で新規サイトを作成してみました。［Web サイト］-［簡易作成］を選択し、
+  RL（サブドメイン）を決めるだけ（ほかはよくわからんのでそのままにした）。
+  きあがり。簡単すぎて鼻血が出そうでした。
+### Dropbox との連携  っきの画面の下の方にある［ソース管理の統合］-［ソース管理からのデプロイの設定］を選択すると、どこに保存されているコードをサイトへデプロイするかが選べます。もちろん、今回は Dropbox を選択。
+  示されるがままに Dropbox との連携処理を行うと……
+  んかフォルダが作成されます。
+  認してみると DROPBPBOX_ROOT\アプリ\Azure にサイトのフォルダがありますね（カタカナ！？）。これを WebMatrix でサイトとして開きます。で、なんでもいいので適当にファイルを置いてみてください。今回は“テストだよ！”と表示するだけの Default.cshtml をルートにおいています。
+  で、サイトの管理画面（ブラウザー）に戻り、下の方にある［同期］ボタンを押してデプローイ！
+  事サイトも動き出しました。たぶん、デプロイってコマンドでもできるよね。静的ページ（動的なのでもいいけど）を Dropbox で管理して、コマンドでデプロイするようにすればいい感じかもしれない。
+" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2015/02/26/220232/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Firefox 36 の検索機能……とは関係ない話。" />
+    <meta name="og:description" content="索機能の新しいユーザーインターフェイスが日本語版でも利用できるようになったらしい。これは割りと便利だと思った。で、それを試していたところ、変なのを見つけた。
+  a href=&quot;http://www.opensearch.org/Home&quot;&gt;Home - OpenSearch っていう規格があって、それに対応しているサイトを検索エンジンとして組み込めるようだ。“Firefox Add-ons”のソースコードを覗いてみると、こんな記述があった。
+&amp;lt;link title=&#34;Firefox アドオン&#34;rel=&#34;search&#34; type=&#34;application/opensearchdescription&#43;xml&#34;href=&#34;/ja/firefox/opensearch.xml&#34; /&gt;```href で参照されている XML の中身はこんな感じ。```xmlxmlns=&#34;http://a9.com/-/spec/opensearch/1.1/&#34;&gt;&lt;shortname&gt;&lt;/shortname&gt;Firefox アドオンtype=&#34;text/html&#34; method=&#34;get&#34; template=&#34;https://addons.mozilla.org/ja/firefox/search/?q={searchTerms}&#34;&gt;height=&#34;16&#34; width=&#34;16&#34;&gt;data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz%0D%0AAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKoSURB%0D%0AVDiNjZNLaJRnFIaf75vvy2UGTWr8NYkxl0IFUYkNXSSZQNWFWlxIEVy1FLLo0i4adddVXRnS4kJw%0D%0AYxci2GaRTWlSFGKFGRXNmFBF62VMO4TENBdjMv9k5p%2F%2FOy4SLzgqHs7yPc95eTlHiQjvqniPbVYR%0D%0AzuBoR%2BFQDEvId4neIPNCY945DayNVff%2F8NUvn9XXNJMv5hhKnTvYP3ymHmj%2FIMBSbmHjjP8fycxv%0D%0A%2BMEzGqtatUI1vK7R7wM4J32XUv3Li%2Fl5imGBkbtXlsMw%2FPF1jXozg3iP3aM0Z8XRBFDr1fl7Og9E%0D%0AnTguXx30p%2F6fjAIozb%2Fi6C4BdB2z6QOfH27ZUFNL0QUELs%2Ftycs4J2zdGEerCADTM1P8df3PxyUZ%0D%0AiKPF8zyGHpwGFLC6QCCRuYA4QQQ6mw4hjhYT77GN2qiBWFnV5sXc0xMAgfKx5foVYKURB2vLPbxo%0D%0AM8auODE6ws%2FfH%2B77dHtjhxp5OHzywpWf%2FIIsRk25Rq0CRFY4UVNNndkmqZFRf3YuWaYUS0aE3RP5%0D%0AMXX3%2FiCOgu3Y1WYfL90sdSDgxRoYTY5mZ2anjwC%2FAqEBdM4tMJ4dwYs1YiOGSBkYrVHqlQNxoC34%0D%0AOV8BdxK9gQ%2Bguo7bwdYdrXu92nU6nR7Pzc%2FPSXxfazTj30IpRaWpIqbX4UQoBDkWJlRwLzVeLBTy%0D%0AGs2UcUX5duzvsfPqNpvDovQhnBIdELGaWFk1hclYmLx2fxmFbNm5qXJNvdi2DQ1WAsO1P%2F5petsh%0D%0Ayf6v25gJ0nxUUUeiP531s%2FkvAcor7MDOL2pjz3JzVKpqUoMTpb8QsSqdeTT98fomjyDv8LP5aKI3%0D%0AuAgQP2orCkGAVRVMZxbQhnQJIAzkm3s3Js6GSfkEQEd4%2Bbpa8%2BTW71P1ANqoB65I93OA2DgV%2BZ%2Bo%0D%0AmgAAAABJRU5ErkJggg%3D%3D&lt;outputencoding&gt;&lt;/outputencoding&gt;UTF-8&lt;inputencoding&gt;&lt;/inputencoding&gt;UTF-8```かなり昔からあるもののようで、そういえば聞いたことがあるような、ないような気もする。Internet Explorer や Google Chrome でも対応していたっぽいのだけど、まったく気づかず（IE の検索プロバイダーってこれなんだっけ……？）、ユーザーインターフェイスの変更で気付いたという次第。余力があればこういうのにも対応しておくと、サービスの使い勝手向上につながるのかもしれない。ちなみに Google Chrome だと OpenSearch の XML ファイルを用意しなくても、検索エンジンとして追加できる。  索フォームのコンテキストメニューから追加。  くわかんないけど、キーワードの部分を %s にでもしておくといいみたい。  ムニバーで検索エンジン名を入力して［Tab］キーを押すと……  イトの検索が行える。この機能は割と便利で、いつもお世話になっていたりする。調べてみると「Opera」（Chrome とほぼ同じ）や「Firefox」（“この検索にキーワードを設定”という、一度聞いただけではよく意味が分からないメニューを使えば実現できる）でも利用できるようだ。世の中、知らないことだらけだな。&lt;ul&gt;&lt;li&gt;&lt;a href=&#34;http://www.forest.impress.co.jp/docs/news/20131120_624409.html&#34;&gt;「Opera 18」がリリース、「Opera Developer 19」では同期機能を実験的にサポート - 窓の杜&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;――わざわざ拡張機能みたいな仕組みを使わなくても、サイトの検索機能をブラウザーに追加できることがあるよ、という話でした。たとえば、カーリルなんかを追加しておくと便利かもしれない。&lt;ul&gt;&lt;li&gt;&lt;a href=&#34;http://blog." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

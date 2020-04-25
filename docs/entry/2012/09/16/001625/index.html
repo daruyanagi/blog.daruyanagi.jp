@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/16/001625/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Windows ストアアプリ開発に挑戦してみたけど難しい……" />
+    <meta name="og:description" content="「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。まず、MarkdownSharp が動かない。これは30分ぐらいかけて手直ししたら動くようになった。HashTable 使っているのを Dictionary に、ArrayList を List に……といった感じ。MD5 の計算ルーチンも動かなかったので、これも WinRT 向けに書き直した。RegexOption.Compiled がないっぽいんだけど、どういうことなんだろうか。まぁ、適当に消しといたけど。そこまではいいんだ。とりあえずデザインなんかを考えずに、エディターとプレビュー用の WebView を同じ画面に置いて、エディターの内容を NavigateToString() で WebView に表示するというのを作った。そしたら、 NavigateToString() するたびにフォーカスが WebView にとられてしまう。これは困った。WPF/Silverlight でも似たようなのを作ってあるのだけれど*1、そっちはそんな挙動じゃなかったのだけど。
+MarkdownSharp.Markdown markdown = new MarkdownSharp.Markdown();private void editor_TextChanged_1(object sender, TextChangedEventArgs e){preview.NavigateToString(markdown.Transform(editor.Text));await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.High, () =&gt;editor.Focus(Windows.UI.Xaml.FocusState.Programmatic));}```ダメもとで強引にエディターへフォーカスを戻そうとしてもやっぱりイマイチだし……どうすればいいんだろうな。ページを遷移させてプレビューさせるのはもちろんできるのだけれど、それはあまりにも不便すぎる。頑張って Rx にして、キー入力のアイドル時にプレビュー → 即座にフォーカスをエディターへ戻すというのも考えたけど、フォーカスが移るたびにソフトウェアキーボードがぴょこぴょこするのが萎える。同様の悩みを抱える人はいるみたいで、 Connect にもバグ報告があった。でも、すぐには治りそうにないよなぁ……。どうしよ。また違うネタ考えるかな。RSS のテンプレをちょちょいといじって提出するのでも最悪構わないけれど、それも面白くないしなぁ。&lt;a href=&#34;https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it&#34;&gt;https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it&lt;/a&gt;まぁ、もうちょっと勉強してから再挑戦するかな。無難に ToDo 管理アプリとか作ってみるか。それにしても、9月末までにちゃんとしたアプリを完成させるのはだいぶ難しそうだ。&lt;div class=&#34;section&#34;&gt;### 追記&lt;div class=&#34;twitter-detail twitter-detail-left&#34;&gt;&lt;div class=&#34;twitter-detail-user&#34;&gt;&lt;a class=&#34;twitter-user-screen-name&#34; href=&#34;http://twitter.com/kamebuchi&#34;&gt;&lt;img src=&#34;http://a0.twimg.com/profile_images/2255188606/mabi1_normal.png&#34; alt=&#34;kamebuchi&#34; height=&#34;48&#34; width=&#34;48&#34;/&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=&#34;twitter-detail-tweet&#34;&gt; @&lt;a class=&#34;twitter-user-screen-name&#34; href=&#34;http://twitter." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

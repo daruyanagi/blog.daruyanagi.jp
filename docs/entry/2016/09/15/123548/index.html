@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/09/15/123548/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="C#：非同期なイベント？" />
+    <meta name="og:description" content="たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。
+public void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= (sender, reason) =&gt; { Hoge(); };}```イベントハンドラ内で非同期コードがある場合は、こんな感じになる。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= async (sender, reason) =&gt;{ await Hoge(); };}```async/await を付け足すだけなので、そんなに難しくはない。次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。非同期じゃない場合はこんな感じ。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= taskInstanceCanceled;}private void taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){Hoge();：：}```これをさっきみたいに非同期にすると、```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= taskInstanceCanceled;// taskInstance.Canceled &#43;= async taskInstanceCanceled;}private async Task taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){await Hoge();：：}```になると思うんだけど、```cstaskInstance." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

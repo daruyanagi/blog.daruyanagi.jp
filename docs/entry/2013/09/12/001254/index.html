@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/09/12/001254/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 3" />
+    <meta name="og:description" content="WebMatrix 3: Twitter でログインする - だるろぐ でめでたく Twitter でのログインが実現できたのだけど、実はひとつ問題があった。
+  ccessTokenSecret が取れない。自分もあんまりよくわかっていないのだけど、Twitter の API を利用するには以下の情報が必要であるみたい。
+  ず、これ。アプリが Twitter へアクセスするために必要。
+ConsumerKeyConsumerSecret次に、これ。ユーザーに成り代わって Twitter の API を使うために必要。AccessKeyAccessKeySecretアプリの登録画面で取得できる AccessKey/AccessKeySecret はアプリを登録したユーザーのアクセスキー。このアプリにログインしたユーザーとして API を利用するには、そのユーザーに対して発行される AccessKey/AccessKeySecret が必要だ。でも、OAuthWebSecurity では ExtraData から AccessKey をもらうことはできても、AccessKeySecret まではくれないみたい。  信を Fiddler でみてみた。ちゃんと authorize したあとに access_token している（ここで AccessKey がもらえる）から、ついでに AccessKeySecret もとってきてくれてもよさそうなのだけど。なにか理由があるのかもしれないが、これではちょっと困る。 これを解決するには、Twitter プロバイダーを自分で実装すればよいようだ。
+// ~/App_Code/TwitterClient.csusing DotNetOpenAuth.AspNet;using DotNetOpenAuth.AspNet.Clients;using DotNetOpenAuth.Messaging;using DotNetOpenAuth." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

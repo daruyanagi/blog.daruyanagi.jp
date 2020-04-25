@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/08/16/211610/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WinRT" />
+    <meta name="og:description" content="  br/&gt;
+&gt;COM コンポーネントを表す型のインターフェイスを COM コンポーネントを表さない型にキャストすることはできません。   んかこんな感じの、まぁ、自分でもよくわからん感じの設計になっていたのだけど、ShareTargetPage の ViewModel でエラーが発生する。問題のコードはこの部分。
+protected void OnPropertyChanged([CallerMemberName] string propertyName = null){var eventHandler = this.PropertyChanged;if (eventHandler != null){eventHandler(this, new PropertyChangedEventArgs(propertyName));}}```ここで InvalidCastException が出る……。&lt;a href=&#34;http://okazuki.hatenablog.com/entries/2012/10/13&#34;&gt;かずきのBlog@hatena&lt;/a&gt; ともちょっと違うのだけど、どうせ似たような原因だと思う。&gt;結果として別スレッドでコレクションを操作したため、エラーになるというWPFやSilverlightなどでおなじみのエラーパターンと同じでした。それにしても、何故InvalidCastExceptionなのだ！！いろいろ試してみたが、結局、自分の場合は Visual Studio でデバッグ実行しているときだけ発生することが判明（？）。共有のテストをするときはデバッグ実行したアプリを終了してから行うという手段で回避できた。いつか根本的に解決できるようになりたいです（小並" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

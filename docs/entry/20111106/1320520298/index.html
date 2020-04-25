@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/20111106/1320520298/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る" />
+    <meta name="og:description" content="指定したフォルダに Markdown 形式のプレーンテキストを配置して、 http://sample.com/Hoge にアクセスしたら、 Hoge.txt がHTMLへ整形のうえ表示できる……なんてWebサイトがあったら、テキストファイルをぽいぽい書いていくだけでページを更新できて楽かなぁ、なんて思いませんかね。ちょっとやってみたのだけど、それに近いことができたので、ちょっと晒してみる。その前に、必要な NuGet を入れておこう。
+Markdown Deep （最近気に入っている Markdown パーサ。MVC3 向けのサンプルもある）Razor Engine （ちょっとあとで面白い機能を付けるために入れておく）んで、 _Pages.cshtml_ に以下のコードを追加。```@using System.IO@{// Layout = &quot;_SiteLayout.cshtml&quot;; レイアウトを使うならコメントアウト// http://sample.com/Pages/Hoge のうち、Hoge を取得string id = UrlData[0];if (string.IsNullOrEmpty(id)) { id = &quot;Home&quot;; }Page.Title = id; // IDをページタイトルにセット。レイアウトで使う// サーバー上の /Pages/Hoge.txt をロードstring path = Server.MapPath(string.Format(&quot;/Pages/{0}.txt&quot;, id));if (!File.Exists(path)) // ファイルあらへん =&gt; 404を投げる{throw new HttpException(404, path &#43; &quot;is not found." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

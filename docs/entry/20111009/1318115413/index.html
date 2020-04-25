@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/20111009/1318115413/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix で FizzBuzz" />
+    <meta name="og:description" content="&gt;それで、そういった類の開発者を見分けるための質問を作り始め、私が｢Fizz-Buzz問題｣と呼んでいる問題のクラスを考え出した。これはイギリスの学校の子供たちがよくやっている遊び(というかやらされている遊び)にちなんで名付けた。Fizz-Buzz問題の例はこんな感じだ。1から100までの数をプリントするプログラムを書け。ただし3の倍数のときは数の代わりに｢Fizz｣と、5の倍数のときは｢Buzz｣とプリントし、3と5両方の倍数の場合には｢FizzBuzz｣とプリントすること。ちゃんとしたプログラマであれば、これを実行するプログラムを2分とかからずに紙に書き出せるはずだ。怖い事実を聞きたい? コンピュータサイエンス学科卒業生の過半数にはそれができないのだ。自称上級プログラマが答えを書くのに10-15分もかかっているのを見たこともある。どうしてプログラマに・・・プログラムが書けないのか? 手元にWebMatrixがあったので、試しに FizzBuzz をプリントアウトするコードを書いてみた。
+#### 本能のおもむくままに```# /App_Code/FizzBuzz.cshtml@helper Print(int count = 100){foreach (var i in Enumerable.Range(1, count)){var s = string.Empty;if (i % 3 == 0) { s &#43;= &quot;Fizz&quot;; }if (i % 5 == 0) { s &#43;= &quot;Buzz&quot;; }if (s == string.Empty) { s &#43;= i.ToString(); }&amp;lt;p&gt;@s&amp;lt;/p&gt;}} @FizzBuzz.Print()&#34; data-lang=&#34;何も考えずに、自分なりの素直なコード。@FizzBuzz.Print()&#34;&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;#### 自己採点 &amp;amp; 反省そのあと、いろいろぐぐってみた。普通はだいたいこのように書くみたいだ。@helper Print2(int count = 100){for (int i = 1; i &amp;lt;= count; i&#43;&#43;){var fizz = (i % 3 == 0);var buzz = (i % 5 == 0);if (fizz &amp;amp;&amp;amp; !" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

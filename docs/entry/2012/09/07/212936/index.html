@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/07/212936/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Twitter の埋め込みタイムラインを WebMatrix で利用する" />
+    <meta name="og:description" content="br/&gt;
+&gt;サイトの上に簡単にTwitterのタイムラインを表示できるツール「埋め込みタイムライン」の提供を始めました。ブログの隣に表示したり、＃ハッシュタグを使ったイベントのページに表示したり、スポーツの試合ページに参加選手のリストを使って選手のツイートを表示するなど、サイト上にリアルタイムのツイートを加えることができます。http://blog.jp.twitter.com/2012/09/blog-post.html   っそく WebMatrix 2 RC版（！）で試してみよう。Login on Twitter でウィジェットを作って cshtml へ貼り付けてみる。
+### ちょっとした注意  *ガッデム／(^o^)＼**貼りつけたスクリプトに @ が含まれているときは注意だね。 Razor はこれを処理すべき変数・メソッドと解釈するので、当然エラーになる。 @ をそのまま出力したい場合は、
+@@daruyanagi // -&gt; &quot;@daruyanagi&quot; ```と @ を重ねて書けばいい。&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### もちろんヘルパーにしてみる……と思ったけれど、結局わざわざウィジェットページへ行かなければならないので、ヘルパーにしてもあまり美味しくないと思った。```cs# ~/App_Code/Twitter.EmbededTimeline.chtml@helper GetHtml(string id, string url, string text = null,int? width = null, int? height = null, string lang = null,string theme = null, string link_color = null,string[] related = null, string aria_polite = null){if (string." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

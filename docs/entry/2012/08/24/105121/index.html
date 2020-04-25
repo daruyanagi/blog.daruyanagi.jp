@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/24/105121/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？" />
+    <meta name="og:description" content="さて、前回（WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。
+using System;using System.Web;namespace WebMatrix.WebData{public static class WebSecurity{public static readonly string EnableSimpleMembershipKey;```WebSecurity は静的クラスです。“EnableSimpleMembershipKey”はよくわかりませんが、 readonly だしとくにわからなくても問題無さそう。 AppSetting から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。 ASP.NET の認証システムは全然わかってないけれど、おいおい解決していきたいです。```cspublic static int CurrentUserId { get; }public static string CurrentUserName { get; }public static bool HasUserId { get; }public static bool Initialized { get; }public static bool IsAuthenticated { get; }```お次はプロパティ群ですね。 CurrentUser に関するさまざまな情報を取得できます。 Initialized だけは &lt;a href=&#34;http://msdn." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/09/03/202159/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Aoba 1.5.0：艦これキャプチャーツールに アニメーション GIF 録画機能をつけた" />
+    <meta name="og:description" content="  りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。
+ダウンロードGitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。  UI クライアントをいくつか比較してみたけど、CloudBerry Explorer というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。
+### 更新点Twitter 投稿画面の改善Gif キャプチャー機能設定の保存コードのリファクタリングTwitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、スクショをリスト List&lt;string でもっておくViewModel で int SelectedIndex をもつImage に List[SelectedIndex] をバインドボタンに SelectedIndex を &#43;&#43;/-- するコマンドをバインドしていい感じに配置するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

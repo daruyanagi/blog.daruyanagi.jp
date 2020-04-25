@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/28/191129/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でユーザー認証機能（4） ―― ログインとログオフ" />
+    <meta name="og:description" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ で無事ユーザー登録ができ、ログインされた。という訳で今回はログアウトを実装しなければならない。
+# Logout.cshtml@{WebSecurity.Logout();var returnUrl = Request.QueryString[&#34;ReturnUrl&#34;];Response.Redirect(returnUrl.IsEmpty() ? &#34;~/&#34; : returnUrl);}```おわり！　ほんとにこれだけだよ……。一応、 Logout?ReturnUrl=~/Account/Login なんかで ~/Account/Login へリダイレクトされるようにしてみたけど。ちなみに、ログイン処理は少し長くなった。```cs# Login.cshtml@{var name = &#34;&#34;;var password = &#34;&#34;;var rememberMe = true;Validation.RequireField(&#34;name&#34;, &#34;You must specify an name address.&#34;);Validation.RequireField(&#34;password&#34;, &#34;You must specify a password.&#34;);if (IsPost){name = Request.Form[&#34;name&#34;];password = Request.Form[&#34;password&#34;];rememberMe = Request.Form[&#34;rememberMe&#34;].AsBool();if (Validation." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

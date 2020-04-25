@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/12/16/181852/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix：　@nakaji のコードをパクって「えひめFreeWi-Fi」スポットを Google Map へマッピング" />
+    <meta name="og:description" content="a href=&quot;http://nakaji.hatenablog.com/entry/2014/12/16/090000&quot;&gt;SGMLReaderで「えひめFreeWi-Fi」サービス提供箇所をスクレイピング - なか日記 を読んで存在を知った。
+&gt;産学官で構成する愛媛県公衆無線LAN推進協議会では、外国人観光客や県内外の旅行者、地域住民等が無料で利用できるWi-Fiスポットの整備を民設民営で進めることにより、その利便性を確保し、愛媛県内の地域活性化を図る「えひめFreeWi-Fiプロジェクト」を推進しています。愛媛県庁／えひめFree Wi-Fiサービス提供箇所等のお知らせ “利便性を確保し”とか“地域活性化を図る”とかいってる割りには、クソ不便なテーブルデータしか用意してないのって、ほんとお役所だなーと思いますね。というわけで、なかじが作ってくれたコードをまるパクリして、それを Google Map へマッピングしてみた。これで、ちょっとは利便性が向上するんじゃないだろうか。マッピングのライブラリは、
+サンプル１ - 「googleマップで複数住所を一括表示」の作り方 - 緑里庵をもらってきた。ちょっとコードが古いので、TypeScript で書き直したりしてみたい。Web ページのコードはこんな感じ（spotList あたりのコードとか汚いけど）。WebMatrix（ASP.NET Web Pages）はこういう“ペライチ”のページを作るときに便利よね。```cs# ~/Default.cshtml@using System.Xml.Linq @using Sgml
+@{ var urlString = &ldquo;http://www.pref.ehime.jp/h12600/wifi/osirase260822.html&quot;;
+XDocument xml;using (var sgml = new SgmlReader() { Href = urlString, IgnoreDtd = true }){xml = XDocument.Load(sgml);}var ns = xml.Root.Name.Namespace;var spots = xml.Descendants(ns &#43; &quot;table&quot;)." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/09/10/021908/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する" />
+    <meta name="og:description" content="WPF アプリケーションからシステムにインストールされた Windows ストア アプリを列挙するには、この Windows Runtime API を使えばいいらしい。
+PackageManager.FindPackagesForUser(String) Method (Windows)ちなみに、Windows ストア アプリからは利用できないとのこと。### 準備というわけで、この API を使うために諸々の準備を行う。#### ターゲットプラットフォームバージョンを指定まず *.csproj ファイルをテキストエディターなどで開き、ターゲットプラットフォームとして Windows 8 以降を指定する。  ロジェクトを一度アンロード。
+  ロジェクトフォルダをエクスプローラで開く。いつからかコンテキストメニューにこのコマンドが追加されていてうれしい。
+  argetPlatformVersionTargetPlatformSDK.TargetPlatformVersion プロパティ (Microsoft.Build.Utilities) を記述して保存。プロジェクトをリロード。
+#### winmd を参照に追加  に、winmd を参照に追加。パスが長いけれど、コモンダイアログで winmd を検索すれば簡単に見つかる。これで IntelliSense で PackageManager クラスが補完できるようになるはず。デスクトップアプリから Windows Runtime API を使う時には、毎回こういう作業が必要になるみたい。知らんけど。
+### コーディングこれで準備はだいたい完了なので、コードを記述していく。#### コードビハインド簡便のため、ViewModel は匿名型で済ませる。```csnamespace WinRTAppsUpdateChecker{using Windows." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

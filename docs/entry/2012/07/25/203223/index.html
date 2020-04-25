@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/07/25/203223/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="失敗の数だけ強くなりたい（ Jason.NET についての補足" />
+    <meta name="og:description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/24/201150&quot;&gt;失敗の数だけ強くなりたい - だるろぐ の補足。
+&quot;files&quot;: {&quot;close_duplicate_tab.js&quot;: {&quot;type&quot;: &quot;application/javascript&quot;,&quot;filename&quot;: &quot;close_duplicate_tab.js&quot;,&quot;raw_url&quot;: &quot;https://gist.github.com/raw/3175551/c7590ad8cfdd352150a8c845ff96fb9f30bd3a65/close_duplicate_tab.js&quot;,&quot;language&quot;: &quot;JavaScript&quot;,&quot;size&quot;: 1465}}```この Json は Dictionary&amp;lt;string, File&gt; でうけることになるのだけど、 File を最初以下のとおりに定義していた。```cspublic struct File{public string @type;public string filename;public string raw_url;public string language;public string size;}```これでもいいのだけれど、フィールドはビューへバインディングできないのでプロパティにした、というのは前回に言った&lt;a href=&quot;#f-1abcc75c&quot; name=&quot;fn-1abcc75c&quot; title=&quot;type の前に @ をつけるのは、 type が予約語であるため。アクセスする場合は File.type でよい&quot;&gt;*1&lt;/a&gt;。```cspublic struct File{public string @type { get; set; }public string filename { get; set; }public string raw_url { get; set; }public string language { get; set; }public string size { get; set; }}```これでうまくいったのだけれど……うっかり struct を class にしてなかった。それでも動くんだな…… struct でもプロパティ持てるの？&lt;a href=&quot;#f-1fd0fe34&quot; name=&quot;fn-1fd0fe34&quot; title=&quot;持てるらしい！　struct はメンバ関数をもてるので、プロパティがプライベートメンバ変数およびそのセッター・ゲッターの糖衣構文だと考えれば、別にできてもおかしくはないということかなぁ。教えて、エロいひと！&quot;&gt;*2&lt;/a&gt;　よくわからなくなってくる。ここでは値を渡すことはないし、のちのち面倒くさいことになったら嫌なので class にしておいたほうが無難かな。まぁ、それは置いておこう。次に気になるのは、プロパティが Snake Case になっていること。やっぱり Pascal Case にしておきたい。試してみたところ&lt;a href=&quot;#f-2b14458a&quot; name=&quot;fn-2b14458a&quot; title=&quot;ドキュメント読めよ&quot;&gt;*3&lt;/a&gt;、 Jason." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

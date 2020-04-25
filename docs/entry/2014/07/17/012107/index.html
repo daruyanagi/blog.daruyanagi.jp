@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/07/17/012107/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix：Web.config の appSettings を使いこなす" />
+    <meta name="og:description" content="WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。
+### 基本  br/&gt;
+#### Default.cshtml```html@using System.Configuration
+&lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;/head&gt; &lt;body&gt; @ObjectInfo.Print(ConfigurationManager.AppSettings) &lt;/body&gt; &lt;/html&gt;
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;#### Web.config```xml&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;&lt;configuration&gt;&lt;/configuration&gt;.web&gt;debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt;.web&gt;file=&quot;Web2.config&quot;&gt;key=&quot;A&quot; value=&quot;a&quot;/&gt;key=&quot;B&quot; value=&quot;b&quot;/&gt;key=&quot;C&quot; value=&quot;c&quot;/&gt;key=&quot;D&quot; value=&quot;d&quot;/&gt;key=&quot;E&quot; value=&quot;e&quot;/&gt;key=&quot;F&quot; value=&quot;f&quot;/&gt;key=&quot;G&quot; value=&quot;g&quot;/&gt;```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;#### 結果  とえば、```csvar a = System." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

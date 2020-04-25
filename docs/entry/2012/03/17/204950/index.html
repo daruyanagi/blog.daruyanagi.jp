@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/03/17/204950/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content=" 最初に生成されたウィンドウがメインウィンドウ" />
+    <meta name="og:description" content="﻿&amp;lt;Application x:Class=&quot;SoundKeyboard2012.App&quot;xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;StartupUri=&quot;MainWindow.xaml&quot;&gt;&amp;lt;Application.Resources&gt;&amp;lt;/Application.Resources&gt;&amp;lt;/Application&gt;こう書いたら、MainWindow がメインウィンドウになると思うじゃないですか。けれど、WPF って「最初に生成されたウインドウがメインウィンドウになる」んだね。Windows型のメンバ変数をフィールドで初期化していた（ public Window HogeWindow = new HogeWindow() ）ので、デバッグ時の動作（MainWindow.xaml がメインウィンドウ）と、リリースバイナリの動作（HogeDialog.xamlがメインウィンドウ）が違っていて、ちょっと困った。
+``` private void Application_Startup(object sender, StartupEventArgs e) { MainWindow = new MainWindow(); }
+明示的にメインウィンドウを指定してあげれば問題ない。&gt;StartupUri を宣言で設定してもプログラムで設定しても、対応する UI リソースは Startup イベントが処理されるまで読み込まれません。 したがって、Startup の処理時には、Windows プロパティまたは MainWindow プロパティからのウィンドウにアクセスできません。Application.StartupUri プロパティ (System.Windows)&gt;MainWindow には、AppDomain でインスタンス化される最初の Window オブジェクトへの参照が自動的に設定されます。Application.MainWindow プロパティ (System.Windows)" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

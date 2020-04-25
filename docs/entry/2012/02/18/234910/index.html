@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/18/234910/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Twitter Bootstrap を v2.0 にしてみた" />
+    <meta name="og:description" content="   米Twitterは1月31日、CSS/HTMLフレームワーク「Bootstrap 2.0」をリリースしたと発表した。画面を格子状に分割して要素を配置する「グリッドレイアウト」を容易に実装できるほか、WebサイトやWebアプリケーション開発に向けたUIコンポーネントが多く含まれている。米Twitter、同社発のCSS/HTMLフレームワーク「Bootstrap 2.0」を公開 - SourceForge.JP Magazine : オープンソースの話題満載 ちょっと様子見していたのだけど、サクっと乗り換えてみた。ドロップダウンメニューやタブが動かなくなった ＼(^o^)／結構色々変わっていて、後方互換性はないみたい。既存のビューを書き換えるのには、多少苦労した。
+&gt;Bootstrap 2.0では、ボタン、ボタングループ、ドロップダウン、タブなどのコンポーネントが書き直されている。また、**グリッドシステムではカラムの数が16から12カラムとなり**、画面の大きさなどに応じて柔軟に調整する**レスポンシブアプローチを導入**、スマートフォン、タブレットなどへの対応が強化された。　フォームスタイルも一新され、jQuery UIなどのツールとの互換性を強化した新しいテーブルスタイルも用意された。**Collapse、Crousel、TypeaheadなどのJavaScriptプラグインも加わっている**。必要な機能を選んで利用するカスタマイズ版も新たに用意された。 とくにカラム数の変更は&hellip;&hellip;描き直しが面倒くさい。ドロップダウンメニューのデザインは新しいほうが格好いいな。しかし、@Html.EditorFor() ではHTMLタグの属性を指定できないんだなぁ。クラス名がないと、ちゃんとデザインしてくれないのでこまる。とりあえず、JavaScript で後からチョコチョコッとクラスをつけておいた。
+```js $(function () { $(&#39;form&#39;).addClass(&ldquo;form-horizontal&rdquo;); $(&#39;label&#39;).addClass(&ldquo;control-label&rdquo;); $(&#39;input&#39;).addClass(&ldquo;input-xlarge&rdquo;); $(&#39;textarea&#39;).addClass(&ldquo;input-xlarge&rdquo;); });
+なお、Twitter Bootstrap は、Visual Studio/WebMatrix ならば Nuget で簡単にインストールできる（プラグインは含まれていない）。ダウンロード＆配置の手間が少しだけ省けるので試すべし。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234746.png&quot; alt=&quot;f:id:daruyanagi:20120218234746p:plain&quot; title=&quot;f:id:daruyanagi:20120218234746p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120218/20120218234748.png&quot; alt=&quot;f:id:daruyanagi:20120218234748p:plain&quot; title=&quot;f:id:daruyanagi:20120218234748p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://daruyanagi.hatenablog.com/entry/2012/01/12/013836&quot;&gt;Twitter Bootstrap はカンタンかつカッコイイ - だるろぐ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

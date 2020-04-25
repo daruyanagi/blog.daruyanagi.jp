@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/20/210729/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でファイルのアップロード（2） の補足" />
+    <meta name="og:description" content="  br/&gt;
+&gt;デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。WebMatrix でファイルのアップロード（2） - だるろぐ 思いついたのだけれど、無理してビューまたは Json を返そうとしなくてもステータスコードだけ返せばいいな。最初にわざとエラーを発生させるコードを書いてそこで return してしまえば、 try……catch 文のネストを減らせるし。
+@{try // Catch Request-too-long Error {var dummy = Request.Files;}catch (Exception e){Response.StatusCode = (int) HttpStatusCode.InternalServerError;Response.Write(e.Message);return;}if (IsPost){：：```これをするとどうなるのかというと、  ず、デカいファイルを投げる（既定では約4MB以上）。  ーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。  .ajax() の error プロパティでそれを拾って……  TML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

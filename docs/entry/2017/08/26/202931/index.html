@@ -33,7 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/08/26/202931/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Surface Laptop ＋デュアルディスプレイ環境のための AHK スクリプトを書いた" />
+    <meta name="og:description" content="日は重い腰を上げて、たまっていたタスクをいっぺんに片づけた。
+メインのデスクトップ PC に貰い物のグラボを刺した（5月にもらったのに、そのまんま放置！　電源が足りててよかったー）Surface 3 を Windows 10 S（Insider Preview）にした（これはまた後日書くと思う）Surface Laptop を Windows 10 Pro にして、いろいろお仕事ができる環境にした週末までに Amazon で買いあさった便利グッズで部屋を整理したついでに、Surface Laptop ＋デュアルディスプレイ環境をより使いやすくするための AutoHotKey スクリプトをしこしこ書いてた。慣れないからやたら時間かかったけど、だいぶ使い勝手が上がった気がする。### マルチモニター環境でウィンドウを移動するWindows 10 では［Windows］＋［Shift］＋［→］キーや［Windows］＋［Shift］＋［←］キーで**“アクティブウィンドウを隣のモニターへ移動”**できるのだけど、このショートカットを押すのがめんどくさい。Surface Laptop のキーボードには、右［Windows］キーがないので、どうしても両手を使う必要がある。  いうわけで、右側の［Shift］キーをと矢印キー（要するにキーボードの右下らへん）だけで移動できるようにした。
+&gt;&#43;Right::Send,{RWin Down}{RShift Down}{Right}{RShift Up}{RWin Up}```［Windows］＋［Shift］＋［→］キーは&lt;code&gt;#&#43;Right&lt;/code&gt;と書けると思ったのだけど、それではうまくいかないみたいで、解決策を探すのにだいぶ時間を食ってしまった。でも、おかげでアクティブウィンドウを片手でほいほいモニター移動できるようになった。要らないウィンドウはポイだ！&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ドックに接続せずに使うときは仮想デスクトップをバリバリ使うさて、ドックから外したときは画面が一つになってしまうので、代わりに仮想デスクトップをバリバリ使いたいよね。でも、仮想デスクトップ関連のホットキーも［Windows］キーを使うので、同じような問題に直面してしまう。というわけで、これも右手だけで行えるようにしてみた。; Virtual desktop (Left Move)
+ !Left::Send,#^{Left} AppsKey &amp; Left::Send,#^{Left}
+ ; Virtual desktop (Right Move)
+ !Right::Send,#^{Right} AppsKey &amp; Right::Send,#^{Right}" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

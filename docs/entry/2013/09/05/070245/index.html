@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/09/05/070245/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 3" />
+    <meta name="og:description" content="ょっと Twitter と連携するアプリを作ってみたかったのだけど、“スターター サイト”テンプレートを使った例以外はあまり載っていなかったので、今回はそれを使わずに、“空のサイト”テンプレートから作ってみるよ。というのも、ググってたら自分のサイトが検索に引っかかって、WebMatrix 2：OAuth でログインする（２） - だるろぐ を放置することすでに半年経つことが判明したので……さすがにこの当時のことはあまりよく思い出せないのだけど、今回の記事がフォローアップのようなものになれば幸い。
+### 下準備  ず NuGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。これで“スターター サイト”テンプレートでも使われている OAuthWebSecurity Class (Microsoft.Web.WebPages.OAuth) | Microsoft Docs が使えるようになる。
+  に https://dev.twitter.com/apps/ でアプリの登録を行っておく。登録祭の必須入力事項は以下のとおり。
+Name: アプリの名前Description: titleWebsite: http://127.0.0.1:****/ （localhost は無効な URL として蹴られる）Callback URL: http://127.0.0.1:****/ （空っぽだと動かないっぽい）Allow this application to be used to Sign in with Twitter: 無効化アプリを登録したら、Consumer keyConsumer secretを取得し、~/_AppStart." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

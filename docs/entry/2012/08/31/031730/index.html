@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/31/031730/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた" />
+    <meta name="og:description" content="事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせずにすんだよ（ぉ Video streaming by Ustream興味ある人は USTREAM をご覧あれ。わしもよくわからんけど、とりあえず SignalR （http://signalr.net/）というのは、
+ASP.NET テクノロジをベースとした非同期でリアルタイムなサーバーとクライアントの双方向通信を実現するライブラリ、ってことでいいのかな。サーバーとクライアントの通信で利用される技術は、 SignalR が勝手にチョイスしてくれるみたい（モダンな環境なら WebSocket を、クラシカルな環境だったらポーリングを、ってな感じ）。詳しくはエロいひと、じゃなくて偉いひとに聞いて欲しい。ともあれ、忘れないうちにこれを WebMatrix で使ってみる。### サーバー側のコード```cs# ~/App_Code/SampleHub.csusing SignalR.Hubs; // &lt;&ndash; NuGet でインストールしる！
+[HubName(&ldquo;sample&rdquo;)] // &lt;&ndash; あとで createProxy(&ldquo;sample&rdquo;) と使う public class SampleHub : Hub { private static string _message = &ldquo;&quot;;
+private string Message{get { return _message; }set{_message = value;// 接続中のクライアントすべてに Echo() 命令を送るClients." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/07/20/223507/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix：IHttpModule で定期実行を実装する" />
+    <meta name="og:description" content="WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の neue cc - ASP.NETでの定期的なモニタリング手法 でもう一度実装しなおしてみた。
+  br/&gt;
+### Web.config```xmlxml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;? .web&gt; debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt; .web&gt;
+.webServer&gt;  name=&quot;SchedulerModule&rdquo; type=&quot;SchedulerModule&rdquo;/&gt;
+.webServer&gt;
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ~/App_Code/ScheduleModule.cs```csusing System;using System.Threading;using System.Web;public class SchedulerModule : IHttpModule{static int initializedModuleCount = 0;static Timer timer;public void Init(HttpApplication context){var count = Interlocked." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

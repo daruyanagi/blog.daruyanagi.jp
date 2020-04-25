@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/02/03/160915/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 2：OAuth でログインする（２）" />
+    <meta name="og:description" content="WebMatrix 2：OAuth でログインする - だるろぐ の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。
+### NuGet で必要なものをインストール  uGet で NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7 をインストール。まえにやったとき（さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。
+  れをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。
+### ~/_AppStart.cshtmlWeb サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。```cs@{// いろんなところで使うので、グローバルにアクセスできるようにしとくかApp.Database = &#34;Database&#34;;// ユーザー管理用のテーブルを初期化・作成WebSecurity.InitializeDatabaseConnection(App.Database,&quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;,autoCreateTables: true);// Google の OAuth を使います！OAuthWebSecurity.RegisterGoogleClient(); }
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ~/Account/Login." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

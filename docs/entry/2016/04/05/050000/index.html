@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/04/05/050000/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="UWP：一定時間が経過すると勝手に消えるメッセージを実装する" />
+    <meta name="og:description" content="画面に「保存しました」っていうメッセージを出したいけれど、いつまでも表示されてるのも鬱陶しいので、たとえば3秒後に消したい、みたいな。
+public class MainPageViewModel : BindableBase{private string message = string.Empty;public string Message{get { return message; }set { SetProperty(ref message, value); }}private void ShowMessage(string message){Message = message;var timer = new DispatcherTimer(){Interval = TimeSpan.FromSeconds(3),};timer.Tick &#43;= (e, args) =&gt; { Message = string.Empty; };timer.Start();}}```とにかく DispatcherTimer というのを使うと、遅延タスクみたいなのを実装できるみたい。Message プロパティの setter に処理をぶち込んでもいいかも？　どういう書き方がキレイな書き方なのかまだよくわかんないな。上級者は ReactibeExtension みたいなのを使いこなして、スッキリ書いちゃうのかもしれないが……。あと、ほんとは XAML だけでできればカッコいいのだろうけれど、自分には無理だった。で、テキトーに作ってみてから思ったのだけど、こういうのはユーザーコントロールにしておけばよさげだよね。というわけで、次回はユーザーコントロールでも作ってみる。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

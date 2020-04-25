@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/24/095023/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でユーザー認証機能 ―― 準備編" />
+    <meta name="og:description" content="お次はユーザー認証機能に挑戦しますかね？　Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。というわけで、“Startar Site”テンプレートをみながら勉強しようかなぁ、と思ったのだけど……ナンテコッタイ／(^o^)＼　ソースを見てみたら文字化けしてたり改行が吹っ飛んでたりで、一部ソースコードがぶっ壊れていた。修正を試みたのだけれど、途中で「いや待て、“Empty Site”から自分で作ったほうが勉強になるかもしれない」と思い直し、まっさらなWebサイトを作ってユーザー認証機能を追加してみることにした。### データベースを作成まずはユーザー情報を格納するデータベースを作成。名前は……思いつかなかったから“database.sdf”でいいや。リネームした時のことを考えて、データベース名は App に格納しておくことにした。アプリケーションの起動時に実行される _AppStart.cshtml に記述しておく。```cs#_AppStart.cshtml@{ App.Database = &ldquo;database&rdquo;; // 拡張子は要らないっぽい }
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ユーザー情報テーブルを作成次に、認証情報を保存しておくテーブルを作成する。 WebMatrix では WebSecurity Helper というお手軽な認証システムがあるらしい。“Startar Site”テンプレートでも利用されていたのでそれを使おう。 WebSecurity.InitializeDatabaseConnection() でユーザー情報を管理するテーブルが初期化されるみたい。```cs#_AppStart.cshtml@{App.Database = &quot;database&quot;;WebSecurity.InitializeDatabaseConnection(App.Database, // データベース名&quot;Users&quot;, // テーブル名&quot;UserId&quot;, // ID を格納するカラム&quot;Name&quot;, // 一意なユーザー名を格納するカラムtrue // テーブルがなかったら作れ);}```しかし、「WebSecurity などというクラスは知らない」と怒られてしまう。デフォルトでは入っていないのね……&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093457.png&quot; alt=&quot;f:id:daruyanagi:20120824093457p:plain&quot; title=&quot;f:id:daruyanagi:20120824093457p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;“Startar Site”テンプレートを「Visual Studio」でみてみたら、 WebMatrix.WebData.dll というアセンブリが必要であるらしい。これもどうせ NuGet で取得できるんでしょ？ わかってる、わかってる！&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### Microsoft ASP." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

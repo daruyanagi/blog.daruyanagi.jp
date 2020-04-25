@@ -33,7 +33,16 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/11/10/131055/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Windows 8 の［Windows］＋［X］メニューをカスタマイズする" />
+    <meta name="og:description" content="### 基本的な仕組み［Windows］＋［X］キーで利用できる Windows 8 の管理メニューの構成は、```%LocalAppData%\Microsoft\Windows\WinX```に保存されている。単にフォルダ分けして、ショートカットファイルが収められているだけなので、簡単にカスタマイズできる……ように見える（後述）。ショートカットファイルをフォルダ分けしておくと、メニューが表示されるときにスプリッタ―で分割されるので、多少見やすくなる。「Group*」という命名規則に従う必要は必ずしもないようだが、もしかしたら表示順序などには関係するのかもしれない。従っておいたほうが無難だと思う。#### 寄り道ここで少し気になるのは、コマンドプロンプトのショートカットファイルが2種類あることだろう。この違いは管理者権限の有無だ。これはショートカットファイルの［詳細設定］で変更できる。ちょっと階層が深い……。### メニュー項目をカスタマイズしてみるとりあえずデスクトップに転がっていたショートカットファイルを「新しいフォルダー」に突っ込んでみた。これだけだと何も起こらないので、エクスプローラーを再起動してみる。すると、スプリッタ―だけが追加された。メニュー項目は追加されない。&gt;The entries on the menu are driven by shortcut (.lnk) files present in each Group folder located at %LocalAppData%\Microsoft\Windows\WinX. But you can’t manipulate the shortcuts within or add new ones. That’s because at first invocation (e.g. a fresh boot), the menu scans for and only adds approved shortcuts.Windows 8 Secrets: The WinX Menu and its hashing algorithm Within Windows どうやら管理メニューが最初に呼び出されるときに、ショートカットファイルをスキャンして“承認された”ものであるかどうかチェックが入るようだ。“承認された”ショートカットファイルを作成するには、" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

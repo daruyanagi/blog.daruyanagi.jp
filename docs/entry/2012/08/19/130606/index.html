@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/19/130606/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でファイルのアップロード" />
+    <meta name="og:description" content="今日は「WebMatrix 2」でファイルのアップロードを試してみた。なお、このサンプルは「Empty Sites」テンプレートを元に作成している。
+### Delault.cshtml```html&lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;/head&gt; &lt;body&gt; &lt;form action=&quot;~/Upload&rdquo; method=&quot;post&rdquo; enctype=&quot;multipart/form-data&quot;&gt; &lt;input type=&quot;file&rdquo; name=&quot;upload&rdquo; /&gt;&lt;br /&gt; &lt;input type=&quot;submit&rdquo; name=&quot;submit&rdquo; /&gt; &lt;/form&gt; &lt;/body&gt; &lt;/html&gt;
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### Upload.cshtmlアップロード処理を行う cshtml はこんな感じにしてみた。ほんとは path が存在しなければ例外、 file のサイズが 0 ならば例外、 file が image/*** でなければ例外、といったチェックを入れるのだけれど、ソースが長くなるので割愛している。あと、最初から複数ファイルのアップデートに対応できるように記述している。```cs@using System.IO@functions {enum Result { Success, Error };}@{var result = Result.Error;var message = &quot;You can use only POST method." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

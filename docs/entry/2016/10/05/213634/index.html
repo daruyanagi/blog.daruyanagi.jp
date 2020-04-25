@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/10/05/213634/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Macbook でサクッと Task View が呼べたらいいのになぁ、という話。" />
+    <meta name="og:description" content="acbook（macOS）だと三本（指の）スワイプで Mission Control 呼んだりデスクトップ切り替えたりできるじゃないですか。Surface でも Task View が呼べるよね。そういうのを Bootcamp で Windows 10 をいれた Macbook でもやりたいんだけど（Surface で慣れちゃったし！）、Apple のタッチパッドのドライバーはウンコで、三本スワイプをサポートしていない。そんなわけで Trackpad&#43;&#43; というのを試してみたんだけど……Trackpad&#43;&#43; Driver: alternate Windows driver with multi-touch gesture support for Macbook trackpads in Boot Camp environment. Now with Force Touch trackpads support.こいつ、要らん変なアプリ入れなきゃいけないし（バッテリーセーバーらしいが）、Windows 10 がテストモード（署名なしドライバーを入れるためのモード）になるし、かなりイマイチ。おカネ払ってもいいから、署名付きのドライバーほしいなぁ。仕方ないので、次善の策として Autohotkey を試してみた。AutoHotkey［Fn］＋［→］キーとか［Fn］＋［←］キーで仮想デスクトップを切り替えられれば、まぁ、三本スワイプと大して変わらない使い勝手にはなるかもしれない。ほとんど隣同士だし。というわけで、キーコードを調べてみたんだけど
+［Fn］＋［←］キー：［Home］キー［Fn］＋［→］キー：［End］キーなんだな。他のも調べてみると、［Fn］＋［↑］キー：［PageUp］キー［Fn］＋［↓］キー：［PageDown］キー［Fn］＋［Enter］キー：［Insert］キーみたいな感じらしい。デスクトップならともかく、ラップトップでは［Home］だの［End］だのはあまり使わないので（コンビネーションしてまで使うキーではないよね）、こいつらにショートカットを割り当てることにした。```End::Send, #^{Right} &#39;右のデスクトップに移動Home::Send, #^{Left} &#39;左のデスクトップに移動PgUp::Send, #{Tab} &#39;Task View PgDn::Send, #{Tab} &#39;Task View" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

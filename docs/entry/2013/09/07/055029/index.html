@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/09/07/055029/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 3" />
+    <meta name="og:description" content="またま Tweetinvi a friendly Twitter C# API - Home というのをみかけたのだけど、割と便利だった。
+@{var token = new TwitterToken.Token(&#34;*****************Pj5ecAhlw3SqBPU5qHtBUSiTQDcgmUzBU&#34;, &#34;*****************RZSPVglcM0TfE7mPCFzm334rw&#34;, &#34;*****************cSizQ&#34;, &#34;*****************zws06agyxRXImPk9sfETNQeg&#34;);if (IsPost){var tweet = new Tweetinvi.Tweet(&#34;てすてす&#34;);tweet.Publish(token);}}&amp;lt;!DOCTYPE html&gt;&amp;lt;html lang=&#34;ja&#34;&gt;&amp;lt;head&gt;&amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt;&amp;lt;meta charset=&#34;utf-8&#34; /&gt;&amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;&amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt;&amp;lt;/head&gt;&amp;lt;body&gt;&amp;lt;ul&gt;@foreach (var tweet in new Tweetinvi.User(&#34;daruyanagi&#34;, token).GetUserTimeline()){&amp;lt;li&gt;@tweet.Text&amp;lt;/li&gt;}&amp;lt;/ul&gt;&amp;lt;form action=&#34;&#34; method=&#34;post&#34;&gt;&amp;lt;input type=&#34;submit&#34; /&gt;&amp;lt;/form&gt;&amp;lt;/body&gt;&amp;lt;/html&gt;  ET でタイムラインを表示（なんかゴミ（\）が入ってるけど、バグかな。あとで報告しよう）。POST でツイート。てすてす2013-09-07 05:45:16 via 建造メモTwitter 系のライブラリってピンキリだけど、これは UserStreams も扱えるようで、悪くない感じかな。デスクトップアプリにも組み込める、というか、PIN の認証はあるけど Web アプリの認証は今のところ未実装みたいなので、どっちかっていうと今のところデスクトップアプリ向けって感じ。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

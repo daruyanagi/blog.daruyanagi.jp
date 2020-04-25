@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/07/02/052135/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する（3）" />
+    <meta name="og:description" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ3年前のブログ記事のソースコードを（ググったらでてきた……）そのままコピーしても動かなかったので。復習しておくと、システムにインストールされた Windows ストア アプリを列挙するフローはこんな感じ。
+Windows.Management.Deployment.PackageManager の FindPackages() などでパッケージ package を取得package.DisplayName は残念ながら空package.InstalledLocation.Path にある AppxManifest.xml を解析して取得するDescription や Logo なども同様の手段で取得AppxManifest.xml から DisplayName を取得すると ms-resource:// で記述されている場合があるSHLoadIndirectString() API で文字列を取得するまず、AppxManifest.xml を解析。前回との違いは、ネームスペースが変わっていても大丈夫なよう LocalName で要素を探すようにしたところぐらい。```csprivate string GetDisplayNameFromManifest(string installedPath){var xml = File.ReadAllText(Path.Combine(installedPath, &#34;AppxManifest.xml&#34;));var doc = XDocument.Parse(xml);var value = doc.Descendants().First(_ = _.Name.LocalName == &#34;DisplayName&#34;).Value;return value; }" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

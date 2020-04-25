@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/17/235654/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Common フォルダをチラ見してみる" />
+    <meta name="og:description" content="Windows ストアアプリ*1を作り始めたひとは、かならず一度は Common フォルダをジックリみたほうがいいと思う。わしはめんどいのでチラ見した。
+### LayoutAwarePage クラス&gt;使用するテンプレート ページはすべて LayoutAwarePage クラスから派生しており、新しいアプリの MainPage.xaml に使う空白のページよりもずっと多くの既定の操作があります。LayoutAwarePage は、Metro スタイル アプリ開発の重要な機能を実現する Page を実装したものです。 **［ViewState］**アプリケーション ビュー状態を表示状態にマッピングすることで、ページをさまざまな解像度、向き、ビューに対応させることができます。 **［Navigation］**GoBack イベント ハンドラーと GoHome イベント ハンドラーは基本的なナビゲーションをサポートします。 **［ViewModel］**既定のビュー モデルは、単純でバインド可能なデータ ソースを提供しています。 **［SaveState/LoadState］**SaveState と LoadState メソッドは、アプリのセッション状態を管理するために SuspensionManager クラスで利用します。 また、ページ テンプレートでは、Metro スタイル アプリの設計ガイドラインに準拠した StandardStyles.xaml に記述されているスタイルとテンプレートを使います。冒頭部でこれらのスタイルのいくつかを使い、そのコピーを変更してアプリの外観をカスタマイズします。
+ パート 4: ブログ リーダーを作成する (C#/VB と XAML を使った Metro スタイル アプリ) よくわからんけど、そういうものらしい。ただ、ViewModel はタダのディクショナリで、 MVC なんかで使われる ViewModel に近い感じで、単なる初期データを表示するビューワーとしてならともかく、それ以上のことをするには何か工夫がいるのかもしれない。あと、LayoutAwarePage クラスの定義は、テンプレートによって入っていないこともある。たとえば、空のプロジェクトから始めてあとからテンプレートページを追加した場合、ビルド時に「LayoutAwarePage がない」と言われる（後述の BindableBase もそうだと思う）。そんなときはリッチなプロジェクトを一度作って、そこからコピーしてくればいいみたいだね。
+#### 追記 （2012/09/18 0:42）勝手に追加してくれるっぽい。テキトーにダイアログを読み飛ばしていたわしが悪い。### BindableBase クラスINotifyPropertyChanged の ." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

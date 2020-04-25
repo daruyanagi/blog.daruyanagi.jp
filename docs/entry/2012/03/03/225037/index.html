@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/03/03/225037/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Flickr の URL を画像タグへ変換する（oEmbed）" />
+    <meta name="og:description" content="eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を サードパーティ上で、写真自体の埋め込みに変換したいときに、 埋め込みに必要なパラメータを取得するためのプロトコルみたいです。
+ URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World 前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。
+``` using System; using System.Collections.Generic; using System.Linq; using System.Web;
+using Codeplex.Data; using System.Net;
+public static class FlickrHelper { private static readonly string Endpoint = @&ldquo;http://www.flickr.com/services/oembed&quot;; public static string FORMAT_URL = @&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;; public static string FORMAT_HTML_TAG = @&rdquo; &lt;blockquote&gt; &lt;p&gt;&lt;img src=&#39;{0}&#39; alt=&#39;{1}&#39; /&gt;&lt;p&gt; &lt;p&gt;&lt;small&gt;{1} by &lt;a href=&#39;{3}&#39;&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt; &lt;/blockquote&gt; &ldquo;; public static string FORMAT_ERROR = @&quot;&lt;p class=&#39;error&#39;&gt;{0}&lt;/p&gt;&rdquo;;" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

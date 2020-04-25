@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/09/08/003344/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="はてなブログが oEmbed に対応したらしいので WebMatrix で使ってみる" />
+    <meta name="og:description" content="br/&gt;
+はてなブログoEmbed APIを公開しました。ブログカードの情報をAPIで取得できます（開発者向け） - はてなブログ開発ブログせっかくなので、WebMatrix のヘルパーにしてトップページでも使ってみた。```cs# ~/App_Code/OEmbed.cshtml@helper Hatena (string url) { try { using (var downloader = new WebClient()) { var request = string.Format( &ldquo;http://hatenablog.com/oembed?url={0}&amp;amp;format={1}&quot;, url, &ldquo;json&rdquo; );
+ var oembed_data = downloader.DownloadString(request);var oembed_json = Json.Decode(oembed_data);@Html.Raw(oembed_json.html);// @ObjectInfo.Print(oembed_json)}}catch (Exception e){&amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @e.Message&amp;lt;/p&gt;} }
+```cs@OEmbed.Hatena(&quot;https://blog.daruyanagi.jp/entry/2014/07/03/035624&quot;)  てなブログのところだけデザインがカッコよくて違和感があるけれど、まぁ、とりあえずこれで。
+  ObjectInfo.Print() を有効化してみると JSON でもらえる値がわかるので、これを利用して周りにフィットするようにダサくカードをデザインし直してもいいな（何" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

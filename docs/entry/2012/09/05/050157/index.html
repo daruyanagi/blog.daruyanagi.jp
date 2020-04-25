@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/05/050157/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="ダミーイメージがもらえなくて激怒したので WebMatrix でスマートに解決してみたけど一部激怒した" />
+    <meta name="og:description" content="Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 http://dummyimage.com はある。こいつはパラメータを与えて URL を投げるだけで、いろんなサイズ・色のダミーイメージをじぇねれいと*1してくれるクールなサービスなんだ。
+### もっとクールにでも、まさか WebMatrix を使っているおシャレさんのなかに、 &lt;img src=&#34;htt... だなんて毎度いちいち手入力してるヤツはいないよな。もちろん、ヘルパーにしておいて自動補完機能に入力させるハズだ。機械でできることを手でやるのはアホのすることだ*2。```cs#~/App_Code/DummyImage.cshtml@helper GetHtml(string args, object attrs = null) { if (attrs != null) { attrs = string.Join(&rdquo; &ldquo;, attrs .GetType() .GetProperties() .Select(_ =&gt; string.Format( &ldquo;{0}=&quot;{1}&quot;&quot;, _.Name, _.GetValue(attrs) ) ) ); } &lt;img src=&quot;http://www.dummyimage.com/@Html.Raw(@args)&rdquo; @Html.Raw(attrs) /&gt; }
+```cs@DummyImage.GetHtml(&quot;640x16:9&quot;)```と書くだけ&lt;a href=&quot;#f3&quot; name=&quot;fn3&quot; title=&quot;実質的にはほとんど @ , dumm... , g, &quot; 640x16:9&quot;=&quot;&quot; と入力するだけ！&quot;=&quot;&quot;&gt;*3&lt;/a&gt;で、実行時に```cs&amp;lt;img src=&quot;http://www.dummyimage.com/640x16:9&quot; /&gt;```のような HTML コードへ展開される。画像タグに alt 属性をつけなければ瞬時に息絶える W3C 原理主義者や、 style を埋め込みたいなんていうわがままさんはこんな感じで書けばいい。```cs@DummyImage." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

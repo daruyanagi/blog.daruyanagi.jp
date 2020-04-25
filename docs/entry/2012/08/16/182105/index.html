@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/16/182105/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="App_Code でサブフォルダーを利用する" />
+    <meta name="og:description" content="回（WebMatrix で Markdown を少しだけ拡張してみる - だるろぐ）、 Hilight.js をこのようなフォルダー構成で配置したの、覚えてますか。
+~/App_Code/Highlight.cshtml &amp;lt;-- ぇ？Highlight/Lisence FilesContent//HighlightTheme SkinsScripts/Highlight/hilight.pack.js```パッとみて「これイケてなくね」って思いません？ Highlight.cshtml は ~/App_Code/Highlight 以下の配置される方がキレイですよね。~/ App_Code/ Highlight/ Highlight.cshtml &lt;&ndash; こうだろ！ Lisence Files Content/ Highlight/ Theme Skins Scripts/ Highlight/ hilight.pack.js
+```xml&lt;!--?--&gt;xml version=&quot;1.0&quot;?&gt;&lt;configuration&gt;&lt;/configuration&gt;.web&gt;debug=&quot;false&quot;&gt;&lt;codesubdirectories&gt;&lt;/codesubdirectories&gt;directoryName=&quot;Highlight&quot;/&gt;.web&gt;```~/App_Code/ フォルダーではソースコードの言語を自動判別してくれるのだけれど、サブフォルダーに分ければ異なる言語を混ぜて利用する、なんてこともできるらしい。へぇ、知らなかった。&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/en-us/library/t990ks23.aspx&quot;&gt;Shared Code Folders in ASP.NET Web Site Projects | Microsoft Docs&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;  も、この方法でサブフォルダーをコンパイル対象に含めても cshtml ファイルの面倒まではみてくれないみたい……。しょうがないので、静的クラスに書き換えてしまおう。```cs# Highlight." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

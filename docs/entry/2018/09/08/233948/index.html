@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2018/09/08/233948/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="9月8日：巷もすなる Blazor というものを、おっさんもかいてみんとてするなり" />
+    <meta name="og:description" content="もすなる Blazor というものを、おっさんもかいてみんとてするなり。この前のプロ生・大阪で聞いてきた内容を反芻しながらだけど、実際手を動かしてみるといろいろわからんことがでてきた。9月1日：プロ生勉強会 第53回＠GMOインターネット（大阪）に参加してきました（※勉強会の話はあまりない - だるろぐちなみに Blazor というのは Razor（C#）で WebAssembly を作っちまおうぜっていうプロジェクトなのだそうだ。サーバーもクライアントも C# で書けるのがいいと思う（JavaScript は極力やりたくねー！）。
+### @inject HttpClient HttpDI で注入するとクライアントで HttpClient が使えるようになるんだけど、なんで @using じゃないのかなー……たぶん「HttpClient をクライアントで使うぜー、アセンブリをローカルへダウンロードしてくれー」って言わなきゃいけないからだな。### HtmlStringエンコード済みの文字列を扱いたかったのだけど、MvcString や HtmlString がなかった。代わりにMarkupStringというのがあるので、それを使うといいらしい。```cs@((MarkupString)myMarkup)@functions { string myMarkup = &ldquo;This is a markup string.
+&rdquo;; }
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### Loading......クライアントに```cs@if (obj == null){&amp;lt;p&gt;Loading...&amp;lt;/p&gt;}else{&amp;lt;p&gt;@obj.Hoge&amp;lt;/p&gt;}```などと書くと&lt;code&gt;obj&lt;/code&gt;にオブジェクトが格納されるまで「Loading...」と表示されるんだけど、これがなぜかよくわからんかった。で、いろいろこねくり回して気が付いたんだけど、&lt;code&gt;protected override async Task OnInitAsync()&lt;/code&gt;で変数を初期化するとビューがリロードされるのかもしれない。変数を複数用意して&lt;code&gt;OnInitAsync()&lt;/code&gt;で初期化してみたけど、XHR のときみたいにロードが完了した変数から表示されていくのではなく、すべての読み込みが完了してからページが書き換えられた。そうだとしたら、とくに難しくはない。&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ShiftJIS の扱い今回は鉄道やフェリーの運行情報をスクレイピングするサイトを作っていたのだけど、1件だけ ShiftJIS なサイトがあった（ガッデム！）。ASP." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

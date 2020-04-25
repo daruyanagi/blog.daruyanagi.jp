@@ -33,7 +33,16 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/23/000547/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="なぜ var d = new Dictionary&amp;lt;string, string&amp;gt; { { &amp;quot;a&amp;quot;, &amp;quot;b&amp;quot; }, { &amp;quot;c&amp;quot;, &amp;quot;d&amp;quot; } } と書けるのか ―― コレクション初期化子" />
+    <meta name="og:description" content="Dictionary ってその場で初期化できるんだね。 private Dictionary&lt;string, string=&#34;&#34;&gt; AllowedFileType =new Dictionary&lt;string, string=&#34;&#34;&gt;(){{ &#34;image/jpeg&#34;, &#34;jpg&#34; },{ &#34;image/png&#34; , &#34;png&#34; },{ &#34;image/gif&#34; , &#34;gif&#34; },};```こっちのほうがいいや。これまでのサンプルを NuGet パッケージにしてみました - だるろぐ&lt;/string,&gt;&lt;/string,&gt;簡単に書けるのはとっても素晴らしいのだけれど、イマイチこうやって書ける理由がわからなかったので調べてみました。&lt;div class=&#34;section&#34;&gt;### C# 3.0 のコレクション初期化子*1とりあえず、基本となるコレクション初期化子（配列初期化子）の復習から。&gt;List は、次のように作成して初期化することができます。```csvar contacts = new List&lt;contact&gt; {new Contact {Name = &#34;Chris Smith&#34;,PhoneNumbers = { &#34;206-555-0101&#34;, &#34;425-882-8080&#34; }},new Contact {Name = &#34;Bob Harris&#34;,PhoneNumbers = { &#34;650-555-0199&#34; }}};```これは、以下と同じ効果を持ちます。```csvar contacts = new List&lt;contact&gt;();var __c1 = new Contact();__c1." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/28/081228/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="寄り道" />
+    <meta name="og:description" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ の脱線。個人的には
+&amp;lt;fieldset&gt;&amp;lt;legend&gt;Register Your Account&amp;lt;/legend&gt;@this.RenderTextWithValidation(&#34;name&#34;, &#34;Name&#34;, new { Value = name} )@this.RenderPasswordWithValidation(&#34;password&#34;, &#34;Password&#34;)@this.RenderPasswordWithValidation(&#34;confirmPassword&#34;, &#34;Confirm Password&#34;)&amp;lt;input type=&#34;submit&#34; value=&#34;Register&#34; /&gt;&amp;lt;/fieldset&gt;```って書くのがイケてない。「&#34;password&#34;, &#34;Password&#34;」だの、「&#34;confirmPassword&#34;, &#34;Confirm Password&#34;」だの、おんなじこと二回も書きたくないじゃん。あと、 HTML 要素の class や id は勝手にハイフン区切りにしてほしい。 Ruby on Rails にはソレ系のユーティリティが用意されているので楽なんだけどな（ActiveSupport）。まぁ、なければ作れって話だ。まず、あると便利な拡張メソッドを作っていく。先頭を大文字、後を小文字にする Capitalize() は欲しいよね。```cspublic static string Capitalize(this string target){return target.Length &gt; 1? char.ToUpper(target[0]) &#43;target.Substring(1, target.Length - 1).ToLower(): target.ToUpper();}```char." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/05/27/155731/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="デスクトップ全体を一時的に暗転させたい" />
+    <meta name="og:description" content="Windows 8 は［Windows］＋［PrintScreen］キーでデスクトップのスクリーンショットを“ピクチャー”フォルダに保存できる - だるろぐ Windows 8では、スクリーンショットを撮るときデスクトップにエフェクトがかかる。画面が一瞬だけ暗転して徐々に戻る、といった感じのエフェクトなのだけど、どうせなら Type08ScreenCapture - Daruboard&lt;/a
+ でもちゃんと再現してみたい。ってことで、やってみた。
+ 黒い全画面フォームを用意して、透明度を調整しながら表示・非表示するだけ。透明度の調整は最初手動でやっていたのだけど、Win32 API に AnimateWindow() というそれ専用の API があったので結局はそっちを使った。まぁ、悪くない気がする。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

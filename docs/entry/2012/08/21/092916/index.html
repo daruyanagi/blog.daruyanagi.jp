@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/21/092916/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でファイルのアップロード（4） - アップロードしたファイルの表示" />
+    <meta name="og:description" content="そういえば、アップロードしたファイルの表示をやっていなかった*1。アップロードフォルダには画像ファイルしかないはずなので、今回は img タグで決め打ちしていいかな。
+# List.cshtml@functions {private const string OUTPUT_DIR = &#34;~/Files/&#34;;}@{var dir = Server.MapPath(OUTPUT_DIR);var files = new System.IO.DirectoryInfo(dir).EnumerateFiles().Select((f) =&gt; VirtualPathUtility.ToAbsolute(OUTPUT_DIR &#43; f.Name));}&amp;lt;!DOCTYPE html&gt;&amp;lt;html lang=&#34;en&#34;&gt;&amp;lt;head&gt;&amp;lt;meta charset=&#34;utf-8&#34; /&gt;&amp;lt;title&gt;&amp;lt;/title&gt;&amp;lt;style&gt;a {display: block;float: left;height: 48px; width: 48px;margin: 6px;text-align: center;}a img {max-height: 48px; max-width: 48px;border: none;}&amp;lt;/style&gt;&amp;lt;/head&gt;&amp;lt;body&gt;@foreach (var file in files){&amp;lt;a href=&#34;@file&#34;&gt;&amp;lt;img src=&#34;@file&#34; /&gt;&amp;lt;/a&gt;}&amp;lt;/body&gt;&amp;lt;/html&gt;```結果はこんな感じ。&lt;img src=&#34;http://cdn-ak." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

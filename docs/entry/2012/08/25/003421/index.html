@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/25/003421/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん" />
+    <meta name="og:description" content="br/&gt;
+WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐWebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐのんびりやっていこう。今回はユーザー登録するで。```cs@{var name = &#34;&#34;;var password = &#34;&#34;;var confirmPassword = &#34;&#34;;if (IsPost){name = Request.Form[&quot;name&quot;];password = Request.Form[&quot;password&quot;];confirmPassword = Request.Form[&quot;confirmPassword&quot;];// ここでバリデーション（値が妥当なものか検証）するif (Validation.IsValid()){if (WebSecurity.GetUserId(name) &gt; -1){ModelState.AddFormError(&quot;Username alredy exists&quot;);}else{try{WebSecurity.CreateUserAndAccount(name, password, new { Name = name });WebSecurity." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

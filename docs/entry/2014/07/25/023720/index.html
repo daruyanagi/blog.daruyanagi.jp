@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/07/25/023720/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている" />
+    <meta name="og:description" content="  れは Surface Pro 3 に限らないかもしれないが、
+COM Surrogateやサービスホスト：ローカルサービス（ピア ネットワーク）Peer Name Resolution ProtcolPerr Networking GroupingPeer Natworking Identity Managerあたりのプロセスが常に数％の CPU リソースを食っていて、全体で25％程度の負荷がずっと継続するという症状が見られた。鈍感なのでとくにパフォーマンスの低下は感じなかったが、Surface Pro 3 がやたら熱いので気付いた。セットアップ直後（Windows Search が一生懸命インデックスを作ってたりする）Windows Update の直後（バックグラウンドで .NET のコンパイラが走ってたりする）オンラインストレージサービスの同期中などは Surface Pro 3 が一時的に熱くなる場合があると思うけれど、そうでないのに熱い場合はこうしたプロセスが暴走してる可能性がある。### 解決策  回はホームグループへの参加をやめたら症状が収まった。
+  Windows］ボタンを押して“ホームグループ”と入力すると、ホームグループ関連の設定画面にアクセスできるので、適当にごにょごにょすればいいと思う。むかし VAIO を使っていて似たようなトラブルにあったのだけど、そのときもホームグループが原因だったのかな？
+VAIO Fit 15 でディスクアクセスがおさまらない - だるろぐその時はぶち切れながら Peer *** サービスの停止と IPv6 の無効化で解決していたようだ。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

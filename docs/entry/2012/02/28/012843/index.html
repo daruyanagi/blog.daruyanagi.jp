@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/28/012843/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content=" ASP.NET MVC 3 で Dropbox の OAuth 認証を使う" />
+    <meta name="og:description" content="今回は Sharpbox を使って、Webサイトに Dropbox を利用したログイン機能を追加します。まず、 SessionController というコントローラを作成して、Create()、AuthorizationCallBack()、Delete() の3つのメソッドを作成しました。/Session/Create が /LogOn に、/Session/Delete が /LogOff にあたります*1。ビューへ適当に @Request.IsAuthenticated を埋め込んでいるのでわかりにくいですけど、今は False 、つまりログインしていない状態です。では、 Create() から。
+### /Session/Create``` // // GET: /Session/Create -&gt; map route /LogOn
+public ActionResult Create() { string app_key = &ldquo;&quot;; string app_secret = &ldquo;&quot;;
+// 0. load the configDropBoxConfiguration config = DropBoxConfiguration.GetStandardConfiguration();config.AuthorizationCallBack = new Uri(Request.Url, &quot;AuthorizationCallBack&quot;);// 1. get the request token from dropboxDropBoxRequestToken requestToken = DropBoxStorageProviderTools." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

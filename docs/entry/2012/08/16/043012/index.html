@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/16/043012/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix で Markdown を使おう！" />
+    <meta name="og:description" content="**Markdown** は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装飾がヒントになっており、変換元テキストから変換したあとの HTML マークアップの見当がつけやすく、覚えるのが比較的容易です*1。最近では GitHub などで Wiki 記法として用いられることが多くなっているので、覚えておいて損はないです。 この Markdown パーサーを「WebMatrix 2」で使ってみましょう（所要時間5分）。
+### 準備まず、 Empty Site テンプレートから新規サイトを作成し*2、適当にフォルダーを作って Markdown テキストのサンプルを配置します。  回、サンプルは http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text （テキスト形式、UTF-8エンコード）をお借りしました。ちなみに、 “.md” や “.markdown” といった拡張子*3のファイルを「WebMatrix 2」で開くには、コンテキストメニューから［WebMatrix で開く］を選択します。つぎに、パーサーをインストール。 NuGet で「MarkdownSharp」パッケージを選択しましょう。
+  a href=&quot;https://blog.daruyanagi.jp/entry/2012/02/12/213437&quot;&gt;C# の Markdown エンジン - だるろぐ にはいくつかあるのですが、「MarkdownSharp」がもっとも無難だと思います。
+  ンストールはとっても簡単。勝手にレポジトリからダウンロード・セットアップされます。ほかのパッケージが必要であれば*4、そのパッケージも自動でセットアップされます。パッケージは自分でも作れるので、やってみると面白いですネ。これで準備は完了。
+### コーディングDefault.cshtml を開いて、以下のように記述します。 Markdown テキストのサンプルへのパスは適当に環境に合わせて変えてください*5。```cs@{var markdown = new MarkdownSharp.Markdown();var path = Server." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

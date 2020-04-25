@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/10/14/004317/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 3" />
+    <meta name="og:description" content="的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。
+@using System.Drawing@{var text = UrlData[0] == string.Empty ? &#34;Sample&#34; : UrlData[0];try{var bitmap = new Bitmap(600, 480);using (var g = Graphics.FromImage(bitmap)) {using (var font = newFont(&#34;Meiryo&#34;, 24)) {var rect = new RectangleF(0, 0, 600, 480);var format = StringFormat.GenericDefault;format.Alignment = StringAlignment.Center;format.LineAlignment = StringAlignment.Center;g.FillRectangle(Brushes.CornflowerBlue,rect);g.DrawString(text, font, Brushes.AntiqueWhite,rect, format);} }bitmap.Save(Response.OutputStream,Imaging." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

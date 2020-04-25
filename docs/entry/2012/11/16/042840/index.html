@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/11/16/042840/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix で数式を表現する（１）" />
+    <meta name="og:description" content="まず考えられる方法は Google Chart Tools — Google Developers を利用することです。TeX の数式を画像ファイルに変換してくれます。
+Mathematical Formulas - Infographics (Deprecated) — Google DevelopersDeprecated（非推奨）になっているのが気になりますけれど、まぁ、使えなくなるまで使えばいいんじゃないでしょうか。TeX による数式表現は業界標準（？）でもあるんで、万が一使えなくなってもいろいろ対処法はあるかと。あと、はてな記法でも使えるので覚えておくと使うことがあるかもしれない。必要なパラメーターは、cht=txchl=DATAで、DATA は TeX による数式表現を URL エンコードしたものになります。たとえばこんな感じ。```html# Default.cshtml@{
+}
+&lt;html lang=&quot;ja&quot;&gt; &lt;head&gt; &lt;meta charset=&quot;utf-8&rdquo; /&gt; &lt;title&gt;マイ サイトのタイトル&lt;/title&gt; &lt;link href=&quot;~/favicon.ico&rdquo; rel=&quot;shortcut icon&rdquo; type=&quot;image/x-icon&rdquo; /&gt; &lt;/head&gt; &lt;body&gt; &lt;img src=&quot;http://chart.apis.google.com/chart?cht=tx&amp;chl=@UrlEncode(@&quot;\bar{H}{n&#43;2}(x) = \sqrt{\frac{2}{n&#43;2}} x \bar{H}{n&#43;1}(x) \sqrt{\frac{n&#43;1}{n&#43;2}} \bar{H}_n(x)&quot;);&rdquo; /&gt; &lt;/body&gt; &lt;/html&gt;
+&lt;ul&gt;&lt;li&gt;\hoge：文字 hoge の埋め込み（\alpha で α）&lt;/li&gt;&lt;li&gt;\hoge{}：引数をとって hoge る（\sqrt{0} なら √ {0}、\frac{0}{1} なら分数 {0} / {1} ）&lt;/li&gt;&lt;li&gt;^{Hoge}：上付き文字（指数とか）&lt;/li&gt;&lt;li&gt;_{hoge}：下付き文字（添え字とか）&lt;/li&gt;&lt;/ul&gt;の4つだけ覚えている。あとはググる。&lt;div class=&quot;section&quot;&gt;### ヘルパー化さて、毎回イメージタグを書くのは不毛なので、これをヘルパー化することを考えましょう。たとえばこんな感じ。```html#App_Code\GoogleChart." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

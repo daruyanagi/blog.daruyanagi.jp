@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/29/201834/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい" />
+    <meta name="og:description" content="Flash っていうのは、別に Adobe Flash Player のことなんかじゃなくて、
+&gt; ログイン時のウェルカムメッセージや、項目追加の成功通知など、ユーザに簡単な通知を行いたい時に利用する。 コントローラでflashメッセージを設定し、ビューで表示する。 flashは全体で見ればHash。あるキーに対する値としてメッセージを設定する。キーは自由に設定できるが、デフォルトとしてalertとnoticeがある。 設定したメッセージは、sessionに保存される。つまり、flashは、sessionを利用した機能の１つ。 普通のセッション変数では破棄するまで値は保持されるが、flash の場合は一度表示されるとアクション終了時に自動的に消去される。
+ flashの使い方　〜Railsの基礎 - プログラマーkkの勉強/成長ブログ@ライブレボリューション というもの。ログアウト＋ホームへリダイレクトしたときに「Good bye!」って表示したい（でも、一度表示したら二度目からは表示しない）なんて場合、あるよね。ASP.NET Web Pages にもそういう仕組があるのかもしれないけれど、よくわからなかったので自分で実装してみた。本物の Flash はHash（C# なら Dictionary）らしいのだけれど、今回はそこまで高機能なのはいらないので、単に文字列を一つだけ保持することにする。
+# Logout.cshtml@{WebSecurity.Logout();Session[&#34;flash&#34;] = &#34;Good bye!&#34;; // &amp;lt;-- ココ！ Response.Redirect(Request[&#34;ReturnUrl&#34;] ?? &#34;~/&#34;);}```実装には Session を利用した。 Session[&#34;flash&#34;] にテキストを入れておけば、リダイレクトしたあとでも値を参照できる。```cs# ＿SiteLayout.cshtml&amp;lt;body&gt;@if (Session[&#34;flash&#34;] != null){&amp;lt;div class=&#34;message info&#34;&gt;&amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt; // &amp;lt;-- 読みだして…… &amp;lt;/div&gt;Session[&#34;flash&#34;] = null; // &amp;lt;-- 消す！…… }@RenderBody()&amp;lt;/body&gt;```表示する側では、かならず Session[&#34;flash&#34;] をクリアしておく。これで Session[&#34;flash&#34;] の内容が表示されるのは一度きりになるはず。&lt;img src=&#34;http://cdn-ak." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

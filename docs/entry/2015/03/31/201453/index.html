@@ -33,7 +33,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2015/03/31/201453/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="エラー 0x80070520 が発生して Windows 10 Technical Preview Build 10049 へアップデートできない" />
+    <meta name="og:description" content="  bl_impressive（開発ブランチの名前らしい）という Windows Update パッケージのインストールに失敗する現象に遭遇。
+### 解決策その一  ーザーが Microsoft アカウントと紐づいている場合、一度ローカルアカウントに切り替えて、再度 Windows Update を実行する。自分の環境ではこれでうまくいった。
+### 解決策その二cmd.exe を管理者権限で起動し、以下のコマンドを入力。```Net stop wuauservcd %systemroot%Ren SoftwareDistribution SoftwareDistribution.oldNet start wuauserv```要するに Windows Update サービスを一度止め、破損した SoftwareDistribution フォルダ（Windows Update でダウンロードしたファイル群が格納される）を削除（リネーム）し、もう一度 Windows Update サービスを実行する。今回はうまくいかなかったけれど、これで直るケースもありそうなので覚えておいた方がいいかも。Update Error Code: 0x80070520 fbl_impressive 10041 Professional" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

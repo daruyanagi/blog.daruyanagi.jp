@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/08/20/022730/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="TwitterRT でストア アプリからお手軽ツイート（※要改修" />
+    <meta name="og:description" content="indows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、TwitterRt - Tweet from Windows Metro Apps - Home。こういう感じの WebAuthenticationBroker を使った認証処理を一行で実現してくれるのがいい。
+private TwitterRt t = new TwitterRt(&#34;consumerKey&#34;, &#34;consumerSecret&#34;,&#34;callbackUrl&#34;);private async void Button1_Click(object sender, Windows.UI.Xaml.RoutedEventArgs args){// 認証 await t.GainAccessToTwitter();}private async void Button2_Click(object sender, Windows.UI.Xaml.RoutedEventArgs args){// ツイート await t.UpdateStatus(&#34;Hello From TwitterRt&#34;);}```ソースコードを斜め読みしかしてないのだけど、認証処理で取得したトークンなんかは自動で ApplicationData.RoamingSettings に保存してくれるっぽい。一度どこかの端末で認証しておけば、ほかの端末でもそれが自動で同期されるはず。超便利だな。でも、残念ながらメンテナンスされていないようで、NuGet で取得したバイナリが動かない。しょうがないのでソースコードを落としてきてちょろちょろっと直した。```cs// 46行目ぐらい// const string _updateStatusUrl = &#34;https://api.twitter.com/1/statuses/update.json&#34;;const string _updateStatusUrl = &#34;https://api." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

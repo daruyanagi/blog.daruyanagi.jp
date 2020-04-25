@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="PowerShell：環境構築を（なるべく）自動化する" />
+    <meta name="og:description" content="Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。
+（データは OneDrive で同期する。スタンドアロンアプリもだいたい OneDrive で）Set-ExecutionPolicy -ExecutionPolicy RemoteSignedchocolatey で必要なアプリをセットアップchocolatey で管理できない（するとかえって面倒）なものは OneDrive へ保存済みのインストーラーでセットアップシンボリックリンクを張るPicture\Screenshots - OneDrive\Screenshots（スクリーンショットを同期するため）これだったら自分の PowerShell 力でもなんとかなると思った。```ps1Write-Host &#34;STEP 0: Set-ExecutionPolicy を RemoteSigned に書き換えます……&#34;Set-ExecutionPolicy -ExecutionPolicy RemoteSigned Write-Host &quot;&rdquo;
+Write-Host &ldquo;STEP 1: chocolatey をセットアップしています……&rdquo;
+if (Test-Path &ldquo;C:\ProgramData\chocolatey&rdquo;) { Write-Host &ldquo;すでにインストールされています。&rdquo; } else { iex ((New-Object System.Net.WebClient).DownloadString(&#39;https://chocolatey.org/install.ps1&#39;)) # Get-PackageProvider -name chocolatey Write-Host &ldquo;インストールが完了しました。&rdquo; }
+Write-Host &quot;&rdquo;" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

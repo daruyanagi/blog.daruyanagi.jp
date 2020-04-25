@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/12/24/185100/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix 2：フォルダーから Web サイトを作成する場合の注意点" />
+    <meta name="og:description" content="々回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めましたが、_ぶっちゃけこの方法はあまりお勧めしません。_ちゃんと初期画面の［テンプレート］ボタンを利用して新しいサイトを作るようにしましょう。なぜかというと、通常の作業フローとはちょっと外れているため、いくつか困ったことが発生するからです。
+  br/&gt;
+#### 1. NuGet が使えないリボン右端の［ギャラリー］ボタンを押しても、［拡張機能］ボタンしか出てきません。つまり、NuGet ギャラリーが利用できません。#### 2. 実環境で動かすにはコンポーネントが足りません［テンプレート］ボタンからサイトを作成すると、 App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されます。しかし、空のフォルダーから Web サイトを作るとこれらが追加されないため、たとえば FTP でファイルをサーバーへ丸コピしても動作しません。ローカルでは「WebMatrix 2」が気を利かせてくれるのでちゃんと動くのですけど。### 解決策  いうわけで、あまりお勧めできないのですけど……いろいろ試していてひとつ気が付きました。一度 Windows Azure Web サイトへサイトを発行してしまうと、その過程でコンポーネントの追加が行われるようですね。NuGet ギャラリーも利用できるようになります*1。スクリーンショットの右上と左に注目してください。[NuGet]ボタンが利用できるのと、App_Data フォルダや bin フォルダに ASP.NET の実行に必要な DLL が追加されているのが分かります。
+  だし、“ASP.NET Web ページ”（ここでは Razor 記法＋その他コンポーネント群のことだと思ってくれていいと思います。）のバージョンは 1.0 です。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

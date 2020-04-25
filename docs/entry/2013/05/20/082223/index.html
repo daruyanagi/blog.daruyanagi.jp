@@ -33,7 +33,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/05/20/082223/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="Graphics.FillRectangle()　が正常に機能しない → 俺が間違ってました" />
+    <meta name="og:description" content="### 問題編たったこれだけのコードが動かなくて、泣いた。```csusing (var fore = new Bitmap(icon_path))using (var back = new Bitmap(fore.Width, fore.Height))using (var brush = new SolidBrush (color))using (var g = Graphics.FromImage(back)){var src_rect = new RectangleF(0, 0, back.Width, back.Height);var dst_rect = new RectangleF(x, y, back.Width * scale, back.Height * scale); g.FillRectangle(brush, src_rect); // &amp;lt;- 透明になる！！g.DrawImage(fore, dst_rect); }
+&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ヒントnew SolidBrush (color) を Brushes." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

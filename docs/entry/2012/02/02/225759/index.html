@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/02/225759/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content=" RSS 2.0 を実装する" />
+    <meta name="og:description" content="http://sample.com/Post/LastUpdated.rss で RSS が吐かれるようにしてみたかった。まずはルーティング。
+``` #Global.asax.cs
+routes.MapRoute( &ldquo;Mode&rdquo;, // ルート名 &ldquo;{controller}/{action}.{mode}&quot;, // パラメーター付きの URL new { controller = &ldquo;Home&rdquo;, action = &ldquo;Index&rdquo;, id = UrlParameter.Optional, mode = &ldquo;html&rdquo; } // パラメーターの既定値 );
+次はコントローラー。IPagedList は自分で作ったページング機能付きのリスト。&quot;&lt;a href=&quot;http://sample.com/Post/LastUpdated?mode=rss&quot;&gt;http://sample.com/Post/LastUpdated?mode=rss&lt;/a&gt;&quot; でアクセスしてもいい。レポジトリパターンにしたのにここで IPagedList 作ってるのはダサいので、あとで直そう…```#Post.cs//// GET: /Post/LastUpdatedpublic ViewResult LastUpdated(int current = 1, int items_per_page = 10, string mode = &quot;html&quot;){var posts = new PagedList&amp;lt;Post&gt;(repository.GetList().OrderByDescending(p =&gt; p.UpdatedAt),current, items_per_page);switch (mode){case &quot;rss&quot;:return View(&quot;LastUpdated." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

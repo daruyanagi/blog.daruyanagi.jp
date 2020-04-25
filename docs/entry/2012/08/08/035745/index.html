@@ -33,7 +33,19 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/08/035745/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（2）" />
+    <meta name="og:description" content="あと、 @RenderPage(&quot;_Footer.cshtml&quot;) は @RenderFooter() などと記述できるとカッコいいな。「フッターはテーマフォルダ直下の“_Footer.cshtml”に書く」。なるべく規約ベースで。これも簡単にできそうだ。WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ これをやってみた。なんていうか、“_Footer.cshtml”なんて固定値、あんまりよく目にするところに書いておきたくない。
+  br/&gt;
+### 拡張メソッドまずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。```csusing System.Web.WebPages;static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data); } }
+```html::&amp;lt;div id=&quot;site-content&quot;&gt;&amp;lt;article id=&quot;site-body&quot;&gt;@RenderBody()&amp;lt;/article&gt;&amp;lt;aside id=&quot;site-sidebar&quot;&gt;@RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt;&amp;lt;/aside&gt;&amp;lt;/div&gt;&amp;lt;footer id=&quot;site-footer&quot;&gt;@this." />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

@@ -33,7 +33,20 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<style>
+<meta name="twitter:card" content="summary" />
+    <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/03/12/003836/" />
+    <meta name="twitter:site" content="@daruyanagi" />
+    <meta name="twitter:creator" content="@daruyanagi" /> 
+
+    <meta name="og:title" content="WPFでバージョン情報ダイアログをつくる" />
+    <meta name="og:description" content="VisualBasic では My.Aoolication.Info でバージョン情報なんかを簡単に取得できるらしい。これを使えば簡単にバージョン情報ダイアログを実装できそうだな。これを C# から使ってみよう。http://msdn.microsoft.com/ja-jp/library/0f1ec0yf(v=vs.80).aspxMicrosoft.VisualBasic を参照に追加して、using してあげる。そして、Loaded イベントで DataContext に AssemblyInfo オブジェクトを割り当ててあげる。
+``` using Microsoft.VisualBasic.ApplicationServices;
+namespace Type08ScreenCapture { /// &lt;summary&gt; /// MainWindow.xaml の相互作用ロジック /// &lt;/summary&gt; public partial class MainWindow : Window { public MainWindow() { InitializeComponent(); }
+ private void Window_Loaded(object sender, RoutedEventArgs e){DataContext = new AssemblyInfo(System.Reflection.Assembly.GetExecutingAssembly());} ： ：
+あとは XAML 側でバインディングしていく。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120312/20120312003119.png&quot; alt=&quot;f:id:daruyanagi:20120312003119p:plain&quot; title=&quot;f:id:daruyanagi:20120312003119p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;```&amp;lt;TextBlock Margin=&quot;24&quot; Text=&quot;{Binding ProductName}&quot; /&gt;バインディングヒャッホイ！「08式机上撮影機（Type08ScreenCapture）」を公開しました - だるろぐ で使ってみたのだけど、WinForm のコードよりもすっきりしていていい感じだ。" />
+    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+
+    <style>
       .bd-placeholder-img {
         font-size: 1.125rem;
         text-anchor: middle;

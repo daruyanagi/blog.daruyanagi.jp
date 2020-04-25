@@ -43,7 +43,7 @@
 # ~/Ruby.cshtml@helper GetHtml(string text, string ruby){&amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;（&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;）&amp;lt;/rp&gt;&amp;lt;/ruby&gt;}```使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。```cs# ~/Test.cshtml@{}&amp;lt;!DOCTYPE html&gt;&amp;lt;html lang=&#34;en&#34;&gt;&amp;lt;head&gt;&amp;lt;meta charset=&#34;utf-8&#34; /&gt;&amp;lt;title&gt;&amp;lt;/title&gt;&amp;lt;/head&gt;&amp;lt;body&gt;@Ruby.GetHtml(&#34;柳 英俊&#34;, &#34;やなぎ ひでとし&#34;)&amp;lt;/body&gt;&amp;lt;/html&gt;  ※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。
 ### ちょっとハッテン```cs# ~/App_Code/HtmlHelperExtensions.csusing System; using System.Collections.Generic; using System.Linq; using System.Web; using System.Web.WebPages.Html;
 public static class HtmlHelperExtenstion { public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby) { return new HtmlString(string." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

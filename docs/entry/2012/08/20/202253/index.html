@@ -46,7 +46,7 @@
  最初はなんのことかと思ったけど、 HttpFileCollection は NameObjectCollectionBase を継承している。 NameObjectCollectionBase は重複した複数のキーをもてるので、キーで値を取ろうとすると取りこぼしが発生する、ということみたい。
   かにせやな。 Key はひとつだけど、 Value は複数あるわ。というわけで、値をすべて取得する拡張メソッド（~/App_Code/HttpFileCollectionBaseExtension.cs）は
 using System.Collections.Generic;using System.Web;public static class HttpFileCollectionBaseExtension{public static IEnumerable&amp;lt;HttpPostedFileBase&gt; ToEnumerable(this HttpFileCollectionBase target){foreach (var key in target.AllKeys) //--&gt; Key で…… {yield return target[key];}}}```ではなくて、```csusing System." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

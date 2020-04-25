@@ -41,7 +41,7 @@
     <meta name="og:title" content="エラー 80070057 および 80240020 が発生して Windows 10 へアップグレードできない" />
     <meta name="og:description" content="前のエントリの応用で直せる……はず（知らんけど管理者権限で cmd を起動。
 C:Windows\System32&gt;net stop wuauservWindows Update サービスを停止中です.Windows Update サービスは正常に停止されました。C:Windows\System32&gt;cd %systemroot%C:Windows&gt;ren SoftwareDistribution SoftwareDistribution.old（C:Windows&gt;rd /s SoftwareDistribution\Download）C:Windows&gt;net start wuauservWindows Update サービスを開始します.Windows Update サービスは正常に開始されました。C:Windows&gt;&amp;lt;b&gt;wuauclt /updatenow```これで Windows Update を開けば、Windows 10 のダウンロードが再び始まるので、次はちゃんと成功するように祈る。  お、例では ren で SoftwareDistribution をリネームしていますが、 rd で消してしまってもいい気がする（ほんとは SoftwareDistribution\Download だけ消せばいいらしい。これならエクスプローラーからでも削除できる。失敗する場合は wuauserv を一度止める）。&lt;code&gt;wuauclt /updatenow&lt;/code&gt; は何回か叩かないと動かなかった。&lt;div class=&quot;section&quot;&gt;#### 結果  れで 80070057 は消えましたが、80240020 はダメだった／(＾o＾)＼&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;#### 結局何回かやれば行けるッぽいのだけど、メディア作成ツールでインストールメディアを作成してアップグレードするのが早いです（ぁ&lt;iframe src=&quot;https://hatenablog-parts." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

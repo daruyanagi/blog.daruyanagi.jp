@@ -25,19 +25,33 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
     </script>
 
-    <h2 class="text-center" style="margin-bottom: 3rem;margin-top: 3rem;">新着記事</h2>
+    <h2 class="text-center" style="margin-bottom: 3rem;margin-top: 3rem;">新着記事 
+        <a href="https://feedly.com/i/subscription/feed%2Fhttps%3A%2F%2Fblog.daruyanagi.jp%2Findex.xml" target="blank">
+            <img height="32" src="//s3.feedly.com/img/follows/feedly-follow-logo-green_2x.png" alt="follow us in feedly">
+        </a>
+        <a href="https://blog.daruyanagi.jp/index.xml">
+            <img height="24" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/46/Generic_Feed-icon.svg/32px-Generic_Feed-icon.svg.png">
+        </a>
+    </h2>
     <div class="row">
 
       {{ range first 11 .Site.RegularPages.ByDate.Reverse }}
-    
+
         <div class="col-md-4">
-          <div class="card mb-4 shadow-sm" style="min-height: 300px;">
-            <img class="card-img-top" src="" alt="">
+          <div class="card mb-4 shadow-sm">
+
+            {{ if .Params.eyecatch }}
+            {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
+            {{ $thumbnail :=  $resource.Fit "640x480" }}
+            <img class="card-img-top" src="{{ $thumbnail.RelPermalink }}" alt="">
+            {{ else }}
+            <img class="card-img-top" src="{{ .Site.Params.og_image | absURL }}" alt="">
+            {{ end }}
             <div class="card-body">
-              <h5 class="card-title">{{ .Title }}</h5>
+              <h5 class="card-title"><a href="{{.RelPermalink}}">{{ .Title }}</a></h5>
               <small class="text-muted"><time>{{.Date.Format "2006-01-02"}}</time></small>
               <p class="card-text">{{slicestr .Summary 0 80}}</p>
-              <a href="{{.RelPermalink}}" class="btn btn-primary">読む</a>
+              <!-- <a href="{{.RelPermalink}}" class="btn btn-primary">読む</a>-->
             </div>
           </div>
         </div>      

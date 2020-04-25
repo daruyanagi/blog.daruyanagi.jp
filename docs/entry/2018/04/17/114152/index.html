@@ -42,7 +42,7 @@
     <meta name="og:description" content="$source = &#34;https://www.asahi.com/articles/ASL4J669JL4JUEHF016.html&#34;$folder = &#34;C:\Users\Hideto\pdf&#34;$result = Invoke-WebRequest $source -UseBasicParsing$urls = $result.Links.href | Get-Unique | where { $_ -match &#34;.pdf&#34; }foreach ($url in $urls){$file = ($url -split &#34;/&#34;)[-1]Invoke-WebRequest -Uri $url -OutFile (Join-Path $folder $file)}  構量があるんだなぁ……（終わらねぇ。文学作品として割と楽しめるらしいので、ダウンロードが終わるの楽しみ☆（ゝω・）vｷｬﾋﾟそれはともかく、PowerShell、もっとうまく、サクッと書けるようになりたいなぁ。
 ### 元ネタ イラク日報ぶっこ抜きスターターパック$ curl https://t.co/nt7h0I8NpE | grep &#39;&#39; | grep pdf | awk -F&#39;&quot;&#39; &#39;{print $4}&#39; | xargs wget— opensorter (@opensorter) 2018年4月16日
  ### 追伸  メてたけど、結構量が多かった。ダウンロード中のファイルを一つ開いちゃって、ダウンロードに失敗したにもかかわらずこんなにデカくなったぞ……。" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

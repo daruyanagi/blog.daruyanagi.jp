@@ -41,7 +41,7 @@
     <meta name="og:title" content="ASP.NET Core：特定のリクエストをミドルウェアでリダイレクトする" />
     <meta name="og:description" content="  ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。URL Rewriting Middleware in ASP.NET Core具体的には、こんな感じ。
 public class Startup{public void ConfigureServices(IServiceCollection services){services.AddMvc();}public void Configure(IApplicationBuilder app, IHostingEnvironment env){if (env.IsDevelopment()){app.UseDeveloperExceptionPage();}var options = new RewriteOptions().AddRedirect(&#34;entry/(.*)&#34;, &#34;http://blog.daruyanagi.jp/entry/$1&#34;).AddRedirect(&#34;category/(.*)&#34;, &#34;http://blog.daruyanagi.jp/category/$1&#34;).AddRedirect(&#34;entries/(.*)&#34;, &#34;http://blog.daruyanagi.jp/entries/$1&#34;).AddRedirect(&#34;search/(.*)&#34;, &#34;http://blog.daruyanagi.jp/search/$1&#34;).AddRedirect(&#34;touch/(.*)&#34;, &#34;http://blog.daruyanagi.jp/touch/$1&#34;).AddRedirect(&#34;embed/(.*)&#34;, &#34;http://blog.daruyanagi.jp/embed/$1&#34;);app.UseRewriter(options);app.UseStaticFiles();app.UseMvc();}}```今まで自分がやってきたやり方はクソなので、もう忘れようと思う。[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

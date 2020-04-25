@@ -42,7 +42,7 @@
     <meta name="og:description" content="Markdown は覚えやすくて書きやすいのだけれど、とても非力に感じる。一応 HTML タグの埋め込みも可能なので、原理的にはなんでも書けるのだけれど、たとえばルビを振りたい場合、
 国民の&amp;lt;ruby&gt;税金&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;ぜいきん&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt;を２億円使うなんて```などといちいち書くのは、読みにくいし第一めんどくさい。もっと簡単に、たとえば、```html国民の[[ruby|税金|ぜいきん]]を２億円使うなんて```などのような、&lt;code&gt;[[コマンド|引数1|引数2...]] &lt;/code&gt;といった記法で書ければどうだろう。なるべく規約ベースとし、Hoge コマンドは Hoge / HogeHelper ヘルパーの GetHtml() メソッドを呼び出すようにする。```cs# App_Code/RubyHelper.cshtml@helper GetHtml(string text, string ruby){&amp;lt;ruby&gt;@text&amp;lt;rp&gt;(&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;)&amp;lt;/rp&gt;&amp;lt;/ruby&gt;}```これならば、Markdown の拡張だけでなく、普通の cshtml でも利用できてよいと思う。```html国民の@RubyHelper.GetHtml(&#34;税金&#34;, &#34;ぜいきん&#34;)を２億円使うなんて### 実装とりあえずこんな感じにしてみた。```cs@using System.IO@using System.Reflection@using System.Text.RegularExpressions@functions { private string Camelize(string input) { if (input.Length == 0) return input;
  var chars = input.ToArray();chars[0] = char.ToUpper(chars[0]);return string.Join(string.Empty, chars);} }" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

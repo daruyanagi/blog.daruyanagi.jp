@@ -41,7 +41,7 @@
     <meta name="og:title" content="UWP：FullTrustProcessLauncher で起動したプログラムに引数を渡す" />
     <meta name="og:description" content="できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
 &lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;xmlns:desktop=&#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&#34;&gt;&lt;applications&gt;&lt;/applications&gt;Id=&#34;App&#34; Executable=&#34;$targetnametoken$.exe&#34; EntryPoint=&#34;$targetentrypoint$&#34;&gt;&lt;extensions&gt;&lt;/extensions&gt;&amp;lt;desktop:Extension Category=&#34;windows.fullTrustProcess&#34;Executable=&#34;Yakitori.Console\Yakitori.Console.exe&#34;&gt;&amp;lt;desktop:FullTrustProcess&gt;&amp;lt;desktop:ParameterGroup GroupId=&#34;Desktop&#34; Parameters=&#34;/d&#34;/&gt;&amp;lt;desktop:ParameterGroup GroupId=&#34;Active&#34; Parameters=&#34;/a&#34;/&gt;&amp;lt;/desktop:FullTrustProcess&gt;&amp;lt;/desktop:Extension&gt;```それを使えばいいみたい。```csprivate async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e){await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&#34;Desktop&#34;);}```これをコンソールアプリで受けてみると、こんな感じになった。```csnamespace Yakitori.Console{class Program{static void Main(string[] args){foreach (var arg in args){System.Console.WriteLine(arg);}System.Console.ReadKey();}}}```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。  " />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -41,7 +41,7 @@
     <meta name="og:title" content="UWP：SoftwareBitmap を縮小する" />
     <meta name="og:description" content="はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。
 ［共有］コマンドに対応（必須）シンプル。ブログへのアップロードに使いそうな機能しか追加しない画像の縮小（できた）画像の回転（すぐできそうだけどやってない）顔認識して隠す（進捗半分）画像のクロップ（優先度低）UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。### Win2D を使うそういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。```cs// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmappublic static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight) { using (var resourceCreator = CanvasDevice.GetSharedDevice()) using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap)) using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi)) using (var drawingSession = canvasRenderTarget." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -2,6 +2,7 @@
 title: "iPhone SE 2020 を購入"
 date: 2020-04-24T21:35:03+09:00
 draft: false
+eyecatch: image2.jpg
 ---
 
 ![買ったのはホワイトモデル、128GB](image2.jpg)

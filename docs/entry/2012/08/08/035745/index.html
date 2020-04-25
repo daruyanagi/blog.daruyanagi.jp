@@ -43,7 +43,7 @@
   br/&gt;
 ### 拡張メソッドまずは拡張メソッドを試してみた。 WebPage クラスがあたかも最初から RenderFooter() をもっていたかのように見せかけるのが目的。“App_Code”フォルダを掘って、そのなかに C# クラスファイル（.cs）を作成する。 RenderBody() のシグネチャを参考にこういうのを作ってみた。```csusing System.Web.WebPages;static public class WebPageExtensions { static public HelperResult RenderFooter( this WebPage target, params object[] data) { return target.RenderPage(&quot;_Footer.cshtml&rdquo;, data); } }
 ```html::&amp;lt;div id=&quot;site-content&quot;&gt;&amp;lt;article id=&quot;site-body&quot;&gt;@RenderBody()&amp;lt;/article&gt;&amp;lt;aside id=&quot;site-sidebar&quot;&gt;@RenderPage(&quot;_SideBar.cshtml&quot;) &lt;!-- 古い書き方 --&gt;&amp;lt;/aside&gt;&amp;lt;/div&gt;&amp;lt;footer id=&quot;site-footer&quot;&gt;@this." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

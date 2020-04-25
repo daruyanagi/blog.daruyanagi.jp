@@ -43,7 +43,7 @@
 &gt;あと、最初から複数ファイルのアップデートに対応できるように記述している。WebMatrix でファイルのアップロード - だるろぐWebMatrix でファイルのアップロード - だるろぐ あれはウソだ。いや、複数ファイルのアップロード自体はできるのだけれど、結果を返す処理が単体ファイルを前提としていたので最後のファイルの結果しか得られない。正しくは、
 var model = new List&amp;lt;dynamic&gt;();```とでもして、複数のファイルの結果を格納できるようにすべきだった。さてはて。このように Upload.cshtml はめでたく複数ファイルのアップロードに対応できたし、 Ajax には Json で応答するようにもなった。ならば、ドラッグ＆ドロップで複数ファイルのアップロードもしてみたいよね。というわけでやってみた。  期状態。  ァイルをドラッグ＆ドロップ。これにはもちろん、 Drag &amp;amp; Drop の API を利用する。画像のプレビューは HTML5 の File Reader API を利用して実装してある。JavaScript は見よう見まねで書いてみたけれどなかなか難しい……けれど、 cshtml ならば自動補完機能の恩恵をうけることができるのでまだマシ。jQuery だと$.event.props.push(&#39;dataTransfer&#39;);
   jax でファイルを Upload.cshtml へ送ると、画面遷移なしで結果が表示される。これには FormData という仕組みを利用した。まぁ、ここで JavaScript の話をする気はないので本題に入るけど、これ。  カいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている&lt;a href=&quot;#f-b7512c63&quot; name=&quot;fn-b7512c63&quot; title=&quot;例外自体は IIS のリクエストのサイズ制限を緩和すれば抑制できるはず&quot;&gt;*1&lt;/a&gt;。```cs# Upload." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -41,7 +41,7 @@
     <meta name="og:title" content="引数で匿名型を受け取る" />
     <meta name="og:description" content="string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。
 public static string Wrap(this string source, string element){return string.Format(&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;, source, element);}```たとえば、```cs&#34;これを強調してぇ&#34;.Wrap(&#34;strong&#34;)```で```html&amp;lt;strong&gt;これを強調してぇ&amp;lt;/strong&gt;```が得られる。でも、どうせなら class 属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。```cspublic static bool IsNullOrEmpty(this string source){return string.IsNullOrEmpty(source);}public static string Wrap(this string source, string element, string @class = null){return @class.IsNullOrEmpty()? string.Format(&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;, source, element): string.Format(&#34;&amp;lt;{1} class=\&#34;{2}\&#34;&gt;{0}&lt;!--{1}--&gt;&#34;, source, element, @class);}```こうすると、```cs&#34;これを強調してぇ&#34;.Wrap(&#34;span&#34;, &#34;label label-warning&#34;)```で```html&amp;lt;span class=&#34;label label-warning&#34;&gt;これを強調してぇ&amp;lt;/span&gt;```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。```cspublic static string Join(this IEnumerable&amp;lt;string&gt; source, string delimitter){return string." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

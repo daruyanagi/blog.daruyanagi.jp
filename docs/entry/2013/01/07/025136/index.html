@@ -45,7 +45,7 @@
 UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ページの表示 という処理を書けばいいよね（WebMatrix のルーティング - だるろぐ）。
  WebMatrix 2 / Razor：switch と RenderPage() - だるろぐ _これはウソだ。_申し訳ない。まぁ、別に正しいことを書いているブログではないので、いいと言えばいいんだけど。正しくは、
 ~/Posts.cshtmlを作成するだね。ほかにもウソがあるのだけど、それはまた別のエントリーでフォローするから！――なにはともあれ。この ~/Posts.cshtml をガリガリ書いていけば、いわゆる RESTful な Web アプリケーションが書けるのではないかと思いついた。RESTful の厳密な定義は知らないけど、だいたいLists：GET /PostsShow：GET /Posts/:idNew： POST /PostsEdit：PUT /Posts/:idRemove：DELETE /Posts/:idみたいな感じだよね。だったら、下のような感じで書けばいいんじゃないか（本質に関係ない部分は削ってる）。```cs@try{switch (Request.HttpMethod.ToUpper()){case &#34;GET&#34;:switch (UrlData.Count){case 0: // GET Posts/ @List()break;case 1:switch (UrlData[0]." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

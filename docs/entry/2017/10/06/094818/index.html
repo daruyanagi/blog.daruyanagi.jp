@@ -43,7 +43,7 @@
 複数環境での起動を考慮する各部の名称を整理・わかりやすくするローカルフォルダーや親ルールにアクセスするボタンを追加ログウィンドウに前後移動機能を追加既存のウィンドウがあれば新規に開かずアクティブにするNew/No Changed ステータスの新設アプリケーションアイコンの追加データフォルダーを開くコマンドを新設ウィンドウを開く位置をオーナーの真ん中に設定（不完全、動いてないかも日ごろ使っていて不便なところから、互換性をとりながら少しずつ、ね。“個人的にはログの前後移動”や“既存のウィンドウがあれば新規に開かずアクティブにする”なんかの実装に達成感を感じています。たかだか数行ちょろっと書くだけでだいぶ便利になった。でも、そろそろコードの整理しないといろいろあかんなぁ。ついでにアプリケーションアイコンを付けたけど、なんとこれ Office の丸パクリ。あんまりよくないので、時間があるときにクラウドワークスあたりでお願いしようかなって思ってます。あと、ウチの環境はだんだんデータが肥大化してきていてパフォーマンスが顕著に落ちているので、次はクリーニング機能を付けつつ、データベースへの移行とかも考えようかなーみたな。データ構造ももっとシンプルにできたのなぁー……最初はもっと使い捨てのつもりで作ってたから、あんまり考えてなくてね。 ### Chocolatey パッケージ化の準備実は Chocolatey から簡単にインストールできるようにといろいろ準備をしています。Chocolatey ってのは yum とか apt-get みたいにアプリを入れられるヤツのWindows 版ですね。Chocolatey のパッケージは、パッケージに全部ファイルを入れちゃうリモートに置いてあるインストーラーを叩くという2パターンで作れるので、最初は ZIP 版をベースに前者のパッケージを作っていたのですが、いろいろお約束事をクリアするのが面倒……ライセンスファイルとかいろいろもろもろ。後者はそういうのが要らないっぽいので、前バージョンから ClickOnce を用意しています。次回辺りはちゃんと申請を通したい。https://yanagi.blob.core.windows.net/clickonce-omawari/setup.exeついでにスクリプトでリリースパッケージ（ZIP）と Azure Blob へのアップロードも PowerShell で行うようにしてみました。毎回手でやんの鬱陶しくなってきたしね。```ps1# Add-AzureAccount$StorageAccountName = &ldquo;yanagi&rdquo; $StorageAccountKey = &ldquo;***&rdquo; $ContainerName = &ldquo;clickonce-omawari&rdquo;
 $binRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\bin&rdquo; $publishRootDirectory = &ldquo;C:\Users\Hideto\GitHub\Omawari\Omawari\Publish&rdquo;
 function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -41,7 +41,7 @@
     <meta name="og:title" content="PowerShell：Windows ストアのアプリの更新履歴をチェックする" />
     <meta name="og:description" content="れをチェックするツールがほしかったんだけど、WPF や ASP.NET Web Pages ではストアに「おまえ BOT だろ」と怒られてうまくいかなかった。けれど、似たようなコードを PowerShell で試すと、なぜかうまくいく……。原因はわかんないけど（調べる気が起きない）、PowerShell でできるんなら、PowerShell でやるか―って感じで頑張ってみた。基本方針は
 ストアから #version-notes をスクレイピングして保存新旧 #version-notes を比較してステータス（!?*&#43;-）をつける結果を PSCustomｍObject の配列で返すって感じ。```function Check-WindowsStore{$urls =@(&#34;https://www.microsoft.com/ja-jp/store/p/swarm/9wzdncrdrsq1&#34;,:（途中省略）)# 重複は無駄なので削る$urls = $urls | Get-Uniqueforeach ($url in $urls){try{# ストアからテキストをダウンロード $request = Invoke-WebRequest -Uri $url# アプリの表示名を記憶$title = $request.AllElements.FindById(&quot;page-title&quot;).innerText# 新しいバージョンノートを記憶$new = $request.AllElements.FindById(&quot;version-notes&quot;).innerTextif ($new){# 最初だけ：更新履歴を保存する ." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

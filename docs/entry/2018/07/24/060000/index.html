@@ -42,7 +42,7 @@
     <meta name="og:description" content="ンクリックでアプリをまとめて閉じ、デスクトップをスッキリさせるアプリ「Tonjiru」が Microsoft Store で公開されました。まったく大したアプリではないのですが、WPF アプリをストアに掲載するフローを体験したかったので満足です。Tonjiru を入手 - Microsoft Store ja-JP
 ### APPX にパッケージングする  近の Visual Studio には「Windows アプリケーション パッケージ プロジェクト」というテンプレートが用意されており、簡単に既存のアプリを APPX にパッケージングできます。詳しいやり方については Microsoft Docs を参照してください。かいつまんで言うと、
 アプリを作る（Tonjiru ソリューション - Tonjiru プロジェクト）ソリューションに「Windows アプリケーション パッケージ プロジェクト」を新規追加する（Tonjiru ソリューション - WindowsAppPackageプロジェクト）WindowsAppPackage プロジェクト → Tonjiru プロジェクトへの参照を張る（必要であれば WindowsAppPackage プロジェクトでエントリーポイントを設定する）みたいな流れです。できあがったパッケージは WindowsAppPackage_1.4.4.0_AnyCPU_bundle.appxuploadのような名前になります。名前がイマイチですね……できればこれからは、Tonjiru ソリューションTonjiru.WPF プロジェクト（アプリケーションプロジェクト）→ Tonjiru.WPF.exeTonjiru プロジェクト（パッケージプロジェクト）→ Tonjiru.appxという構成にしようかなって思います。もうめんどくさいので、新規開発するときの話になりますけど。### 審査パッケージができあがったら、それをストアに提出します。やり方はいつもと大して変わりませんが、ただ一点、Win32/WPF → UWP に変換したアプリは FullTrust 権限を必要とするので、その理由も書かなくてはいけない点には注意ですね。なんて書いていいのかよくわからなかったので、とりあえず内部で使ってる API を列挙して、なんのために使っているかを説明し、それ以外の用途には使ってないぜ、というのを英語でつらつらと主張してみました。 自分のデスクトップアプリを UWP にパッケージングしてストアに投げた！最近のはウンコ簡単だな！！— Daruyanagi Go（Office 付き） (@daruyanagi) 2018年6月9日" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

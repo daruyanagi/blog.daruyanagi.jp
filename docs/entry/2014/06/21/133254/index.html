@@ -41,7 +41,7 @@
     <meta name="og:title" content="オープン拡張辞書を Windows Runtime アプリで読み書きする（3）" />
     <meta name="og:description" content="オープン拡張辞書を Windows Runtime アプリで読み書きする（2） - だるろぐ の続き。今度は第二の方法「XDocument を使う」でやってみる。
 public static void Load(string path = @&#34;Assets\Sample.dctx&#34;){var xml = XDocument.Load(Path.Combine(Package.Current.InstalledLocation.Path, path));XNamespace ns1 = &#34;http://www.microsoft.com/ime/dctx&#34;;var header = xml.Root.Element(ns1 &#43; &#34;DictionaryHeader&#34;);dictionary.DictionaryGuid = header.Element(ns1 &#43; &#34;DictionaryGUID&#34;).Value;dictionary.DictionaryLanguage = header.Element(ns1 &#43; &#34;DictionaryLanguage&#34;).Value;dictionary.DictionaryVersion = header.Element(ns1 &#43; &#34;DictionaryVersion&#34;).Value;dictionary.DictionaryInfo = header.Elements(ns1 &#43; &#34;DictionaryInfo&#34;).ToDictionary(_ =&gt; _.Attribute(&#34;Language&#34;).Value, _ =&gt; new OpenExtendedDictionaryInfo(){ShortName = _.Element(ns1 &#43; &#34;ShortName&#34;).Value,LongName = _.Element(ns1 &#43; &#34;LongName&#34;).Value,Description = _." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

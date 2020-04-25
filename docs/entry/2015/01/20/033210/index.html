@@ -42,7 +42,7 @@
     <meta name="og:description" content="br/&gt;
 http://ehime-traffic.azurewebsites.net/WebMatrix &#43; Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。サイトをスクレイピングして情報取得（鉄道、船、JAL）（非公開）API を叩いて JSON から情報取得（ANA、ピーチ）（ジェットスターだけはうまくいかなかった！　今度誰か教えて！*1）スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。### 開発の流れ  行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、NuGet Gallery | HtmlAgilityPack 1.4.9 が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。
 using (var client = new WebClient()){var response = client.DownloadString(url);var json = Json.Decode(response);var doc = new HtmlAgilityPack.HtmlDocument();doc.LoadHtml(doc)// &lt;div class=&#34;ss_comment&#34;&gt;ここがほしいやで&lt;/div&gt; var message = doc." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

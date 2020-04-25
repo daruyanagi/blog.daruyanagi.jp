@@ -42,7 +42,7 @@
     <meta name="og:description" content="せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
 #### 1. とりあえずローカルに発行してコミットするまず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。```# Click-Once directory# publish/```ついでに .gitattributes も編集しておく。```*.manifest binary*.application binary*.deploy binary```これをコミットして GitHub にプッシュしておく。#### 2. ClickOnce のインストール フォルダーの URL を変更GitHub に publish フォルダーがちゃんとアップロードされているのを確認。  こからセットアップファイルの Raw URL を取得しておく。今回は
 https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=trueだった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。  ほど取得した Raw URL を cdn." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

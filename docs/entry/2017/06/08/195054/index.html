@@ -41,7 +41,7 @@
     <meta name="og:title" content="Tonjiru v1.2.0 ＋ WPF での起動オプション、ジャンプリスト、トースト" />
     <meta name="og:description" content="br/&gt;
 起動オプションの追加（/g で GUI 付きの起動）ジャンプリストへの対応（GUI 付きの起動を追加）ウィンドウ情報のクリップボードコピー（JSON 形式）ウィンドウ情報のファイル保存（JSON 形式）通知機能安定性の向上 ### WPF と起動オプション起動時に［Shift］キーが押されていたら GUI を起動するという挙動はApp.xaml の StartupUri を削除App.Startup でキーの押し下げ確認と MainWindow の自前生成という感じで実現していたんだけど、起動オプションを付けたら破綻したので、App.xaml の StartupUri を元に戻すApp.xaml のビルドアクションを Page にして、main 関数を自分で書くという感じに変えた。```cs[System.STAThreadAttribute()]public static void Main(){var args = Environment.GetCommandLineArgs();if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift){var app = new Tonjiru." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

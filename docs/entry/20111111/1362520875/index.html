@@ -41,7 +41,7 @@
     <meta name="og:title" content="WebMatrix &#43; Markdown ...... リファクタリング。" />
     <meta name="og:description" content="WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る  のコードをリファクタリングしてみた。ついでに、
 .md/.markdown という拡張子だったらプレーンテキストを表示する機能フォルダ階層への対応の2機能を追加した。```@using System.IO@functions {string ReadTextFile(string path){path = string.Format(&quot;/Pages/{0}.txt&quot;, path);path = Server.MapPath(path);if (!File.Exists(path)){throw new HttpException(404, path &#43; &quot;is not found.&quot;);}return File.ReadAllText(path);}}@{var url = UrlData.Count &gt; 0? string.Join(&quot;/&quot;, UrlData): &quot;Home&quot;;url = url.TrimEnd(&amp;#39;/&amp;#39;); var extension = Path.GetExtension(url);var content = string.Empty;switch (extension){case &quot;." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

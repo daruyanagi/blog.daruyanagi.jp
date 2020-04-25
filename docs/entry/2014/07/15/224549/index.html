@@ -43,7 +43,7 @@
 ローカルテスト中は、テスト用に作成したアカウントでポストリモート展開中は、本番用のアカウントでポストしたい。Visual Studio だったらデプロイ時に XDT で Web.config を書き換えられるので簡単だけど、わしはそれを WebMatrix でやりたいのさ。で、AppSettings についていろいろ調べてたのだけど……&gt;##### file 属性カスタム アプリケーションの構成設定を含む外部ファイルへの相対パスを指定します。指定されたファイルには、、、および の各要素で指定されたものと同じ種類の設定が含まれ、これらの要素と同じキーと値のペア形式を使用します。指定するパスはメイン構成ファイルへの相対パスです。Windows フォーム アプリケーションの場合は、アプリケーションの構成ファイルの場所ではなく、バイナリ フォルダ (/bin/debug など) になります。Web フォーム アプリケーションの場合は、web.config ファイルが置かれているアプリケーション ルートへの相対パスになります。 指定されたファイルが見つからない場合、ランタイムはこの属性を無視します。
  &lt;appsettings&gt; 要素&lt;/appsettings&gt; これは使えそう。方針はこんな感じ。
 ローカルテスト時：Web.config（テスト用の Twitter アカウントの設定を記述）リモートテスト時：Web.config ＋ RemoteOnly.config（本番用の Twitter アカウントの設定で上書き）発行のときにリモートの RemoteOnly.config を消さないように気を付けなきゃいけない運用上の注意はあるけれど、これは割とイケるのではないか。### Web.configappSettings にテスト用アカウントの設定を記述。```xmlxml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;? .web&gt; debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt; mode=&quot;Off&rdquo; /&gt; .web&gt;" />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

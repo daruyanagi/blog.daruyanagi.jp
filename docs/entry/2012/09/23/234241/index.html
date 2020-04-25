@@ -41,7 +41,7 @@
     <meta name="og:title" content="オブジェクトを XML でシリアライズ" />
     <meta name="og:description" content="WinRT のファイル操作はまだ慣れていないので、いちいち MSDN を徘徊しなくちゃいけないのでつらい。でも、ちょっとずつ覚えていかなければ。たとえば、.NET の XmlSerializer を使うときは Stream が必要なんだけれど、これは .NET のクラス。WinRT とどうやってつなげればいいんだろう……
 public async void Save(object o, string filename){if (o == null) throw new ArgumentException();try{// WinRT のファイル操作 var folder = ApplicationData.Current.LocalFolder;var file = await folder.CreateFileAsync(filename,CreationCollisionOption.ReplaceExisting);// .NET の書き込み stream として開く using (var stream = await file.OpenStreamForWriteAsync()){// おなじみの .NET ！ new XmlSerializer(o.GetType()).Serialize(stream, o);}// * }catch{throw;}}```調べてみると、 WindowsRuntimeStorageExtensions（&lt;a href=&#34;http://msdn." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -43,7 +43,7 @@
 ### Entity Framework Coreモデルは Entity Framework Core の Code First で作ったけど、相変わらず簡単だった。基本的にはモデルクラスを作り、Add-Migration {Migration Name} して、（なぜか NuGet パッケージコンソールで！）Update-Database するだけで、モデルクラス通りにデータベーススキーマを作ってくれる。はるか昔、Rails 2.0 を触ってた時に rake db:migrate とかやってた気がするけど、あの時代からあまり変わってない感じがする。  れど、ちょっと困ったのがコレ。モデルクラスを変更したときにたまに Build failed. と言われて詰まってしまう。カラムを消したときとかによくなるんだけど、どうやって解消すればいいのかな。エラーメッセージがシンプル過ぎて、とっかかりがない感じがつらい。おかげで、エラーで詰まるたびに新規プロジェクトを作る感じで、ちょっとげんなりしてる。まぁ、趣味で遊んでるだけなのでそれでもいいんだけど……Include() の使い方とかはネットをうろうろしてるうちに身につけられたけど、ちゃんと Entity Framework Core の本を一冊（日本語で）読んで系統だって理解したいなって思った。
 ### Tag Helper  num で表したデータをそのまま表示すると味気ない（上の表示）ので、少しリッチにしたい（下の表示）のだけど、Razor でごてごて分岐を書くのは面倒だし管理が大変だ。そこで今回は Tag Helper というのを使ってみた。これが超便利……。たとえば、こんな感じに
 &amp;lt;reading-status&gt;@Mode.Status&amp;lt;/reading-status&gt;```独自定義したタグを、```html&amp;lt;span class=&#34;reading-status&#34;&gt;{日本語表記}&amp;lt;/span&gt;```みたいに展開できる（スクリーンショットの部分は、もともと &lt;reading-status&gt;@Mode." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

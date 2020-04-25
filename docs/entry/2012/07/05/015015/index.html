@@ -41,7 +41,7 @@
     <meta name="og:title" content="XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → あと一歩まで行けた" />
     <meta name="og:description" content="近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。
 ### XREA/CoreServer からデータをバックアップFTP 接続でファイルをローカルに保存。と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。### Windows Azure Websites で WordPress サイトを作成・ダウンロードふつーに Windows Azure Websites で WordPress サイトを作成する。初期設定まで Azure 上でやっておいた。あとは WebMatrix でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の WordPress がローカルで動作する。### ファイルのコピーとデータベースのインポート、ローカルで WordPress を動作させる先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。```mysql -u root -p DB_NAME &lt; DUMP_FILE_NAME```WebMatrix のデータベースを開いて、旧Webサイトのドメインを“http://localhost:****”（テスト環境のIPアドレス）に書き換えておこう*1。この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。ちゃんと動いた！　WebMatrix では URL Rewrite が動かないようで、パーマリンクをカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。### Azure へ発行……失敗あとは Windows Azure Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。```2012/07/05 0:120:18:17: Using ID &#39;d4c71007-****&#39; for connections to the remote server." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -41,7 +41,7 @@
     <meta name="og:title" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい（2） ―― @helper と @functions とわたし" />
     <meta name="og:description" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ の話は続く。
 # ~/_AppCode/Flash.cshtml@helper Read()/* Razor を書く */ {if (Session[&#34;flash&#34;] == null) { return; }// Razor では if 文の {} を省略できない。これ、マメな。 &amp;lt;div class=&#34;message info&#34;&gt;&amp;lt;p&gt;@Session[&#34;flash&#34;]&amp;lt;/p&gt;&amp;lt;/div&gt;Session[&#34;flash&#34;] = null;}@functions/* 通常の C# 構文を書く */ {public static void Write(string value){Session[&#34;flash&#34;] = value;}}```この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。  りあえず、 &lt;code&gt;@helper Hoge(args) {……}&lt;/code&gt; は &lt;code&gt;public static HelperResult Hoge(args) {……}&lt;/code&gt; （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。```cs@functions{public static HelperResult Read(){return new HelperResult(w =&gt;{if (Session[&#34;flash&#34;] == null) { return; }/* &lt;div class=&#34;message info&#34;&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;@Session[&#34;flash&#34;]&lt;p&gt;&lt;/p&gt; */WriteLiteralTo(w, &#34;\&#34;message info\&#34;&gt;&lt;p&gt;&#34;&lt;/p&gt;);WriteTo(w, Session[&#34;flash&#34;]); WriteLiteralTo(w, &#34;&lt;p&gt;&lt;/p&gt;&#34;);Session[&#34;flash&#34;] = null;});}}```というわけで書いてみたのがこれ（参考：&lt;a href=&#34;http://shiba-yan." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

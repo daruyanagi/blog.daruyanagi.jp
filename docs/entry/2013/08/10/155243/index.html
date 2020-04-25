@@ -46,7 +46,7 @@
 PostId：bigint（でっかい整数）型。“主キーかどうか”“ID かどうか”の両方を“はい”にしました。テーブルに行が挿入されると自動でインクリメントされるはずです。Title：最大60文字の nvarchar（文字列）型。文字数は適当……。“Null（からっぽ）を許可”を“いいえ”にしておきます。RawText：ntext 型。あらかじめ文字列の数を決めなくてよいテキスト型。本文をぶちこんでおくには最適かな？CreatedAt：datetime（日時）型。その名の通り作成日時です。UpdatedAt：datetime（日時）型。今回は使いませんが、のちのち更新日を記録しておきたくなると思うので。これを“Post”という名前で作っておきます。### データの入力画面の作成  ファイル］ワークスペースへ移行、とりあえず NewPost.cshtml という名前でデータの入力画面ページをルートフォルダ―に作成します。この画面には、http://***/NewPost でアクセスできます。
   ードの方はこんな感じ。ごくごく簡単で、エラー処理っぽいことはしていません。
 @{if (IsPost) // POST 要求だけを受け付けましょう {// Request[&#34;name&#34;] で送られてきた名前を取得。 // POST データなら Request." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

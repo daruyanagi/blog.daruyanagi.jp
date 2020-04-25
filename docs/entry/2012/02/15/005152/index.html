@@ -44,7 +44,7 @@
 using System.Web.Mvc; using System.Xml; using System.ServiceModel.Syndication;
 namespace Daruyanagi { public static class FeedHelper { public static string GetHtml(string url, int count = 10) { var div = new TagBuilder(&ldquo;div&rdquo;); div.Attributes.Add(&ldquo;class&rdquo;, &ldquo;feed&rdquo;);
  using (var reader = XmlReader.Create(url)){var feed = SyndicationFeed.Load(reader);var h2 = new TagBuilder(&quot;h2&quot;);h2.InnerHtml = feed.Title.Text;div.InnerHtml &#43;= h2.ToString();var ul = new TagBuilder(&quot;ul&quot;);foreach (var i in feed." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

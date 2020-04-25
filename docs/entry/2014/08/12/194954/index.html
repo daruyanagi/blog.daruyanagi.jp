@@ -41,7 +41,7 @@
     <meta name="og:title" content="WebMatrix 3：oEmbed ヘルパーを作ってみた（２）" />
     <meta name="og:description" content="WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ の続き。今回は Flickr の埋め込みをやってみようかと思う。
 ### ~/App_Code/OEmbed.cshtml```cs@helper Flickr(string url) {const string API_ENDPOINT = &#34;http://www.flickr.com/services/oembed/&#34;;using (var downloader = new WebClient()){try{// URL を組み立てて JSON の oEmbed データを取得var request = string.Format(&quot;{0}?url={1}&amp;amp;format={2}&quot;, API_ENDPOINT, url, &quot;json&quot;);var oembed_data = downloader.DownloadString(request);var oembed_json = Json.Decode(oembed_data);@ObjectInfo.Print(oembed_json) // デバッグのためvar embed_type = oembed_json.type as string;switch (embed_type) // photo と video の二種類がある{case &quot;photo&quot;: &lt;figure&gt; &lt;img src=&#39;@oembed_json." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

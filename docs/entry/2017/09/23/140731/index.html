@@ -42,7 +42,7 @@
     <meta name="og:description" content="br/&gt;
 メインリストビューに Last Update 欄を設けるそれに伴うコード整理Refresh ボタンは不要になったので廃止通知トレイで DEBUG モードなのがわかるようにファイル操作の非同期化 （メイン画面を初期表示＆スクロールする際のカクツキを抑えた）それに伴うリグレッションの修正ついでにステータスバーに総稼働時間を表示するようにリファクタリングClick Once がめんどいのでやめた（ごめんなさい！） ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした  lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。
 # 起点となる bin フォルダー $root = Join-Path $PSScriptRoot &#34;Omawari\bin&#34;# 入力フォルダー $src = Join-Path $root &#34;Release&#34;# 出力フォルダー $version = (Get-ItemProperty (Join-Path $src &#34;Omawari.exe&#34;)).VersionInfo.FileVersion$dest = Join-Path $root Omawari-$version." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

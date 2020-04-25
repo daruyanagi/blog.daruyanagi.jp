@@ -41,7 +41,7 @@
     <meta name="og:title" content="C#：非同期なイベント？" />
     <meta name="og:description" content="たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。
 public void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= (sender, reason) =&gt; { Hoge(); };}```イベントハンドラ内で非同期コードがある場合は、こんな感じになる。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= async (sender, reason) =&gt;{ await Hoge(); };}```async/await を付け足すだけなので、そんなに難しくはない。次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。非同期じゃない場合はこんな感じ。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= taskInstanceCanceled;}private void taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){Hoge();：：}```これをさっきみたいに非同期にすると、```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled &#43;= taskInstanceCanceled;// taskInstance.Canceled &#43;= async taskInstanceCanceled;}private async Task taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){await Hoge();：：}```になると思うんだけど、```cstaskInstance." />
-    <meta name="og:image" content="https://blog.daruyanagi.jp/" />
+    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

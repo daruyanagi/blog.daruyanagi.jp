@@ -19,7 +19,7 @@
       <guid>https://blog.daruyanagi.jp/entry/2018/06/23/204520/</guid>
       <description>今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” https://t.co/3qCA4Fnozt— だるやなぎ 帝国元帥 (@daruyanagi) 2018年6月21日
  Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。
-### SDK のインストール  りあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。ASP.NET - Get started in 10 minutesなんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。
+### SDK のインストール  りあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。ASP.NET - Get started in 10 minutesなんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。
     ゃんとプルダウンに 2.1 がでてきたので切り替えました。
   br/&amp;gt;
 ### とりあえずデバッグ → エラー  りあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。
@@ -59,7 +59,7 @@
       <pubDate>Sat, 13 Jan 2018 20:52:39 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/01/13/205239/</guid>
-      <description>目が覚めたのは明け方だったと思う。今日は何もしないと決めていたので、冷蔵庫からビールを取り出し、ガビガビ飲みながら Civilization 6 で遊んでた……のだけど、そんなに興が乗らない。というわけで、Visual Studio を広げてちょろちょろとコードをいじってた。こっちもあまりやる気がないので、今日はビューコンポーネントの再利用にでも取り組もうかと、TagHelper を作ってみた。TagHelper については公式のドキュメントもあるし、@miso_soup3 さんの手引きもあるので、それほど難しくないと思う。ASP.NET MVC 6 Tag Helper について - miso_soup3 Blogただ、個人的に２、３ハマってしまったのでメモしておこう。
+      <description>目が覚めたのは明け方だったと思う。今日は何もしないと決めていたので、冷蔵庫からビールを取り出し、ガビガビ飲みながら Civilization 6 で遊んでた……のだけど、そんなに興が乗らない。というわけで、Visual Studio を広げてちょろちょろとコードをいじってた。こっちもあまりやる気がないので、今日はビューコンポーネントの再利用にでも取り組もうかと、TagHelper を作ってみた。TagHelper については公式のドキュメントもあるし、@miso_soup3 さんの手引きもあるので、それほど難しくないと思う。ASP.NET MVC 6 Tag Helper について - miso_soup3 Blogただ、個人的に２、３ハマってしまったのでメモしておこう。
 ### @addTagHelper で指定するのはアセンブリ名TagHelper をビューで利用するには @addTagHelper でロードしておかなくちゃいけないんだけど（_ViewStart.cshtml に書いておくと複数のビューに一括指定できて便利）、ロードの指定は**アセンブリ名**で行う。自分はなぜかネームスペースだと勘違いしてしまっていて、ちゃんと書いたはずなのに動かねーなー、クソだなーと悩んでしまった。クソなのは僕の頭でした。申し訳ない。  agHelper がちゃんとロードされるとインテリセンスの補完を受けることができるが（タグが太字にもなる）、プロジェクトをリビルドしないと反映されないかもしれない。なお、TagHelper の読み込みは @addTagHelper , Tsundoku でも @addTagHelper &amp;ldquo;, Tsundoku&amp;rdquo; でもよいみたい。知らんけど。
 ### HTML タグを SetContent() するとサニタイズされる → SetHtmlContent() を使う  グの中身は SetContent() で書き換えるのが基本だけど、HTML タグはエスケープされる。エスケープなしでコンテンツにセットしたい場合は、SetHtmlContent() で「HTML だよ！」と明示すればおっけ。このあたりは string と HtmlString の関係に似ているかもしれない。
 ### 書き換え対象のタグは  にしない、Attributes.Clear() は要らないかも&amp;lt;hoge / って書いたタグを TabHelper でいじると、いろいろ謎なことが起こるっぽい。ちゃんと開いて書いといたほうが無難。この前もこれでハマったのにまたやらかすとはな。あと、Attributes はわざわざクリアしなくてもいいっぽい？　Clear() をコメントアウトしてもへんな属性は出力されなかった。変なタイミングでクリアしちゃうと属性ベースで受け渡しされた情報にアクセスできなくなることがあるみたいなので、要らないことはしない方がいいかもね。  れで無事、アクティブティパネル（読書進捗のタイムラインのアイテム）のデザインを共通化することができてスッキリ。でも、TagHelper にするとデバッグ時にコードがいじれなくなるのはちょっと面倒だね。ビューなら変更が効くのに……あらかじめビューでいろいろ試して、デザインが固まったら TagHelper にまとめるって感じにした方がいいかも。</description>
@@ -72,7 +72,7 @@
       
       <guid>https://blog.daruyanagi.jp/entry/2018/01/11/020337/</guid>
       <description>夜中に目を覚ました。「アレクサ、照明をつけて」と闇に呼び掛けた。アレクサが答えた。_「インターネットに接続できません。アレクサアプリのヘルプをご確認ください」ここ最近、Amazon Echo Dot と eRemote に頼りっきりで、照明のリモコンなど戸棚の奥にしまってしまっている。せめてメガネがあれば夜目も効くのだが、灯りがないとメガネを探すことすらできない。メガネは灯りを求め、灯りはメガネを求め……その堂々巡りの中、尿意だけが果てしなく高まっていく。インターネットはインフラだな、と実感させられた。まぁ、それはともかく。昨日はなぜかルーターの調子が悪く、2.4GHz 帯が使えなかった。パソコンのネットは 5GHz 帯でつなげばいいのでなんら問題ないし、むしろそっちの方が輻輳がなく快適なのだと思うけれど、eRemote――説明し忘れていたが、こいつはネットワークに接続できる学習リモコンのようなもので、Amazon Eco Dot（アレクサ）につないで音声で家電をコントロールできる――が 2.4GHz 帯にしか対応していない関係で、2.4GHz 帯をメインに使っていたのだ。おかげで無線でつないでいたプリンターも応答してくれなくなるし……昼過ぎからはなぜか問題が解消されたけど*1、いろいろ踏んだり蹴ったりだった。LinkJapan eRemote mini IoTリモコン 家でも外からでもいつでもスマホで自宅の家電を操作 【AmazonAlexa対応製品】 MINI出版社/メーカー: LinkJapanメディア: エレクトロニクスこの商品を含むブログ (1件) を見るでも、このことが逆に Amazon Echo Dot＋eRemote の最強っぷりを改めて証明してくれたと思う。お布団でぬくぬくしたまま「アレクサ、エアコンつけて」「アレクサ、10分後に教えて（← 部屋が温まるまで二度寝）」「アレクサ、照明つけて」ができるの、ほんまサイコー*2。「スマートスピーカー？　どうせすぐ飽きるだろ」_と思っていたのに、この1カ月ですっかり信者になってしまったよ。eRemote は 5GHz 対応の後継機種が出たら買い足してもいい。仕事部屋だけでなく、リビングにも置いてやる。
-  んとは iPad の修理に出かけたり、サンドイッチ買ったり、温泉や飲みにも出かけたかったけど、軽く雨が降っていたので引きこもり。アプリの開発は、読書の進捗メモ（のユーザーインターフェイスだけ）が実装できた。JavaScript は苦手＆久しぶりでサッパリだったけど、Bootstrap の Modal Dialog を組み込んだり、input の値に応じて Bootstrap の Progress を操作できるようにしてみたり……数値のアップダウンコントロールは Touch Spin というサードパーティ製コンポーネントが使いやすそうで、これも組み込んでみた。Bootstrap TouchSpinちなみに、ASP.NET Core MVC/Razor Page でちょっとしたスクリプトを組み込みたい場合は、Scripts セクションに書いてしまえばいいと思う。ここだったら jQuery のロードが終わってるはずなので。というか、他のところに書いてたら jQuery が全然動かなくて……はじめは仕方なくバニラで書いてた。Touch Spin を組み込んだら開発者ツールのコンソールに「jQuery が未定義」みたいなエラーが出てきて、はじめて jQuery がロードされていないことに気づいた。
+  んとは iPad の修理に出かけたり、サンドイッチ買ったり、温泉や飲みにも出かけたかったけど、軽く雨が降っていたので引きこもり。アプリの開発は、読書の進捗メモ（のユーザーインターフェイスだけ）が実装できた。JavaScript は苦手＆久しぶりでサッパリだったけど、Bootstrap の Modal Dialog を組み込んだり、input の値に応じて Bootstrap の Progress を操作できるようにしてみたり……数値のアップダウンコントロールは Touch Spin というサードパーティ製コンポーネントが使いやすそうで、これも組み込んでみた。Bootstrap TouchSpinちなみに、ASP.NET Core MVC/Razor Page でちょっとしたスクリプトを組み込みたい場合は、Scripts セクションに書いてしまえばいいと思う。ここだったら jQuery のロードが終わってるはずなので。というか、他のところに書いてたら jQuery が全然動かなくて……はじめは仕方なくバニラで書いてた。Touch Spin を組み込んだら開発者ツールのコンソールに「jQuery が未定義」みたいなエラーが出てきて、はじめて jQuery がロードされていないことに気づいた。
 @section Scripts {@{await Html.</description>
     </item>
     
@@ -119,7 +119,7 @@ Check the system event log for error messages Enable logging the application pro
       <pubDate>Tue, 15 Aug 2017 19:46:36 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/194636/</guid>
-      <description>  ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。URL Rewriting Middleware in ASP.NET Core具体的には、こんな感じ。
+      <description>  ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。URL Rewriting Middleware in ASP.NET Core具体的には、こんな感じ。
 public class Startup{public void ConfigureServices(IServiceCollection services){services.AddMvc();}public void Configure(IApplicationBuilder app, IHostingEnvironment env){if (env.IsDevelopment()){app.UseDeveloperExceptionPage();}var options = new RewriteOptions().AddRedirect(&amp;#34;entry/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/entry/$1&amp;#34;).AddRedirect(&amp;#34;category/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/category/$1&amp;#34;).AddRedirect(&amp;#34;entries/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/entries/$1&amp;#34;).AddRedirect(&amp;#34;search/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/search/$1&amp;#34;).AddRedirect(&amp;#34;touch/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/touch/$1&amp;#34;).AddRedirect(&amp;#34;embed/(.*)&amp;#34;, &amp;#34;http://blog.daruyanagi.jp/embed/$1&amp;#34;);app.UseRewriter(options);app.UseStaticFiles();app.UseMvc();}}```今まで自分がやってきたやり方はクソなので、もう忘れようと思う。[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　</description>
     </item>
     
@@ -140,11 +140,10 @@ public class Startup{public void ConfigureServices(IServiceCollection services
       <pubDate>Tue, 15 Aug 2017 03:20:10 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</guid>
-      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
+      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
 ### プロジェクトの作成  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
   リューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。
-  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。
-  br/&amp;gt;</description>
+  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。</description>
     </item>
     
     <item>
@@ -153,7 +152,7 @@ public class Startup{public void ConfigureServices(IServiceCollection services
       <pubDate>Mon, 17 Jul 2017 14:33:23 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/07/17/143323/</guid>
-      <description>6月末、事情があって急遽 daruyanagi.jp を ASP.NET Core MVC で書き直した。空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐしかし、このとき daruyanagi.jp → blog.daruyanagi.jp へのリダイレクト機能を実装していなかった。はてなブログのドメインを daruyanagi.jp から blog.daruyanagi.jp へ引越しした - だるろぐGoogle Search Console から“「404」ページの増加”というメールが来た - だるろぐリンク先を読むのがめんどくさい人のために、事情をかいつまんでいうと、
+      <description>6月末、事情があって急遽 daruyanagi.jp を ASP.NET Core MVC で書き直した。空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐしかし、このとき daruyanagi.jp → blog.daruyanagi.jp へのリダイレクト機能を実装していなかった。はてなブログのドメインを daruyanagi.jp から blog.daruyanagi.jp へ引越しした - だるろぐGoogle Search Console から“「404」ページの増加”というメールが来た - だるろぐリンク先を読むのがめんどくさい人のために、事情をかいつまんでいうと、
 むかし、はてなブログを daruyanagi.jp で運営していたはてなブログをサブドメインなしで運用するのは非推奨だったので、blog.daruyanagi.jp へ移した当然ながら大量のリンク切れが発生これを解消するため、daruyanagi.jp にリダイレクト機能を組み込んでいた（ASP.NET Web Pages 製）ASP.NET Web Pages 製 daruyanagi.jp を ASP.NET Core MVC 製にする過程で、リダイレクト機能を省略したVisual Studio 2017 Update 3 が正式版になれば、ASP.NET Web Pages のような機能が IDE 側でサポートされるという話を聞いたので、それを待ってから実装してもいいかなと思っていたのだけど、なかなかこない＆ブログにリンク切れが多くて使いにくかったので、とりあえずやっつけの対策を施した。まず、ルーティングの書き換え。今回は /entry だけを対策しておく（ほんとは他の URL にも対策を施さないといけないけれど、今回は一番困るやつだけ対策）。```cs// {Root}/startup.</description>
     </item>
     
@@ -163,7 +162,7 @@ public class Startup{public void ConfigureServices(IServiceCollection services
       <pubDate>Thu, 29 Jun 2017 03:04:57 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/29/030457/</guid>
-      <description>空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移植しました。でも、WebMatrix で作ったフィード配信機能が動作しない……。WebMatrix 3: RSS フィードを出力する - だるろぐWebMatrix 3: RSS フィードを出力する（解決編） - だるろぐというわけで、こっちも簡易的な対策を行いました。ちょっと調べた限りでは、
+      <description>空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移植しました。でも、WebMatrix で作ったフィード配信機能が動作しない……。WebMatrix 3: RSS フィードを出力する - だるろぐWebMatrix 3: RSS フィードを出力する（解決編） - だるろぐというわけで、こっちも簡易的な対策を行いました。ちょっと調べた限りでは、
 Response は使えない → Context.Response を代わりに使うSystem.ServiceModel.Syndication は .NET Core 1.1 で実装されていない → 自分で XML を組み立てるでイケそう。というわけで、まずはモデルっぽいもの（/Models/FeedItem.cs）を準備。```cspublic class FeedItem{public string Link { get; set; }public string Title { get; set; }public HtmlString Content { get; set; }public DateTime PublishDate { get; set; }}```cspublic class FeedController : Controller{public async Task&amp;amp;lt;IActionResult&amp;gt; Index(){var feeds = new List&amp;amp;lt;FeedItem&amp;gt;();// FeedItem を適当に Add() してね！return View(feeds);}}```最後にビュー（/Views/Feed/Index.</description>
     </item>
     

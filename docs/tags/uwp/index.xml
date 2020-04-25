@@ -17,13 +17,12 @@
       <pubDate>Wed, 05 Feb 2020 18:27:10 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2020/02/05/182710/</guid>
-      <description>ログ掲載のために画像をリサイズするだけのアプリ「Shriken」をリリースしました。「スマホ同期」で［共有］→ 画像をリサイズしてクリップボードへコピー → はてなブログへ貼り付ける というプロセスがちょっとだけ簡単になります*1。Shriken を入手 - Microsoft Store ja-JPとりあえずストアに出して、Surface Pro X で使いたいと思い（だから ARM64 ビルドもあるよ！）、不安定な機能は全部削除しているので、普通の人はあまりこれのお世話になることはないと思いますが、将来的には以下の機能が実装される予定です。
+      <description>ログ掲載のために画像をリサイズするだけのアプリ「Shriken」をリリースしました。「スマホ同期」で［共有］→ 画像をリサイズしてクリップボードへコピー → はてなブログへ貼り付ける というプロセスがちょっとだけ簡単になります*1。Shriken を入手 - Microsoft Store ja-JPとりあえずストアに出して、Surface Pro X で使いたいと思い（だから ARM64 ビルドもあるよ！）、不安定な機能は全部削除しているので、普通の人はあまりこれのお世話になることはないと思いますが、将来的には以下の機能が実装される予定です。
 クロップ閲覧時のズームペンによる注釈顔認識と笑い男化 笑い男機能つけといた pic.twitter.com/jRU3ibh8lA— 新型だるやなぎウイルス (@daruyanagi) 2020年1月12日
  ここまで完成すれば、まぁ、需要はなくもないんじゃないでしょうか。ちなみに、名前が Shuriken ではなく Shriken なのは、他の人に名前がとられてたからです。でも、Shrink image からもじって付けようと思ってたので、あまり問題はない（キリッ
 ### 開発秘（？）話久しぶりの UWP 開発だったので、どんな UI にしていいのかさっぱりわかりませんでした。 基本機能はできたので、UI をどうにかする（UWP の UI ってどうデザインすればスタンダードなのか、さっぱり忘れた） pic.twitter.com/GgKE3nFn6R— 新型だるやなぎウイルス (@daruyanagi) 2020年1月2日
   がんばって UI をマシにしてみた pic.twitter.com/C1Alq1DvsY— 新型だるやなぎウイルス (@daruyanagi) 2020年1月3日
- いろいろ試行錯誤した結果、標準アプリである「フォト」に似せればいいか、という考えに落ちつくまでに、View は3回ぐらい作り直しました。そのおかげで、最初はコードビハインドにべた書きしていた ViewModel、Model も分離されるようになり（だって、View 作り直すたびにコードビハインドをコピペするの大変じゃん？）、（あくまで個人的には）いい感じに設計できました。怪我の功名ってやつですね。機能追加してもそうそう破綻しなさそうです。
- ぇ、ドキュメントサイトからコントロールギャラリーアプリを起動して実際に挙動を確かめられるの、めっちゃ素敵やんhttps://t.</description>
+ いろいろ試行錯誤した結果、標準アプリである「フォト」に似せればいいか、という考えに落ちつくまでに、View は3回ぐらい作り直しました。そのおかげで、最初はコードビハインドにべた書きしていた ViewModel、Model も分離されるようになり（だって、View 作り直すたびにコードビハインドをコピペするの大変じゃん？）、（あくまで個人的には）いい感じに設計できました。怪我の功名ってやつですね。機能追加してもそうそう破綻しなさそうです。</description>
     </item>
     
     <item>
@@ -32,7 +31,7 @@
       <pubDate>Mon, 06 Jan 2020 17:20:12 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2020/01/06/172012/</guid>
-      <description>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。
+      <description>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。
 ［共有］コマンドに対応（必須）シンプル。ブログへのアップロードに使いそうな機能しか追加しない画像の縮小（できた）画像の回転（すぐできそうだけどやってない）顔認識して隠す（進捗半分）画像のクロップ（優先度低）UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。### Win2D を使うそういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。```cs// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmappublic static SoftwareBitmap Resize(this SoftwareBitmap softwareBitmap, float newWidth, float newHeight) { using (var resourceCreator = CanvasDevice.GetSharedDevice()) using (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap)) using (var canvasRenderTarget = new CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi)) using (var drawingSession = canvasRenderTarget.</description>
     </item>
     
@@ -42,7 +41,7 @@
       <pubDate>Mon, 24 Sep 2018 19:13:21 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/09/24/191321/</guid>
-      <description>「Amaguri」v1.0.0.0 - だるろぐWPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！
+      <description>「Amaguri」v1.0.0.0 - だるろぐWPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！
 ### ターゲット フレームワーク &amp;#39;.NETCore,Version=v5.0&amp;#39; の mscorlib を解決できませんでしたWindows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。 プロジェクト システムでエラーが発生しました。ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 
  最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――
   んだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。
@@ -66,7 +65,7 @@
       <pubDate>Sat, 09 Jun 2018 16:35:00 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/06/09/163500/</guid>
-      <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
+      <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
 &amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34;&amp;gt;&amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt;Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt;&amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt;&amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34;Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt;&amp;amp;lt;desktop:FullTrustProcess&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Active&amp;#34; Parameters=&amp;#34;/a&amp;#34;/&amp;gt;&amp;amp;lt;/desktop:FullTrustProcess&amp;gt;&amp;amp;lt;/desktop:Extension&amp;gt;```それを使えばいいみたい。```csprivate async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e){await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&amp;#34;Desktop&amp;#34;);}```これをコンソールアプリで受けてみると、こんな感じになった。```csnamespace Yakitori.Console{class Program{static void Main(string[] args){foreach (var arg in args){System.Console.WriteLine(arg);}System.Console.ReadKey();}}}```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。  </description>
     </item>
     
@@ -80,7 +79,7 @@
 Release 4: 3.0 (17/08/29)new designimprove error handlingほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血  と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、このアプリからまた［共有］機能が呼べることです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。
   方、ときどきデータがクリップボードにコピーされないという不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です*1。
     形ルールの管理画面も新しくなりました。昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。
-  と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（【更新】Clipper - Windows Store WatchClipper を購入 - Microsoft ストア 日本
+  と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（【更新】Clipper - Windows Store WatchClipper を購入 - Microsoft ストア 日本
 *1:WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除</description>
     </item>
     
@@ -112,7 +111,7 @@ public sealed partial class MainPage : Page{public MainPage(){this.Initializ
       <pubDate>Tue, 11 Oct 2016 20:15:41 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/10/11/201541/</guid>
-      <description>  00円って書いてあるけど、「無料評価版」を使えばずっとタダです。Abema.Alart – Microsoft ストアの Windows アプリ最近“だるろぐ”の収益が落ちてきているので、ビール代をカンパしてください。
+      <description>  00円って書いてあるけど、「無料評価版」を使えばずっとタダです。Abema.Alart – Microsoft ストアの Windows アプリ最近“だるろぐ”の収益が落ちてきているので、ビール代をカンパしてください。
 ### 「Abema.Alart」の使い方  動するとこういう画面が出るので、好みの番組を選択して――
   組の詳細画面で［視聴予約する］ボタンをクリック（初回利用時にバルーンで教えてくれます）。ダイアログで「登録しました」って出れば成功（過去の番組であれば失敗するはずです。重複登録のチェックを忘れていたので、次のバージョンにはつける予定）。
   間になると、トーストで通知してくれます。［視聴する］ボタンを押すと既定のブラウザーで番組を閲覧できます。

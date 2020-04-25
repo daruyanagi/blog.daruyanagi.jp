@@ -95,7 +95,9 @@
     <img src="/images/20170816021356.png"/> 
 </figure>
 
-<p>ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting">URL Rewriting Middleware in ASP.NET Core</a>具体的には、こんな感じ。</p>
+<p>ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting" alt="URL Rewriting Middleware in ASP.NET Core">
+  URL Rewriting Middleware in ASP.NET Core
+</a>具体的には、こんな感じ。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span>
 {
     <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services)

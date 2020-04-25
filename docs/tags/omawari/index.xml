@@ -52,7 +52,7 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/19/195837/</guid>
       <description>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
-デバッグビルドとリリースビルドの共存（開発の都合）通知アイコンの改善（タイマーの通算稼働時間のカウント）Updated を Pending に変えるまでの時間をグローバル設定から読み込むようにステータス色分けの改善内部で保持している UTC を Local Time にちゃんと直して表示コードの整理**静的スクレイピング機能の追加****プレビューの文字化けを修正****更新ログウィンドウの追加**スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？） ### 静的スクレイピング機能の追加  hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
+デバッグビルドとリリースビルドの共存（開発の都合）通知アイコンの改善（タイマーの通算稼働時間のカウント）Updated を Pending に変えるまでの時間をグローバル設定から読み込むようにステータス色分けの改善内部で保持している UTC を Local Time にちゃんと直して表示コードの整理**静的スクレイピング機能の追加****プレビューの文字化けを修正****更新ログウィンドウの追加**スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？） ### 静的スクレイピング機能の追加  hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
 ### プレビューの文字化けを修正WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死```cspublic class WebBrowserExtension{public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(&#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged));public static string GetHtml(DependencyObject obj){return (string)obj.</description>
     </item>
     
@@ -62,7 +62,7 @@ function New-ReleaseArchive { [cmdletbinding()] param( $rootDirectory, $Force )<
       <pubDate>Sun, 17 Sep 2017 04:10:58 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/17/041058/</guid>
-      <description>  の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） - だるろぐ動かなかったので（そりゃそうか？）、WPF アプリケーションにしました。
+      <description>  の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） - だるろぐ動かなかったので（そりゃそうか？）、WPF アプリケーションにしました。
   ーゲットとなる URI を登録すると、定期的にスクレイピングしてくれます。CSS セレクターが使えるので、ページの一部分だけ保存することが可能です*1。あと、シングルページアプリケーションのために、動的サイトをスクレイピングする機能を追加しました。
   ーカルに保存したログは、Diff をとってみることができます*2。データフォルダーをオンラインストレージに指定しておくと（初回利用時に選択できます）、複数環境でデータを同期できて便利かもしれない。
  コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。

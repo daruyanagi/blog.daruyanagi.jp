@@ -29,7 +29,7 @@
       <pubDate>Sat, 09 Sep 2017 17:19:21 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/09/171921/</guid>
-      <description>Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。
+      <description>Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。
 var document = default(IHtmlDocument);using (var client = new HttpClient())using (var stream = await client.GetStreamAsync(Target)){var parser = new HtmlParser();document = await parser.ParseAsync(stream);}Result = document.QuerySelector(Selector)?.InnerHtml;return Page();```確かにシンプルなのですが、外部 JavaScript を読んで、評価して……までやりだすと、いろいろ大変な感じ&amp;lt;a href=&amp;#34;#f-4db4db9a&amp;#34; name=&amp;#34;fn-4db4db9a&amp;#34; title=&amp;#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&amp;#34;&amp;gt;*1&amp;lt;/a&amp;gt;。これまで通り PhantomJS でやった方がよさそう。――というわけで。今回はそっちを置いておいて、Web API として使えるようにしてみました。ASP.NET API（Core）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。```csnamespace WebApplication7.Controllers{[Route(&amp;#34;api/[controller]&amp;#34;)] public class ValuesController : Controller{// GET api/values[HttpGet]public IEnumerable&amp;amp;lt;string&amp;gt; Get(){return new string[] { &amp;#34;value1&amp;#34;, &amp;#34;value2&amp;#34; };}}}```&amp;lt;code&amp;gt;/api/values&amp;lt;/code&amp;gt; をゲットでたたくと、&amp;lt;code&amp;gt;{ &amp;#34;value1&amp;#34;, &amp;#34;value2&amp;#34; }&amp;lt;/code&amp;gt; が返ってくる。これと組み合わせて、API Controller を Razor Pages で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、API と Razor Pages で共通のロジックをまとめて（適当に &amp;lt;code&amp;gt;Services&amp;lt;/code&amp;gt; フォルダーにまとめました）、共有することにしました。  有部分はこんな感じ。```cs// サービスと名付けたモノ（/Services）namespace WebApplication7.</description>
     </item>
     
@@ -51,11 +51,11 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
       <pubDate>Tue, 15 Aug 2017 04:36:34 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/043634/</guid>
-      <description>回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Razor Pages はカンタン！」_というのも伝わりにくいと思いました。Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる - だるろぐそこで、今回は Visual Studio 2017.3 を利用して“空”のアプリケーションから Razor Pages で Hello! World するまでをステップバイステップでやっていこうかなと思います。
+      <description>回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Razor Pages はカンタン！」_というのも伝わりにくいと思いました。Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる - だるろぐそこで、今回は Visual Studio 2017.3 を利用して“空”のアプリケーションから Razor Pages で Hello! World するまでをステップバイステップでやっていこうかなと思います。
 ### 空のアプリケーションを作成する  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションを作成。フレームワークを .NET Core へ、.NET のバージョンを 2.0.0 に切り替えて、“空”のアプリケーションを作成します。
   のアプリケーションには、ソリューションファイルなどを除くと
 Program.csStartup.cs静的ファイルを置く wwwroot フォルダーの3つしかありません。シンプルだね！　コードも最低限で、  F5］キーで実行すると“Hello! World”が表示されるだけです。まずはここから始めましょう。
-### Program.cs と Startup.csProgram.cs は、アプリケーションを実行する際、最初に処理されます（エントリポイントってやつだな）。```csusing Microsoft.AspNetCore;using Microsoft.</description>
+### Program.cs と Startup.csProgram.cs は、アプリケーションを実行する際、最初に処理されます（エントリポイントってやつだな）。```csusing Microsoft.</description>
     </item>
     
     <item>
@@ -64,11 +64,10 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
       <pubDate>Tue, 15 Aug 2017 03:20:10 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</guid>
-      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
+      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
 ### プロジェクトの作成  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
   リューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。
-  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。
-  br/&amp;gt;</description>
+  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。</description>
     </item>
     
   </channel>

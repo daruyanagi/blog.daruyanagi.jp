@@ -96,7 +96,9 @@
     <img src="/images/20180111015106.png"/> 
 </figure>
 
-<p>んとは iPad の修理に出かけたり、サンドイッチ買ったり、温泉や飲みにも出かけたかったけど、軽く雨が降っていたので引きこもり。アプリの開発は、読書の進捗メモ（のユーザーインターフェイスだけ）が実装できた。JavaScript は苦手＆久しぶりでサッパリだったけど、Bootstrap の Modal Dialog を組み込んだり、input の値に応じて Bootstrap の Progress を操作できるようにしてみたり……数値のアップダウンコントロールは Touch Spin というサードパーティ製コンポーネントが使いやすそうで、これも組み込んでみた。<a href="https://www.virtuosoft.eu/code/bootstrap-touchspin/">Bootstrap TouchSpin</a>ちなみに、ASP.NET Core MVC/Razor Page でちょっとしたスクリプトを組み込みたい場合は、Scripts セクションに書いてしまえばいいと思う。ここだったら jQuery のロードが終わってるはずなので。というか、他のところに書いてたら jQuery が全然動かなくて……はじめは仕方なくバニラで書いてた。Touch Spin を組み込んだら開発者ツールのコンソールに「jQuery が未定義」みたいなエラーが出てきて、はじめて jQuery がロードされていないことに気づいた。</p>
+<p>んとは iPad の修理に出かけたり、サンドイッチ買ったり、温泉や飲みにも出かけたかったけど、軽く雨が降っていたので引きこもり。アプリの開発は、読書の進捗メモ（のユーザーインターフェイスだけ）が実装できた。JavaScript は苦手＆久しぶりでサッパリだったけど、Bootstrap の Modal Dialog を組み込んだり、input の値に応じて Bootstrap の Progress を操作できるようにしてみたり……数値のアップダウンコントロールは Touch Spin というサードパーティ製コンポーネントが使いやすそうで、これも組み込んでみた。<a href="https://www.virtuosoft.eu/code/bootstrap-touchspin/" alt="Bootstrap TouchSpin">
+  Bootstrap TouchSpin
+</a>ちなみに、ASP.NET Core MVC/Razor Page でちょっとしたスクリプトを組み込みたい場合は、Scripts セクションに書いてしまえばいいと思う。ここだったら jQuery のロードが終わってるはずなので。というか、他のところに書いてたら jQuery が全然動かなくて……はじめは仕方なくバニラで書いてた。Touch Spin を組み込んだら開発者ツールのコンソールに「jQuery が未定義」みたいなエラーが出てきて、はじめて jQuery がロードされていないことに気づいた。</p>
 <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#960050;background-color:#1e0010">@</span><span style="color:#a6e22e">section</span> <span style="color:#a6e22e">Scripts</span> {
     <span style="color:#960050;background-color:#1e0010">@</span>{
         <span style="color:#a6e22e">await</span> <span style="color:#a6e22e">Html</span>.<span style="color:#a6e22e">RenderPartialAsync</span>(<span style="color:#e6db74">&#34;_ValidationScriptsPartial&#34;</span>);

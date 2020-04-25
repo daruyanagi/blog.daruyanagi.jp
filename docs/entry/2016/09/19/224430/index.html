@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="UWP：はてなの oAuth 認証" />
+    <meta property="og:description" name="og:description" content="ログラミングの秋……なのかな？ 最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/09/19/224430/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="UWP：はてなの oAuth 認証" />
-    <meta name="og:description" content="ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
-### AsyncOAuth を導入するさて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリUWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。```csvar authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);var callbackUri = &#34;http://localhost/&#34;;var requestTokenResponse = await authorizer.GetRequestToken( &ldquo;https://www.hatena.com/oauth/initiate&quot;, new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;oauth_callback&rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&lt;string, string&gt;( &ldquo;scope&rdquo;, &ldquo;read_public,write_public,read_private,write_private&rdquo; ) }));" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

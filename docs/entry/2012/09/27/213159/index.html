@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="SignalR &#43; WebMatrix でサーバーフォルダの監視を行ってみる" />
+    <meta property="og:description" name="og:description" content="SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/27/213159/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="SignalR &#43; WebMatrix でサーバーフォルダの監視を行ってみる" />
-    <meta name="og:description" content="SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。自分の作ったサンプルコード（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。
-# ~/App_Code/SampleHub.csusing SignalR.Hubs;using System.IO;[HubName(&#34;sample&#34;)]public class SampleHub : Hub{public SampleHub(){var watcher = new FileSystemWatcher();watcher.Path = System.Web.HttpContext.Current.Server.MapPath(@&#34;~/_Documents&#34;);watcher.Filter = &#34;*.txt&#34;;watcher.NotifyFilter = NotifyFilters.FileName| NotifyFilters.DirectoryName| NotifyFilters.LastWrite;watcher.IncludeSubdirectories = false;watcher.Changed &#43;=(o, s) =&gt; { Clients.Echo(&#34;なんかかわったで&#34;); };watcher.Created &#43;=(o, s) =&gt; { Clients.Echo(&#34;あたらしいのできたで&#34;); };watcher.Deleted &#43;=(o, s) =&gt; { Clients." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

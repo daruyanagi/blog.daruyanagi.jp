@@ -33,20 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="Visual Studio 2017 で Windows サービスを作った" />
+    <meta property="og:description" name="og:description" content="ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。 ### 今回の目標 実行ファイルが書き換わっ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/03/10/214227/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="Visual Studio 2017 で Windows サービスを作った" />
-    <meta name="og:description" content="ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
-### 今回の目標実行ファイルが書き換わったら、トーストで通知してほしい。### プロジェクトを作成する  テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。
-  に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。
-  ると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。
-ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで）DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした）Description：システム内で EXE ファイルが変更されるのを監視しますStartType：Automatic（これでたぶん自動実行されるはず）最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。### サービスの登録とデバッグ  のままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。
-  ず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。
-  ebug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

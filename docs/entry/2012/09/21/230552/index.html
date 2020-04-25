@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす" />
+    <meta property="og:description" name="og:description" content="@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。2012-09-" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/21/230552/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす" />
-    <meta name="og:description" content="@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。2012-09-20 22:51:33 via Krile2 to @xin9le昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは
-SampleDataSourceList: SampleDataGroup (SampleDataCommon)List: SampleDataItem (SampleDataCommon)```になってる。こういう感じに作ればいい。うちのアプリの場合は、```csDataSourceList: Vehicle (乗り物)List: RefuelLog (給油ログ)```って感じになるかな。乗り物＝Group、給油ログ＝Itemというイメージ。んで、Group も Item も SampleDataCommon を継承している。要は **UniqueId、Title、Subtitle、Description、Image というプロパティを持ちなさい**ということだ。実装したら、テンプレートでバインドされますよ、と&lt;a href=&#34;#f1&#34; name=&#34;fn1&#34; title=&#34;SplitPage ではこれに加えて Content というプロパティも要求する&#34;&gt;*1&lt;/a&gt;。でも、だったらインターフェイスでもいいわけで、```csnamespace App5.Common{using Windows.UI.Xaml.Media;using Windows.UI.Xaml.Media.Imaging;public interface ITemplateGridViewItem{Guid UniqueId { get; } // &amp;lt;- string は嫌だったので改造 string Title { get; }string Subtitle { get; }string Description { get; }ImageSource Image { get; }ITemplateGridViewItem Parent { get; } // &amp;lt;- なくてもいい }}```というのを作って、Group/Item はこれを実装するということにした。乗り物データと給油ログデータが一つのデータから継承されてるってなんかアレだけど、インターフェイスなら個人的にしっくりくる。燃費管理アプリのデータには、タイトルやサブタイトルなどという概念はない。でも、そこは給油量（Amout）や日付（Date）といったふさわしいプロパティを別途もっておいて、```cspublic string Title{get { return string." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

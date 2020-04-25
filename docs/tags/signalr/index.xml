@@ -17,8 +17,7 @@
       <pubDate>Sun, 07 Apr 2013 14:40:08 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/07/144008/</guid>
-      <description>Web matrix でプログラミング生放送してみた  from Hidetoshi Yanagi プログラミング生放送勉強会 第22回＠松山に参加してきました #pronama - だるろぐ でやった LT の補足です。### 何をしていたか  う少し絵がうまかったらよかったのだけど。
-WebMatrix 拡張機能で WebMatrix のエディター画面の情報を取得WebMatrix 拡張機能（SignalR .NET Client）で Windows Azure 上の SignalR サーバー（Hub）へテキストを送信SignalR Hub が Web ページ（SignalR JavaScript Client を仕込んである）へ接続中のブラウザーへ向けてテキストを一斉送信これで「手元の WebMatrix で書いたコードを一斉配信する」システムができた。なお、Windows Azure 上の SignalR Hub も WebMatrix で記述しているので、「ピュア WebMatrix 製」ってことやね！WebMatrix の拡張機能って自分でも作れるんだよSignalR は WebMatrix でも使えます！.NET でも JavaScript でも OK！ってことが伝わればうれしかったのだけど、なかなかそこまでうまくいかなかった。### WebMatrix で SignalR を使うこの辺りを参考にしてください。WebMatrix 2: SignalR を動かす （ 1.</description>
+      <description>Web matrix でプログラミング生放送してみた from Hidetoshi Yanagi プログラミング生放送勉強会 第22回＠松山に参加してきました #pronama - だるろぐ でやった LT の補足です。 ### 何をし</description>
     </item>
     
     <item>
@@ -27,9 +26,7 @@
       <pubDate>Wed, 13 Mar 2013 06:55:52 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/13/065552/</guid>
-      <description>緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」_とコメントを付けてくれました。これは要するに、_「そのやり方をブログに書け」_ということですよね！（違幸い、しばやんが偶然たまたま ASP.NET SignalR で接続中のクライアントを数えてみる - しばやん雑記 という記事を書いてくれましたので、それをコピペ参考にして、昨日のサンプルに追加してみました。
-### ~/_AppStart.cshtml```cs@using System.Web.Routing@{ RouteTable.Routes.MapHubs(); }
-&amp;lt;/div&amp;gt;&amp;lt;div class=&amp;quot;section&amp;quot;&amp;gt;### ~/App_Code/ChatHub.cshtml```csusing Microsoft.AspNet.SignalR;// 追加using Microsoft.AspNet.SignalR.Hubs;using System.Collections.Concurrent;using System.Threading.Tasks;[HubName(&amp;quot;chat&amp;quot;)]public class ChatHub : Hub {public void Send(string message){ Clients.All.addMessage(message);}// 以下、追加private static readonly ConcurrentDictionary&amp;amp;lt;string, bool&amp;gt;_connections = new ConcurrentDictionary&amp;amp;lt;string, bool&amp;gt;();public override Task OnConnected(){_connections.</description>
+      <description>緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人</description>
     </item>
     
     <item>
@@ -38,10 +35,7 @@
       <pubDate>Tue, 12 Mar 2013 09:36:13 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/03/12/093613/</guid>
-      <description>もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。
-ASP.NET SignalR 1.0.1 が出てました - しばやん雑記最新版は 1.0.1 ですかね。ASP.NET SignalR は「WebMatrix 2」からも使えますが、ベータのとき（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）とは少し変わっている部分もあるようなので、もう一度やってみました。とりあえず、QuickStart Hubs · SignalR/SignalR Wiki · GitHub を動作させるのが目標。### NuGet で SignalR を取得  式パッケージソースで「SignalR」を検索すると、三番目ぐらいに出てくるはず。
-### サーバー（ハブ）  /App_Code フォルダに ChatHub.cs を作成し、以下のようなクラスを用意します。
-using Microsoft.AspNet.SignalR;public class Chat : Hub {public void Send(string message){// Call the addMessage method on all clients  Clients.</description>
+      <description>もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。 ASP.NET SignalR 1.0.1 が出てました - しばやん雑記 最新版は 1.0.1 ですかね。ASP.NET SignalR</description>
     </item>
     
     <item>
@@ -50,8 +44,7 @@ using Microsoft.AspNet.SignalR;public class Chat : Hub {public void Send(strin
       <pubDate>Thu, 27 Sep 2012 21:31:59 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/09/27/213159/</guid>
-      <description>SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。自分の作ったサンプルコード（SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。
-# ~/App_Code/SampleHub.csusing SignalR.Hubs;using System.IO;[HubName(&amp;#34;sample&amp;#34;)]public class SampleHub : Hub{public SampleHub(){var watcher = new FileSystemWatcher();watcher.Path = System.Web.HttpContext.Current.Server.MapPath(@&amp;#34;~/_Documents&amp;#34;);watcher.Filter = &amp;#34;*.txt&amp;#34;;watcher.NotifyFilter = NotifyFilters.FileName| NotifyFilters.DirectoryName| NotifyFilters.LastWrite;watcher.IncludeSubdirectories = false;watcher.Changed +=(o, s) =&amp;gt; { Clients.Echo(&amp;#34;なんかかわったで&amp;#34;); };watcher.Created +=(o, s) =&amp;gt; { Clients.Echo(&amp;#34;あたらしいのできたで&amp;#34;); };watcher.Deleted +=(o, s) =&amp;gt; { Clients.</description>
+      <description>SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面</description>
     </item>
     
   </channel>

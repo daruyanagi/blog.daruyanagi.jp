@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix でユーザー認証機能（5） ―― ロール" />
+    <meta property="og:description" name="og:description" content="br/&gt; WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ WebMatrix でユーザー" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/03/093520/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix でユーザー認証機能（5） ―― ロール" />
-    <meta name="og:description" content="br/&gt;
-WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐWebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐWebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐWebMatrix でユーザー認証機能（4） ―― ログインとログオフ - だるろぐとりあえずログイン機能があらかた実装できたけれど、これだとだれでもユーザーが作れてしまう。まぁ、そういうアプリもあるけど、“管理者”のみがユーザーを作成できるほうが望ましいこともある。そういった“管理者”権限を実現したいときにはどうするかというと、“ロール（Roles）”を使うんだな。### System.Web.Security.Rolesロールの作成方法については、ここらあたり（Adding Security and Membership to an ASP.NET Web Pages (Razor) Site | Microsoft Docs）が詳しい。その例だとロールの作成するためにデータベースを直接イジっていて、一瞬「あちゃー、コードでやろうと思ったら SQL 書かなきゃいけないのかな？」と思ってしまったけど、ちゃんと Roles を扱うクラスが用意されていた*1。http://msdn.microsoft.com/en-us/library/system.web.security.roles.aspxとりあえずさらっと目を通しておくとよさげ。#### Roles.RoleExists() / Roles.CreateRole()まず、 _AppStart.cshtml で“ロールがなければ作成する”という処理を追加してみた。```cs@{App.DATABASE = &#34;database&#34;; // &lt;-- カッコ悪いし、App.TABLE_USERS = &#34;Users&#34;; // あとで静的クラスにまとめてApp.ROLE_ADMIN = &#34;" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

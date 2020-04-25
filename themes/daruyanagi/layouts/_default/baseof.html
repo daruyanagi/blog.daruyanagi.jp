@@ -4,14 +4,27 @@
   <head>
     {{- partial "head.html" . -}}
 
+    <meta property="og:site_name" name="og:title" content="{{ .Title }}" />
+    <meta property="og:description" name="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
+    {{ if .IsHome }}
+    <meta property="og:type" content="website" />
+    {{ else }}
+    <meta property="og:type" content="article" />
+    {{ end }}
+    {{ if .Params.eyecatch }}
+    {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
+    {{ $thumbnail :=  $resource.Fit "640x480" }}
+    <meta name="og:image" src="{{ $thumbnail.RelPermalink }}" alt="">
+    {{ else }}
+    <meta name="og:image" src="{{ .Site.Params.og_image | absURL }}" alt="">
+    {{ end }}
+
+    <meta property="fb:admins" content="2150442315382" />
+
     <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="{{ .Permalink }}" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="{{ .Title }}" />
-    <meta name="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-    <meta name="og:image" content="{{ .Site.Params.og_image }}" />
 
     <style>
       .bd-placeholder-img {

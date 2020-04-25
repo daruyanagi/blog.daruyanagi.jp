@@ -33,14 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="PowerShell：ストアアプリのセール情報を取得する" />
+    <meta property="og:description" name="og:description" content="# スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &#34;StoreApps.txt&#34; $urls = (Get-Content $path) -as [string[]] # デバッグ用のサンプル # $urls =@( # &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34; # ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url # アプリ名" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/03/04/220000/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="PowerShell：ストアアプリのセール情報を取得する" />
-    <meta name="og:description" content="# スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &#34;StoreApps.txt&#34;$urls = (Get-Content $path) -as [string[]]# デバッグ用のサンプル # $urls =@( # &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34; # ) foreach ($url in $urls){try{$request = Invoke-WebRequest $url# アプリ名を取得 $title = $request.AllElements.FindById(&#34;page-title&#34;).innerText# ParsedHtml もめっちゃ便利やったぞ！ # 例：打消し線の付いた定価タグを取得 $body = $request.ParsedHtml$price_node = $body.getElementsByTagName(&#34;s&#34;) | where { $_.getAttributeNode(&#34;class&#34;).Value -eq &#34;srv_saleprice&#34;}# 定価が打ち消されていたらセール中ってこと if ($price_node){$price = $price_node." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

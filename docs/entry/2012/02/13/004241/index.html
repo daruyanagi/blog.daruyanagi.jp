@@ -33,19 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content=" RFC822 の日付形式" />
+    <meta property="og:description" name="og:description" content="RSS 2.0 を実装する - だるろぐ の記述に誤りがあった（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）。 RSS 2.0 Notes によれば、日付の形式は RFC822 に" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/13/004241/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content=" RFC822 の日付形式" />
-    <meta name="og:description" content="RSS 2.0 を実装する - だるろぐ の記述に誤りがあった（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）。 RSS 2.0 Notes によれば、日付の形式は RFC822 に従わなければいけなかったらしい。例えばこんな感じ。
-&gt;Sun, 12 Feb 2012 21:09:36 &#43;0900 とりあえず、こうしてみた。
-``` @LastUpdated.ToString(&ldquo;ddd, dd MMM yyyy HH:mm:ss zzz&rdquo;)
-結果&gt;日, 12 2 2012 21:09:36 &#43;09:00カルチャーを指定してみた。```@LastUpdated.ToString(&quot;ddd, dd MMM yyyy HH:mm:ss zzz&quot;,System.Globalization.CultureInfo.InvariantCulture)結果
-&gt;Sun, 12 Feb 2012 21:09:36 &#43;09:00 あともう少し。タイムゾーンの“:“が要らない。タイムゾーンの書式設定を&quot;zz00&quot;にすればいいかと思ったけど、世の中には分単位でタイムゾーンを決めているとこもあるらしいので、この方法は使えない。
-``` @LastUpdated.ToString( &ldquo;ddd, dd MMM yyyy HH_mm_ss zzz&rdquo;, System.Globalization.CultureInfo.InvariantCulture ).Replace(&quot;:&quot;, &ldquo;&quot;).Replace(&quot;_&quot;, &ldquo;:&quot;)" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

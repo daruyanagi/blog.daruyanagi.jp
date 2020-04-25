@@ -17,10 +17,7 @@
       <pubDate>Wed, 10 Jan 2018 02:53:02 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/01/10/025302/</guid>
-      <description>狂風、窓を叩き、昼間っから近所のババアがマンションのベランダから向かいのサンドウィッチ屋さんをヒステリックにディスるカオスな日だった。どんな事情があるのかは知らんが、サンドイッチ屋のおばさんはオマケにパンの耳を恵んでくれる天使だ。大方、猿叫喧しいババアが精神でも病んでるんだろう。お節介かもしれんが、これが続くなら警察でも呼ぼうかと思った。関係ないけど、ワサビ入りサンドイッチ食べたくなったので、明日のお昼はサンドイッチを買いに行こうかと思う。Web アプリケーション（仮称：Tsundoku。ヘボン式だとこの綴りでいいのだけど、個人的には Tshumdoku の方がしっくりくる？）の方は、パブリックタイムライン、書籍の検索画面、書籍の個別ページ、ユーザーページが完成した。
-  ブリックタイムライン。画面はこれだけあるけど、データベースのテーブルは（ユーザー管理と書籍情報のキャッシュ代わりに使っているテーブルを除けば）ユーザーアクティビティを管理するのが1つあるだけで、これは単にそれを引っ張ってきてる。Entity Framework のリレーションシップ回りも慣れてきて、Include()、IncludeThen() が使えるようになってきた。
-  籍の検索画面。ちなみに Amazon 関連は Nager.AmazonProductAdvertising というのを使わせてもらっている。
- var authentication = new AmazonAuthentication();authentication.AccessKey = &amp;#34;accesskey&amp;#34;;authentication.SecretKey = &amp;#34;secretkey&amp;#34;;var wrapper = new AmazonWrapper(authentication, AmazonEndpoint.US, &amp;#34;nager-20&amp;#34;);var result = wrapper.Lookup(&amp;#34;B00BYPW00I&amp;#34;);```あまり自由度はないけれど、シンプルですごくいいと思った。Amazon アソシエイトのキーも久しぶりにもらったけど、UI がシンプルになってて昔よりハードルがだいぶ下がってる感じがある。  籍の個別画面。書籍情報と本に紐づいたアクティビティをタイムラインで表示。読書ステータスの更新もここから可能で、積読 → 読中 → 読了（→ 再読）のサイクルをボタンでぷちぷち変更できる。コメントをつけたり、進捗管理もできるようにするつもり。  ーザーページ。Twitter みたいにフォローできるようにするつもり。フォロー・フォロワーの表現だけならいいけど、フォロワーのタイムラインとか作るの割と大変そうな感じする？このアプリは作って遊んでるだけで公開するかどうか微妙だけど、どうにも開発が楽しくなってきちゃって（なんかやっとこさ掌の上でくるくるできる感覚になってきたわけですよ！）、当分は止まらないかなって感じある。&amp;lt;div class=&amp;#34;section&amp;#34;&amp;gt;### ToDo&amp;lt;ul&amp;gt;&amp;lt;li&amp;gt;MVC と Razor Page の混在についてちょっと調べる。謎のルーティングエラーで30分無駄にされた&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;IEnumerable&amp;lt;string&amp;gt; を string にするスマートな拡張メソッドを作りたいけど名前が決まらん件について&amp;lt;/string&amp;gt;&amp;lt;/li&amp;gt;&amp;lt;li&amp;gt;enum の拡張メソッドをはやしておくとビューがスマートになるなぁ&amp;lt;/li&amp;gt;&amp;lt;/ul&amp;gt;&amp;lt;/div&amp;gt;</description>
+      <description>狂風、窓を叩き、昼間っから近所のババアがマンションのベランダから向かいのサンドウィッチ屋さんをヒステリックにディスるカオスな日だった。どんな</description>
     </item>
     
     <item>
@@ -29,8 +26,7 @@
       <pubDate>Sat, 09 Sep 2017 17:19:21 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/09/171921/</guid>
-      <description>Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。
-var document = default(IHtmlDocument);using (var client = new HttpClient())using (var stream = await client.GetStreamAsync(Target)){var parser = new HtmlParser();document = await parser.ParseAsync(stream);}Result = document.QuerySelector(Selector)?.InnerHtml;return Page();```確かにシンプルなのですが、外部 JavaScript を読んで、評価して……までやりだすと、いろいろ大変な感じ&amp;lt;a href=&amp;#34;#f-4db4db9a&amp;#34; name=&amp;#34;fn-4db4db9a&amp;#34; title=&amp;#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&amp;#34;&amp;gt;*1&amp;lt;/a&amp;gt;。これまで通り PhantomJS でやった方がよさそう。――というわけで。今回はそっちを置いておいて、Web API として使えるようにしてみました。ASP.NET API（Core）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。```csnamespace WebApplication7.Controllers{[Route(&amp;#34;api/[controller]&amp;#34;)] public class ValuesController : Controller{// GET api/values[HttpGet]public IEnumerable&amp;amp;lt;string&amp;gt; Get(){return new string[] { &amp;#34;value1&amp;#34;, &amp;#34;value2&amp;#34; };}}}```&amp;lt;code&amp;gt;/api/values&amp;lt;/code&amp;gt; をゲットでたたくと、&amp;lt;code&amp;gt;{ &amp;#34;value1&amp;#34;, &amp;#34;value2&amp;#34; }&amp;lt;/code&amp;gt; が返ってくる。これと組み合わせて、API Controller を Razor Pages で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、API と Razor Pages で共通のロジックをまとめて（適当に &amp;lt;code&amp;gt;Services&amp;lt;/code&amp;gt; フォルダーにまとめました）、共有することにしました。  有部分はこんな感じ。```cs// サービスと名付けたモノ（/Services）namespace WebApplication7.</description>
+      <description>Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ 前回、AngleSharp を使えばよかったかもといったのですが、結</description>
     </item>
     
     <item>
@@ -39,10 +35,7 @@ var document = default(IHtmlDocument);using (var client = new HttpClient())usi
       <pubDate>Fri, 08 Sep 2017 23:54:50 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/08/235450/</guid>
-      <description>Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。
-  SP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ
-### 基本的な流れPhantomJS.exe にスクリプトと Uri とセレクターを渡し、標準出力を介して結果（JSON）を得る。標準出力には PhantomJS が吐くエラーが混じることがあるので、適当な正規表現で除去しておく。### Index.cshtmlコードビハインド？　MVVM じゃない方の ViewModel？　なんて言っていいのかは知らんけど（変な言葉遣いしたらその手のケーサツが来そうだし）、Index.cshtml の裏はこんな感じ。```cs// index.cshtml.csusing System; using System.Collections.Generic; using System.Linq; using System.Threading.Tasks; using Microsoft.AspNetCore.Mvc; using Microsoft.AspNetCore.Mvc.RazorPages; using System.Diagnostics; using System.IO;
-namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindProperty] public Uri Target { get; set; }</description>
+      <description>Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイ</description>
     </item>
     
     <item>
@@ -51,11 +44,7 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
       <pubDate>Tue, 15 Aug 2017 04:36:34 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/043634/</guid>
-      <description>回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Razor Pages はカンタン！」_というのも伝わりにくいと思いました。Visual Studio 2017.3 が出たっぽいので、ASP.NET Core Razor Pages をチラ見してみる - だるろぐそこで、今回は Visual Studio 2017.3 を利用して“空”のアプリケーションから Razor Pages で Hello! World するまでをステップバイステップでやっていこうかなと思います。
-### 空のアプリケーションを作成する  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションを作成。フレームワークを .NET Core へ、.NET のバージョンを 2.0.0 に切り替えて、“空”のアプリケーションを作成します。
-  のアプリケーションには、ソリューションファイルなどを除くと
-Program.csStartup.cs静的ファイルを置く wwwroot フォルダーの3つしかありません。シンプルだね！　コードも最低限で、  F5］キーで実行すると“Hello! World”が表示されるだけです。まずはここから始めましょう。
-### Program.cs と Startup.csProgram.cs は、アプリケーションを実行する際、最初に処理されます（エントリポイントってやつだな）。```csusing Microsoft.</description>
+      <description>回は ASP.NET Core Razor Page をチラ見してみましたが、ひな型（サンプル）プロジェクトが割とゴツい。これでは全体的な見通しが悪くて理解が進まないし、また_「Ra</description>
     </item>
     
     <item>
@@ -64,10 +53,7 @@ namespace WebApplication5.Pages { public class IndexModel : PageModel { [BindPro
       <pubDate>Tue, 15 Aug 2017 03:20:10 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/032010/</guid>
-      <description>Visual Studio 2017 Version 15.3 ReleasedVisual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages は、とっても単純にいうと、C# で PHP みたいにサクッと Web ページ（CSHTML、名前の通り HTML に C# を埋め込んだ感じ）を書くためのフレームワークです。_MVC とかめんどくせえ、ペライチのサイト（でも、サーバーサイドでの処理はちょっと必要）を作りたいだけなんじゃー！　_というときに便利。むかしは ASP.NET Web Pages という技術があったのですが、ASP.NET Core ではこれを使うようですね、よく知らんけど。
-### プロジェクトの作成  ず、［新しいプロジェクト］コマンドで .NET Core、ASP.NET Core Web アプリケーションと辿ってソリューションを作ります。上の方に“.NET Framework 4.7”とか書いてあるのは気にしない。
-  リューションを作成するとアプリケーションのタイプを選択するダイアログが現れるので、今度は上部のプルダウンメニューから“.NET Core”、“ASP.NET Core 2.0”を選択し、“Web アプリケーション”を作成。これで ASP.NET Core Razor Page のサンプルページが出力されるはずです。今回は“チラ見”なのでそのまま進みますが、一度“空”のアプリケーションから Razor Pages を使うまでもやってみたいですね。
-  りあえず［F5］キーで実行。Twitter Bootstrap＋jQuery ベースの割とごついサンプルページをブラウザーで表示することができました。</description>
+      <description>Visual Studio 2017 Version 15.3 Released Visual Studio 2017.3 に合わせて .NET Core 2.0 などもリリースされたみたいなので、かねてからやってみたかった Razor Pages をチラ見してみました。ASP.NET Core Razor Pages</description>
     </item>
     
   </channel>

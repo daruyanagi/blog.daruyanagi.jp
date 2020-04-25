@@ -17,8 +17,7 @@
       <pubDate>Sat, 09 Jun 2018 16:35:00 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/06/09/163500/</guid>
-      <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parametersこんな風に desktop:ParameterGroup をあらかじめ登録して……
-&amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt;xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34;&amp;gt;&amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt;Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt;&amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt;&amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34;Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt;&amp;amp;lt;desktop:FullTrustProcess&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt;&amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Active&amp;#34; Parameters=&amp;#34;/a&amp;#34;/&amp;gt;&amp;amp;lt;/desktop:FullTrustProcess&amp;gt;&amp;amp;lt;/desktop:Extension&amp;gt;```それを使えばいいみたい。```csprivate async void Button_Click(object sender, Windows.UI.Xaml.RoutedEventArgs e){await FullTrustProcessLauncher.LaunchFullTrustProcessForCurrentAppAsync(&amp;#34;Desktop&amp;#34;);}```これをコンソールアプリで受けてみると、こんな感じになった。```csnamespace Yakitori.Console{class Program{static void Main(string[] args){foreach (var arg in args){System.Console.WriteLine(arg);}System.Console.ReadKey();}}}```意味はよく分からんし、本来の使い方と違う気がするけど、これで UWP ⇔ コンソール連携できそう。  </description>
+      <description>できないのかなーと思ってたのだけど、イケるっぽい。UWP JavaScript APP: run win32 EXE with parameters こんな風に desktop:ParameterGroup をあらかじめ登録して…… &amp;lt;!--?--&amp;gt;xml version=&amp;#34;1.0&amp;#34; encoding=&amp;#34;utf-8&amp;#34;?&amp;gt; xmlns:desktop=&amp;#34;http://schemas.microsoft.com/appx/manifest/desktop/windows10&amp;#34; &amp;gt; &amp;lt;applications&amp;gt;&amp;lt;/applications&amp;gt; Id=&amp;#34;App&amp;#34; Executable=&amp;#34;$targetnametoken$.exe&amp;#34; EntryPoint=&amp;#34;$targetentrypoint$&amp;#34;&amp;gt; &amp;lt;extensions&amp;gt;&amp;lt;/extensions&amp;gt; &amp;amp;lt;desktop:Extension Category=&amp;#34;windows.fullTrustProcess&amp;#34; Executable=&amp;#34;Yakitori.Console\Yakitori.Console.exe&amp;#34;&amp;gt; &amp;amp;lt;desktop:FullTrustProcess&amp;gt; &amp;amp;lt;desktop:ParameterGroup GroupId=&amp;#34;Desktop&amp;#34; Parameters=&amp;#34;/d&amp;#34;/&amp;gt;</description>
     </item>
     
     <item>
@@ -27,10 +26,7 @@
       <pubDate>Tue, 21 Mar 2017 19:58:45 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/03/21/195845/</guid>
-      <description>「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的なことを言っていた気がするので、ちょっと試してみました。
-### PhantomJS とはぶっちゃけあんまりよくわかってないのですが、_“Google Chrome のユーザーインターフェイスがない*1やつ”_だと思えばだいたい合ってるみたいです。JavaScript で動的にデータをとってくるタイプの Web サイトの DOM をわちゃわちゃしたり、スクリーンショットをとって保存したり、ユーザーインターフェイスの操作を自動化してテストしたり……みたいな感じに使えるっぽいですね。http://phantomjs.org/スタンドアロンのバイナリになっているので、C# からはそれを叩いて、あらかじめ用意しておいたスクリプトを処理してもらう感じになるようです。なので、任意のプロセスを叩けない UWP で使うのは難しそうですね。今回は WPF でサンプルを作りましたが、WPF 要素は皆無です。### 使い方まず NuGet で PhantomJS をとってきます。  ると phantomjs.exe というのがソリューションに追加されます。これはコンパイル時に出力フォルダーにコピーされます。
-  に、JavaScript を用意します。今回はソリューションフォルダーのルートに Hello.js を作成。
-console.log(&amp;amp;#39;Hello, world!&amp;amp;#39;);phantom.exit();```最初なので、動作確認をするだけです。これも phantomjs.exe と同様、コンパイル時に出力フォルダーへコピーされるようにしておけばいいと思います。次は、これを呼ぶための C# コードを書きます。標準出力でやり取りする感じにしてみました。```cspublic MainWindow(){InitializeComponent();Loaded += MainWindow_Loaded;}private void MainWindow_Loaded(object sender, RoutedEventArgs e){var result = ProcessScript(&amp;#34;hello.</description>
+      <description>「AngularJS で作られた Web サイトの内容がとれないよ……」って Twitter で泣いてたら、@nakaji 先生が「PhantomJS 使えばええやろ」的</description>
     </item>
     
     <item>
@@ -39,13 +35,7 @@ console.log(&amp;amp;#39;Hello, world!&amp;amp;#39;);phantom.exit();```最初�
       <pubDate>Fri, 10 Mar 2017 21:42:27 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/03/10/214227/</guid>
-      <description>ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。
-### 今回の目標実行ファイルが書き換わったら、トーストで通知してほしい。### プロジェクトを作成する  テンプレート］－［Visual C#］－［Windows クラシック デスクトップ］を開いて、“Windows サービス（.NET Framework）”を選択。すると、Windows サービス プロジェクトのスケルトンがブリブリっと吐かれる。Service1.cs では味気ないので、今回は MihariService.cs という名前にした。“見張り”やね（以前にもそういう名前のアプリを作って放置してたっけ）。
-  に MihariService.cs のデザイナー画面を開き、コンテキストメニューの［インストーラーの追加］コマンドを実行。
-  ると ServiceInstaller.cs というのが作成されます。このデザイン画面で ServiceInstaller1 を探し、プロパティ画面からいい感じにプロパティを設定。今回はこんな感じにした。
-ServiceName：MihariService（アプリ ID のノリでどこでも使っていくやで）DisplayName：Mihari サービス（WIndowsの「サービス」からはこれが見えるらしい。日本語にした）Description：システム内で EXE ファイルが変更されるのを監視しますStartType：Automatic（これでたぶん自動実行されるはず）最低限の準備はこれでいいみたい。まだ中身はないけれど、ソリューションをビルドする。### サービスの登録とデバッグ  のままデバッグ実行をしても、エラーが出る。ビルドした Windows サービスをシステムに登録しなきゃいけない。
-  ず、ツールの類にパスの通ったコマンドプロンプトを起動（よくわかんないけど Developer Command Prompt for VS 2017 というのでいいみたい）。
-  ebug フォルダーに移動してパスをコピーしておき、コマンドプロンプトで移動。installutil で MihariService.exe をシステムに登録する。</description>
+      <description>ぁ、この程度のことであれば、今までとあんまり変わらんと思うけどね。ちょこちょこ便利になってる感じはある。 ### 今回の目標 実行ファイルが書き換わっ</description>
     </item>
     
     <item>
@@ -54,8 +44,7 @@ console.log(&amp;amp;#39;Hello, world!&amp;amp;#39;);phantom.exit();```最初�
       <pubDate>Mon, 19 Sep 2016 22:44:30 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/19/224430/</guid>
-      <description>ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。
-### AsyncOAuth を導入するさて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリUWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。```csvar authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);var callbackUri = &#34;http://localhost/&#34;;var requestTokenResponse = await authorizer.GetRequestToken( &amp;ldquo;https://www.hatena.com/oauth/initiate&amp;quot;, new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;oauth_callback&amp;rdquo;, callbackUri ) }, new FormUrlEncodedContent(new[] { new KeyValuePair&amp;lt;string, string&amp;gt;( &amp;ldquo;scope&amp;rdquo;, &amp;ldquo;read_public,write_public,read_private,write_private&amp;rdquo; ) }));</description>
+      <description>ログラミングの秋……なのかな？ 最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して</description>
     </item>
     
     <item>
@@ -64,8 +53,7 @@ console.log(&amp;amp;#39;Hello, world!&amp;amp;#39;);phantom.exit();```最初�
       <pubDate>Thu, 15 Sep 2016 12:35:48 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/15/123548/</guid>
-      <description>たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。
-public void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled += (sender, reason) =&amp;gt; { Hoge(); };}```イベントハンドラ内で非同期コードがある場合は、こんな感じになる。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled += async (sender, reason) =&amp;gt;{ await Hoge(); };}```async/await を付け足すだけなので、そんなに難しくはない。次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。非同期じゃない場合はこんな感じ。```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled += taskInstanceCanceled;}private void taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){Hoge();：：}```これをさっきみたいに非同期にすると、```cspublic void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled += taskInstanceCanceled;// taskInstance.Canceled += async taskInstanceCanceled;}private async Task taskInstanceCanceled(IBackgroundTaskInstance sender, BackgroundTaskCancellationReason reason){await Hoge();：：}```になると思うんだけど、```cstaskInstance.</description>
+      <description>たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。 public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled += (sender, reason) =&amp;gt; { Hoge(); }; } ```イベントハンドラ内で</description>
     </item>
     
     <item>
@@ -74,8 +62,7 @@ public void Run(IBackgroundTaskInstance taskInstance){taskInstance.Canceled +=
       <pubDate>Mon, 03 Nov 2014 18:41:49 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2014/11/03/184149/</guid>
-      <description>string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。
-public static string Wrap(this string source, string element){return string.Format(&amp;#34;&amp;amp;lt;{1}&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element);}```たとえば、```cs&amp;#34;これを強調してぇ&amp;#34;.Wrap(&amp;#34;strong&amp;#34;)```で```html&amp;amp;lt;strong&amp;gt;これを強調してぇ&amp;amp;lt;/strong&amp;gt;```が得られる。でも、どうせなら class 属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。```cspublic static bool IsNullOrEmpty(this string source){return string.IsNullOrEmpty(source);}public static string Wrap(this string source, string element, string @class = null){return @class.IsNullOrEmpty()? string.Format(&amp;#34;&amp;amp;lt;{1}&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element): string.Format(&amp;#34;&amp;amp;lt;{1} class=\&amp;#34;{2}\&amp;#34;&amp;gt;{0}&amp;lt;!--{1}--&amp;gt;&amp;#34;, source, element, @class);}```こうすると、```cs&amp;#34;これを強調してぇ&amp;#34;.Wrap(&amp;#34;span&amp;#34;, &amp;#34;label label-warning&amp;#34;)```で```html&amp;amp;lt;span class=&amp;#34;label label-warning&amp;#34;&amp;gt;これを強調してぇ&amp;amp;lt;/span&amp;gt;```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。```cspublic static string Join(this IEnumerable&amp;amp;lt;string&amp;gt; source, string delimitter){return string.</description>
+      <description>string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。 public static string Wrap(this string source,</description>
     </item>
     
     <item>
@@ -84,9 +71,7 @@ public static string Wrap(this string source, string element){return string.Fo
       <pubDate>Fri, 24 Oct 2014 02:52:19 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2014/10/24/025219/</guid>
-      <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。
-### VirusTotal とは指定したファイルをいろんなウイルス対策エンジンでスキャンしてくれるサービスです。VirusTotal - Free Online Virus, Malware and URL Scanner結構利用制限はきついのですが、一応 API も用意されています。Public API version 2.0 - VirusTotalこれを使えば、比較的簡単にアプリケーションへウイルススキャン機能を追加できますね。### 準備  ずはアカウントを作成し、API キーを取得します。API キーには Public と Private がありますが、今回は Public を利用します。Private なキーのほうが制限が少ないのですが、個別にリクエストしなければならないようです。
-### VirusToral にファイルのスキャンをお願いするVirusToral にファイルのスキャンをお願いするには、以下の URL に API キーとファイルを Post します。```https://www.virustotal.com/vtapi/v2/file/scan```今回は HttpClient を利用して、こんなコードにしてみました。本当ならばちゃんと帰ってきたデータをクラスにマッピングして……ということをすべきなのでしょうが、めんどくさいので DynamicJson（NuGet で入手しましょう）でパースして dynamic 型の変数として返しています。```cspublic async Task&amp;lt;dynamic RequestFileScan(string filename){using (var http = new HttpClient()){var uri = &#34;</description>
+      <description>WPF で VirusToral API を利用するサンプルを書いてみました（書いた後に気付いたのですが、あんまり WPF 要素なかったです）。 ### VirusTotal とは 指定したファイルをいろんなウイ</description>
     </item>
     
     <item>
@@ -95,7 +80,7 @@ public static string Wrap(this string source, string element){return string.Fo
       <pubDate>Wed, 01 May 2013 03:11:48 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/05/01/031148/</guid>
-      <description>てはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるようになったのだが、これがショボい。ファイルの操作系（EditURI）はともかく、情報の取得系（FeedURI）がとくにヘボくて、ちゃんと情報が取れないわ*1、ルートフォルダの内容しか取得できないわ。どうやら「情報の取得には RSS を使ってね」ということのようだ。なんだそれ。確かにそれでたいていは十分かもしれないけど、フォルダの列挙なんかはどうするんだ……こんなんだったらスクレイピング前提で組んだほうが早かった。まぁ、それはともかく。RSS を使えば（直近の）画像は取得できるが、非公開フォルダの画像に関しては、当然ログインが必要だ。なんとかして Cookie を取得し、それを使いまわさなければならない。というわけで、やってみた。</description>
+      <description>てはて、Widows Store Apps: WSSE 認証（はてなフォトライフ） - だるろぐ で AtomPub API（はてなフォトライフAtomAPI - Hatena Developer Center）を無事叩けるよ</description>
     </item>
     
     <item>
@@ -104,7 +89,7 @@ public static string Wrap(this string source, string element){return string.Fo
       <pubDate>Tue, 30 Apr 2013 19:00:04 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/04/30/190004/</guid>
-      <description>urface RT（Windows RT）で“はてなブログ”を書くのが微妙にめんどくさいので、“はてなフォトライフ”のクライアントでも作ろうかと思い、@kanaharu ちゃんのブログ（はてなフォトライフに画像をアップロードするプログラムをC#で実装してみた - kanaharu.cpp）を参考にしながら WSSE 認証を実装してみた。</description>
+      <description>urface RT（Windows RT）で“はてなブログ”を書くのが微妙にめんどくさいので、“はてなフォトライフ”のクライアントでも作ろうかと思い、@k</description>
     </item>
     
     <item>
@@ -113,8 +98,7 @@ public static string Wrap(this string source, string element){return string.Fo
       <pubDate>Tue, 26 Feb 2013 21:02:21 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2013/02/26/210221/</guid>
-      <description>C++ で新しい演算子“&amp;ndash;&amp;gt;” が採用されたそうだが、これは C# ですでに利用可能である。この演算子は、左辺の変数を右辺値まで 1 ずつ減算する。
-@{int x = 10;}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;ja&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;マイ サイトのタイトル&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@do {&amp;amp;lt;p&amp;gt;@x&amp;amp;lt;/p&amp;gt;}while(x --&amp;gt; 0);&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```筆者の趣味により、コードは Razor で示した。結果は以下の通り。  rom: &amp;lt;a href=&amp;#34;http://stackoverflow.com/questions/1642028/what-is-the-name-of-this-operator&amp;#34;&amp;gt;c++ - What is the name of this operator: &amp;#34;--&amp;gt;&amp;#34;? - Stack Overflow&amp;lt;/a&amp;gt; , via &amp;lt;a href=&amp;#34;http://siv3d.hateblo.jp/entry/2013/02/19/232040&amp;#34;&amp;gt;--&amp;gt; 演算子 - Siv3D 開発ブログ&amp;lt;/a&amp;gt;</description>
+      <description>C++ で新しい演算子“&amp;ndash;&amp;gt;” が採用されたそうだが、これは C# ですでに利用可能である。この演算子は、左辺の変数を右辺値まで 1 ずつ減</description>
     </item>
     
   </channel>

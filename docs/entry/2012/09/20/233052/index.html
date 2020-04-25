@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WinRT/XAML のお勉強 ―― 4つの表示状態" />
+    <meta property="og:description" name="og:description" content="Windows ストアアプリには4つの状態（VisualState）がある **FullScreenLandscape**：全画面表示（横） **FullSc" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/20/233052/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WinRT/XAML のお勉強 ―― 4つの表示状態" />
-    <meta name="og:description" content="Windows ストアアプリには4つの状態（VisualState）がある
-**FullScreenLandscape**：全画面表示（横）**FullScreenPortrait**：全画面表示（縦）**Snapped**：端に寄せる（幅300px）**Filled**：ほかのアプリを Snap した残りの領域に表示これを一つのデザインで対応しようとするととても難しい、という話が前回（WinRT/XAML のお勉強 ―― さまざまな利用シーンに対応する - だるろぐ）だった。あれからいろいろ試したんだけれど、ひとつのデザインですべてをカバーしようとするより、4つの VisualState にそれぞれ個別にデザインを作って割り当てたほうがよさそうだ*1。じゃぁ、VisualState によってビューを切り替えるのってどうすればいいんだ？　ってのが今日の主題。```xmlStyle=&#34;{StaticResource LayoutRootStyle}&#34;.RowDefinitionsHeight=&#34;140&#34;/Height=&#34;*&#34;/.RowDefinitions&lt;!-- Back button and page title --&gt;&lt;grid&gt;&lt;/grid&gt;（ヘッダー。内容省略）x:Name=&quot;FullScreenLandscapeGrid&quot; Grid.Row=&quot;1&quot; Background=&quot;Blue&quot; /&gt;x:Name=&quot;FullScreenPortraitGrid&quot;Grid.Row=&quot;1&quot; Background=&quot;Yellow&quot; Visibility=&quot;Collapsed&quot; /&gt;x:Name=&quot;SnappedGrid&quot;Grid.Row=&quot;1&quot; Background=&quot;Green&quot; Visibility=&quot;Collapsed&quot; /&gt;x:Name=&quot;FilledGrid&quot;Grid.Row=&quot;1&quot; Background=&quot;Red&quot; Visibility=&quot;Collapsed&quot; /&gt; ```xml.VisualStateGroups&gt;&lt;!-- Visual states reflect the application&#39;s view state --&gt;x:Name=&quot;ApplicationViewStates&quot;&gt;x:Name=&quot;FullScreenLandscape&quot;&gt;（初期表示なので別に何もしないでいい感じ）&lt;!-- The entire page respects the narrower 100-pixel margin convention for portrait --&gt;// 全画面（横向きになったら……）x:Name=&quot;FullScreenPortrait&quot;&gt;&lt;storyboard&gt;&lt;/storyboard&gt;（関係のないところ省略）// FullScreenLandscapeGrid を非表示にStoryboard." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

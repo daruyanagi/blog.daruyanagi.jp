@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="失敗の数だけ強くなりたい" />
+    <meta property="og:description" name="og:description" content="朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/07/24/201150/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="失敗の数だけ強くなりたい" />
-    <meta name="og:description" content="朝起きてボーっとしてたんだけど、そしたらふと「Windows Phone端末使って Gist でメモ取れたら便利じゃね？」と思いついた。早速、 Visual Studio を起動。けれど、趣味プログラマーの悲しさ、久しぶりだと何もかもすっかり忘れている*1。しかも、 Silverlight だといろいろ機能が欠けてて面倒くさいことも判明。とりあえず、 WPF で試作品でも作ることにした。 OAuth は面倒そうだったので、それも後回し。まずは Public の Gist を取得して ListBox に並べるところから始めよう。MainWindow.xaml
-&lt;grid&gt;&lt;/grid&gt;Name=&#34;listBoxGists&#34;&gt;```**MainWindow.xaml.cs**```csusing System.Net;using Newtonsoft.Json;/// &amp;lt;summary&gt;/// MainWindow.xaml の相互作用ロジック/// &amp;lt;/summary&gt;public partial class MainWindow : Window{public MainWindow(){InitializeComponent();}private void MainWindow_Loaded(object sender, RoutedEventArgs e){var client = new WebClient();client.DownloadStringCompleted &#43;= (_sender, _e) =&gt;{listBoxGists.ItemsSource = JsonConvert.DeserializeObject&amp;lt;Gist[]&gt;(_e.Result);};client." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

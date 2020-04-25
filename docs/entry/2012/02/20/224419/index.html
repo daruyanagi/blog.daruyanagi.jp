@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content=" 認証機能付きの新規アプリケーションを ExpressWeb へ発行してみる" />
+    <meta property="og:description" name="og:description" content="ASP.net MVC 3 の新規アプリケーション（認証つき）を、Visual Studio 2010 から Web配置 で ExpressWeb へ発行してみたのだけど、やたら手間取ったので、備忘録としてメモ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/20/224419/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content=" 認証機能付きの新規アプリケーションを ExpressWeb へ発行してみる" />
-    <meta name="og:description" content="ASP.net MVC 3 の新規アプリケーション（認証つき）を、Visual Studio 2010 から Web配置 で ExpressWeb へ発行してみたのだけど、やたら手間取ったので、備忘録としてメモしておく。
-&gt;追記：データベースは **SQL Server 2008** を使いました。メイド好きなヒト（「メイド MVC」でググれ）によると、SQL CE の方がよっぽど簡単とのこと。でも、SQL CE は格納できる文字数に制限があるのよねぇ......（4,000文字） ### とりあえずデプロイするとりあえず何も考えずに、新規アプリケーションを ExpressWeb へ発行してみる。ASP.net MVC 3 アプリケーションを作成。何の変哲もないタダのWebサイトが現れる。daruyanagi.net に発行するので、［サービス URL］［サイト/アプリケーション］欄に daruyanagi.net と記入。資格情報には、Webサイトのリモート管理のIDとパスを入力しておく。この時、［信頼しない証明書を許可する］にチェックを入れておくのを忘れずに。［発行］ボタンを押して暫し待つ。できた！### エラーの内容が表示されないしかしこのままではログイン関係の機能が動かない。ユーザーの登録が行えない。それどころか、エラーの内容が表示されない。とりあえずエラーを特定しないことにはどうしようもないので、Web.confug にカスタムエラーを無効化する設定を記述。```xml ： &lt;system.web&gt; &lt;customErrors mode=&quot;Off&rdquo;/&gt; ：
-もう一度発行して、ユーザーの登録画面でリロード。&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### フォルダに書き込み権限がない&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220453.png&quot; alt=&quot;f:id:daruyanagi:20120220220453p:plain&quot; title=&quot;f:id:daruyanagi:20120220220453p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;エラーの内容が表示された。フォルダに書き込み権限がなかったため、App_Data フォルダが作成できなかったらしい。ファイルマネージャーで、/wwwroot いかに権限を与えて解決。リロード。&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### データベースに接続できない&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120220/20120220220454.png&quot; alt=&quot;f:id:daruyanagi:20120220220454p:plain&quot; title=&quot;f:id:daruyanagi:20120220220454p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;次はデータベースに接続できないようだ。そりゃそうだ、ローカル用の設定だもの。 Web." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

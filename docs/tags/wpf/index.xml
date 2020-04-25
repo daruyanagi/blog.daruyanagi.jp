@@ -17,9 +17,7 @@
       <pubDate>Sun, 26 Aug 2018 22:49:27 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/08/26/224927/</guid>
-      <description>  てなブログ1ってクリップボードから張り付けて画像をアップロードできるけど、ファイルサイズに制限があるじゃないですか2。いちいち縮小するのが面倒だったので、クリップボードに格納された画像のサイズが大きい場合は勝手に縮小するアプリを作りました。縮小したくないときは［Shift］キーを押すと、一時的に機能を止めることができます。あと、ついでなのでデスクトップへ保存する機能も付けました。たとえば［PrintScreen］キーを押すとスクリーンショットが自動でデスクトップに保存されます。そう、Mac みたいにね。デスクトップをキャプチャーするとき、あの機能って邪魔だと思うんだけど、確かに便利なことも多いので……もちろん、設定画面で無効化できます。
- WPF なので TransformedBitmap で縮小をしていたんですけど、Winsnap というスクショツールで取得した画像をコピーするとなぜか全体が黒くなってしまう？　調べたけどよくわからなかったので、System.Drawing.Bitmap に変換して縮小しました。一通り動くまでは一瞬だったけど、この原因調査に半日消えちゃったよ！ちなみに、名前は「クリップボード、クリップボード、クリッ……そういえばそろそろクリの季節だなー、甘栗食べたいなー」と思ってつけました。
-*1:フォトライフ？*2:エラーメッセージをちゃんと出してくれないから気づかないけど</description>
+      <description>てなブログ1ってクリップボードから張り付けて画像をアップロードできるけど、ファイルサイズに制限があるじゃないですか2。いちいち縮小するのが面</description>
     </item>
     
     <item>
@@ -28,9 +26,7 @@
       <pubDate>Tue, 19 Sep 2017 19:58:37 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/19/195837/</guid>
-      <description>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど）
-デバッグビルドとリリースビルドの共存（開発の都合）通知アイコンの改善（タイマーの通算稼働時間のカウント）Updated を Pending に変えるまでの時間をグローバル設定から読み込むようにステータス色分けの改善内部で保持している UTC を Local Time にちゃんと直して表示コードの整理**静的スクレイピング機能の追加****プレビューの文字化けを修正****更新ログウィンドウの追加**スクレイピングルールのダブルクリックでログを表示（編集画面の方がよかったか？） ### 静的スクレイピング機能の追加  hantomJS は遅いので、AngleSharp を使った静的スクレイピングをデフォルトにしました。下手したら3分ぐらいかかっていた処理が、たった数秒に。C#でモダンにスクレイピングするならAngleSharp - QiitaAngleSharp は HtmlAgilityPack より断然使いやすいので、今後はこっちをメインに使おうと思います。
-### プレビューの文字化けを修正WebBrowser.NavigateToString() を使うとたまに文字化けする問題。HTML で UTF-8 エンコードを指定すればよかったのですが、Diff の方だけやって、プレビューの方には適用されてなかった（爆死```cspublic class WebBrowserExtension{public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(&#34;Html&#34;, typeof(string), typeof(WebBrowserExtension), new UIPropertyMetadata(null, HtmlPropertyChanged));public static string GetHtml(DependencyObject obj){return (string)obj.</description>
+      <description>いぶサマになってきた気がする。あっちこっちにぬるぽエラーがあって、潰すのに難儀した。Swift とか羨ましいかもね？（よく知らんけど） デバッグ</description>
     </item>
     
     <item>
@@ -39,11 +35,7 @@
       <pubDate>Sun, 17 Sep 2017 04:10:58 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/09/17/041058/</guid>
-      <description>  の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2） - だるろぐ動かなかったので（そりゃそうか？）、WPF アプリケーションにしました。
-  ーゲットとなる URI を登録すると、定期的にスクレイピングしてくれます。CSS セレクターが使えるので、ページの一部分だけ保存することが可能です*1。あと、シングルページアプリケーションのために、動的サイトをスクレイピングする機能を追加しました。
-  ーカルに保存したログは、Diff をとってみることができます*2。データフォルダーをオンラインストレージに指定しておくと（初回利用時に選択できます）、複数環境でデータを同期できて便利かもしれない。
- コードが汚いのをなんとかしたいのと、更新を検出したときにデスクトップ通知を出すだけだと見逃しちゃうかもなので、なんかいい方法を考えようかなと思います。
-*1:全部を保存するときは“document”とか“body”とかしておけばいいと思う。そういえば試してないけど*2:文字化けする……右クリックメニューからエンコーディングを UTF-8 にすると治せます</description>
+      <description>の前作ったスクレイピングサービスを Microsoft Azure Web Apps に載せたのですが……Razor Pages：PhantomJS で動的サイトをスクレイピングする（2）</description>
     </item>
     
     <item>
@@ -52,9 +44,7 @@
       <pubDate>Thu, 15 Jun 2017 23:57:44 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/15/235744/</guid>
-      <description>  週は身内に不幸があったりちょっと情緒不安定だったので、手慰みに Windows 10 のスクリーンショット機能をジャンプリストから利用できるようにするツールを作ってみました。「ネイティブ機能を利用する」という手抜きシンプルさがウリです。
- ツールの名前は、大阪へ向かうフェリーのレストランで「撮る……撮る……」と名前を考えながら晩飯を選んでいたら、いつの間にかお盆の上に焼き鳥があったという故事から採っています。
-### なぜ作ったのか[ツールなしで“矩形キャプチャー”が可能！「Creators Update」に新搭載されたスクリーンショット機能が便利【やじうまの杜】](http://forest.watch.impress.co.jp/docs/serial/yajiuma/1061300.html)Windows 10 Creators Update 以降では OS ネイティブのスクリーンショット機能が拡充されていますが、キーボードショートカットを覚えるのが面倒クリップボードへコピーされた画像をファイル化するのが面倒スクリーンショットフォルダーがどこにあるのか分からん＆開くのが面倒なのではないかと思い作ってみました。あと、常駐しないのもよいところかな。逆にジャンプリストの利用が前提になっているのはマイナスかもね。なお、作った本人は「WinSnap」という有償ツールを愛用しているので、この手のツールは要らない模様（ぉ### 使い方とりあえず実行する設定ダイアログが表示されるのでタスクバーにピン留め次回からはジャンプリストから Windows 10 ネイティブのスクリーンショット機能を呼び出せます### 機能Windows 10 ネイティブのスクリーンショット機能を呼び出しますアクティブウィンドウをクリップボードへコピーデスクトップ全体をクリップボードへコピーデスクトップ全体をスクリーンショットフォルダーへ保存（Windows 8以降？が必要）デスクトップを矩形選択してクリップボードへコピー（Windows 10 Creators Update 以降が必要）クリップボードに格納されている画像をスクリーンショットフォルダーへ保存スクリーンショットフォルダーを開くカウントダウン実行常駐しませんスペシャルサンクス：オレンジフェリーの無料 Wi-Fi### 蛇足：メッセージポンプこのアプリは Tonjiru と似たような方法で起動オプションを実装＆ジャンプリストから呼べるように作ってありますが、App クラスを生成せずにカウントダウンを行おうとするとうまくいきませんでした。DispatchTimer ってメッセージポンプがないとダメなのかな（よくわかってない）。ShowDialog() でもいけるやろ、と思ったのですがそっちもダメだったので、おとなしく App.Run() しています。ここを削ればもう少し高速化できるんじゃないかなーと思うのですが、まぁ、そこまでやらんでもいいかな。</description>
+      <description>週は身内に不幸があったりちょっと情緒不安定だったので、手慰みに Windows 10 のスクリーンショット機能をジャンプリストから利用できるようにするツールを作</description>
     </item>
     
     <item>
@@ -63,8 +53,7 @@
       <pubDate>Thu, 08 Jun 2017 19:50:54 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/08/195054/</guid>
-      <description>br/&amp;gt;
-起動オプションの追加（/g で GUI 付きの起動）ジャンプリストへの対応（GUI 付きの起動を追加）ウィンドウ情報のクリップボードコピー（JSON 形式）ウィンドウ情報のファイル保存（JSON 形式）通知機能安定性の向上 ### WPF と起動オプション起動時に［Shift］キーが押されていたら GUI を起動するという挙動はApp.xaml の StartupUri を削除App.Startup でキーの押し下げ確認と MainWindow の自前生成という感じで実現していたんだけど、起動オプションを付けたら破綻したので、App.xaml の StartupUri を元に戻すApp.xaml のビルドアクションを Page にして、main 関数を自分で書くという感じに変えた。```cs[System.STAThreadAttribute()]public static void Main(){var args = Environment.GetCommandLineArgs();if (args.Contains(&amp;quot;/g&amp;quot;) || (Control.ModifierKeys &amp;amp;amp; Keys.Shift) == Keys.Shift){var app = new Tonjiru.</description>
+      <description>br/&amp;gt; 起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形</description>
     </item>
     
     <item>
@@ -73,9 +62,7 @@
       <pubDate>Tue, 06 Jun 2017 22:02:56 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/06/220256/</guid>
-      <description>いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に名前は**「閉じる……閉じる……」**と悩みながら晩御飯を作っていたら、いつの間にか**豚汁**ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。
-  応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。
-### 与太話その一：ストアアプリへの対応EnumWindows() でトップレベルウィンドウを列挙すると、ストアアプリは「**ApplicationFrameHost**」というのが引っ掛かるが、これは所謂ガワに過ぎない。これではストアアプリを一意に区別することができないので、その子ウィンドウをたぐって「**Windows.UI.Core.CoreWindow**」というのを探し、そのプロセス名（「ストア」アプリだと“WinStore.App”）をとった。もう一つ面倒くさいのが「Microsft Edge」で、こいつはガワのほかにもコンテンツプロセス（MicrosoftEdgeCP）をいくつか余分にもっている。これをひっかけるのは余分だし、ほしいのは“トップレベル”ウィンドウなので、独自にフィルタリング処理を追加した。ただし、ここらへんで頭がこんがらがってきたので、ストアアプリの除外処理はいろいろバグバグだ。いずれ直そうかと思うけど、とりあえずはこのままにしておく。```csprivate static bool EnumChildWindowProc(IntPtr handle, IntPtr lParam){var builder = new StringBuilder(256);GetClassName(handle, builder, builder.Capacity);// ストアアプリのためのハック -&amp;gt; &amp;quot;Windows.UI.Core.CoreWindow&amp;quot; を探すif (builder.ToString() == &amp;quot;Windows.UI.Core.CoreWindow&amp;quot;){int process_id;GetWindowThreadProcessId(handle, out processId);process = Process.GetProcessById(process_id); // プロセス情報を保管if (process != null) return false;// Microsoft Edge は null だった。とりあえず飛ばしておくことにしておこう}return true; }</description>
+      <description>いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わ</description>
     </item>
     
     <item>
@@ -84,9 +71,7 @@
       <pubDate>Sat, 03 Sep 2016 20:21:59 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/03/202159/</guid>
-      <description>  りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。
-ダウンロードGitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。  UI クライアントをいくつか比較してみたけど、CloudBerry Explorer というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。
-### 更新点Twitter 投稿画面の改善Gif キャプチャー機能設定の保存コードのリファクタリングTwitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、スクショをリスト List&amp;lt;string でもっておくViewModel で int SelectedIndex をもつImage に List[SelectedIndex] をバインドボタンに SelectedIndex を ++/-- するコマンドをバインドしていい感じに配置するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。</description>
+      <description>りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。 ダウンロード GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代</description>
     </item>
     
     <item>
@@ -95,8 +80,7 @@
       <pubDate>Thu, 01 Sep 2016 20:46:19 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/01/204619/</guid>
-      <description>  じさんでも簡単に Twitter を組み込めると人気の CoreTweet で投稿機能を組み込んだよ。メッセージの文字数制限チェックが甘いとか、細部でダメなところも多いけど、気を付けていれば問題ない（ぁCoreTweet については酢酸先生のまとめを参考にするとよいかも。必要なことはすべて酢酸先生（たち）が教えてくれた。あと、Tokens.Create() で作成したトークンがログイン可能なのかを調べる手段がわからなかったのだけど、以下のサイトが参考になった。Tokens.Create() はいろいろ組み立てるだけ。検証は Account.VerifyCredentials() を使う、と（頭にメモメモほかには
-Properties.Default.Settings を書き込んだら Save() しなきゃ保存されない。すっかり忘れてて悩んだTwitter から取得したトークンを Properties.Default.Settings に書き込んだら設定ファイルを .gitignore しとかないと GitHub で全裸公開しちゃうことになる（キーをリセットしたよViewModel からウィンドウを閉じる方法はいろいろあるが、ボタンに CommandParameter={Binding Window1} して Command 側で (Window1 as Window).Close() するのが一番簡単っぽいというあたりが今回の気付き。マイナーバージョンがインクリメントされているのは、GitHub に置いたファイルを ClickOnce で配布できないかを試したから。結論的には、「自動更新機能は使えないかもだけど、インストーラーで配布することはできる。毎回 ZIP を作るのよりはマシだし、使う側も便利かな」って感じ。自動更新機能は次回からは削除する。ちなみに、今回からは ZIP での配布はない。ほしいかな？　この前のプロ生＋わんくま大阪で PowerShell を少し学んだので、パッケージするスクリプトでも書いてみるか。アプリのダウンロードは【こちら】から。### 主な変更点Twitter投稿機能を付けたClickOnce での配布ちょっとコードを整理した（今度真面目にやる）タブレットモードで利用したときのちょっとした不具合を修正GIF キャプチャー機能をつけたら、だいたいやりたいことは終わりだな。</description>
+      <description>じさんでも簡単に Twitter を組み込めると人気の CoreTweet で投稿機能を組み込んだよ。メッセージの文字数制限チェックが甘いとか、細部でダメなところも多いけど、気</description>
     </item>
     
     <item>
@@ -105,9 +89,7 @@
       <pubDate>Tue, 30 Aug 2016 05:19:29 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/08/30/051929/</guid>
-      <description>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が面倒だったので、ClickOnce で配布することにした。自分で ClickOnce の公開用サーバーを用意するのは面倒なので、できれば ClickOnce のセットアップファイルも GitHub に置きたい。やり方がわかんないので StackOverFlow さまにお伺いを立ててみた。さすがやでぇ。以下はそれを試してみたよっていう話。
-#### 1. とりあえずローカルに発行してコミットするまず、プロジェクトプロパティの［公開］タブで、ClickOnce の発行を行う。発行先は初期設定の publish\ でいいかと。Visual Studio 向けの .gitignore を利用している場合は、あらかじめ Click-Once 関連の設定をコメントアウトしておくとよい。```# Click-Once directory# publish/```ついでに .gitattributes も編集しておく。```*.manifest binary*.application binary*.deploy binary```これをコミットして GitHub にプッシュしておく。#### 2. ClickOnce のインストール フォルダーの URL を変更GitHub に publish フォルダーがちゃんとアップロードされているのを確認。  こからセットアップファイルの Raw URL を取得しておく。今回は
-https://github.com/daruyanagi/Aoba/blob/master/Aoba/Aoba/publish/setup.exe?raw=trueだった。次にプロジェクトのプロパティ画面の［公開］タブに戻り、ClickOnce のインストール フォルダーの URL を変更する。  ほど取得した Raw URL を cdn.</description>
+      <description>せっかく作ったツールだけど、アップデートのたびに毎回 ZIP ファイルをダウンロードして展開してユーティリティフォルダーにコピーして……という作業が</description>
     </item>
     
     <item>
@@ -116,9 +98,7 @@
       <pubDate>Mon, 29 Aug 2016 17:55:26 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/08/29/175526/</guid>
-      <description>これの画面を音声付きで動画キャプチャーできるようにしたよ。それに伴い、UI をいろいろ変更。
-  画は My Video\Aoba に保存される。もちろん、ボタン一発で開けるようにしてある。フレームレートは弄れるけど、今のところフォーマットは AVI（MotionJPEG）で固定。 設定画面作るのめんどいからね、しょうがないね。
-#### スクリーンキャプチャー用のライブラリ Screna今回は Screna というライブラリのお世話になった。NuGet で簡単にインストールできる点、動画キャプチャーをサポートしている点などがいい感じ。C# でキャプチャーする方法はいろいろ紹介されてるけど、現時点ではこれが割とモダンだと思った。FFmpeg で MP4 圧縮もできるみたいだけど、今回はそこまでは試していない。基本的な使い方はこんな感じ（公式のサンプルそのまま）。まず AVI サポートのために Screna.SharpAvi を NuGet でインストール。```Install-Package Screna.SharpAvi```次にネームスペースを追加。```csusing Screna;using Screna.Avi;```cs// どの画像をとってくるかを決める IImageProvider を初期化var provider = new ScreenProvider(); // デスクトップ全体をキャプチャー// 動画を書き込む AviWriter を初期化var VideoWriter = new AviWriter(&amp;quot;output.avi&amp;quot;, AviCodec.MotionJpeg);// レコーダーを作って録画開始var Recorder = new Recorder(VideoWriter, provider, 10);Recorder.Start();// なにかの処理Recorder.</description>
+      <description>これの画面を音声付きで動画キャプチャーできるようにしたよ。それに伴い、UI をいろいろ変更。 画は My Video\Aoba に保存される。もちろん、ボタン一発で開ける</description>
     </item>
     
   </channel>

@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix で URL 書き換え" />
+    <meta property="og:description" name="og:description" content="前回 1 の宿題。 WebMatrix で URL Rewrite をやりたいなぁーと言ってそのまま言いっ放しだったのでやってみた。とはいえ、WebMatrix は APS.NET 技術をベースにしている" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/20111110/1362520869/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix で URL 書き換え" />
-    <meta name="og:description" content="前回 1 の宿題。 WebMatrix で URL Rewrite をやりたいなぁーと言ってそのまま言いっ放しだったのでやってみた。とはいえ、WebMatrix は APS.NET 技術をベースにしているので、そのやり方がそのまま使える。まぁ、わしは ASP.NET とかあまりわからないので、Google さまに聞きながら書いたのだけど。ともかく、http://sample.com/Pages/Hoge (http://sample.com/Pages.cshtml/Hoge) を __http://sample.com/Hoge__に飛ばしたい場合は、Web.comfig 2 へ以下のように記述するだけでよい。
-	&amp;lt;?xml version=&quot;1.0&quot;?&gt;&amp;lt;configuration&gt;&amp;lt;system.webServer&gt;&amp;lt;rewrite&gt;&amp;lt;rules&gt;&amp;lt;rule name=&quot;Daruboard&quot; stopProcessing=&quot;true&quot;&gt;&amp;lt;match url=&quot;^(.*)$&quot; ignoreCase=&quot;false&quot; /&gt;&amp;lt;conditions&gt;&amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsFile&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;&amp;lt;add input=&quot;{REQUEST_FILENAME}&quot; matchType=&quot;IsDirectory&quot; ignoreCase=&quot;false&quot; negate=&quot;true&quot; /&gt;&amp;lt;/conditions&gt;&amp;lt;action type=&quot;Rewrite&quot; url=&quot;Pages.cshtml/{R:1}&quot; /&gt;&amp;lt;/rule&gt;&amp;lt;/rules&gt;&amp;lt;/rewrite&gt;&amp;lt;/system.webServer&gt;&amp;lt;/configuration&gt;```とても簡単だった。さっそく、 daruyanagi.net をこのアプリケーションで置き換えてみた。&lt;div class=&quot;footnote&quot;&gt;&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;&lt;a href=&quot;http://blog.daruyanagi.net/archives/388&quot;&gt;WebMatrix &#43; Markdown で手軽に更新できる（？）Webサイトを作る - blog." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

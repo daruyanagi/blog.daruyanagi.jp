@@ -33,19 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する" />
+    <meta property="og:description" name="og:description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ 以" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/04/30/155040/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する" />
-    <meta name="og:description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ以前に作った PowerShell が動作しなくなった。
-$urls =@(&#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34;)foreach ($url in $urls){try{$request = Invoke-WebRequest $url$body = $request.ParsedHtml$price_node = $body.getElementsByTagName(&#34;s&#34;) | where { $_.getAttributeNode(&#34;class&#34;).Value -eq &#34;srv_saleprice&#34;}　#&amp;lt;-- ここで例外 ```――結果。HRESULT からの例外:0x800A01B6
-&lt;div class=&quot;section&quot;&gt;### 解決&lt;code&gt;getElementsByTagName()&lt;/code&gt; のかわりに &lt;code&gt;IHTMLDocument3_getElementsByTagName()&lt;/code&gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。getElementsByTagName -&gt; IHTMLDocument3_getElementsByTagName
-getElementsByName -&gt; IHTMLDocument3_getElementsByName
-getElementByID -&gt; IHTMLDocument3_getElementByID
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname&quot;&gt;PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### なぞ  owerShell スクリプトからではなく、PowerShell のシェルから &lt;code&gt;getElementsByTagName()&lt;/code&gt; を使うとそのまま通った。よくわからんな……。&lt;/div&gt;" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

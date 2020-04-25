@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="UWP：ユーザーコントロールを作ってみる" />
+    <meta property="og:description" name="og:description" content="回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。 x:Class=&#34;Hateboo.UserControls.TextBoxWithCounter&#34; xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34; xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34; xmlns:local=&#34;using:Hateboo.UserControls&#34; xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34; xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34; mc:Ignorable=&#34;d&#34; d:DesignHeight=&#34;300&#34; d:DesignWidth=&#34;400&#34;&gt; &lt;stackpanel&gt;&lt;/stackpanel&gt; x:Name=&#34;textBox&#34; TextChanged=&#34;textBox_TextChanged&#34; /&gt; Orientation=&#34;Horizontal&#34; HorizontalAlignment=&#34;Right&#34;&gt; x:Name=&#34;textBlockCurrent&#34;&gt;0 &lt;textblock&gt;&lt;/textblock&gt;/ x:Name=&#34;textBlockMax&#34;&gt;0 ```単にテキストボ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2016/04/12/171903/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="UWP：ユーザーコントロールを作ってみる" />
-    <meta name="og:description" content="回作るのは、文字数カウンター付きのテキストボックス。まずはユーザーインターフェイス。
-x:Class=&#34;Hateboo.UserControls.TextBoxWithCounter&#34;xmlns=&#34;http://schemas.microsoft.com/winfx/2006/xaml/presentation&#34;xmlns:x=&#34;http://schemas.microsoft.com/winfx/2006/xaml&#34;xmlns:local=&#34;using:Hateboo.UserControls&#34;xmlns:d=&#34;http://schemas.microsoft.com/expression/blend/2008&#34;xmlns:mc=&#34;http://schemas.openxmlformats.org/markup-compatibility/2006&#34;mc:Ignorable=&#34;d&#34;d:DesignHeight=&#34;300&#34;d:DesignWidth=&#34;400&#34;&gt;&lt;stackpanel&gt;&lt;/stackpanel&gt;x:Name=&#34;textBox&#34; TextChanged=&#34;textBox_TextChanged&#34; /&gt;Orientation=&#34;Horizontal&#34; HorizontalAlignment=&#34;Right&#34;&gt;x:Name=&#34;textBlockCurrent&#34;&gt;0&lt;textblock&gt;&lt;/textblock&gt;/x:Name=&#34;textBlockMax&#34;&gt;0```単にテキストボックスとカウンターラベル（0/100 みたいな表示）を配置しただけ。（コードを張り付けてから気づいたが、0/100 の / を表示するためだけに TextBlock 使ってるのはアレだな。Run とか使えばよかった）このコントロールにほしいプロパティは、&lt;ul&gt;&lt;li&gt;Text：TextBox の内容&lt;/li&gt;&lt;li&gt;Current：現在の TextBox 文字数&lt;/li&gt;&lt;li&gt;Max：TextBox に入力できる最大の文字数。これをオーバーすると、ラベルが赤くなる&lt;/li&gt;&lt;/ul&gt;ぐらいかな。名前がいまいちなのは気にしないでくれ（Max は Limit とかのほうがよさげやな。英語わからんから知らんけど）。というわけで、こいつらを**依存関係プロパティ**として実装する。依存関係プロパティというのはいまだによくわからんが、バインディングがいい感じに動くように **CLR プロパティ**（フツーの C# のプロパティ）をクラスに登録しておく仕組みって感じだろうか。基本的にはこんな感じ。```cs// 依存関係プロパティpublic static readonly DependencyProperty MaxProperty = DependencyProperty.Register(&#34;Max&#34;,　// Max という名前の……typeof(int),　// int 型の CLR プロパティを……typeof(TextBoxWithCounter), // クラスに登録するやで―new PropertyMetadata(0));// CLR プロパティpublic int Max{get { return (int)GetValue(MaxProperty); }set{SetValue(MaxProperty, value);textBlockMax." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

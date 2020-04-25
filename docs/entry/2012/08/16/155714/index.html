@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix で Markdown を少しだけ拡張してみる" />
+    <meta property="og:description" name="og:description" content="前回（WebMatrix で Markdown を使おう！ - だるろぐ）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/08/16/155714/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix で Markdown を少しだけ拡張してみる" />
-    <meta name="og:description" content="前回（WebMatrix で Markdown を使おう！ - だるろぐ）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。
-# Markdown.csusing System;using System.IO;using System.Text;using System.Web;/// &amp;lt;summary&gt;/// Summary description for ClassName/// &amp;lt;/summary&gt;public static class Markdown{private static readonly MarkdownSharp.Markdown md = new MarkdownSharp.Markdown();private static readonly Encoding encoding = Encoding.UTF8;public static HtmlString Parse(string input){return new HtmlString(md.Transform(input));}public static HtmlString LoadFromFile(string path){return Parse(File.ReadAllText(path, encoding));}}```で、 Web ページ側ではこんな感じに使います。```cs# Page." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

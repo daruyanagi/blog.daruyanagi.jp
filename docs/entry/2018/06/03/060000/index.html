@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="手持ちの Excel ファイルと Microsoft Flow で簡単な Web サービスを作成する" />
+    <meta property="og:description" name="og:description" content="Excel で管理しているデータを Web サービス に再利用したいといったことはままあると思います。そういう場合、普通ならば Excel のテーブルデータをデータベースに" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2018/06/03/060000/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="手持ちの Excel ファイルと Microsoft Flow で簡単な Web サービスを作成する" />
-    <meta name="og:description" content="Excel で管理しているデータを Web サービス に再利用したいといったことはままあると思います。そういう場合、普通ならば
-Excel のテーブルデータをデータベースに移すスクリプトで Web アプリをガシガシ書くそれを Web サーバーにホストして、アクセスできるようにするサーバーが落ちたり、プラットフォームの更新があれば対応するという感じで運用するんだと思いますが、ちょっとしたモノにそこまで手間をかけるのはウンコ面倒です。というわけで、今回はそれを Microsoft Flow でやってみました。Microsoft Flow はよく「IFTTT」みたいなものと表現されますが、ずっと強力であることが分かると思います。Web サービスの方が柔軟性はありますが、Microsoft Flow で作るとExcel なのでみんなで気軽にデータを追加・削除できる（データベースの管理 UI が要らないし、気分的にとっつきやすい。ただし、素人がぐちゃぐちゃにする恐れはある）スクリプト言語苦手でも、多少ロジックが組める人なら大丈夫（関数とかほとんど出てこない）サーバーを用意したり、管理する必要がなくなるのは結構メリットなんじゃないでしょうか。### 三分間クッキング今回は題材として「なにかを問い合わせたら Excel のデータを舐めて変換する」サービスを作ってみます。たまたま手元に「ベクターのソフト公開ページの URL と作者サイト・窓の杜ライブラリの関係」を管理した Excel ファイルがあるので、それを使って「ベクターの URL を投げたら、作者と窓の杜ライブラリの URL を返す」アプリ（Web サービス）を作ってみます。完成イメージはこんな感じです。  br/&gt;
-JSON で HTTP 要求を受けたらOneDrive に置いた Excel のテーブルを読んでベクターの URL に合致する行を取得しなければ 404 を返すあれば配列を生成し200 で JSON を返すウンコ簡単だね！！#### 1." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

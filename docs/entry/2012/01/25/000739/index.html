@@ -33,19 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content=" Embedded Tweets を使ってWebページにツイートを埋め込む" />
+    <meta property="og:description" name="og:description" content="最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。これをコードからもやってみたくて、 Embedded Tweets | Twitter Developers" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/01/25/000739/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content=" Embedded Tweets を使ってWebページにツイートを埋め込む" />
-    <meta name="og:description" content="最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。これをコードからもやってみたくて、 Embedded Tweets | Twitter Developers を参考にちょっとやってみた。
-```? var tweet_url = url; // 例: https://twitter.com/#!/daruyanagi/statuses/57438593853034497
-var tweet_id = new Regex(@&ldquo;status/(?&lt;id&gt;\d&#43;)&quot;) .Match(tweet_url).Groups[&ldquo;id&rdquo;].ToString();
-var tweet = new System.Net.WebClient() .DownloadString(string.Format( &ldquo;https://api.twitter.com/1/statuses/oembed.json?id={0}&quot;, tweet_id));
-return Codeplex.Data.DynamicJson.Parse(tweet).html;
-&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120125/20120125000256.png&quot; alt=&quot;f:id:daruyanagi:20120125000256p:plain&quot; title=&quot;f:id:daruyanagi:20120125000256p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;APIを叩くとJSONデータが返ってくるので、そこから&quot;html&quot;の値を取得。このあたりの処理は DynamicJson (NuGetでインストールできる)で楽をさせてもらいました。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120125/20120125000424.png&quot; alt=&quot;f:id:daruyanagi:20120125000424p:plain&quot; title=&quot;f:id:daruyanagi:20120125000424p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;a href=&quot;https://platform.twitter.com/widgets.js&quot;&gt;https://platform.twitter.com/widgets.js&lt;/a&gt; を読み込んでおけば、勝手に整形もしてくれるみたい。ちょっと日付周りの表記がおかしいけれど、まぁ、これぐらいはしょうがないかな。" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix" />
+    <meta property="og:description" name="og:description" content="見事 WebMatrix で Gmail 経由のアラートメールが送れたわけだが（WebMatrix: Gmail 経由でアラートメールを送る - だるろぐ）、このやり方には一つ欠点（？ とい" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/03/14/182000/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix" />
-    <meta name="og:description" content="見事 WebMatrix で Gmail 経由のアラートメールが送れたわけだが（WebMatrix: Gmail 経由でアラートメールを送る - だるろぐ）、このやり方には一つ欠点（？　というか、仕様だな）があった。たとえば、以下のようなコード。タイマーでとあるジョブ（必ず失敗する）を処理し、エラーが発生したらエラーメールを送る。
-@{WebMail.SmtpServer=&#34;smtp.gmail.com&#34;;WebMail.SmtpPort = 587;WebMail.EnableSsl=true; WebMail.UserName=&#34;***&#34;;WebMail.From=&#34;***@gmail.com&#34;; WebMail.Password=&#34;***&#34;;var timer = new System.Timers.Timer(1000 * 60);timer.Elapsed &#43;= (sender, args) =&gt;{try{throw new Exception();}catch (Exception e){WebMail.Send(&#34;***@***.com&#34;, e.Message, e.StackTrace);}};timer.Start();}```これは失敗する。しかも、WebMatrix だと例外が捕捉できないので気づきにくい。  くわからんけれど、WebMail は &lt;a href=&#34;http://msdn.microsoft.com/ja-jp/library/system.web.helpers(v=vs.111).aspx&#34;&gt;System.Web.Helpers Namespace () | Microsoft Docs&lt;/a&gt; に属するみたいで、Page のスレッドじゃないと動作しないのかもしれない。そういえば昔、こういうシチュエーションで Server.MapPath() が使えなかった覚えがある。&lt;div class=&#34;section&#34;&gt;### 解決策System." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

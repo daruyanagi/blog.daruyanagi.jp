@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="PowerShell：メールが文字化けする" />
+    <meta property="og:description" name="og:description" content="PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。 &gt; NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/03/05/090000/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="PowerShell：メールが文字化けする" />
-    <meta name="og:description" content="PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。
-&gt;NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。.NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記 よくわかんないのだけど、&ldquo;ISO-2022-JP と Base64 でエンコードするような処理&quot;を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。
-#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換 function Encode-MailHeader($subject){$enc = [System.Text.Encoding]::GetEncoding(&#34;iso-2022-jp&#34;);$strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject));&#34;=?{0}?B?{1}?=&#34; -f &#34;iso-2022-jp&#34;, $strBase64}```あとはこの関数を使って、```ps1$subject = Encode-MailHeader(Encode-MailHeader($title))```とでもすればよい。とりあえず文字化けはなくなった気がする。&lt;div class=&#34;section&#34;&gt;### 今日学んだこと &lt;div class=&#34;section&#34;&gt;#### 関数をパイプ対応にする これで完成――でもいいのだけど、なんかダサいので、パイプで繋げるようにしてみた。```ps1#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換 function Encode-MailHeader([Parameter(ValueFromPipeline=$true)]$subject){process{$enc = [System.Text.Encoding]::GetEncoding(&#34;iso-2022-jp&#34;);$strBase64 = [Convert]::ToBase64String($enc.GetBytes($subject));&#34;=?" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

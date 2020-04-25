@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="UWP ＋ WebView ＋ XPath でスクレイピングする" />
+    <meta property="og:description" name="og:description" content="WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。 public sealed partial class MainPage : Page { public MainPage() { this.InitializeComponent(); Loaded &#43;= MainPage_Loaded; } private void MainPage_Loaded(object sender, RoutedEventArgs e) { var browser = new WebView(); var url = &#34;https://google.co.jp/&#34;; var xpath = &#34;//h1&#34;; var result_type = &#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;; var function = $&#34;document.evaluate(&#34; &#43; &#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34;" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/03/18/030810/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="UWP ＋ WebView ＋ XPath でスクレイピングする" />
-    <meta name="og:description" content="WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。
-public sealed partial class MainPage : Page{public MainPage(){this.InitializeComponent();Loaded &#43;= MainPage_Loaded;}private void MainPage_Loaded(object sender, RoutedEventArgs e){var browser = new WebView();var url = &#34;https://google.co.jp/&#34;;var xpath = &#34;//h1&#34;;var result_type = &#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;;var function = $&#34;document.evaluate(&#34; &#43; &#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34; &#43; &#34;).singleNodeValue.innerHTML;&#34;;browser.NavigationCompleted &#43;= async (s, args) =&gt;{if (!args.IsSuccess) throw new Exception();var html = await browser." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

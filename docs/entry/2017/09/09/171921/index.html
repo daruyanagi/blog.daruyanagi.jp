@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする（2）" />
+    <meta property="og:description" name="og:description" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ 前回、AngleSharp を使えばよかったかもといったのですが、結" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/09/09/171921/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする（2）" />
-    <meta name="og:description" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。
-var document = default(IHtmlDocument);using (var client = new HttpClient())using (var stream = await client.GetStreamAsync(Target)){var parser = new HtmlParser();document = await parser.ParseAsync(stream);}Result = document.QuerySelector(Selector)?.InnerHtml;return Page();```確かにシンプルなのですが、外部 JavaScript を読んで、評価して……までやりだすと、いろいろ大変な感じ&lt;a href=&#34;#f-4db4db9a&#34; name=&#34;fn-4db4db9a&#34; title=&#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&#34;&gt;*1&lt;/a&gt;。これまで通り PhantomJS でやった方がよさそう。――というわけで。今回はそっちを置いておいて、Web API として使えるようにしてみました。ASP.NET API（Core）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。```csnamespace WebApplication7.Controllers{[Route(&#34;api/[controller]&#34;)] public class ValuesController : Controller{// GET api/values[HttpGet]public IEnumerable&amp;lt;string&gt; Get(){return new string[] { &#34;value1&#34;, &#34;value2&#34; };}}}```&lt;code&gt;/api/values&lt;/code&gt; をゲットでたたくと、&lt;code&gt;{ &#34;value1&#34;, &#34;value2&#34; }&lt;/code&gt; が返ってくる。これと組み合わせて、API Controller を Razor Pages で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、API と Razor Pages で共通のロジックをまとめて（適当に &lt;code&gt;Services&lt;/code&gt; フォルダーにまとめました）、共有することにしました。  有部分はこんな感じ。```cs// サービスと名付けたモノ（/Services）namespace WebApplication7." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

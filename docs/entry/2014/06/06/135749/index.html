@@ -33,20 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="インストール済みの Windows Store Apps を列挙する" />
+    <meta property="og:description" name="og:description" content="br/&gt; ### 方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。 ### 準備 当にコードを" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2014/06/06/135749/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="インストール済みの Windows Store Apps を列挙する" />
-    <meta name="og:description" content="br/&gt;
-### 方針PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。### 準備  当にコードを書いて実行すると、
-&gt;アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。 というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT に解決策があった。まとめると、
-  ロジェクトを一度アンロードして……
-  *.csproj ファイルを編集し……
-  argetPlatformVersion を 8.0 にする。
-&lt;!--?--&gt;xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;&gt;Project=&#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&#34; Condition=&#34;Exists(&amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#39;)&#34; /&gt;&lt;propertygroup&gt;&lt;/propertygroup&gt;::&lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;8.0 // &amp;lt;-- この行を追加  、もう一度プロジェクトを読み込んで［参照の追加］をすると、" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

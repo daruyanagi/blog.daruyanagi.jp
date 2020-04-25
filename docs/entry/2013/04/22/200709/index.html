@@ -33,17 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix 3" />
+    <meta property="og:description" name="og:description" content="br/&gt; WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐ WebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐ WebMatrix 3: フィードの購読" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/04/22/200709/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix 3" />
-    <meta name="og:description" content="  br/&gt;
-WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（2: JavaScript 編） - だるろぐWebMatrix 3: フィードの購読者数を取得する（3: CSS 編） - だるろぐ一連の記事では、FeedCount の結果を JSON でやり取りしていました。### JSON#### サーバーサイド```cs// ~/FeedCount.cshtmlResponse.Clear(); Response.ContentType = &ldquo;application/json&rdquo;; Response.Write(Json.Encode(data)); Response.End();
-&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;#### 渡されるデータ（例）```javascript{&quot;livedoor&quot;:6,&quot;total&quot;:6}#### クライアントサイド```javascript// ~/Script/SocialButtons.js$.ajax({ url: &#39;/FeedCount/&#39; &#43; url, dataType: &#39;json&#39;, success: function (json) { element.text(json.total || 0); } });
-&lt;/div&gt;&lt;/div&gt;" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -33,18 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content=" パスに無効な文字が含まれています。" />
+    <meta property="og:description" name="og:description" content="### 状況 コントローラーで View(model) を返す。model は string型 で、ローカルにあるテキストファイルを読み込んだ内容が格納されている。ビュー側でこれ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/25/162246/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content=" パスに無効な文字が含まれています。" />
-    <meta name="og:description" content="### 状況コントローラーで View(model) を返す。model は string型 で、ローカルにあるテキストファイルを読み込んだ内容が格納されている。ビュー側でこれを @Html.Raw(Model) すると、「パスに無効な文字が含まれています。」というエラーが表示される。``` Controller return View(content);
-View @model string
-@Html.Raw(Model)
-&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### 解決モデルを HtmlString型 に変更すると、エラーが表示されなくなった。```## Controllerreturn View(new HtmlString(content));## View@model HtmlString@ModelテキストがHTMLタグ（危険な文字列）を含んでいたので、ASP.net がエラーを吐いてくれたのかな？
-危険な可能性のある Request.Form 値がクライアントから検出されました - だるろぐ" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

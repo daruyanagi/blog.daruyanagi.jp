@@ -17,9 +17,7 @@
       <pubDate>Wed, 20 Jun 2018 23:21:13 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2018/06/20/232113/</guid>
-      <description>  ょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。
-&amp;gt;Web deployment task failed. (&amp;amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;amp;#39; のタイプ初期化子が例外をスローしました。) コードはちょっといじったけど、定数値を変えただけで、ロジックは変えていない。Visual Studio のアップデートが原因か、インフラ側で何か変更があったのか。ググってみたけど対処方法がよく分かんなかったので、今は FTP 経由で発行している。発行のたびにポータルでサイトを一時停止しなくちゃいけないのがすごい面倒……セキュリティ的にも褒められたものではないだろうし、なんとかなんないかなぁ。
-### 追記（2018/06/23 19:30）一旦 Web サイトを停止したら Web Deploy でも配置できるかなぁ、と思ってやってみたんだけど、ダメだった。</description>
+      <description>ょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。 &amp;gt; Web deployment task failed. (&amp;amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;amp;#39; のタイプ初期化子が例外をスロー</description>
     </item>
     
     <item>
@@ -28,9 +26,7 @@
       <pubDate>Tue, 15 Aug 2017 12:13:03 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/08/15/121303/</guid>
-      <description>ASP.NET Core 2.0 がリリースされたので、http://darunagai.jp/ を Razor Page で書き直しました。大したサイトではないので、MVC よりも Razor Pages にした方がシンプルでいい感じ。ローカルでいい感じに動いていたので、さっそく Azure に発行してみました。
-  にました／(^o^)＼　HTTP Error 502.5 - Process Failure だそうです。見たことないエラーページでちょっと焦る……。いろいろガチャガチャいじっていたのですが、どうやらゴミが残っていたようで。Web 発行のときに消すようにしてみたらうまくいきました。
-    *発行先の追加ファイルを削除する**という日本語がイマイチよくわからなかったのですが、動いたからこれでいいんだろうと思う。</description>
+      <description>ASP.NET Core 2.0 がリリースされたので、http://darunagai.jp/ を Razor Page で書き直しました。大したサイトではないので、MVC よりも Razor Pages にした</description>
     </item>
     
     <item>
@@ -39,10 +35,7 @@
       <pubDate>Tue, 27 Jun 2017 02:17:36 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/06/27/021736/</guid>
-      <description>チの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしないでもない）、アクセスできなくなってしまいました。あれ、データもサルベージできないのかな……。というわけで、一からサイトを作り直すことにしました。とりあえず、今回の目標は web.archive.org からサルベージしたトップページの復旧です。もう一度 ASP.NET で組みなおしてもいいのですが、いい機会なので、ずっと挑戦してみたかった ASN.NET Core を利用してみることにしましょう（よく知らんけど、今後はこっちが主流になりそうな匂いがするので）。右も左も分からんけど、大丈夫やろうか。
-### 前提条件と大まかな流れまず Visual Studio 2017 Community の「ASP.NET と Web 開発」というワークロードがインストールされている環境を用意（これだけで足りんかったらごめんな、正直よくわかってないんや）。空のテンプレートを作成し、トップページの Index.cshtml を表示するところまで頑張ります。### 実装#### 空のテンプレートを作成  ず、「ASP.NET Core Web アプリケーション」のプロジェクトを新規に作成します（名前は Sample にしました）。
-.NET Core.NET Frameworkの 2 つのバージョンがありますが、今回は前者（.NET Core）を選択。  NET Core はクロスプラットフォームなので、Linux サーバーでも運用できるはず。いずれは Docker なんかも試してみたいなー。
-  ロジェクトを作成するとテンプレート画面が現れるので、「空」を選択。いきなり訳の分からんファイルをブリブリ生成されても泣いてしまうからね、仕方ないね。ちなみに ASP.NET Core のバージョンは 1.1 でした。そろそろ 2.0 なんじゃなかったっけ？　また変わったら嫌だなー。</description>
+      <description>チの Web サイトは Microsoft Azure の Bizspark を使わせてもらっていたのですが、いつのまにかサブスクリプションが切れていて（そういえばいろいろメールがきてた気がしない</description>
     </item>
     
     <item>
@@ -51,9 +44,7 @@
       <pubDate>Sat, 15 Apr 2017 17:06:59 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2017/04/15/170659/</guid>
-      <description>前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろいろ試行錯誤したけど Visual Studio 2017 から SQL CE（WebMatrix.Data）がうまく扱えなかったので、データを Azure Table Storage へ保存するように書き換えた。
-Daruyanagi API : Check-insぶっちゃけよくわかっていないのだけど、ちゃんと動いているみたいなのでよしとする（ぉ### Twitter の位置情報  witter の位置情報は
-Place：大まかな位置を共有（矩形）Coordinates：経度・緯度を正確に共有（点）の2つがあるみたい。面倒な話だが Coordinates はアプリで明示的に・共有する都度［正確な位置情報を共有］オプションを有効にしなければ共有されない（Foursquare/Swarm などのチェックインアプリでは共有されることもあるみたいだが、それはアプリの意図した動作だと思うので問題ない）。今回ほしいのは Coordinates なので、これを定期的に収集することにした。```cspublic static void CollectCheckIns(){// CONNECTION_STRING は Azure Table Storage の接続文字列//// Web Jobs プロジェクトを作成// ・単なるコンソールアプリみたい//// NuGet で// ・CoreTweet：Twitter のライブラリ// ・WindowsAzure.</description>
+      <description>前 WebMatrix＋SQL CE で作っていたものを Visual Studio 2017 で編集したら、ランタイムだかライブラリのバージョンの食い違いで起動不能になった＆いろい</description>
     </item>
     
     <item>
@@ -62,9 +53,7 @@
       <pubDate>Sat, 03 Sep 2016 20:21:59 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2016/09/03/202159/</guid>
-      <description>  りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。
-ダウンロードGitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。  UI クライアントをいくつか比較してみたけど、CloudBerry Explorer というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。
-### 更新点Twitter 投稿画面の改善Gif キャプチャー機能設定の保存コードのリファクタリングTwitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、スクショをリスト List&amp;lt;string でもっておくViewModel で int SelectedIndex をもつImage に List[SelectedIndex] をバインドボタンに SelectedIndex を ++/-- するコマンドをバインドしていい感じに配置するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。</description>
+      <description>りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。 ダウンロード GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代</description>
     </item>
     
     <item>
@@ -73,9 +62,7 @@
       <pubDate>Tue, 01 Apr 2014 03:41:57 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2014/04/01/034157/</guid>
-      <description>日本マイクロソフト株式会社（本社：東京都港区、代表執行役 社長：樋口 泰行）は、パブリッククラウドサービス「Microsoft Windows Azure」をユーザーに提供する、新たな主要リージョンを日本に展開することを発表します。この「日本リージョン」には、日本国内の2か所（首都圏と関西圏）のサブリージョンが含まれ、Windows Azure のサービスを国内のデータセンターから提供することを可能にします。「Microsoft Windows Azure」の国内ビジネス強化に向けて 日本リージョンの開設計画を公開 遅ればせながら、Windows Microsoft Azure の日本リージョン開設おめでとうございます。これで Azure の普及が日本でも進めばいいですね。
-  の日本リージョンですが、WebMatrix からでも利用できるみたいです。Windows Microsoft Azure にサイトを作成する際に現れるドロップダウンリストで**“空白”**を選びましょう。
-  の“空白”、二つありますが、手元で試してみたところ上が“日本 (西)”、**下が“日本 (東)”**みたいですね？　違ったらごめんなさい。</description>
+      <description>日本マイクロソフト株式会社（本社：東京都港区、代表執行役 社長：樋口 泰行）は、パブリッククラウドサービス「Microsoft Windows Azure」をユ</description>
     </item>
     
   </channel>

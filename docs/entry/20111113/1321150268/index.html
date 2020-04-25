@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="Page のものは Page に、App のものは App に" />
+    <meta property="og:description" name="og:description" content="たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/20111113/1321150268/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="Page のものは Page に、App のものは App に" />
-    <meta name="og:description" content="たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。WebMatrix &#43; Markdown …… リファクタリング。 のコードで言えばこんな感じ。
-	@functions {string ReadTextFile(string path){path = string.Format(&quot;/Pages/{0}.txt&quot;, path);path = Server.MapPath(path);if (!File.Exists(path)){throw new HttpException(404, path &#43; &quot;is not found.&quot;);}Page.CreatedAt = File.GetCreationTime(path);Page.UpdatedAt = File.GetLastWriteTime(path);// あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！return File.ReadAllText(path);}}```&lt;code&gt;Page&lt;/code&gt; は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、&lt;code&gt;App&lt;/code&gt; を使えばいいらしい。たとえば、&lt;code&gt;App.Title&lt;/code&gt; にWebサイト名、&lt;code&gt;Page.Title&lt;/code&gt;にページタイトルに突っ込んでおけば、__&amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;__ という風にレイアウトファイルでタイトルをセットできる。僕は初めこの作法を知らなかったから、 &lt;code&gt;App_Code&lt;/code&gt; にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね......orz" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

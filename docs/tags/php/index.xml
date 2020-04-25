@@ -17,8 +17,7 @@
       <pubDate>Thu, 27 Dec 2012 07:02:46 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/12/27/070246/</guid>
-      <description>WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。
-@CodeDim s = &amp;#34;Hello! World&amp;#34; &amp;amp;#39; 追加End Code&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@s &amp;amp;lt;!-- 追加 --&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;```C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは &amp;lt;a href=&amp;#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&amp;#34;&amp;gt;VB Razor構文 基礎文法 総まとめ - ＠IT&amp;lt;/a&amp;gt; でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。あと、前回は言わなかったけれど &amp;amp;lt;% … %&amp;gt; という ASP.</description>
+      <description>WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」と</description>
     </item>
     
     <item>
@@ -27,9 +26,7 @@
       <pubDate>Tue, 11 Dec 2012 08:51:25 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/12/11/085125/</guid>
-      <description>前回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをローカル Web サーバー（IIS Express 7.5）でホストするところまで進めた。でも、静的な HTML だけではちょっとつまらないかな。「WebMatrix 2」では、サーバーサイドで動的に HTML を生成することもできる*1。“動的”というのは、要求に応じて異なる内容を出力できるということ。これができると、いろいろなメリットがある。
-データベースと連携できるほかの Web サイトの情報を取り込んだり、Web サービスの API が利用できる*2Web サイト共通の部分（パラメーターやデザイン）が一元管理できる状況に応じて出力がカスタマイズできる（例: モバイル向けWebデザイン）世の中にはさまざまなサーバ・サイドプログラミング環境があるけれど、「WebMatrix 2」ではそのなかでも“**ASP.NET**”と“**PHP**”をサポートしている*3。空のフォルダーから作成した Web サイト でも簡単に利用できる。### ASP.NET（C#）*4  張子は“.cshtml”（Visual Basic の場合は *.vbhtml）。“Razor”と呼ばれるシンプルな構文で記述できる。
-@{var s = &amp;#34;Hello! World&amp;#34;; // 追加}&amp;amp;lt;!DOCTYPE html&amp;gt;&amp;amp;lt;html lang=&amp;#34;en&amp;#34;&amp;gt;&amp;amp;lt;head&amp;gt;&amp;amp;lt;meta charset=&amp;#34;utf-8&amp;#34; /&amp;gt;&amp;amp;lt;title&amp;gt;&amp;amp;lt;/title&amp;gt;&amp;amp;lt;/head&amp;gt;&amp;amp;lt;body&amp;gt;@s &amp;amp;lt;!-- 追加 --&amp;gt;&amp;amp;lt;/body&amp;gt;&amp;amp;lt;/html&amp;gt;  張子を省略してもアクセスできる。</description>
+      <description>前回（WebMatrix 2：フォルダーから Web サイトを作ってみる - だるろぐ）は、空のフォルダーから Web サイトを作って HTML ファイルを配置し、それをロ</description>
     </item>
     
     <item>
@@ -38,8 +35,7 @@
       <pubDate>Fri, 17 Aug 2012 21:34:14 +0000</pubDate>
       
       <guid>https://blog.daruyanagi.jp/entry/2012/08/17/213414/</guid>
-      <description>Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTMLドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒ですよね。フロントエンドは HTML5 + jQuery なので Web ブラウザーだけで動きますけど、バックエンドはたいてい PHP スクリプトなので Web サーバーが必要です。つまり、
-Web サーバーを動かすPHP のセットアップなんてことを、わざわざしなきゃいけないんですよ！　ちょっと試したいだけなのにね。そんなときは「WebMatrix 2」を使ってください（窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加）。デフォルトで PHP が有効で、サーバーだって IIS Express が利用できる。めっちゃ簡単ですよ！### 準備「Empty Site」テンプレートで Web サイトを作成します。画像アップロード先が“Images”フォルダなので、あらかじめ作成しておきましょう。そして、アップローダーをダウンロードして展開し、 Web サイトのルートにまるっとコピーします。これだけ。### 使ってみよう！Web サイトを実行して、画像ファイルをブラウザーにドラッグ＆ドロップしてください。なお、 Web ブラウザーは IE 以外で。 IE9 でもゴニョゴニョすれば使えるはず（HTML5Labs - Home）だけど、初期状態では残念ながら利用できません。ちゃんとアップロードされ……あれ？　複数ファイルのアップロードにも対応してるはずだけど、2つ目以降がちゃんとアップロードされていない。まぁ、いいや。こんな感じで簡単にお試しできるので入れておいて損はないんじゃないかな？</description>
+      <description>Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTMLドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと</description>
     </item>
     
   </channel>

@@ -33,19 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content=" 危険な可能性のある Request.Form 値がクライアントから検出されました" />
+    <meta property="og:description" name="og:description" content="ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationExcepti" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/02/19/022206/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content=" 危険な可能性のある Request.Form 値がクライアントから検出されました" />
-    <meta name="og:description" content="ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。
-### ページ単位でバリデーションを無効にするweb.config に設定を記述する。```xml &lt;configuration&gt; &lt;system.web&gt; &lt;httpRuntime requestValidationMode=&quot;2.0&rdquo; /&gt; &lt;pages validateRequest=&quot;false&quot;&gt; &lt;/pages&gt; &lt;/system.web&gt; &lt;/configuration&gt;
-&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### メソッド単位でバリデーションを無効にする。POSTメソッドをまるごと。```cs[HttpPost][ValidateInput(false)]public ViewResult Edit(FormCollection form){}ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow
-### フォームデータ単位でバリデーションを無効にする。Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。コントローラーで使ってみる。```cs using System.Web.Helpers;
-var hoge = Request.Unvalidated().Form[&ldquo;hoge&rdquo;];
-ビューでも使えるんだね。```@Request.Unvalidated(&quot;html&quot;)&amp;lt;form method=&quot;post&quot;&gt;&amp;lt;input type=&quot;text&quot; name=&quot;html&quot; /&gt;&amp;lt;input type=&quot;submit&quot; /&gt;&amp;lt;/form&gt;System." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

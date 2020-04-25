@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix のルーティング" />
+    <meta property="og:description" name="og:description" content="### 保護されたファイル・フォルダ 一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/07/06/174414/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix のルーティング" />
-    <meta name="og:description" content="### 保護されたファイル・フォルダ一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセスされては困るファイルやフォルダは、特定のフォルダに格納したり、ファイル名を規約に従ってつければいい。#### bin にはアクセスできないbin にはコンパイルされたアセンブリが格納されているので、当然アクセスが禁止されている。#### App_Data / App_Code にはアクセスできない**App_Data**：アプリケーションのデータを格納（データベースなど）**App_Code**：アプリケーションのソースコードを格納（ヘルパーなど）外からみえたら困るので、やっぱりアクセスが禁止されている。#### 名前が「_」から始まるファイルにはアクセスできない**_AppStart.cshcml**：アプリケーションが起動するとき一度だけ実行される（グローバル変数の初期化、Web サービスの API キー格納など）**_PageStart.cshtml**：配置されたフォルダ以下にあるページが表示されるごとに実行される（レイアウトの指定やキャッシュコントロール、アクセス制御など）正直なところ _PageStart.cshtml でアクセス制御ができるのは知らなかったかも。今度使っちゃおう。```cs@{Response.CacheControl = &#34;no-cache&#34;;if (!WebSecurity.IsAuthenticated) {Response.Redirect(&quot;~/Account/Login&quot;);} }
-&lt;ul&gt;&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/asp.net/hh180208.aspx&quot;&gt;第 18 章 サイト全体の動作をカスタマイズする | Razor 構文と ASP.NET Web ページ&lt;/a&gt;&lt;/li&gt;&lt;/ul&gt;そのほか、レイアウトファイル（たとえば“_Layout.cshtml”）や部分ビュー（たとえば“_Partial.cshtml”）も、外部に公開する必要はないので名前の先頭に「_」をつけることが多い。また、一時的に Web ページを非公開にする場合にも、リネームだけで対応できるので便利。ちなみに、コードからはちゃんとアクセスできるのでご安心を。&lt;/div&gt;&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### 名前の解決いくつかのルールはあるが、あまり難しくはない。工夫次第では URL をクール＆クリーンに保つことができる。&lt;div class=&quot;section&quot;&gt;#### 静的な解決まずは、存在するファイル・フォルダへのアクセスの規則を確認する。&lt;div class=&quot;section&quot;&gt;##### 拡張子ありのファイルアクセス&lt;img src=&quot;http://cdn-ak." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="CSS / Javascript の Bunlde と Minify を WebMatrix で利用する" />
+    <meta property="og:description" name="og:description" content="ほんとは OAuth を早く試してみたいのだけれど……残念ながらこの通りなので。NuGet Gallery にいくとこのバージョンは存在するのだけど、何がおかしいのだろ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/09/10/062101/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="CSS / Javascript の Bunlde と Minify を WebMatrix で利用する" />
-    <meta name="og:description" content="ほんとは OAuth を早く試してみたいのだけれど……残念ながらこの通りなので。NuGet Gallery にいくとこのバージョンは存在するのだけど、何がおかしいのだろうか。とりあえず報告しておいた。
-### Bunlde ＋ Minify ＝ Optimizationさてはて。というわけで、最後にやってみたかった CSS / Javascript の Bunlde とMinify を試してみる。 Minify はコードの可読性のためにもうけられたコメントや改行なんかを取っ払ってファイルサイズを小さくすること。 Bundle はヘルパーやパーシャルビューからメインテンプレートにリソースを登録可能にする CSS / Javascript の管理機能だと思えばいいと思う。ちいさなリソースをまとめて（Bunlde）ドバッと送信しちゃえば、多少パフォーマンスも上がるしねぇ。あと、 jQuery なんかはファイル名にバージョンナンバーが含まれていて、アップデートするたびに手動でリンクも書き換えなくちゃならないのだけど、そういう管理も少し楽になる。```bundles.Add(new ScriptBundle(&#34;~/bundles/jquery&#34;, jqueryCdnPath).Include(&#34;~/Scripts/jquery-{version}.js&#34;));```### 公式の Optimization ライブラリとはいえ、最後にしたのにはわけがあって……名前がコロコロ変わっているうえ、まだ v1.0 に到達していないというありさま（http://nuget.org/packages/microsoft.web.optimization）。WebMatrix からも一応（一番古いのを）使うことはできるのだけど……もう少し様子見が必要かな。今回はそのまま突っ切っちゃうけど、将来的にはこんな感じにできるんだよっていう参考程度に。 MVC 4 だったらもう使えるのかなぁ。### Microsoft.Web.Optimizationまず、Microsoft.Web.Optimization をインストール。```# ＿AppStart.cshtml@using Microsoft.Web.Optimization
-@{ var csses = new Bundle(&ldquo;~/css&rdquo;, typeof(CssMinify)); // 仮想パス csses.AddDirectory(&ldquo;~/Content/&quot;, &ldquo;*.css&rdquo;, true); // ファイル登録 BundleTable." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

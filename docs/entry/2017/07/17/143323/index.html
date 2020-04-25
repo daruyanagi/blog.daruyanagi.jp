@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする" />
+    <meta property="og:description" name="og:description" content="6月末、事情があって急遽 daruyanagi.jp を ASP.NET Core MVC で書き直した。空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/07/17/143323/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする" />
-    <meta name="og:description" content="6月末、事情があって急遽 daruyanagi.jp を ASP.NET Core MVC で書き直した。空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐしかし、このとき daruyanagi.jp → blog.daruyanagi.jp へのリダイレクト機能を実装していなかった。はてなブログのドメインを daruyanagi.jp から blog.daruyanagi.jp へ引越しした - だるろぐGoogle Search Console から“「404」ページの増加”というメールが来た - だるろぐリンク先を読むのがめんどくさい人のために、事情をかいつまんでいうと、
-むかし、はてなブログを daruyanagi.jp で運営していたはてなブログをサブドメインなしで運用するのは非推奨だったので、blog.daruyanagi.jp へ移した当然ながら大量のリンク切れが発生これを解消するため、daruyanagi.jp にリダイレクト機能を組み込んでいた（ASP.NET Web Pages 製）ASP.NET Web Pages 製 daruyanagi.jp を ASP.NET Core MVC 製にする過程で、リダイレクト機能を省略したVisual Studio 2017 Update 3 が正式版になれば、ASP.NET Web Pages のような機能が IDE 側でサポートされるという話を聞いたので、それを待ってから実装してもいいかなと思っていたのだけど、なかなかこない＆ブログにリンク切れが多くて使いにくかったので、とりあえずやっつけの対策を施した。まず、ルーティングの書き換え。今回は /entry だけを対策しておく（ほんとは他の URL にも対策を施さないといけないけれど、今回は一番困るやつだけ対策）。```cs// {Root}/startup." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

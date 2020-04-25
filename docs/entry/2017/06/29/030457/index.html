@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="ASP.NET Core MVC で RSS を出力する（適当版）" />
+    <meta property="og:description" name="og:description" content="空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ 前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2017/06/29/030457/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="ASP.NET Core MVC で RSS を出力する（適当版）" />
-    <meta name="og:description" content="空の ASP.NET Core プロジェクトからとりあえず Web サイトのトップページを書いて Azure にデプロイするまで - だるろぐ前回は ASP.NET Web Pages のサイトを、付け焼き刃で ASP.NET Core MVC に移植しました。でも、WebMatrix で作ったフィード配信機能が動作しない……。WebMatrix 3: RSS フィードを出力する - だるろぐWebMatrix 3: RSS フィードを出力する（解決編） - だるろぐというわけで、こっちも簡易的な対策を行いました。ちょっと調べた限りでは、
-Response は使えない → Context.Response を代わりに使うSystem.ServiceModel.Syndication は .NET Core 1.1 で実装されていない → 自分で XML を組み立てるでイケそう。というわけで、まずはモデルっぽいもの（/Models/FeedItem.cs）を準備。```cspublic class FeedItem{public string Link { get; set; }public string Title { get; set; }public HtmlString Content { get; set; }public DateTime PublishDate { get; set; }}```cspublic class FeedController : Controller{public async Task&amp;lt;IActionResult&gt; Index(){var feeds = new List&amp;lt;FeedItem&gt;();// FeedItem を適当に Add() してね！return View(feeds);}}```最後にビュー（/Views/Feed/Index." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

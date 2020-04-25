@@ -33,15 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="メモ：Request でつまづく" />
+    <meta property="og:description" name="og:description" content="### Request &gt; QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。 HttpRequest クラス (System.Web) Default.cshtml?Hoge=Fuga というリ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/03/24/200429/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="メモ：Request でつまづく" />
-    <meta name="og:description" content="### Request&gt;QueryString 、Form、Cookies、ServerVariables の各コレクションから指定したオブジェクトを取得します。HttpRequest クラス (System.Web) Default.cshtml?Hoge=Fuga というリクエストがあった時、
-Request[&#34;Hoge&#34;] =&gt; &#34;Fuga&#34; ```が得られる。つまり、```csRequest.QueryString[&#34;Hoge&#34;] =&gt; &#34;Fuga&#34; ```これと同様。ちなみに、存在しないキーを指定すると```csRequest[&#34;HogeHoge&#34;] =&gt; string.Empty```が返る。null じゃないのか！ null だったら、```csvar text = Request[&#34;Hoge&#34;] ?? &#34;初期値&#34;;```って書けるのになぁ。まぁ、いろいろ大人の事情があるんだろう。&lt;/div&gt;&lt;div class=&#34;section&#34;&gt;### Request.QueryString と Request.FormQueryString でも Form でも &#34;Hoge&#34; というキーが含まれているとき、Request[&#34;Hoge&#34;] では Request.QueryString[&#34;Hoge&#34;] の値が返る。つまり、優先度は```csQueryString &gt; Form```であるらしい。QueryString 、Form、Cookies、ServerVariables がどの順番で優先されるのかは知らないけれど、まぁ、この順番なんだろうなって気はしてる（試してない）。ついつい Form[] を多用するのだけれど、こういうのが分かってないとたまにハマるみたい orz&lt;/div&gt;&lt;div class=&#34;section&#34;&gt;### Request.QueryString[] におけるキーの重複では、Default." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

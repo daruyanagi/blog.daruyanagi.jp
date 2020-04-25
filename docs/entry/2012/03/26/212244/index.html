@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="Buffalo WZR-HP-AG300H で Windows Home Server 2011 を外部に公開する" />
+    <meta property="og:description" name="og:description" content="ウチのネットワーク。ほんとは、ここに MacBook Pro だの Windows Phone だの iPad だの iPhone だのもぶら下がっているが、基本的にはバッファロー製のルーター WZR-HP-AG300H を介してインターネ" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2012/03/26/212244/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="Buffalo WZR-HP-AG300H で Windows Home Server 2011 を外部に公開する" />
-    <meta name="og:description" content="ウチのネットワーク。ほんとは、ここに MacBook Pro だの Windows Phone だの iPad だの iPhone だのもぶら下がっているが、基本的にはバッファロー製のルーター WZR-HP-AG300H を介してインターネットに繋がっている。けれど、このルーター、UPnP に対応していないだの何だので *1、 Windows Home Serevr では自動でリモートアクセス構成をセットアップできない。なので、手動で公開してあげることになる。
-### 1. Windows Home Server のIPアドレスを固定するまず、［Internet/LAN］－［DHCPリース］とたどって、WHS機のIPアドレスを手動割り当てに変更する。WHS機のIPアドレスがわからない場合は、［ステータス］－［クライアントモニター］に進めばよい。ここでは、SERVER-WHS2011 に 192.168.11.4 が割り当てられているのがわかる。無論、IPCONFIG コマンドで調べてもいいし、エクスプローラーでも調べられる。とりあえず、どうにかIPアドレスを調べてWindows Home Server のIPアドレスを固定すればいい。### 2. ポートフォワーディングの設定続いて、ポートフォワーディングの設定を行う。WZR-HP-AG300H では「ポート変換」と呼ばれており、［ゲーム＆アプリ］設定で変更できる。要は特定のポートに対するリクエストへ応えるマシンを指定してあげるというわけ。今回の場合は、HTTP（80番）とHTTPS（443番）に対するリクエストが来たら、ルーターではなくWHS機が応答するように設定してあげる。先代のWHS機ではリモートデスクトップ接続のポートも開ける必要があったみたいだけれど、2011ではその必要はないようだ。### 3. ドメインの指定あとは、ネットワークにドメインを割り当てる。ダッシュボードにある［サーバーの設定］ボタンをクリックして、現れるダイアログで［リモート Web アクセス］を選択する。あとは……まぁ、やってみればわかると思う。ここでは _https://&lt;任意のID.homeserver.com/_ のドメインを取得した*2。2. の設定に失敗していると、ネットワーク外から https://&lt;任意のID.homeserver.com/ へのアクセスでルーターの設定画面が開いてしまうと思う*3。ちゃんと WHS のWebインターフェイスが開けば成功。おつかれさまでした。バッファローのルーター、IE9でデザイン崩れるの何とかならないかな！
-&mdash; #だるやなぎ40 (@daruyanagi) March 26, 2012  *1:一応ほんとは対応はしているはず*2:無償です*3:ネットワーク内からアクセスした場合は、設定に成功していてもルーターの設定画面が開く。インターネットからのリクエストではないため、ポートフォワーディングが行われないため" />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

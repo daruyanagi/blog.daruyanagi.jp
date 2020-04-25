@@ -33,16 +33,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="twitter:card" content="summary" />
+<meta property="og:site_name" name="og:title" content="WebMatrix 2" />
+    <meta property="og:description" name="og:description" content="緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人" />
+    
+    <meta property="og:type" content="article" />
+    
+    
+    <meta name="og:image" src="https://blog.daruyanagi.jp/no-image.png" alt="">
+    
+
+    <meta property="fb:admins" content="2150442315382" />
+
+    <meta name="twitter:card" content="summary" />
     <meta name="twitter:url" content="https://blog.daruyanagi.jp/entry/2013/03/13/065552/" />
     <meta name="twitter:site" content="@daruyanagi" />
     <meta name="twitter:creator" content="@daruyanagi" /> 
-
-    <meta name="og:title" content="WebMatrix 2" />
-    <meta name="og:description" content="緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」_とコメントを付けてくれました。これは要するに、_「そのやり方をブログに書け」_ということですよね！（違幸い、しばやんが偶然たまたま ASP.NET SignalR で接続中のクライアントを数えてみる - しばやん雑記 という記事を書いてくれましたので、それをコピペ参考にして、昨日のサンプルに追加してみました。
-### ~/_AppStart.cshtml```cs@using System.Web.Routing@{ RouteTable.Routes.MapHubs(); }
-&lt;/div&gt;&lt;div class=&quot;section&quot;&gt;### ~/App_Code/ChatHub.cshtml```csusing Microsoft.AspNet.SignalR;// 追加using Microsoft.AspNet.SignalR.Hubs;using System.Collections.Concurrent;using System.Threading.Tasks;[HubName(&quot;chat&quot;)]public class ChatHub : Hub {public void Send(string message){ Clients.All.addMessage(message);}// 以下、追加private static readonly ConcurrentDictionary&amp;lt;string, bool&gt;_connections = new ConcurrentDictionary&amp;lt;string, bool&gt;();public override Task OnConnected(){_connections." />
-    <meta name="og:image" content="/no-image.png" />
 
     <style>
       .bd-placeholder-img {

@@ -4,7 +4,8 @@
   <head>
     {{- partial "head.html" . -}}
 
-    <meta name="og:title"         property="og:site_name" content="{{ .Title }}" />
+    <meta name="og:title"         property="og:title" content="{{ .Title }}" />
+    <meta name="og:site_name"     property="og:site_name" content="{{ .Site.Title }}" />
     <meta name="og:description"   property="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
     {{ if .IsHome }}
     <meta name="og:type"          property="og:type" content="website" />
@@ -14,15 +15,14 @@
     {{ if .Params.eyecatch }}
     {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
     {{ $thumbnail :=  $resource.Fit "640x480" }}
-    <meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}" alt="">
+    <meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}"            content="{{ $thumbnail.Permalink }}"            alt="">
     {{ else }}
-    <meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}" alt="">
+    <meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}"  content="{{ .Site.Params.og_image | absURL }}"  alt="">
     {{ end }}
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="{{ .Permalink }}" />
     <meta name="twitter:site"     property="twitter:card" content="@daruyanagi" />
-    <meta name="twitter:creator"  property="twitter:card" content="@daruyanagi" /> 
 
     <!-- Custom styles for this template -->
     <link href="/css/styles.css" rel="stylesheet">

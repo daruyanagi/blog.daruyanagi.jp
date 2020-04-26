@@ -43,9 +43,9 @@
             {{ if .Params.eyecatch }}
             {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
             {{ $thumbnail :=  $resource.Fit "640x480" }}
-            <img class="card-img-top" content="{{ $thumbnail.RelPermalink }}"   src="{{ $thumbnail.RelPermalink }}" alt="">
+            <img class="card-img-top" src="{{ $thumbnail.RelPermalink }}" alt="">
             {{ else }}
-            <img class="card-img-top" content="{{ .Site.Params.og_image }}"     src="{{ .Site.Params.og_image }}"   alt="">
+            <img class="card-img-top" src="{{ .Site.Params.og_image }}"   alt="">
             {{ end }}
             <div class="card-body">
               <h5 class="card-title"><a href="{{.RelPermalink}}">{{ .Title }}</a></h5>

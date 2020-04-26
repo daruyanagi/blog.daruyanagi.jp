@@ -14,7 +14,7 @@
     {{ if .Params.eyecatch }}
     {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
     {{ $thumbnail :=  $resource.Fit "640x480" }}
-    <meta name="og:image"         property="og:image" src="{{ $thumbnail.RelPermalink }}" alt="">
+    <meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}" alt="">
     {{ else }}
     <meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}" alt="">
     {{ end }}

@@ -9,7 +9,7 @@
 <title>Omawari 1.2.0.0：いわゆる Web 更新チェッカーだけど、細かいところを改善した - blog.daruyanagi.jp</title>
 
 
-<link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
 
 <link rel="manifest" href="/manifest.json">
@@ -118,20 +118,20 @@
 </figure>
 
 <p>lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
 $root = Join-Path $PSScriptRoot <span style="color:#e6db74">&#34;Omawari\bin&#34;</span>
 
-<span style="color:#75715e"># 入力フォルダー</span>
+<span style="color:#75715e"># 入力フォルダー</span>
 $src = Join-Path $root <span style="color:#e6db74">&#34;Release&#34;</span>
 
-<span style="color:#75715e"># 出力フォルダー</span>
+<span style="color:#75715e"># 出力フォルダー</span>
 $version = (Get-ItemProperty (Join-Path $src <span style="color:#e6db74">&#34;Omawari.exe&#34;</span>)).VersionInfo.FileVersion
 $dest = Join-Path $root Omawari-$version.zip
 
-<span style="color:#75715e"># ZIP で圧縮</span>
+<span style="color:#75715e"># ZIP で圧縮</span>
 Compress-Archive -Path $src/* -DestinationPath $dest
 
-<span style="color:#75715e"># フォルダーを開く</span>
+<span style="color:#75715e"># フォルダーを開く</span>
 Invoke-Item $root
 
 ```リリースビルドの実行ファイルのバージョンを読んで Omawari-*.*.*.*.zip という名前の ZIP アーカイブに圧縮するだけ<span style="color:#960050;background-color:#1e0010">。</span>この程度の&lt;br/&gt;
@@ -207,7 +207,7 @@ Invoke-Item $root
 </footer>
 
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
     <script>
       const tables = document.getElementsByTagName("table");

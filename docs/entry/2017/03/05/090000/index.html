@@ -9,7 +9,7 @@
 <title>PowerShell：メールが文字化けする - blog.daruyanagi.jp</title>
 
 
-<link href="/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+<link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
 
 <link rel="manifest" href="/manifest.json">
@@ -93,7 +93,7 @@
     .NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記
 </code></pre>
 <p>よくわかんないのだけど、&ldquo;ISO-2022-JP と Base64 でエンコードするような処理&quot;を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
+<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
 <span style="color:#66d9ef">function</span> Encode-MailHeader($subject)
 {
     $enc = <span style="color:#66d9ef">[System.Text.Encoding]</span>::GetEncoding(<span style="color:#e6db74">&#34;iso-2022-jp&#34;</span>);
@@ -109,13 +109,13 @@ $subject = Encode-MailHeader(Encode-MailHeader($title))
 ```とでもすればよい<span style="color:#960050;background-color:#1e0010">。</span>とりあえず文字化けはなくなった気がする<span style="color:#960050;background-color:#1e0010">。</span>
 
 &lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#75715e">### 今日学んだこと</span>
+    <span style="color:#75715e">### 今日学んだこと</span>
     
 &lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#75715e">#### 関数をパイプ対応にする</span>
+    <span style="color:#75715e">#### 関数をパイプ対応にする</span>
     これで完成<span style="color:#960050;background-color:#1e0010">――</span>でもいいのだけど<span style="color:#960050;background-color:#1e0010">、</span>なんかダサいので<span style="color:#960050;background-color:#1e0010">、</span>パイプで繋げるようにしてみた<span style="color:#960050;background-color:#1e0010">。</span>
 ```ps1
-<span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
+<span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
 <span style="color:#66d9ef">function</span> Encode-MailHeader([<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ValueFromPipeline</span>=$true)]$subject)
 {
     <span style="color:#66d9ef">process</span>
@@ -200,7 +200,7 @@ $subject = $title | Encode-MailHeader | Encode-MailHeader
 </footer>
 
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
-    <script src="/js/bootstrap.bundle.min.js" integrity="sha384-6khuMg9gaYr5AxOqhkVIODVIvm9ynTT5J4V1cfthmT+emCG6yVmEZsRHdxlotUnm" crossorigin="anonymous"></script></body>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
     <script>
       const tables = document.getElementsByTagName("table");

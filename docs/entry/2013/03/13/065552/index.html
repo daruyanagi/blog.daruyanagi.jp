@@ -134,7 +134,7 @@ _connections.TryAdd(Context.ConnectionId, <span class="synConstant">true</span>)
 </pre><p>Dictionary で 接続ID を管理する処理が追加されています。ConcurrentDictionary は、</p></p>
 <blockquote cite="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx">
 <p>複数のスレッドから同時にアクセスできるキーと値のペアのスレッド セーフなコレクションを表します。</p>
-<p><cite><a href="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx"><a href="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx">http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx</a></a></cite></p>
+<p><cite><a href="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx">http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx</a></cite></p>
 </blockquote>
 <p>.NET Framework 4 から使えるのかな？</p><p>しばやんの記事を読むまでは、単純に接続イベントで int Count をインクリメント・デクリメントしようと思っていたのですが、そんなに簡単なお話ではなかったようです。</p><p>あと、クラス名を ChatHub に変更しました。ファイル名とクラス名は合わせたいかな、と思ったので。これには追加の名前空間（Microsoft.AspNet.SignalR.Hubs）が必要です。 [HubName("chat")] という属性を追加すれば動作に影響はありません。</p>
 </div>

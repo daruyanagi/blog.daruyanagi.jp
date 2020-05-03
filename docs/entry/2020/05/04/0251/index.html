@@ -1,0 +1,249 @@
+
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="いわゆる「だるろぐ」">
+<meta name="author" content="daruyanagi">
+<meta name="generator" content="Hugo">
+<title>はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました - blog.daruyanagi.jp</title>
+
+
+<link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#563d7c">
+
+
+    
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<meta name="og:title"         property="og:title" content="はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました" />
+    <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
+    <meta name="og:description"   property="og:description" content="はてなブログから Hugo へ移行するにあたり、よその開発者さんが Go で開発されているツールを使ったのですが、ちょっといろいろ問題があり……それを直すの" />
+    
+    <meta name="og:type"          property="og:type" content="article" />
+    
+
+    
+    
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_640x480_fit_q75_box.jpg"            content="https://blog.daruyanagi.jp/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_640x480_fit_q75_box.jpg"            alt="">
+    
+    
+
+    <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
+    <meta name="twitter:card"     property="twitter:card" content="summary" />
+    <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2020/05/04/0251/" />
+    <meta name="twitter:site"     property="twitter:card" content="@daruyanagi" />
+
+    
+    <link href="/css/styles.css" rel="stylesheet">
+  
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a href="/" class="navbar-brand"><img src="/logo.png" height="30" alt=""> blog.daruyanagi.jp</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <span  class="navbar-text">いわゆる「だるろぐ」</span>
+                    </li>
+                </ul>
+
+            <form class="form-inline" action="/search">
+                <div class="input-group">
+                  <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Find</button>
+                  </div>
+                </div>
+            </form>
+            </div>   
+        </div>
+    </nav>
+
+    <main role="main">
+<article class="container" style="margin-top: 3rem;">
+    <h1>はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました</h1>
+    
+    <p class="published text-right">
+        公開日：<time>
+            2020/05/04
+        </time>        
+    </p>
+
+    <p>はてなブログから Hugo へ移行するにあたり、よその開発者さんが Go で開発されているツールを使ったのですが、ちょっといろいろ問題があり……それを直すのに正規表現で置換したのですが、そこでもちょっとやらかした関係で、いろいろ不具合が発生していました。</p>
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> だるログ、移行した時に「画像の次の文字が削れてる」みたいな挙動になってる？</p>&mdash; (＃＾ω＾)らむさら＠二次会禁止 (@ramusara) <a href="https://twitter.com/ramusara/status/1256774385517473793?ref_src=twsrc%5Etfw">May 3, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">だるろぐ、 #### の展開に失敗してる？</p>&mdash; さくさん (@ch3cooh) <a href="https://twitter.com/ch3cooh/status/1256800289744580608?ref_src=twsrc%5Etfw">May 3, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+<p>しょうがないので、ツールを自分で作り直してデータを再生成してみました。</p>
+<p>
+
+
+
+
+
+
+<figure class="figure text-center">
+    <picture>
+    <source media="(max-width: 480px)" srcset="/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_480x360_fit_q75_box.jpg 480w">
+    <source media="(max-width: 800px)" srcset="/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_800x600_fit_q75_box.jpg 800w">
+    <source media="(max-width: 1024px)" srcset="/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_1024x768_fit_q75_box.jpg 1024w">
+    <source media="(max-width: 1800px)" srcset="/entry/2020/05/04/0251/image1_hub2700dd4e99e26a617f1770829387cee_56206_1800x1600_fit_q75_box.jpg 1800w">
+    
+    <img src="/entry/2020/05/04/0251/image1.jpg" alt="Hatena2Hugo" decoding="async" loading="lazy">
+    </picture>
+
+    <figcaption class="figure-caption">Hatena2Hugo</figcaption>
+</figure>
+</p>
+<p>ツールは GitHub で公開しています。名前は適当なので、カブっていたらごめんなさい。</p>
+<p><a href="https://github.com/daruyanagi/Hatena2Hugo" alt="daruyanagi/Hatena2Hugo">
+  daruyanagi/Hatena2Hugo
+</a></p>
+<h2 id="hatena2hugo-とは">Hatena2Hugo とは</h2>
+<p>はてなブログ からエクスポートしたデータ（Movable Type 形式）を Hugo へインポートできる形式へ変換します。.NET Core 製のコンソールアプリです。</p>
+<p>単一ファイルの Movable Type データを記事単位に分割し、記事データを適切なフォルダーへ吐き出します。HTML → Markdown や Shortcode への変換は行わず、素直なつくりを目指しました。ただし、はてなフォトライフの画像をローカルにダウンロードしてリンクを書き換える機能だけは、自分が欲しかったためつけています。</p>
+<h2 id="使い方">使い方</h2>
+<pre><code>Usage: Hatena2Hugo [options...]
+
+Options:
+  -s, -src &lt;String&gt;         Source file (Required)
+  -d, -dest &lt;String&gt;        Destination folder (Required)
+  -f, -fotolife &lt;String&gt;    Download image iles from fotolife. (Default: true)
+</code></pre><p>各記事にはそれぞれフォルダーが作成され、その下にテキストが index.md として保存されます。-f オプションが有効であれば、はてなフォトライフの画像もこのフォルダーにダウンロードされ、記事内の画像リンクの <code>src</code> がローカルリンクに書き換えられます。</p>
+<p>
+
+
+
+
+
+
+<figure class="figure text-center">
+    <picture>
+    <source media="(max-width: 480px)" srcset="/entry/2020/05/04/0251/image2_hu807fe55e23bdd9ae105e546b87dd8497_527293_480x360_fit_q75_bgffffff_box_2.jpg 480w">
+    <source media="(max-width: 800px)" srcset="/entry/2020/05/04/0251/image2_hu807fe55e23bdd9ae105e546b87dd8497_527293_800x600_fit_q75_bgffffff_box_2.jpg 800w">
+    <source media="(max-width: 1024px)" srcset="/entry/2020/05/04/0251/image2_hu807fe55e23bdd9ae105e546b87dd8497_527293_1024x768_fit_q75_bgffffff_box_2.jpg 1024w">
+    <source media="(max-width: 1800px)" srcset="/entry/2020/05/04/0251/image2_hu807fe55e23bdd9ae105e546b87dd8497_527293_1800x1600_fit_q75_bgffffff_box_2.jpg 1800w">
+    
+    <img src="/entry/2020/05/04/0251/image2.png" alt="こんな感じに配置されます" decoding="async" loading="lazy">
+    </picture>
+
+    <figcaption class="figure-caption">こんな感じに配置されます</figcaption>
+</figure>
+</p>
+<p>-f オプションを無効化するときは <code>false</code> と正しく入力してください。でないと、既定値の <code>true</code> と扱われます。</p>
+<h2 id="ダウンロード">ダウンロード</h2>
+<p><a href="https://github.com/daruyanagi/Hatena2Hugo/releases" alt="Releases · daruyanagi/Hatena2Hugo">
+  Releases · daruyanagi/Hatena2Hugo
+</a></p>
+<h2 id="検証環境">検証環境</h2>
+<p>Windows 10＋.NET Core 3.1 で開発し、Windows 10 で動作を確認しました。ほかの環境での動作は保証できませんが、たぶん動くんじゃないでしょうか。</p>
+<p>はてなブログでエクスポートしたデータの記事部分は html 形式になっていますが、インポート先の Hugo でインデントが Markdown の引用として解釈されてしまう問題を回避するため、インデントは一律削除されています。そのため、<code>pre &gt; code</code> 内のソースコードインデントも失われていますが、これはこのツールの制限です（修正予定はありません）。</p>
+<h2 id="謝辞">謝辞</h2>
+<p>以下のライブラリを提供してくださった開発者に感謝します。</p>
+<ul>
+<li>https://github.com/Cysharp/ConsoleAppFramework</li>
+</ul>
+
+
+    <footer>
+        
+        
+
+        
+        <p class="text-right">
+            <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/05/04/0251/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
+            / 
+            最終更新日：<time>2020/05/04</time> 
+        </p>
+        
+    </footer>
+</article>
+
+<section class="container text-center"> 
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2020/05/03/">&laquo; Older</a>
+        
+        <span > - </span>
+            <a href="/">🏠 Home</a>
+        <span > - </span>
+        
+    </p>    
+    
+</section>
+
+
+    </main>
+
+    <footer class="text-muted"></footer><div class="container">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-0944887782985208"
+         data-ad-slot="1125180844"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div class="spacer" style="height: 3rem;"></div>
+
+    <p class="float-right">
+    <a href="#">Back to top</a>
+    </p>
+    <p>
+        &copy; <a href="//daruyanagi.jp">daruyanagi</a> 2007-2020. </p>
+</div>
+
+</footer>
+
+    <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+    <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
+      const tables = document.getElementsByTagName("table");
+      for (var i = 0; i < tables.length; i++)
+      {
+        tables[i].classList.add("table");
+      }
+
+      const blockquotes = document.getElementsByTagName("blockquote");
+      for (var i = 0; i < blockquotes.length; i++)
+      {
+        blockquotes[i].classList.add("blockquote");
+      }
+    </script>
+</html>

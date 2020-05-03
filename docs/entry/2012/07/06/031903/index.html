@@ -106,7 +106,7 @@
 -- Dumping data for table `wp_postmeta`
 --
 <p>LOC&quot;
-2:25:59:  Packets larger than max_allowed_packet are not allowed. <a href="http://go.microsoft.com/fwlink/?LinkId=178587">http://go.microsoft.com/fwlink/?LinkId=178587</a>  Learn more at: <a href="http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE">http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE</a>.
+2:25:59:  Packets larger than max_allowed_packet are not allowed. http://go.microsoft.com/fwlink/?LinkId=178587  Learn more at: http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE.
 :
 :</pre><p>昨日（<a href="http://daruyanagi.hatenablog.com/entry/2012/07/05/022927">XREA/CoreServer の WordPress を Windows Azure Websites に移植してみる → 成功！ - だるろぐ</a>）は不要なテーブルを削除して回避したのだけど、今回はその手が使えない<a href="#f1" name="fn1" title="wp_postmeta を消したらいろいろ吹っ飛びそうだ"><em>1</a>。</p><p>まぁ、今回は Azure → ローカル の話なので、ローカルにある <a class="keyword" href="http://d.hatena.ne.jp/keyword/MySQL">MySQL</a> の設定を直接イジって max_allowed_packet を増やしてあげればよさそうだ。</p><p><img src="20120706031259.png" alt="f:id:daruyanagi:20120706031259p:plain" title="f:id:daruyanagi:20120706031259p:plain" class="hatena-fotolife"></p><p>初期状態では 1MB となっていたので、これを 16MB 程度に増やしてあげる。インストールフォルダにある“my.ini”の [mysqld] セクションに以下のように追記する<a href="#f2" name="fn2" title="設定ファイルのバックアップとっとけよ？"></em>2</a>。</p></p>
 <pre class="code" data-unlink>[mysqld]

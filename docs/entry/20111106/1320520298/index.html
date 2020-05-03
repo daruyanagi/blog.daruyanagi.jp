@@ -96,7 +96,7 @@
 <pre class="code" data-unlink>	@using System.IO
 <p>@{
 // Layout = &quot;_SiteLayout.cshtml&quot;; レイアウトを使うならコメントアウト</p>
-<p>// <a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a> のうち、Hoge を取得
+<p>// http://sample.com/Pages/Hoge のうち、Hoge を取得
 string id = UrlData[0];
 if (string.IsNullOrEmpty(id)) { id = &quot;Home&quot;; }</p>
 <p>Page.Title = id; // IDをページタイトルにセット。レイアウトで使う</p>
@@ -117,7 +117,7 @@ var body = content;
 body = RazorEngine.Razor.Parse(body); // ※
 body = markdown.Transform(body);
 }</p>
-<p>@Html.Raw(body) </pre><p>※ の部分を入れたお陰で、Markdown に埋め込んだ Razor コードが使える <a href="#f1" name="fn1" title="たとえば、@DateTime.Now とか"><em>1</a> 。ただし、自分で作った Helper を追加したところ、呼び出すのは失敗。基本的なクラスなら使えるのだけど、あとから追加したのは RazorEngine に知らせてあげないといけないのかな？ ちょっとそこまでは使い方がわからない。</p><p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-11.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-11-500x366.png" alt="" title="sshot-11" width="500" height="366" class="alignnone size-medium wp-image-390" /></a></p><p>ともあれ、これで  <i><a href="http://sample.com/Pages/Hoge"><a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a></a></i> にアクセスしたら、 <i>/Pages/Hoge.txt</i> がHTMLとして表示される。_Pages_フォルダにテキストを追加していけば、ページをどんどん増やせる。</p><p>あんまりエラー処理していない <a href="#f2" name="fn2" title="ファイル名として使えない文字が渡された場合など"></em>2</a> ので、実際に使う場合はもう少し手を加えなきゃいけないし、入力用のインターフェイスだってほしいかもしれない。「WebMatrix 2」は NuGet の導入も簡単になっているので、さっさと正式版におなりになっていただきたいものですね！</p></p>
+<p>@Html.Raw(body) </pre><p>※ の部分を入れたお陰で、Markdown に埋め込んだ Razor コードが使える <a href="#f1" name="fn1" title="たとえば、@DateTime.Now とか"><em>1</a> 。ただし、自分で作った Helper を追加したところ、呼び出すのは失敗。基本的なクラスなら使えるのだけど、あとから追加したのは RazorEngine に知らせてあげないといけないのかな？ ちょっとそこまでは使い方がわからない。</p><p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-11.png"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/11/sshot-11-500x366.png" alt="" title="sshot-11" width="500" height="366" class="alignnone size-medium wp-image-390" /></a></p><p>ともあれ、これで  <i><a href="http://sample.com/Pages/Hoge">http://sample.com/Pages/Hoge</a></i> にアクセスしたら、 <i>/Pages/Hoge.txt</i> がHTMLとして表示される。_Pages_フォルダにテキストを追加していけば、ページをどんどん増やせる。</p><p>あんまりエラー処理していない <a href="#f2" name="fn2" title="ファイル名として使えない文字が渡された場合など"></em>2</a> ので、実際に使う場合はもう少し手を加えなきゃいけないし、入力用のインターフェイスだってほしいかもしれない。「WebMatrix 2」は NuGet の導入も簡単になっているので、さっさと正式版におなりになっていただきたいものですね！</p></p>
 <ul>
 <li>
 <ul>

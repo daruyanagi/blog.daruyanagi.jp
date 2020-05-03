@@ -120,7 +120,7 @@ CommonWord = _.Element(ns1 + <span class="synConstant">&quot;CommonWord&quot;</s
 })
 .ToList();
 }
-</pre><p>個人的には <code>XNamespace ns1 = &ldquo;<a href="http://www.microsoft.com/ime/dctx%22;">http://www.microsoft.com/ime/dctx&quot;;</a></code> や <code>xml.Root.Element(ns1 + &ldquo;DictionaryHeader&rdquo;)</code> みたいなコードが気持ち悪いのだけど、XDocument では Namespace をこうやって扱うってことで割り切るしかない。</p><p>それ以外は割りとすっきりかけたので、DictionaruInfo たちは Dictionary&lt;&quot;ローケール文字列&rdquo;, DictionaryIndo&gt; で管理するように書き換えてある。</p></p>
+</pre><p>個人的には <code>XNamespace ns1 = &ldquo;http://www.microsoft.com/ime/dctx&rdquo;;</code> や <code>xml.Root.Element(ns1 + &ldquo;DictionaryHeader&rdquo;)</code> みたいなコードが気持ち悪いのだけど、XDocument では Namespace をこうやって扱うってことで割り切るしかない。</p><p>それ以外は割りとすっきりかけたので、DictionaruInfo たちは Dictionary&lt;&quot;ローケール文字列&rdquo;, DictionaryIndo&gt; で管理するように書き換えてある。</p></p>
 <pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">class</span> OpenExtendedDictionary
 {
 <span class="synType">public</span> OpenExtendedDictionary()

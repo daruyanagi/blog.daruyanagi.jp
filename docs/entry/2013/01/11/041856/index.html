@@ -262,7 +262,7 @@ Response.Redirect(<span class="synConstant">&quot;~/Posts/&quot;</span>);
 </pre><p>あんまり気に入らない。なんか当初の目標とズレてきたし。</p><p>でも、よく考えたら、Web Form で GET/POST しかリクエストできないとしても、JavaScript だったらできるわけだよね。そんな Web Form の仕様に合わせなくてもいいんじゃね？</p><p>そんなことを考えていたら、こんなナイスなページを見つけた。</p></p>
 <blockquote cite="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE">
 <p>HTML5より前のHTMLでは、フォームで利用できるHTTPメソッドはGETとPOSTだけである。そのため、PUTやDELETEを使う場合には、JavaScriptが必要になる（JavaScriptでのHTTPリクエストを参照）。一部のケータイのブラウザのように、JavaScriptをサポートしていないブラウザでは、PUTやDELETEはPOSTで代用しなければならない。PUTやDELETEをPOSTで代用する方法には、以下の2つがあるが、フォームで利用できるのは、パラメータ_methodを利用する方法だけである。 </p>
-<p><cite><a href="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE"><a href="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE">http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE</a></a></cite></p>
+<p><cite><a href="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE">http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE</a></cite></p>
 </blockquote>
 <p>あーこれだ！ Rails でもやっていたやつだよね？</p><p>というわけで、これベースでまた書き直しする。そのあとは、Twitter/Facebook 認証を追加することにしたいと思ってる。</p>
 

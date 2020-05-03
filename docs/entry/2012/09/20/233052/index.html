@@ -290,5 +290,16 @@ FilledGrid.Visibility -&gt; Visibleあとはそれぞれ、解像度が変わる
       {
         blockquotes[i].classList.add("blockquote");
       }
+      
+      const cards = document.getElementsByClassName("card");
+      let max = 0;
+      for (var i = 0; i < cards.length; i++)
+      {
+        if (cards[i].clientHeight > max) max = cards[i].clientHeight;
+      }
+      for (var i = 0; i < cards.length; i++)
+      {
+        cards[i].style.height = max + "px";
+      }
     </script>
 </html>

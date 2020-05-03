@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせ" />
+    <meta name="og:description"   property="og:description" content="仕事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ち" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/31/031730/" />
@@ -86,125 +88,95 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120830191311.jpg"/> 
-</figure>
-
-<p>事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせずにすんだよ（ぉ<iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/25059062?wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe><br/>
-<br/><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Video streaming by Ustream</a>興味ある人は USTREAM をご覧あれ。わしもよくわからんけど、とりあえず SignalR （<a href="http://signalr.net/"><a href="http://signalr.net/">http://signalr.net/</a></a>）というのは、</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120830191311.jpg" alt="f:id:daruyanagi:20120830191311j:plain" title="f:id:daruyanagi:20120830191311j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>仕事を少し早くあがって、 @shibayan のリサイタルに参加してきました。最近ずっと眠れなくて、仕事中もずっと眠い状態だったけれど、結構面白かったので寝落ちせずにすんだよ（ぉ</p><p><iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/25059062?wmode=direct" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe><br />
+<br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Video streaming by Ustream</a></p><p>興味ある人は USTREAM をご覧あれ。わしもよくわからんけど、とりあえず SignalR （<a href="http://signalr.net/">http://signalr.net/</a>）というのは、</p>
 <ul>
 <li>ASP.NET テクノロジをベースとした</li>
 <li>非同期でリアルタイムな</li>
 <li>サーバーとクライアントの双方向通信</li>
-</ul>を実現するライブラリ、ってことでいいのかな。サーバーとクライアントの通信で利用される技術は、 SignalR が勝手にチョイスしてくれるみたい（モダンな環境なら WebSocket を、クラシカルな環境だったらポーリングを、ってな感じ）。詳しくはエロいひと、じゃなくて偉いひとに聞いて欲しい。ともあれ、忘れないうちにこれを WebMatrix で使ってみる。
+</ul><p>を実現するライブラリ、ってことでいいのかな。サーバーとクライアントの通信で利用される技術は、 SignalR が勝手にチョイスしてくれるみたい（モダンな環境なら WebSocket を、クラシカルな環境だったらポーリングを、ってな感じ）。詳しくはエロいひと、じゃなくて偉いひとに聞いて欲しい。</p><p>ともあれ、忘れないうちにこれを WebMatrix で使ってみる。</p>
 <div class="section">
-    ### サーバー側のコード
-    ```cs
-# ~/App_Code/SampleHub.cs
-<p>using SignalR.Hubs; // &lt;&ndash; NuGet でインストールしる！</p>
-<p>[HubName(&ldquo;sample&rdquo;)] // &lt;&ndash; あとで createProxy(&ldquo;sample&rdquo;) と使う
-public class SampleHub : Hub
+<h3>サーバー側のコード</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/SampleHub.cs
+<p><span class="synStatement">using</span> SignalR.Hubs; <span class="synComment">// &lt;&ndash; NuGet でインストールしる！</span></p>
+<p>[HubName(<span class="synConstant">&quot;sample&quot;</span>)] <span class="synComment">// &lt;&ndash; あとで createProxy(&quot;sample&quot;) と使う</span>
+<span class="synType">public</span> <span class="synType">class</span> SampleHub : Hub
 {
-private static string _message = &ldquo;&quot;;</p>
-<pre><code>private string Message
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">string</span> _message = <span class="synConstant">&quot;&quot;</span>;</p>
+<p><span class="synType">private</span> <span class="synType">string</span> Message
 {
-    get { return _message; }
-    set
-    {
-        _message = value;
-
-        // 接続中のクライアントすべてに Echo() 命令を送る
-        Clients.Echo(_message);
-
-        // そのほかにも
-        // Caller.Echo(); 呼び出したクライアントに命令
-        // Groups[&quot;Hoge&quot;].Echo(); クライアントグループに命令
-        // がある
-    }
+<span class="synStatement">get</span> { <span class="synStatement">return</span> _message; }
+<span class="synStatement">set</span>
+{
+_message = <span class="synStatement">value</span>;</p>
+<p><span class="synComment">// 接続中のクライアントすべてに Echo() 命令を送る</span>
+Clients.Echo(_message);</p>
+<p><span class="synComment">// そのほかにも</span>
+<span class="synComment">// Caller.Echo(); 呼び出したクライアントに命令</span>
+<span class="synComment">// Groups[&quot;Hoge&quot;].Echo(); クライアントグループに命令</span>
+<span class="synComment">// がある</span>
 }
-
-public void Add(string s)// &amp;lt;-- ちゃんと公開しろよ
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> Add(<span class="synType">string</span> s)<span class="synComment">// &lt;&ndash; ちゃんと公開しろよ</span>
 {
-    Message += s;
-}
-
-public void Clear()
+Message += s;
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> Clear()
 {
-    Message = &quot;&quot;;
+Message = <span class="synConstant">&quot;&quot;</span>;
 }
-</code></pre>
+}
+</pre><p>まずは、 Hub というものを作る。今回は文字列（Message）を足す関数（Add）と、クリアする関数（Clear）を用意した。文字列が更新されるとクライアントにその結果を表示するように命令（Echo）する。これがサーバー側の処理。</p></p>
+</div>
+<div class="section">
+<h3>クライアント側のコード</h3>
+<pre class="code lang-html" data-lang="html" data-unlink># Default.cshtml
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
+<p>@{</p>
 <p>}</p>
-<pre><code class="language-まずは、" data-lang="まずは、">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### クライアント側のコード
-    ```html
-# Default.cshtml
-
-
-
-@{
-    
-}
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;
-                src=&quot;Scripts/jquery-1.6.4.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;
-                src=&quot;Scripts/jquery.signalR-0.5.3.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            // 接続を取得
-            var connection = $.hubConnection();
-
-            // sample ハブ（のプロキシ）を取得
-            var sample = connection.createProxy(&quot;sample&quot;);
-
-            // 接続開始（忘れたらしばやんみたいにエラー出るで）
-            connection.start();
-
-            // sample ハブの Echo() 命令を受け取ったら……
-            sample.on(&quot;Echo&quot;, function (value) {
-                $(&quot;#value&quot;).html(value);
-            });
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;p id=&quot;value&quot;&gt;&amp;lt;/p&gt;
-        &amp;lt;input type=&quot;button&quot;
-               onclick=&quot;sample.invoke(&amp;#39;Add&amp;#39;, &amp;#39;foobar&amp;#39;);&quot;
-               id=&quot;add&quot; name=&quot;add&quot; value=&quot;add&quot; /&gt;
-        &amp;lt;input type=&quot;button&quot;
-               onclick=&quot;sample.invoke(&amp;#39;clear&amp;#39;);&quot;
-               id=&quot;clear&quot; name=&quot;clear&quot; value=&quot;clear&quot; /&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```クライアント側の処理は次のような感じ。［クライアント］ボタンクリックで sample ハブの Add/Clear を呼ぶ&lt;br/&gt;
-→ ［サーバー］sample ハブが接続中のクライアントへ Echo() をブロードキャスト&lt;br/&gt;
-→ ［すべてのクライアント］#value が更新されるというカラクリ。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 結果
-    
-
-<figure>
-    <img src="/images/20120831025740.png"/> 
-</figure>
-
-
-つブラウザーを起動し、そのうち1つのブラウザーでボタンを押すと、ほかも全部いっぺんに更新される！　これはちょっと楽しいな。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20120823/1345724524&quot;&gt;SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/04/081647&quot;&gt;SignalR のデモがちょっとかっこいい - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-</code></pre>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery-1.6.4.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery.signalR-0.5.3.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">            </span><span class="synComment">// 接続を取得</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> connection = $.hubConnection</span>()<span class="synSpecial">;</span></p>
+<p><span class="synSpecial">            </span><span class="synComment">// sample ハブ（のプロキシ）を取得</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> sample = connection.createProxy</span>(<span class="synConstant">&quot;sample&quot;</span>)<span class="synSpecial">;</span></p>
+<p><span class="synSpecial">            </span><span class="synComment">// 接続開始（忘れたらしばやんみたいにエラー出るで）</span>
+<span class="synSpecial">            connection.start</span>()<span class="synSpecial">;</span></p>
+<p><span class="synSpecial">            </span><span class="synComment">// sample ハブの Echo() 命令を受け取ったら……</span>
+<span class="synSpecial">            sample.on</span>(<span class="synConstant">&quot;Echo&quot;</span><span class="synSpecial">, </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">value</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $</span>(<span class="synConstant">&quot;#value&quot;</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">value</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;value&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span>
+<span class="synIdentifier">               </span><span class="synSpecial">onclick=&quot;sample.invoke</span>(<span class="synConstant">'Add'</span><span class="synSpecial">, </span><span class="synConstant">'foobar'</span>)<span class="synSpecial">;&quot;</span>
+<span class="synIdentifier">               </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;add&quot;</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;add&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;add&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span>
+<span class="synIdentifier">               </span><span class="synSpecial">onclick=&quot;sample.invoke</span>(<span class="synConstant">'clear'</span>)<span class="synSpecial">;&quot;</span>
+<span class="synIdentifier">               </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;clear&quot;</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;clear&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;clear&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>クライアント側の処理は次のような感じ。</p><p>［クライアント］ボタンクリックで sample ハブの Add/Clear を呼ぶ<br />
+→ ［サーバー］sample ハブが接続中のクライアントへ Echo() をブロードキャスト<br />
+→ ［すべてのクライアント］#value が更新される</p><p>というカラクリ。</p></p>
+</div>
+<div class="section">
+<h3>結果</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120831025740.png" alt="f:id:daruyanagi:20120831025740p:plain" title="f:id:daruyanagi:20120831025740p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>3つブラウザーを起動し、そのうち1つのブラウザーでボタンを押すと、ほかも全部いっぺんに更新される！　これはちょっと楽しいな。</p>
+<ul>
+<li><a href="http://shiba-yan.hatenablog.jp/entry/20120823/1345724524">SignalR 0.5.3 &#x3067;&#x5909;&#x308F;&#x3063;&#x305F; JavaScript &#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/07/04/081647">SignalR &#x306E;&#x30C7;&#x30E2;&#x304C;&#x3061;&#x3087;&#x3063;&#x3068;&#x304B;&#x3063;&#x3053;&#x3044;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+</ul>
+</div>
 
     <footer>
         
@@ -218,7 +190,7 @@ public void Clear()
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/31/031730.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/31</time> 
             </p>
         
     </footer>
@@ -270,7 +242,16 @@ public void Clear()
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

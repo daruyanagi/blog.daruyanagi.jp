@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="ブログにかっちょいいグラフを張り付ける" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="去年 Amazonで使った金額を計算してみた。 - だるろぐ でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるより" />
+    <meta name="og:description"   property="og:description" content="&#x53BB;&#x5E74; Amazon&#x3067;&#x4F7F;&#x3063;&#x305F;&#x91D1;&#x984D;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x3066;&#x307F;&#x305F;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050; でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google ChartCharts &nbsp;|&nbsp; Google Developers で張り付けた方がカッコ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/01/05/163509/" />
@@ -86,95 +88,72 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2015/01/04/000000">去年 Amazonで使った金額を計算してみた。 - だるろぐ</a> でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google Chart<a href="https://developers.google.com/chart/">Charts  |  Google Developers</a> で張り付けた方がカッコイイっぽいことに気付いた。</p>
-<figure>
-    <img src="/images/20150105162759.png"/> 
-</figure>
-
-<p>近は Material Charts と呼ばれる SVG で実装されたリッチなグラフが書けるようになっている（そのため、古い Internet Explorer では表示できないので注意）。たとえば、グラフにマウスオーバーすると数値が表示されたり。かっちょいい。ただし、ベータ版であることには留意しておこう。</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2015/01/04/000000">&#x53BB;&#x5E74; Amazon&#x3067;&#x4F7F;&#x3063;&#x305F;&#x91D1;&#x984D;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x3066;&#x307F;&#x305F;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a> でグラフを張り付けようと思ったのだけど、「Excel」で作って画像として貼り付けるよりも、Google Chart<a href="https://developers.google.com/chart/">Charts &nbsp;|&nbsp; Google Developers</a> で張り付けた方がカッコイイっぽいことに気付いた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150105162759.png" alt="f:id:daruyanagi:20150105162759p:plain" title="f:id:daruyanagi:20150105162759p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最近は Material Charts と呼ばれる SVG で実装されたリッチなグラフが書けるようになっている（そのため、古い Internet Explorer では表示できないので注意）。たとえば、グラフにマウスオーバーすると数値が表示されたり。かっちょいい。ただし、ベータ版であることには留意しておこう。</p>
 <div class="section">
-    ### コード
-    ```javascript
-&lt;script type="text/javascript" src="https://www.google.com/jsapi">&lt;/script>
-&lt;script type="text/javascript">
-	google.load("visualization", "1.1", {packages:["bar"]});
-	google.setOnLoadCallback(drawChart);
-<pre><code>function drawChart() {
-    var data = google.visualization.arrayToDataTable([
-        [&amp;#39;Year&amp;#39;, &amp;#39;合計金額&amp;#39;],
-        [&amp;#39;2006&amp;#39;, 71180 ],
-        [&amp;#39;2007&amp;#39;, 283066 ],
-        [&amp;#39;2008&amp;#39;, 66638 ],
-        [&amp;#39;2009&amp;#39;, 35289 ],
-        [&amp;#39;2010&amp;#39;, 93949 ],
-        [&amp;#39;2010&amp;#39;, 93949 ],
-        [&amp;#39;2011&amp;#39;, 258747 ],
-        [&amp;#39;2012&amp;#39;, 277831 ],
-        [&amp;#39;2013&amp;#39;, 186103  ],
-        [&amp;#39;2014&amp;#39;, 258747 ],
-    ]);
-
-    var options = {
-        chart: {
-            title: &amp;#39;Amazon 年間消費金額&amp;#39;,
-            subtitle: &amp;#39;2006-2014&amp;#39;,
-        }
-    };
-
-    var chart = new google.charts.Bar(document.getElementById(&amp;#39;chart_div&amp;#39;));
-    chart.draw(data, options);
-}
-</code></pre>
-<p>&lt;/script&gt;
-&lt;div id=&quot;chart_div&rdquo; style=&quot;width: 540px; height: 360px;&ldquo;&gt;&lt;/div&gt;</p>
-<pre><code class="language-詳しい使い方は" data-lang="詳しい使い方は">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;
-
-&gt;
-    ### 結果
-    マウスオーバーしてみるといいやで。&lt;script type=&quot;text/javascript&quot; src=&quot;https://www.google.com/jsapi&quot;&gt;&lt;/script&gt;
-
-&lt;br/
-
-&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-	google.load(&quot;visualization&quot;, &quot;1.1&quot;, {packages:[&quot;bar&quot;]});
-	google.setOnLoadCallback(drawChart);
-
-	function drawChart() {
-		var data = google.visualization.arrayToDataTable([
-			['Year', '合計金額'],
-			['2006', 71180 ],
-			['2007', 283066 ],
-			['2008', 66638 ],
-			['2009', 35289 ],
-			['2010', 93949 ],
-			['2010', 93949 ],
-			['2011', 258747 ],
-			['2012', 277831 ],
-			['2013', 186103  ],
-			['2014', 258747 ],
-		]);
-
-		var options = {
-			chart: {
-				title: 'Amazon 年間消費金額',
-				subtitle: '2006-2014',
-			}
-		};
-
-		var chart = new google.charts.Bar(document.getElementById('chart_div'));
-		chart.draw(data, options);
-	}
+<h3>コード</h3>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink>&lt;script type=<span class="synConstant">&quot;text/javascript&quot;</span> src=<span class="synConstant">&quot;https://www.google.com/jsapi&quot;</span>&gt;&lt;/script&gt;
+&lt;script type=<span class="synConstant">&quot;text/javascript&quot;</span>&gt;
+google.load(<span class="synConstant">&quot;visualization&quot;</span>, <span class="synConstant">&quot;1.1&quot;</span>, <span class="synIdentifier">{</span>packages:<span class="synIdentifier">[</span><span class="synConstant">&quot;bar&quot;</span><span class="synIdentifier">]}</span>);
+google.setOnLoadCallback(drawChart);
+<p><span class="synIdentifier">function</span> drawChart() <span class="synIdentifier">{</span>
+<span class="synIdentifier">var</span> data = google.visualization.arrayToDataTable(<span class="synIdentifier">[</span>
+<span class="synIdentifier">[</span><span class="synConstant">'Year'</span>, <span class="synConstant">'合計金額'</span><span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2006'</span>, 71180 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2007'</span>, 283066 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2008'</span>, 66638 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2009'</span>, 35289 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2010'</span>, 93949 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2010'</span>, 93949 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2011'</span>, 258747 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2012'</span>, 277831 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2013'</span>, 186103  <span class="synIdentifier">]</span>,
+<span class="synIdentifier">[</span><span class="synConstant">'2014'</span>, 258747 <span class="synIdentifier">]</span>,
+<span class="synIdentifier">]</span>);</p>
+<p><span class="synIdentifier">var</span> options = <span class="synIdentifier">{</span>
+chart: <span class="synIdentifier">{</span>
+title: <span class="synConstant">'Amazon 年間消費金額'</span>,
+subtitle: <span class="synConstant">'2006-2014'</span>,
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>;</p>
+<p><span class="synIdentifier">var</span> chart = <span class="synStatement">new</span> google.charts.Bar(<span class="synStatement">document</span>.getElementById(<span class="synConstant">'chart_div'</span>));
+chart.draw(data, options);
+<span class="synIdentifier">}</span>
 &lt;/script&gt;
-
-&lt;br/&gt;
-&lt;div id=&quot;chart_div&quot; style=&quot;width: 540px; height: 360px;&quot;&gt;&lt;/div&gt;
-
-&lt;/div&gt;
-
-</code></pre>
+&lt;div id=<span class="synConstant">&quot;chart_div&quot;</span> style=<span class="synConstant">&quot;width: 540px; height: 360px;&quot;</span>&gt;&lt;/div&gt;
+</pre><p>詳しい使い方は <a href="https://developers.google.com/chart/interactive/docs/gallery/columnchart">Visualization: Column Chart  |  Charts  |  Google Developers</a> で。円グラフとかも今度試してみようかな。</p></p>
+</div>
+<div class="section">
+<h3>結果</h3>
+<p>マウスオーバーしてみるといいやで。</p><p><script type="text/javascript" src="https://www.google.com/jsapi"></script><br />
+<script type="text/javascript">
+google.load("visualization", "1.1", {packages:["bar"]});
+google.setOnLoadCallback(drawChart);
+<p>function drawChart() {
+var data = google.visualization.arrayToDataTable([
+[&lsquo;Year&rsquo;, &lsquo;合計金額&rsquo;],
+[&lsquo;2006&rsquo;, 71180 ],
+[&lsquo;2007&rsquo;, 283066 ],
+[&lsquo;2008&rsquo;, 66638 ],
+[&lsquo;2009&rsquo;, 35289 ],
+[&lsquo;2010&rsquo;, 93949 ],
+[&lsquo;2010&rsquo;, 93949 ],
+[&lsquo;2011&rsquo;, 258747 ],
+[&lsquo;2012&rsquo;, 277831 ],
+[&lsquo;2013&rsquo;, 186103  ],
+[&lsquo;2014&rsquo;, 258747 ],
+]);</p>
+<p>var options = {
+chart: {
+title: &lsquo;Amazon 年間消費金額&rsquo;,
+subtitle: &lsquo;2006-2014&rsquo;,
+}
+};</p>
+<p>var chart = new google.charts.Bar(document.getElementById(&lsquo;chart_div&rsquo;));
+chart.draw(data, options);
+}
+</script><br /></p>
+<div id="chart_div" style="width: 540px; height: 360px;"></div></p>
+</div>
 
     <footer>
         
@@ -188,7 +167,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/01/05/163509.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/01/05</time> 
             </p>
         
     </footer>
@@ -240,7 +219,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

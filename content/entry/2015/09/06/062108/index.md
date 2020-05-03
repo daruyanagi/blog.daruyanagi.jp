@@ -1,0 +1,9 @@
+---
+date: 2015-09-06T06:21:08.0000000
+draft: false
+title: "Exif の撮影日で写真をフォルダー分けするツール作ってみた"
+tags: ["Photidy"]
+eyecatch: http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20150906/20150906061116.png
+---
+<p>お盆明けの忙しさも一段落したので、久しぶりに Visual Studio を起動してちょっとしたツール作ってみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150906061346.png" alt="f:id:daruyanagi:20150906061346p:plain" title="f:id:daruyanagi:20150906061346p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>使い方は（多分）簡単で、入力フォルダーを複数登録してから、出力フォルダーを指定し、コピーか移動を行うだけ。自分は OneDrive のカメラロールとメモリカードリーダーのドライブを指定しておいて、それらから写真をハードディスクに移動＆フォルダわけするのに使っている。</p><p>あと、一応オマケ機能として、書式で出力ファイルのパスやら命名規則を決めることができる（簡単だけどサンプルを出力する機能もつけておいた）。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FPhotidy%2Freleases%2Ftag%2Fv1.0" title="daruyanagi/Photidy" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="https://github.com/daruyanagi/Photidy/releases/tag/v1.0">daruyanagi/Photidy</a></iframe></p><p>一応自分とこでは動いている気がするけど、動作は保証しない（ぉ</p><p>今回は GitHub のリリース機能っていうのも使ってみた（ただ使ってみたかったんだ！）。タグの使い方が分かんないんだけど、テキトーでいいんだろうか……。Github Workflow というのも見様見真似で使ってみたんだけど（ちょっと使い方間違った／(＾o＾)＼）、これもあんまりよく分かんないな。まぁ、今度誰かに聞こう。あと、最初は ReactiveProperty を使ってみたのだけど、途中で挫折した。</p><p><blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi">@daruyanagi</a> Rxの勉強をしましょう！</p>&mdash; かずき@darui (@okazuki) <a href="https://twitter.com/okazuki/status/640155391419027456">2015, 9月 5</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>勉強会で聞いて分かった気になっても、手を動かさないから身についていない（白目<br />
+チュートリアルレベルだと動くんだけど、ちょっと自分なりにいろいろいじろうとしたら躓く。</p><p>それにしても Visual Studio 2015 Community は強力だの……わしなんかでは持て余すわ。</p>

@@ -1,0 +1,25 @@
+---
+date: 2016-10-26T00:56:31.0000000
+draft: false
+title: "あっぽーぺーにさっそくカードを登録してみた"
+tags: ["iPhone 7 Plus", "Suica", "クレジットカード", "ANA", "Amazon"]
+eyecatch: 
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20161026001655.jpg" alt="f:id:daruyanagi:20161026001655j:plain" title="f:id:daruyanagi:20161026001655j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Apple Pay が使えるようになったので、手持ちのカードを登録してみた。</p>
+
+<div class="section">
+<h3>まずは OS のアップデート</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003325.png" alt="f:id:daruyanagi:20161026003325p:plain:w250" title="f:id:daruyanagi:20161026003325p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span> <span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003405.png" alt="f:id:daruyanagi:20161026003405p:plain:w250" title="f:id:daruyanagi:20161026003405p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span></p><p>とりあえず iOS を 10.1 へアップデート。これで「Wallet」アプリにカードを登録できるようになるらしい</p>
+
+</div>
+<div class="section">
+<h3>カードの登録</h3>
+<p>現在の手持ちのカードは以下の通り。</p>
+
+<ul>
+<li>ANA ワイドゴールドカード（VISA、三井住友カード。Apple ID の決済に利用）</li>
+<li>Amazon MasterCardクラシック（Master、三井住友カード）</li>
+<li>SUICA（記名式、東京にいるときに定期券として使っていた）</li>
+</ul><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003626.png" alt="f:id:daruyanagi:20161026003626p:plain:w250" title="f:id:daruyanagi:20161026003626p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span> <span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003625.png" alt="f:id:daruyanagi:20161026003625p:plain:w250" title="f:id:daruyanagi:20161026003625p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span></p><p>Apple ID の決済用として登録していた ANA カードは、セキュリティコード＋（SMS などを利用した）認証コードを入れるだけで登録できた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003904.png" alt="f:id:daruyanagi:20161026003904p:plain:w250" title="f:id:daruyanagi:20161026003904p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span> <span itemscope itemtype="http://schema.org/Photograph"><img src="20161026003911.png" alt="f:id:daruyanagi:20161026003911p:plain:w250" title="f:id:daruyanagi:20161026003911p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span></p><p>新規登録となる Amazon のカードは、写真を撮ってカード番号を読み取るタイプだった。これも楽ちん。オンラインショッピングで毎回カード番号を入れてるのがアホクサくなる簡単さだな！</p><p>ちなみに、この2つのカードは 三井住友カード が発行しているので、コンビニなどで <b>iD として利用できる</b>。でも、クレジットカードとして使えるのは MasterCard の Amazon カードの方だけっぽい。Apple Pay を利用した Suica チャージができるのは Amazon のカードの方だけだった（オートチャージサービスへの登録は可能みたいだけど）。マイルを貯めるために ANA ワイドゴールドカードをメインにしつつも、それが使えないときは Amazon カードを使うことになると思う。</p><p>ついでなので 5000円もらえるキャンペーンにもちゃんとエントリー。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.smbc-card.com%2Fmem%2Fcardinfo%2Fcardinfo7020932.jsp" title="先着5万名 Apple Payの「iD」でのご利用を5,000円まで負担！｜クレジットカードの三井住友VISAカード" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://www.smbc-card.com/mem/cardinfo/cardinfo7020932.jsp">www.smbc-card.com</a></cite></p><p>早い者勝ちっぽいので、乞食したい人は今すぐ Go だ。</p><p>あと、Amazon Mastercard の還元率もなぜか上がってた（クラシックは 2％。ゴールドは 2.5％）。Apple Pay がらみなのかどうかは知らないけど、お得になるのはうれしいな。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.amazon.co.jp%2Fgp%2Fbrowse.html%2Fref%3Dpe_09%2Fref%3Djp_cbcc_pb_trm%3Fie%3DUTF8%26node%3D4715302051%26plattr%3DJPCBCCPBTRM" title="Amazon.co.jp: Amazon Mastercardがさらにおトクに: ファイナンス" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://www.amazon.co.jp/gp/browse.html/ref=pe_09/ref=jp_cbcc_pb_trm?ie=UTF8&node=4715302051&plattr=JPCBCCPBTRM">www.amazon.co.jp</a></cite></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20161026004126.png" alt="f:id:daruyanagi:20161026004126p:plain:w250" title="f:id:daruyanagi:20161026004126p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span> <span itemscope itemtype="http://schema.org/Photograph"><img src="20161026004137.png" alt="f:id:daruyanagi:20161026004137p:plain:w250" title="f:id:daruyanagi:20161026004137p:plain:w250" class="hatena-fotolife" style="width:250px" itemprop="image"></span></p><p>一方 SUICA の登録は、モバイル SUICA がダウンしていたらしく、なかなかうまくいかなかった。<b>JR 東日本の「Suica」アプリ</b>を使ってカードを新規に登録すればよさそうだったけど、カードが増えても仕方ないと思い、夜まで待って登録。登録したカードはデータが iPhone に移行されるらしいので、捨ててしまってもよい。かなり長い間使ったけど、これでおわかれだなー。おおきにおおきに。</p><p>「Suica」アプリをいじくってたらいつの間にか 1000円 チャージされてたんだけど、この辺りは使いながら追々マスターしていこうと思う。まずは近所のローソンで iPhone のかざし方の修行をしてくる( ｰ`дｰ´)ｷﾘｯ</p>
+
+</div>

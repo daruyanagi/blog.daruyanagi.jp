@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/15/093030/" />
@@ -86,109 +88,62 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="https://blog.daruyanagi.jp/entry/2012/09/10/062101">
+<p>@chack411 さん曰く、 <a href="http://nuget.org/packages/Microsoft.AspNet.Web.Optimization">http://nuget.org/packages/Microsoft.AspNet.Web.Optimization</a> を使うのが正しいそうです（ありがとうございます！）。また後日試してみましょう。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/09/10/062101">CSS / Javascript の Bunlde と Minify を WebMatrix で利用する - だるろぐ</a></cite></p>
 </blockquote>
-<pre><code>    @chack411 さん曰く、 http://nuget.org/packages/Microsoft.AspNet.Web.Optimization を使うのが正しいそうです（ありがとうございます！）。また後日試してみましょう。
-
-    CSS / Javascript の Bunlde と Minify を WebMatrix で利用する - だるろぐ
-</code></pre>
 <p>というわけで試してみたよ。</p>
 <div class="section">
-    ### NuGet のインストール
-<figure>
-    <img src="/images/20120915085309.png"/> 
-</figure>
-
-<p>言葉は「Optimization」！　検索で出てきた<strong>2番目</strong>の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。話は変わるけど、NuGet で使いにくいのは、</p>
+<h3>NuGet のインストール</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915085309.png" alt="f:id:daruyanagi:20120915085309p:plain" title="f:id:daruyanagi:20120915085309p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>合言葉は「Optimization」！　検索で出てきた<b>2番目</b>の「Microsoft ASP.NET Web Optimization Framework」をインストールしよう。そうなんだ……前回は何も考えずに一番上をいれていたんだけど、これはどうやらディスコンみたいなんだ。</p><p>話は変わるけど、NuGet で使いにくいのは、</p>
 <ul>
 <li>どれを使うべきか</li>
 <li>どうやって使うのか</li>
-</ul>がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う<a href="#f-7ccd8146" name="fn-7ccd8146" title="開発終了したけどすぐに消すわけにはいかない、ということはあると思う">*1</a>し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか<a href="#f-0b5f8be8" name="fn-0b5f8be8" title="GitHub みたいなやつだね！">*2</a>、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。
-<figure>
-    <img src="/images/20120915090021.png"/> 
-</figure>
-
-<p>存関係で入ってくる「WebGrease」は、Minify <a href="#f-c5e4a6fe" name="fn-c5e4a6fe" title="余計なコメントや改行・空白を削るなどしてペイロードを軽くすること">*3</a>を行うコマンドラインツールみたい。<a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx"><a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx">http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx</a></a>Microsoft の中の人が作ってるみたいだね。</p>
+</ul><p>がわかんないことだと思う。前者は［開発終了］フラグなんかをつけられるといいと思う<a href="#f-7ccd8146" name="fn-7ccd8146" title="開発終了したけどすぐに消すわけにはいかない、ということはあると思う">*1</a>し、評価システムがあれば助かると思った。後者は NuGet パッケージのルートに Markdown ファイルを置くだけで Web ページに簡単な ReadMe を表示できるとか<a href="#f-0b5f8be8" name="fn-0b5f8be8" title="GitHub みたいなやつだね！">*2</a>、そういう仕組みがあればいいのかなぁ、と思う。まぁ、自分の NuGet に満足な（英語の！）解説を付けていない人が言えることではないけれど。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915090021.png" alt="f:id:daruyanagi:20120915090021p:plain" title="f:id:daruyanagi:20120915090021p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>依存関係で入ってくる「WebGrease」は、Minify <a href="#f-c5e4a6fe" name="fn-c5e4a6fe" title="余計なコメントや改行・空白を削るなどしてペイロードを軽くすること">*3</a>を行うコマンドラインツールみたい。</p><p><a href="http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx">http://kenhaines.net/post/2012/06/09/WebGrease-As-seen-in-Visual-Studio-2012.aspx</a></p><p>Microsoft の中の人が作ってるみたいだね。</p>
 </div>
 <div class="section">
-    ### 基本的な使い方
-    ```html
-# ~/Views/Shared/_SiteLayout.cshtml
+<h3>基本的な使い方</h3>
+<pre class="code lang-html" data-lang="html" data-unlink># ~/Views/Shared/_SiteLayout.cshtml
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
 <p>@using System.Web.Optimization // Web.config いじれば要らないかな</p>
 <p>@{
 // Script をバンドル
 BundleTable.Bundles.Add(
-new ScriptBundle(&ldquo;~/Scripts/jQuery&rdquo;)
-.Include(&ldquo;~/Scripts/jquery-{version}.js&rdquo;));</p>
-<pre><code>// CSS をバンドル
+new ScriptBundle(&quot;~/Scripts/jQuery&quot;)
+.Include(&quot;~/Scripts/jquery-{version}.js&quot;));</p>
+<p>// CSS をバンドル
 BundleTable.Bundles.Add(
-    new StyleBundle(&quot;~/Content/Styles&quot;)
-        .Include(&quot;~/Content/*.css&quot;));
-
-// BundleTable.EnableOptimizations = true;
-</code></pre>
-<p>}</p>
-<p>&lt;html lang=&rdquo;@App.Language&quot;&gt;
-&lt;head&gt;
+new StyleBundle(&quot;~/Content/Styles&quot;)
+.Include(&quot;~/Content/*.css&quot;));</p>
+<p>// BundleTable.EnableOptimizations = true;
+}</p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;@App.Language&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    ：</span>
+<span class="synPreProc">    @Styles.Render(&quot;~/Content/Styles&quot;) // CSS の LINK タグを出力</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
 ：
-@Styles.Render(&ldquo;~/Content/Styles&rdquo;) // CSS の LINK タグを出力
-&lt;/head&gt;
-&lt;body&gt;
-：
-@Scripts.Render(&ldquo;~/Scripts/jQuery&rdquo;) // Scriptタグを出力
-&lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-大まかな流れは、" data-lang="大まかな流れは、">
-&lt;ol&gt;
-&lt;li&gt;System.Web.Optimization をインクルード&lt;/li&gt;
-&lt;li&gt;BundleTable.Bundles に SciprBundle や StyleBundle をつっこむ&lt;/li&gt;
-&lt;li&gt;Script.Render() や Style.Render() でタグを生成&lt;/li&gt;
-&lt;/ol&gt;ってな感じ。 Bundle には仮想 URL を割り当てて、Render() するときにそれを指定する。あと、Bundle にはスクリプトやスタイルを複数 Include() 可能。そのとき、 {version} や * みたいなワイルドカードのようなものが使えるみたい。たとえば、jQuery を NuGet で更新してバージョンをあげてもレイアウトファイルを手直ししなくていいし、指定したフォルダに新しい CSS を追加しても実行時に自動でバンドルされるので便利だな。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 実際の出力と BundleTable.EnableOptimizations
-    で、実際の出力はどうなるかというと、 @Scripts.Render(&quot;~/Scripts/jQuery&quot;) の場合はこんな感じ。
-
-<figure>
-    <img src="/images/20120915091457.png"/> 
-</figure>
-
-
-おー、最新版が読み込まれているぞ。けれど、 Minify まではされていない。Minify までしてほしい場合は、
-```cs
-    BundleTable.EnableOptimizations = true;
-
-```しておく。すると、出力はこんな感じに変わる。
-
-<figure>
-    <img src="/images/20120915091631.png"/> 
-</figure>
-
-
-クリプトの内容はこんな感じ。
-
-<figure>
-    <img src="/images/20120915091656.png"/> 
-</figure>
-
-
-行が飛んでいるので少しわかりにくいけれど、最適化を有効にしない場合はこんな感じ。
-
-<figure>
-    <img src="/images/20120915091732.png"/> 
-</figure>
-
-
-作権表示などのコメントがいっぱい残っているのがわかる。「Microsoft ASP.NET Web Optimization Framework」を利用したら、こういうのを全部取って、リソースの転送量を抑えてくれるので便利！……というわけで、今回はおしまい。ASP.NET MVC4 だとこうのも標準で入っているみたい。メイドの人が言ってた。&lt;a href=&quot;http://shiba-yan.hatenablog.jp/entry/20111103/1320331131&quot;&gt;Microsoft.Web.Optimization で JavaScript と CSS の最適化を行う - しばやん雑記&lt;/a&gt;WebMatrix は標準で Application_Start / RegisterBundles() みたいなのが標準では用意されていないけれど、なんなら自分で作ってもいいね。まぁ、そんなのが必要になるぐらいキッチリとデカいアプリケーションを書きたくなったら、自然と MVC みたいなフレームワーク＋ IDE 支援がほしくなると思う。それまでは、WebMatrix でお勉強するのもありだと思うよ。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-7ccd8146&quot; name=&quot;f-7ccd8146&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;開発終了したけどすぐに消すわけにはいかない、ということはあると思う&lt;/span&gt;
-&lt;a href=&quot;#fn-0b5f8be8&quot; name=&quot;f-0b5f8be8&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;GitHub みたいなやつだね！&lt;/span&gt;
-&lt;a href=&quot;#fn-c5e4a6fe&quot; name=&quot;f-c5e4a6fe&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;余計なコメントや改行・空白を削るなどしてペイロードを軽くすること&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+@Scripts.Render(&quot;~/Scripts/jQuery&quot;) // Scriptタグを出力
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>大まかな流れは、</p></p>
+<ol>
+<li>System.Web.Optimization をインクルード</li>
+<li>BundleTable.Bundles に SciprBundle や StyleBundle をつっこむ</li>
+<li>Script.Render() や Style.Render() でタグを生成</li>
+</ol><p>ってな感じ。 Bundle には仮想 URL を割り当てて、Render() するときにそれを指定する。あと、Bundle にはスクリプトやスタイルを複数 Include() 可能。そのとき、 {version} や * みたいなワイルドカードのようなものが使えるみたい。たとえば、jQuery を NuGet で更新してバージョンをあげてもレイアウトファイルを手直ししなくていいし、指定したフォルダに新しい CSS を追加しても実行時に自動でバンドルされるので便利だな。</p>
+</div>
+<div class="section">
+<h3>実際の出力と BundleTable.EnableOptimizations</h3>
+<p>で、実際の出力はどうなるかというと、 @Scripts.Render("~/Scripts/jQuery") の場合はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915091457.png" alt="f:id:daruyanagi:20120915091457p:plain" title="f:id:daruyanagi:20120915091457p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>おおー、最新版が読み込まれているぞ。けれど、 Minify まではされていない。</p><p>Minify までしてほしい場合は、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>    BundleTable.EnableOptimizations = <span class="synConstant">true</span>;
+</pre><p>しておく。すると、出力はこんな感じに変わる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915091631.png" alt="f:id:daruyanagi:20120915091631p:plain" title="f:id:daruyanagi:20120915091631p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>スクリプトの内容はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915091656.png" alt="f:id:daruyanagi:20120915091656p:plain" title="f:id:daruyanagi:20120915091656p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>改行が飛んでいるので少しわかりにくいけれど、最適化を有効にしない場合はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120915091732.png" alt="f:id:daruyanagi:20120915091732p:plain" title="f:id:daruyanagi:20120915091732p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>著作権表示などのコメントがいっぱい残っているのがわかる。「Microsoft ASP.NET Web Optimization Framework」を利用したら、こういうのを全部取って、リソースの転送量を抑えてくれるので便利！……というわけで、今回はおしまい。</p><p>ASP.NET MVC4 だとこうのも標準で入っているみたい。メイドの人が言ってた。</p><p><a href="http://shiba-yan.hatenablog.jp/entry/20111103/1320331131">Microsoft.Web.Optimization &#x3067; JavaScript &#x3068; CSS &#x306E;&#x6700;&#x9069;&#x5316;&#x3092;&#x884C;&#x3046; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a></p><p>WebMatrix は標準で Application_Start / RegisterBundles() みたいなのが標準では用意されていないけれど、なんなら自分で作ってもいいね。まぁ、そんなのが必要になるぐらいキッチリとデカいアプリケーションを書きたくなったら、自然と MVC みたいなフレームワーク＋ IDE 支援がほしくなると思う。それまでは、WebMatrix でお勉強するのもありだと思うよ。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-7ccd8146" name="f-7ccd8146" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">開発終了したけどすぐに消すわけにはいかない、ということはあると思う</span></p>
+<p class="footnote"><a href="#fn-0b5f8be8" name="f-0b5f8be8" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">GitHub みたいなやつだね！</span></p>
+<p class="footnote"><a href="#fn-c5e4a6fe" name="f-c5e4a6fe" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">余計なコメントや改行・空白を削るなどしてペイロードを軽くすること</span></p>
+</div>
 
     <footer>
         
@@ -202,7 +157,7 @@ BundleTable.Bundles.Add(
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/15/093030.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/15</time> 
             </p>
         
     </footer>
@@ -254,7 +209,16 @@ BundleTable.Bundles.Add(
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

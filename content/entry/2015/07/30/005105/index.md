@@ -1,0 +1,14 @@
+---
+date: 2015-07-30T00:51:05.0000000
+draft: false
+title: "『がっこうぐらし！』 を大人買いしたった。"
+tags: ["マンガ"]
+eyecatch: http://ecx.images-amazon.com/images/I/51NpNBtsVnL.jpg
+---
+<p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4832242369/bestylesnet-22/"><img src="http://ecx.images-amazon.com/images/I/51NpNBtsVnL._SL160_.jpg" class="hatena-asin-detail-image" alt="がっこうぐらし!  (1) (まんがタイムKRコミックス フォワードシリーズ)" title="がっこうぐらし!  (1) (まんがタイムKRコミックス フォワードシリーズ)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4832242369/bestylesnet-22/">がっこうぐらし!  (1) (まんがタイムKRコミックス フォワードシリーズ)</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 原作:海法紀光(ニトロプラス),作画:千葉サドル</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 芳文社</li><li><span class="hatena-asin-detail-label">発売日:</span> 2012/12/12</li><li><span class="hatena-asin-detail-label">メディア:</span> コミック</li><li><span class="hatena-asin-detail-label">購入</span>: 1人 <span class="hatena-asin-detail-label">クリック</span>: 6回</li><li><a href="http://d.hatena.ne.jp/asin/4832242369/bestylesnet-22" target="_blank">この商品を含むブログ (9件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>とりあえず今期のアニメをチェックするおれ様 <i>「『がっこうぐらし！』？　また日常系か……『のんのんびより りぴーと』で間に合ってんだよ！」</i>アニメ一話、開始10分程度で切る。しかし、その後、Twitter で<i>「『がっこうぐらし！』の超展開がやばい」</i>という噂を頻繁に耳にする。</p><p>とりあえず再び第一話をチェックするおれ様<i>「ふぁっ……！？　なんぞこれ」</i>もちろん、今期のアニメチェックリストに追加。</p><p>それでもコミックまでは買う気がなかったのだけど、今晩、Windows 10 に備えて徹夜して眠いはずなのになぜか寝付けず、とうとう Kindle で全巻（5巻までかな）大人買いして読破した。</p><p>ちなみに僕は<b>めぐねえ</b>より、<b>スコップをもったツインテールの女の子</b>（名前覚えられねえ）が好みです（＾ｖ＾） <i>@okazuki さん、(・∀・)人(・∀・)ﾅｶｰﾏ</i> 3巻か4巻でスコップちゃんがあーなってこーなってしまったときは、つい取り乱しそうになりましたさ。</p><p><iframe src="http://okazuki.hatenablog.com/embed/2015/07/29/201422" title="#devcussion でがっこうぐらしを読んだ - かずきのBlog@hatena" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"><a href="http://okazuki.hatenablog.com/entry/2015/07/29/201422">#devcussion でがっこうぐらしを読んだ - かずきのBlog@hatena</a></iframe></p><p><iframe src="http://blog.ch3cooh.jp/embed/20150716/1437057000" title="「がっこうくらし！」を読んだ - 酢ろぐ！" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"><a href="http://blog.ch3cooh.jp/entry/20150716/1437057000">「がっこうくらし！」を読んだ - 酢ろぐ！</a></iframe></p>
+
+<div class="section">
+<h4>おまけ</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150730005043.jpg" alt="f:id:daruyanagi:20150730005043j:plain" title="f:id:daruyanagi:20150730005043j:plain" class="hatena-fotolife" itemprop="image"></span></p>
+
+</div>

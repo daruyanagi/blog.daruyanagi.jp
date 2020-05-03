@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2 / Razor：switch と RenderPage()" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="とえば、 ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。 ~/Posts/Default.cshtml を作成して、 UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別ペ" />
+    <meta name="og:description"   property="og:description" content="たとえば、 ~/Posts/ …… ページリストの表示 ~/Posts/:id …… 個別ページの表示 というのをやってみたいとき。 ~/Posts/Default.cshtml を作成して、 UrlData.Count() == 0 ……ページリストの表示 UrlData.Count() == 1 ……個別" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/06/051815/" />
@@ -86,101 +88,75 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130106043226.png"/> 
-</figure>
-
-<p>とえば、</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130106043226.png" alt="f:id:daruyanagi:20130106043226p:plain" title="f:id:daruyanagi:20130106043226p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>たとえば、</p>
 <ul>
 <li>~/Posts/ …… ページリストの表示</li>
 <li>~/Posts/:id …… 個別ページの表示</li>
-</ul>というのをやってみたいとき。
+</ul><p>というのをやってみたいとき。</p>
 <ul>
 <li>~/Posts/Default.cshtml</li>
-</ul>を作成して、
+</ul><p>を作成して、</p>
 <ul>
 <li>UrlData.Count() == 0 ……ページリストの表示</li>
 <li>UrlData.Count() == 1 ……個別ページの表示</li>
-</ul>という処理を書けばいいよね（<a href="https://blog.daruyanagi.jp/entry/2012/07/06/174414">WebMatrix のルーティング - だるろぐ</a>）。こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() >= 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。
-```cs
-@{
-    var db = Database.Open("db");
-    var query = "SELECT * FROM Post ORDER BY CreatedAt DESC";
-    var posts = db.Query(query);
+</ul><p>という処理を書けばいいよね（<a href="https://blog.daruyanagi.jp/entry/2012/07/06/174414">WebMatrix &#x306E;&#x30EB;&#x30FC;&#x30C6;&#x30A3;&#x30F3;&#x30B0; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）。</p><p>こういう処理は if で分岐してもいいのだけど、将来的に UrlData.Count() >= 2 の処理を書くことも考えて switch にするのが個人的には好み。いかにも「処理を切り替えています！」みたいな感じで。</p><p>でも、そういえば Razor で switch って書いたことないな。どうやって書くんだろう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>);
+var query = <span class="synConstant">&quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;</span>;
+var posts = db.Query(query);
 }
-<p>@switch (UrlData.Count)
+<p>@<span class="synStatement">switch</span> (UrlData.Count)
 {
-case 0:
-foreach (var post in posts)
+<span class="synStatement">case</span> <span class="synConstant">0</span>:
+<span class="synStatement">foreach</span> (var post <span class="synStatement">in</span> posts)
 {
-@RenderPage(&quot;_Single.cshtml&rdquo;, post)
+@RenderPage(<span class="synConstant">&quot;_Single.cshtml&quot;</span>, post)
 }
-break;
-default:
-@RenderPage(&quot;_Single.cshtml&rdquo;, posts.First())
-break;
-}</p>
-<pre><code class="language-……と思ったけど普通に書いて動いた。" data-lang="……と思ったけど普通に書いて動いた。">
-<figure>
-    <img src="/images/20130106050950.png"/> 
-</figure>
-
-
-ストの時は _Single.cshtml のレンダリングを foreach で回して、個別ページの時は一度だけ出力する。_Single.cshtml は何度も使う単一 Post の表示を切り出したもので、**部分ビュー**と呼んだりもするのだけど、内容はこんな適当な感じ。
-```cs
-@{
-    var post = PageData.First().Value;
+<span class="synStatement">break</span>;
+<span class="synStatement">default</span>:
+@RenderPage(<span class="synConstant">&quot;_Single.cshtml&quot;</span>, posts.First())
+<span class="synStatement">break</span>;
+}
+</pre><p>……と思ったけど普通に書いて動いた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130106050950.png" alt="f:id:daruyanagi:20130106050950p:plain" title="f:id:daruyanagi:20130106050950p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>リストの時は _Single.cshtml のレンダリングを foreach で回して、個別ページの時は一度だけ出力する。_Single.cshtml は何度も使う単一 Post の表示を切り出したもので、<b>部分ビュー</b>と呼んだりもするのだけど、内容はこんな適当な感じ。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var post = PageData.First().Value;
 }
 
-&amp;lt;div&gt;
-    &amp;lt;header&gt;
-        &amp;lt;h1&gt;@post.Title&amp;lt;/h1&gt;
-        &amp;lt;p&gt;@post.CreatedAt&amp;lt;/p&gt;
-    &amp;lt;/header&gt;
-    &amp;lt;article&gt;
-        @post.Body
-    &amp;lt;/article&gt;
-    &amp;lt;footer&gt;
-        &amp;lt;ul&gt;
-            &amp;lt;li&gt;&amp;lt;a href=&quot;@post.Id&quot;&gt;Show&amp;lt;/a&gt;&amp;lt;/li&gt;
-            &amp;lt;li&gt;&amp;lt;a href=&quot;Edit/@post.Id&quot;&gt;Edit&amp;lt;/a&gt;&amp;lt;/li&gt;
-            &amp;lt;li&gt;&amp;lt;a href=&quot;Delete/@post.Id&quot;&gt;Delete&amp;lt;/a&gt;&amp;lt;/li&gt;
-        &amp;lt;/ul&gt;
-    &amp;lt;/footer&gt;
-&amp;lt;/div&gt;
-
-```RenderPage() を使ったデータの受け渡しがいまいちよくわからなかったのだけど、PostData を介しているみたいで、PageData.First() と書いたらなんとなく動いた。とはいえ、PageData / Page はいろんなところで便利に使っちゃったりする。上書きなどの汚染がちょっと怖いかもしれない。念のため Visual Studio でなかをのぞいてみた。
-
-<figure>
-    <img src="/images/20130106050116.png"/> 
-</figure>
-
-
-enderPage(…, post, 1, 2) と渡してみたのだけど、params の key は順に 0、1、2 とふられるみたい。なので、Page.Title = &quot;hoge&quot;; といった感じで使う分には問題がなさそう。PageData[0] で post がとれるはず。まぁ、わざわざ上書きしたらこの限りではないと思うけれど。
-
-&lt;div class=&quot;section&quot;&gt;
-    ### 注意
-    ```cs
-@switch (UrlData.Count)
-{
-    case 0:
-        foreach (var post in posts)
-        {
-            RenderPage(&quot;_Single.cshtml&quot;, post);
-        }
-        break;
-    default:
-        RenderPage(&quot;_Single.cshtml&quot;, posts.First());
-        break;
-}
-
-```一応これでもコンパイルは通るのだけど、RenderPage() は動かない。@RenderPage() って書かなきゃいけないんだね&lt;a href=&quot;#f-4e69f321&quot; name=&quot;fn-4e69f321&quot; title=&quot;文末の ; は不要になる&quot;&gt;*1&lt;/a&gt;。ここら辺はまだわかるようでよくわかっていないところ。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-4e69f321&quot; name=&quot;f-4e69f321&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;文末の ; は不要になる&lt;/span&gt;
+&lt;div&gt;
+&lt;header&gt;
+&lt;h1&gt;@post.Title&lt;/h1&gt;
+&lt;p&gt;@post.CreatedAt&lt;/p&gt;
+&lt;/header&gt;
+&lt;article&gt;
+@post.Body
+&lt;/article&gt;
+&lt;footer&gt;
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=<span class="synConstant">&quot;@post.Id&quot;</span>&gt;Show&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=<span class="synConstant">&quot;Edit/@post.Id&quot;</span>&gt;Edit&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;&lt;a href=<span class="synConstant">&quot;Delete/@post.Id&quot;</span>&gt;Delete&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/footer&gt;
 &lt;/div&gt;
-
-</code></pre>
+</pre><p>RenderPage() を使ったデータの受け渡しがいまいちよくわからなかったのだけど、PostData を介しているみたいで、PageData.First() と書いたらなんとなく動いた。</p><p>とはいえ、PageData / Page はいろんなところで便利に使っちゃったりする。上書きなどの汚染がちょっと怖いかもしれない。念のため Visual Studio でなかをのぞいてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130106050116.png" alt="f:id:daruyanagi:20130106050116p:plain" title="f:id:daruyanagi:20130106050116p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>RenderPage(…, post, 1, 2) と渡してみたのだけど、params の key は順に 0、1、2 とふられるみたい。なので、Page.Title = "hoge"; といった感じで使う分には問題がなさそう。PageData[0] で post がとれるはず。まぁ、わざわざ上書きしたらこの限りではないと思うけれど。</p>
+<div class="section">
+<h3>注意</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">switch</span> (UrlData.Count)
+{
+<span class="synStatement">case</span> <span class="synConstant">0</span>:
+<span class="synStatement">foreach</span> (var post <span class="synStatement">in</span> posts)
+{
+RenderPage(<span class="synConstant">&quot;_Single.cshtml&quot;</span>, post);
+}
+<span class="synStatement">break</span>;
+<span class="synStatement">default</span>:
+RenderPage(<span class="synConstant">&quot;_Single.cshtml&quot;</span>, posts.First());
+<span class="synStatement">break</span>;
+}
+</pre><p>一応これでもコンパイルは通るのだけど、RenderPage() は動かない。@RenderPage() って書かなきゃいけないんだね<a href="#f-4e69f321" name="fn-4e69f321" title="文末の ; は不要になる">*1</a>。ここら辺はまだわかるようでよくわかっていないところ。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-4e69f321" name="f-4e69f321" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">文末の ; は不要になる</span></p>
+</div>
 
     <footer>
         
@@ -194,7 +170,7 @@ enderPage(…, post, 1, 2) と渡してみたのだけど、params の key は�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/06/051815.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/06</time> 
             </p>
         
     </footer>
@@ -246,7 +222,16 @@ enderPage(…, post, 1, 2) と渡してみたのだけど、params の key は�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

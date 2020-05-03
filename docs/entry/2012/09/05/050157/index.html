@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="ダミーイメージがもらえなくて激怒したので WebMatrix でスマートに解決してみたけど一部激怒した" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 http://dummyimage.com はある。こい" />
+    <meta name="og:description"   property="og:description" content="Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 http://dummyimage.com はある。 こい" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/05/050157/" />
@@ -86,133 +88,116 @@
         </time>        
     </p>
 
-    <p>Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 <a href="http://dummyimage.com"><a href="http://dummyimage.com">http://dummyimage.com</a></a> はある。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120905/20120905041606.png" alt="f:id:daruyanagi:20120905041606p:plain" title="f:id:daruyanagi:20120905041606p:plain" class="hatena-fotolife"/>こいつはパラメータを与えて URL を投げるだけで、いろんなサイズ・色のダミーイメージをじぇねれいと<a href="#f1" name="fn1" title="クールに発音してくれよ？　じぇねりっと って感じやな">*1</a>してくれるクールなサービスなんだ。</p>
+    <p>Web サイトのデザインを考えるとき、ダミーイメージは欠かせないよね。少なくとも、自分はそう。そんな悩める怠惰な子ブタたちのために、 <a href="http://dummyimage.com">http://dummyimage.com</a> はある。</p><p><img src="20120905041606.png" alt="f:id:daruyanagi:20120905041606p:plain" title="f:id:daruyanagi:20120905041606p:plain" class="hatena-fotolife"></p><p>こいつはパラメータを与えて URL を投げるだけで、いろんなサイズ・色のダミーイメージをじぇねれいと<a href="#f1" name="fn1" title="クールに発音してくれよ？　じぇねりっと って感じやな">*1</a>してくれるクールなサービスなんだ。</p>
 <div class="section">
-    ### もっとクールに
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120905/20120905041836.png" alt="f:id:daruyanagi:20120905041836p:plain" title="f:id:daruyanagi:20120905041836p:plain" class="hatena-fotolife"/>でも、まさか WebMatrix を使っているおシャレさんのなかに、 &lt;img src="htt... だなんて毎度いちいち手入力してるヤツはいないよな。もちろん、ヘルパーにしておいて自動補完機能に入力させるハズだ。機械でできることを手でやるのはアホのすることだ<a href="#f2" name="fn2" title="おれです、ゴメンナサイゴメンナサイ">*2</a>。
-```cs
-#~/App_Code/DummyImage.cshtml
-<p>@helper GetHtml(string args, object attrs = null)
+<h3>もっとクールに</h3>
+<p><img src="20120905041836.png" alt="f:id:daruyanagi:20120905041836p:plain" title="f:id:daruyanagi:20120905041836p:plain" class="hatena-fotolife"></p><p>でも、まさか WebMatrix を使っているおシャレさんのなかに、 &ltimg src="htt... だなんて毎度いちいち手入力してるヤツはいないよな。もちろん、ヘルパーにしておいて自動補完機能に入力させるハズだ。機械でできることを手でやるのはアホのすることだ<a href="#f2" name="fn2" title="おれです、ゴメンナサイゴメンナサイ">*2</a>。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>#~/App_Code/DummyImage.cshtml
+<p>@helper GetHtml(<span class="synType">string</span> args, <span class="synType">object</span> attrs = <span class="synConstant">null</span>)
 {
-if (attrs != null)
+<span class="synStatement">if</span> (attrs != <span class="synConstant">null</span>)
 {
-attrs = string.Join(&rdquo; &ldquo;, attrs
+attrs = <span class="synType">string</span>.Join(<span class="synConstant">&quot; &quot;</span>, attrs
 .GetType()
 .GetProperties()
-.Select(_ =&gt; string.Format(
-&ldquo;{0}=&quot;{1}&quot;&quot;,
+.Select(_ =&gt; <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;{0}=</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">{1}</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">&quot;</span>,
 _.Name, _.GetValue(attrs)
 )
 )
 );
 }
-&lt;img src=&quot;http://www.dummyimage.com/@Html.Raw(@args)&rdquo;
+&lt;img src=<span class="synConstant">&quot;http://www.dummyimage.com/@Html.Raw(@args)&quot;</span>
 @Html.Raw(attrs) /&gt;
-}</p>
-<pre><code class="language-こうやっておけば、" data-lang="こうやっておけば、">```cs
-@DummyImage.GetHtml(&quot;640x16:9&quot;)
-
-```と書くだけ&lt;a href=&quot;#f3&quot; name=&quot;fn3&quot; title=&quot;実質的にはほとんど @ , dumm... , g, &quot; 640x16:9&quot;=&quot;&quot; と入力するだけ！&quot;=&quot;&quot;&gt;*3&lt;/a&gt;で、実行時に
-```cs
- &amp;lt;img src=&quot;http://www.dummyimage.com/640x16:9&quot;  /&gt;
-
-```のような HTML コードへ展開される。画像タグに alt 属性をつけなければ瞬時に息絶える W3C 原理主義者や、 style を埋め込みたいなんていうわがままさんはこんな感じで書けばいい。
-```cs
-@DummyImage.GetHtml(300,
-    new { alt = &quot;Dummy image&quot;, style = &quot;border: 1px red solid;&quot;})
-
-</code></pre></div>
+}
+</pre><p>こうやっておけば、</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@DummyImage.GetHtml(<span class="synConstant">&quot;640x16:9&quot;</span>)
+</pre><p>と書くだけ<a href="#f3" name="fn3" title="実質的にはほとんど @ , dumm... , g, "640x16:9" と入力するだけ！">*3</a>で、実行時に</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink> &lt;img src=<span class="synConstant">&quot;http://www.dummyimage.com/640x16:9&quot;</span>  /&gt;
+</pre><p>のような HTML コードへ展開される。画像タグに alt 属性をつけなければ瞬時に息絶える W3C 原理主義者や、 style を埋め込みたいなんていうわがままさんはこんな感じで書けばいい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@DummyImage.GetHtml(<span class="synConstant">300</span>,
+<span class="synStatement">new</span> { alt = <span class="synConstant">&quot;Dummy image&quot;</span>, style = <span class="synConstant">&quot;border: 1px red solid;&quot;</span>})
+</pre>
+</div>
 <div class="section">
-    ### 激怒してみた
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120905/20120905043110.png" alt="f:id:daruyanagi:20120905043110p:plain" title="f:id:daruyanagi:20120905043110p:plain" class="hatena-fotolife"/>けれど、世の中うまくいかないものだ。 Web ページを実行してもなかなか画像が表示されない。 dummyimage.com が重過ぎるんだ！（怒でも、よく考えたらローカルの資源はありあまっているわけで……ダミー画像なんかむしろそっちで作るべきだよね。なんでも Web サービスに頼るのはよくないな。
-```cs
-#~/App_Code/DummyImage.cshtml
-<p>@using System.Drawing
-@using System.Drawing.Drawing2D
-@using System.Drawing.Imaging
-@using System.Drawing.Text</p>
-<p>@helper GetHtml(float width, float height = -1,
-Font font = null,
-Brush foreBrush = null, Brush backBrush = null,
-object attrs = null)
+<h3>激怒してみた</h3>
+<p><img src="20120905043110.png" alt="f:id:daruyanagi:20120905043110p:plain" title="f:id:daruyanagi:20120905043110p:plain" class="hatena-fotolife"></p><p>けれど、世の中うまくいかないものだ。 Web ページを実行してもなかなか画像が表示されない。 dummyimage.com が重過ぎるんだ！（怒</p><p>でも、よく考えたらローカルの資源はありあまっているわけで……ダミー画像なんかむしろそっちで作るべきだよね。なんでも Web サービスに頼るのはよくないな。</p><p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>#~/App_Code/DummyImage.cshtml
+<p>@<span class="synStatement">using</span> System.Drawing
+@<span class="synStatement">using</span> System.Drawing.Drawing2D
+@<span class="synStatement">using</span> System.Drawing.Imaging
+@<span class="synStatement">using</span> System.Drawing.Text</p>
+<p>@helper GetHtml(<span class="synType">float</span> width, <span class="synType">float</span> height = -<span class="synConstant">1</span>,
+Font font = <span class="synConstant">null</span>,
+Brush foreBrush = <span class="synConstant">null</span>, Brush backBrush = <span class="synConstant">null</span>,
+<span class="synType">object</span> attrs = <span class="synConstant">null</span>)
 {
-// リフレクションで匿名オブジェクトを HTML 属性にするぜー
-if (attrs != null)
+<span class="synComment">// リフレクションで匿名オブジェクトを HTML 属性にするぜー</span>
+<span class="synStatement">if</span> (attrs != <span class="synConstant">null</span>)
 {
-attrs = string.Join(&rdquo; &ldquo;, attrs
+attrs = <span class="synType">string</span>.Join(<span class="synConstant">&quot; &quot;</span>, attrs
 .GetType()
 .GetProperties()
-.Select(_ =&gt; string.Format(
-&ldquo;{0}=&quot;{1}&quot;&quot;,
+.Select(_ =&gt; <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;{0}=</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">{1}</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">&quot;</span>,
 _.Name, _.GetValue(attrs)
 )
 )
 );
 }</p>
-<pre><code>// 一応引数のチェック。負数ははじくか 16:9 に整形
-if (width &amp;lt;= 0)
+<p><span class="synComment">// 一応引数のチェック。負数ははじくか 16:9 に整形</span>
+<span class="synStatement">if</span> (width &lt;= <span class="synConstant">0</span>)
 {
-    throw new ArgumentException(&quot;Width must be &gt; 0&quot;);
+<span class="synStatement">throw</span> <span class="synStatement">new</span> ArgumentException(<span class="synConstant">&quot;Width must be &gt; 0&quot;</span>);
 }
-height = height &gt; 0 ? height : width * 9 / 16;
-
-// ここから画像生成。さいごに BASE64 に変換してタグに埋め込む
-var image = new Bitmap((int)width, (int)height);
-var base64 = string.Empty;
-
-using (var g = Graphics.FromImage(image))
+height = height &gt; <span class="synConstant">0</span> ? height : width * <span class="synConstant">9</span> / <span class="synConstant">16</span>;</p>
+<p><span class="synComment">// ここから画像生成。さいごに BASE64 に変換してタグに埋め込む</span>
+var image = <span class="synStatement">new</span> Bitmap((<span class="synType">int</span>)width, (<span class="synType">int</span>)height);
+var base64 = <span class="synType">string</span>.Empty;</p>
+<p><span class="synStatement">using</span> (var g = Graphics.FromImage(image))
 {
-    // おまえのパワー、あまってんだろ？　品質最高にしてやんぜー
-    g.SmoothingMode = SmoothingMode.HighQuality;
-    g.PixelOffsetMode = PixelOffsetMode.HighQuality;
-    g.TextRenderingHint = TextRenderingHint.AntiAlias;
-
-    // 背景塗りつぶすぜー
-    g.FillRectangle(
-        backBrush ?? Brushes.LightGray,
-        0, 0, width, height);
-
-    // どまんなかにテキスト書くぜー
-    var format = new StringFormat();
-    format.Alignment = StringAlignment.Center;
-    format.LineAlignment = StringAlignment.Center;
-
-    g.DrawString(
-        string.Format(&quot;{0}×{1}&quot;, image.Width, image.Height),
-        font ?? new Font(&quot;Consolas&quot;, 36, FontStyle.Regular),
-        foreBrush ?? Brushes.Black,
-        new RectangleF(0, 0, width, height),
-        format
-    );
-}
-
-// 画像バイナリをテキスト（BASE64）に変換するぜー
-using (var stream = new System.IO.MemoryStream())
+<span class="synComment">// おまえのパワー、あまってんだろ？　品質最高にしてやんぜー</span>
+g.SmoothingMode = SmoothingMode.HighQuality;
+g.PixelOffsetMode = PixelOffsetMode.HighQuality;
+g.TextRenderingHint = TextRenderingHint.AntiAlias;</p>
+<p><span class="synComment">// 背景塗りつぶすぜー</span>
+g.FillRectangle(
+backBrush ?? Brushes.LightGray,
+<span class="synConstant">0</span>, <span class="synConstant">0</span>, width, height);</p>
+<p><span class="synComment">// どまんなかにテキスト書くぜー</span>
+var format = <span class="synStatement">new</span> StringFormat();
+format.Alignment = StringAlignment.Center;
+format.LineAlignment = StringAlignment.Center;</p>
+<p>g.DrawString(
+<span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}×{1}&quot;</span>, image.Width, image.Height),
+font ?? <span class="synStatement">new</span> Font(<span class="synConstant">&quot;Consolas&quot;</span>, <span class="synConstant">36</span>, FontStyle.Regular),
+foreBrush ?? Brushes.Black,
+<span class="synStatement">new</span> RectangleF(<span class="synConstant">0</span>, <span class="synConstant">0</span>, width, height),
+format
+);
+}</p>
+<p><span class="synComment">// 画像バイナリをテキスト（BASE64）に変換するぜー</span>
+<span class="synStatement">using</span> (var stream = <span class="synStatement">new</span> System.IO.MemoryStream())
 {
-    image.Save(stream, ImageFormat.Png);
-    base64 = Convert.ToBase64String(stream.ToArray());
+image.Save(stream, ImageFormat.Png);
+base64 = Convert.ToBase64String(stream.ToArray());
+}</p>
+<p><span class="synComment">// HTML タグとして出力されるぜー</span>
+&lt;img src=<span class="synConstant">&quot;data:image/png;base64,@Html.Raw(@base64)&quot;</span>
+@Html.Raw(attrs) /&gt;
 }
-
-// HTML タグとして出力されるぜー
-&amp;lt;img src=&quot;data:image/png;base64,@Html.Raw(@base64)&quot;
-     @Html.Raw(attrs) /&gt;
-</code></pre>
-<p>}</p>
-<pre><code class="language-<img" data-lang="<img">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### おまけ激怒
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120905/20120905044930.png&quot; alt=&quot;f:id:daruyanagi:20120905044930p:plain&quot; title=&quot;f:id:daruyanagi:20120905044930p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;Razor の制限とはいえ…… using をネストしなければならないのは泣ける！（怒&lt;br/&gt;
-まぁ、あとで画像生成部分を @functions に切り出せばよいかな。気が向いたらこいつは NuGet にしておきたいけれど、ダミーテキストを作るヘルパーもほしくなってきたね……なにかおもしろことできないかな。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;クールに発音してくれよ？　じぇねりっと って感じやな&lt;/span&gt;
-&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;おれです、ゴメンナサイゴメンナサイ&lt;/span&gt;
-&lt;a href=&quot;#fn3&quot; name=&quot;f3&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;実質的にはほとんど @ , dumm... , g, &quot;640x16:9&quot; と入力するだけ！&lt;/span&gt;
-&lt;a href=&quot;#fn4&quot; name=&quot;f4&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;お前が使い方をわかってないだけや！&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+</pre><p><img src="20120905044715.png" alt="f:id:daruyanagi:20120905044715p:plain" title="f:id:daruyanagi:20120905044715p:plain" class="hatena-fotolife"></p><p>一見長いけど、やってることは FillRect() と DrawImage() 、BASE64 変換だけだよ。</p><p>みんな ImageMagick 好きだけど、わしは .NET Framework の方が慣れていていいや。なぜか動かなくて悩んだりせずに済むしな<a href="#f4" name="fn4" title="お前が使い方をわかってないだけや！">*4</a>。</p></p>
+</div>
+<div class="section">
+<h3>おまけ激怒</h3>
+<p><img src="20120905044930.png" alt="f:id:daruyanagi:20120905044930p:plain" title="f:id:daruyanagi:20120905044930p:plain" class="hatena-fotolife"></p><p>Razor の制限とはいえ…… using をネストしなければならないのは泣ける！（怒<br />
+まぁ、あとで画像生成部分を @functions に切り出せばよいかな。</p><p>気が向いたらこいつは NuGet にしておきたいけれど、ダミーテキストを作るヘルパーもほしくなってきたね……なにかおもしろことできないかな。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">クールに発音してくれよ？　じぇねりっと って感じやな</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">おれです、ゴメンナサイゴメンナサイ</span></p>
+<p class="footnote"><a href="#fn3" name="f3" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">実質的にはほとんど @ , dumm... , g, "640x16:9" と入力するだけ！</span></p>
+<p class="footnote"><a href="#fn4" name="f4" class="footnote-number">*4</a><span class="footnote-delimiter">:</span><span class="footnote-text">お前が使い方をわかってないだけや！</span></p>
+</div>
 
     <footer>
         
@@ -226,7 +211,7 @@ using (var stream = new System.IO.MemoryStream())
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/05/050157.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/09/05</time> 
             </p>
         
     </footer>
@@ -278,7 +263,16 @@ using (var stream = new System.IO.MemoryStream())
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

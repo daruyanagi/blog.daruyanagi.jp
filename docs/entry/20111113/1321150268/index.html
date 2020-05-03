@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20111113/1321150268/" />
@@ -87,28 +89,22 @@
     </p>
 
     <p>たとえば、WebMatrix で作るWebサイトで、Webサイト全体で使える変数や、Webページでのみ参照できる変数というものはどうすれば実現できるのだろう？ ―― と思ったのだけど、簡単だった。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> のコードで言えばこんな感じ。</p>
-<pre><code>	@functions {
-	    string ReadTextFile(string path)
-	    {
-	        path = string.Format(&quot;/Pages/{0}.txt&quot;, path);
-	        path = Server.MapPath(path);
+<pre class="code" data-unlink>	@functions {
+string ReadTextFile(string path)
+{
+path = string.Format(&#34;/Pages/{0}.txt&#34;, path);
+path = Server.MapPath(path);
+<p>if (!File.Exists(path))
+{
+throw new HttpException(404, path + &quot;is not found.&quot;);
+}</p>
+<p>Page.CreatedAt = File.GetCreationTime(path);
+Page.UpdatedAt = File.GetLastWriteTime(path);
+// あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！</p>
+<p>return File.ReadAllText(path);
+}
+}</pre><p><code>Page</code> は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、<code>App</code> を使えばいいらしい。たとえば、<code>App.Title</code> にWebサイト名、<code>Page.Title</code>にページタイトルに突っ込んでおけば、<em><i>&lt;title&gt;@Page.Title - @App.Title&lt;/title&gt;</i></em> という風にレイアウトファイルでタイトルをセットできる。</p><p>僕は初めこの作法を知らなかったから、 <code>App_Code</code> にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね&hellip;&hellip;orz</p></p>
 
-	        if (!File.Exists(path))
-	        {
-	            throw new HttpException(404, path + &quot;is not found.&quot;);
-	        }
-	        
-	        Page.CreatedAt = File.GetCreationTime(path);
-	        Page.UpdatedAt = File.GetLastWriteTime(path);
-	        // あとで@Page.CreatedAt 、＠Page.UpdatedAt で参照できる！
-
-	        return File.ReadAllText(path);
-	    }
-	}
-```&lt;code&gt;Page&lt;/code&gt; は匿名型になっているので、自由にメンバー変数（？）を増やせる。Webサイト全体の場合は、&lt;code&gt;App&lt;/code&gt; を使えばいいらしい。たとえば、&lt;code&gt;App.Title&lt;/code&gt; にWebサイト名、&lt;code&gt;Page.Title&lt;/code&gt;にページタイトルに突っ込んでおけば、__&amp;lt;title&gt;@Page.Title - @App.Title&amp;lt;/title&gt;__ という風にレイアウトファイルでタイトルをセットできる。僕は初めこの作法を知らなかったから、 &lt;code&gt;App_Code&lt;/code&gt; にグローバル変数を保持するヘルパーを書いていた。見る人が見れば当たり前なんだろうけどね......orz
-
-
-</code></pre>
 
     <footer>
         
@@ -122,7 +118,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20111113/1321150268.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/11/13</time> 
             </p>
         
     </footer>
@@ -174,7 +170,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

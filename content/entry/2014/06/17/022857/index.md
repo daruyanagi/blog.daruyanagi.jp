@@ -1,0 +1,16 @@
+---
+date: 2014-06-17T02:28:57.0000000
+draft: false
+title: "Internet Explorer Developer Channel"
+tags: ["Internet Explorer"]
+eyecatch: 20140617021847.png
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617021847.png" alt="f:id:daruyanagi:20140617021847p:plain" title="f:id:daruyanagi:20140617021847p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+
+<blockquote cite="http://devchannel.modern.ie/">
+<p>Internet Explorer Developer Channel provides a sneak peek at Internet Explorer as it's being developed. It can run alongside and independently of IE11, and has all of the browser features that you love in IE11, as well as the latest platform features we’re working on. This version supports new platform features like WebDriver API, GamePad API, F12 Developer Tools improvements, and WebGL improvements</p>
+
+<cite><a href="http://devchannel.modern.ie/">IE Developer Channel</a></cite>
+</blockquote>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617021852.png" alt="f:id:daruyanagi:20140617021852p:plain" title="f:id:daruyanagi:20140617021852p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>“It can run alongside and independently of IE11”とのことなのでそのままぶち込む。対応は Windows 7 SP 1 と Windows 8.1。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022146.png" alt="f:id:daruyanagi:20140617022146p:plain" title="f:id:daruyanagi:20140617022146p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず <a href="http://html5test.com/">HTML5test - How well does your browser support HTML5?</a> を走らせる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022226.png" alt="f:id:daruyanagi:20140617022226p:plain" title="f:id:daruyanagi:20140617022226p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022232.png" alt="f:id:daruyanagi:20140617022232p:plain" title="f:id:daruyanagi:20140617022232p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>通常版から2ポイント下がって「ふぁっ！？」ってなった。リロードしても同じ。そのうち DP がフリーズしたので、タスクマネージャーで殺してもう一回起動してみたら――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022341.png" alt="f:id:daruyanagi:20140617022341p:plain" title="f:id:daruyanagi:20140617022341p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022345.png" alt="f:id:daruyanagi:20140617022345p:plain" title="f:id:daruyanagi:20140617022345p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なぜか6ポイントあがった（通常版は4ポイント下がった）。この結果（通常版 372、DP1 378）が多分正しい。そのほかにも割といろいろよくわかんない動作するので、利用の際は注意されたい。なんか重いし。</p><p>あと“WebGL improvements”って何かなーと思ったので、バージョンを確かめてみた（<a href="http://yomotsu.net/blog/2013/11/08/ie11-webgl.html">IE11 &#x306E; WebGL</a>）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022507.png" alt="f:id:daruyanagi:20140617022507p:plain" title="f:id:daruyanagi:20140617022507p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20140617022511.png" alt="f:id:daruyanagi:20140617022511p:plain" title="f:id:daruyanagi:20140617022511p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ほんのり上がってた（0.93 → 0.94）。</p>

@@ -1,0 +1,8 @@
+---
+date: 2013-03-22T04:54:36.0000000
+draft: false
+title: "『意味・真理・存在 分析哲学入門・中級編』"
+tags: ["哲学", "読書"]
+eyecatch: 
+---
+<p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4062585472/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/41WLgmuLVVL._SL160_.jpg" class="hatena-asin-detail-image" alt="意味・真理・存在  分析哲学入門・中級編 (講談社選書メチエ)" title="意味・真理・存在  分析哲学入門・中級編 (講談社選書メチエ)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4062585472/bestylesnet-22/">意味・真理・存在  分析哲学入門・中級編 (講談社選書メチエ)</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 八木沢敬</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 講談社</li><li><span class="hatena-asin-detail-label">発売日:</span> 2013/02/13</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本（ソフトカバー）</li><li> <span class="hatena-asin-detail-label">クリック</span>: 18回</li><li><a href="http://d.hatena.ne.jp/asin/4062585472/bestylesnet-22" target="_blank">この商品を含むブログ (8件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>現在、絶賛放置中の <a href="https://blog.daruyanagi.jp/category/%E8%AB%96%E7%90%86%E5%AD%A6">&#x8AD6;&#x7406;&#x5B66;</a> について、なんかしらの知見を手に入れたいなぁ、と思って購入。しかし――読み始めてから気づいたのだけど、<i>ミスって「中級編」から買ってしまった＼(＾o＾)／　</i>「入門編」もあとから Amazon で買ったけど、あいにく在庫がなく、なかなか送られてこなかったこともあり、とりあえず先に「中級編」から目を通した。</p><p>たぶんわかりやすく書かれているのだと思うけれど、なんというか、自分の頭がこういうものを読むには慣れなく、読むのに難渋した。数式の方がまだ分かりやすいというか。けれど、たぶんそれはひとそれぞれで、この本の評価を下げるものではない。</p><p>実はいっぱい感想を書いたのだけど、さっき消してしまった。分析哲学は刺激的だけど、たぶん、自分はこれ嫌いだな。うまく言えないけれど、肝心なところでツルッツルしてる感じ。</p>

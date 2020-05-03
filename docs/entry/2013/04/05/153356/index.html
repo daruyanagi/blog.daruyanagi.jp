@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 3 Preview &#43; Team Foundation Service" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="プログラミング生放送勉強会 第22回＠松山に参加してきました #pronama - だるろぐ の復習もかねて、WebMatrix 3 Preview から Team Foundation Service を利用してみた。自分の" />
+    <meta name="og:description"   property="og:description" content="&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x751F;&#x653E;&#x9001;&#x52C9;&#x5F37;&#x4F1A; &#x7B2C;22&#x56DE;&#xFF20;&#x677E;&#x5C71;&#x306B;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F; #pronama - &#x3060;&#x308B;&#x308D;&#x3050; の復習もかねて、WebMatrix 3 Preview から Team Foundation Service を利用してみた。自分の理解では、 Team Foundation Service = ( ソース管理 &#43; アジャイル支援 ).AsCloud(); って感じ。自" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/04/05/153356/" />
@@ -86,12 +89,26 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2013/04/03/072017">プログラミング生放送勉強会 第22回＠松山に参加してきました #pronama - だるろぐ</a> の復習もかねて、WebMatrix 3 Preview から Team Foundation Service を利用してみた。自分の理解では、</p>
-<pre><code>&gt;
-    Team Foundation Service = ( ソース管理 + アジャイル支援 ).AsCloud();
-</code></pre>
-<p>って感じ。自分のような趣味の個人開発者にとってアジャイル支援の部分がどれだけ役に立つのかは未知数だけれど、とりあえずソース管理（Source Control）の部分だけでも体験しておこう。</p>
-
+    <p><a href="https://blog.daruyanagi.jp/entry/2013/04/03/072017">&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x751F;&#x653E;&#x9001;&#x52C9;&#x5F37;&#x4F1A; &#x7B2C;22&#x56DE;&#xFF20;&#x677E;&#x5C71;&#x306B;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x304D;&#x307E;&#x3057;&#x305F; #pronama - &#x3060;&#x308B;&#x308D;&#x3050;</a> の復習もかねて、WebMatrix 3 Preview から Team Foundation Service を利用してみた。自分の理解では、</p>
+<blockquote>
+<p>Team Foundation Service = ( ソース管理 + アジャイル支援 ).AsCloud();</p>
+</blockquote>
+<p>って感じ。自分のような趣味の個人開発者にとってアジャイル支援の部分がどれだけ役に立つのかは未知数だけれど、とりあえずソース管理（Source Control）の部分だけでも体験しておこう。
+<br />
+<br />
+</p>
+<div class="section">
+<h3>アカウントの取得</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405145401.png" alt="f:id:daruyanagi:20130405145401p:plain" title="f:id:daruyanagi:20130405145401p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="http://tfs.visualstudio.com/">Visual Studio Online | Now Azure DevOps</a> へアクセス。アカウントを作成しよう。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405145423.png" alt="f:id:daruyanagi:20130405145423p:plain" title="f:id:daruyanagi:20130405145423p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サブドメインがもらえる。カッコいい！　今回は<i> <a href="https://daruyanagi.visualstudio.com">https://daruyanagi.visualstudio.com</a> </i>をゲットしたぞ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405145440.png" alt="f:id:daruyanagi:20130405145440p:plain" title="f:id:daruyanagi:20130405145440p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>できたぞジョジョ―！</p>
+</div>
+<div class="section">
+<h3>WebMatrix 3 Preview → Team Foundation Service</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405150158.png" alt="f:id:daruyanagi:20130405150158p:plain" title="f:id:daruyanagi:20130405150158p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>既存のプロジェクトを Team Foundation Service で管理してみる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405150433.png" alt="f:id:daruyanagi:20130405150433p:plain" title="f:id:daruyanagi:20130405150433p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>さきほど取得した <a href="https://daruyanagi.visualstudio.com">https://daruyanagi.visualstudio.com</a> を入力。</p><p>ここで注意というかハマったのだけど、WebMatrix 3 で Windows Azure 統合を有効（つまり Microsoft ID でログイン済み）にしていた場合、その ID と Team Foundation Service の ID が食い違っているとログインが完了しない。3回ぐらい自動リトライして「無理でした」みたいなことを言われてしまう。TFS のアカウントを取り直して解決。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405150724.png" alt="f:id:daruyanagi:20130405150724p:plain" title="f:id:daruyanagi:20130405150724p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サイトを TFS へ追加。よくわかんないので初期値で。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405150731.png" alt="f:id:daruyanagi:20130405150731p:plain" title="f:id:daruyanagi:20130405150731p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>不思議な踊りをしながら待つ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405151527.png" alt="f:id:daruyanagi:20130405151527p:plain" title="f:id:daruyanagi:20130405151527p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>完了したら、Source Control タブがこんな感じになるので、さっそくチェックイン……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405151559.png" alt="f:id:daruyanagi:20130405151559p:plain" title="f:id:daruyanagi:20130405151559p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405151608.png" alt="f:id:daruyanagi:20130405151608p:plain" title="f:id:daruyanagi:20130405151608p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>……できませんでした。</p><p>よくわかんないので放置。</p>
+</div>
+<div class="section">
+<h3>Team Foundation Service → WebMatrix 3 Preview</h3>
+<p>悔しいので、今度は TFS でプロジェクトを作って、それを WebMatrix で取得するようにしてみる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405151848.png" alt="f:id:daruyanagi:20130405151848p:plain" title="f:id:daruyanagi:20130405151848p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ソース管理に Git が選べるけど、今回は TFS で行くぜ！</p><p>プロセステンプレートというのは、アジャイル開発にもいくつか流儀があって、そのどれを選択するかという話らしい（参考：<a href="http://d.hatena.ne.jp/youandi/20130330/p1">&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DF;&#x30F3;&#x30B0;&#x751F;&#x653E;&#x9001;&#x52C9;&#x5F37;&#x4F1A; &#x7B2C;22&#x56DE;&#xFF20;&#x677E;&#x5C71; &#x306B;&#x53C2;&#x52A0; - &#x685C;&#x3001;&#x62B9;&#x8336;&#x3001;&#x767D;&#x3001;&#x65E5;&#x8A18;</a>）。とりあえずデフォルトで。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405151854.png" alt="f:id:daruyanagi:20130405151854p:plain" title="f:id:daruyanagi:20130405151854p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>できますたー！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152351.png" alt="f:id:daruyanagi:20130405152351p:plain" title="f:id:daruyanagi:20130405152351p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これを WebMatrix 側から開くわけだ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152410.png" alt="f:id:daruyanagi:20130405152410p:plain" title="f:id:daruyanagi:20130405152410p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>もしかしたら拡張機能を先に入れなきゃいけないかもしれない。ここら辺の手順は忘れちゃった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405154734.png" alt="f:id:daruyanagi:20130405154734p:plain" title="f:id:daruyanagi:20130405154734p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405154706.png" alt="f:id:daruyanagi:20130405154706p:plain" title="f:id:daruyanagi:20130405154706p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>プロジェクトを開くと、すっからかん（なにやらリードオンリーのファイルがいくつかあるが）な Web サイトが開くので、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152514.png" alt="f:id:daruyanagi:20130405152514p:plain" title="f:id:daruyanagi:20130405152514p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あとはファイルをひとつづつソース管理に追加して......</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152627.png" alt="f:id:daruyanagi:20130405152627p:plain" title="f:id:daruyanagi:20130405152627p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>チェックイン。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152725.png" alt="f:id:daruyanagi:20130405152725p:plain" title="f:id:daruyanagi:20130405152725p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回はうまくいったみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152737.png" alt="f:id:daruyanagi:20130405152737p:plain" title="f:id:daruyanagi:20130405152737p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20130405152738.png" alt="f:id:daruyanagi:20130405152738p:plain" title="f:id:daruyanagi:20130405152738p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>TFS の方にもちゃんと反映されている。これだけでは TFS のポテンシャルの半分も発揮できていないけれど、一応触ることはできた。</p>
+</div>
 
     <footer>
         
@@ -105,7 +122,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/04/05/153356.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2013/04/05</time> 
             </p>
         
     </footer>
@@ -157,7 +174,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

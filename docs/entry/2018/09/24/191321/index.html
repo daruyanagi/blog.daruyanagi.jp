@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Amaguri をストアに申請しました（Desktop Bridge で2点躓きました……" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="「Amaguri」v1.0.0.0 - だるろぐ WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！ ### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の" />
+    <meta name="og:description"   property="og:description" content="blog.daruyanagi.jp WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！ ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした Windows Application Package プロジェクトに" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/09/24/191321/" />
@@ -86,59 +88,33 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2018/08/26/224927" alt="「Amaguri」v1.0.0.0 - だるろぐ">
-  「Amaguri」v1.0.0.0 - だるろぐ
-</a>WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！</p>
+    <p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2018%2F08%2F26%2F224927" title="「Amaguri」v1.0.0.0 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2018/08/26/224927">blog.daruyanagi.jp</a></cite></p><p>WPF アプリをストアに申請したのは2作目ですが、また新しく躓きました！</p>
 <div class="section">
-    ### ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした
-    Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。
-<blockquote>
-<p>プロジェクト システムでエラーが発生しました。ターゲット フレームワーク '.NETCore,Version=v5.0' の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 pic.twitter.com/gvVyEI3GxP— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-</blockquote>
-<p>最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――</p>
-<figure>
-    <img src="/images/20180924190106.png"/> 
-</figure>
-
-<p>んだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。</p>
+<h3>ターゲット フレームワーク '.NETCore,Version=v5.0' の mscorlib を解決できませんでした</h3>
+<p>Windows Application Package プロジェクトに Amaguri.WPF の参照を追加するとコケました。</p><p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">プロジェクト システムでエラーが発生しました。<br><br>ターゲット フレームワーク &#39;.NETCore,Version=v5.0&#39; の mscorlib を解決できませんでした。これは、ターゲット フレームワークがインストールされていない場合、またはフレームワーク モニカーの形式が正しくない場合に発生する可能性があります。 <a href="https://t.co/gvVyEI3GxP">pic.twitter.com/gvVyEI3GxP</a></p>&mdash; だるやなぎ准将 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1044134050263314432?ref_src=twsrc%5Etfw">September 24, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p><p>最初、このエラーをみてもサッパリ意味が分からなかったのですが、そのままパッケージのビルドを進めてみると――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180924190106.png" alt="f:id:daruyanagi:20180924190106p:plain" title="f:id:daruyanagi:20180924190106p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんだ、そういうことか！　Desktop Bridge を利用するには .NET Framework 4.6.1 が必要なのだそうです。Amaguri はなぜか .NET Framework 4.5 で開発されていたので、フレームワークをアップデートして解決しました。</p>
 </div>
 <div class="section">
-    ### "プロセス起動" に関連した System.Diagnostics.Process.Start への参照があります
-<blockquote>
-<p>んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら pic.twitter.com/RUBZha1fH5— だるやなぎ准将 (@daruyanagi) September 24, 2018 <script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-</blockquote>
-<p>Desktop Bridge アプリは System.Diagnostics.Process.Start() で外部アプリを起動することができないらしい。ハイパーリンクをクリックしたらウチのサイトにジャンプするというだけの処理なのだけど……うーん。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Hyperlink_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
+<h3>"プロセス起動" に関連した System.Diagnostics.Process.Start への参照があります</h3>
+<p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">んー？　無視していいのかなぁ…… System.Diagnostics.Process.Start() が S mode でダメかもって怒られら <a href="https://t.co/RUBZha1fH5">pic.twitter.com/RUBZha1fH5</a></p>&mdash; だるやなぎ准将 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1044136465062477824?ref_src=twsrc%5Etfw">September 24, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p><p>Desktop Bridge アプリは System.Diagnostics.Process.Start() で外部アプリを起動することができないらしい。ハイパーリンクをクリックしたらウチのサイトにジャンプするというだけの処理なのだけど……うーん。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">void</span> Hyperlink_Click(<span class="synType">object</span> sender, RoutedEventArgs e)
 {
-    System.Diagnostics.Process.Start(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>);
+System.Diagnostics.Process.Start(<span class="synConstant">&quot;https://blog.daruyanagi.jp/&quot;</span>);
 }
-
-<span style="color:#960050;background-color:#1e0010">```最初はこの処理を削るしかないのかなと思っていたのですが、</span>DesktopBridge.Helpers <span style="color:#960050;background-color:#1e0010">という</span> NuGet <span style="color:#960050;background-color:#1e0010">を導入して「</span>UWP <span style="color:#960050;background-color:#1e0010">で実行されている時だけ</span> System.Diagnostics.Process.Start()  <span style="color:#960050;background-color:#1e0010">を実行しない」という処理を加えてみると、認定キットに合格することができました。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> Hyperlink_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
+</pre><p>最初はこの処理を削るしかないのかなと思っていたのですが、DesktopBridge.Helpers という NuGet を導入して「UWP で実行されている時だけ System.Diagnostics.Process.Start()  を実行しない」という処理を加えてみると、認定キットに合格することができました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">void</span> Hyperlink_Click(<span class="synType">object</span> sender, RoutedEventArgs e)
 {
-    <span style="color:#66d9ef">if</span> (!IsRunningAsUwp())
-    {
-        System.Diagnostics.Process.Start(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>);
-    }
-}
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">bool</span> IsRunningAsUwp()
+<span class="synStatement">if</span> (!IsRunningAsUwp())
 {
-    DesktopBridge.Helpers helpers = <span style="color:#66d9ef">new</span> DesktopBridge.Helpers();
-    <span style="color:#66d9ef">return</span> helpers.IsRunningAsUwp();
+System.Diagnostics.Process.Start(<span class="synConstant">&quot;https://blog.daruyanagi.jp/&quot;</span>);
 }
-
-<span style="color:#960050;background-color:#1e0010">```</span>IsRunningAsUwp() <span style="color:#960050;background-color:#1e0010">は公式サイトにあるサンプルコードそのままです。ソースコードをのぞいてみたのですが、</span>GetCurrentPackageFullName() <span style="color:#960050;background-color:#1e0010">という</span> API <span style="color:#960050;background-color:#1e0010">を呼んでみてエラーが出るかどうかで判別してるようですね。なるほでぃうす。</span>
-&lt;div class=<span style="color:#e6db74">&#34;github-card&#34;</span> data-user=<span style="color:#e6db74">&#34;qmatteoq&#34;</span> data-repo=<span style="color:#e6db74">&#34;DesktopBridgeHelpers&#34;</span> data-width=<span style="color:#e6db74">&#34;400&#34;</span> data-height=<span style="color:#e6db74">&#34;&#34;</span> data-theme=<span style="color:#e6db74">&#34;default&#34;</span>&gt;&lt;/div
-
-&gt;
-&lt;script src=<span style="color:#e6db74">&#34;https://cdn.jsdelivr.net/github-cards/latest/widget.js&#34;</span>&gt;&lt;/script&gt;
-<span style="color:#960050;background-color:#1e0010">さてはて、</span>S Mode <span style="color:#960050;background-color:#1e0010">でテストしてないので「クリップボードの画像をデスクトップに保存する」機能あたりでクラッシュしそうな気もするのですが、そのままストアに通ってくれるとありがたいなぁ。</span>
-
-&lt;/div&gt;
-
-</code></pre></div>
+}
+<p><span class="synType">public</span> <span class="synType">bool</span> IsRunningAsUwp()
+{
+DesktopBridge.Helpers helpers = <span class="synStatement">new</span> DesktopBridge.Helpers();
+<span class="synStatement">return</span> helpers.IsRunningAsUwp();
+}
+</pre><p>IsRunningAsUwp() は公式サイトにあるサンプルコードそのままです。ソースコードをのぞいてみたのですが、GetCurrentPackageFullName() という API を呼んでみてエラーが出るかどうかで判別してるようですね。なるほでぃうす。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fqmatteoq%2FDesktopBridgeHelpers" title="qmatteoq/DesktopBridgeHelpers" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/qmatteoq/DesktopBridgeHelpers">github.com</a></cite></p><p>さてはて、S Mode でテストしてないので「クリップボードの画像をデスクトップに保存する」機能あたりでクラッシュしそうな気もするのですが、そのままストアに通ってくれるとありがたいなぁ。</p></p>
+</div>
 
     <footer>
         
@@ -152,7 +128,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/09/24/191321.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2018/09/24</time> 
             </p>
         
     </footer>
@@ -204,7 +180,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

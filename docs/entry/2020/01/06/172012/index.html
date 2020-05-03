@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2020/01/06/172012/" />
@@ -86,9 +88,7 @@
         </time>        
     </p>
 
-    <p>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。<a href="https://blog.daruyanagi.jp/entry/2020/01/02/100000" alt="スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ">
-  スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ
-</a>――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。</p>
+    <p>はてなブログにデカい写真を貼るときのフローがめんどくさい。どれぐらいめんどくさいかというと、ブログを書くペースが月1回に落ちるぐらいめんどくさい。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2020%2F01%2F02%2F100000" title="スマホで写真を撮る → 「スマホ同期」アプリでコピー → はてなブログに張り付け - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2020/01/02/100000">blog.daruyanagi.jp</a></cite></p><p>――というわけで、年始は画像を縮小できるアプリを開発していた。要件は以下のとおり。</p>
 <ul>
 <li>［共有］コマンドに対応（必須）</li>
 <li>シンプル。ブログへのアップロードに使いそうな機能しか追加しない
@@ -98,109 +98,100 @@
 <li>顔認識して隠す（進捗半分）</li>
 <li>画像のクロップ（優先度低）</li>
 </ul></li>
-</ul>
-<p>UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。</p>
+</ul><p>UWP アプリの開発は1年以上ぶりで、右も左もわからぬ。Microsoft Docs をさまよった結果、内部での画像データは SoftwareBitmap あたりで持つのがよさげだったが、当初は縮小の方法もいまいちわからかった。</p>
 <div class="section">
-<h3 id="win2d-を使う">Win2D を使う</h3>
+<h3>Win2D を使う</h3>
 <p>そういうときは、やっぱり StackOverFlow だよね。親切にも SoftwareBitmap の拡張メソッドにしてくれていたので、そのまま使うことにした。ちなみに、これを利用するには NuGet で Win2D パッケージを別途インストールする必要がある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmap
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> SoftwareBitmap Resize(<span style="color:#66d9ef">this</span> SoftwareBitmap softwareBitmap, <span style="color:#66d9ef">float</span> newWidth, <span style="color:#66d9ef">float</span> newHeight)
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// https://stackoverflow.com/questions/41251716/how-to-resize-a-softwarebitmap</span>
+<p><span class="synType">public</span> <span class="synType">static</span> SoftwareBitmap Resize(<span class="synStatement">this</span> SoftwareBitmap softwareBitmap, <span class="synType">float</span> newWidth, <span class="synType">float</span> newHeight)
 {
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> resourceCreator = CanvasDevice.GetSharedDevice())
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap))
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> canvasRenderTarget = <span style="color:#66d9ef">new</span> CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi))
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> drawingSession = canvasRenderTarget.CreateDrawingSession())
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> scaleEffect = <span style="color:#66d9ef">new</span> ScaleEffect())
-    {
-        scaleEffect.Source = canvasBitmap;
-        scaleEffect.Scale = <span style="color:#66d9ef">new</span> System.Numerics.Vector2(newWidth / softwareBitmap.PixelWidth, newHeight / softwareBitmap.PixelHeight);
-        drawingSession.DrawImage(scaleEffect);
-        drawingSession.Flush();
-        <span style="color:#66d9ef">return</span> SoftwareBitmap.CreateCopyFromBuffer(canvasRenderTarget.GetPixelBytes().AsBuffer(), BitmapPixelFormat.Bgra8, (<span style="color:#66d9ef">int</span>)newWidth, (<span style="color:#66d9ef">int</span>)newHeight, BitmapAlphaMode.Premultiplied);
-    }
+<span class="synStatement">using</span> (var resourceCreator = CanvasDevice.GetSharedDevice())
+<span class="synStatement">using</span> (var canvasBitmap = CanvasBitmap.CreateFromSoftwareBitmap(resourceCreator, softwareBitmap))
+<span class="synStatement">using</span> (var canvasRenderTarget = <span class="synStatement">new</span> CanvasRenderTarget(resourceCreator, newWidth, newHeight, canvasBitmap.Dpi))
+<span class="synStatement">using</span> (var drawingSession = canvasRenderTarget.CreateDrawingSession())
+<span class="synStatement">using</span> (var scaleEffect = <span class="synStatement">new</span> ScaleEffect())
+{
+scaleEffect.Source = canvasBitmap;
+scaleEffect.Scale = <span class="synStatement">new</span> System.Numerics.Vector2(newWidth / softwareBitmap.PixelWidth, newHeight / softwareBitmap.PixelHeight);
+drawingSession.DrawImage(scaleEffect);
+drawingSession.Flush();
+<span class="synStatement">return</span> SoftwareBitmap.CreateCopyFromBuffer(canvasRenderTarget.GetPixelBytes().AsBuffer(), BitmapPixelFormat.Bgra8, (<span class="synType">int</span>)newWidth, (<span class="synType">int</span>)newHeight, BitmapAlphaMode.Premultiplied);
 }
-</code></pre></div><p>おおむね快適に動作するが、特定のサイズ（縦×横）の組み合わせで画像が乱れる問題が見つかったのが問題（割ったり、int でキャストしているところでなんかおかしいのかなぁ）。頑張って直してみようとしたが、自分には無理だった。</p>
+}
+</pre><p>おおむね快適に動作するが、特定のサイズ（縦×横）の組み合わせで画像が乱れる問題が見つかったのが問題（割ったり、int でキャストしているところでなんかおかしいのかなぁ）。頑張って直してみようとしたが、自分には無理だった。</p></p>
 </div>
 <div class="section">
-<h3 id="bitmapencoder-を用いるwrietablebitmap-経由">BitmapEncoder を用いる（WrietableBitmap 経由）</h3>
-<p>というわけで、基本に戻ることにした。BitmapEncoder を生成し、SoftwareBitmap を割り当てて、Transform してもらう。<a href="http://c5d5e5.asablo.jp/blog/2017/08/08/8642588"><a href="http://c5d5e5.asablo.jp/blog/2017/08/08/8642588">http://c5d5e5.asablo.jp/blog/2017/08/08/8642588</a></a> で提示されていたサンプルコードをベースに、SoftwareBitmap の拡張メソッドにしてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// http://c5d5e5.asablo.jp/blog/2017/08/08/8642588
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&amp;lt;SoftwareBitmap&gt; ResizeAsync(<span style="color:#66d9ef">this</span> SoftwareBitmap source, <span style="color:#66d9ef">float</span> newWidth, <span style="color:#66d9ef">float</span> newHeight)
+<h3>BitmapEncoder を用いる（WrietableBitmap 経由）</h3>
+<p>というわけで、基本に戻ることにした。BitmapEncoder を生成し、SoftwareBitmap を割り当てて、Transform してもらう。<a href="http://c5d5e5.asablo.jp/blog/2017/08/08/8642588">http://c5d5e5.asablo.jp/blog/2017/08/08/8642588</a> で提示されていたサンプルコードをベースに、SoftwareBitmap の拡張メソッドにしてみた。<br />
+<br />
+</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// http://c5d5e5.asablo.jp/blog/2017/08/08/8642588</span>
+<p><span class="synType">public</span> <span class="synType">static</span> async Task&lt;SoftwareBitmap&gt; ResizeAsync(<span class="synStatement">this</span> SoftwareBitmap source, <span class="synType">float</span> newWidth, <span class="synType">float</span> newHeight)
 {
-    <span style="color:#66d9ef">if</span> (source == <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
-
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> memory = <span style="color:#66d9ef">new</span> InMemoryRandomAccessStream())
-    {
-        <span style="color:#75715e">// BitmapEncoder を用いメモリ上で source をリサイズ
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> id = BitmapEncoder.PngEncoderId;
-        BitmapEncoder encoder = <span style="color:#66d9ef">await</span> BitmapEncoder.CreateAsync(id, memory);
-        encoder.BitmapTransform.ScaledHeight = (<span style="color:#66d9ef">uint</span>)newHeight;
-        encoder.BitmapTransform.ScaledWidth = (<span style="color:#66d9ef">uint</span>)newWidth;
-        encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
-        encoder.SetSoftwareBitmap(source);
-        <span style="color:#66d9ef">await</span> encoder.FlushAsync();
-
-        <span style="color:#75715e">// リサイズしたメモリを WriteableBitmap に複写
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> writeableBitmap = <span style="color:#66d9ef">new</span> WriteableBitmap((<span style="color:#66d9ef">int</span>)newWidth, (<span style="color:#66d9ef">int</span>)newHeight);
-        <span style="color:#66d9ef">await</span> writeableBitmap.SetSourceAsync(memory);
-
-        <span style="color:#75715e">// dest（XAML の Image コントロール互換）を作成し、WriteableBitmap から複写
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">var</span> dest = <span style="color:#66d9ef">new</span> SoftwareBitmap(BitmapPixelFormat.Bgra8, (<span style="color:#66d9ef">int</span>)newWidth, (<span style="color:#66d9ef">int</span>)newHeight, BitmapAlphaMode.Premultiplied);
-        dest.CopyFromBuffer(writeableBitmap.PixelBuffer);
-
-        <span style="color:#66d9ef">return</span> dest;
-    }
+<span class="synStatement">if</span> (source == <span class="synConstant">null</span>) <span class="synStatement">return</span> <span class="synConstant">null</span>;</p>
+<p><span class="synStatement">using</span> (var memory = <span class="synStatement">new</span> InMemoryRandomAccessStream())
+{
+<span class="synComment">// BitmapEncoder を用いメモリ上で source をリサイズ</span>
+var id = BitmapEncoder.PngEncoderId;
+BitmapEncoder encoder = await BitmapEncoder.CreateAsync(id, memory);
+encoder.BitmapTransform.ScaledHeight = (<span class="synType">uint</span>)newHeight;
+encoder.BitmapTransform.ScaledWidth = (<span class="synType">uint</span>)newWidth;
+encoder.BitmapTransform.InterpolationMode = BitmapInterpolationMode.Fant;
+encoder.SetSoftwareBitmap(source);
+await encoder.FlushAsync();</p>
+<p><span class="synComment">// リサイズしたメモリを WriteableBitmap に複写</span>
+var writeableBitmap = <span class="synStatement">new</span> WriteableBitmap((<span class="synType">int</span>)newWidth, (<span class="synType">int</span>)newHeight);
+await writeableBitmap.SetSourceAsync(memory);</p>
+<p><span class="synComment">// dest（XAML の Image コントロール互換）を作成し、WriteableBitmap から複写</span>
+var dest = <span class="synStatement">new</span> SoftwareBitmap(BitmapPixelFormat.Bgra8, (<span class="synType">int</span>)newWidth, (<span class="synType">int</span>)newHeight, BitmapAlphaMode.Premultiplied);
+dest.CopyFromBuffer(writeableBitmap.PixelBuffer);</p>
+<p><span class="synStatement">return</span> dest;
 }
-
-</code></pre></div><p>Encoder から SoftwareBitmap を得るのに WrietableBitmap を経由しているのがあまりしっくりこないけど、こっちは問題なく動作した。</p>
+}
+</pre><p>Encoder から SoftwareBitmap を得るのに WrietableBitmap を経由しているのがあまりしっくりこないけど、こっちは問題なく動作した。</p></p>
 </div>
 <div class="section">
-<h3 id="bitmapencoder--bitmapdecorder">BitmapEncoder ＋ BitmapDecorder</h3>
+<h3>BitmapEncoder ＋ BitmapDecorder</h3>
 <p>他人の力ばかり借りるのも何なので、自分でも考えてみたのはこちら。基本的にはさっきのやり方と変わらないけれど、WrietableBitmap ではなく、BitmapDecorder を利用している。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> Task&amp;lt;SoftwareBitmap&gt; ResizeAsync2(<span style="color:#66d9ef">this</span> SoftwareBitmap source, <span style="color:#66d9ef">float</span> newWidth, <span style="color:#66d9ef">float</span> newHeight)
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> async Task&lt;SoftwareBitmap&gt; ResizeAsync2(<span class="synStatement">this</span> SoftwareBitmap source, <span class="synType">float</span> newWidth, <span class="synType">float</span> newHeight)
 {
-    <span style="color:#66d9ef">if</span> (source == <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
-
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> memory = <span style="color:#66d9ef">new</span> InMemoryRandomAccessStream())
-    {
-        <span style="color:#66d9ef">var</span> encoder = <span style="color:#66d9ef">await</span> BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, memory);
-        encoder.SetSoftwareBitmap(source);
-        <span style="color:#66d9ef">await</span> encoder.FlushAsync();
-
-        <span style="color:#66d9ef">var</span> decoder = <span style="color:#66d9ef">await</span> BitmapDecoder.CreateAsync(memory);
-
-        <span style="color:#66d9ef">var</span> transform = <span style="color:#66d9ef">new</span> BitmapTransform()
-        {
-            ScaledHeight = (<span style="color:#66d9ef">uint</span>)newHeight,
-            ScaledWidth = (<span style="color:#66d9ef">uint</span>)newWidth,
-            InterpolationMode = BitmapInterpolationMode.Fant,
-        };
-
-        <span style="color:#66d9ef">var</span> dest = <span style="color:#66d9ef">await</span> decoder.GetSoftwareBitmapAsync(
-            BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied, 
-            transform, 
-            ExifOrientationMode.IgnoreExifOrientation, ColorManagementMode.DoNotColorManage
-        );
-
-        <span style="color:#66d9ef">return</span> dest;
-    }
+<span class="synStatement">if</span> (source == <span class="synConstant">null</span>) <span class="synStatement">return</span> <span class="synConstant">null</span>;
+<p><span class="synStatement">using</span> (var memory = <span class="synStatement">new</span> InMemoryRandomAccessStream())
+{
+var encoder = await BitmapEncoder.CreateAsync(BitmapEncoder.PngEncoderId, memory);
+encoder.SetSoftwareBitmap(source);
+await encoder.FlushAsync();</p>
+<p>var decoder = await BitmapDecoder.CreateAsync(memory);</p>
+<p>var transform = <span class="synStatement">new</span> BitmapTransform()
+{
+ScaledHeight = (<span class="synType">uint</span>)newHeight,
+ScaledWidth = (<span class="synType">uint</span>)newWidth,
+InterpolationMode = BitmapInterpolationMode.Fant,
+};</p>
+<p>var dest = await decoder.GetSoftwareBitmapAsync(
+BitmapPixelFormat.Bgra8, BitmapAlphaMode.Premultiplied,
+transform,
+ExifOrientationMode.IgnoreExifOrientation, ColorManagementMode.DoNotColorManage
+);</p>
+<p><span class="synStatement">return</span> dest;
 }
-
-</code></pre></div><p>これも問題なく動いたが、どうも WrietableBitmap バージョンと比べると動作が遅い。Encoder/Decorder の生成にかなりコストがかかるようだ。となると、そもそも Encoder/Decorder は毎回生成せず、使いまわしたほうが良いのかもしれない（拡張メソッドにするのもあまりよくない、もしくは拡張メソッドに Encoder を渡すようにする）。とりあえず、これで基本的な使い方はわかったような気がするので、画像の回転などは簡単に作れそう（Transform するだけ）。作るうちにペン対応なんかもやりだして、なかなか完成しないけれど、開発中のアプリはなかなかよく動いており、「ブログ、また書こうかな」っていう気がわいてきた。</p>
+}
+</pre><p>これも問題なく動いたが、どうも WrietableBitmap バージョンと比べると動作が遅い。Encoder/Decorder の生成にかなりコストがかかるようだ。となると、そもそも Encoder/Decorder は毎回生成せず、使いまわしたほうが良いのかもしれない（拡張メソッドにするのもあまりよくない、もしくは拡張メソッドに Encoder を渡すようにする）。</p><p>とりあえず、これで基本的な使い方はわかったような気がするので、画像の回転などは簡単に作れそう（Transform するだけ）。作るうちにペン対応なんかもやりだして、なかなか完成しないけれど、開発中のアプリはなかなかよく動いており、「ブログ、また書こうかな」っていう気がわいてきた。</p></p>
 </div>
-
 
     <footer>
         
+        
+            <div class="alert alert-warning" role="alert">
+                <strong>注意</strong> この記事は はてなブログ からのインポートしましたが、まだメンテナンスが終わっていないため、デザインが崩れている可能性があります。読みにくい場合やテキストに欠損がある場合は <a href="https://daruyanagi.hatenablog.com/entry/2020/01/06/172012">こちら</a> を参照してください。
+            </div>
         
 
         
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/01/06/172012.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/30</time> 
+                最終更新日：<time>2020/01/06</time> 
             </p>
         
     </footer>
@@ -252,7 +243,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

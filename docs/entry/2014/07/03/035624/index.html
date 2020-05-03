@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：ルビを振るためのヘルパーを作ってみる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="りあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。 # ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &amp;lt;ruby&gt;&amp;lt;rb&gt" />
+    <meta name="og:description"   property="og:description" content="とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。 # ~/Ruby.cshtml @helper GetHtml(string text, string ruby){ &lt;ruby&gt;&lt;rb&gt;@text&" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/03/035624/" />
@@ -86,69 +88,52 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140703034425.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140703034425.png" alt="f:id:daruyanagi:20140703034425p:plain" title="f:id:daruyanagi:20140703034425p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/Ruby.cshtml
+<p>@helper GetHtml(<span class="synType">string</span> text, <span class="synType">string</span> ruby){
+&lt;ruby&gt;&lt;rb&gt;@text&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;@ruby&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;
+}
+</pre><p>使い方はこんな感じ .cshtml の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/Test.cshtml
 
-<p>りあえずオーソドックスに App_Code フォルダ以下に Ruby.cshtml を作ってこんな感じに記述。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/Ruby.cshtml
+@{
 
-@helper GetHtml(<span style="color:#66d9ef">string</span> text, <span style="color:#66d9ef">string</span> ruby){
-    &amp;lt;ruby&gt;&amp;lt;rb&gt;@text&amp;lt;/rb&gt;&amp;lt;rp&gt;<span style="color:#960050;background-color:#1e0010">（</span>&amp;lt;/rp&gt;&amp;lt;rt&gt;@ruby&amp;lt;/rt&gt;&amp;lt;rp&gt;<span style="color:#960050;background-color:#1e0010">）</span>&amp;lt;/rp&gt;&amp;lt;/ruby&gt;
 }
 
-<span style="color:#960050;background-color:#1e0010">```使い方はこんな感じ</span> .cshtml <span style="color:#960050;background-color:#1e0010">の名前がそのまま静的クラスの名前になっていて、定義したヘルパー関数が呼べる。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> ~/Test.cshtml
+&lt;!DOCTYPE html&gt;
 
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    
-}
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @Ruby.GetHtml(<span style="color:#e6db74">&#34;柳 英俊&#34;</span>, <span style="color:#e6db74">&#34;やなぎ ひでとし&#34;</span>)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div><figure>
-    <img src="/images/20140703034801.png"/> 
-</figure>
-
-<p>※見やすいように拡大してある）自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。</p>
+&lt;html lang=<span class="synConstant">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@Ruby.GetHtml(<span class="synConstant">&quot;柳 英俊&quot;</span>, <span class="synConstant">&quot;やなぎ ひでとし&quot;</span>)
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140703034801.png" alt="f:id:daruyanagi:20140703034801p:plain" title="f:id:daruyanagi:20140703034801p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（※見やすいように拡大してある）</p><p>自分はルビのタグなんか覚えるの面倒だし、ましてやルビタグが解釈できない Firefox のことまで考えてコーディングするのは面倒なので、こういうヘルパーを作るのが好み。</p>
 <div class="section">
-    ### ちょっとハッテン
-    ```cs
-# ~/App_Code/HtmlHelperExtensions.cs
-<p>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
-using System.Web.WebPages.Html;</p>
-<p>public static class HtmlHelperExtenstion
+<h3>ちょっとハッテン</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/HtmlHelperExtensions.cs
+<p><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Web;
+<span class="synStatement">using</span> System.Web.WebPages.Html;</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> HtmlHelperExtenstion
 {
-public static IHtmlString Ruby(this HtmlHelper helper, string text, string ruby)
+<span class="synType">public</span> <span class="synType">static</span> IHtmlString Ruby(<span class="synStatement">this</span> HtmlHelper helper, <span class="synType">string</span> text, <span class="synType">string</span> ruby)
 {
-return new HtmlString(string.Format(
-&ldquo;<ruby><rb>{0}</rb><rp>（</rp><rt>{1}</rt><rp>）</rp></ruby>&rdquo;,
+<span class="synStatement">return</span> <span class="synStatement">new</span> HtmlString(<span class="synType">string</span>.Format(
+<span class="synConstant">&quot;&lt;ruby&gt;&lt;rb&gt;{0}&lt;/rb&gt;&lt;rp&gt;（&lt;/rp&gt;&lt;rt&gt;{1}&lt;/rt&gt;&lt;rp&gt;）&lt;/rp&gt;&lt;/ruby&gt;&quot;</span>,
 text, ruby
 ));
 }
-}</p>
-<pre><code class="language-こうやって" data-lang="こうやって">```cs
-@Html.Ruby(&quot;柳 英俊&quot;, &quot;やなぎ ひでとし&quot;)
-
-```で同様のことができるようになる。
-
-&lt;/div&gt;
-
-</code></pre>
+}
+</pre><p>こうやって HtmlHelper の拡張メソッドとして定義しておけば</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@Html.Ruby(<span class="synConstant">&quot;柳 英俊&quot;</span>, <span class="synConstant">&quot;やなぎ ひでとし&quot;</span>)
+</pre><p>で同様のことができるようになる。</p>
+</div>
 
     <footer>
         
@@ -162,7 +147,7 @@ text, ruby
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/03/035624.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/03</time> 
             </p>
         
     </footer>
@@ -214,7 +199,16 @@ text, ruby
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

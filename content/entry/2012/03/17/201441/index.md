@@ -1,0 +1,12 @@
+---
+date: 2012-03-17T20:14:41.0000000
+draft: false
+title: "戸田競艇場に 15,000 円預けてきた ( ﾟдﾟ)､ﾍﾟｯ"
+tags: []
+eyecatch: 
+---
+<p><img src="20120317163118.jpg" alt="f:id:daruyanagi:20120317163118j:plain" title="f:id:daruyanagi:20120317163118j:plain" class="hatena-fotolife"></p><p>戸田競艇まで、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C1%ED%CD%FD%C2%E7%BF%C3%C7%D5">総理大臣杯</a>競走を観に行った。</p><p><img src="20120317122116.jpg" alt="f:id:daruyanagi:20120317122116j:plain" title="f:id:daruyanagi:20120317122116j:plain" class="hatena-fotolife"></p><p>カツを食って願掛けしたにもかかわらず、無残にも敗北した<a href="#f1" name="fn1" title="すべては濱野谷憲吾のせいである！">*1</a>。寒いなか出張ってきたのに、ついていない。ちょっくらカネ稼いで、帰りにアキバで新しい <a class="keyword" href="http://d.hatena.ne.jp/keyword/iPad">iPad</a> を買うつもりだったのだけど、その計画も潰えた。</p><p>まぁ、それはどうでもいい。済んだことだ。</p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%B8%CD%C5%C4%B6%A5%C4%FA%BE%EC">戸田競艇場</a>で困ったのは、周りにはコンビニがないこと。途中でコンビニでお金を補充したかったのだけど……場内にあるりそな銀行の ATM では<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B8%A5%E3%A5%D1%A5%F3%A5%CD%A5%C3%A5%C8%B6%E4%B9%D4">ジャパンネット銀行</a>のお金下ろせないし、所持金5,000円で途方にくれていた。</p><p>でも、わしはテレボート（インターネットで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BD%AE%B7%F4">舟券</a>が買えるサービス）の会員だったんだよね！　<a class="keyword" href="http://d.hatena.ne.jp/keyword/iPhone">iPhone</a> アプリで<a class="keyword" href="http://d.hatena.ne.jp/keyword/%BD%AE%B7%F4">舟券</a>が買えた。これは便利。ジャパンネットバンクからお金をチャージできるしね。そのおかげでギズが開いたとも言えるけど……！　競艇場にはあんまり大金を持って行きたくない<a href="#f2" name="fn2" title="昔よりはマシだろうけどやっぱりスリとか心配">*2</a>ので、こういうアプリは現場でも活用していきたい。アプリを起動するごとにログインが必要なのはちょっとメンドクサイけど。</p><p><img src="20120317200817.png" alt="f:id:daruyanagi:20120317200817p:plain" title="f:id:daruyanagi:20120317200817p:plain" class="hatena-fotolife"></p><p>今度は桐生か<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CA%BF%CF%C2%C5%E7">平和島</a>あたりでリベンジするつもり。お金は預けただけだからな ( ｰ`дｰ´)ｷﾘｯ</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">すべては<a class="keyword" href="http://d.hatena.ne.jp/keyword/%DF%C0%CC%EE%C3%AB%B7%FB%B8%E3">濱野谷憲吾</a>のせいである！</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">昔よりはマシだろうけどやっぱりスリとか心配</span></p>
+</div>

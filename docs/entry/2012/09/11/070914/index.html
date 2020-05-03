@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="DummyImage 1.0.0" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ダミーイメージがもらえなくて激怒したので WebMatrix でスマートに解決してみたけど一部激怒した - だるろぐ で作成したヘルパーを NuGet として公開しました。htt" />
+    <meta name="og:description"   property="og:description" content="&#x30C0;&#x30DF;&#x30FC;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x304C;&#x3082;&#x3089;&#x3048;&#x306A;&#x304F;&#x3066;&#x6FC0;&#x6012;&#x3057;&#x305F;&#x306E;&#x3067; WebMatrix &#x3067;&#x30B9;&#x30DE;&#x30FC;&#x30C8;&#x306B;&#x89E3;&#x6C7A;&#x3057;&#x3066;&#x307F;&#x305F;&#x3051;&#x3069;&#x4E00;&#x90E8;&#x6FC0;&#x6012;&#x3057;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050; で作成したヘルパーを NuGet として公開しました。 https://nuget.org/packages/DummyImage 使い方は簡単！ // 幅だけ指定すると 16:9 になります @DummyImage.GetHtml(300) // 好みの属性を与えられます @DummyImage.GetHtml(300, attrs: new { Alt = &quot;Alt" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/11/070914/" />
@@ -86,230 +88,212 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/09/05/050157">ダミーイメージがもらえなくて激怒したので WebMatrix でスマートに解決してみたけど一部激怒した - だるろぐ</a> で作成したヘルパーを NuGet として公開しました。<a href="https://nuget.org/packages/DummyImage"><a href="https://nuget.org/packages/DummyImage">https://nuget.org/packages/DummyImage</a></a>使い方は簡単！</p>
-<figure>
-    <img src="/images/20120911065659.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// 幅だけ指定すると 16:9 になります
-</span><span style="color:#75715e"></span>@DummyImage.GetHtml(<span style="color:#ae81ff">300</span>) 
-
-<span style="color:#75715e">// 好みの属性を与えられます
-</span><span style="color:#75715e"></span>@DummyImage.GetHtml(<span style="color:#ae81ff">300</span>, attrs: <span style="color:#66d9ef">new</span> { Alt = <span style="color:#e6db74">&#34;Alt Txet&#34;</span>, })
-
-<span style="color:#75715e">// あとは Intellisense でもみてカスタマイズしてください
-</span><span style="color:#75715e"></span>@DummyImage.GetHtml(
-   <span style="color:#ae81ff">300</span>, backBrush: System.Drawing.Brushes.AliceBlue);
-
-<span style="color:#960050;background-color:#1e0010">```あと、各種広告や解像度で一般的なサイズをキーワードで指定することもできます。</span>
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">####</span> Ad Sizes
-    
-&lt;table&gt;
-    &lt;tbody&gt;&lt;tr&gt;
-    &lt;th&gt;Keyword	&lt;/th&gt;
-    &lt;th&gt;Shortcuts	&lt;/th&gt;
-    &lt;th&gt;Dimensions	&lt;/th&gt;
-    &lt;th&gt;Regular Expression&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;mediumrectangle	&lt;/td&gt;
-    &lt;td&gt;medrect	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">250</span>	&lt;/td&gt;
-    &lt;td&gt;^(med)<span style="color:#960050;background-color:#1e0010">\</span>w+(rec<span style="color:#960050;background-color:#1e0010">\</span>w+)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;squarepopup	&lt;/td&gt;
-    &lt;td&gt;sqrpop	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">250</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">250</span>	&lt;/td&gt;
-    &lt;td&gt;^(s<span style="color:#960050;background-color:#1e0010">\</span>w+pop)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;verticalrectangle	&lt;/td&gt;
-    &lt;td&gt;vertrec	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">240</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">400</span>	&lt;/td&gt;
-    &lt;td&gt;^(ver)<span style="color:#960050;background-color:#1e0010">\</span>w+(rec)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;largerectangle	&lt;/td&gt;
-    &lt;td&gt;lrgrec	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">336</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">280</span>	&lt;/td&gt;
-    &lt;td&gt;^(large or lrg)(rec)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;rectangle	&lt;/td&gt;
-    &lt;td&gt;rec	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">180</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">150</span>	&lt;/td&gt;
-    &lt;td&gt; ^(rec)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;popunder	&lt;/td&gt;
-    &lt;td&gt;pop	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">720</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">300</span>	&lt;/td&gt;
-    &lt;td&gt;^(pop)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;fullbanner	&lt;/td&gt;
-    &lt;td&gt;fullban	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">468</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">60</span>	&lt;/td&gt;
-    &lt;td&gt;^(f<span style="color:#960050;background-color:#1e0010">\</span>w+ban)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;halfbanner	&lt;/td&gt;
-    &lt;td&gt;halfban	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">234</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">60</span>	&lt;/td&gt;
-    &lt;td&gt;^(h<span style="color:#960050;background-color:#1e0010">\</span>w+ban)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;microbar	&lt;/td&gt;
-    &lt;td&gt;mibar	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">88</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">31</span>	&lt;/td&gt;
-    &lt;td&gt;^(m<span style="color:#960050;background-color:#1e0010">\</span>w+bar)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;button1	&lt;/td&gt;
-    &lt;td&gt;but1	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">120</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">90</span>	&lt;/td&gt;
-    &lt;td&gt;^(b<span style="color:#960050;background-color:#1e0010">\</span>w+<span style="color:#ae81ff">1</span>)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;button2	&lt;/td&gt;
-    &lt;td&gt;but2	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">120</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">60</span>	&lt;/td&gt;
-    &lt;td&gt;^(b<span style="color:#960050;background-color:#1e0010">\</span>w+<span style="color:#ae81ff">2</span>)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;verticalbanner	&lt;/td&gt;
-    &lt;td&gt;vertban	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">120</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">240</span>	&lt;/td&gt;
-    &lt;td&gt;^(ver<span style="color:#960050;background-color:#1e0010">\</span>w+ban)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;squarebutton	&lt;/td&gt;
-    &lt;td&gt;sqrbut	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">125</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">125</span>	&lt;/td&gt;
-    &lt;td&gt;^(s<span style="color:#960050;background-color:#1e0010">\</span>w+but)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;leaderboard	&lt;/td&gt;
-    &lt;td&gt;leadbrd	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">728</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">90</span>	&lt;/td&gt;
-    &lt;td&gt;^(lea<span style="color:#960050;background-color:#1e0010">\</span>w+rd)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wideskyscraper	&lt;/td&gt;
-    &lt;td&gt;wiskyscrpr	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">160</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">600</span>	&lt;/td&gt;
-    &lt;td&gt;^(w<span style="color:#960050;background-color:#1e0010">\</span>w+sk<span style="color:#960050;background-color:#1e0010">\</span>w+r)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;skyscraper	&lt;/td&gt;
-    &lt;td&gt;skyscrpr	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">120</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">600</span>	&lt;/td&gt;
-    &lt;td&gt;^(sk<span style="color:#960050;background-color:#1e0010">\</span>w+r)&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;halfpage	&lt;/td&gt;
-    &lt;td&gt;hpge	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">300</span><span style="color:#960050;background-color:#1e0010">×</span><span style="color:#ae81ff">600</span>	&lt;/td&gt;
-    &lt;td&gt;^(h<span style="color:#960050;background-color:#1e0010">\</span>w+g)&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;<span style="color:#960050;background-color:#1e0010">第一引数に</span> <span style="color:#66d9ef">string</span> <span style="color:#960050;background-color:#1e0010">をとるオーバーロードがあるので、それにつっこんでください。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-@DummyImage.GetHtml(<span style="color:#e6db74">&#34;midrect&#34;</span>)
-
-@DummyImage.GetHtml(<span style="color:#e6db74">&#34;skyscraper&#34;</span>)　<span style="color:#75715e">// &amp;lt;- テキストが縦に……
-</span><span style="color:#75715e"></span>
-<span style="color:#960050;background-color:#1e0010">```さすがに正規表現には対応していません。</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">####</span> Screen Standards
-    
-&lt;table&gt;
-    &lt;tbody&gt;&lt;tr&gt;
-    &lt;th&gt;Keyword	&lt;/th&gt;
-    &lt;th&gt;Dimensions&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;cga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">320</span>x200&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;qvga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">320</span>x240&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;vga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">640</span>x480&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wvga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">800</span>x480&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;svga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">800</span>x480&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wsvga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1024</span>x600&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;xga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1024</span>x768&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wxga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1280</span>x800&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wsxga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1440</span>x900&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wuxga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1920</span>x1200&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;wqxga	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">2560</span>x1600&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">####</span> Video Standards
-    
-&lt;table&gt;
-    &lt;tbody&gt;&lt;tr&gt;
-    &lt;th&gt;Keyword	&lt;/th&gt;
-    &lt;th&gt;Dimensions&lt;/th&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;ntsc	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">720</span>x480&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;pal	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">768</span>x576&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;hd720	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1280</span>x720&lt;/td&gt;
-    &lt;/tr&gt;
-    &lt;tr&gt;
-    &lt;td&gt;hd1080	&lt;/td&gt;
-    &lt;td&gt;<span style="color:#ae81ff">1920</span>x1080&lt;/td&gt;
-    &lt;/tr&gt;
-&lt;/tbody&gt;&lt;/table&gt;<span style="color:#960050;background-color:#1e0010">ちなみに、大文字と小文字は区別しないと思います。作ってから思ったけど、</span> <span style="color:#66d9ef">enum</span> <span style="color:#960050;background-color:#1e0010">にして</span> Intellisense <span style="color:#960050;background-color:#1e0010">を利かせるべきだったと後悔。こんなん覚えられへん……次のバージョンをだす気になったらつけよう。あ、一つバグを見つけた</span>&lt;a href=<span style="color:#e6db74">&#34;#f-325cefa4&#34;</span> name=<span style="color:#e6db74">&#34;fn-325cefa4&#34;</span> title=<span style="color:#e6db74">&#34;キーワードを指定したとき、 text 引数がダミーイメージに反映されない&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。また近いうちに次のバージョンを出すと思います。</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-325cefa4&#34;</span> name=<span style="color:#e6db74">&#34;f-325cefa4&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">キーワードを指定したとき、</span> text <span style="color:#960050;background-color:#1e0010">引数がダミーイメージに反映されない</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/09/05/050157">&#x30C0;&#x30DF;&#x30FC;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x304C;&#x3082;&#x3089;&#x3048;&#x306A;&#x304F;&#x3066;&#x6FC0;&#x6012;&#x3057;&#x305F;&#x306E;&#x3067; WebMatrix &#x3067;&#x30B9;&#x30DE;&#x30FC;&#x30C8;&#x306B;&#x89E3;&#x6C7A;&#x3057;&#x3066;&#x307F;&#x305F;&#x3051;&#x3069;&#x4E00;&#x90E8;&#x6FC0;&#x6012;&#x3057;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で作成したヘルパーを NuGet として公開しました。</p><p><a href="https://nuget.org/packages/DummyImage">https://nuget.org/packages/DummyImage</a></p><p>使い方は簡単！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120911065659.png" alt="f:id:daruyanagi:20120911065659p:plain" title="f:id:daruyanagi:20120911065659p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// 幅だけ指定すると 16:9 になります</span>
+@DummyImage.GetHtml(<span class="synConstant">300</span>)
+<p><span class="synComment">// 好みの属性を与えられます</span>
+@DummyImage.GetHtml(<span class="synConstant">300</span>, attrs: <span class="synStatement">new</span> { Alt = <span class="synConstant">&quot;Alt Txet&quot;</span>, })</p>
+<p><span class="synComment">// あとは Intellisense でもみてカスタマイズしてください</span>
+@DummyImage.GetHtml(
+<span class="synConstant">300</span>, backBrush: System.Drawing.Brushes.AliceBlue);
+</pre><p>あと、各種広告や解像度で一般的なサイズをキーワードで指定することもできます。</p></p>
+<div class="section">
+<h4>Ad Sizes</h4>
+<table>
+<tr>
+<th>Keyword	</th>
+<th>Shortcuts	</th>
+<th>Dimensions	</th>
+<th>Regular Expression</th>
+</tr>
+<tr>
+<td>mediumrectangle	</td>
+<td>medrect	</td>
+<td>300×250	</td>
+<td>^(med)\w+(rec\w+)</td>
+</tr>
+<tr>
+<td>squarepopup	</td>
+<td>sqrpop	</td>
+<td>250×250	</td>
+<td>^(s\w+pop)</td>
+</tr>
+<tr>
+<td>verticalrectangle	</td>
+<td>vertrec	</td>
+<td>240×400	</td>
+<td>^(ver)\w+(rec)</td>
+</tr>
+<tr>
+<td>largerectangle	</td>
+<td>lrgrec	</td>
+<td>336×280	</td>
+<td>^(large or lrg)(rec)</td>
+</tr>
+<tr>
+<td>rectangle	</td>
+<td>rec	</td>
+<td>180×150	</td>
+<td> ^(rec)</td>
+</tr>
+<tr>
+<td>popunder	</td>
+<td>pop	</td>
+<td>720×300	</td>
+<td>^(pop)</td>
+</tr>
+<tr>
+<td>fullbanner	</td>
+<td>fullban	</td>
+<td>468×60	</td>
+<td>^(f\w+ban)</td>
+</tr>
+<tr>
+<td>halfbanner	</td>
+<td>halfban	</td>
+<td>234×60	</td>
+<td>^(h\w+ban)</td>
+</tr>
+<tr>
+<td>microbar	</td>
+<td>mibar	</td>
+<td>88×31	</td>
+<td>^(m\w+bar)</td>
+</tr>
+<tr>
+<td>button1	</td>
+<td>but1	</td>
+<td>120×90	</td>
+<td>^(b\w+1)</td>
+</tr>
+<tr>
+<td>button2	</td>
+<td>but2	</td>
+<td>120×60	</td>
+<td>^(b\w+2)</td>
+</tr>
+<tr>
+<td>verticalbanner	</td>
+<td>vertban	</td>
+<td>120×240	</td>
+<td>^(ver\w+ban)</td>
+</tr>
+<tr>
+<td>squarebutton	</td>
+<td>sqrbut	</td>
+<td>125×125	</td>
+<td>^(s\w+but)</td>
+</tr>
+<tr>
+<td>leaderboard	</td>
+<td>leadbrd	</td>
+<td>728×90	</td>
+<td>^(lea\w+rd)</td>
+</tr>
+<tr>
+<td>wideskyscraper	</td>
+<td>wiskyscrpr	</td>
+<td>160×600	</td>
+<td>^(w\w+sk\w+r)</td>
+</tr>
+<tr>
+<td>skyscraper	</td>
+<td>skyscrpr	</td>
+<td>120×600	</td>
+<td>^(sk\w+r)</td>
+</tr>
+<tr>
+<td>halfpage	</td>
+<td>hpge	</td>
+<td>300×600	</td>
+<td>^(h\w+g)</td>
+</tr>
+</table><p>第一引数に string をとるオーバーロードがあるので、それにつっこんでください。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@DummyImage.GetHtml(<span class="synConstant">&quot;midrect&quot;</span>)
+<p>@DummyImage.GetHtml(<span class="synConstant">&quot;skyscraper&quot;</span>)　<span class="synComment">// &lt;- テキストが縦に……</span>
+</pre><p>さすがに正規表現には対応していません。</p></p>
+</div>
+<div class="section">
+<h4>Screen Standards</h4>
+<table>
+<tr>
+<th>Keyword	</th>
+<th>Dimensions</th>
+</tr>
+<tr>
+<td>cga	</td>
+<td>320x200</td>
+</tr>
+<tr>
+<td>qvga	</td>
+<td>320x240</td>
+</tr>
+<tr>
+<td>vga	</td>
+<td>640x480</td>
+</tr>
+<tr>
+<td>wvga	</td>
+<td>800x480</td>
+</tr>
+<tr>
+<td>svga	</td>
+<td>800x480</td>
+</tr>
+<tr>
+<td>wsvga	</td>
+<td>1024x600</td>
+</tr>
+<tr>
+<td>xga	</td>
+<td>1024x768</td>
+</tr>
+<tr>
+<td>wxga	</td>
+<td>1280x800</td>
+</tr>
+<tr>
+<td>wsxga	</td>
+<td>1440x900</td>
+</tr>
+<tr>
+<td>wuxga	</td>
+<td>1920x1200</td>
+</tr>
+<tr>
+<td>wqxga	</td>
+<td>2560x1600</td>
+</tr>
+</table>
+</div>
+<div class="section">
+<h4>Video Standards</h4>
+<table>
+<tr>
+<th>Keyword	</th>
+<th>Dimensions</th>
+</tr>
+<tr>
+<td>ntsc	</td>
+<td>720x480</td>
+</tr>
+<tr>
+<td>pal	</td>
+<td>768x576</td>
+</tr>
+<tr>
+<td>hd720	</td>
+<td>1280x720</td>
+</tr>
+<tr>
+<td>hd1080	</td>
+<td>1920x1080</td>
+</tr>
+</table><p>ちなみに、大文字と小文字は区別しないと思います。</p><p>作ってから思ったけど、 enum にして Intellisense を利かせるべきだったと後悔。こんなん覚えられへん……次のバージョンをだす気になったらつけよう。あ、一つバグを見つけた<a href="#f-325cefa4" name="fn-325cefa4" title="キーワードを指定したとき、 text 引数がダミーイメージに反映されない">*1</a>。また近いうちに次のバージョンを出すと思います。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-325cefa4" name="f-325cefa4" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">キーワードを指定したとき、 text 引数がダミーイメージに反映されない</span></p>
+</div>
 
     <footer>
         
@@ -323,7 +307,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/11/070914.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/11</time> 
             </p>
         
     </footer>
@@ -375,7 +359,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Google Chart を使った数式ツールを作ってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="御飯食べた後にさくっと作ってみた（参考：WebMatrix で数式を表現する（１） - だるろぐ）。自然演繹のブログの続きを書こうと思ったのだけど" />
+    <meta name="og:description"   property="og:description" content="晩御飯食べた後にさくっと作ってみた（参考：WebMatrix &#x3067;&#x6570;&#x5F0F;&#x3092;&#x8868;&#x73FE;&#x3059;&#x308B;&#xFF08;&#xFF11;&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;）。自然演繹" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/14/221302/" />
@@ -86,11 +88,7 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130114215958.png"/> 
-</figure>
-
-<p>御飯食べた後にさくっと作ってみた（参考：<a href="https://blog.daruyanagi.jp/entry/2012/11/16/042840">WebMatrix で数式を表現する（１） - だるろぐ</a>）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130114215958.png" alt="f:id:daruyanagi:20130114215958p:plain" title="f:id:daruyanagi:20130114215958p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>晩御飯食べた後にさくっと作ってみた（参考：<a href="https://blog.daruyanagi.jp/entry/2012/11/16/042840">WebMatrix &#x3067;&#x6570;&#x5F0F;&#x3092;&#x8868;&#x73FE;&#x3059;&#x308B;&#xFF08;&#xFF11;&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）。自然演繹のブログの続きを書こうと思ったのだけど、プレビューできないと数式が書けない人なので……。</p><p>でも、これ、ネットワークがつながっていないとだめなのはともかく、日本語が化けてしまうんだよなぁ。まぁ、英語使えばいい。</p>
 <ul>
 <li>仮定 "Assumption" (A)</li>
 <li>モーダスポネンス "Modus Ponendo Ponens" (MPP)</li>
@@ -101,22 +99,19 @@
 <li>∨-導入 "∨-introduction" (∨I)</li>
 <li>∨-除去 "∨-elimination" (∨E)</li>
 <li>背理法 "Ad Absurdum" (RAA)</li>
-</ul>これぐらいしかないんだから覚えられるはず (;´Д｀)
-```cs
-private void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e)
+</ul><p>これぐらいしかないんだから覚えられるはず (;´Д｀)</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">void</span> FormulaText_TextChanged_1(<span class="synType">object</span> sender, TextChangedEventArgs e)
 {
-    const string API = "http://chart.apis.google.com/chart?cht={0}&amp;chl={1}";
-    var cht = "tx";
-    var chl = HttpUtility.UrlEncode(FormulaText.Text);
-    var uri = new Uri(string.Format(API, cht, chl));
-<pre><code>FormulaImage.Source = new BitmapImage(uri);
-</code></pre>
-<p>}</p>
-<pre><code class="language-あと、なんでか知らんけど、ViewModel" data-lang="あと、なんでか知らんけど、ViewModel">&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-2b762d13&quot; name=&quot;f-2b762d13&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;たぶん、久しぶりに書いたのでどこか間違ってるんだろう&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+<span class="synType">const</span> <span class="synType">string</span> API = <span class="synConstant">&quot;http://chart.apis.google.com/chart?cht={0}&amp;chl={1}&quot;</span>;
+var cht = <span class="synConstant">&quot;tx&quot;</span>;
+var chl = HttpUtility.UrlEncode(FormulaText.Text);
+var uri = <span class="synStatement">new</span> Uri(<span class="synType">string</span>.Format(API, cht, chl));
+<p>FormulaImage.Source = <span class="synStatement">new</span> BitmapImage(uri);
+}
+</pre><p>あと、なんでか知らんけど、ViewModel がバインディングされないのでコードビハインドで書いたけど<a href="#f-2b762d13" name="fn-2b762d13" title="たぶん、久しぶりに書いたのでどこか間違ってるんだろう">*1</a>、まぁ、これぐらいだとそっちの方が早かったり。</p></p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-2b762d13" name="f-2b762d13" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">たぶん、久しぶりに書いたのでどこか間違ってるんだろう</span></p>
+</div>
 
     <footer>
         
@@ -130,7 +125,7 @@ private void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/14/221302.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/14</time> 
             </p>
         
     </footer>
@@ -182,7 +177,16 @@ private void FormulaText_TextChanged_1(object sender, TextChangedEventArgs e)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

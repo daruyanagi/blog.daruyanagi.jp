@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2：RESTful？な Web アプリケーション （5）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 2：RESTful？な Web アプリケーション （4） - だるろぐ の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプル" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; &#xFF08;4&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。 http://daruyanagi-sample1.azurewebsites.net/Posts モーダ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/24/073816/" />
@@ -86,415 +88,363 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/13/094453">WebMatrix 2：RESTful？な Web アプリケーション （4） - だるろぐ</a> の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/13/094453">WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; &#xFF08;4&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。結局こんな感じになったというのを書くのを忘れていた。実際に動作するサンプルは、Windows Azure に置いておいた。</p>
 <ul>
 <li><a href="http://daruyanagi-sample1.azurewebsites.net/Posts">http://daruyanagi-sample1.azurewebsites.net/Posts</a></li>
-</ul>モーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は <a href="https://blog.daruyanagi.jp/entry/2013/01/23/053227">WebMatrix でほかの Web サイトのデザインをパク……じゃなくて、参考にさせていただく - だるろぐ</a> を参照。
+</ul><p>モーダルダイアログの表示に pointer-events というのを使ったのだけど、実はこれ、IE/Opera では使えないらしい。興味のある人は Mozilla Firefox か Google Chrome で試してほしいかな。デザインの過程は <a href="https://blog.daruyanagi.jp/entry/2013/01/23/053227">WebMatrix &#x3067;&#x307B;&#x304B;&#x306E; Web &#x30B5;&#x30A4;&#x30C8;&#x306E;&#x30C7;&#x30B6;&#x30A4;&#x30F3;&#x3092;&#x30D1;&#x30AF;&hellip;&hellip;&#x3058;&#x3083;&#x306A;&#x304F;&#x3066;&#x3001;&#x53C2;&#x8003;&#x306B;&#x3055;&#x305B;&#x3066;&#x3044;&#x305F;&#x3060;&#x304F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> を参照。</p>
 <div class="section">
-    ### データベースとのやり取り
-    ~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。
-```cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.WebPages;
-using WebMatrix.Data;
-<p>public class Post
+<h3>データベースとのやり取り</h3>
+<p>~/App_Code/Post.cs に書いておいた。一つのファイルにごちゃっと書いておけるのが ASP.NET Web Pages のお手軽なところだと思うけれど、まぁ、わけておいた方があとあとメンテナンスしやすそう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Web.WebPages;
+<span class="synStatement">using</span> WebMatrix.Data;
+<p><span class="synType">public</span> <span class="synType">class</span> Post
 {
-// ここら辺はテーブルの構造をそのまま定義
-public long Id { get; set; }
-public string Title { get; set; }
-public string Body { get; set; }
-public DateTime CreatedAt { get; set; }
-public DateTime UpdatedAt { get; set; }</p>
-<pre><code>public string Excerpt // 本文の一部だけを取得
-{
-    get
-    {
-        return Body.IsEmpty()
-            ? string.Empty
-            : string.Join(&quot;&quot;, Body.Take(40));
-    }
+<span class="synComment">// ここら辺はテーブルの構造をそのまま定義</span>
+<span class="synType">public</span> <span class="synType">long</span> Id { get; set; }
+<span class="synType">public</span> <span class="synType">string</span> Title { get; set; }
+<span class="synType">public</span> <span class="synType">string</span> Body { get; set; }
+<span class="synType">public</span> DateTime CreatedAt { get; set; }
+<span class="synType">public</span> DateTime UpdatedAt { get; set; }</p>
+<dl>
+<dt><span class="synType">public</span> <span class="synType">string</span> Excerpt <span class="synComment">// 本文の一部だけを取得</span></dt>
+<dt>{</dt>
+<dt><span class="synStatement">get</span></dt>
+<dt>{</dt>
+<dt><span class="synStatement">return</span> Body.IsEmpty()</dt>
+<dt>? <span class="synType">string</span>.Empty</dt>
+<dd><span class="synType">string</span>.Join(<span class="synConstant">&quot;&quot;</span>, Body.Take(<span class="synConstant">40</span>));
 }
-
-// クエリで受け取ったデータ（dynamic）から
-// Post オブジェクトを生成
-public Post(dynamic record)
+}</dd>
+</dl>
+<p><span class="synComment">// クエリで受け取ったデータ（dynamic）から</span>
+<span class="synComment">// Post オブジェクトを生成</span>
+<span class="synType">public</span> Post(dynamic record)
 {
-    Id = record.Id;
-    Title = record.Title;
-    Body = record.Body;
-    CreatedAt = record.CreatedAt;
-    UpdatedAt = record.UpdatedAt;
+Id = record.Id;
+Title = record.Title;
+Body = record.Body;
+CreatedAt = record.CreatedAt;
+UpdatedAt = record.UpdatedAt;
 }
-</code></pre>
-<p>}</p>
-<p>public static class PostRepository
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> PostRepository
 {
-public static IEnumerable&lt;Post&gt; List()
+<span class="synType">public</span> <span class="synType">static</span> IEnumerable&lt;Post&gt; List()
 {
-const string query = &ldquo;SELECT * FROM Post ORDER BY CreatedAt DESC&rdquo;;</p>
-<pre><code>    using (var db = Database.Open(&quot;db&quot;))
-    {
-        return db.Query(query).Select(_ =&gt; new Post(_));
-    }
+<span class="synType">const</span> <span class="synType">string</span> query = <span class="synConstant">&quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
+{
+<span class="synStatement">return</span> db.Query(query).Select(_ =&gt; <span class="synStatement">new</span> Post(_));
 }
-
-public static Post Find(long id)
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> Post Find(<span class="synType">long</span> id)
 {
-    const string query = &quot;SELECT * FROM Post WHERE Id=@0&quot;;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        return new Post(db.QuerySingle(query, id));
-    }
-}
-
-// タイトルでも検索できるように
-public static Post Find(string title)
+<span class="synType">const</span> <span class="synType">string</span> query = <span class="synConstant">&quot;SELECT * FROM Post WHERE Id=@0&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    const string query = &quot;SELECT * FROM Post WHERE Title=@0&quot;;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        return new Post(db.QuerySingle(query, title));
-    }
+<span class="synStatement">return</span> <span class="synStatement">new</span> Post(db.QuerySingle(query, id));
 }
-
-public static long Create(string title, string body)
+}</p>
+<p><span class="synComment">// タイトルでも検索できるように</span>
+<span class="synType">public</span> <span class="synType">static</span> Post Find(<span class="synType">string</span> title)
 {
-    const string query = &quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;
-                       + &quot;VALUES(@0, @1, @2, @3)&quot;;
-    var now = DateTime.Now;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, title, body, now, now);
-        // INSERT した列の Id を取得するのってこうやればいいらしい
-        var result = db.QueryValue(&quot;SELECT @@IDENTITY&quot;);
-        return Convert.ToInt64(result);
-    }
-}
-
-public static void Update(long id, string title, string body)
+<span class="synType">const</span> <span class="synType">string</span> query = <span class="synConstant">&quot;SELECT * FROM Post WHERE Title=@0&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    var query = &quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;;
-    var now = DateTime.Now;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, title, body, now, id);
-    }
+<span class="synStatement">return</span> <span class="synStatement">new</span> Post(db.QuerySingle(query, title));
 }
-
-public static void Delete(long id)
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">long</span> Create(<span class="synType">string</span> title, <span class="synType">string</span> body)
 {
-    var query = &quot;DELETE FROM Post WHERE Id=@0&quot;;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, id);
-    }
-}
-</code></pre>
-<p>}</p>
-<pre><code class="language-これで" data-lang="これで">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### メソッドに応じて異なるビューを呼び出す
-    ~/Posts.cshtml の中身。IIS はデフォルトで PUT/DELETE が使えないみたい。Web.config を書き換えてもいいのだけど、ここは _method = &quot;PUT&quot; がリクエストに含まれていたら PUT として処理することにした。
-```cs
-@using System.Reflection
-
-@try
+<span class="synType">const</span> <span class="synType">string</span> query = <span class="synConstant">&quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;</span></p>
+<ul>
+<li><span class="synConstant">&quot;VALUES(@0, @1, @2, @3)&quot;</span>;
+var now = DateTime.Now;</li>
+</ul>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    // POST で PUT/DELETE を代用
-    string method = Request.HttpMethod.ToUpper();
-    if (IsPost &amp;amp;&amp;amp; Request[&quot;_method&quot;] != null) 
-    {
-        method = Request[&quot;_method&quot;].ToUpper(); // Camelize() とか作っておくといいのかも
-    }
-
-    // パラメーターの型を解釈（なるべく long に、無理なものは string のまま）
-    var args = UrlData.Select&amp;lt;string, object&gt;(_ =&gt;
-    {
-        try { return long.Parse(_); } catch { return _; }
-    }).ToArray();
-
-    // メソッドの検索
-    MethodInfo method_info = this.GetType().GetMethod(
-        method,
-        args.Select(_ =&gt; _.GetType()).ToArray()
-    );
-
-    // 検索したメソッドを呼び出してビューをレンダリング
-    @method_info.Invoke(this, args);
+db.Query(query, title, body, now, now);
+<span class="synComment">// INSERT した列の Id を取得するのってこうやればいいらしい</span>
+var result = db.QueryValue(<span class="synConstant">&quot;SELECT @@IDENTITY&quot;</span>);
+<span class="synStatement">return</span> Convert.ToInt64(result);
 }
-catch (Exception e)
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Update(<span class="synType">long</span> id, <span class="synType">string</span> title, <span class="synType">string</span> body)
 {
-    throw new ApplicationException();
-}
-
-@functions // HelperResult を返せば、@... で呼び出してビューがレンダリングされる
+var query = <span class="synConstant">&quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;</span>;
+var now = DateTime.Now;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    private const string VIEW_POST_DETAIL = &quot;~/Views/Posts/_ShowPost.cshtml&quot;;
-    private const string VIEW_POST_ARCHIVE = &quot;~/Views/Posts/_ListPosts.cshtml&quot;;
-        
-    public HelperResult GET() // Camelize() すれば Get() で呼び出せるケド
-    {
-        var posts = PostRepository.List();
-        
-        switch (Request.ContentType) // JSON でも返せるように！
-        {
-            case &quot;application/json&quot;:
-                RenderJason(posts);
-                return null;
-            default:
-                return RenderPage(VIEW_POST_ARCHIVE, posts);
-        }
-    }
-
-    public HelperResult GET(long id)
-    {   
-        var post = PostRepository.Find(id);
-        CheckIfPostIsNull(post);
-        
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-                return RenderJason(post);
-            default:
-                return RenderPage(VIEW_POST_DETAIL, post);
-        }
-    }
-
-    public HelperResult GET(string title)
-    {
-        var post = PostRepository.Find(title);
-        CheckIfPostIsNull(post);
-                
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-                return RenderJason(post);
-            default:
-                return RenderPage(VIEW_POST_DETAIL, post);
-        }
-    }
-
-    public void POST()
-    {
-        var title = Request[&quot;Title&quot;];
-        var body = Request[&quot;Body&quot;];
-        var id = PostRepository.Create(title, body);
-
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-            default:
-                RenderJason(id);
-                break;
-        }
-    }
-
-    public void PUT(long id)
-    {
-        var title = Request[&quot;Title&quot;];
-        var body = Request[&quot;Body&quot;];
-        PostRepository.Update(id, title, body);
-
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-            default:
-                RenderJason(id);
-                break;
-        }
-    }
-
-    public void PUT(string title)
-    {
-        var post = PostRepository.Find(title);
-        CheckIfPostIsNull(post);
-        
-        var new_title = Request[&quot;Title&quot;];
-        var body = Request[&quot;Body&quot;];
-        PostRepository.Update(post.Id, new_title, body);
-
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-            default:
-                RenderJason(post.Id);
-                break;
-        }
-    }
-
-    public void DELETE(long id)
-    {
-        PostRepository.Delete(id);
-
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-            default:
-                RenderJason(id);
-                break;
-        }
-    }
-
-    public void DELETE(string title)
-    {
-        var post = PostRepository.Find(title);
-        CheckIfPostIsNull(post);
-        
-        PostRepository.Delete(post.Id);
-
-        switch (Request.ContentType)
-        {
-            case &quot;application/json&quot;:
-            default:
-                RenderJason(post.Id);
-                break;
-        }
-    }
+db.Query(query, title, body, now, id);
 }
-
-@functions
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Delete(<span class="synType">long</span> id)
 {
-    private HelperResult RenderJason(long id) // Id だけを JSON で返す
-    {
-        Response.Clear();
-        Response.ContentType = &quot;application/json&quot;;
-        Response.Write(string.Format(@&quot;{{ &quot;&quot;Id&quot;&quot;: &quot;&quot;{0}&quot;&quot; }}&quot;, id));
-        Response.End();
-        return null; // null を返すなら HelperResult 型にしなくてもいい気はする
-    }
-    
-    private HelperResult RenderJason(object post) // Post だの Posts だのを JSON で返す
-    {
-        Response.Clear();
-        Response.ContentType = &quot;application/json&quot;;
-        Response.Write(Json.Encode(post));
-        Response.End();
-        return null;
-    }
-    
-    private void CheckIfPostIsNull(Post post)
-    {
-        if (post == null)
-            throw new HttpException(404, &quot;Post is not found.&quot;);
-    }
+var query = <span class="synConstant">&quot;DELETE FROM Post WHERE Id=@0&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
+{
+db.Query(query, id);
 }
-
-</code></pre><figure>
-    <img src="/images/20130124072621.png"/> 
-</figure>
-
-<figure>
-    <img src="/images/20130124072619.png"/> 
-</figure>
-
-<p>ontent-Type によって応答が切り替わるようにしてみた。</p>
+}
+}
+</pre><p>これで List()、Find()、Create()、Update()、Delete() が使えるようになった。</p></p>
 </div>
 <div class="section">
-    ### ビュー
-    全部のっけても仕方ないので、~/Views/Posts/_ShowPost.cshtml" だけを。
-```html
-@{
-    var model = PageData.First().Value as Post; // もはやイディオムかな……
-    Page.Title = model.Title;
-    Page.PostId = model.Id;
-    Layout = "~/_SiteLayout.cshtml";
+<h3>メソッドに応じて異なるビューを呼び出す</h3>
+<p>~/Posts.cshtml の中身。IIS はデフォルトで PUT/DELETE が使えないみたい。Web.config を書き換えてもいいのだけど、ここは _method = "PUT" がリクエストに含まれていたら PUT として処理することにした。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Reflection
+<p>@<span class="synStatement">try</span>
+{
+<span class="synComment">// POST で PUT/DELETE を代用</span>
+<span class="synType">string</span> method = Request.HttpMethod.ToUpper();
+<span class="synStatement">if</span> (IsPost &amp;&amp; Request[<span class="synConstant">&quot;_method&quot;</span>] != <span class="synConstant">null</span>)
+{
+method = Request[<span class="synConstant">&quot;_method&quot;</span>].ToUpper(); <span class="synComment">// Camelize() とか作っておくといいのかも</span>
+}</p>
+<p><span class="synComment">// パラメーターの型を解釈（なるべく long に、無理なものは string のまま）</span>
+var args = UrlData.Select&lt;<span class="synType">string</span>, <span class="synType">object</span>&gt;(_ =&gt;
+{
+<span class="synStatement">try</span> { <span class="synStatement">return</span> <span class="synType">long</span>.Parse(_); } <span class="synStatement">catch</span> { <span class="synStatement">return</span> _; }
+}).ToArray();</p>
+<p><span class="synComment">// メソッドの検索</span>
+MethodInfo method_info = <span class="synStatement">this</span>.GetType().GetMethod(
+method,
+args.Select(_ =&gt; _.GetType()).ToArray()
+);</p>
+<p><span class="synComment">// 検索したメソッドを呼び出してビューをレンダリング</span>
+@method_info.Invoke(<span class="synStatement">this</span>, args);
 }
-<p>&lt;h1&gt;@Page.Title&lt;/h1&gt;</p>
+<span class="synStatement">catch</span> (Exception e)
+{
+<span class="synStatement">throw</span> <span class="synStatement">new</span> ApplicationException();
+}</p>
+<p>@functions <span class="synComment">// HelperResult を返せば、@&hellip; で呼び出してビューがレンダリングされる</span>
+{
+<span class="synType">private</span> <span class="synType">const</span> <span class="synType">string</span> VIEW_POST_DETAIL = <span class="synConstant">&quot;~/Views/Posts/_ShowPost.cshtml&quot;</span>;
+<span class="synType">private</span> <span class="synType">const</span> <span class="synType">string</span> VIEW_POST_ARCHIVE = <span class="synConstant">&quot;~/Views/Posts/_ListPosts.cshtml&quot;</span>;</p>
+<p><span class="synType">public</span> HelperResult GET() <span class="synComment">// Camelize() すれば Get() で呼び出せるケド</span>
+{
+var posts = PostRepository.List();</p>
+<p><span class="synStatement">switch</span> (Request.ContentType) <span class="synComment">// JSON でも返せるように！</span>
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+RenderJason(posts);
+<span class="synStatement">return</span> <span class="synConstant">null</span>;
+<span class="synStatement">default</span>:
+<span class="synStatement">return</span> RenderPage(VIEW_POST_ARCHIVE, posts);
+}
+}</p>
+<p><span class="synType">public</span> HelperResult GET(<span class="synType">long</span> id)
+{
+var post = PostRepository.Find(id);
+CheckIfPostIsNull(post);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">return</span> RenderJason(post);
+<span class="synStatement">default</span>:
+<span class="synStatement">return</span> RenderPage(VIEW_POST_DETAIL, post);
+}
+}</p>
+<p><span class="synType">public</span> HelperResult GET(<span class="synType">string</span> title)
+{
+var post = PostRepository.Find(title);
+CheckIfPostIsNull(post);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">return</span> RenderJason(post);
+<span class="synStatement">default</span>:
+<span class="synStatement">return</span> RenderPage(VIEW_POST_DETAIL, post);
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> POST()
+{
+var title = Request[<span class="synConstant">&quot;Title&quot;</span>];
+var body = Request[<span class="synConstant">&quot;Body&quot;</span>];
+var id = PostRepository.Create(title, body);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">default</span>:
+RenderJason(id);
+<span class="synStatement">break</span>;
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> PUT(<span class="synType">long</span> id)
+{
+var title = Request[<span class="synConstant">&quot;Title&quot;</span>];
+var body = Request[<span class="synConstant">&quot;Body&quot;</span>];
+PostRepository.Update(id, title, body);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">default</span>:
+RenderJason(id);
+<span class="synStatement">break</span>;
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> PUT(<span class="synType">string</span> title)
+{
+var post = PostRepository.Find(title);
+CheckIfPostIsNull(post);</p>
+<p>var new_title = Request[<span class="synConstant">&quot;Title&quot;</span>];
+var body = Request[<span class="synConstant">&quot;Body&quot;</span>];
+PostRepository.Update(post.Id, new_title, body);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">default</span>:
+RenderJason(post.Id);
+<span class="synStatement">break</span>;
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> DELETE(<span class="synType">long</span> id)
+{
+PostRepository.Delete(id);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">default</span>:
+RenderJason(id);
+<span class="synStatement">break</span>;
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> DELETE(<span class="synType">string</span> title)
+{
+var post = PostRepository.Find(title);
+CheckIfPostIsNull(post);</p>
+<p>PostRepository.Delete(post.Id);</p>
+<p><span class="synStatement">switch</span> (Request.ContentType)
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;application/json&quot;</span>:
+<span class="synStatement">default</span>:
+RenderJason(post.Id);
+<span class="synStatement">break</span>;
+}
+}
+}</p>
+<p>@functions
+{
+<span class="synType">private</span> HelperResult RenderJason(<span class="synType">long</span> id) <span class="synComment">// Id だけを JSON で返す</span>
+{
+Response.Clear();
+Response.ContentType = <span class="synConstant">&quot;application/json&quot;</span>;
+Response.Write(<span class="synType">string</span>.Format(<span class="synSpecial">@</span><span class="synConstant">&quot;{{ &quot;&quot;Id&quot;&quot;: &quot;&quot;{0}&quot;&quot; }}&quot;</span>, id));
+Response.End();
+<span class="synStatement">return</span> <span class="synConstant">null</span>; <span class="synComment">// null を返すなら HelperResult 型にしなくてもいい気はする</span>
+}</p>
+<p><span class="synType">private</span> HelperResult RenderJason(<span class="synType">object</span> post) <span class="synComment">// Post だの Posts だのを JSON で返す</span>
+{
+Response.Clear();
+Response.ContentType = <span class="synConstant">&quot;application/json&quot;</span>;
+Response.Write(Json.Encode(post));
+Response.End();
+<span class="synStatement">return</span> <span class="synConstant">null</span>;
+}</p>
+<p><span class="synType">private</span> <span class="synType">void</span> CheckIfPostIsNull(Post post)
+{
+<span class="synStatement">if</span> (post == <span class="synConstant">null</span>)
+<span class="synStatement">throw</span> <span class="synStatement">new</span> HttpException(<span class="synConstant">404</span>, <span class="synConstant">&quot;Post is not found.&quot;</span>);
+}
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130124072621.png" alt="f:id:daruyanagi:20130124072621p:plain" title="f:id:daruyanagi:20130124072621p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20130124072619.png" alt="f:id:daruyanagi:20130124072619p:plain" title="f:id:daruyanagi:20130124072619p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Content-Type によって応答が切り替わるようにしてみた。</p></p>
+</div>
+<div class="section">
+<h3>ビュー</h3>
+<p>全部のっけても仕方ないので、~/Views/Posts/_ShowPost.cshtml" だけを。</p>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+var model = PageData.First().Value as Post; // もはやイディオムかな……
+Page.Title = model.Title;
+Page.PostId = model.Id;
+Layout = &quot;~/_SiteLayout.cshtml&quot;;
+}
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;</span>@Page.Title<span class="synIdentifier">&lt;/</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;</span></p>
 <p>@model.Body</p>
 <p>@section Dialog // 編集作業はモーダルダイアログで処理することにした
 {
-&lt;aside id=&quot;EditDocument&rdquo; class=&quot;modal&quot;&gt;
-&lt;script type=&quot;text/javascript&quot;&gt;
-$(function () {
-$('#edit-document').click(function () {
-$.ajax({
-url: &ldquo;@Request.Url.AbsolutePath&rdquo;,
-type: 'POST',
-data: {
-'_method': &ldquo;PUT&rdquo;,
-'Title': $('#Edit-Title').val(),
-'Body': $('#Edit-Body').val(),
-},
-success: function (data) {
-var uri = '@Request.Url.GetRoot()/Posts/' + data.Id;
-window.location.replace(uri); // リダイレクト
-},
-error: function (data) {
-alert('failure');
-},
-});
-})
-});
-&lt;/script&gt;
-&lt;div class=&quot;modal-wrapper&quot;&gt;
-&lt;header class=&quot;modal-header&quot;&gt;
-&lt;h1&gt;&lt;input type=&quot;text&rdquo; id=&quot;Edit-Title&rdquo; value=&rdquo;@model.Title&rdquo; /&gt;&lt;/h1&gt;
-&lt;/header&gt;
-&lt;div class=&quot;modal-content&quot;&gt;
-&lt;textarea id=&quot;Edit-Body&rdquo; placeholder=&quot;なんか書いてもええんやでぇ&quot;&gt;@model.Body&lt;/textarea&gt;
-&lt;/div&gt;
-&lt;footer class=&quot;modal-footer&quot;&gt;
-&lt;a href=&quot;javascript: void(0)&rdquo; id=&quot;edit-document&rdquo; class=&quot;button&quot;&gt;OK&lt;/a&gt;
-&lt;a href=&rdquo;#close&rdquo; title=&quot;Close&rdquo; class=&quot;button&quot;&gt;キャンセル&lt;/a&gt;
-&lt;/footer&gt;
-&lt;/div&gt;
-&lt;/aside&gt;</p>
-<pre><code>&amp;lt;aside id=&quot;RemoveDocument&quot; class=&quot;modal&quot;&gt;
-    &amp;lt;script type=&quot;text/javascript&quot;&gt;
-    $(function () {
-        $(&amp;#39;#remove-document&amp;#39;).click( function () {
-            $.ajax({
-                url: &quot;@Request.Url.AbsolutePath&quot;,
-                type: &amp;#39;POST&amp;#39;,
-                data: {
-                    &amp;#39;_method&amp;#39;: &quot;DELETE&quot;,
-                },
-                success: function (data) {
-                    var uri = &amp;#39;@Request.Url.GetRoot()/Posts/&amp;#39;;
-                    window.location.replace(uri);
-                },
-                error: function (data) {
-                    alert(&amp;#39;failure&amp;#39;);
-                },
-            });
-        })
-    });
-    &amp;lt;/script&gt;
-    &amp;lt;div class=&quot;modal-wrapper&quot;&gt;
-        &amp;lt;header class=&quot;modal-header&quot;&gt;
-            &amp;lt;h1&gt;&amp;lt;span id=&quot;Delete-Title&quot; &gt;@model.Title&amp;lt;/span&gt; を削除しようとしています……&amp;lt;/h1&gt;
-        &amp;lt;/header&gt;
-        &amp;lt;div class=&quot;modal-content&quot;&gt;
-            &amp;lt;p&gt;本当に削除しますか？&amp;lt;/p&gt;
-        &amp;lt;/div&gt;
-        &amp;lt;footer class=&quot;modal-footer&quot;&gt;
-            &amp;lt;a href=&quot;javascript: void(0)&quot; id=&quot;remove-document&quot; class=&quot;button&quot;&gt;OK&amp;lt;/a&gt;
-            &amp;lt;a href=&quot;#close&quot; title=&quot;Close&quot; class=&quot;button&quot;&gt;キャンセル&amp;lt;/a&gt;
-        &amp;lt;/footer&gt;
-    &amp;lt;/div&gt;
-&amp;lt;/aside&gt;
-</code></pre>
-<p>}</p>
-<pre><code class="language-普通の" data-lang="普通の">
-&lt;ul&gt;
-&lt;li&gt;GET /Posts/Edit/:Id&lt;/li&gt;
-&lt;/ul&gt;なんかで編集画面に遷移すると思うのだけど、今回は
-
-&lt;ul&gt;
-&lt;li&gt;GET /Posts/:Id#Edit&lt;/li&gt;
-&lt;/ul&gt;で編集ダイアログを表示するようにしてる（今は開発中の可読性のために #EditDocument としているけど）。ルーティング処理を手抜きしたかったのもあるし、こうした方がかっこよくないか？　ってところもあって。そんなわけで、リダイレクト処理もサーバー側が処理するのではなくて、ビューの JavaScript が担当するようになっている。積み残した部分もあるけど、とりあえずはこれで終わり。つぎは予定通り Twitter/Facebook 認証を使ってみようかと思う。
-
-&lt;/div&gt;
-
-</code></pre>
+<span class="synIdentifier">&lt;</span>aside<span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;EditDocument&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">        $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">            $</span>(<span class="synConstant">&rsquo;#edit-document'</span>)<span class="synSpecial">.click</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $.ajax</span>(<span class="synIdentifier">{</span>
+<span class="synSpecial">                    url: </span><span class="synConstant">&quot;@Request.Url.AbsolutePath&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    type: </span><span class="synConstant">'POST'</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    data: </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synConstant">&rsquo;_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;PUT&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">'Title'</span><span class="synSpecial">: $</span>(<span class="synConstant">&rsquo;#Edit-Title'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">'Body'</span><span class="synSpecial">: $</span>(<span class="synConstant">&rsquo;#Edit-Body'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    success: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">&rsquo;@Request.Url.GetRoot()/Posts/&lsquo;</span><span class="synSpecial"> + data.Id;</span>
+<span class="synSpecial">                        </span><span class="synStatement">window</span><span class="synSpecial">.</span><span class="synStatement">location</span><span class="synSpecial">.replace</span>(<span class="synSpecial">uri</span>)<span class="synSpecial">; </span><span class="synComment">// リダイレクト</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    error: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">'failure'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)
+<span class="synSpecial">        </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-wrapper&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>header<span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-header&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text&quot;</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Edit-Title&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;@model.Title&quot;</span><span class="synIdentifier"> /&gt;&lt;/</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>header<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-content&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">textarea</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Edit-Body&quot;</span><span class="synIdentifier"> placeholder=</span><span class="synConstant">&quot;なんか書いてもええんやでぇ&quot;</span><span class="synIdentifier">&gt;</span>@model.Body<span class="synIdentifier">&lt;/</span><span class="synStatement">textarea</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>footer<span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-footer&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;javascript: void(0)&quot;</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;edit-document&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">OK</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;#close&quot;</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Close&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">キャンセル</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>footer<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>aside<span class="synIdentifier">&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span>aside<span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;RemoveDocument&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">        $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">            $</span>(<span class="synConstant">&rsquo;#remove-document'</span>)<span class="synSpecial">.click</span>(<span class="synSpecial"> </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $.ajax</span>(<span class="synIdentifier">{</span>
+<span class="synSpecial">                    url: </span><span class="synConstant">&quot;@Request.Url.AbsolutePath&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    type: </span><span class="synConstant">'POST'</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    data: </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synConstant">&rsquo;_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;DELETE&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    success: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">&rsquo;@Request.Url.GetRoot()/Posts/&lsquo;</span><span class="synSpecial">;</span>
+<span class="synSpecial">                        </span><span class="synStatement">window</span><span class="synSpecial">.</span><span class="synStatement">location</span><span class="synSpecial">.replace</span>(<span class="synSpecial">uri</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    error: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">'failure'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
+<span class="synSpecial">                </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)
+<span class="synSpecial">        </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-wrapper&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>header<span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-header&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">span</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Delete-Title&quot;</span><span class="synIdentifier"> &gt;</span>@model.Title<span class="synIdentifier">&lt;/</span><span class="synStatement">span</span><span class="synIdentifier">&gt;</span> を削除しようとしています……<span class="synIdentifier">&lt;/</span><span class="synStatement">h1</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>header<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-content&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>本当に削除しますか？<span class="synIdentifier">&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>footer<span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal-footer&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;javascript: void(0)&quot;</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;remove-document&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">OK</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;#close&quot;</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Close&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">キャンセル</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>footer<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>aside<span class="synIdentifier">&gt;</span>
+}
+</pre><p>普通の MVC フレームワークだと</p></p>
+<ul>
+<li>GET /Posts/Edit/:Id</li>
+</ul><p>なんかで編集画面に遷移すると思うのだけど、今回は</p>
+<ul>
+<li>GET /Posts/:Id#Edit</li>
+</ul><p>で編集ダイアログを表示するようにしてる（今は開発中の可読性のために #EditDocument としているけど）。ルーティング処理を手抜きしたかったのもあるし、こうした方がかっこよくないか？　ってところもあって。そんなわけで、リダイレクト処理もサーバー側が処理するのではなくて、ビューの JavaScript が担当するようになっている。</p><p>積み残した部分もあるけど、とりあえずはこれで終わり。つぎは予定通り Twitter/Facebook 認証を使ってみようかと思う。</p>
+</div>
 
     <footer>
         
@@ -508,7 +458,7 @@ alert('failure');
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/24/073816.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/24</time> 
             </p>
         
     </footer>
@@ -560,7 +510,16 @@ alert('failure');
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

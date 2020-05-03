@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/31/112958/" />
@@ -86,58 +88,43 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="http://shiba-yan.hatenablog.jp/entry/20120823/1345724524">
+<p>（SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。</p>
+<p><cite><a href="http://shiba-yan.hatenablog.jp/entry/20120823/1345724524">SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記</a></cite></p>
 </blockquote>
-<pre><code>    （SignalR 0.5.3 の）JavaScript のクライアントは .NET 向けの各種クライアントとほぼ同じ API となっています。
-
-    SignalR 0.5.3 で変わった JavaScript クライアント - しばやん雑記
-</code></pre>
-<p>そういえば、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainWindow</span> : Window
+<p>そういえば、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! &#x306B;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x304D;&#x305F;&#xFF0B;WebMatrix &#x3067; SignalR &#x52D5;&#x304B;&#x3057;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）.NET から呼んでみるのを忘れてたよ。「ほぼ同じ」らしいのでこっちも試してみよう。</p><p>WPF アプリケーションを作って、 NuGet で SignalR.Client をインストール。 Hub （サーバー側）のコードは前回のそのまま。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synStatement">partial</span> <span class="synType">class</span> MainWindow : Window
 {
-    HubConnection connection;
-    IHubProxy sample;
-
-    <span style="color:#66d9ef">public</span> MainWindow()
-    {
-        InitializeComponent();
-
-        <span style="color:#75715e">// サーバーに接続して sample ハブをげっと
-</span><span style="color:#75715e"></span>        connection = <span style="color:#66d9ef">new</span> HubConnection(<span style="color:#e6db74">&#34;http://localhost:63112/&#34;</span>);
-        sample = connection.CreateProxy(<span style="color:#e6db74">&#34;sample&#34;</span>);
-        connection.Start(); <span style="color:#75715e">/* この3つは順番を守ること！ */</span>
-
-        <span style="color:#75715e">// sample ハブで Echo() が呼ばれたら……
-</span><span style="color:#75715e"></span>        sample.On(<span style="color:#e6db74">&#34;Echo&#34;</span>, data =&gt; 
-            <span style="color:#75715e">// 返り値をもらって UI スレッドで textBox につっこむ
-</span><span style="color:#75715e"></span>            Dispatcher.BeginInvoke(
-                <span style="color:#66d9ef">new</span> Action(() =&gt; { textBox.Text = data; })
-            )
-        );
-    }
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> buttonAdd_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
-    {
-        <span style="color:#75715e">// sample Hub の Add() を呼ぶ
-</span><span style="color:#75715e"></span>        sample.Invoke(<span style="color:#e6db74">&#34;Add&#34;</span>, <span style="color:#e6db74">&#34;.NET! &#34;</span>);
-    }
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> buttonClear_Click(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
-    {
-        <span style="color:#75715e">// sample Hub の Clear() を呼ぶ
-</span><span style="color:#75715e"></span>        sample.Invoke(<span style="color:#e6db74">&#34;Clear&#34;</span>);
-    }
+HubConnection connection;
+IHubProxy sample;
+<p><span class="synType">public</span> MainWindow()
+{
+InitializeComponent();</p>
+<p><span class="synComment">// サーバーに接続して sample ハブをげっと</span>
+connection = <span class="synStatement">new</span> HubConnection(<span class="synConstant">&quot;http://localhost:63112/&quot;</span>);
+sample = connection.CreateProxy(<span class="synConstant">&quot;sample&quot;</span>);
+connection.Start(); <span class="synComment">/* この3つは順番を守ること！ */</span></p>
+<p><span class="synComment">// sample ハブで Echo() が呼ばれたら……</span>
+sample.On(<span class="synConstant">&quot;Echo&quot;</span>, data =&gt;
+<span class="synComment">// 返り値をもらって UI スレッドで textBox につっこむ</span>
+Dispatcher.BeginInvoke(
+<span class="synStatement">new</span> Action(() =&gt; { textBox.Text = data; })
+)
+);
+}</p>
+<p><span class="synType">private</span> <span class="synType">void</span> buttonAdd_Click(<span class="synType">object</span> sender, RoutedEventArgs e)
+{
+<span class="synComment">// sample Hub の Add() を呼ぶ</span>
+sample.Invoke(<span class="synConstant">&quot;Add&quot;</span>, <span class="synConstant">&quot;.NET! &quot;</span>);
+}</p>
+<p><span class="synType">private</span> <span class="synType">void</span> buttonClear_Click(<span class="synType">object</span> sender, RoutedEventArgs e)
+{
+<span class="synComment">// sample Hub の Clear() を呼ぶ</span>
+sample.Invoke(<span class="synConstant">&quot;Clear&quot;</span>);
 }
+}
+</pre><p>XAML は省略。ほんまに JavaScript の時と変わらないな。ただ、プロキシの取得と接続のスタートを逆にすると例外が発生する（JavaScript の場合は呼び出し順序はどっちでもいいみたい）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120831112128.png" alt="f:id:daruyanagi:20120831112128p:plain" title="f:id:daruyanagi:20120831112128p:plain" class="hatena-fotolife" itemprop="image"></span></p></p>
 
-<span style="color:#960050;background-color:#1e0010">```</span>XAML <span style="color:#960050;background-color:#1e0010">は省略。ほんまに</span> JavaScript <span style="color:#960050;background-color:#1e0010">の時と変わらないな。ただ、プロキシの取得と接続のスタートを逆にすると例外が発生する（</span>JavaScript <span style="color:#960050;background-color:#1e0010">の場合は呼び出し順序はどっちでもいいみたい）。</span>
-
-<figure>
-    <img src="/images/20120831112128.png"/> 
-</figure>
-
-
-
-</code></pre></div>
 
     <footer>
         
@@ -151,7 +138,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/31/112958.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/31</time> 
             </p>
         
     </footer>
@@ -203,7 +190,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

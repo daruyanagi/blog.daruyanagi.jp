@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="はてなブログが oEmbed に対応したらしいので WebMatrix で使ってみる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; はてなブログoEmbed APIを公開しました。ブログカードの情報をAPIで取得できます（開発者向け） - はてなブログ開発ブログ せっかくなので" />
+    <meta name="og:description"   property="og:description" content="&#x306F;&#x3066;&#x306A;&#x30D6;&#x30ED;&#x30B0;oEmbed API&#x3092;&#x516C;&#x958B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;&#x30D6;&#x30ED;&#x30B0;&#x30AB;&#x30FC;&#x30C9;&#x306E;&#x60C5;&#x5831;&#x3092;API&#x3067;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#xFF08;&#x958B;&#x767A;&#x8005;&#x5411;&#x3051;&#xFF09; - &#x306F;&#x3066;&#x306A;&#x30D6;&#x30ED;&#x30B0;&#x958B;&#x767A;&#x30D6;&#x30ED;&#x30B0; せっかくなので、WebMatrix のヘルパーにしてトップページでも使ってみた。 # ~/App_Code/OEmbed.cshtml @helper Hatena (string url) { try { using (var downloader = new WebClient()) { var request = string.Format( &quot;http://hatenablog.com/oembed?url={0}&amp;format={1}&quot;, url, &quot;json&quot; ); var oembed_data =" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/09/08/003344/" />
@@ -86,52 +89,35 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140908003018.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140908003018.png" alt="f:id:daruyanagi:20140908003018p:plain" title="f:id:daruyanagi:20140908003018p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
-<li><a href="http://staff.hatenablog.com/entry/2014/09/03/153938">はてなブログoEmbed APIを公開しました。ブログカードの情報をAPIで取得できます（開発者向け） - はてなブログ開発ブログ</a></li>
-</ul>せっかくなので、WebMatrix のヘルパーにしてトップページでも使ってみた。
-```cs
-# ~/App_Code/OEmbed.cshtml
-<p>@helper Hatena (string url) {
-try
+<li><a href="http://staff.hatenablog.com/entry/2014/09/03/153938">&#x306F;&#x3066;&#x306A;&#x30D6;&#x30ED;&#x30B0;oEmbed API&#x3092;&#x516C;&#x958B;&#x3057;&#x307E;&#x3057;&#x305F;&#x3002;&#x30D6;&#x30ED;&#x30B0;&#x30AB;&#x30FC;&#x30C9;&#x306E;&#x60C5;&#x5831;&#x3092;API&#x3067;&#x53D6;&#x5F97;&#x3067;&#x304D;&#x307E;&#x3059;&#xFF08;&#x958B;&#x767A;&#x8005;&#x5411;&#x3051;&#xFF09; - &#x306F;&#x3066;&#x306A;&#x30D6;&#x30ED;&#x30B0;&#x958B;&#x767A;&#x30D6;&#x30ED;&#x30B0;</a></li>
+</ul><p>せっかくなので、WebMatrix のヘルパーにしてトップページでも使ってみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/OEmbed.cshtml
+<p>@helper Hatena (<span class="synType">string</span> url) {
+<span class="synStatement">try</span>
 {
-using (var downloader = new WebClient())
+<span class="synStatement">using</span> (var downloader = <span class="synStatement">new</span> WebClient())
 {
-var request = string.Format(
-&ldquo;<a href="http://hatenablog.com/oembed?url=%7B0%7D&amp;amp;format=%7B1%7D%22,">http://hatenablog.com/oembed?url={0}&amp;amp;format={1}&quot;,</a>
-url, &ldquo;json&rdquo;
+var request = <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;http://hatenablog.com/oembed?url={0}&amp;format={1}&quot;</span>,
+url, <span class="synConstant">&quot;json&quot;</span>
 );</p>
-<pre><code>        var oembed_data = downloader.DownloadString(request);
-        var oembed_json = Json.Decode(oembed_data);
-
-        @Html.Raw(oembed_json.html);
-
-        // @ObjectInfo.Print(oembed_json)
-    }
+<p>var oembed_data = downloader.DownloadString(request);
+var oembed_json = Json.Decode(oembed_data);</p>
+<p>@Html.Raw(oembed_json.html);</p>
+<p><span class="synComment">// @ObjectInfo.Print(oembed_json)</span>
 }
-catch (Exception e)
+}
+<span class="synStatement">catch</span> (Exception e)
 {
-    &amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @e.Message&amp;lt;/p&gt;
+&lt;p <span class="synType">class</span>=<span class="synConstant">'</span><span class="synError">error</span><span class="synConstant">'</span>&gt;@url: @e.Message&lt;/p&gt;
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-使い方はこんな感じ。ちゃんと運用するなら" data-lang="使い方はこんな感じ。ちゃんと運用するなら">```cs
-@OEmbed.Hatena(&quot;https://blog.daruyanagi.jp/entry/2014/07/03/035624&quot;)
-
-</code></pre><figure>
-    <img src="/images/20140908003132.png"/> 
-</figure>
-
-<p>てなブログのところだけデザインがカッコよくて違和感があるけれど、まぁ、とりあえずこれで。</p>
-<figure>
-    <img src="/images/20140908003322.png"/> 
-</figure>
-
-<p>ObjectInfo.Print() を有効化してみると JSON でもらえる値がわかるので、これを利用して周りにフィットするようにダサくカードをデザインし直してもいいな（何</p>
+}
+</pre><p>使い方はこんな感じ。ちゃんと運用するなら WebCache とか使って少し高速化してみるのもいいかもしれない。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@OEmbed.Hatena(<span class="synConstant">&quot;https://blog.daruyanagi.jp/entry/2014/07/03/035624&quot;</span>)
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140908003132.png" alt="f:id:daruyanagi:20140908003132p:plain" title="f:id:daruyanagi:20140908003132p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>はてなブログのところだけデザインがカッコよくて違和感があるけれど、まぁ、とりあえずこれで。 </p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140908003322.png" alt="f:id:daruyanagi:20140908003322p:plain" title="f:id:daruyanagi:20140908003322p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>@ObjectInfo.Print() を有効化してみると JSON でもらえる値がわかるので、これを利用して周りにフィットするようにダサくカードをデザインし直してもいいな（何</p>
 
 
     <footer>
@@ -146,7 +132,7 @@ catch (Exception e)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/09/08/003344.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/09/08</time> 
             </p>
         
     </footer>
@@ -198,7 +184,16 @@ catch (Exception e)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

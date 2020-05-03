@@ -1,0 +1,16 @@
+---
+date: 2012-02-18T23:25:59.0000000
+draft: false
+title: "『共和主義の思想空間―シヴィック・ヒューマニズムの可能性』"
+tags: ["読書", "共和主義"]
+eyecatch: 
+---
+<p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4815805415/bestylesnet-22/"><img src="http://d.hatena.ne.jp/images/hatena_aws.gif" class="hatena-asin-detail-image" alt="共和主義の思想空間―シヴィック・ヒューマニズムの可能性" title="共和主義の思想空間―シヴィック・ヒューマニズムの可能性"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4815805415/bestylesnet-22/">共和主義の思想空間―シヴィック・ヒューマニズムの可能性</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%C4%C3%E6%BD%A8%C9%D7">田中秀夫</a>,山脇直司</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%BE%B8%C5%B2%B0%C2%E7%B3%D8">名古屋大学</a>出版会</li><li><span class="hatena-asin-detail-label">発売日:</span> 2006/07</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li><li> <span class="hatena-asin-detail-label">クリック</span>: 2回</li><li><a href="http://d.hatena.ne.jp/asin/4815805415/bestylesnet-22" target="_blank">この商品を含むブログ (7件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>
+
+<ul>
+<li>序　章　甦る近代共和主義</li>
+<li>第Ⅰ部　イングランド共和主義の源流と展開</li>
+<li>第Ⅱ部　スコットランドとアイルランドの啓蒙と共和主義</li>
+<li>第Ⅲ部　ヨーロッパとアメリカにおける共和主義の源流</li>
+<li>第Ⅳ部　思想史から現代へ</li>
+</ul><p>内容と本の重量、双方の意味で、ちょっとヘビーだった。通勤時間に読むのは大変。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/481580575X/bestylesnet-22/"><img src="http://ecx.images-amazon.com/images/I/41IyYC0QwaL._SL160_.jpg" class="hatena-asin-detail-image" alt="マキァヴェリアン・モーメント―フィレンツェの政治思想と大西洋圏の共和主義の伝統" title="マキァヴェリアン・モーメント―フィレンツェの政治思想と大西洋圏の共和主義の伝統"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/481580575X/bestylesnet-22/">マキァヴェリアン・モーメント―フィレンツェの政治思想と大西洋圏の共和主義の伝統</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> ジョン・G.A.ポーコック,John G.A. Pocock,<a class="keyword" href="http://d.hatena.ne.jp/keyword/%C5%C4%C3%E6%BD%A8%C9%D7">田中秀夫</a>,奥田敬,森岡邦泰</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> <a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%BE%B8%C5%B2%B0%C2%E7%B3%D8">名古屋大学</a>出版会</li><li><span class="hatena-asin-detail-label">発売日:</span> 2008/01</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li><li><span class="hatena-asin-detail-label">購入</span>: 1人 <span class="hatena-asin-detail-label">クリック</span>: 41回</li><li><a href="http://d.hatena.ne.jp/asin/481580575X/bestylesnet-22" target="_blank">この商品を含むブログ (22件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>これ読んでからじゃないと、読んでもあまり意味がないと思う（でも、『マキァヴェリアン・モーメント』の翻訳よりも本書の方が先に出たんだね）。僕はこの本のお陰で『マキァヴェリアン・モーメント』の理解が深まった。また、『マキァヴェリアン・モーメント』では捉えきれていない共和主義の姿に触れることができて、とてもよかったと思う。</p><p><blockquote class="twitter-tweet" lang="ja"><p>中古なら半額 ＼(^o^)／</p>&mdash; だるやなぎさん (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/170877481346269184" data-datetime="2012-02-18T14:29:00+00:00">2月 18, 2012</a></blockquote><script src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>

@@ -37,9 +37,15 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2017/05/17/073339/20170517072412_hucb2660eeed917946903ec15b8988b867_47823_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2017/05/17/073339/20170517072412_hucb2660eeed917946903ec15b8988b867_47823_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/05/17/073339/" />
@@ -86,7 +92,7 @@
         </time>        
     </p>
 
-    <p>Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。</p>
+    <p>Windows 10 は［回復］オプションで割と簡単に初期化できるので、なんか調子悪くなったときは気軽にキレイサッパリにしているのだけど、そのあとの環境構築を毎回手動でやるのがいい加減かったるいので、できるだけスクリプトでできんもんかなーと考えてみた。</p><p>ウチは OS をわりとプレーンな状態で使う派なので、実はやることがそんなにないんだけど、それでも以下のことが必要っぽかった。</p>
 <ul>
 <li>（データは OneDrive で同期する。スタンドアロンアプリもだいたい OneDrive で）</li>
 <li>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned</li>
@@ -98,63 +104,47 @@
 <ul>
 <li>Picture\Screenshots -> OneDrive\Screenshots（スクリーンショットを同期するため）</li>
 </ul></li>
-</ul>これだったら自分の PowerShell 力でもなんとかなると思った。
-```ps1
-Write-Host "STEP 0: Set-ExecutionPolicy を RemoteSigned に書き換えます……"
-<p>Set-ExecutionPolicy -ExecutionPolicy RemoteSigned
-Write-Host &quot;&rdquo;</p>
-<p>Write-Host &ldquo;STEP 1: chocolatey をセットアップしています……&rdquo;</p>
-<p>if (Test-Path &ldquo;C:\ProgramData\chocolatey&rdquo;)
+</ul><p>これだったら自分の PowerShell 力でもなんとかなると思った。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;STEP 0: Set-ExecutionPolicy を RemoteSigned に書き換えます……&quot;</span>
+<p><span class="synStatement">Set-ExecutionPolicy</span> -ExecutionPolicy RemoteSigned
+<span class="synStatement">Write-Host</span> <span class="synConstant">&quot;&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;STEP 1: chocolatey をセットアップしています……&quot;</span></p>
+<p><span class="synStatement">if</span> (<span class="synStatement">Test-Path</span> <span class="synConstant">&quot;C:\ProgramData\chocolatey&quot;</span>)
 {
-Write-Host &ldquo;すでにインストールされています。&rdquo;
+<span class="synStatement">Write-Host</span> <span class="synConstant">&quot;すでにインストールされています。&quot;</span>
 }
-else
+<span class="synStatement">else</span>
 {
-iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
-# Get-PackageProvider -name chocolatey
-Write-Host &ldquo;インストールが完了しました。&rdquo;
+iex ((<span class="synStatement">New-Object</span> System.Net.WebClient).DownloadString(<span class="synConstant">'https://chocolatey.org/install.ps1'</span>))
+<span class="synComment"># Get-PackageProvider -name chocolatey</span>
+<span class="synStatement">Write-Host</span> <span class="synConstant">&quot;インストールが完了しました。&quot;</span>
 }</p>
-<p>Write-Host &quot;&rdquo;</p>
-<p>Write-Host &ldquo;STEP 2: ソフトウェアをインストールしています……&rdquo;</p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;STEP 2: ソフトウェアをインストールしています……&quot;</span></p>
 <p>choco install -y paint.net
 choco install -y sizer
-choco install -y dotnetcore-sdk<br>
-choco install -y visualstudiocode 
-choco install -y dropbox 
+choco install -y <span class="synStatement">dotnetcore-sdk</span>
+choco install -y visualstudiocode
+choco install -y dropbox
 choco install -y vlc</p>
-<h1 id="nullsoft-install-system">Nullsoft Install System</h1>
-<p>Start-Process -FilePath &ldquo;$Home\OneDrive\Apps\WinSnap_4.5.8-setup.exe&rdquo; -ArgumentList &ldquo;/S&rdquo;</p>
-<h1 id="advanced-installer">Advanced Installer</h1>
-<p>Start-Process -FilePath &ldquo;$Home\OneDrive\Apps\emed64_16.7.2.exe&rdquo; -ArgumentList &ldquo;/quiet&rdquo;</p>
-<p>Write-Host &quot;&rdquo;</p>
-<p>Write-Host &ldquo;STEP 3: シンボリックリンクを作成しています……&rdquo;</p>
-<p>Write-Host &ldquo;Picture\Screenshots -&gt; OneDrive\Screenshots&rdquo;
-Set-Location &ldquo;$Home\Pictures&rdquo;
-Remove-Item &ldquo;Screenshots&rdquo;
-New-Item -Type SymbolicLink -Path &ldquo;Screenshots&rdquo; -Value &ldquo;$Home\OneDrive\Screenshots&rdquo;</p>
-<p>Write-Host &quot;&rdquo;</p>
-<p>Write-Host &ldquo;セットアップが終了しました。キーを押すと終了します。&rdquo;
-$host.UI.ReadLine()</p>
-<pre><code class="language-このスクリプトを管理者権限で起動すればよいのだけど、PowerShell" data-lang="このスクリプトを管理者権限で起動すればよいのだけど、PowerShell">
-<figure>
-    <img src="/images/20170517072412.png"/> 
-</figure>
-
-
-―というわけで、スクリプトをキックするためのバッチファイルも書いた。
-</code></pre><p>@powershell -NoProfile -ExecutionPolicy RemoteSigned -File &ldquo;C:\Users\Hideto\OneDrive\Initialize.ps1&rdquo;</p>
-<pre><code>
-<figure>
-    <img src="/images/20170517072704.png"/> 
-</figure>
-
-
-urface 3 を初期化してテストした後に、デスクトップ PC でも試してみたのだけど、&lt;code&gt;choco install -y dropbox&lt;/code&gt; が失敗して面倒くさいことになった&lt;a href=&quot;#f-63094833&quot; name=&quot;fn-63094833&quot; title=&quot;利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決&quot;&gt;*1&lt;/a&gt;以外は、割とスムーズにいった。実は以前からところどころを自動化していたのだけど、ちゃんとメンテナンスすればいろいろ楽になるかなーと思った。Windows ストアからのインストールもコマンドでできたらいいんだけど……かつて「OneGet」で Windows ストアをプロバイダーにできるようになるとか聞いた覚えがあるんだが、どうなったんだろう。
-&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-63094833&quot; name=&quot;f-63094833&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+<p><span class="synComment"># Nullsoft Install System</span>
+<span class="synStatement">Start-Process</span> -FilePath <span class="synConstant">&quot;</span><span class="synType">$Home</span><span class="synConstant">\OneDrive\Apps\WinSnap_4.5.8-setup.exe&quot;</span> -ArgumentList <span class="synConstant">&quot;/S&quot;</span>
+<span class="synComment"># Advanced Installer</span>
+<span class="synStatement">Start-Process</span> -FilePath <span class="synConstant">&quot;</span><span class="synType">$Home</span><span class="synConstant">\OneDrive\Apps\emed64_16.7.2.exe&quot;</span> -ArgumentList <span class="synConstant">&quot;/quiet&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;STEP 3: シンボリックリンクを作成しています……&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;Picture\Screenshots -&gt; OneDrive\Screenshots&quot;</span>
+<span class="synStatement">Set-Location</span> <span class="synConstant">&quot;</span><span class="synType">$Home</span><span class="synConstant">\Pictures&quot;</span>
+<span class="synStatement">Remove-Item</span> <span class="synConstant">&quot;Screenshots&quot;</span>
+<span class="synStatement">New-Item</span> -Type SymbolicLink -Path <span class="synConstant">&quot;Screenshots&quot;</span> -Value <span class="synConstant">&quot;</span><span class="synType">$Home</span><span class="synConstant">\OneDrive\Screenshots&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;&quot;</span></p>
+<p><span class="synStatement">Write-Host</span> <span class="synConstant">&quot;セットアップが終了しました。キーを押すと終了します。&quot;</span>
+<span class="synType">$host</span>.UI.ReadLine()
+</pre><p>このスクリプトを管理者権限で起動すればよいのだけど、PowerShell のコンテキストメニューには［管理者権限で実行する］コマンドはないんだな。バッチファイルならあるのに。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170517072412.png" alt="f:id:daruyanagi:20170517072412p:plain" title="f:id:daruyanagi:20170517072412p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>――というわけで、スクリプトをキックするためのバッチファイルも書いた。</p></p>
+<pre class="code" data-lang="" data-unlink>@powershell -NoProfile -ExecutionPolicy RemoteSigned -File &#34;C:\Users\Hideto\OneDrive\Initialize.ps1&#34;</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170517072704.png" alt="f:id:daruyanagi:20170517072704p:plain" title="f:id:daruyanagi:20170517072704p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Surface 3 を初期化してテストした後に、デスクトップ PC でも試してみたのだけど、<code>choco install -y dropbox</code> が失敗して面倒くさいことになった<a href="#f-63094833" name="fn-63094833" title="利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決">*1</a>以外は、割とスムーズにいった。</p><p>実は以前からところどころを自動化していたのだけど、ちゃんとメンテナンスすればいろいろ楽になるかなーと思った。Windows ストアからのインストールもコマンドでできたらいいんだけど……かつて「OneGet」で Windows ストアをプロバイダーにできるようになるとか聞いた覚えがあるんだが、どうなったんだろう。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-63094833" name="f-63094833" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">利用したバージョンのオフラインインストーラーがどうにも動かない。Web インストーラーをダウンロード＆実行して解決</span></p>
+</div>
 
     <footer>
         
@@ -168,7 +158,7 @@ urface 3 を初期化してテストした後に、デスクトップ PC でも�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/05/17/073339.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/05/17</time> 
             </p>
         
     </footer>
@@ -220,7 +210,16 @@ urface 3 を初期化してテストした後に、デスクトップ PC でも�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

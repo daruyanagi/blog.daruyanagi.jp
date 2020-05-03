@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 3 - blog.daruyanagi.jp</title>
+<title>WebMatrix 3: Twitter Bot でも作ってみる。 → Windows Azure Websites に置いてみたった。 - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 3" />
+<meta name="og:title"         property="og:title" content="WebMatrix 3: Twitter Bot でも作ってみる。 → Windows Azure Websites に置いてみたった。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/10/14/141550&quot;&gt;WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使っ" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 3: Twitter Bot &#xFF08;&#xFF0B;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x30ED;&#x30B0;&#x8868;&#x793A;&#x4ED8;&#x304D;&#xFF09;&#x3067;&#x3082;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x308B;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050; を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をと" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/10/20/132105/" />
@@ -78,7 +81,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 3</h1>
+    <h1>WebMatrix 3: Twitter Bot でも作ってみる。 → Windows Azure Websites に置いてみたった。</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,55 +89,35 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20131020131347.png"/> 
-</figure>
-
-<p>a href=&quot;https://blog.daruyanagi.jp/entry/2013/10/14/141550&quot;&gt;WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ</a> を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をとっぱらってみたのだけれど、やはり止まる。</p>
-<pre><code>&gt;
-    Windows Azure Webサイトの無料や共有インスタンスの場合、５～20分ほどアクセスが無かった場合はシャットダウンされてリソースが解放されます。そーすると、初回アクセス時に、レスポンスが遅く感じる事象が発生します。Windows Azureモバイルサービスのジョブスケジューラーで15分起きにリクエストを送信することで、常時ウォームアップし続けることが可能になります。 
-</code></pre>
-<p>素敵だけど、怒られそうな話ですね！</p>
-<pre><code>    Windows Azureで定期ジョブを実行する方法 - 蒼の王座
-</code></pre>
-<p>怒られたらイヤだけど、とりあえずこの方法を試してみた。結論的には、上手くいった。Twitter のメインアカウント（<a href="https://twitter.com/YanagiHidetoshi">やなぎ ひでとし（柳 英俊） (@YanagiHidetoshi) | Twitter</a>）に新着情報を配信できるようになった。</p>
-<figure>
-    <img src="/images/20131020131401.png"/> 
-</figure>
-
-<p>ケジューリングは毎分・毎時・毎日・毎月と要求時が設定できるみたい。正時にキッカリ実行したいなんて言う場合には使えないので、10分おきにサイトをキックするだけにして、定期実行の仕組みは自分で実装した（ついでにコードも前よりカッコよく、シンプルにしたった！）。</p>
-<figure>
-    <img src="/images/20131020131549.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">function</span> <span style="color:#a6e22e">warmup</span>() {
-    <span style="color:#a6e22e">warmUpSite</span>(<span style="color:#e6db74">&#34;http://darufeed.azurewebsites.net/&#34;</span>);
-}
-<span style="color:#66d9ef">function</span> <span style="color:#a6e22e">warmUpSite</span>(<span style="color:#a6e22e">url</span>) {
-    <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;warming up: &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span>);
-    <span style="color:#66d9ef">var</span> <span style="color:#a6e22e">req</span> <span style="color:#f92672">=</span> <span style="color:#a6e22e">require</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">request</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;);
-    <span style="color:#a6e22e">req</span>.<span style="color:#a6e22e">get</span>({ <span style="color:#a6e22e">url</span><span style="color:#f92672">:</span> <span style="color:#a6e22e">url</span> }, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">error</span>, <span style="color:#a6e22e">response</span>, <span style="color:#a6e22e">body</span>) {
-        <span style="color:#66d9ef">if</span> (<span style="color:#f92672">!</span><span style="color:#a6e22e">error</span>) {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">info</span>(<span style="color:#e6db74">&#34;hot hot hot! &#34;</span> <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span>);
-        } <span style="color:#66d9ef">else</span> {
-            <span style="color:#a6e22e">console</span>.<span style="color:#a6e22e">error</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#a6e22e">error</span> <span style="color:#a6e22e">warming</span> <span style="color:#a6e22e">up</span> <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; <span style="color:#f92672">+</span> <span style="color:#a6e22e">url</span> <span style="color:#f92672">+</span> <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#f92672">:</span> <span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; <span style="color:#f92672">+</span> <span style="color:#a6e22e">error</span>);
-        }
-    });
-}
-
-<span style="color:#e6db74">```スクリプトは JavaScript で記述。コピペで拝借したけれど、ウォームアップに使うならこれで十分みたい。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">&lt;div class=&#34;section&#34;&gt;
-</span><span style="color:#e6db74">    ### 追記
-</span><span style="color:#e6db74">    
-</span><span style="color:#e6db74">&lt;ul&gt;
-</span><span style="color:#e6db74">&lt;li&gt;&lt;a href=&#34;http://www.buildinsider.net/web/webapibatch/01&#34;&gt;スケジュールされたジョブ機能とAzure Webサイトを組み合わせた定期処理の実装 - Build Insider&lt;/a&gt;&lt;/li&gt;
-</span><span style="color:#e6db74">&lt;/ul&gt;これがわかりやすいっポイポイ。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">&lt;/div&gt;
-</span><span style="color:#e6db74">
-</span></code></pre></div>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131020131347.png" alt="f:id:daruyanagi:20131020131347p:plain" title="f:id:daruyanagi:20131020131347p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot &#xFF08;&#xFF0B;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x30ED;&#x30B0;&#x8868;&#x793A;&#x4ED8;&#x304D;&#xFF09;&#x3067;&#x3082;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x308B;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a> を Windows Azure Websites に置いてみた――のだけど、なんかすぐに止まってしまう。最初は SignalR 使ってるからかなぁと思い、リアルタイムログ表示の機能をとっぱらってみたのだけれど、やはり止まる。</p>
+<blockquote cite="http://sqlazure.jp/b/windows-azure/1435/">
+<p>Windows Azure Webサイトの無料や共有インスタンスの場合、５～20分ほどアクセスが無かった場合はシャットダウンされてリソースが解放されます。そーすると、初回アクセス時に、レスポンスが遅く感じる事象が発生します。</p><p>Windows Azureモバイルサービスのジョブスケジューラーで15分起きにリクエストを送信することで、常時ウォームアップし続けることが可能になります。 <br />
+素敵だけど、怒られそうな話ですね！</p>
+<p><cite><a href="http://sqlazure.jp/b/windows-azure/1435/">Windows Azureで定期ジョブを実行する方法 - 蒼の王座</a></cite></p>
+</blockquote>
+<p>怒られたらイヤだけど、とりあえずこの方法を試してみた。結論的には、上手くいった。Twitter のメインアカウント（<a href="https://twitter.com/YanagiHidetoshi">&#x3084;&#x306A;&#x304E; &#x3072;&#x3067;&#x3068;&#x3057;&#xFF08;&#x67F3; &#x82F1;&#x4FCA;&#xFF09; (@YanagiHidetoshi) | Twitter</a>）に新着情報を配信できるようになった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131020131401.png" alt="f:id:daruyanagi:20131020131401p:plain" title="f:id:daruyanagi:20131020131401p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>スケジューリングは毎分・毎時・毎日・毎月と要求時が設定できるみたい。正時にキッカリ実行したいなんて言う場合には使えないので、10分おきにサイトをキックするだけにして、定期実行の仕組みは自分で実装した（ついでにコードも前よりカッコよく、シンプルにしたった！）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131020131549.png" alt="f:id:daruyanagi:20131020131549p:plain" title="f:id:daruyanagi:20131020131549p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synIdentifier">function</span> warmup() <span class="synIdentifier">{</span>
+warmUpSite(<span class="synConstant">&quot;http://darufeed.azurewebsites.net/&quot;</span>);
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">function</span> warmUpSite(url) <span class="synIdentifier">{</span>
+console.info(<span class="synConstant">&quot;warming up: &quot;</span> + url);
+<span class="synIdentifier">var</span> req = require(<span class="synConstant">'request'</span>);
+req.get(<span class="synIdentifier">{</span> url: url <span class="synIdentifier">}</span>, <span class="synIdentifier">function</span>(error, response, body) <span class="synIdentifier">{</span>
+<span class="synStatement">if</span> (!error) <span class="synIdentifier">{</span>
+console.info(<span class="synConstant">&quot;hot hot hot! &quot;</span> + url);
+<span class="synIdentifier">}</span> <span class="synStatement">else</span> <span class="synIdentifier">{</span>
+console.error(<span class="synConstant">'error warming up '</span> + url + <span class="synConstant">': '</span> + error);
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>);
+<span class="synIdentifier">}</span>
+</pre><p>スクリプトは JavaScript で記述。コピペで拝借したけれど、ウォームアップに使うならこれで十分みたい。</p>
+<div class="section">
+<h3>追記</h3>
+<ul>
+<li><a href="http://www.buildinsider.net/web/webapibatch/01">&#x30B9;&#x30B1;&#x30B8;&#x30E5;&#x30FC;&#x30EB;&#x3055;&#x308C;&#x305F;&#x30B8;&#x30E7;&#x30D6;&#x6A5F;&#x80FD;&#x3068;Azure Web&#x30B5;&#x30A4;&#x30C8;&#x3092;&#x7D44;&#x307F;&#x5408;&#x308F;&#x305B;&#x305F;&#x5B9A;&#x671F;&#x51E6;&#x7406;&#x306E;&#x5B9F;&#x88C5; - Build Insider</a></li>
+</ul><p>これがわかりやすいっポイポイ。</p>
+</div>
 
     <footer>
         
@@ -148,7 +131,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/10/20/132105.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/10/20</time> 
             </p>
         
     </footer>
@@ -200,7 +183,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

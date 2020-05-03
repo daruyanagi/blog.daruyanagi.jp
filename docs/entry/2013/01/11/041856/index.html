@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2：RESTful？な Web アプリケーション （2）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 2：RESTful？な Web アプリケーション - だるろぐ の続き。とりあえず、 /Posts/ - GET:List /Posts/:id - GET:Show /Posts/New - GET:New, POST:Create /Posts/Edit/:id - GET:Edit, POST:Update /Posts/Remove/:id - GET:Remove, POST:DELETE って感じにマッピングされるように" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。とりあえず、 /Posts/ - GET:List /Posts/:id - GET:Show /Posts/New - GET:New, POST:Create /Posts/Edit/:id - GET:Edit, POST:Update /Posts/Remove/:id - GET:Remove, POST:DELETE って感じにマッピングされるように頑張ってみた。 # ~/Posts.cshtml @{ Layout = &quot;_SiteLayout.cshtml&quot;; } @try{ switch (UrlData[0].ToUpper()) { case &quot;&quot;:" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/11/041856/" />
@@ -86,205 +88,184 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/07/025136">WebMatrix 2：RESTful？な Web アプリケーション - だるろぐ</a> の続き。とりあえず、</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/07/025136">WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。とりあえず、</p>
 <ul>
 <li>/Posts/ -> GET:List</li>
 <li>/Posts/:id -> GET:Show</li>
 <li>/Posts/New -> GET:New, POST:Create</li>
 <li>/Posts/Edit/:id -> GET:Edit, POST:Update</li>
 <li>/Posts/Remove/:id -> GET:Remove, POST:DELETE</li>
-</ul>って感じにマッピングされるように頑張ってみた。
-```cs
-# ~/Posts.cshtml
+</ul><p>って感じにマッピングされるように頑張ってみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/Posts.cshtml
 <p>@{
-Layout = &ldquo;_SiteLayout.cshtml&rdquo;;
+Layout = <span class="synConstant">&quot;_SiteLayout.cshtml&quot;</span>;
 }</p>
-<p>@try{
-switch (UrlData[0].ToUpper())
+<p>@<span class="synStatement">try</span>{
+<span class="synStatement">switch</span> (UrlData[<span class="synConstant">0</span>].ToUpper())
 {
-case &ldquo;&quot;: // &lt;- / へアクセスするととりあえず UrlData[0] には string.empty が入るっぽい
-case &ldquo;LIST&rdquo;:
-if (!IsPost) // GET
+<span class="synStatement">case</span> <span class="synConstant">&quot;&quot;</span>: <span class="synComment">// &lt;- / へアクセスするととりあえず UrlData[0] には string.empty が入るっぽい</span>
+<span class="synStatement">case</span> <span class="synConstant">&quot;LIST&quot;</span>:
+<span class="synStatement">if</span> (!IsPost) <span class="synComment">// GET</span>
 {
 @List()
 }
-else // POST
+<span class="synStatement">else</span> <span class="synComment">// POST</span>
 {
-throw new ApplicationException();
+<span class="synStatement">throw</span> <span class="synStatement">new</span> ApplicationException();
 }
-break;</p>
-<pre><code>    case &quot;NEW&quot;:
-    case &quot;CREATE&quot;: // &amp;lt;- ビューを書き換えるのがめんどいので
-        if (!IsPost) // GET
-        {
-            @New(UrlData[1])
-        }
-        else // POST
-        {
-            Create();
-        }
-        break;
-        
-    case &quot;EDIT&quot;:
-    case &quot;UPDATE&quot;:
-        if (!IsPost) // GET
-        {
-            @Edit(UrlData[1])
-        }
-        else // POST
-        {
-            Update(UrlData[1].AsInt());
-        }
-        break;
-        
-    case &quot;REMOVE&quot;:
-    case &quot;DELETE&quot;:
-        if (!IsPost) // GET
-        {
-            @Remove(UrlData[1])
-        }
-        else // POST
-        {
-            Delete(UrlData[1].AsInt());
-        }
-        break;
-
-    default:
-        if (!IsPost) // GET
-        {
-            @Show(UrlData[0])
-        }
-        else // POST
-        {
-            throw new ApplicationException();
-        }
-        break;
-}
-</code></pre>
-<p>}
-catch (Exception e)
+<span class="synStatement">break</span>;</p>
+<p><span class="synStatement">case</span> <span class="synConstant">&quot;NEW&quot;</span>:
+<span class="synStatement">case</span> <span class="synConstant">&quot;CREATE&quot;</span>: <span class="synComment">// &lt;- ビューを書き換えるのがめんどいので</span>
+<span class="synStatement">if</span> (!IsPost) <span class="synComment">// GET</span>
 {
-&lt;p&gt;&lt;span class=&quot;badge error&quot;&gt;Error&lt;/span&gt; @e.Message&lt;/p&gt;
+@New(UrlData[<span class="synConstant">1</span>])
+}
+<span class="synStatement">else</span> <span class="synComment">// POST</span>
+{
+Create();
+}
+<span class="synStatement">break</span>;</p>
+<p><span class="synStatement">case</span> <span class="synConstant">&quot;EDIT&quot;</span>:
+<span class="synStatement">case</span> <span class="synConstant">&quot;UPDATE&quot;</span>:
+<span class="synStatement">if</span> (!IsPost) <span class="synComment">// GET</span>
+{
+@Edit(UrlData[<span class="synConstant">1</span>])
+}
+<span class="synStatement">else</span> <span class="synComment">// POST</span>
+{
+Update(UrlData[<span class="synConstant">1</span>].AsInt());
+}
+<span class="synStatement">break</span>;</p>
+<p><span class="synStatement">case</span> <span class="synConstant">&quot;REMOVE&quot;</span>:
+<span class="synStatement">case</span> <span class="synConstant">&quot;DELETE&quot;</span>:
+<span class="synStatement">if</span> (!IsPost) <span class="synComment">// GET</span>
+{
+@Remove(UrlData[<span class="synConstant">1</span>])
+}
+<span class="synStatement">else</span> <span class="synComment">// POST</span>
+{
+Delete(UrlData[<span class="synConstant">1</span>].AsInt());
+}
+<span class="synStatement">break</span>;</p>
+<p><span class="synStatement">default</span>:
+<span class="synStatement">if</span> (!IsPost) <span class="synComment">// GET</span>
+{
+@Show(UrlData[<span class="synConstant">0</span>])
+}
+<span class="synStatement">else</span> <span class="synComment">// POST</span>
+{
+<span class="synStatement">throw</span> <span class="synStatement">new</span> ApplicationException();
+}
+<span class="synStatement">break</span>;
+}
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+&lt;p&gt;&lt;span <span class="synType">class</span>=<span class="synConstant">&quot;badge error&quot;</span>&gt;Error&lt;/span&gt; @e.Message&lt;/p&gt;
 }</p>
 <p>@functions
 {
-dynamic FindPostByIdOrTitle(string param)
+dynamic FindPostByIdOrTitle(<span class="synType">string</span> param)
 {
-int id = 0;
+<span class="synType">int</span> id = <span class="synConstant">0</span>;
 dynamic post;</p>
-<pre><code>    using (var db = Database.Open(&quot;db&quot;))
-    {
-        if (int.TryParse(param, out id))
-        {
-            var query = &quot;SELECT * FROM Post WHERE Id=@0&quot;;
-            post = db.QuerySingle(query, id);
-        }
-        else
-        {
-            var query = &quot;SELECT * FROM Post WHERE Title=@0&quot;;
-            post = db.QuerySingle(query, param);
-        }
-    }
-    
-    if (post == null)
-        throw new HttpException(404, string.Format(
-            @&quot;Post &quot;&quot;{0}&quot;&quot; is not found.&quot;, param)
-        );
-    
-    return post;
-}
-
-HelperResult List()
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    var query = &quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        var posts = db.Query(query);
-        Page.Title = &quot;Archives&quot;;
-        return RenderPage(&quot;~/Views/Posts/_ListPosts.cshtml&quot;, posts);
-    }
-}
-
-HelperResult Show(string param)
+<span class="synStatement">if</span> (<span class="synType">int</span>.TryParse(param, <span class="synStatement">out</span> id))
 {
-    var post = FindPostByIdOrTitle(param);
-    Page.Title = post.Title;
-    return RenderPage(&quot;~/Views/Posts/_ShowPost.cshtml&quot;, post);
+var query = <span class="synConstant">&quot;SELECT * FROM Post WHERE Id=@0&quot;</span>;
+post = db.QuerySingle(query, id);
 }
-
-HelperResult New(string param)
+<span class="synStatement">else</span>
 {
-    Page.Title = &quot;New Post:&quot; + param != string.Empty ? param : &quot;Untitled&quot;;
-    return RenderPage(&quot;~/Views/Posts/_NewPost.cshtml&quot;);
+var query = <span class="synConstant">&quot;SELECT * FROM Post WHERE Title=@0&quot;</span>;
+post = db.QuerySingle(query, param);
 }
-
-HelperResult Edit(string param)
+}</p>
+<p><span class="synStatement">if</span> (post == <span class="synConstant">null</span>)
+<span class="synStatement">throw</span> <span class="synStatement">new</span> HttpException(<span class="synConstant">404</span>, <span class="synType">string</span>.Format(
+<span class="synSpecial">@</span><span class="synConstant">&quot;Post &quot;&quot;{0}&quot;&quot; is not found.&quot;</span>, param)
+);</p>
+<p><span class="synStatement">return</span> post;
+}</p>
+<p>HelperResult List()
 {
-    var post = FindPostByIdOrTitle(param);
-    Page.Title = &quot;Edit: &quot; + post.Title;
-    return RenderPage(&quot;~/Views/Posts/_EditPost.cshtml&quot;, post);
-}
-
-HelperResult Remove(string param)
+var query = <span class="synConstant">&quot;SELECT * FROM Post ORDER BY CreatedAt DESC&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
 {
-    var post = FindPostByIdOrTitle(param);
-    Page.Title = &quot;Remove: &quot; + post.Title;
-    return RenderPage(&quot;~/Views/Posts/_RemovePost.cshtml&quot;, post);
+var posts = db.Query(query);
+Page.Title = <span class="synConstant">&quot;Archives&quot;</span>;
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;~/Views/Posts/_ListPosts.cshtml&quot;</span>, posts);
 }
-
-void Create()
+}</p>
+<p>HelperResult Show(<span class="synType">string</span> param)
 {
-    var query = &quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;
-              + &quot;VALUES(@0, @1, @2, @3)&quot;;
-    var title = Request[&quot;Title&quot;];
-    var body = Request[&quot;body&quot;];
-    var now = DateTime.Now;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, title, body, now, now);
-        var key = db.QueryValue(&quot;SELECT @@IDENTITY&quot;);
-        Response.Redirect(&quot;~/Posts/&quot; + key.ToString());
-    }
-}
-
-void Update(int id)
+var post = FindPostByIdOrTitle(param);
+Page.Title = post.Title;
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;~/Views/Posts/_ShowPost.cshtml&quot;</span>, post);
+}</p>
+<p>HelperResult New(<span class="synType">string</span> param)
 {
-    var query = &quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;;
-    var title = Request[&quot;Title&quot;];
-    var body = Request[&quot;body&quot;];
-    var now = DateTime.Now;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, title, body, now, id);
-        Response.Redirect(&quot;~/Posts/&quot; + id.ToString());
-    }
-}
-
-void Delete(int id)
+Page.Title = <span class="synConstant">&quot;New Post:&quot;</span> + param != <span class="synType">string</span>.Empty ? param : <span class="synConstant">&quot;Untitled&quot;</span>;
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;~/Views/Posts/_NewPost.cshtml&quot;</span>);
+}</p>
+<p>HelperResult Edit(<span class="synType">string</span> param)
 {
-    var query = &quot;DELETE FROM Post WHERE Id=@0&quot;;
-
-    using (var db = Database.Open(&quot;db&quot;))
-    {
-        db.Query(query, id);
-        Response.Redirect(&quot;~/Posts/&quot;);
-    }
+var post = FindPostByIdOrTitle(param);
+Page.Title = <span class="synConstant">&quot;Edit: &quot;</span> + post.Title;
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;~/Views/Posts/_EditPost.cshtml&quot;</span>, post);
+}</p>
+<p>HelperResult Remove(<span class="synType">string</span> param)
+{
+var post = FindPostByIdOrTitle(param);
+Page.Title = <span class="synConstant">&quot;Remove: &quot;</span> + post.Title;
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;~/Views/Posts/_RemovePost.cshtml&quot;</span>, post);
+}</p>
+<p><span class="synType">void</span> Create()
+{
+var query = <span class="synConstant">&quot;INSERT INTO Post (Title, Body, CreatedAt, UpdatedAt)&quot;</span></p>
+<ul>
+<li><span class="synConstant">&quot;VALUES(@0, @1, @2, @3)&quot;</span>;
+var title = Request[<span class="synConstant">&quot;Title&quot;</span>];
+var body = Request[<span class="synConstant">&quot;body&quot;</span>];
+var now = DateTime.Now;</li>
+</ul>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
+{
+db.Query(query, title, body, now, now);
+var key = db.QueryValue(<span class="synConstant">&quot;SELECT @@IDENTITY&quot;</span>);
+Response.Redirect(<span class="synConstant">&quot;~/Posts/&quot;</span> + key.ToString());
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-あんまり気に入らない。なんか当初の目標とズレてきたし。でも、よく考えたら、Web" data-lang="あんまり気に入らない。なんか当初の目標とズレてきたし。でも、よく考えたら、Web">
-    &gt;
-        HTML5より前のHTMLでは、フォームで利用できるHTTPメソッドはGETとPOSTだけである。そのため、PUTやDELETEを使う場合には、JavaScriptが必要になる（JavaScriptでのHTTPリクエストを参照）。一部のケータイのブラウザのように、JavaScriptをサポートしていないブラウザでは、PUTやDELETEはPOSTで代用しなければならない。PUTやDELETEをPOSTで代用する方法には、以下の2つがあるが、フォームで利用できるのは、パラメータ_methodを利用する方法だけである。 
+}</p>
+<p><span class="synType">void</span> Update(<span class="synType">int</span> id)
+{
+var query = <span class="synConstant">&quot;UPDATE Post SET Title=@0, Body=@1, UpdatedAt=@2 WHERE Id=@3&quot;</span>;
+var title = Request[<span class="synConstant">&quot;Title&quot;</span>];
+var body = Request[<span class="synConstant">&quot;body&quot;</span>];
+var now = DateTime.Now;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
+{
+db.Query(query, title, body, now, id);
+Response.Redirect(<span class="synConstant">&quot;~/Posts/&quot;</span> + id.ToString());
+}
+}</p>
+<p><span class="synType">void</span> Delete(<span class="synType">int</span> id)
+{
+var query = <span class="synConstant">&quot;DELETE FROM Post WHERE Id=@0&quot;</span>;</p>
+<p><span class="synStatement">using</span> (var db = Database.Open(<span class="synConstant">&quot;db&quot;</span>))
+{
+db.Query(query, id);
+Response.Redirect(<span class="synConstant">&quot;~/Posts/&quot;</span>);
+}
+}
+}
+</pre><p>あんまり気に入らない。なんか当初の目標とズレてきたし。</p><p>でも、よく考えたら、Web Form で GET/POST しかリクエストできないとしても、JavaScript だったらできるわけだよね。そんな Web Form の仕様に合わせなくてもいいんじゃね？</p><p>そんなことを考えていたら、こんなナイスなページを見つけた。</p></p>
+<blockquote cite="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE">
+<p>HTML5より前のHTMLでは、フォームで利用できるHTTPメソッドはGETとPOSTだけである。そのため、PUTやDELETEを使う場合には、JavaScriptが必要になる（JavaScriptでのHTTPリクエストを参照）。一部のケータイのブラウザのように、JavaScriptをサポートしていないブラウザでは、PUTやDELETEはPOSTで代用しなければならない。PUTやDELETEをPOSTで代用する方法には、以下の2つがあるが、フォームで利用できるのは、パラメータ_methodを利用する方法だけである。 </p>
+<p><cite><a href="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE"><a href="http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE">http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE</a></a></cite></p>
+</blockquote>
+<p>あーこれだ！ Rails でもやっていたやつだよね？</p><p>というわけで、これベースでまた書き直しする。そのあとは、Twitter/Facebook 認証を追加することにしたいと思ってる。</p>
 
-        http://wiki.unfindable.net/webbook2/index.php/Web%e3%83%9a%e3%83%bc%e3%82%b8%e3%81%8b%e3%82%89%e3%81%aePUT%e3%81%a8DELETE
-    
-あーこれだ！ Rails でもやっていたやつだよね？というわけで、これベースでまた書き直しする。そのあとは、Twitter/Facebook 認証を追加することにしたいと思ってる。
-
-
-</code></pre>
 
     <footer>
         
@@ -298,7 +279,7 @@ void Delete(int id)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/11/041856.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2013/01/11</time> 
             </p>
         
     </footer>
@@ -350,7 +331,16 @@ void Delete(int id)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

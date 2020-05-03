@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="はてなブログ：カテゴリーページにフィードへのリンクを追加する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; &gt; はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブ" />
+    <meta name="og:description"   property="og:description" content="はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブログ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/05/27/075215/" />
@@ -86,37 +88,17 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170527074352.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170527074352.png" alt="f:id:daruyanagi:20170527074352p:plain" title="f:id:daruyanagi:20170527074352p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<blockquote cite="http://staff.hatenablog.com/entry/2017/05/24/115000">
+<p>はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブログPro」利用者向けにリリースしました。特定のカテゴリーを目立たせたり、おすすめ記事を冒頭に表示したりといったリッチな表現が、カテゴリー別記事一覧ページで可能になります。どうぞご利用ください。</p>
+<p><cite><a href="http://staff.hatenablog.com/entry/2017/05/24/115000">カテゴリー別記事一覧で、ページのタイトルや説明文をカスタマイズできるようにしました（はてなブログPro） - はてなブログ開発ブログ</a></cite></p>
+</blockquote>
+<p>リクエストしていた機能なのでとってもうれしいです。ありがとう！　中の人！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170527074349.png" alt="f:id:daruyanagi:20170527074349p:plain" title="f:id:daruyanagi:20170527074349p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>というわけで、さっそくウチでも使ってみましょう。例は……どうしようかな、軽いカテゴリーの説明と、フィードへのリンクを追加してみましょうか。ウチのような“雑記”だと、ノイズが多いですからね。特定のカテゴリーのみを購読したいという要望は3年に1回ぐらいもらいます。</p><p>カテゴリーの説明には HTML が使えるようなので、こんな感じでしょうでしょうか。</p>
+<pre class="code lang-html" data-lang="html" data-unlink>最強の Web 開発環境「WebMatrix」に関するエントリーです。
+<p>購読は<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;http://blog.daruyanagi.jp/feed/category/WebMatrix&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">こちら</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>からどうぞ！
+</pre><p>結果はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170527074333.png" alt="f:id:daruyanagi:20170527074333p:plain" title="f:id:daruyanagi:20170527074333p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>割といい気がします。現在利用しているテーマがこの新しい機能を考慮していないのでスタイルシートを当てた方がよさそうですけど、このままでも十分使えそう。</p><p>できれば、すべてのカテゴリーにわざわざこんな説明を追加していくのは面倒なので、<b>“すべてのカテゴリーに共通の説明”</b>をつける機能がほしいかも。変数でカテゴリータイトル（エンコードあり・なし）や URL などを埋め込める感じにしてくれれば、カスタマイズの幅が広がりそうです。</p><p>気が向いたら今度フィードバックを送ってみよう。</p></p>
 
-<p>br/&gt;</p>
-<pre><code>&gt;
-    はてなブログでは、カテゴリー別記事一覧（PC版）において、ページのタイトルや説明文を自由にカスタマイズできる機能を、有料プラン「はてなブログPro」利用者向けにリリースしました。特定のカテゴリーを目立たせたり、おすすめ記事を冒頭に表示したりといったリッチな表現が、カテゴリー別記事一覧ページで可能になります。どうぞご利用ください。
-
-    カテゴリー別記事一覧で、ページのタイトルや説明文をカスタマイズできるようにしました（はてなブログPro） - はてなブログ開発ブログ
-</code></pre>
-<p>リクエストしていた機能なのでとってもうれしいです。ありがとう！　中の人！</p>
-<figure>
-    <img src="/images/20170527074349.png"/> 
-</figure>
-
-<p>いうわけで、さっそくウチでも使ってみましょう。例は……どうしようかな、軽いカテゴリーの説明と、フィードへのリンクを追加してみましょうか。ウチのような“雑記”だと、ノイズが多いですからね。特定のカテゴリーのみを購読したいという要望は3年に1回ぐらいもらいます。カテゴリーの説明には HTML が使えるようなので、こんな感じでしょうでしょうか。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">最強の Web 開発環境「WebMatrix」に関するエントリーです。
-
-購読は&amp;lt;a href=&#34;http://blog.daruyanagi.jp/feed/category/WebMatrix&#34;&gt;こちら&amp;lt;/a&gt;からどうぞ！
-
-```結果はこんな感じ。
-
-<figure>
-    <img src="/images/20170527074333.png"/> 
-</figure>
-
-
-といい気がします。現在利用しているテーマがこの新しい機能を考慮していないのでスタイルシートを当てた方がよさそうですけど、このままでも十分使えそう。できれば、すべてのカテゴリーにわざわざこんな説明を追加していくのは面倒なので、**“すべてのカテゴリーに共通の説明”**をつける機能がほしいかも。変数でカテゴリータイトル（エンコードあり・なし）や URL などを埋め込める感じにしてくれれば、カスタマイズの幅が広がりそうです。気が向いたら今度フィードバックを送ってみよう。
-
-
-</code></pre></div>
 
     <footer>
         
@@ -130,7 +112,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/05/27/075215.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/05/27</time> 
             </p>
         
     </footer>
@@ -182,7 +164,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -1,0 +1,8 @@
+---
+date: 2016-06-05T07:42:36.0000000
+draft: false
+title: "ベビー母恵夢～瀬戸内レモンと謎の消しゴム～"
+tags: ["今日のお役立ち", "愛媛"]
+eyecatch: 20160603181338.jpg
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160603181338.jpg" alt="f:id:daruyanagi:20160603181338j:plain" title="f:id:daruyanagi:20160603181338j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>近所のハトマートで買い物してたら、母恵夢の期間限定バージョンが売ってた。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww1.enekoshop.jp%2Fshop%2Fpoeme%2Fitem_list%3Fcategory_id%3D295342" title="季節の商品 | 母恵夢オンラインショップ" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>早速食べてみたけど……さわやかでいいな。母恵夢ってモフッとした触感のあとに口の中へ甘さがぐわーって広がるやん？　でもそれがちょっとクドい時あるよな。でも、この“瀬戸内レモン”は軽くてさわやかな感じで、割といいと思う。</p><p>まぁ、いつも食べるならスタンダードな母恵夢の方がいいかもしれんが……梅雨入りして鬱陶しい季節にはこれだな。今度お客さんがくるときのために、また買おう。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160603181049.jpg" alt="f:id:daruyanagi:20160603181049j:plain" title="f:id:daruyanagi:20160603181049j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、謎の消しゴム（材質は密度が高めのスポンジだけど、パッケージのせいで消しゴムにしか見えん）が大量に売ってたので、これも買ってしまった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160605073829.jpg" alt="f:id:daruyanagi:20160605073829j:plain" title="f:id:daruyanagi:20160605073829j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんかト○ボのM○N○消しゴムに似てるけど、この子が消すのは鉛筆で書いた字ではなく、“汚れ”であるらしい。試しに水をちょっとつけて使ってみたけど、お鍋にこびり付いてた茶色い感じのヤツがトゥルンと落ちていい感じだった。</p><p>世の中、どんどん便利になるなー。</p>

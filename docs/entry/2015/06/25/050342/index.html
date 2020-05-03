@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：フィードを読み込んでデータベースへつっこむときに System.Data.SqlServerCe.SqlCeException が発生する。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。 &gt; ### datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**" />
+    <meta name="og:description"   property="og:description" content="だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。 datetime 300 分の 1 秒、つまり 3.33 ミリ秒の精度で、1753" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2015/06/25/050342/20150625045042_hu204b763c4ed3643ec107dcae9b6a4a0d_449782_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2015/06/25/050342/20150625045042_hu204b763c4ed3643ec107dcae9b6a4a0d_449782_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/06/25/050342/" />
@@ -87,37 +93,24 @@
     </p>
 
     <p>だいぶ悩んで、Visual Studio まで立ち上げていろいろデバッグしていたのだけど、原因は簡単だった。</p>
-<pre><code>&gt;
-    
-
-### datetime
-300 分の 1 秒、つまり 3.33 ミリ秒の精度で、**1753 年 1 月 1 日から 9999 年 12 月 31 日まで**の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。
-
-
-    データ型
-</code></pre>
-<figure>
-    <img src="/images/20150625045042.png"/> 
-</figure>
-
-<p>方、C# の <code>default(DateTime)</code> は <code>0001/01/01 0:00:00</code>。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、<code>default(DateTime)</code> を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。</p>
-<figure>
-    <img src="/images/20150625050249.png"/> 
-</figure>
-
-<p>QL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> min_date = <span style="color:#66d9ef">new</span> DateTime(<span style="color:#ae81ff">1753</span>, <span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">1</span>); <span style="color:#75715e">// ほんとは readonly でどこかに
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">var</span> updated_at = item.LastUpdatedTime.UtcDateTime &amp;lt; min_date 
-    ? <span style="color:#66d9ef">new</span> DateTimeOffset(DateTime.Now).UtcDateTime 
-    : item.LastUpdatedTime.UtcDateTime;
-
-<span style="color:#75715e">// Database.Execute();
-</span><span style="color:#75715e"></span>
-</code></pre></div><div class="section">
-    ### 教訓
-    ちゃんとマニュアルは読もう。
+<blockquote cite="https://technet.microsoft.com/ja-jp/library/ms172424(v=sql.110).aspx">
+<div class="section">
+<h3>datetime</h3>
+<p>300 分の 1 秒、つまり 3.33 ミリ秒の精度で、<b>1753 年 1 月 1 日から 9999 年 12 月 31 日まで</b>の日付と時刻のデータを格納するデータ型です。値は .000、.003、または .007 ミリ秒の単位になるように丸められます。</p><p>2 つの 4 バイト整数として格納されます。最初の 4 バイトは、base date である 1900 年 1 月 1 日からの日数、またはこの日までの日数を格納します。基準日とは、システムが参照する日付です。datetime 型の値には、1753 年 1 月 1 日より前の日付を使用できません。もう一方の 4 バイトは、午前 0 時から数えた時間をミリ秒単位で格納します。秒の有効範囲は 0 から 59 までです。</p>
 </div>
-
+<cite><a href="https://technet.microsoft.com/ja-jp/library/ms172424(v=sql.110).aspx">&#x30C7;&#x30FC;&#x30BF;&#x578B;</a></cite>
+</blockquote>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150625045042.png" alt="f:id:daruyanagi:20150625045042p:plain" title="f:id:daruyanagi:20150625045042p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>一方、C# の <code>default(DateTime)</code> は <code>0001/01/01 0:00:00</code>。つまり、SyndicationFeed オブジェクトの LastUpdateTime プロパティあたりにちゃんと値がセットされてなくて（そういうフィードを配信しているサイトは割とある）、<code>default(DateTime)</code> を返してくるとき、それをそのまま SQL CE データベースに格納しようとするとエラーになる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150625050249.png" alt="f:id:daruyanagi:20150625050249p:plain" title="f:id:daruyanagi:20150625050249p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>SQL CE の datetime 型を扱う場合は、事前に値の範囲に収まるかチェックして、ダメな場合はハネておかないといけないんだね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>var min_date = <span class="synStatement">new</span> DateTime(<span class="synConstant">1753</span>, <span class="synConstant">1</span>, <span class="synConstant">1</span>); <span class="synComment">// ほんとは readonly でどこかに</span>
+var updated_at = item.LastUpdatedTime.UtcDateTime &lt; min_date
+? <span class="synStatement">new</span> DateTimeOffset(DateTime.Now).UtcDateTime
+: item.LastUpdatedTime.UtcDateTime;
+<p><span class="synComment">// Database.Execute();</span>
+</pre></p>
+<div class="section">
+<h3>教訓</h3>
+<p>ちゃんとマニュアルは読もう。</p>
+</div>
 
     <footer>
         
@@ -131,7 +124,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/06/25/050342.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/06/25</time> 
             </p>
         
     </footer>
@@ -183,7 +176,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

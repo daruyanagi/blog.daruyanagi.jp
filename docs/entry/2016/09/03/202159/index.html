@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Aoba 1.5.0：艦これキャプチャーツールに アニメーション GIF 録画機能をつけた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。 ダウンロード GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代" />
+    <meta name="og:description"   property="og:description" content="とりあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。 &#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9; GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2016/09/03/202159/20160903200705_hu49835d488a3a403b4f282e279063794a_288829_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2016/09/03/202159/20160903200705_hu49835d488a3a403b4f282e279063794a_288829_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/09/03/202159/" />
@@ -86,35 +92,25 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20160903200705.png"/> 
-</figure>
-
-<p>りあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160903200705.png" alt="f:id:daruyanagi:20160903200705p:plain" title="f:id:daruyanagi:20160903200705p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえずほしい機能は全部付けたので、あとは自分で使いながら改良するだけかも。</p>
 <ul>
-<li><a href="https://yanagi.blob.core.windows.net/aoba/setup.exe">ダウンロード</a></li>
-</ul>GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。
-<figure>
-    <img src="/images/20160903201543.png"/> 
-</figure>
-
-<p>UI クライアントをいくつか比較してみたけど、<a href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">CloudBerry Explorer</a> というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。</p>
+<li><a href="https://yanagi.blob.core.windows.net/aoba/setup.exe">&#x30C0;&#x30A6;&#x30F3;&#x30ED;&#x30FC;&#x30C9;</a></li>
+</ul><p>GitHub で ClickOnce するのは、思った以上に制約が多いのでやめて、代わりに Azure Blob Storage に置いてみたよ。初めて使ってみたけど、そんなに難しくなかった。お金はちょっとかかるっぽいけど、割と安いみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160903201543.png" alt="f:id:daruyanagi:20160903201543p:plain" title="f:id:daruyanagi:20160903201543p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>GUI クライアントをいくつか比較してみたけど、<a href="http://www.cloudberrylab.com/free-microsoft-azure-explorer.aspx">CloudBerry Explorer</a> というのが一番使いやすかったかも。コマンドラインだったら AzCopy ってのもあるみたいで、自分みたいに ClickOnce のファイルを Azure Blob Storage に置くだけだったらそっちの方が楽かもしれない。</p>
 <div class="section">
-    ### 更新点
+<h3>更新点</h3>
 <ul>
 <li>Twitter 投稿画面の改善</li>
 <li>Gif キャプチャー機能</li>
 <li>設定の保存</li>
 <li>コードのリファクタリング</li>
-</ul>Twitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。作り方は簡単で、
+</ul><p>Twitter の投稿画面では、フリップビューのパチモノみたいなのをつけて（アニメーションないし、フリックではめくれない劣化版）、過去の写真も選択できるようにした。連写機能で撮った決定的瞬間をうｐしたいときとかに使えるかも。</p><p>作り方は簡単で、</p>
 <ul>
-<li>スクショをリスト List&lt;string> でもっておく</li>
+<li>スクショをリスト List&lt;string&gt; でもっておく</li>
 <li>ViewModel で int SelectedIndex をもつ</li>
 <li>Image に List[SelectedIndex] をバインド</li>
 <li>ボタンに SelectedIndex を ++/-- するコマンドをバインドしていい感じに配置</li>
-</ul>するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。
+</ul><p>するだけ。ユーザーコントロールにして、切り替えのアニメーションぐらい付けたいけど、自分の XAML 力でそこまでできるかどうかはわからない。</p>
 </div>
-
 
     <footer>
         
@@ -128,7 +124,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/09/03/202159.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2016/09/03</time> 
             </p>
         
     </footer>
@@ -180,7 +176,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

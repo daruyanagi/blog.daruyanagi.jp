@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20110815/1362520356/" />
@@ -86,13 +88,13 @@
         </time>        
     </p>
 
-    <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/08/20110816-071641.jpg"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/08/20110816-071641.jpg" alt="20110816-071641.jpg" class="alignnone size-full"/></a>今回のブログは、スマートフォン（iPhone/iPad）からも簡単に更新できるようにしたかったが、HTMLタグの入力が結構面倒臭い。そこで_Markdown for WordPress and bbPress_プラグインを利用して、Markdown記法で記述できるようにしてみた。引用・強調・コード貼り付けが格段に楽になる上、いざとなればHTMLタグを含めることができるので、気張って文法を覚えなくてもいいのがよろしい。インストール方法は簡単で、プラグインの新規追加画面で「Markdown」をキーワードに検索、本プラグインがでてきたらそれをインストール・有効にするだけ。_WordPress 3.2.1_で試したところ、今のところうまく動いているようだ。さて、ここでしょうもないMarkdownのTipsを紹介。ときどき <code><br/></code> を使いたくなる時があるが、Markdownでは改行1つだけ挿入しても期待した動作にはならない。そんなときは、文末に空白を二つ挿入して改行しよう。</p>
-<pre><code>&gt;
-    ふるいけや  
-</code></pre>
-<p>かわず おぼれて<br>
+    <p><a href="http://blog.daruyanagi.net/wp-content/uploads/2011/08/20110816-071641.jpg"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/08/20110816-071641.jpg" alt="20110816-071641.jpg" class="alignnone size-full" /></a></p><p>今回のブログは、スマートフォン（iPhone/iPad）からも簡単に更新できるようにしたかったが、HTMLタグの入力が結構面倒臭い。そこで_Markdown for WordPress and bbPress_プラグインを利用して、Markdown記法で記述できるようにしてみた。引用・強調・コード貼り付けが格段に楽になる上、いざとなればHTMLタグを含めることができるので、気張って文法を覚えなくてもいいのがよろしい。</p><p>インストール方法は簡単で、プラグインの新規追加画面で「Markdown」をキーワードに検索、本プラグインがでてきたらそれをインストール・有効にするだけ。_WordPress 3.2.1_で試したところ、今のところうまく動いているようだ。</p><p>さて、ここでしょうもないMarkdownのTipsを紹介。</p><p>ときどき <code><br /></code> を使いたくなる時があるが、Markdownでは改行1つだけ挿入しても期待した動作にはならない。そんなときは、文末に空白を二つ挿入して改行しよう。</p>
+<blockquote>
+<p>ふるいけや  <br />
+かわず おぼれて  <br />
 みずのそこ</p>
-<p>どうでしょ？ もしこれができなくて Markdown は糞だ！と思っている人がいたなら、考えを改めていただきたいですね（きりっ 無論、 <code><br/></code> タグを直打ちしても同じ表示が得られる。</p>
+</blockquote>
+<p>どうでしょ？ もしこれができなくて Markdown は糞だ！と思っている人がいたなら、考えを改めていただきたいですね（きりっ 無論、 <code><br /></code> タグを直打ちしても同じ表示が得られる。</p>
 
 
     <footer>
@@ -107,7 +109,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20110815/1362520356.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/08/15</time> 
             </p>
         
     </footer>
@@ -159,7 +161,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

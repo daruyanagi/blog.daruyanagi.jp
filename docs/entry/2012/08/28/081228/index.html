@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>寄り道 - blog.daruyanagi.jp</title>
+<title>寄り道: string クラスの拡張 - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="寄り道" />
+<meta name="og:title"         property="og:title" content="寄り道: string クラスの拡張" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ の脱線。個人的には &amp;lt;fieldset&gt; &amp;lt;legend&gt;Register Your Account&amp;lt;/legend&gt; @this.RenderTextWithValidation( &#34;name&#34;, &#34;Name&#34;, new { Value = name} ) @this.RenderPasswordWithValidation( &#34;password&#34;, &#34;Password&#34;) @this.RenderPasswordWithValidation( &#34;confirmPassword&#34;, &#34;Confirm Password&#34;)" />
+    <meta name="og:description"   property="og:description" content="WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;3&#xFF09; &#x2015;&#x2015; &#x306A;&#x306B;&#x306F;&#x3068;&#x3082;&#x3042;&#x308C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x767B;&#x9332;&#x3057;&#x306A;&#x3044;&#x3068;&#x59CB;&#x307E;&#x3089;&#x3093; - &#x3060;&#x308B;&#x308D;&#x3050; の脱線。 個人的には &lt;fieldset&gt; &lt;legend&gt;Register Your Account&lt;/legend&gt; @this.RenderTextWithValidation( &quot;name&quot;, &quot;Name&quot;, new { Value = name} ) @this.RenderPasswordWithValidation( &quot;password&quot;, &quot;Password&quot;) @this.RenderPasswordWithValidation( &quot;confirmPassword&quot;, &quot;Confirm Password&quot;) &lt;inputtype=&quot;submit&quot;value=&quot;Register&quot;/&gt; &lt;/fieldset&gt; って書くのがイケてない。「&#34;password&#34;, &#34;Password" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/28/081228/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>寄り道</h1>
+    <h1>寄り道: string クラスの拡張</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,152 +88,125 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/25/003421">WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ</a> の脱線。個人的には</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;fieldset&gt;
-    &amp;lt;legend&gt;Register Your Account&amp;lt;/legend&gt;
-    @this.RenderTextWithValidation(
-        &#34;name&#34;, &#34;Name&#34;, new { Value = name} )
-    @this.RenderPasswordWithValidation(
-        &#34;password&#34;, &#34;Password&#34;)
-    @this.RenderPasswordWithValidation(
-        &#34;confirmPassword&#34;, &#34;Confirm Password&#34;)
-    &amp;lt;input type=&#34;submit&#34; value=&#34;Register&#34; /&gt;
-&amp;lt;/fieldset&gt;
-
-```って書くのがイケてない。「&#34;password&#34;, &#34;Password&#34;」だの、「&#34;confirmPassword&#34;, &#34;Confirm Password&#34;」だの、おんなじこと二回も書きたくないじゃん。あと、 HTML 要素の class や id は勝手にハイフン区切りにしてほしい。 Ruby on Rails にはソレ系のユーティリティが用意されているので楽なんだけどな（ActiveSupport）。まぁ、なければ作れって話だ。まず、あると便利な拡張メソッドを作っていく。先頭を大文字、後を小文字にする Capitalize() は欲しいよね。
-```cs
-public static string Capitalize(this string target)
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/25/003421">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;3&#xFF09; &#x2015;&#x2015; &#x306A;&#x306B;&#x306F;&#x3068;&#x3082;&#x3042;&#x308C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x767B;&#x9332;&#x3057;&#x306A;&#x3044;&#x3068;&#x59CB;&#x307E;&#x3089;&#x3093; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の脱線。</p><p>個人的には</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">fieldset</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">legend</span><span class="synIdentifier">&gt;</span>Register Your Account<span class="synIdentifier">&lt;/</span><span class="synStatement">legend</span><span class="synIdentifier">&gt;</span>
+@this.RenderTextWithValidation(
+&quot;name&quot;, &quot;Name&quot;, new { Value = name} )
+@this.RenderPasswordWithValidation(
+&quot;password&quot;, &quot;Password&quot;)
+@this.RenderPasswordWithValidation(
+&quot;confirmPassword&quot;, &quot;Confirm Password&quot;)
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;submit&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Register&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">fieldset</span><span class="synIdentifier">&gt;</span>
+</pre><p>って書くのがイケてない。「"password", "Password"」だの、「"confirmPassword", "Confirm Password"」だの、おんなじこと二回も書きたくないじゃん。あと、 HTML 要素の class や id は勝手にハイフン区切りにしてほしい。 Ruby on Rails にはソレ系のユーティリティが用意されているので楽なんだけどな（ActiveSupport）。</p><p>まぁ、なければ作れって話だ。</p><p>まず、あると便利な拡張メソッドを作っていく。先頭を大文字、後を小文字にする Capitalize() は欲しいよね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Capitalize(<span class="synStatement">this</span> <span class="synType">string</span> target)
 {
-    return target.Length &gt; 1
-        ? char.ToUpper(target[0]) +
-          target.Substring(1, target.Length - 1).ToLower()
-        : target.ToUpper();
+<span class="synStatement">return</span> target.Length &gt; <span class="synConstant">1</span>
+? <span class="synType">char</span>.ToUpper(target[<span class="synConstant">0</span>]) +
+target.Substring(<span class="synConstant">1</span>, target.Length - <span class="synConstant">1</span>).ToLower()
+: target.ToUpper();
+}
+</pre><p>char.ToUpper() を 'a'.ToUpper() にしたいが今日のところは面倒なので許してやろう。</p><p>さぁ、どんどん作っていくよ！　つぎは痴漢系、もとい置換系だな。 C# （.NET Framework）ってちょっと文字列操作系のメソッドが充実してもいいと思う。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Gsub(
+<span class="synStatement">this</span> <span class="synType">string</span> target, Regex r, <span class="synType">string</span> replacement)
+{
+<span class="synStatement">return</span> r.Replace(target, replacement);
+}
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Gsub(
+<span class="synStatement">this</span> <span class="synType">string</span> target, Regex r, MatchEvaluator m)
+{
+<span class="synStatement">return</span> r.Replace(target, m);
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Gsub(
+<span class="synStatement">this</span> <span class="synType">string</span> target, <span class="synType">string</span> pattern, <span class="synType">string</span> replacement)
+{
+<span class="synStatement">return</span> target.Gsub(<span class="synStatement">new</span> Regex(pattern), replacement);
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Gsub(
+<span class="synStatement">this</span> <span class="synType">string</span> target, <span class="synType">string</span> pattern, MatchEvaluator m)
+{
+<span class="synStatement">return</span> target.Gsub(<span class="synStatement">new</span> Regex(pattern), m);
+}
+</pre><p>これの何が便利かというと、</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Underscore(<span class="synStatement">this</span> <span class="synType">string</span> target)
+{
+<span class="synComment">// 空白やハイフンをアンダースコアに置き換える</span>
+<span class="synStatement">return</span> target.Gsub(<span class="synSpecial">@</span><span class="synConstant">&quot;[ 　-]&quot;</span>, <span class="synConstant">&quot;_&quot;</span>);
+}
+</pre><p>みたいに使える。 string.Replace() みたいに手軽で、それでいて強力！　場合によっては、第一引数に正規表現を渡してもいいし、第二引数で Match を引数にとったラムダを使ってもいい。ホントのことを言えば C# にも正規表現リテラルがあると嬉しいのだけれどね……</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">static</span> <span class="synType">string</span> DivideIntoWords(
+<span class="synStatement">this</span> <span class="synType">string</span> target, <span class="synType">string</span> separator = <span class="synConstant">&quot; &quot;</span>)
+{
+<span class="synStatement">return</span> target.Gsub(
+<span class="synSpecial">@</span><span class="synConstant">&quot;([\w-[A-Z]])([A-Z])&quot;</span>,
+<span class="synType">string</span>.Format(<span class="synConstant">&quot;$1{0}$2&quot;</span>, separator)
+);
+}
+</pre><p>あと、こんなのも作ってみた。これは「HelloWorld」を「Hello World」に分割する。第二引数を渡せば、「Hello_World」や「Hello-World」も作れる。こいつらを使って、 PascalCase （UpperCamelCase）に変換する拡張メソッドを作ってみよう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">static</span> <span class="synType">readonly</span> <span class="synType">char</span>[] SPACE_AND_DELIMITTER = <span class="synConstant">&quot; 　-_&quot;</span>.ToArray();
+
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> ToPascalCase(<span class="synStatement">this</span> <span class="synType">string</span> target)
+{
+<span class="synStatement">return</span> target                    <span class="synComment">// sampleText_is-Cool</span>
+.DivideIntoWords()           <span class="synComment">// sample Text_is-Cool</span>
+.Split(SPACE_AND_DELIMITTER) <span class="synComment">// { sample, Text, is, Cool }</span>
+.Select(_ =&gt; _.Capitalize()) <span class="synComment">// { Sample, Text, Is, Cool }</span>
+.Combine();                  <span class="synComment">// SampleTextIsCool</span>
 }
 
-```char.ToUpper() を &amp;#39;a&amp;#39;.ToUpper() にしたいが今日のところは面倒なので許してやろう。さぁ、どんどん作っていくよ！　つぎは痴漢系、もとい置換系だな。 C# （.NET Framework）ってちょっと文字列操作系のメソッドが充実してもいいと思う。
-```cs
-public static string Gsub(
-    this string target, Regex r, string replacement)
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> ToUpperCamelCase(<span class="synStatement">this</span> <span class="synType">string</span> target)
 {
-    return r.Replace(target, replacement);
+<span class="synStatement">return</span> target.ToPascalCase();
 }
 
-public static string Gsub(
-    this string target, Regex r, MatchEvaluator m)
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">string</span> Combine(
+<span class="synStatement">this</span> IEnumerable&lt;<span class="synType">string</span>&gt; target, <span class="synType">string</span> separator = <span class="synConstant">&quot;&quot;</span>)
 {
-    return r.Replace(target, m);
+<span class="synStatement">return</span> <span class="synType">string</span>.Join(separator, target.ToArray());
+}
+</pre><p>Combine() はメソッドチェーンを切らずに string.Join() したいので作った IEnumerable&lt;string&gt; の拡張メソッドで、@xin9le さんが命名してくれた。</p><p>同様にして CamelCase（LowerCamelCase）も作れる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Camelize(<span class="synStatement">this</span> <span class="synType">string</span> target)
+{
+<span class="synStatement">return</span> target
+.DivideIntoWords()
+.Split(SPACE_AND_DELIMITTER_CHARS)
+.Select((_, i) =&gt; (i == <span class="synConstant">0</span>) <span class="synComment">// &lt;-- カウンターを使う</span>
+? _.ToLower()
+: _.Capitalize())
+.Combine();
+}
+</pre><p>1回目（i == 0）のときだけ ToLower()、あとはさっき作った Capitalize() すればいいね。</p><p>今まで知らなかったのだけれど、 Enumerable.Select(Func&lt;TSource, Int32, TResult&gt;) （<a href="http://msdn.microsoft.com/ja-jp/library/bb534869">http://msdn.microsoft.com/ja-jp/library/bb534869</a>）を使うと「今何回目の処理をしているか（インデックス）」が取得できるのね。 Ruby の map {|i| ... } みたいなものかな。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Titlize(<span class="synStatement">this</span> <span class="synType">string</span> target)
+{
+<span class="synStatement">return</span> target
+.Gsub(<span class="synSpecial">@</span><span class="synConstant">&quot;[_-]&quot;</span>, <span class="synConstant">&quot; &quot;</span>)
+.DivideIntoWords()
+.Split(SPACE_AND_DELIMITTER)
+.Select(_ =&gt; _.Capitalize())
+.Combine(<span class="synConstant">&quot; &quot;</span>);
 }
 
-public static string Gsub(
-    this string target, string pattern, string replacement)
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Humanize(<span class="synStatement">this</span> <span class="synType">string</span> target)
 {
-    return target.Gsub(new Regex(pattern), replacement);
+<span class="synStatement">return</span> target
+.Gsub(<span class="synSpecial">@</span><span class="synConstant">&quot;[_-]&quot;</span>, <span class="synConstant">&quot; &quot;</span>)
+.DivideIntoWords()
+.Split(SPACE_AND_DELIMITTER)
+.Select((_, i) =&gt; (i == <span class="synConstant">0</span>) ? _.Capitalize() : _.ToLower())
+.Combine(<span class="synConstant">&quot; &quot;</span>);
 }
+</pre><p>あとは僕の望みの、Titlize() や Humanize() も作ってみた。メソッド名は ActiveSupport から拝借。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120828080159.png" alt="f:id:daruyanagi:20120828080159p:plain" title="f:id:daruyanagi:20120828080159p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code" data-lang="" data-unlink>&#34;man from the boondocks&#34;.Titlize()   # =&gt; &#34;Man From The Boondocks&#34;
+&#34;man from the boondocks&#34;.Humanize()  # =&gt; &#34;Man from the boondocks&#34;
+<p>&quot;x-men: the last stand&quot;.Titlize()    # =&gt; &quot;X Men: The Last Stand&quot;
+&quot;x-men: the last stand&quot;.Humanize()   # =&gt; &quot;X men: the last stand&quot;</p>
+<p>&quot;TheManWithoutAPast&quot;.Titlize()       # =&gt; &quot;The Man Without A Past&quot;
+&quot;TheManWithoutAPast&quot;.Humanize()      # =&gt; &quot;The man without a past&quot;</p>
+<p>&quot;raiders_of_the_lost_ark&quot;.Titlize()  # =&gt; &quot;Raiders Of The Lost Ark&quot;
+&quot;raiders_of_the_lost_ark&quot;.Humanize() # =&gt; &quot;Raiders of the lost ark&quot;</pre><p>CSS text-transform の capitalize に相当する処理が Capitalize() ではなく Titlize() なのが罠といえば罠。</p></p>
 
-public static string Gsub(
-    this string target, string pattern, MatchEvaluator m)
-{
-    return target.Gsub(new Regex(pattern), m);
-}
-
-```これの何が便利かというと、
-```cs
-public static string Underscore(this string target)
-{
-    // 空白やハイフンをアンダースコアに置き換える
-    return target.Gsub(@&#34;[ 　-]&#34;, &#34;_&#34;);
-}
-
-```みたいに使える。 string.Replace() みたいに手軽で、それでいて強力！　場合によっては、第一引数に正規表現を渡してもいいし、第二引数で Match を引数にとったラムダを使ってもいい。ホントのことを言えば C# にも正規表現リテラルがあると嬉しいのだけれどね……
-```cs
-private static string DivideIntoWords(
-    this string target, string separator = &#34; &#34;)
-{
-    return target.Gsub(
-        @&#34;([\w-[A-Z]])([A-Z])&#34;,
-        string.Format(&#34;$1{0}$2&#34;, separator)
-    );
-}
-
-```あと、こんなのも作ってみた。これは「HelloWorld」を「Hello World」に分割する。第二引数を渡せば、「Hello_World」や「Hello-World」も作れる。こいつらを使って、 PascalCase （UpperCamelCase）に変換する拡張メソッドを作ってみよう。
-```cs
-static readonly char[] SPACE_AND_DELIMITTER = &#34; 　-_&#34;.ToArray();
-
-public static string ToPascalCase(this string target)
-{
-    return target                    // sampleText_is-Cool
-        .DivideIntoWords()           // sample Text_is-Cool
-        .Split(SPACE_AND_DELIMITTER) // { sample, Text, is, Cool }
-        .Select(_ =&gt; _.Capitalize()) // { Sample, Text, Is, Cool }
-        .Combine();                  // SampleTextIsCool
-}
-
-public static string ToUpperCamelCase(this string target)
-{
-    return target.ToPascalCase();
-}
-
-private static string Combine(
-    this IEnumerable&amp;lt;string&gt; target, string separator = &#34;&#34;)
-{
-    return string.Join(separator, target.ToArray());
-}
-
-```Combine() はメソッドチェーンを切らずに string.Join() したいので作った IEnumerable&amp;lt;string&gt; の拡張メソッドで、@xin9le さんが命名してくれた。同様にして CamelCase（LowerCamelCase）も作れる。
-```cs
-public static string Camelize(this string target)
-{
-    return target
-        .DivideIntoWords()
-        .Split(SPACE_AND_DELIMITTER_CHARS)
-        .Select((_, i) =&gt; (i == 0) // &amp;lt;-- カウンターを使う
-            ? _.ToLower()
-            : _.Capitalize())
-        .Combine();
-}
-
-```1回目（i == 0）のときだけ ToLower()、あとはさっき作った Capitalize() すればいいね。今まで知らなかったのだけれど、 Enumerable.Select(Func&amp;lt;TSource, Int32, TResult&gt;) （&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://msdn.microsoft.com/ja-jp/library/bb534869&#34;</span>&gt;http://msdn.microsoft.com/ja-jp/library/bb534869&lt;/<span style="color:#f92672">a</span>&gt;）を使うと「今何回目の処理をしているか（インデックス）」が取得できるのね。 Ruby の map {|i| ... } みたいなものかな。
-```cs
-public static string Titlize(this string target)
-{
-    return target
-        .Gsub(@&#34;[_-]&#34;, &#34; &#34;)
-        .DivideIntoWords()
-        .Split(SPACE_AND_DELIMITTER)
-        .Select(_ =&gt; _.Capitalize())
-        .Combine(&#34; &#34;);
-}
-
-public static string Humanize(this string target)
-{
-    return target
-        .Gsub(@&#34;[_-]&#34;, &#34; &#34;)
-        .DivideIntoWords()
-        .Split(SPACE_AND_DELIMITTER)
-        .Select((_, i) =&gt; (i == 0) ? _.Capitalize() : _.ToLower())
-        .Combine(&#34; &#34;);
-}
-
-```あとは僕の望みの、Titlize() や Humanize() も作ってみた。メソッド名は ActiveSupport から拝借。
-
-<figure>
-    <img src="/images/20120828080159.png"/> 
-</figure>
-
-
-br/&gt;
-
-</code></pre></div><p>&ldquo;man from the boondocks&rdquo;.Titlize()   # =&gt; &ldquo;Man From The Boondocks&rdquo;
-&ldquo;man from the boondocks&rdquo;.Humanize()  # =&gt; &ldquo;Man from the boondocks&rdquo;</p>
-<p>&ldquo;x-men: the last stand&rdquo;.Titlize()    # =&gt; &ldquo;X Men: The Last Stand&rdquo;
-&ldquo;x-men: the last stand&rdquo;.Humanize()   # =&gt; &ldquo;X men: the last stand&rdquo;</p>
-<p>&ldquo;TheManWithoutAPast&rdquo;.Titlize()       # =&gt; &ldquo;The Man Without A Past&rdquo;
-&ldquo;TheManWithoutAPast&rdquo;.Humanize()      # =&gt; &ldquo;The man without a past&rdquo;</p>
-<p>&ldquo;raiders_of_the_lost_ark&rdquo;.Titlize()  # =&gt; &ldquo;Raiders Of The Lost Ark&rdquo;
-&ldquo;raiders_of_the_lost_ark&rdquo;.Humanize() # =&gt; &ldquo;Raiders of the lost ark&rdquo;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-CSS" data-lang="CSS">
-
-</code></pre></div>
 
     <footer>
         
@@ -245,7 +220,7 @@ br/&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/28/081228.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/28</time> 
             </p>
         
     </footer>
@@ -297,7 +272,16 @@ br/&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

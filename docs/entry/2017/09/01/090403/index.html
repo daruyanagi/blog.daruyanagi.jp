@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」v3.0.0 を公開しました" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="indows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を3年ぶりにアップデートしました！ 「Mi" />
+    <meta name="og:description"   property="og:description" content="Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を3年ぶりにアップデートしました！ 「Mi" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/09/01/090403/" />
@@ -86,50 +88,17 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170901084555.png"/> 
-</figure>
-
-<p>indows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を<strong>3年ぶりに</strong>アップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901084555.png" alt="f:id:daruyanagi:20170901084555p:plain" title="f:id:daruyanagi:20170901084555p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Windows の［共有］機能からシェアした URL を整形してクリップボードにコピーできるストアアプリ「Clipper」を<b>3年ぶりに</b>アップデートしました！ 「Microsoft Edge」の拡張機能が充実すれば要らない子になるはずだったのですが、意外に全然ダメダメなのでサクッとね。</p>
 <ul>
 <li>Release 4: 3.0 (17/08/29)
 <ul>
 <li>new design</li>
 <li>improve error handling</li>
 </ul></li>
-</ul>ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血
-<figure>
-    <img src="/images/20170901084843.png"/> 
-</figure>
-
-<p>と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。ちょっと面白いのは、<strong>このアプリからまた［共有］機能が呼べる</strong>ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。</p>
-<figure>
-    <img src="/images/20170901085337.png"/> 
-</figure>
-
-<p>方、<strong>ときどきデータがクリップボードにコピーされない</strong>という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です<a href="#f-341c777e" name="fn-341c777e" title="WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除">*1</a>。</p>
-<figure>
-    <img src="/images/20170901084949.png"/> 
-</figure>
-
-<figure>
-    <img src="/images/20170901084951.png"/> 
-</figure>
-
-<p>形ルールの管理画面も新しくなりました。<a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" target="_blank"><img src="https://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png"/></a>昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。</p>
-<figure>
-    <img src="/images/20170901085908.png"/> 
-</figure>
-
-<p>と、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（<a href="http://store-watch.hatenadiary.jp/entry/2017/09/01/084209" alt="【更新】Clipper - Windows Store Watch">
-  【更新】Clipper - Windows Store Watch
-</a><a href="https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz" alt="Clipper を購入 - Microsoft ストア 日本">
-  Clipper を購入 - Microsoft ストア 日本
-</a></p>
+</ul><p>ほんとは Visual Studio 2013 のプロジェクト（旧ストアアプリ、なんていうの？ WinRT？）をちまちまアップデートを……と思っていたのですが、途中でめんどくさくなって、また一から作り直しました！　さすがに3回目ともなると、半日立たず作れていい気分です（吐血</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901084843.png" alt="f:id:daruyanagi:20170901084843p:plain" title="f:id:daruyanagi:20170901084843p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>昔と比べたらだいぶ良くなったと思いますが、プルダウンメニューにしたのはイマイチかもしれない。自分で使いながら改善を模索していこうかと思います。</p><p>ちょっと面白いのは、<b>このアプリからまた［共有］機能が呼べる</b>ことです。整形した URL をさらにほかのアプリへ渡す、なんてこともできるようになりました。これに伴い、Twitter へ投稿する機能は削除しています。［共有］機能を使った方がいいと思います。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901085337.png" alt="f:id:daruyanagi:20170901085337p:plain" title="f:id:daruyanagi:20170901085337p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>一方、<b>ときどきデータがクリップボードにコピーされない</b>という不具合は根絶できませんでした。 Clipboard.Flush() を呼べばアプリケーションのライフサイクルが終わってもデータがクリップボードに保持されるみたいなので、それで解決かと思ったのですが、たまに COM 側で例外が飛んできます。とりあえず通知だけ実装してリリースしましたが、今後の課題です<a href="#f-341c777e" name="fn-341c777e" title="WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除">*1</a>。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901084949.png" alt="f:id:daruyanagi:20170901084949p:plain" title="f:id:daruyanagi:20170901084949p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901084951.png" alt="f:id:daruyanagi:20170901084951p:plain" title="f:id:daruyanagi:20170901084951p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>整形ルールの管理画面も新しくなりました。</p><p><a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png" class="http-image" target="_blank"><img src="20140826091050.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140826/20140826091050.png"></a></p><p>昔は画面遷移がよくわかってなかったのですべての要素を一画面にツッコむという荒業でしのいでいましたが、それに比べるとだいぶ使いやすいはずです。正直、昔の画面は、しばらくたつと作った本人ですらよくわからなくなるひどいものでした。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170901085908.png" alt="f:id:daruyanagi:20170901085908p:plain" title="f:id:daruyanagi:20170901085908p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、機能には関係ないですが、C# 7.1 を使ってみました。いろいろ簡単に書けて幸せですけど、間違って x86/Debug の C# のバージョンだけを latest に設定していたので、パッケージのビルド（Release）でコンパイルがコケて 3 分ぐらい悩みました。こんなことで躓くのは僕だけかもですが、皆さん気を付けましょう（</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fstore-watch.hatenadiary.jp%2Fentry%2F2017%2F09%2F01%2F084209" title="【更新】Clipper - Windows Store Watch" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://store-watch.hatenadiary.jp/entry/2017/09/01/084209">store-watch.hatenadiary.jp</a></cite></p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.microsoft.com%2Fja-jp%2Fstore%2Fp%2Fclipper%2F9wzdncrdf8kz" title="Clipper を購入 - Microsoft ストア 日本" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://www.microsoft.com/ja-jp/store/p/clipper/9wzdncrdf8kz">www.microsoft.com</a></cite></p>
 <div class="footnote">
-<a href="#fn-341c777e" name="f-341c777e" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除</span>
+<p class="footnote"><a href="#fn-341c777e" name="f-341c777e" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">WPF での解決策はみかけるけど、UWP での解決は見つからない……ワークアラウンドもいろいろ考えたけど、実装が面倒なだけで効果的な解決にはなってなかったのでとりあえず削除</span></p>
 </div>
-
 
     <footer>
         
@@ -143,7 +112,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/09/01/090403.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/09/01</time> 
             </p>
         
     </footer>
@@ -195,7 +164,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

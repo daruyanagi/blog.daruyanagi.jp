@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="テキストエリアの高さをウィンドウサイズに合わせて調節したい" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="キストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでて" />
+    <meta name="og:description"   property="og:description" content="テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&#34;10&#34; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがで" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/11/15/160504/" />
@@ -86,37 +88,18 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20141115155110.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20141115155110.png" alt="f:id:daruyanagi:20141115155110p:plain" title="f:id:daruyanagi:20141115155110p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>テキストエリアの高さって、いつもなやむ。適当に &lt;textarea rows="10" &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20141115155122.png" alt="f:id:daruyanagi:20141115155122p:plain" title="f:id:daruyanagi:20141115155122p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>要はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink>&lt;script&gt;
+$(<span class="synStatement">window</span>).bind(<span class="synConstant">&quot;resize ready&quot;</span>, <span class="synIdentifier">function</span>(<span class="synStatement">event</span>)<span class="synIdentifier">{</span>
+$(<span class="synConstant">'#Content'</span>).height(
+$(<span class="synConstant">'#Content'</span>).height()  +
+$(<span class="synStatement">window</span>).height() -
+$(<span class="synStatement">document</span>.body).height()
+);
+<span class="synIdentifier">}</span>);
+&lt;/script&gt;
+</pre><p>#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20141115160100.png" alt="f:id:daruyanagi:20141115160100p:plain" title="f:id:daruyanagi:20141115160100p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ひよっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。</p>
 
-<p>キストエリアの高さって、いつもなやむ。適当に &lt;textarea rows=&quot;10&rdquo; &gt; みたいな感じで決め打ちにすると、最悪、テキストエリアにもウィンドウにもスクロールバーがでてウザい（2重スクロールバーはもっとも避けるべきユーザーインターフェイスだと思う！）。なんかいい感じにウィンドウの高さに合わせてテキストエリアの高さもできるだけ大きくとりたい。</p>
-<figure>
-    <img src="/images/20141115155122.png"/> 
-</figure>
-
-<p>はこうしたいんや！ 最初はググってコードをコピったろうと思っていたのだけど、「入力に応じてサイズを大きくする」みたいなサンプルばっかりで参考にならなかったので、自分で考えてみた――ら、簡単だった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#a6e22e">script</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">bind</span>(<span style="color:#e6db74">&#34;resize ready&#34;</span>, <span style="color:#66d9ef">function</span>(<span style="color:#a6e22e">event</span>){
-        <span style="color:#a6e22e">$</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Content</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">height</span>(
-            <span style="color:#a6e22e">$</span>(<span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#a6e22e">Content</span><span style="color:#f92672">&amp;</span><span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).<span style="color:#a6e22e">height</span>()  <span style="color:#f92672">+</span> 
-            <span style="color:#a6e22e">$</span>(window).<span style="color:#a6e22e">height</span>() <span style="color:#f92672">-</span> 
-            <span style="color:#a6e22e">$</span>(document.<span style="color:#a6e22e">body</span>).<span style="color:#a6e22e">height</span>()
-        );
-    });
-<span style="color:#f92672">&amp;</span><span style="color:#a6e22e">lt</span>;<span style="color:#960050;background-color:#1e0010">/script&gt;</span>
-
-<span style="color:#e6db74">```#Content がテキストエリアの ID な。JavaScript（jQuery）はさっぱりわからないのだけど、$(window).bind() を使うと複数のイベントに単一の関数を割り当てられるらしい（今回は ready と resize に割り当てたよ！）。テキストエリアが2つ以上になると破たんするけれど、まぁ、とりあえずこれでイケてる。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"><figure>
-    <img src="/images/20141115160100.png"/> 
-</figure>
-
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">よっこなので、コンソールでぷちぷち式を入力して結果を確認しながら作ってみた。入力補完も効くので（jQuery の関数はダメだけど。ここらへんは Visual Studio がすごいらしい）、右も左もわからない状態でも割となんとかなる。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">
-</span></code></pre></div>
 
     <footer>
         
@@ -130,7 +113,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/11/15/160504.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/11/15</time> 
             </p>
         
     </footer>
@@ -182,7 +165,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

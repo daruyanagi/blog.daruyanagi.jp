@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/27/213159/" />
@@ -86,158 +88,138 @@
         </time>        
     </p>
 
-    <p>SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。自分の作ったサンプルコード（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/SampleHub.cs
-
-<span style="color:#66d9ef">using</span> SignalR.Hubs;
-<span style="color:#66d9ef">using</span> System.IO;
-<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">[HubName(&#34;sample&#34;)]</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">SampleHub</span> : Hub
+    <p>SignalR の面白い使い方ってないかなーと思ってたのだけど、たとえば誰かがファイルをアップロードした時、同時接続している人たちにそれを知らせられたら面白くないかな？　と思いついた。さっそくやってみる。</p><p>自分の作ったサンプルコード（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! &#x306B;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x304D;&#x305F;&#xFF0B;WebMatrix &#x3067; SignalR &#x52D5;&#x304B;&#x3057;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）をコピペして、必要な処理を足して、要らない部分を消して……以下のようなコードを書いてみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/SampleHub.cs
+<p><span class="synStatement">using</span> SignalR.Hubs;
+<span class="synStatement">using</span> System.IO;</p>
+<p>[HubName(<span class="synConstant">&quot;sample&quot;</span>)]
+<span class="synType">public</span> <span class="synType">class</span> SampleHub : Hub
 {
-    <span style="color:#66d9ef">public</span> SampleHub()
-    {
-        <span style="color:#66d9ef">var</span> watcher = <span style="color:#66d9ef">new</span> FileSystemWatcher();
-        
-        watcher.Path =  System.Web.HttpContext.Current
-            .Server.MapPath(<span style="color:#e6db74">@&#34;~/_Documents&#34;</span>);
-        watcher.Filter = <span style="color:#e6db74">&#34;*.txt&#34;</span>;
-        watcher.NotifyFilter = NotifyFilters.FileName
-                             | NotifyFilters.DirectoryName
-                             | NotifyFilters.LastWrite;
-        watcher.IncludeSubdirectories = <span style="color:#66d9ef">false</span>;
-        watcher.Changed +=
-            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;なんかかわったで&#34;</span>); };
-        watcher.Created +=
-            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;あたらしいのできたで&#34;</span>); };
-        watcher.Deleted +=
-            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;きえてもうた……&#34;</span>); };
-        watcher.Renamed +=
-            (o, s) =&gt; { Clients.Echo(<span style="color:#e6db74">&#34;なまえかわったわ&#34;</span>); };
-        watcher.EnableRaisingEvents = <span style="color:#66d9ef">true</span>;
-    }
+<span class="synType">public</span> SampleHub()
+{
+var watcher = <span class="synStatement">new</span> FileSystemWatcher();</p>
+<p>watcher.Path =  System.Web.HttpContext.Current
+.Server.MapPath(<span class="synSpecial">@</span><span class="synConstant">&quot;~/_Documents&quot;</span>);
+watcher.Filter = <span class="synConstant">&quot;*.txt&quot;</span>;
+watcher.NotifyFilter = NotifyFilters.FileName
+| NotifyFilters.DirectoryName
+| NotifyFilters.LastWrite;
+watcher.IncludeSubdirectories = <span class="synConstant">false</span>;
+watcher.Changed +=
+(o, s) =&gt; { Clients.Echo(<span class="synConstant">&quot;なんかかわったで&quot;</span>); };
+watcher.Created +=
+(o, s) =&gt; { Clients.Echo(<span class="synConstant">&quot;あたらしいのできたで&quot;</span>); };
+watcher.Deleted +=
+(o, s) =&gt; { Clients.Echo(<span class="synConstant">&quot;きえてもうた……&quot;</span>); };
+watcher.Renamed +=
+(o, s) =&gt; { Clients.Echo(<span class="synConstant">&quot;なまえかわったわ&quot;</span>); };
+watcher.EnableRaisingEvents = <span class="synConstant">true</span>;
 }
+}
+</pre><p>めんどくさいので <a href="http://dobon.net/vb/dotnet/file/filesystemwatcher.html">フォルダ、ファイルの変更を監視する - .NET Tips (VB.NET,C#&hellip;)</a> をほとんど丸コピしている。原理的には、これで _Documents フォルダ内のテキストファイルが更新されると、クライアント側の Echo() が呼ばれるはず。</p><p>ちなみにクライアント側はこんな感じ。</p></p>
+<pre class="code lang-html" data-lang="html" data-unlink># ~/Default.cshtml
 
-<span style="color:#960050;background-color:#1e0010">```めんどくさいので</span> &lt;a href=<span style="color:#e6db74">&#34;http://dobon.net/vb/dotnet/file/filesystemwatcher.html&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">フォルダ、ファイルの変更を監視する</span> - .NET Tips (VB.NET,C<span style="color:#960050;background-color:#1e0010">#</span>...)&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">をほとんど丸コピしている。原理的には、これで</span> _Documents <span style="color:#960050;background-color:#1e0010">フォルダ内のテキストファイルが更新されると、クライアント側の</span> Echo() <span style="color:#960050;background-color:#1e0010">が呼ばれるはず。ちなみにクライアント側はこんな感じ。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-<span style="color:#960050;background-color:#1e0010">#</span> ~/Default.cshtml
+<span class="synComment">&lt;!DOCTYPE html&gt;</span>
 
-
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;ja&#34;</span>&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &amp;lt;title&gt;<span style="color:#960050;background-color:#1e0010">マイ</span> <span style="color:#960050;background-color:#1e0010">サイトのタイトル</span>&amp;lt;/title&gt;
-        &amp;lt;script type=<span style="color:#e6db74">&#34;text/javascript&#34;</span>
-                src=<span style="color:#e6db74">&#34;Scripts/jquery-1.6.4.js&#34;</span>&gt;&amp;lt;/script&gt;
-        &amp;lt;script type=<span style="color:#e6db74">&#34;text/javascript&#34;</span>
-                src=<span style="color:#e6db74">&#34;Scripts/jquery.signalR-0.5.3.js&#34;</span>&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            <span style="color:#66d9ef">var</span> connection = <span style="color:#960050;background-color:#1e0010">$</span>.hubConnection();
-            <span style="color:#66d9ef">var</span> sample = connection.createProxy(<span style="color:#e6db74">&#34;sample&#34;</span>);
-            connection.start();
-            sample.<span style="color:#66d9ef">on</span>(<span style="color:#e6db74">&#34;Echo&#34;</span>, function (<span style="color:#66d9ef">value</span>) {
-                <span style="color:#960050;background-color:#1e0010">$</span>(<span style="color:#e6db74">&#34;#value&#34;</span>).html(<span style="color:#66d9ef">value</span>);
-            });
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;p id=<span style="color:#e6db74">&#34;value&#34;</span>&gt;&amp;lt;/p&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div><div class="section">
-    ### 反応がない、ただの屍のようだ。
-    でも、これだと動かない。なぜだ！元のサンプルコードをいじりながらいろいろ試してみたところ、クライアントから一度なんらかのアクションがあれば、期待通りの動作をするみたい。ということで、コードを少し足した。
-```cs
-# ~/App_Code/SampleHub.cs
-<p>using SignalR.Hubs;
-using System.IO;</p>
-<p>[HubName(&ldquo;sample&rdquo;)]
-public class SampleHub : Hub
+<span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery-1.6.4.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery.signalR-0.5.3.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> connection = $.hubConnection</span>()<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> sample = connection.createProxy</span>(<span class="synConstant">&quot;sample&quot;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            connection.start</span>()<span class="synSpecial">;</span>
+<span class="synSpecial">            sample.on</span>(<span class="synConstant">&quot;Echo&quot;</span><span class="synSpecial">, </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">value</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $</span>(<span class="synConstant">&quot;#value&quot;</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">value</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;value&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre>
+<div class="section">
+<h3>反応がない、ただの屍のようだ。</h3>
+<p>でも、これだと動かない。なぜだ！</p><p>元のサンプルコードをいじりながらいろいろ試してみたところ、クライアントから一度なんらかのアクションがあれば、期待通りの動作をするみたい。ということで、コードを少し足した。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/SampleHub.cs
+<p><span class="synStatement">using</span> SignalR.Hubs;
+<span class="synStatement">using</span> System.IO;</p>
+<p>[HubName(<span class="synConstant">&quot;sample&quot;</span>)]
+<span class="synType">public</span> <span class="synType">class</span> SampleHub : Hub
 {
-public SampleHub()
+<span class="synType">public</span> SampleHub()
 {
 （省略）
 }</p>
-<pre><code>public void Initialize()
+<p><span class="synType">public</span> <span class="synType">void</span> Initialize()
 {
-    // 追加：コネクションを叩き起こすための何もしないメソッド
+<span class="synComment">// 追加：コネクションを叩き起こすための何もしないメソッド</span>
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-で、クライアント側から" data-lang="で、クライアント側から">```html
-# ~/Default.cshtml
+}
+</pre><p>で、クライアント側から SampleHub.Initialize() を叩く。</p></p>
+<pre class="code lang-html" data-lang="html" data-unlink># ~/Default.cshtml
 
+<span class="synComment">&lt;!DOCTYPE html&gt;</span>
 
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;
-                src=&quot;Scripts/jquery-1.6.4.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script type=&quot;text/javascript&quot;
-                src=&quot;Scripts/jquery.signalR-0.5.3.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            var connection = $.hubConnection();
-            var sample = connection.createProxy(&quot;sample&quot;);
-            connection.start();
-            sample.on(&quot;Echo&quot;, function (value) {
-                $(&quot;#value&quot;).html(value);
-            });
-            sample.invoke(&amp;#39;initialize&amp;#39;); // &amp;lt;-- 追加！
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;p id=&quot;value&quot;&gt;&amp;lt;/p&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div>
-<div class="section">
-    ### 無理やり叩いたらゲロ吐きやがった
-    そうしたらエラーで止まった。
-<figure>
-    <img src="/images/20120927212447.png"/> 
-</figure>
-
-<p>onnection.start() が終わってないのに SampleHub.Initialize() を叩くんじゃねえ、バカ。そういいたいらしい。connection.start().done() を使えというので、素直に従おう。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"># ~/Default.cshtml
-
-
-
-&amp;lt;html lang=&#34;ja&#34;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&#34;utf-8&#34; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;script type=&#34;text/javascript&#34;
-                src=&#34;Scripts/jquery-1.6.4.js&#34;&gt;&amp;lt;/script&gt;
-        &amp;lt;script type=&#34;text/javascript&#34;
-                src=&#34;Scripts/jquery.signalR-0.5.3.js&#34;&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            var connection = $.hubConnection();
-            var sample = connection.createProxy(&#34;sample&#34;);
-            connection.start().done(function () { // &amp;lt;-- done()!
-                sample.invoke(&amp;#39;initialize&amp;#39;);
-            });
-            sample.on(&#34;Echo&#34;, function (value) {
-                $(&#34;#value&#34;).html(value);
-            });
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;p id=&#34;value&#34;&gt;&amp;lt;/p&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div><figure>
-    <img src="/images/20120927212701.png"/> 
-</figure>
-
-<p>ー！ ちゃんと動いたぞ。けれど、あんまりスマートじゃないな？　まぁ、いいか。</p>
+<span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery-1.6.4.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery.signalR-0.5.3.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> connection = $.hubConnection</span>()<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> sample = connection.createProxy</span>(<span class="synConstant">&quot;sample&quot;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            connection.start</span>()<span class="synSpecial">;</span>
+<span class="synSpecial">            sample.on</span>(<span class="synConstant">&quot;Echo&quot;</span><span class="synSpecial">, </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">value</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $</span>(<span class="synConstant">&quot;#value&quot;</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">value</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            sample.invoke</span>(<span class="synConstant">'initialize'</span>)<span class="synSpecial">; </span><span class="synComment">// &lt;-- 追加！</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;value&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre>
 </div>
-
+<div class="section">
+<h3>無理やり叩いたらゲロ吐きやがった</h3>
+<p>そうしたらエラーで止まった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120927212447.png" alt="f:id:daruyanagi:20120927212447p:plain" title="f:id:daruyanagi:20120927212447p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>connection.start() が終わってないのに SampleHub.Initialize() を叩くんじゃねえ、バカ。そういいたいらしい。connection.start().done() を使えというので、素直に従おう。</p>
+<pre class="code lang-html" data-lang="html" data-unlink># ~/Default.cshtml
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery-1.6.4.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Scripts/jquery.signalR-0.5.3.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> connection = $.hubConnection</span>()<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">var</span><span class="synSpecial"> sample = connection.createProxy</span>(<span class="synConstant">&quot;sample&quot;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            connection.start</span>()<span class="synSpecial">.done</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span><span class="synSpecial"> </span><span class="synComment">// &lt;&ndash; done()!</span>
+<span class="synSpecial">                sample.invoke</span>(<span class="synConstant">'initialize'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            sample.on</span>(<span class="synConstant">&quot;Echo&quot;</span><span class="synSpecial">, </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">value</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                $</span>(<span class="synConstant">&quot;#value&quot;</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">value</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;value&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120927212701.png" alt="f:id:daruyanagi:20120927212701p:plain" title="f:id:daruyanagi:20120927212701p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ぉー！ ちゃんと動いたぞ。けれど、あんまりスマートじゃないな？　まぁ、いいか。</p></p>
+</div>
 
     <footer>
         
@@ -251,7 +233,7 @@ public SampleHub()
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/27/213159.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/27</time> 
             </p>
         
     </footer>
@@ -303,7 +285,16 @@ public SampleHub()
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

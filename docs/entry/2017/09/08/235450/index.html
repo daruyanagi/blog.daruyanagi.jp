@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイ" />
+    <meta name="og:description"   property="og:description" content="（Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル） 静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいい" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2017/09/08/235450/20170908233127_hu2ce63175414c18ab92b078fd85f875ba_22128_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2017/09/08/235450/20170908233127_hu2ce63175414c18ab92b078fd85f875ba_22128_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/09/08/235450/" />
@@ -86,169 +92,136 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170908233127.png"/> 
-</figure>
-
-<p>Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。ソリューションはこんな構成になった。</p>
-<figure>
-    <img src="/images/20170908233703.png"/> 
-</figure>
-
-<p>SP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。<a href="http://blog.daruyanagi.jp/entry/2017/08/15/043634" alt="空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ">
-  空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ
-</a><br/></p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170908233127.png" alt="f:id:daruyanagi:20170908233127p:plain" title="f:id:daruyanagi:20170908233127p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（Windows 10 version 1703 の最新ビルドの番号をテキトーに得るサンプル）</p><p>静的サイトのスクレイピングは HTML をダウンロードしてごちゃごちゃっとやればいいけど、動的サイトの場合はブラウザーで JavaScript の評価をしたあとの HTML（DOM ツリーっていうの？）がほしい。というわけで、ヘッドレスブラウザー「PhantomJS」でアクセス → 評価するサンプルを Razor Pages で作ってみた。</p><p>ソリューションはこんな構成になった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170908233703.png" alt="f:id:daruyanagi:20170908233703p:plain" title="f:id:daruyanagi:20170908233703p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ASP.NET Core＋Razor Pagesの導入方法は以下のページを参照のこと（別にこの通りにやる必要はないけど）。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F08%2F15%2F043634" title="空のアプリケーションから ASP.NET Core Razor Page を始める - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/08/15/043634">blog.daruyanagi.jp</a></cite><br />
+</p>
 <div class="section">
-    ### 基本的な流れ
-    PhantomJS.exe にスクリプトと Uri とセレクターを渡し、標準出力を介して結果（JSON）を得る。標準出力には PhantomJS が吐くエラーが混じることがあるので、適当な正規表現で除去しておく。
+<h3>基本的な流れ</h3>
+<p>PhantomJS.exe にスクリプトと Uri とセレクターを渡し、標準出力を介して結果（JSON）を得る。標準出力には PhantomJS が吐くエラーが混じることがあるので、適当な正規表現で除去しておく。</p>
 </div>
 <div class="section">
-    ### Index.cshtml
-    コードビハインド？　MVVM じゃない方の ViewModel？　なんて言っていいのかは知らんけど（変な言葉遣いしたらその手のケーサツが来そうだし）、Index.cshtml の裏はこんな感じ。
-```cs
-// index.cshtml.cs
-<p>using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.RazorPages;
-using System.Diagnostics;
-using System.IO;</p>
-<p>namespace WebApplication5.Pages
+<h3>Index.cshtml</h3>
+<p>コードビハインド？　MVVM じゃない方の ViewModel？　なんて言っていいのかは知らんけど（変な言葉遣いしたらその手のケーサツが来そうだし）、Index.cshtml の裏はこんな感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// index.cshtml.cs</span>
+<p><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Threading.Tasks;
+<span class="synStatement">using</span> Microsoft.AspNetCore.Mvc;
+<span class="synStatement">using</span> Microsoft.AspNetCore.Mvc.RazorPages;
+<span class="synStatement">using</span> System.Diagnostics;
+<span class="synStatement">using</span> System.IO;</p>
+<p><span class="synType">namespace</span> WebApplication5.Pages
 {
-public class IndexModel : PageModel
+<span class="synType">public</span> <span class="synType">class</span> IndexModel : PageModel
 {
 [BindProperty]
-public Uri Target { get; set; }</p>
-<pre><code>    [BindProperty]
-    public string Selector { get; set; }
-
-    [BindProperty]
-    public Models.ScrapingResult Result { get; private set; }
-
-    public IActionResult OnPost(string message)
-    {
-        if (!ModelState.IsValid) return Page();
-
-        var root_dir = Hosting.Environment.ContentRootPath;
-        var work_dir = System.IO.Path.Combine(root_dir, &quot;Tools&quot;);
-        var script_name = &quot;scrape.js&quot;;
-
-        var info = new ProcessStartInfo()
-        {
-            Arguments = $@&quot;&quot;&quot;{script_name}&quot;&quot; &quot;&quot;{Target}&quot;&quot; &quot;&quot;{Selector}&quot;&quot;&quot;,
-            FileName = Path.Combine(work_dir, &quot;phantomjs.exe&quot;),
-            CreateNoWindow = true,
-            RedirectStandardOutput = true,
-            StandardOutputEncoding = System.Text.Encoding.UTF8,
-            UseShellExecute = false,
-            WorkingDirectory = work_dir,
-        };
-
-        using (var process = new Process() { StartInfo = info, })
-        {
-            var output = string.Empty;
-
-            process.OutputDataReceived += (s, a) =&gt; { output += a.Data; Debug.WriteLine(a.Data); };
-
-            process.Start();
-            process.BeginOutputReadLine();
-            process.WaitForExit();
-
-            // エラー出力をちょん切る
-            var r = new System.Text.RegularExpressions.Regex(&quot;{.+}&quot;);
-            output = r.Match(output).Value;
-
-            Result = Newtonsoft.Json.JsonConvert.DeserializeObject&amp;lt;Models.ScrapingResult&gt;(output);
-        }
-
-        return Page();
-    }
+<span class="synType">public</span> Uri Target { get; set; }</p>
+<p>[BindProperty]
+<span class="synType">public</span> <span class="synType">string</span> Selector { get; set; }</p>
+<p>[BindProperty]
+<span class="synType">public</span> Models.ScrapingResult Result { get; <span class="synType">private</span> set; }</p>
+<p><span class="synType">public</span> IActionResult OnPost(<span class="synType">string</span> message)
+{
+<span class="synStatement">if</span> (!ModelState.IsValid) <span class="synStatement">return</span> Page();</p>
+<p>var root_dir = Hosting.Environment.ContentRootPath;
+var work_dir = System.IO.Path.Combine(root_dir, <span class="synConstant">&quot;Tools&quot;</span>);
+var script_name = <span class="synConstant">&quot;scrape.js&quot;</span>;</p>
+<p>var info = <span class="synStatement">new</span> ProcessStartInfo()
+{
+Arguments = $<span class="synSpecial">@</span><span class="synConstant">&quot;&quot;&quot;{script_name}&quot;&quot; &quot;&quot;{Target}&quot;&quot; &quot;&quot;{Selector}&quot;&quot;&quot;</span>,
+FileName = Path.Combine(work_dir, <span class="synConstant">&quot;phantomjs.exe&quot;</span>),
+CreateNoWindow = <span class="synConstant">true</span>,
+RedirectStandardOutput = <span class="synConstant">true</span>,
+StandardOutputEncoding = System.Text.Encoding.UTF8,
+UseShellExecute = <span class="synConstant">false</span>,
+WorkingDirectory = work_dir,
+};</p>
+<p><span class="synStatement">using</span> (var process = <span class="synStatement">new</span> Process() { StartInfo = info, })
+{
+var output = <span class="synType">string</span>.Empty;</p>
+<p>process.OutputDataReceived += (s, a) =&gt; { output += a.Data; Debug.WriteLine(a.Data); };</p>
+<p>process.Start();
+process.BeginOutputReadLine();
+process.WaitForExit();</p>
+<p><span class="synComment">// エラー出力をちょん切る</span>
+var r = <span class="synStatement">new</span> System.Text.RegularExpressions.Regex(<span class="synConstant">&quot;{.+}&quot;</span>);
+output = r.Match(output).Value;</p>
+<p>Result = Newtonsoft.Json.JsonConvert.DeserializeObject&lt;Models.ScrapingResult&gt;(output);
+}</p>
+<p><span class="synStatement">return</span> Page();
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-ユーザーインターフェイス（Index.cshtml）はこんな感じ。まだ慣れてないのでこれいいのかよくわかんないけど、タグヘルパーってやつでバインディングできるんだなー。便利ンゴ。" data-lang="ユーザーインターフェイス（Index.cshtml）はこんな感じ。まだ慣れてないのでこれいいのかよくわかんないけど、タグヘルパーってやつでバインディングできるんだなー。便利ンゴ。">```cs
-// Index.cshtml
+}
+}
+</pre><p>ユーザーインターフェイス（Index.cshtml）はこんな感じ。まだ慣れてないのでこれいいのかよくわかんないけど、タグヘルパーってやつでバインディングできるんだなー。便利ンゴ。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// Index.cshtml</span>
 @page
 @model WebApplication5.Pages.IndexModel
 @addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
 
-&amp;lt;html&gt;
-&amp;lt;body&gt;
-    &amp;lt;style&gt;
-        *, input { font-family: Meiryo; margin: 8px; }
-        pre { background-color: linen; width: 480px; overflow: scroll; }
-    &amp;lt;/style&gt;
-    &amp;lt;pre&gt;&amp;lt;code&gt;
-        @Model.Result?.Text
-    &amp;lt;/code&gt;&amp;lt;/pre&gt;
-    &amp;lt;div asp-validation-summary=&quot;All&quot;&gt;&amp;lt;/div&gt;
-    &amp;lt;form method=&quot;POST&quot;&gt;
-        &amp;lt;div&gt;Target Uri: &amp;lt;input asp-for=&quot;Target&quot; /&gt;&amp;lt;/div&gt;
-        &amp;lt;div&gt;Selector: &amp;lt;input asp-for=&quot;Selector&quot; /&gt;&amp;lt;/div&gt;
-        &amp;lt;input type=&quot;submit&quot; /&gt;
-    &amp;lt;/form&gt;
-&amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div>
+&lt;html&gt;
+&lt;body&gt;
+&lt;style&gt;
+*, input { font-family: Meiryo; margin: 8px; }
+pre { background-color: linen; width: 480px; overflow: scroll; }
+&lt;/style&gt;
+&lt;pre&gt;&lt;code&gt;
+@Model.Result?.Text
+&lt;/code&gt;&lt;/pre&gt;
+&lt;div asp-validation-summary=<span class="synConstant">&quot;All&quot;</span>&gt;&lt;/div&gt;
+&lt;form method=<span class="synConstant">&quot;POST&quot;</span>&gt;
+&lt;div&gt;Target Uri: &lt;input asp-<span class="synStatement">for</span>=<span class="synConstant">&quot;Target&quot;</span> /&gt;&lt;/div&gt;
+&lt;div&gt;Selector: &lt;input asp-<span class="synStatement">for</span>=<span class="synConstant">&quot;Selector&quot;</span> /&gt;&lt;/div&gt;
+&lt;input type=<span class="synConstant">&quot;submit&quot;</span> /&gt;
+&lt;/form&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre>
+</div>
 <div class="section">
-    ### モデル
-    スクレイピングの結果を表すモデル（？）クラスはこんな感じ。スクリプトが返す JSON の形式が固まるまでは dynamic にしちゃうと楽だね。
-```cs
-using Newtonsoft.Json;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-<p>namespace WebApplication5.Models
+<h3>モデル</h3>
+<p>スクレイピングの結果を表すモデル（？）クラスはこんな感じ。スクリプトが返す JSON の形式が固まるまでは dynamic にしちゃうと楽だね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> Newtonsoft.Json;
+<span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Threading.Tasks;
+<p><span class="synType">namespace</span> WebApplication5.Models
 {</p>
-<pre><code>public class ScrapingResult
+<p><span class="synType">public</span> <span class="synType">class</span> ScrapingResult
 {
-    [JsonProperty(&quot;uri&quot;)]
-    public string Url { get; set; }
-
-    //[JsonProperty(&quot;selector&quot;)]
-    public string Selector { get; set; }
-
-    public string Status { get; set; }
-
-    public string Text { get; set; }
+[JsonProperty(<span class="synConstant">&quot;uri&quot;</span>)]
+<span class="synType">public</span> <span class="synType">string</span> Url { get; set; }</p>
+<p><span class="synComment">//[JsonProperty(&quot;selector&quot;)]</span>
+<span class="synType">public</span> <span class="synType">string</span> Selector { get; set; }</p>
+<p><span class="synType">public</span> <span class="synType">string</span> Status { get; set; }</p>
+<p><span class="synType">public</span> <span class="synType">string</span> Text { get; set; }
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-<code>[JsonProperty("uri")]</code>" data-lang="<code>[JsonProperty("uri")]</code>">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### PhantomJS スクリプト
-    PhantomJS に渡したスクリプトの中身はこんな感じ。
-```javascript
-var page = require(&amp;#39;webpage&amp;#39;).create();
-var system = require(&amp;#39;system&amp;#39;);
-var url = system.args[1];
-var selector = system.args[2];
-
-page.open(url, function (status) {
-    var text = null;
-    if (status === &amp;#39;success&amp;#39;) {
-        text = page.evaluate(function (selector) {
-            var element = document.body.querySelector(selector);
-            if (element == null) return null;
-            return element.innerHTML;
-        }, selector);
-    }
-    console.log(JSON.stringify({ url: url, selector: selector, status: status, text: text, }));
-    phantom.exit();
-});
-
-```ちょっと悩んだのは page.evaluate() がサンドボックスになっていたこと。プリミティブ型じゃないとやり取りできないのかな。page.evaluate() に変数を渡す方法も悩んだけど、だいたいこれでイケそう&lt;a href=&quot;#f-54d78508&quot; name=&quot;fn-54d78508&quot; title=&quot;JavaScript のスコープとか、基本があんまりわかってないのですごく悩んだ&quot;&gt;*1&lt;/a&gt;。ほんとは引数チェックしたり、エラートラップして終了コードを渡したりした方がいいよね。まぁ、サンプルなのでいろいろ適当でいい気がする。で、ここまで完成させたあとに昔ブックマークしたページのことを思い出した。[C#でモダンにスクレイピングするならAngleSharp - Qiita](http://qiita.com/matarillo/items/a92e7efbfd2fdec62595)JavaScript の評価もできるなら、こっちを使った方がよかったかもしれない。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-54d78508&quot; name=&quot;f-54d78508&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;JavaScript のスコープとか、基本があんまりわかってないのですごく悩んだ&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}
+</pre><p><code>[JsonProperty(&ldquo;uri&rdquo;)]</code> は要らんのか？　コメントアウトしても動いたから、命名規約ベースでよしなにしてくれるのかもしれない。</p></p>
+</div>
+<div class="section">
+<h3>PhantomJS スクリプト</h3>
+<p>PhantomJS に渡したスクリプトの中身はこんな感じ。</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synIdentifier">var</span> page = require(<span class="synConstant">'webpage'</span>).create();
+<span class="synIdentifier">var</span> system = require(<span class="synConstant">'system'</span>);
+<span class="synIdentifier">var</span> url = system.args<span class="synIdentifier">[</span>1<span class="synIdentifier">]</span>;
+<span class="synIdentifier">var</span> selector = system.args<span class="synIdentifier">[</span>2<span class="synIdentifier">]</span>;
+<p>page.open(url, <span class="synIdentifier">function</span> (<span class="synStatement">status</span>) <span class="synIdentifier">{</span>
+<span class="synIdentifier">var</span> text = <span class="synStatement">null</span>;
+<span class="synStatement">if</span> (<span class="synStatement">status</span> === <span class="synConstant">'success'</span>) <span class="synIdentifier">{</span>
+text = page.evaluate(<span class="synIdentifier">function</span> (selector) <span class="synIdentifier">{</span>
+<span class="synIdentifier">var</span> element = <span class="synStatement">document</span>.body.querySelector(selector);
+<span class="synStatement">if</span> (element == <span class="synStatement">null</span>) <span class="synStatement">return</span> <span class="synStatement">null</span>;
+<span class="synStatement">return</span> element.innerHTML;
+<span class="synIdentifier">}</span>, selector);
+<span class="synIdentifier">}</span>
+console.log(JSON.stringify(<span class="synIdentifier">{</span> url: url, selector: selector, <span class="synStatement">status</span>: <span class="synStatement">status</span>, text: text, <span class="synIdentifier">}</span>));
+phantom.exit();
+<span class="synIdentifier">}</span>);
+</pre><p>ちょっと悩んだのは page.evaluate() がサンドボックスになっていたこと。プリミティブ型じゃないとやり取りできないのかな。page.evaluate() に変数を渡す方法も悩んだけど、だいたいこれでイケそう<a href="#f-54d78508" name="fn-54d78508" title="JavaScript のスコープとか、基本があんまりわかってないのですごく悩んだ">*1</a>。</p><p>ほんとは引数チェックしたり、エラートラップして終了コードを渡したりした方がいいよね。まぁ、サンプルなのでいろいろ適当でいい気がする。</p><p>で、ここまで完成させたあとに昔ブックマークしたページのことを思い出した。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fqiita.com%2Fmatarillo%2Fitems%2Fa92e7efbfd2fdec62595" title="C#でモダンにスクレイピングするならAngleSharp - Qiita" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://qiita.com/matarillo/items/a92e7efbfd2fdec62595">qiita.com</a></cite></p><p>JavaScript の評価もできるなら、こっちを使った方がよかったかもしれない。</p></p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-54d78508" name="f-54d78508" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">JavaScript のスコープとか、基本があんまりわかってないのですごく悩んだ</span></p>
+</div>
 
     <footer>
         
@@ -262,7 +235,7 @@ page.open(url, function (status) {
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/09/08/235450.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/09/08</time> 
             </p>
         
     </footer>
@@ -314,7 +287,16 @@ page.open(url, function (status) {
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

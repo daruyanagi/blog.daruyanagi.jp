@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title> RFC822 の日付形式 - blog.daruyanagi.jp</title>
+<title>RFC822 の日付形式 - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content=" RFC822 の日付形式" />
+<meta name="og:title"         property="og:title" content="RFC822 の日付形式" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="RSS 2.0 を実装する - だるろぐ の記述に誤りがあった（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）。 RSS 2.0 Notes によれば、日付の形式は RFC822 に" />
+    <meta name="og:description"   property="og:description" content="RSS 2.0 &#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050; の記述に誤りがあった（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）。 RSS 2.0 Notes によれば、日付の形式は RFC822 に従わなければい" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/02/13/004241/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1> RFC822 の日付形式</h1>
+    <h1>RFC822 の日付形式</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,46 +88,34 @@
         </time>        
     </p>
 
-    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/02/02/225759"> RSS 2.0 を実装する - だるろぐ</a> の記述に誤りがあった<span style="color: #cccccc">（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）</span>。 <a href="http://hail2u.net/documents/rss20notes.html">RSS 2.0 Notes</a> によれば、日付の形式は RFC822 に従わなければいけなかったらしい。例えばこんな感じ。</p>
-<pre><code>&gt;
-    Sun, 12 Feb 2012 21:09:36 +0900
-</code></pre>
+    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/02/02/225759"> RSS 2.0 &#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の記述に誤りがあった<span style="color: #cccccc">（ちなみにこのブログは誤りだらけなので鵜呑みにしてはいけない）</span>。 <a href="http://hail2u.net/documents/rss20notes.html">RSS 2.0 Notes</a> によれば、日付の形式は RFC822 に従わなければいけなかったらしい。例えばこんな感じ。</p>
+<blockquote>
+<p>Sun, 12 Feb 2012 21:09:36 +0900</p>
+</blockquote>
 <p>とりあえず、こうしてみた。</p>
-<pre><code>```
-</code></pre>
-<p>@LastUpdated.ToString(&ldquo;ddd, dd MMM yyyy HH:mm:ss zzz&rdquo;)</p>
-<pre><code>結果
-
-    &gt;
-        日, 12 2 2012 21:09:36 +09:00
-
-    
-カルチャーを指定してみた。
-
-    ```
-@LastUpdated.ToString(
-   &quot;ddd, dd MMM yyyy HH:mm:ss zzz&quot;,
-   System.Globalization.CultureInfo.InvariantCulture)
-</code></pre><p>結果</p>
-<pre><code>&gt;
-    Sun, 12 Feb 2012 21:09:36 +09:00
-</code></pre>
-<p>あともう少し。タイムゾーンの“:“が要らない。タイムゾーンの書式設定を&quot;zz00&quot;にすればいいかと思ったけど、世の中には分単位でタイムゾーンを決めているとこもあるらしいので、この方法は使えない。</p>
-<pre><code>```
-</code></pre>
-<p>@LastUpdated.ToString(
-&ldquo;ddd, dd MMM yyyy HH_mm_ss zzz&rdquo;,
+<pre class="code">@LastUpdated.ToString(&#34;ddd, dd MMM yyyy HH:mm:ss zzz&#34;)</pre>
+<p>結果</p>
+<blockquote>
+<p>日, 12 2 2012 21:09:36 +09:00</p>
+</blockquote>
+<p>カルチャーを指定してみた。</p>
+<pre class="code">@LastUpdated.ToString(
+&#34;ddd, dd MMM yyyy HH:mm:ss zzz&#34;,
+System.Globalization.CultureInfo.InvariantCulture)</pre>
+<p>結果</p>
+<blockquote>
+<p>Sun, 12 Feb 2012 21:09:36 +09:00</p>
+</blockquote>
+<p>あともう少し。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BF%A5%A4%A5%E0%A5%BE%A1%BC%A5%F3">タイムゾーン</a>の“:“が要らない。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BF%A5%A4%A5%E0%A5%BE%A1%BC%A5%F3">タイムゾーン</a>の書式設定を"zz00"にすればいいかと思ったけど、世の中には分単位で<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BF%A5%A4%A5%E0%A5%BE%A1%BC%A5%F3">タイムゾーン</a>を決めているとこもあるらしいので、この方法は使えない。</p>
+<pre class="code">@LastUpdated.ToString(
+&#34;ddd, dd MMM yyyy HH_mm_ss zzz&#34;,
 System.Globalization.CultureInfo.InvariantCulture
-).Replace(&quot;:&quot;, &ldquo;&quot;).Replace(&quot;_&quot;, &ldquo;:&quot;)</p>
-<pre><code>
-    &gt;
-        Sun, 12 Feb 2012 21:09:36 +0900
+).Replace(&#34;:&#34;, &#34;&#34;).Replace(&#34;_&#34;, &#34;:&#34;)</pre>
+<blockquote>
+<p>Sun, 12 Feb 2012 21:09:36 +0900</p>
+</blockquote>
+<p>毎回書くのはメンドクサイので DateTime の拡張メソッドにしておくとよさげ。その他にもちょいちょい修正してみた。</p>
 
-    
-毎回書くのはメンドクサイので DateTime の拡張メソッドにしておくとよさげ。その他にもちょいちょい修正してみた。
-
-
-</code></pre>
 
     <footer>
         
@@ -139,7 +129,7 @@ System.Globalization.CultureInfo.InvariantCulture
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/02/13/004241.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/02/13</time> 
             </p>
         
     </footer>
@@ -191,7 +181,16 @@ System.Globalization.CultureInfo.InvariantCulture
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

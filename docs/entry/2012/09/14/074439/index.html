@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2 でレスポンシブな CSS グリッドを作ってみる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。 ### CSS グリッド 最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステ" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。 CSS グリッド 最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステム" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/14/074439/" />
@@ -86,160 +88,121 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120914073223.png"/> 
-</figure>
-
-<p>ebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120914073223.png" alt="f:id:daruyanagi:20120914073223p:plain" title="f:id:daruyanagi:20120914073223p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>WebMatrix 2 は iPhone での見栄えも簡単にチェックできてなかなかいい。</p>
 <div class="section">
-    ### CSS グリッド
-    最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステムないかな、と思っていたのだけど、こういうのを見つけた。
+<h3>CSS グリッド</h3>
+<p>最近、Twitter Bootstrap は大げさすぎるなぁ、もうちょっと軽量のグリッドシステムないかな、と思っていたのだけど、こういうのを見つけた。</p>
 <ul>
 <li><a href="http://webdesignrecipes.com/css-grid-system-layout/">http://webdesignrecipes.com/css-grid-system-layout/</a> </li>
 <li><a href="http://jsfiddle.net/ernestohs/nQpSj/">Complex Grid Example - JSFiddle</a></li>
-</ul>いい感じかもしれない。
-```css
-.container { width: 940px; margin: 0 auto;}
-.grid1, .grid2, .grid3, .grid4, .grid5, .grid6, .grid7, .grid8, .grid9, .grid10, .grid11 {
-  float: left;
-  display: inline;
-  margin-left: 20px;
-}
-.grid1 {width: 60px;}
-.grid2 {width: 140px;}
-.grid3 {width: 220px;}
-.grid4 {width: 300px;}
-.grid5 {width: 380px;}
-.grid6 {width: 460px;}
-.grid7 {width: 540px;}
-.grid8 {width: 620px;}
-.grid9 {width: 700px;}
-.grid10 {width: 780px;}
-.grid11 {width: 860px;}
-.first {margin-left: 0;clear: left;}
-<p>/* clearfix */
-.clearfix:after {
-visibility: hidden;
-display: block;
-font-size: 0;
-content: &quot; &ldquo;;
-clear: both;
-height: 0;
-}
-/* IE6 */</p>
+</ul><p>いい感じかもしれない。</p>
+<pre class="code lang-css" data-lang="css" data-unlink><span class="synIdentifier">.container</span> <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">940px</span>; <span class="synType">margin</span>: <span class="synConstant">0</span> <span class="synConstant">auto</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid1</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid2</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid3</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid4</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid5</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid6</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid7</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid8</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid9</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid10</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid11</span> <span class="synIdentifier">{</span>
+<span class="synType">float</span>: <span class="synConstant">left</span>;
+<span class="synType">display</span>: <span class="synConstant">inline</span>;
+<span class="synType">margin-left</span>: <span class="synConstant">20px</span>;
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid1</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">60px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid2</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">140px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid3</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">220px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid4</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">300px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid5</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">380px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid6</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">460px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid7</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">540px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid8</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">620px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid9</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">700px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid10</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">780px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid11</span> <span class="synIdentifier">{</span><span class="synType">width</span>: <span class="synConstant">860px</span>;<span class="synIdentifier">}</span>
+<span class="synIdentifier">.first</span> <span class="synIdentifier">{</span><span class="synType">margin-left</span>: <span class="synConstant">0</span>;<span class="synType">clear</span>: <span class="synConstant">left</span>;<span class="synIdentifier">}</span>
+<p><span class="synComment">/* clearfix */</span>
+<span class="synIdentifier">.clearfix</span>:<span class="synPreProc">after</span> <span class="synIdentifier">{</span>
+<span class="synType">visibility</span>: <span class="synConstant">hidden</span>;
+<span class="synType">display</span>: <span class="synConstant">block</span>;
+<span class="synType">font-size</span>: <span class="synConstant">0</span>;
+<span class="synType">content</span>: <span class="synConstant">&quot; &quot;</span>;
+<span class="synType">clear</span>: <span class="synConstant">both</span>;
+<span class="synType">height</span>: <span class="synConstant">0</span>;
+<span class="synIdentifier">}</span>
+<span class="synComment">/* IE6 */</span>
+<span class="synStatement">*</span> <span class="synStatement">html</span> <span class="synIdentifier">.clearfix</span> <span class="synIdentifier">{</span> <span class="synType">zoom</span>: <span class="synConstant">1</span>;<span class="synIdentifier">}</span>
+<span class="synComment">/* IE7 */</span>
+<span class="synStatement">*</span>:<span class="synPreProc">first-child</span><span class="synSpecial">+</span><span class="synStatement">html</span> <span class="synIdentifier">.clearfix</span> <span class="synIdentifier">{</span><span class="synType">zoom</span>: <span class="synConstant">1</span>;<span class="synIdentifier">}</span>
+</pre><p>で、grid* で幅を指定して、先頭になるグリッドに .first をつければいいみたい。ネストもできるよ。あったまいい！</p></p>
+</div>
+<div class="section">
+<h3>More responsible！</h3>
+<p>でも、それだと一つ問題がある。レスポンシブじゃない。今回はブラウザー幅に応じて並び替えもやってほしいと思っていたのだけれど、このやり方だと先頭になるグリッドを決めなきゃいけない。でも、ブラウザー幅に応じて並び替えが前提だと、事前にどのグリッドが先頭であるかを指定することができない。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120914072338.png" alt="f:id:daruyanagi:20120914072338p:plain" title="f:id:daruyanagi:20120914072338p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>640px ぐらいの幅を……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120914072341.png" alt="f:id:daruyanagi:20120914072341p:plain" title="f:id:daruyanagi:20120914072341p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちょっと大きく……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120914072345.png" alt="f:id:daruyanagi:20120914072345p:plain" title="f:id:daruyanagi:20120914072345p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>もっと大きく！</p><p>というわけで、少しだけ手直しをした（ダミーイメージには <a href="https://blog.daruyanagi.jp/entry/2012/09/11/070914">DummyImage 1.0.0 - &#x3060;&#x308B;&#x308D;&#x3050;</a> を使っています（ステマ））。</p>
+<pre class="code lang-css" data-lang="css" data-unlink><span class="synIdentifier">.container</span> <span class="synIdentifier">{</span>
+<span class="synType">overflow</span>: <span class="synConstant">auto</span>;
+<span class="synType">margin</span>: <span class="synConstant">0</span> <span class="synConstant">auto</span> <span class="synConstant">2em</span> <span class="synConstant">auto</span>;
+<p><span class="synComment">*</span> <span class="synIdentifier">{</span>
+<span class="synType">max-width</span>: <span class="synConstant">100%</span>;  // &lt;&ndash; 画像とかがはみ出ないように
+<span class="synIdentifier">}</span>
+<span class="synError">}</span></p>
+<p><span class="synIdentifier">.grid1</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid2</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid3</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid4</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid5</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid6</span><span class="synSpecial">,</span>
+<span class="synIdentifier">.grid7</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid8</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid9</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid10</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid11</span><span class="synSpecial">,</span> <span class="synIdentifier">.grid12</span> <span class="synIdentifier">{</span>
+<span class="synType">float</span>: <span class="synConstant">left</span>;
+<span class="synType">display</span>: <span class="synConstant">inline</span>;
+<span class="synType">margin-left</span>: <span class="synConstant">20px</span>;
+<span class="synType">position</span>: <span class="synConstant">relative</span>; // &lt;&ndash; 追加
+<span class="synType">left</span>: <span class="synConstant">-20px</span>;        // &lt;&ndash; 追加
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid1</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">60px</span>;  <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid2</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">140px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid3</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">220px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid4</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">300px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid5</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">380px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid6</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">460px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid7</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">540px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid8</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">620px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid9</span>  <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">700px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid10</span> <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">780px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid11</span> <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">860px</span>; <span class="synIdentifier">}</span>
+<span class="synIdentifier">.grid12</span> <span class="synIdentifier">{</span> <span class="synType">width</span>: <span class="synConstant">940px</span>; <span class="synIdentifier">}</span> // &lt;&ndash; 追加</p>
+<p><span class="synComment">/<em>.first {margin-left: 0;clear: left;}</em>/</span></p>
+<p><span class="synIdentifier">.claerfix</span> <span class="synIdentifier">{</span>
+&amp;:after {
+visibility: <span class="synConstant">hidden</span>;
+<span class="synType">display</span>: <span class="synConstant">block</span>;
+<span class="synType">font-size</span>: <span class="synConstant">0</span>;
+<span class="synType">content</span>: <span class="synConstant">&quot; &quot;</span>;
+<span class="synType">clear</span>: <span class="synConstant">both</span>;
+<span class="synType">height</span>: <span class="synConstant">0</span>;
+<span class="synIdentifier">}</span>
+<span class="synComment">/* IE6 */</span>
+<span class="synStatement">*</span> <span class="synStatement">html</span> &amp; <span class="synIdentifier">{</span>
+<span class="synType">zoom</span>: <span class="synConstant">1</span>;
+<span class="synIdentifier">}</span>
+<span class="synComment">/* IE7 */</span>
+<span class="synStatement">*</span>:<span class="synPreProc">first-child</span> <span class="synSpecial">+</span> <span class="synStatement">html</span> &amp; <span class="synIdentifier">{</span>
+<span class="synType">zoom</span>: <span class="synConstant">1</span>;
+<span class="synIdentifier">}</span>
+<span class="synError">}</span>
+</pre><p>全体に左マージンをつけて、その分左にずらす。これで first は要らなくなった（というか使えなくなった）。 clearfix も LESS で書いておけば意味的にまとめられていい感じ。</p></p>
+<pre class="code lang-css" data-lang="css" data-unlink><span class="synComment">@media</span><span class="synPreProc"> (</span><span class="synType">min-width</span><span class="synPreProc">: </span><span class="synConstant">981px</span><span class="synPreProc">) </span><span class="synIdentifier">{</span>
+<span class="synIdentifier">.container</span> <span class="synIdentifier">{</span>
+<span class="synType">width</span>: <span class="synConstant">960px</span>;
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>
+
+<span class="synComment">@media</span><span class="synPreProc"> (</span><span class="synType">max-width</span><span class="synPreProc">: </span><span class="synConstant">980px</span><span class="synPreProc">) </span><span class="synIdentifier">{</span>
+<span class="synIdentifier">.container</span> <span class="synIdentifier">{</span>
+<span class="synType">width</span>: <span class="synConstant">640px</span>;
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>
+
+<span class="synComment">@media</span><span class="synPreProc"> (</span><span class="synType">max-width</span><span class="synPreProc">: </span><span class="synConstant">640px</span><span class="synPreProc">) </span><span class="synIdentifier">{</span>
+<span class="synIdentifier">.container</span> <span class="synIdentifier">{</span>
+<span class="synType">width</span>: <span class="synConstant">300px</span>;
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>
+</pre><p>ここら辺は適当だけど、あとは MediaQuery でコンテナの幅を変えてやると、さっきみたいなレスポンシブなデザインになる。</p><p>WebMatrix 2 の LESS とモバイルテスト機能があれば、こういう CSS の作成も結構楽になる！　Razor や Node.js がわかんない人でも、WebMatrix は便利やな（ステマ）。あとはこういうのをどんどん NuGet にしてもらえれば……Web 開発はバラ色や！</p>
 <ul>
-<li>html .clearfix { zoom: 1;}
-/* IE7 */
-*:first-child+html .clearfix {zoom: 1;}</li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/15/161932">WebMatrix &#x3067; LESS &#x3092;&#x4F7F;&#x304A;&#x3046;&#xFF01; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/09/09/172243">WebMatrix &#x3067; LESS &#x3092;&#x4F7F;&#x304A;&#x3046;&#xFF01;&#xFF08;2&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/07/16/011825">&#x300C;WebMatrix 2&#x300D;&#x306E;&#x30A2;&#x30C3;&#x30D7;&#x30C7;&#x30FC;&#x30C8; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
 </ul>
-<pre><code class="language-で、grid*" data-lang="で、grid*">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### More responsible！
-    でも、それだと一つ問題がある。レスポンシブじゃない。今回はブラウザー幅に応じて並び替えもやってほしいと思っていたのだけれど、このやり方だと先頭になるグリッドを決めなきゃいけない。でも、ブラウザー幅に応じて並び替えが前提だと、事前にどのグリッドが先頭であるかを指定することができない。
-
-<figure>
-    <img src="/images/20120914072338.png"/> 
-</figure>
-
-
-40px ぐらいの幅を……
-
-<figure>
-    <img src="/images/20120914072341.png"/> 
-</figure>
-
-
-ょっと大きく……
-
-<figure>
-    <img src="/images/20120914072345.png"/> 
-</figure>
-
-
-っと大きく！というわけで、少しだけ手直しをした（ダミーイメージには &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/11/070914&quot;&gt;DummyImage 1.0.0 - だるろぐ&lt;/a&gt; を使っています（ステマ））。
-```css
-.container {
-    overflow: auto;
-    margin: 0 auto 2em auto;
-    
-    * {
-        max-width: 100%;  // &amp;lt;-- 画像とかがはみ出ないように
-    }
-}
-
-.grid1, .grid2, .grid3, .grid4, .grid5, .grid6,
-.grid7, .grid8, .grid9, .grid10, .grid11, .grid12 {
-    float: left;
-    display: inline;
-    margin-left: 20px;
-    position: relative; // &amp;lt;-- 追加
-    left: -20px;        // &amp;lt;-- 追加
-}
-.grid1  { width: 60px;  }
-.grid2  { width: 140px; }
-.grid3  { width: 220px; }
-.grid4  { width: 300px; }
-.grid5  { width: 380px; }
-.grid6  { width: 460px; }
-.grid7  { width: 540px; }
-.grid8  { width: 620px; }
-.grid9  { width: 700px; }
-.grid10 { width: 780px; }
-.grid11 { width: 860px; }
-.grid12 { width: 940px; } // &amp;lt;-- 追加
-
-/*.first {margin-left: 0;clear: left;}*/
-
-.claerfix {
-    &amp;amp;:after {
-        visibility: hidden;
-        display: block;
-        font-size: 0;
-        content: &quot; &quot;;
-        clear: both;
-        height: 0;
-    }
-    /* IE6 */
-    * html &amp;amp; {
-        zoom: 1;
-    }
-    /* IE7 */
-    *:first-child + html &amp;amp; {
-        zoom: 1;
-    }
-}
-
-```全体に左マージンをつけて、その分左にずらす。これで first は要らなくなった（というか使えなくなった）。 clearfix も LESS で書いておけば意味的にまとめられていい感じ。
-```css
-@media (min-width: 981px) {
-    .container {
-        width: 960px;
-    }
-}
-
-@media (max-width: 980px) {
-    .container {
-        width: 640px;
-    }
-}
-
-@media (max-width: 640px) {
-    .container {
-        width: 300px;
-    }
-}
-
-```ここら辺は適当だけど、あとは MediaQuery でコンテナの幅を変えてやると、さっきみたいなレスポンシブなデザインになる。WebMatrix 2 の LESS とモバイルテスト機能があれば、こういう CSS の作成も結構楽になる！　Razor や Node.js がわかんない人でも、WebMatrix は便利やな（ステマ）。あとはこういうのをどんどん NuGet にしてもらえれば……Web 開発はバラ色や！
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/15/161932&quot;&gt;WebMatrix で LESS を使おう！ - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/09/172243&quot;&gt;WebMatrix で LESS を使おう！（2） - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/16/011825&quot;&gt;「WebMatrix 2」のアップデート - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-</code></pre>
+</div>
 
     <footer>
         
@@ -253,7 +216,7 @@ height: 0;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/14/074439.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/14</time> 
             </p>
         
     </footer>
@@ -305,7 +268,16 @@ height: 0;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

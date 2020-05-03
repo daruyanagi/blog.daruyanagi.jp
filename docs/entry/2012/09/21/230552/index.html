@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。2012-09-" />
+    <meta name="og:description"   property="og:description" content="@xin9le @daruyanagi MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。 2012-09-20 22:51:33 via Krile2 to @xin9le 昨日" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/21/230552/" />
@@ -86,70 +88,55 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"/><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"/></a></div><div class="twitter-detail-tweet">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。<a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193" class="twitter-user-screen-name">xin9le</a></div></div>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<group> を表示する ItemsPage.xaml と、そこで Group を選択して List&lt;group.items&gt; を表示する SplitPage.xaml が用意されている。&lt;/group.items&gt;</group><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"/>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">SampleDataSource
-    List: SampleDataGroup (SampleDataCommon)
-        List: SampleDataItem (SampleDataCommon)
-
-<span style="color:#960050;background-color:#1e0010">```になってる。こういう感じに作ればいい。うちのアプリの場合は、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-DataSource
-    List: Vehicle (<span style="color:#960050;background-color:#1e0010">乗り物</span>)
-        List: RefuelLog (<span style="color:#960050;background-color:#1e0010">給油ログ</span>)
-
-<span style="color:#960050;background-color:#1e0010">```って感じになるかな。乗り物＝</span>Group<span style="color:#960050;background-color:#1e0010">、給油ログ＝</span>Itemというイメージ<span style="color:#960050;background-color:#1e0010">。んで、</span>Group <span style="color:#960050;background-color:#1e0010">も</span> Item <span style="color:#960050;background-color:#1e0010">も</span> SampleDataCommon <span style="color:#960050;background-color:#1e0010">を継承している。要は</span> **UniqueId<span style="color:#960050;background-color:#1e0010">、</span>Title<span style="color:#960050;background-color:#1e0010">、</span>Subtitle<span style="color:#960050;background-color:#1e0010">、</span>Description<span style="color:#960050;background-color:#1e0010">、</span>Image <span style="color:#960050;background-color:#1e0010">というプロパティを持ちなさい</span>**<span style="color:#960050;background-color:#1e0010">ということだ。実装したら、テンプレートでバインドされますよ、と</span>&lt;a href=<span style="color:#e6db74">&#34;#f1&#34;</span> name=<span style="color:#e6db74">&#34;fn1&#34;</span> title=<span style="color:#e6db74">&#34;SplitPage ではこれに加えて Content というプロパティも要求する&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。でも、だったらインターフェイスでもいいわけで、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">namespace</span> App5.Common
+    <p><img src="20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"></p><p><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"></a></div><div class="twitter-detail-tweet"><p class="twitter-detail-text">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。</p><p class="twitter-detail-info"><a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193"  class="twitter-user-screen-name">xin9le</a></p></div></div></p><p>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。</p><p>使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<Group> を表示する ItemsPage.xaml と、そこで Group を選択して List<Group.Items> を表示する SplitPage.xaml が用意されている。</p><p><img src="20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"></p><p>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。</p><p>じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>SampleDataSource
+<span class="synStatement">    List:</span> SampleDataGroup (SampleDataCommon)
+<span class="synStatement">        List:</span> SampleDataItem (SampleDataCommon)
+</pre><p>になってる。こういう感じに作ればいい。うちのアプリの場合は、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>DataSource
+<span class="synStatement">    List:</span> Vehicle (乗り物)
+<span class="synStatement">        List:</span> RefuelLog (給油ログ)
+</pre><p>って感じになるかな。乗り物＝Group、給油ログ＝Itemというイメージ。</p><p>んで、Group も Item も SampleDataCommon を継承している。要は <b>UniqueId、Title、Subtitle、Description、Image というプロパティを持ちなさい</b>ということだ。実装したら、テンプレートでバインドされますよ、と<a href="#f1" name="fn1" title="SplitPage ではこれに加えて Content というプロパティも要求する">*1</a>。</p><p>でも、だったらインターフェイスでもいいわけで、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">namespace</span> App5.Common
 {
-    <span style="color:#66d9ef">using</span> Windows.UI.Xaml.Media;
-    <span style="color:#66d9ef">using</span> Windows.UI.Xaml.Media.Imaging;
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">interface</span> ITemplateGridViewItem
-    {
-        Guid UniqueId { <span style="color:#66d9ef">get</span>; } <span style="color:#75715e">// &amp;lt;- string は嫌だったので改造
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">string</span> Title { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">string</span> Subtitle { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">string</span> Description { <span style="color:#66d9ef">get</span>; }
-        ImageSource Image { <span style="color:#66d9ef">get</span>; }
-        ITemplateGridViewItem Parent { <span style="color:#66d9ef">get</span>; } <span style="color:#75715e">// &amp;lt;- なくてもいい
-</span><span style="color:#75715e"></span>    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```というのを作って、</span>Group/Item <span style="color:#960050;background-color:#1e0010">はこれを実装するということにした。乗り物データと給油ログデータが一つのデータから継承されてるってなんかアレだけど、インターフェイスなら個人的にしっくりくる。燃費管理アプリのデータには、タイトルやサブタイトルなどという概念はない。でも、そこは給油量（</span>Amout<span style="color:#960050;background-color:#1e0010">）や日付（</span>Date<span style="color:#960050;background-color:#1e0010">）といったふさわしいプロパティを別途もっておいて、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Title
+<span class="synStatement">using</span> Windows.UI.Xaml.Media;
+<span class="synStatement">using</span> Windows.UI.Xaml.Media.Imaging;
+<p><span class="synType">public</span> <span class="synType">interface</span> ITemplateGridViewItem
 {
-    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0:#,##0.00 L}&#34;</span>, amount); }
+Guid UniqueId { get; } <span class="synComment">// &lt;- string は嫌だったので改造</span>
+<span class="synType">string</span> Title { get; }
+<span class="synType">string</span> Subtitle { get; }
+<span class="synType">string</span> Description { get; }
+ImageSource Image { get; }
+ITemplateGridViewItem Parent { get; } <span class="synComment">// &lt;- なくてもいい</span>
+}
+}
+</pre><p>というのを作って、Group/Item はこれを実装するということにした。乗り物データと給油ログデータが一つのデータから継承されてるってなんかアレだけど、インターフェイスなら個人的にしっくりくる。</p><p>燃費管理アプリのデータには、タイトルやサブタイトルなどという概念はない。でも、そこは給油量（Amout）や日付（Date）といったふさわしいプロパティを別途もっておいて、</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">string</span> Title
+{
+<span class="synStatement">get</span> { <span class="synStatement">return</span> <span class="synType">string</span>.Format(<span class="synConstant">&quot;{0:#,##0.00 L}&quot;</span>, amount); }
 }
 
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Subtitle
-{ 
-    <span style="color:#66d9ef">get</span> { <span style="color:#66d9ef">return</span> date.ToString(<span style="color:#e6db74">&#34;d&#34;</span>); }
+<span class="synType">public</span> <span class="synType">string</span> Subtitle
+{
+<span class="synStatement">get</span> { <span class="synStatement">return</span> date.ToString(<span class="synConstant">&quot;d&quot;</span>); }
 }
-
-<span style="color:#960050;background-color:#1e0010">```という感じで、ビューに表示したいデータ（給油量をタイトルに、日付をサブタイトルに）を適当に返せばいい。なんか</span> M-VM <span style="color:#960050;background-color:#1e0010">を分けたくなってきたね。まぁ、それは今度でいい。今回はこの汚い実装のまま先に進もう。</span>DataSource<span style="color:#960050;background-color:#1e0010">（自分で書いたデータソース）も、</span>SampleDataSource <span style="color:#960050;background-color:#1e0010">のコピペをベースにあまり構造を変えないように実装していく。あとは</span> SampleDataSource.cs <span style="color:#960050;background-color:#1e0010">を消すなりリネームして、ビルドエラーが出た個所をこちょこちょ</span> DataSource <span style="color:#960050;background-color:#1e0010">に置き換えれば、こんな感じ！</span>&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921225136.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225136p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225136p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921225137.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225137p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225137p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921225140.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225140p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225140p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921225143.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225143p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921225143p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;<span style="color:#960050;background-color:#1e0010">さすが標準テンプレート、</span>Snapped <span style="color:#960050;background-color:#1e0010">にもばっちり対応だぜ。</span>
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">デザイン時バインディング</span>
-    &lt;div class=<span style="color:#e6db74">&#34;twitter-detail twitter-detail-left&#34;</span>&gt;&lt;div class=<span style="color:#e6db74">&#34;twitter-detail-user&#34;</span>&gt;&lt;a class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span> href=<span style="color:#e6db74">&#34;http://twitter.com/okazuki&#34;</span>&gt;&lt;img src=<span style="color:#e6db74">&#34;http://a0.twimg.com/profile_images/1279095044/____normal.jpg&#34;</span> alt=<span style="color:#e6db74">&#34;okazuki&#34;</span> height=<span style="color:#e6db74">&#34;48&#34;</span> width=<span style="color:#e6db74">&#34;48&#34;</span>/&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;twitter-detail-tweet&#34;</span>&gt;      <span style="color:#960050;background-color:#1e0010">@</span>&lt;a class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span> href=<span style="color:#e6db74">&#34;http://twitter.com/xin9le&#34;</span> target=<span style="color:#e6db74">&#34;_top&#34;</span>&gt;xin9le&lt;/a&gt; d:DataContext=<span style="color:#e6db74">&#34;{d:DesignInstance Type=***, IsDesignTimeCreatable=True}&#34;</span><span style="color:#960050;background-color:#1e0010">を適切なところに設定することで、デザイナの支援も受けれます</span>&lt;a href=<span style="color:#e6db74">&#34;http://twitter.com/okazuki/status/248781837265170433&#34;</span> class=<span style="color:#e6db74">&#34;twitter-detail-info-permalink&#34;</span>&gt;&lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-date&#34;</span>&gt;<span style="color:#ae81ff">2012</span>-<span style="color:#ae81ff">09</span>-<span style="color:#ae81ff">20</span>&lt;/span&gt; &lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-time&#34;</span>&gt;<span style="color:#ae81ff">22</span>:<span style="color:#ae81ff">53</span>:<span style="color:#ae81ff">06</span>&lt;/span&gt;&lt;/a&gt; &lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-source&#34;</span>&gt;via &lt;a href=<span style="color:#e6db74">&#34;http://krile2.starwing.net/&#34;</span> rel=<span style="color:#e6db74">&#34;nofollow&#34;</span>&gt;Krile2&lt;/a&gt;&lt;/span&gt; to <span style="color:#960050;background-color:#1e0010">@</span>&lt;a href=<span style="color:#e6db74">&#34;http://twitter.com/xin9le/status/248781431248134146&#34;</span> class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span>&gt;xin9le&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;Page.Resource <span style="color:#960050;background-color:#1e0010">の</span> CollectionViewSource <span style="color:#960050;background-color:#1e0010">で、</span>d:Source <span style="color:#960050;background-color:#1e0010">って書いてある部分は、デザイン時のみ有効なデータバインディング。これをやっておけばサンプルデータがバインディングされて、デザインがやりやすくなる。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>xml
-.Resources&gt;
-
-    &lt;!-- <span style="color:#960050;background-color:#1e0010">このページで表示されるアイテムのコレクション</span> --&gt;
-    
-        x:Name=<span style="color:#e6db74">&#34;itemsViewSource&#34;</span>
-        Source=<span style="color:#e6db74">&#34;{Binding Items}&#34;</span>
-        d:Source=<span style="color:#e6db74">&#34;{Binding AllGroups[0].Items, Source={d:DesignInstance Type=local:DataSource, IsDesignTimeCreatable=True}}&#34;</span>/&gt;
-.Resources&gt;
-
-<span style="color:#960050;background-color:#1e0010">```標準では</span> DataModel/SampleDataSource <span style="color:#960050;background-color:#1e0010">がバインディングされているけれど、これもちょちょいと</span> local:DataSource &lt;a href=<span style="color:#e6db74">&#34;#f2&#34;</span> name=<span style="color:#e6db74">&#34;fn2&#34;</span> title=<span style="color:#e6db74">&#34;local はアプリケーションの名前空間。XAML の最初のほうに定義してある&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">に書き換えれば……</span>&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222338.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921222338p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921222338p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120921/20120921222344.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921222344p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120921222344p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;<span style="color:#960050;background-color:#1e0010">うおおー、デザイン時にもバインディングされてる。これは超便利だな！ちょっとわかった気がするので、これでテンプレートから足を踏み外せるぜー。これで今日のお勉強は終わり！</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn1&#34;</span> name=<span style="color:#e6db74">&#34;f1&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;SplitPage <span style="color:#960050;background-color:#1e0010">ではこれに加えて</span> Content <span style="color:#960050;background-color:#1e0010">というプロパティも要求する</span>&lt;/span&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn2&#34;</span> name=<span style="color:#e6db74">&#34;f2&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;local <span style="color:#960050;background-color:#1e0010">はアプリケーションの名前空間。</span>XAML <span style="color:#960050;background-color:#1e0010">の最初のほうに定義してある</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+</pre><p>という感じで、ビューに表示したいデータ（給油量をタイトルに、日付をサブタイトルに）を適当に返せばいい。なんか M-VM を分けたくなってきたね。まぁ、それは今度でいい。今回はこの汚い実装のまま先に進もう。DataSource（自分で書いたデータソース）も、SampleDataSource のコピペをベースにあまり構造を変えないように実装していく。</p><p>あとは SampleDataSource.cs を消すなりリネームして、ビルドエラーが出た個所をこちょこちょ DataSource に置き換えれば、こんな感じ！</p><p><img src="20120921225136.png" alt="f:id:daruyanagi:20120921225136p:plain" title="f:id:daruyanagi:20120921225136p:plain" class="hatena-fotolife"><img src="20120921225137.png" alt="f:id:daruyanagi:20120921225137p:plain" title="f:id:daruyanagi:20120921225137p:plain" class="hatena-fotolife"><img src="20120921225140.png" alt="f:id:daruyanagi:20120921225140p:plain" title="f:id:daruyanagi:20120921225140p:plain" class="hatena-fotolife"><img src="20120921225143.png" alt="f:id:daruyanagi:20120921225143p:plain" title="f:id:daruyanagi:20120921225143p:plain" class="hatena-fotolife"></p><p>さすが標準テンプレート、Snapped にもばっちり対応だぜ。</p>
+<div class="section">
+<h3>デザイン時バインディング</h3>
+<p><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"></a></div><div class="twitter-detail-tweet"><p class="twitter-detail-text">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> d:DataContext="{d:DesignInstance Type=***, IsDesignTimeCreatable=True}"を適切なところに設定することで、デザイナの支援も受けれます</p><p class="twitter-detail-info"><a href="http://twitter.com/okazuki/status/248781837265170433" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:53:06</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781431248134146"  class="twitter-user-screen-name">xin9le</a></p></div></div></p><p>Page.Resource の CollectionViewSource で、d:Source って書いてある部分は、デザイン時のみ有効なデータバインディング。これをやっておけばサンプルデータがバインディングされて、デザインがやりやすくなる。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;Page</span><span class="synComment">.</span><span class="synIdentifier">Resources&gt;</span>
+<p><span class="synComment">&lt;!&ndash; このページで表示されるアイテムのコレクション &ndash;&gt;</span>
+<span class="synIdentifier">&lt;CollectionViewSource</span>
+<span class="synIdentifier">        </span><span class="synType">x</span><span class="synComment">:</span><span class="synType">Name</span>=<span class="synConstant">&quot;itemsViewSource&quot;</span>
+<span class="synIdentifier">        </span><span class="synType">Source</span>=<span class="synConstant">&quot;{Binding Items}&quot;</span>
+<span class="synIdentifier">        </span><span class="synType">d</span><span class="synComment">:</span><span class="synType">Source</span>=<span class="synConstant">&quot;{Binding AllGroups[0].Items, Source={d:DesignInstance Type=local:DataSource, IsDesignTimeCreatable=True}}&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/Page</span><span class="synComment">.</span><span class="synIdentifier">Resources&gt;</span>
+</pre><p>標準では DataModel/SampleDataSource がバインディングされているけれど、これもちょちょいと local:DataSource <a href="#f2" name="fn2" title="local はアプリケーションの名前空間。XAML の最初のほうに定義してある">*2</a>に書き換えれば……</p><p><img src="20120921222338.png" alt="f:id:daruyanagi:20120921222338p:plain" title="f:id:daruyanagi:20120921222338p:plain" class="hatena-fotolife"><img src="20120921222344.png" alt="f:id:daruyanagi:20120921222344p:plain" title="f:id:daruyanagi:20120921222344p:plain" class="hatena-fotolife"></p><p>うおおー、デザイン時にもバインディングされてる。これは超便利だな！</p><p>ちょっとわかった気がするので、これでテンプレートから足を踏み外せるぜー。これで今日のお勉強は終わり！</p></p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">SplitPage ではこれに加えて Content というプロパティも要求する</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">local はアプリケーションの名前空間。XAML の最初のほうに定義してある</span></p>
+</div>
 
     <footer>
         
@@ -163,7 +150,7 @@ DataSource
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/21/230552.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/09/21</time> 
             </p>
         
     </footer>
@@ -215,7 +202,16 @@ DataSource
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

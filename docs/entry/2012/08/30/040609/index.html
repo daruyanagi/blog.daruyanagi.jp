@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい（2） ―― @helper と @functions とわたし" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ の話は続く。 # ~/_AppCode/Flash.cshtml @helper Read() /* Razor を書く */ { if (Session[&#34;flash&#34;] == null) { return; } // Razor では if 文の {} を省略できない。これ、マメな" />
+    <meta name="og:description"   property="og:description" content="&#x5BC4;&#x308A;&#x9053;&#xFF1A; Rails &#x306E; Flash &#x3063;&#x307D;&#x3044;&#x6A5F;&#x80FD;&#x3092; WebMatrix &#x3067;&#x4F7F;&#x3044;&#x305F;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050; の話は続く。 # ~/_AppCode/Flash.cshtml @helper Read() /* Razor を書く */ { if (Session[&quot;flash&quot;] == null) { return; } // Razor では if 文の {} を省略できない。これ、マメな。 &lt;div class=&quot;message info&quot;&gt;&lt;p&gt;@Session[&quot;flash&quot;]&lt;/p&gt;&lt;/div&gt; Session[&quot;flash&quot;] = null; } @functions /* 通常の C# 構" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/30/040609/" />
@@ -86,119 +88,93 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/29/201834">寄り道： Rails の Flash っぽい機能を WebMatrix で使いたい - だるろぐ</a> の話は続く。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/_AppCode/Flash.cshtml
-
-@helper Read()
-<span style="color:#75715e">/* Razor を書く */</span> {
-    <span style="color:#66d9ef">if</span> (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] == <span style="color:#66d9ef">null</span>) { <span style="color:#66d9ef">return</span>; }
-    <span style="color:#75715e">// Razor では if 文の {} を省略できない。これ、マメな。
-</span><span style="color:#75715e"></span>    
-    &amp;lt;div class=<span style="color:#e6db74">&#34;message info&#34;</span>&gt;&amp;lt;p&gt;@Session[<span style="color:#e6db74">&#34;flash&#34;</span>]&amp;lt;/p&gt;&amp;lt;/div&gt;
-    Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>;
-}
-
-@functions
-<span style="color:#75715e">/* 通常の C# 構文を書く */</span> {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Write(<span style="color:#66d9ef">string</span> <span style="color:#66d9ef">value</span>)
-    {
-        Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">value</span>;
-    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```この</span> @helper <span style="color:#960050;background-color:#1e0010">ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは</span> Visual Studio <span style="color:#960050;background-color:#1e0010">のツールチップでのぞいてみた。</span>
-
-<figure>
-    <img src="/images/20120830023803.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">りあえず、</span> &lt;code&gt;@helper Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">は</span> &lt;code&gt;<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Hoge(args) {<span style="color:#960050;background-color:#1e0010">……</span>}&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">（引数をとって</span> HelperResult <span style="color:#960050;background-color:#1e0010">を返す＋なんらかの処理）ということのようだ。実際、</span> @helper Read() <span style="color:#960050;background-color:#1e0010">は</span> @functions <span style="color:#960050;background-color:#1e0010">で表すこともできないことはない。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-@functions
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/29/201834">&#x5BC4;&#x308A;&#x9053;&#xFF1A; Rails &#x306E; Flash &#x3063;&#x307D;&#x3044;&#x6A5F;&#x80FD;&#x3092; WebMatrix &#x3067;&#x4F7F;&#x3044;&#x305F;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の話は続く。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/_AppCode/Flash.cshtml
+<p>@helper Read()
+<span class="synComment">/* Razor を書く */</span> {
+<span class="synStatement">if</span> (Session[<span class="synConstant">&quot;flash&quot;</span>] == <span class="synConstant">null</span>) { <span class="synStatement">return</span>; }
+<span class="synComment">// Razor では if 文の {} を省略できない。これ、マメな。</span></p>
+<p>&lt;div <span class="synType">class</span>=<span class="synConstant">&quot;message info&quot;</span>&gt;&lt;p&gt;@Session[<span class="synConstant">&quot;flash&quot;</span>]&lt;/p&gt;&lt;/div&gt;
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synConstant">null</span>;
+}</p>
+<p>@functions
+<span class="synComment">/* 通常の C# 構文を書く */</span> {
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Write(<span class="synType">string</span> <span class="synStatement">value</span>)
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Read()
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HelperResult(w =&gt;
-        {
-            <span style="color:#66d9ef">if</span> (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] == <span style="color:#66d9ef">null</span>) { <span style="color:#66d9ef">return</span>; }
-
-            <span style="color:#75715e">/* &lt;div class=&#34;message info&#34;&gt;&lt;p&gt;&lt;/p&gt;&lt;/div&gt;
-</span><span style="color:#75715e">                   @Session[&#34;flash&#34;]
-</span><span style="color:#75715e">               &lt;p&gt;&lt;/p&gt; */</span>
-            WriteLiteralTo(w, <span style="color:#e6db74">&#34;\&#34;message info\&#34;&gt;&lt;p&gt;&#34;</span>&lt;/p&gt;);
-            WriteTo(w, Session[<span style="color:#e6db74">&#34;flash&#34;</span>]); 
-            WriteLiteralTo(w, <span style="color:#e6db74">&#34;&lt;p&gt;&lt;/p&gt;&#34;</span>);
-
-            Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>;
-        });
-    }
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synStatement">value</span>;
 }
-
-<span style="color:#960050;background-color:#1e0010">```というわけで書いてみたのがこれ（参考：</span>&lt;a href=<span style="color:#e6db74">&#34;http://shiba-yan.hatenablog.jp/entry/20110615/1308070842&#34;</span>&gt;Razor Deep Dive (<span style="color:#ae81ff">2</span>) - <span style="color:#960050;background-color:#1e0010">しばやん雑記</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">）。たぶんきっと内部ではこういうことをしているんだと思う（ラムダの引数</span> w <span style="color:#960050;background-color:#1e0010">は</span> TextWriter型<span style="color:#960050;background-color:#1e0010">）。</span>
-
-<figure>
-    <img src="/images/20120830034439.png"/> 
-</figure>
-
-
-elperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx&lt;/a&gt;）っていうのは、WebPage を継承していて「Represents a base class for pages that is used when ASP.NET compiles a .cshtml or .vbhtml file and that exposes page-level and application-level properties and methods.」なんだそうな。あと、WriteLiteralTo() はエスケープされず、 WriteTo() はエスケープされないようだ。これで、Razor で書いた HTML タグはそのまま、外から与えられた変数（@Session[&#34;flash&#34;]）だけ無毒化される。ほへぇ。
-</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>cs
-@functions
+}
+</pre><p>この @helper ってなんなんだろうな。便利なのはいいけれど、中身がわからないのは気持ち悪い。まずは Visual Studio のツールチップでのぞいてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120830023803.png" alt="f:id:daruyanagi:20120830023803p:plain" title="f:id:daruyanagi:20120830023803p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず、 <code>@helper Hoge(args) {……}</code> は <code>public static HelperResult Hoge(args) {……}</code> （引数をとって HelperResult を返す＋なんらかの処理）ということのようだ。実際、 @helper Read() は @functions で表すこともできないことはない。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@functions
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HtmlString Read()
-    {
-        <span style="color:#66d9ef">if</span> (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] == <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">null</span>;
-        
-        <span style="color:#66d9ef">var</span> result = <span style="color:#66d9ef">new</span> HtmlString(
-            <span style="color:#66d9ef">string</span>.Format(
-                <span style="color:#e6db74">@&#34;&lt;div class=&#34;&#34; message=&#34;&#34; info&#34;&#34;=&#34;&#34;&gt;&lt;p&gt;{0}&lt;/p&gt;&lt;/div&gt;&#34;</span>,
-                Session[<span style="color:#e6db74">&#34;flash&#34;</span>]
-            )
-        );
-
-        Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>;
-
-        <span style="color:#66d9ef">return</span> result;
-    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```今までこんなの書いて「動いたヒャッハー！」とか思ってたけど、ただ</span> HtmlString <span style="color:#960050;background-color:#1e0010">型の戻り値を</span> Razor <span style="color:#960050;background-color:#1e0010">が変数として処理してくれたいたから見かけ上ちゃんと動いていただけなんだな。ちなみに、</span>~/_AppCode <span style="color:#960050;background-color:#1e0010">で</span> Hoge.cshtml <span style="color:#960050;background-color:#1e0010">を書くと、その内容は</span> &lt;code&gt;<span style="color:#66d9ef">namespace</span> ASP { <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hoge</span>: HelperPage }&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">になる。</span> @functions <span style="color:#960050;background-color:#1e0010">にはそのクラスの実装になっているみたいだな。で、普通</span> <span style="color:#960050;background-color:#1e0010">@</span>... {} <span style="color:#960050;background-color:#1e0010">以外の部分はレンダリング（</span>RenderBody()<span style="color:#960050;background-color:#1e0010">とか）されるときに変数が逐次解釈されながら</span> TextWriter <span style="color:#960050;background-color:#1e0010">へ書き込まれるんだけど、</span> _AppCode <span style="color:#960050;background-color:#1e0010">はレンダリングで呼ばれることがないから書いても無駄。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/Flash.cs
-
-<span style="color:#66d9ef">using</span> System.Web;
-<span style="color:#66d9ef">using</span> System.Web.WebPages;
-
-<span style="color:#66d9ef">namespace</span> ASP
+<span class="synType">public</span> <span class="synType">static</span> HelperResult Read()
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Flash</span>: HelperPage
-    {
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Write(<span style="color:#66d9ef">string</span> <span style="color:#66d9ef">value</span>)
-        {
-            Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">value</span>;
-        }
+<span class="synStatement">return</span> <span class="synStatement">new</span> HelperResult(w =&gt;
+{
+<span class="synStatement">if</span> (Session[<span class="synConstant">&quot;flash&quot;</span>] == <span class="synConstant">null</span>) { <span class="synStatement">return</span>; }
 
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HelperResult Read()
-        {
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HelperResult(w =&gt;
-            {
-                <span style="color:#66d9ef">if</span> (Session[<span style="color:#e6db74">&#34;flash&#34;</span>] == <span style="color:#66d9ef">null</span>) <span style="color:#66d9ef">return</span>;
+<span class="synComment">/* &lt;div class=&quot;message info&quot;&gt;&lt;p&gt;</span>
+<span class="synComment">                   @Session[&quot;flash&quot;]</span>
+<span class="synComment">               &lt;/p&gt;&lt;/div&gt; */</span>
+WriteLiteralTo(w, <span class="synConstant">&quot;&lt;div class=</span><span class="synSpecial">\&quot;</span><span class="synConstant">message info</span><span class="synSpecial">\&quot;</span><span class="synConstant">&gt;&lt;p&gt;&quot;</span>);
+WriteTo(w, Session[<span class="synConstant">&quot;flash&quot;</span>]);
+WriteLiteralTo(w, <span class="synConstant">&quot;&lt;/p&gt;&lt;/div&gt;&quot;</span>);
 
-                WriteLiteralTo(w, <span style="color:#e6db74">&#34;\&#34;message info\&#34;&gt;&lt;p&gt;&#34;</span>&lt;/p&gt;);
-                WriteTo(w, Session[<span style="color:#e6db74">&#34;flash&#34;</span>]);
-                WriteLiteralTo(w, <span style="color:#e6db74">&#34;&lt;p&gt;&lt;/p&gt;&#34;</span>);
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synConstant">null</span>;
+});
+}
+}
+</pre><p>というわけで書いてみたのがこれ（参考：<a href="http://shiba-yan.hatenablog.jp/entry/20110615/1308070842">Razor Deep Dive (2) - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a>）。たぶんきっと内部ではこういうことをしているんだと思う（ラムダの引数 w は TextWriter型）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120830034439.png" alt="f:id:daruyanagi:20120830034439p:plain" title="f:id:daruyanagi:20120830034439p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>HelperPage（<a href="http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx">http://msdn.microsoft.com/en-us/library/system.web.webpages.helperpage(v=vs.111).aspx</a>）っていうのは、WebPage を継承していて「Represents a base class for pages that is used when ASP.NET compiles a .cshtml or .vbhtml file and that exposes page-level and application-level properties and methods.」なんだそうな。</p><p>あと、WriteLiteralTo() はエスケープされず、 WriteTo() はエスケープされないようだ。これで、Razor で書いた HTML タグはそのまま、外から与えられた変数（@Session["flash"]）だけ無毒化される。ほへぇ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@functions
+{
+<span class="synType">public</span> <span class="synType">static</span> HtmlString Read()
+{
+<span class="synStatement">if</span> (Session[<span class="synConstant">&quot;flash&quot;</span>] == <span class="synConstant">null</span>) <span class="synStatement">return</span> <span class="synConstant">null</span>;
 
-                Session[<span style="color:#e6db74">&#34;flash&#34;</span>] = <span style="color:#66d9ef">null</span>;
-            });
-        }
-    }
+var result = <span class="synStatement">new</span> HtmlString(
+<span class="synType">string</span>.Format(
+<span class="synSpecial">@</span><span class="synConstant">&quot;&lt;div class=&quot;&quot;message info&quot;&quot;&gt;&lt;p&gt;{0}&lt;/p&gt;&lt;/div&gt;&quot;</span>,
+Session[<span class="synConstant">&quot;flash&quot;</span>]
+)
+);
+
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synConstant">null</span>;
+
+<span class="synStatement">return</span> result;
+}
+}
+</pre><p>今までこんなの書いて「動いたヒャッハー！」とか思ってたけど、ただ HtmlString 型の戻り値を Razor が変数として処理してくれたいたから見かけ上ちゃんと動いていただけなんだな。</p><p>ちなみに、~/_AppCode で Hoge.cshtml を書くと、その内容は <code>namespace ASP { public class Hoge: HelperPage }</code> になる。 @functions にはそのクラスの実装になっているみたいだな。で、普通 @... {} 以外の部分はレンダリング（RenderBody()とか）されるときに変数が逐次解釈されながら TextWriter へ書き込まれるんだけど、 _AppCode はレンダリングで呼ばれることがないから書いても無駄。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/Flash.cs
+
+<span class="synStatement">using</span> System.Web;
+<span class="synStatement">using</span> System.Web.WebPages;
+
+<span class="synType">namespace</span> ASP
+{
+<span class="synType">public</span> <span class="synType">class</span> Flash: HelperPage
+{
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Write(<span class="synType">string</span> <span class="synStatement">value</span>)
+{
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synStatement">value</span>;
 }
 
-<span style="color:#960050;background-color:#1e0010">```今回のヘルパーを</span> cshtml <span style="color:#960050;background-color:#1e0010">ではなく</span> cs <span style="color:#960050;background-color:#1e0010">で表現してみた。あっているかどうかイマイチ不安だけれども、ちゃんと動いてるみたい。とりあえず、今のところはそういう理解にしておこう。</span> 
+<span class="synType">public</span> <span class="synType">static</span> HelperResult Read()
+{
+<span class="synStatement">return</span> <span class="synStatement">new</span> HelperResult(w =&gt;
+{
+<span class="synStatement">if</span> (Session[<span class="synConstant">&quot;flash&quot;</span>] == <span class="synConstant">null</span>) <span class="synStatement">return</span>;
 
+WriteLiteralTo(w, <span class="synConstant">&quot;&lt;div class=</span><span class="synSpecial">\&quot;</span><span class="synConstant">message info</span><span class="synSpecial">\&quot;</span><span class="synConstant">&gt;&lt;p&gt;&quot;</span>);
+WriteTo(w, Session[<span class="synConstant">&quot;flash&quot;</span>]);
+WriteLiteralTo(w, <span class="synConstant">&quot;&lt;/p&gt;&lt;/div&gt;&quot;</span>);
 
-</code></pre></div>
+Session[<span class="synConstant">&quot;flash&quot;</span>] = <span class="synConstant">null</span>;
+});
+}
+}
+}
+</pre><p>今回のヘルパーを cshtml ではなく cs で表現してみた。あっているかどうかイマイチ不安だけれども、ちゃんと動いてるみたい。</p><p>とりあえず、今のところはそういう理解にしておこう。 </p>
+
 
     <footer>
         
@@ -212,7 +188,7 @@ elperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a hr
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/30/040609.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/30</time> 
             </p>
         
     </footer>
@@ -264,7 +240,16 @@ elperPage<span style="color:#960050;background-color:#1e0010">（</span>&lt;a hr
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

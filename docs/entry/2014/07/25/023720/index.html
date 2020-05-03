@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="れは Surface Pro 3 に限らないかもしれないが、 COM Surrogate や サービスホスト：ローカルサービス（ピア ネットワーク） Peer Name Resolution Protcol Perr Networking Grouping Peer Natworking Identity Manager あたりのプロセスが常に数" />
+    <meta name="og:description"   property="og:description" content="これは Surface Pro 3 に限らないかもしれないが、 COM Surrogate や サービスホスト：ローカルサービス（ピア ネットワーク） Peer Name Resolution Protcol Perr Networking Grouping Peer Natworking Identity Manager あたりのプロセスが常に" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/25/023720/" />
@@ -86,14 +89,10 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140725022254.png"/> 
-</figure>
-
-<p>れは Surface Pro 3 に限らないかもしれないが、</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140725022254.png" alt="f:id:daruyanagi:20140725022254p:plain" title="f:id:daruyanagi:20140725022254p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これは Surface Pro 3 に限らないかもしれないが、</p>
 <ul>
 <li>COM Surrogate</li>
-</ul>や
+</ul><p>や</p>
 <ul>
 <li>サービスホスト：ローカルサービス（ピア ネットワーク）
 <ul>
@@ -101,29 +100,19 @@
 <li>Perr Networking Grouping</li>
 <li>Peer Natworking Identity Manager</li>
 </ul></li>
-</ul>あたりのプロセスが常に数％の CPU リソースを食っていて、全体で25％程度の負荷がずっと継続するという症状が見られた。鈍感なのでとくにパフォーマンスの低下は感じなかったが、Surface Pro 3 がやたら熱いので気付いた。
+</ul><p>あたりのプロセスが常に数％の CPU リソースを食っていて、全体で25％程度の負荷がずっと継続するという症状が見られた。鈍感なのでとくにパフォーマンスの低下は感じなかったが、Surface Pro 3 がやたら熱いので気付いた。</p>
 <ul>
 <li>セットアップ直後（Windows Search が一生懸命インデックスを作ってたりする）</li>
 <li>Windows Update の直後（バックグラウンドで .NET のコンパイラが走ってたりする）</li>
 <li>オンラインストレージサービスの同期中</li>
-</ul>などは Surface Pro 3 が一時的に熱くなる場合があると思うけれど、そうでないのに熱い場合はこうしたプロセスが暴走してる可能性がある。
+</ul><p>などは Surface Pro 3 が一時的に熱くなる場合があると思うけれど、そうでないのに熱い場合はこうしたプロセスが暴走してる可能性がある。</p>
 <div class="section">
-    ### 解決策
-<figure>
-    <img src="/images/20140725022907.png"/> 
-</figure>
-
-<p>回はホームグループへの参加をやめたら症状が収まった。</p>
-<figure>
-    <img src="/images/20140725023151.png"/> 
-</figure>
-
-<p>Windows］ボタンを押して“ホームグループ”と入力すると、ホームグループ関連の設定画面にアクセスできるので、適当にごにょごにょすればいいと思う。むかし VAIO を使っていて似たようなトラブルにあったのだけど、そのときもホームグループが原因だったのかな？</p>
+<h3>解決策</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140725022907.png" alt="f:id:daruyanagi:20140725022907p:plain" title="f:id:daruyanagi:20140725022907p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回はホームグループへの参加をやめたら症状が収まった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140725023151.png" alt="f:id:daruyanagi:20140725023151p:plain" title="f:id:daruyanagi:20140725023151p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［Windows］ボタンを押して“ホームグループ”と入力すると、ホームグループ関連の設定画面にアクセスできるので、適当にごにょごにょすればいいと思う。</p><p>むかし VAIO を使っていて似たようなトラブルにあったのだけど、そのときもホームグループが原因だったのかな？</p>
 <ul>
-<li><a href="https://blog.daruyanagi.jp/entry/2013/08/12/223136">VAIO Fit 15 でディスクアクセスがおさまらない - だるろぐ</a></li>
-</ul>その時はぶち切れながら Peer *** サービスの停止と IPv6 の無効化で解決していたようだ。
+<li><a href="https://blog.daruyanagi.jp/entry/2013/08/12/223136">VAIO Fit 15 &#x3067;&#x30C7;&#x30A3;&#x30B9;&#x30AF;&#x30A2;&#x30AF;&#x30BB;&#x30B9;&#x304C;&#x304A;&#x3055;&#x307E;&#x3089;&#x306A;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+</ul><p>その時はぶち切れながら Peer *** サービスの停止と IPv6 の無効化で解決していたようだ。</p>
 </div>
-
 
     <footer>
         
@@ -137,7 +126,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/25/023720.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/25</time> 
             </p>
         
     </footer>
@@ -189,7 +178,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

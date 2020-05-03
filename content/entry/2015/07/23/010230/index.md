@@ -1,0 +1,32 @@
+---
+date: 2015-07-23T01:02:30.0000000
+draft: false
+title: "ゆるふわ.rb in 大洲 でお腹いっぱいに Ruby を学んできた。"
+tags: ["勉強会", "食べ物"]
+eyecatch: http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20150704/20150704100921.jpg
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704100921.jpg" alt="f:id:daruyanagi:20150704100921j:plain" title="f:id:daruyanagi:20150704100921j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>もうだいぶ前の話になってしまったが、@nakaji に誘われて「ゆるふわ.rb in 大洲」に参加。なのに肝心の @nakaji が参加できなくなったのには少し同情した。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fyurufuwa.doorkeeper.jp%2Fevents%2F27706" title="ゆるふわ.rb　in 大洲　〜ここがスゴイよ RubyMine！〜" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>当日は @ramusara さんと一緒に鈍行で大洲へ。この前はバイクで行ったのだけど、<s>電車</s>列車もなかなか良いものだと思う。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2015%2F05%2F21%2F000339" title="バイク：天気がよかったので大洲城に出かけたらなぜか旗振りさせられてた件について（前篇） - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><br />
+</p>
+
+<div class="section">
+<h4>おひるごはん</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704114949.jpg" alt="f:id:daruyanagi:20150704114949j:plain" title="f:id:daruyanagi:20150704114949j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>雨がしとしとと降る大洲に着くと、まずは腹ごしらえ。“たる井”というどこかで聞いたような名前の旅館でランチをやっていたので、<b>さつまめし</b>をいただいた。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.oozu-taruiryokan.com%2F%25E6%2596%2599%25E8%258B%2591%25E3%2581%259F%25E3%2582%258B%25E4%25BA%2595%2F" title="料苑たる井" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704115142.jpg" alt="f:id:daruyanagi:20150704115142j:plain" title="f:id:daruyanagi:20150704115142j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>さつまめしというのは南予の郷土料理なのだそうで。うまく表現しがたい、割と面白い味だと思う。</p>
+
+<blockquote cite="https://ja.wikipedia.org/wiki/%E4%BC%8A%E4%BA%88%E3%81%95%E3%81%A4%E3%81%BE">
+<p>おろした魚をすりつぶし、軽く炙る。焼き味噌を作り、すりつぶした魚を加え、さらに焼く。それを煮だし汁でのばし、味を付けたこんにゃくやキュウリを混ぜ、あたたかいご飯（料理店では麦飯のこともある）の上にかけて食べる。薬味として好みにより、珍皮や刻みネギなどを散らす。 宇和島市ではこずな（アマダイ）を使う料理が最高とされる。家庭では、焼いた身をスリコギですりつぶし作られる。慣れてくるとスリコギの音で出来がわかり、見なくても判断できるようになる。昔はすりつぶすのは子どもの役割であったが、疲れた子どもが止めようとしても、大人はまだ出来上がっていないことがわかるので「まだまだ」という対応をする光景が日常的にあった</p>
+
+<cite><a href="https://ja.wikipedia.org/wiki/%E4%BC%8A%E4%BA%88%E3%81%95%E3%81%A4%E3%81%BE">&#x4F0A;&#x4E88;&#x3055;&#x3064;&#x307E; - Wikipedia</a></cite>
+</blockquote>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704115213.jpg" alt="f:id:daruyanagi:20150704115213j:plain" title="f:id:daruyanagi:20150704115213j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サラサラと食べられて、ランチにはぴったりだった。ちなみに @ramusara さんはガッツリと天ぷら定食を食べてたが、あとでそれを大変後悔することになる（別に不味かったというわけじゃないｗ）。</p>
+
+</div>
+<div class="section">
+<h4>勉強するふりをする</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704125555.jpg" alt="f:id:daruyanagi:20150704125555j:plain" title="f:id:daruyanagi:20150704125555j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>会場は大洲城のふもとにある市民会館――のなかにある調理室。IT 勉強会にたいへんふさわしくないところだと思う。ウェルカムドリンクとして<b>あおさ汁</b>がふるまわれたが、これが雨に打たれた体に大変やさしい。ネームプレートが配られ、名前と日ごろ利用している開発環境を書くように指示される。自分は「Visual Studio と WebMatrix」と書いておいたが、WebMatrix を知ってる参加者なんかいるんだろうか。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704130348.jpg" alt="f:id:daruyanagi:20150704130348j:plain" title="f:id:daruyanagi:20150704130348j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>開会のあいさつと参加者の自己紹介のあとに、@ogin_s57 さんが RubyMine の秘技を実演。ちょっとしたミスはあったけれど、参加者によるデバッグが功を奏し、無事に終了した。図らずも RubyMine のデバッグ機能を駆使することになり、とても実践的なデモになった。</p><p>さて、ここからが本番。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704133708.jpg" alt="f:id:daruyanagi:20150704133708j:plain" title="f:id:daruyanagi:20150704133708j:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704140532.jpg" alt="f:id:daruyanagi:20150704140532j:plain" title="f:id:daruyanagi:20150704140532j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ボーっと眺めているうちに、立派な刺身盛りができあがった。ほかにも豆腐と日本酒の差し入れがあり、午後2時過ぎにして早くも完全に宴会モードに。自分は途中の大洲の商店街でビールを購入、地元の振興に一役買う。</p><p>それにしても、お刺身が絶品。天ぷら定食でおなかがいっぱいの @ramusara 氏が心配だったが、それでもかなり食べていたようだった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704173807.jpg" alt="f:id:daruyanagi:20150704173807j:plain" title="f:id:daruyanagi:20150704173807j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>5時ぐらいに調理場を撤収。近所のショッピングモールにあるゲームセンターで、なぜか魚釣りゲームをやった。自分はゲームも魚釣りも得意じゃないのだけど、これはだいぶアツい。なんかデカい魚が釣れてコインがじゃらじゃら出てきたが、そのあとにやったコインゲームに全部吸い込まれてしまった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704193213.jpg" alt="f:id:daruyanagi:20150704193213j:plain" title="f:id:daruyanagi:20150704193213j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そのあと、少し二次会をやり、電車で帰った。大洲駅に行くとちょうど松山行きの普通列車がでるところ。運がよいとみんなで喜んだが、途中の駅で30分ぐらい通過待ちやらなんやらで足止めを食らい、ちょっとだけ各駅停車に乗ったことを後悔する。</p>
+
+</div>
+<div class="section">
+<h4>生還！</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704220259.jpg" alt="f:id:daruyanagi:20150704220259j:plain" title="f:id:daruyanagi:20150704220259j:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20150704213840.jpg" alt="f:id:daruyanagi:20150704213840j:plain" title="f:id:daruyanagi:20150704213840j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そんなこんなでいろいろあったけど、無事松山へ。二次会で飲み足りなかったので、JR 松山駅の前の居酒屋へ繰り出し、伝説のチキン南蛮を食べたり、エリンギを焼いてみんなで生還を祝った。</p><p>楽しかったのでまた参加したいです（＾ｖ＾）ｺﾝﾄﾞﾊBBQﾀﾞｰ</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fd.hatena.ne.jp%2Fogin_s57%2F20150708%2F1436318956" title="ゆるふわ.rb　in 大洲　〜ここがスゴイよ RubyMine！〜 を開催しました - ITエンジニアとして生きる" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p>
+
+</div>

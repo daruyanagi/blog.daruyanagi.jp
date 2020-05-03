@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="あちこちスクレイピングして、松山の鉄道・船・飛行機の運行状況をまとめるサイトを作ってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; http://ehime-traffic.azurewebsites.net/ WebMatrix &#43; Azure Web サイト（マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運" />
+    <meta name="og:description"   property="og:description" content="http://ehime-traffic.azurewebsites.net/ WebMatrix &#43; Azure Web サイト（&#x30DE;&#x30A4;&#x30AF;&#x30ED;&#x30BD;&#x30D5;&#x30C8;&#x30" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2015/01/20/033210/20150120025457_hu9a146878cff28e950c5e69fdbfd24fb8_208111_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2015/01/20/033210/20150120025457_hu9a146878cff28e950c5e69fdbfd24fb8_208111_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/01/20/033210/" />
@@ -86,65 +92,48 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150120025457.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150120025457.png" alt="f:id:daruyanagi:20150120025457p:plain" title="f:id:daruyanagi:20150120025457p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li><a href="http://ehime-traffic.azurewebsites.net/">http://ehime-traffic.azurewebsites.net/</a></li>
-</ul>WebMatrix + Azure Web サイト（<a href="http://www.microsoft.com/ja-jp/mic/bizspark/">マイクロソフトのクラウド環境や開発ツールを無償提供 | Microsoft BizSpark</a>、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。このサイトの情報は、大きく分けて二つの方法で取得しています。
+</ul><p>WebMatrix + Azure Web サイト（<a href="http://www.microsoft.com/ja-jp/mic/bizspark/">&#x30DE;&#x30A4;&#x30AF;&#x30ED;&#x30BD;&#x30D5;&#x30C8;&#x306E;&#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x74B0;&#x5883;&#x3084;&#x958B;&#x767A;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x7121;&#x511F;&#x63D0;&#x4F9B; | Microsoft BizSpark</a>、ありがとう！）で愛媛・松山の鉄道・船・飛行機の運行状況を集約したサイトを作ってみました（飛行機の英語の綴りミスなんかがボロボロ見つかる程度の成熟度です）。誰の役に立つというものでもないですが、自分的には満足です。そのうちわざわざサイトに行くのも面倒になると思うので、ゆくゆくは Twitter の BOT か何か作って、情報をプッシュできるようにしたいですね。</p><p>このサイトの情報は、大きく分けて二つの方法で取得しています。</p>
 <ul>
 <li>サイトをスクレイピングして情報取得（鉄道、船、JAL）</li>
 <li>（非公開）API を叩いて JSON から情報取得（ANA、ピーチ）</li>
 <li>（ジェットスターだけはうまくいかなかった！　今度誰か教えて！<a href="#f-787436cb" name="fn-787436cb" title="幸い JAL とのコードシェアなので、そっちから情報を取得">*1</a>）</li>
-</ul>スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。
+</ul><p>スクレイピングで面倒だったのは、情報の形式が一定していないこと、文字コードがバラバラなこと（ローカルでテストしているときは文字化けしないのに、クラウドで動かすと文字化けすることもあった）でしょうか。とくに情報の形式が一定していないのはしんどいですね。イレギュラーなケースを見つけるたびにデータ標準化のための処理が膨れ上がっていくので、最後は妥協、妥協、妥協。ペライチのページにコードをべた書きして、それをまとめていくという開発手法は WebMatrix が得意とする分野だと思うけれど、最後のほうはちょっと力不足かなって感じもしました。まぁ、そんなときはサクッと Visual Studio に切り替えちゃうんですけど。</p>
 <div class="section">
-    ### 開発の流れ
-<figure>
-    <img src="/images/20150120031218.png"/> 
-</figure>
-
-<p>行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。スクレイピングであれば、<a href="https://www.nuget.org/packages/HtmlAgilityPack">NuGet Gallery | HtmlAgilityPack 1.4.9</a> が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> WebClient())
+<h3>開発の流れ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150120031218.png" alt="f:id:daruyanagi:20150120031218p:plain" title="f:id:daruyanagi:20150120031218p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>運行情報のページをブラウザーでみる。ブラウザーの開発者ツールで DOM をみたり、リクエスト・レスポンスをみたりしながら、静的ページであればスクレイピング、ページを動的に組み立てているなら API を探してそれを叩いてみるという感じ。</p><p>スクレイピングであれば、<a href="https://www.nuget.org/packages/HtmlAgilityPack">NuGet Gallery | HtmlAgilityPack 1.4.9</a> が超簡単。XPath でノードを指定してサクッと中身を取ってこれる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> (var client = <span class="synStatement">new</span> WebClient())
 {
-    <span style="color:#66d9ef">var</span> response = client.DownloadString(url);
-    <span style="color:#66d9ef">var</span> json = Json.Decode(response);
-
-    <span style="color:#66d9ef">var</span> doc = <span style="color:#66d9ef">new</span> HtmlAgilityPack.HtmlDocument();
-    doc.LoadHtml(doc)
-
-    <span style="color:#75715e">// &lt;div class=&#34;ss_comment&#34;&gt;ここがほしいやで&lt;/div&gt;
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> message = doc.DocumentNode
-        .SelectSingleNode(<span style="color:#e6db74">@&#34;//div[@class=&#34;&#34;ss_coment&#34;&#34;]&#34;</span>)
-        .InnerText;
-
-    @ObjectInfo.Print(json)
+var response = client.DownloadString(url);
+var json = Json.Decode(response);
+<p>var doc = <span class="synStatement">new</span> HtmlAgilityPack.HtmlDocument();
+doc.LoadHtml(doc)</p>
+<p><span class="synComment">// &lt;div class=&quot;ss_comment&quot;&gt;ここがほしいやで&lt;/div&gt;</span>
+var message = doc.DocumentNode
+.SelectSingleNode(<span class="synSpecial">@</span><span class="synConstant">&quot;//div[@class=&quot;&quot;ss_coment&quot;&quot;]&quot;</span>)
+.InnerText;</p>
+<p>@ObjectInfo.Print(json)
 }
-
-<span style="color:#960050;background-color:#1e0010">```これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。非公開</span> API <span style="color:#960050;background-color:#1e0010">があるのならば、</span>JSON Helper <span style="color:#960050;background-color:#1e0010">が便利。</span>Chrome <span style="color:#960050;background-color:#1e0010">の場合、開発者ツールの［</span>Network<span style="color:#960050;background-color:#1e0010">］タブでリクエスト・レスポンスをみると、内部</span> API <span style="color:#960050;background-color:#1e0010">らしきものが見るかる。今回見つけたなかでは、</span>ANA <span style="color:#960050;background-color:#1e0010">が出発・到着空港の天気までとれる重量級。一方、ピーチは割と扱いやすい感じ（</span>ASP.NET <span style="color:#960050;background-color:#1e0010">っぽかった）。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> WebClient())
+</pre><p>これが使えないならば、正規表現で頑張ることになるのかな。今回はそこまでしなければならないケースはなかった。</p><p>非公開 API があるのならば、JSON Helper が便利。Chrome の場合、開発者ツールの［Network］タブでリクエスト・レスポンスをみると、内部 API らしきものが見るかる。今回見つけたなかでは、ANA が出発・到着空港の天気までとれる重量級。一方、ピーチは割と扱いやすい感じ（ASP.NET っぽかった）。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> (var client = <span class="synStatement">new</span> WebClient())
 {
-    <span style="color:#66d9ef">var</span> response = client.UploadString(url, postData);
-    <span style="color:#66d9ef">var</span> json = Json.Decode(response);
+var response = client.UploadString(url, postData);
+var json = Json.Decode(response);
 
-    @ObjectInfo.Print(json)
+@ObjectInfo.Print(json)
 }
-
-<span style="color:#960050;background-color:#1e0010">```</span>ObjectInfo.Print <span style="color:#960050;background-color:#1e0010">で</span> Json <span style="color:#960050;background-color:#1e0010">オプジェクトの中身をみながら、自分が使いやすいようにデータを取捨・加工する。コーディング自体はとても簡単で、開発時間のほとんどは</span> API <span style="color:#960050;background-color:#1e0010">のパラメーター解析に費やされた。</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">これから</span>
-    <span style="color:#960050;background-color:#1e0010">閲覧時に情報を取りに行く設計になっているので、キャッシュが効いていない場合にロードがとても遅い。相手にも負荷がかかって迷惑</span>&lt;a href=<span style="color:#e6db74">&#34;#f-bb29751c&#34;</span> name=<span style="color:#e6db74">&#34;fn-bb29751c&#34;</span> title=<span style="color:#e6db74">&#34;本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">なので、バックグラウンドで情報を取得するようにしたい。</span>Twitter BOT <span style="color:#960050;background-color:#1e0010">にするにも必要な処理だし。</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-787436cb&#34;</span> name=<span style="color:#e6db74">&#34;f-787436cb&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">幸い</span> JAL <span style="color:#960050;background-color:#1e0010">とのコードシェアなので、そっちから情報を取得</span>&lt;/span&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-bb29751c&#34;</span> name=<span style="color:#e6db74">&#34;f-bb29751c&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+</pre><p>ObjectInfo.Print で Json オプジェクトの中身をみながら、自分が使いやすいようにデータを取捨・加工する。</p><p>コーディング自体はとても簡単で、開発時間のほとんどは API のパラメーター解析に費やされた。</p>
+</div>
+<div class="section">
+<h3>これから</h3>
+<p>閲覧時に情報を取りに行く設計になっているので、キャッシュが効いていない場合にロードがとても遅い。相手にも負荷がかかって迷惑<a href="#f-bb29751c" name="fn-bb29751c" title="本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある">*2</a>なので、バックグラウンドで情報を取得するようにしたい。Twitter BOT にするにも必要な処理だし。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-787436cb" name="f-787436cb" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">幸い JAL とのコードシェアなので、そっちから情報を取得</span></p>
+<p class="footnote"><a href="#fn-bb29751c" name="f-bb29751c" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">本当に迷惑になりそうな、体力がなさげなサイトにはすでに対策を入れてある</span></p>
+</div>
 
     <footer>
         
@@ -158,7 +147,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/01/20/033210.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/01/20</time> 
             </p>
         
     </footer>
@@ -210,7 +199,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

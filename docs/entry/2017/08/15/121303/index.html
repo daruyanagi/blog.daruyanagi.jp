@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/08/15/121303/" />
@@ -86,21 +88,7 @@
         </time>        
     </p>
 
-    <p>ASP.NET Core 2.0 がリリースされたので、<a href="http://darunagai.jp/"><a href="http://darunagai.jp/">http://darunagai.jp/</a></a> を Razor Page で書き直しました。大したサイトではないので、MVC よりも Razor Pages にした方がシンプルでいい感じ。ローカルでいい感じに動いていたので、さっそく Azure に発行してみました。</p>
-<figure>
-    <img src="/images/20170815120543.png"/> 
-</figure>
-
-<p>にました／(^o^)＼　<strong>HTTP Error 502.5 - Process Failure</strong> だそうです。見たことないエラーページでちょっと焦る……。いろいろガチャガチャいじっていたのですが、どうやらゴミが残っていたようで。Web 発行のときに消すようにしてみたらうまくいきました。</p>
-<figure>
-    <img src="/images/20170815121048.png"/> 
-</figure>
-
-<figure>
-    <img src="/images/20170815121051.png"/> 
-</figure>
-
-<p>*発行先の追加ファイルを削除する**という日本語がイマイチよくわからなかったのですが、動いたからこれでいいんだろうと思う。</p>
+    <p>ASP.NET Core 2.0 がリリースされたので、<a href="http://darunagai.jp/">http://darunagai.jp/</a> を Razor Page で書き直しました。大したサイトではないので、MVC よりも Razor Pages にした方がシンプルでいい感じ。ローカルでいい感じに動いていたので、さっそく Azure に発行してみました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170815120543.png" alt="f:id:daruyanagi:20170815120543p:plain" title="f:id:daruyanagi:20170815120543p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>死にました／(^o^)＼　</p><p><b>HTTP Error 502.5 - Process Failure</b> だそうです。見たことないエラーページでちょっと焦る……。</p><p>いろいろガチャガチャいじっていたのですが、どうやらゴミが残っていたようで。Web 発行のときに消すようにしてみたらうまくいきました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170815121048.png" alt="f:id:daruyanagi:20170815121048p:plain" title="f:id:daruyanagi:20170815121048p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170815121051.png" alt="f:id:daruyanagi:20170815121051p:plain" title="f:id:daruyanagi:20170815121051p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>発行先の追加ファイルを削除する</b>という日本語がイマイチよくわからなかったのですが、動いたからこれでいいんだろうと思う。</p>
 
 
     <footer>
@@ -115,7 +103,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/08/15/121303.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/08/15</time> 
             </p>
         
     </footer>
@@ -167,7 +155,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

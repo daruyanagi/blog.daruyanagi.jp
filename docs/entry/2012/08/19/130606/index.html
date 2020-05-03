@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/19/130606/" />
@@ -86,266 +88,224 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819110408.png" alt="f:id:daruyanagi:20120819110408p:plain" title="f:id:daruyanagi:20120819110408p:plain" class="hatena-fotolife"/>今日は「WebMatrix 2」でファイルのアップロードを試してみた。なお、このサンプルは「Empty Sites」テンプレートを元に作成している。</p>
+    <p><img src="20120819110408.png" alt="f:id:daruyanagi:20120819110408p:plain" title="f:id:daruyanagi:20120819110408p:plain" class="hatena-fotolife"></p><p>今日は「<a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> 2」でファイルのアップロードを試してみた。なお、このサンプルは「Empty Sites」テンプレートを元に作成している。</p>
 <div class="section">
-    ### Delault.cshtml
-    ```html
-<p>&lt;html lang=&quot;ja&quot;&gt;
+<h3>Delault.cshtml</h3>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;<a class="keyword" href="http://d.hatena.ne.jp/keyword/utf-8">utf-8</a>&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">form</span><span class="synIdentifier"> </span><span class="synType">action</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Upload&quot;</span><span class="synIdentifier"> </span><span class="synType">method</span><span class="synIdentifier">=</span><span class="synConstant">&quot;post&quot;</span>
+<span class="synIdentifier">              </span><span class="synType">enctype</span><span class="synIdentifier">=</span><span class="synConstant">&quot;multipart/form-data&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;file&quot;</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;upload&quot;</span><span class="synIdentifier"> /&gt;&lt;</span><span class="synStatement">br</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;submit&quot;</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;submit&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">form</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>拡張子を html にすれば、ただの HTML ドキュメントだね！　ファイルのアップロードを行うので、 multipart/form-data をつけるのを忘れないように。</p><p><img src="20120819110559.png" alt="f:id:daruyanagi:20120819110559p:plain" title="f:id:daruyanagi:20120819110559p:plain" class="hatena-fotolife"></p></p>
+</div>
+<div class="section">
+<h3>Upload.cshtml</h3>
+<p>アップロード処理を行う cshtml はこんな感じにしてみた。</p><p>ほんとは path が存在しなければ例外、 file のサイズが 0 ならば例外、 file が image/*** でなければ例外、といったチェックを入れるのだけれど、ソースが長くなるので割愛している。あと、最初から複数ファイルのアップデートに対応できるように記述している。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.IO
+<p>@functions {
+<span class="synType"><a class="keyword" href="http://d.hatena.ne.jp/keyword/enum">enum</a></span> Result { Success, Error };
+}</p>
+<p>@{
+var result = Result.Error;
+var message = <span class="synConstant">&quot;You can use only POST method.&quot;</span>;
+var link = <span class="synType">string</span>.Empty;</p>
+<p><span class="synStatement">if</span> (IsPost)
+{
+<span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> Request.Files.AllKeys)
+{
+var file = Request.Files[key];</p>
+<p><span class="synStatement">try</span>
+{
+<span class="synType">const</span> <span class="synType">string</span> OUTPUT = <span class="synConstant">&quot;~/Files/&quot;</span>;
+var path = Server.MapPath(OUTPUT);</p>
+<p>var src = Path.GetFileName(file.FileName);
+var dst = <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;{0:yyyyMMdd-HHmmssfff}{1}&quot;</span>,
+DateTime.Now, Path.GetExtension(src).ToLower()
+);</p>
+<p>file.SaveAs(Path.Combine(path, dst));</p>
+<p>result = Result.Success;
+message = <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;{0} is uploaded as {1}.&quot;</span>,
+src, dst
+);
+link = VirtualPathUtility.ToAbsolute(OUTPUT + dst);
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+result = Result.Error;
+message = e.Message;
+}
+}
+}
+}</p>
+<p>&lt;h1&gt;@result&lt;/h1&gt;
+&lt;p&gt;@message&lt;/p&gt;
+<span class="synStatement">if</span> (!<span class="synType">string</span>.IsNullOrEmpty(link))
+{
+&lt;p&gt;&lt;img src=<span class="synConstant">&quot;@link&quot;</span> /&gt;&lt;/p&gt;
+}
+&lt;p&gt;&amp;raquo; Back to &lt;a href=<span class="synConstant">&quot;~/&quot;</span>&gt;home&lt;/a&gt;&lt;/p&gt;
+</pre><p>基本的には、 Request.Files でファイルを取得し、 SaveAs() で保存するだけ。そのほかはファイル名の決定だのエラー処理だのといったことをしているに過ぎない。</p><p>Default.cshtml から画像ファイルを POST すると、</p><p><img src="20120819111843.png" alt="f:id:daruyanagi:20120819111843p:plain" title="f:id:daruyanagi:20120819111843p:plain" class="hatena-fotolife"></p><p>エラーが出たらこんな感じで……</p><p><img src="20120819111723.png" alt="f:id:daruyanagi:20120819111723p:plain" title="f:id:daruyanagi:20120819111723p:plain" class="hatena-fotolife"></p><p>成功したらこんな感じになる。</p><p><img src="20120819112043.png" alt="f:id:daruyanagi:20120819112043p:plain" title="f:id:daruyanagi:20120819112043p:plain" class="hatena-fotolife"></p><p>&quot;~/Files/&ldquo;フォルダが夢のようになっておるな！</p></p>
+</div>
+<div class="section">
+<h3>ステップアップ</h3>
+<div class="section">
+<h4>ヘルパーで楽をしよ……ぅ？</h4>
+<p><img src="20120819114311.png" alt="f:id:daruyanagi:20120819114311p:plain" title="f:id:daruyanagi:20120819114311p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> Web Helpers Library という NuGet をインストールすると、複数ファイルのアップロードに対応した Form タグを簡単に生成できる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@FileUpload.GetHtml()
+</pre><p>でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;!DOCTYPE html&gt;
+<p>@{
+<span class="synStatement">if</span> (IsPost)
+{
+<span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> Request.Files.AllKeys)
+{
+var file = Request.Files[key];</p>
+<p><span class="synStatement">try</span>
+{
+file.SaveAs(
+System.IO.Path.Combine(
+Server.MapPath(<span class="synConstant">&quot;~/Files/&quot;</span>),
+file.FileName)
+);
+}
+<span class="synStatement">catch</span> (Exception e)
+{</p>
+<p>}
+}
+}
+}</p>
+<p>&lt;html lang=<span class="synConstant">&quot;ja&quot;</span>&gt;
 &lt;head&gt;
-&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;meta charset=<span class="synConstant">&quot;<a class="keyword" href="http://d.hatena.ne.jp/keyword/utf-8">utf-8</a>&quot;</span> /&gt;
 &lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-&lt;form action=&quot;~/Upload&rdquo; method=&quot;post&rdquo;
-enctype=&quot;multipart/form-data&quot;&gt;
-&lt;input type=&quot;file&rdquo; name=&quot;upload&rdquo; /&gt;&lt;br /&gt;
-&lt;input type=&quot;submit&rdquo; name=&quot;submit&rdquo; /&gt;
-&lt;/form&gt;
-&lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-拡張子を" data-lang="拡張子を">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### Upload.cshtml
-    アップロード処理を行う cshtml はこんな感じにしてみた。ほんとは path が存在しなければ例外、 file のサイズが 0 ならば例外、 file が image/*** でなければ例外、といったチェックを入れるのだけれど、ソースが長くなるので割愛している。あと、最初から複数ファイルのアップデートに対応できるように記述している。
-```cs
-@using System.IO
-
-@functions {
-    enum Result { Success, Error };
-}
-
-@{
-    var result = Result.Error;
-    var message = &quot;You can use only POST method.&quot;;
-    var link = string.Empty;
-
-    if (IsPost)
-    {
-        foreach (var key in Request.Files.AllKeys)
-        {
-            var file = Request.Files[key];
-
-            try
-            {
-                const string OUTPUT = &quot;~/Files/&quot;;
-                var path = Server.MapPath(OUTPUT);
-
-                var src = Path.GetFileName(file.FileName);
-                var dst = string.Format(
-                    &quot;{0:yyyyMMdd-HHmmssfff}{1}&quot;,
-                    DateTime.Now, Path.GetExtension(src).ToLower()
-                );
-
-                file.SaveAs(Path.Combine(path, dst));
-
-                result = Result.Success;
-                message = string.Format(
-                    &quot;{0} is uploaded as {1}.&quot;, 
-                    src, dst
-                );
-                link = VirtualPathUtility.ToAbsolute(OUTPUT + dst);
-            }
-            catch (Exception e)
-            {
-                result = Result.Error;
-                message = e.Message;
-            }
-        }
-    }
-}
-
-&amp;lt;h1&gt;@result&amp;lt;/h1&gt;
-&amp;lt;p&gt;@message&amp;lt;/p&gt;
-if (!string.IsNullOrEmpty(link))
-{
-    &amp;lt;p&gt;&amp;lt;img src=&quot;@link&quot; /&gt;&amp;lt;/p&gt;
-}
-&amp;lt;p&gt;&amp;amp;raquo; Back to &amp;lt;a href=&quot;~/&quot;&gt;home&amp;lt;/a&gt;&amp;lt;/p&gt;
-
-```基本的には、 Request.Files でファイルを取得し、 SaveAs() で保存するだけ。そのほかはファイル名の決定だのエラー処理だのといったことをしているに過ぎない。Default.cshtml から画像ファイルを POST すると、&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819111843.png&quot; alt=&quot;f:id:daruyanagi:20120819111843p:plain&quot; title=&quot;f:id:daruyanagi:20120819111843p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;エラーが出たらこんな感じで……&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819111723.png&quot; alt=&quot;f:id:daruyanagi:20120819111723p:plain&quot; title=&quot;f:id:daruyanagi:20120819111723p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;成功したらこんな感じになる。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819112043.png&quot; alt=&quot;f:id:daruyanagi:20120819112043p:plain&quot; title=&quot;f:id:daruyanagi:20120819112043p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&quot;~/Files/&quot;フォルダが夢のようになっておるな！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ステップアップ
-    
-&lt;div class=&quot;section&quot;&gt;
-    #### ヘルパーで楽をしよ……ぅ？
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819114311.png&quot; alt=&quot;f:id:daruyanagi:20120819114311p:plain&quot; title=&quot;f:id:daruyanagi:20120819114311p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;ASP.NET Web Helpers Library という NuGet をインストールすると、複数ファイルのアップロードに対応した Form タグを簡単に生成できる。
-```cs
 @FileUpload.GetHtml()
-
-```でも、個人的にはあんまり好きじゃなかったので今回は使わなかった。
-```cs
-&amp;lt;!DOCTYPE html&gt;
-
-@{
-    if (IsPost)
-    {
-        foreach (var key in Request.Files.AllKeys)
-        {
-            var file = Request.Files[key];
-
-            try
-            {
-                file.SaveAs(
-                   System.IO.Path.Combine(
-                       Server.MapPath(&quot;~/Files/&quot;),
-                       file.FileName)
-                );
-            }
-            catch (Exception e)
-            {
-
-            }
-        }
-    }
-}
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @FileUpload.GetHtml()
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819115634.png&quot; alt=&quot;f:id:daruyanagi:20120819115634p:plain&quot; title=&quot;f:id:daruyanagi:20120819115634p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;なんか動的に生成されるノードの名前がカブってるし&lt;a href=&quot;#f1&quot; name=&quot;fn1&quot; title=&quot;JavaScriptの不具合かなぁ&quot;&gt;*1&lt;/a&gt;、あんまりよくわかんなかった。
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ビューでつかう変数をまとめる
-    Upload.cshtml のソースコードがなんだか冗長なのは、HTML の出力に使う result、message、link という3つの変数を処理するためだけど、こいつらって**匿名クラス**でまとめてもいいよね。
-```cs
-@using System.IO
-
-@functions { enum Result { Success, Error }; }
-
-@{
-    const string OUTPUT = &quot;~/Files/&quot;;
-    dynamic model = null;
-
-    if (IsPost)
-    {
-        foreach (var key in Request.Files.AllKeys)
-        {
-            var file = Request.Files[key];
-
-            try
-            {
-                var path = Server.MapPath(OUTPUT);
-
-                var src = Path.GetFileName(file.FileName);
-                var dst = string.Format(
-                    &quot;{0:yyyyMMdd-HHmmssfff}{1}&quot;,
-                    DateTime.Now, Path.GetExtension(src).ToLower()
-                );
-
-                file.SaveAs(Path.Combine(path, dst));
-
-                model = new {
-                    Result = Result.Success,
-                    Message = string
-                        .Format(&quot;{0}&amp;#39;s uploaded as {1}&quot;, src, dst),
-                    Link = VirtualPathUtility
-                        .ToAbsolute(OUTPUT + dst),
-                };
-            }
-            catch (Exception e)
-            {
-                model = new {
-                    Result = Result.Error,
-                    Message = e.Message,
-                    Link = string.Empty,
-                };
-            }
-        }
-    }
-    else
-    {
-        model = new {
-            Result = Result.Error,
-            Message = &quot;You can use only POST method&quot;,
-            Link = string.Empty,
-        };
-    }
-}
-
-&amp;lt;h1&gt;@model.Result&amp;lt;/h1&gt;
-&amp;lt;p&gt;@model.Message&amp;lt;/p&gt;
-@if (!string.IsNullOrEmpty(model.Link))
-{
-    &amp;lt;p&gt;&amp;lt;img src=&quot;@model.Link&quot; /&gt;&amp;lt;/p&gt;
-}
-&amp;lt;p&gt;&amp;amp;raquo; Back to &amp;lt;a href=&quot;~/&quot;&gt;home&amp;lt;/a&gt;&amp;lt;/p&gt;
-
-```記述量はかえって多くなったけど、「何かの処理 → 結果（モデル）の生成」という流れが明確になった気がする。この @model っていうのが MVVM の ViewModel じゃない ViewModel という理解でいいんでしょうか。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### Ajax には Json で応える
-    ViewModel を返すことの利点は、可読性だけじゃない。たとえばこんなこともできる。
-```cs
-@if (IsAjax)
-{
-    // Response.ContentType = &quot;application/json&quot;;
-    Response.Write(Json.Encode(model));
-}
-else
-{
-    &amp;lt;h1&gt;@model.Result&amp;lt;/h1&gt;
-    &amp;lt;p&gt;@model.Message&amp;lt;/p&gt;
-    if (!string.IsNullOrEmpty(model.Link))
-    {
-        &amp;lt;p&gt;&amp;lt;img src=&quot;@model.Link&quot; /&gt;&amp;lt;/p&gt;
-    }
-    &amp;lt;p&gt;&amp;amp;raquo; Back to &amp;lt;a href=&quot;~/&quot;&gt;home&amp;lt;/a&gt;&amp;lt;/p&gt;
-}
-
-```&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120819/20120819125626.png&quot; alt=&quot;f:id:daruyanagi:20120819125626p:plain&quot; title=&quot;f:id:daruyanagi:20120819125626p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;Ajax リクエストに Json で応えるなんてことも簡単にできる！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 拡張メソッドのお時間です
-    あとさ、これダサいよね。
-```cs
-foreach (var key in Request.Files.AllKeys)
-{
-    var file = Request.Files[key];
-    ：
-    ：
-
-```拡張メソッドを書いて、シンプルにしましょう。
-```cs
-foreach (var file in Request.Files.ToEnumerable())
-{
-    ：
-    ：
-
-```~/App_Code/HttpFileCollectionBaseExtension.cs を作成してこのように書いてみました。
-```cs
-using System.Collections.Generic;
-using System.Web;
-
-public static class HttpFileCollectionBaseExtension
-{
-    public static IEnumerable&amp;lt;HttpPostedFileBase&gt; ToEnumerable(
-        this HttpFileCollectionBase target)
-    {
-        foreach (var key in target.AllKeys)
-        {
-            yield return target[key];
-        }
-    } 
-}
-
-</code></pre></div><div class="footnote">
-<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">JavaScriptの不具合かなぁ</span>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p><img src="20120819115634.png" alt="f:id:daruyanagi:20120819115634p:plain" title="f:id:daruyanagi:20120819115634p:plain" class="hatena-fotolife"></p><p>なんか動的に生成されるノードの名前がカブってるし<a href="#f1" name="fn1" title="JavaScriptの不具合かなぁ">*1</a>、あんまりよくわかんなかった。</p></p>
 </div>
-
+</div>
+<div class="section">
+<h3>ビューでつかう変数をまとめる</h3>
+<p>Upload.cshtml の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>がなんだか冗長なのは、HTML の出力に使う result、message、link という3つの変数を処理するためだけど、こいつらって<b>匿名クラス</b>でまとめてもいいよね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.IO
+<p>@functions { <span class="synType"><a class="keyword" href="http://d.hatena.ne.jp/keyword/enum">enum</a></span> Result { Success, Error }; }</p>
+<p>@{
+<span class="synType">const</span> <span class="synType">string</span> OUTPUT = <span class="synConstant">&quot;~/Files/&quot;</span>;
+dynamic model = <span class="synConstant">null</span>;</p>
+<p><span class="synStatement">if</span> (IsPost)
+{
+<span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> Request.Files.AllKeys)
+{
+var file = Request.Files[key];</p>
+<p><span class="synStatement">try</span>
+{
+var path = Server.MapPath(OUTPUT);</p>
+<p>var src = Path.GetFileName(file.FileName);
+var dst = <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;{0:yyyyMMdd-HHmmssfff}{1}&quot;</span>,
+DateTime.Now, Path.GetExtension(src).ToLower()
+);</p>
+<p>file.SaveAs(Path.Combine(path, dst));</p>
+<p>model = <span class="synStatement">new</span> {
+Result = Result.Success,
+Message = <span class="synType">string</span>
+.Format(<span class="synConstant">&quot;{0}&lsquo;s uploaded as {1}&quot;</span>, src, dst),
+Link = VirtualPathUtility
+.ToAbsolute(OUTPUT + dst),
+};
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+model = <span class="synStatement">new</span> {
+Result = Result.Error,
+Message = e.Message,
+Link = <span class="synType">string</span>.Empty,
+};
+}
+}
+}
+<span class="synStatement">else</span>
+{
+model = <span class="synStatement">new</span> {
+Result = Result.Error,
+Message = <span class="synConstant">&quot;You can use only POST method&quot;</span>,
+Link = <span class="synType">string</span>.Empty,
+};
+}
+}</p>
+<p>&lt;h1&gt;@model.Result&lt;/h1&gt;
+&lt;p&gt;@model.Message&lt;/p&gt;
+@<span class="synStatement">if</span> (!<span class="synType">string</span>.IsNullOrEmpty(model.Link))
+{
+&lt;p&gt;&lt;img src=<span class="synConstant">&quot;@model.Link&quot;</span> /&gt;&lt;/p&gt;
+}
+&lt;p&gt;&amp;raquo; Back to &lt;a href=<span class="synConstant">&quot;~/&quot;</span>&gt;home&lt;/a&gt;&lt;/p&gt;
+</pre><p>記述量はかえって多くなったけど、「何かの処理 → 結果（モデル）の生成」という流れが明確になった気がする。この @model っていうのが MVVM の ViewModel じゃない ViewModel という理解でいいんでしょうか。</p></p>
+</div>
+<div class="section">
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/Ajax">Ajax</a> には Json で応える</h3>
+<p>ViewModel を返すことの利点は、可読性だけじゃない。たとえばこんなこともできる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">if</span> (IsAjax)
+{
+<span class="synComment">// Response.ContentType = &quot;application/json&quot;;</span>
+Response.Write(Json.Encode(model));
+}
+<span class="synStatement">else</span>
+{
+&lt;h1&gt;@model.Result&lt;/h1&gt;
+&lt;p&gt;@model.Message&lt;/p&gt;
+<span class="synStatement">if</span> (!<span class="synType">string</span>.IsNullOrEmpty(model.Link))
+{
+&lt;p&gt;&lt;img src=<span class="synConstant">&quot;@model.Link&quot;</span> /&gt;&lt;/p&gt;
+}
+&lt;p&gt;&amp;raquo; Back to &lt;a href=<span class="synConstant">&quot;~/&quot;</span>&gt;home&lt;/a&gt;&lt;/p&gt;
+}
+</pre><p><img src="20120819125626.png" alt="f:id:daruyanagi:20120819125626p:plain" title="f:id:daruyanagi:20120819125626p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Ajax">Ajax</a> リクエストに Json で応えるなんてことも簡単にできる！</p>
+</div>
+<div class="section">
+<h3>拡張メソッドのお時間です</h3>
+<p>あとさ、これダサいよね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> Request.Files.AllKeys)
+{
+var file = Request.Files[key];
+：
+：
+</pre><p>拡張メソッドを書いて、シンプルにしましょう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">foreach</span> (var file <span class="synStatement">in</span> Request.Files.ToEnumerable())
+{
+：
+：
+</pre><p>~/App_Code/HttpFileCollectionBaseExtension.cs を作成してこのように書いてみました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Web;
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> HttpFileCollectionBaseExtension
+{
+<span class="synType">public</span> <span class="synType">static</span> IEnumerable&lt;HttpPostedFileBase&gt; ToEnumerable(
+<span class="synStatement">this</span> HttpFileCollectionBase target)
+{
+<span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> target.AllKeys)
+{
+<span class="synStatement">yield</span> <span class="synStatement">return</span> target[key];
+}
+}
+}
+</pre></p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a class="keyword" href="http://d.hatena.ne.jp/keyword/JavaScript">JavaScript</a>の不具合かなぁ</span></p>
+</div>
 
     <footer>
         
@@ -359,7 +319,7 @@ public static class HttpFileCollectionBaseExtension
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/19/130606.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/08/19</time> 
             </p>
         
     </footer>
@@ -411,7 +371,16 @@ public static class HttpFileCollectionBaseExtension
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

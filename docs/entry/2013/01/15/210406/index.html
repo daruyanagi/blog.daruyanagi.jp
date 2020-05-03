@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Google Chart を使った数式ツールを作ってみた（2）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&quot;&gt;Google Chart を使った数式ツールを作ってみた - だるろぐ の続き。さすがにもう少し完成度を上げようと思って、 数式テキストの新規作成・開く・保存 編集機能（" />
+    <meta name="og:description"   property="og:description" content="Google Chart &#x3092;&#x4F7F;&#x3063;&#x305F;&#x6570;&#x5F0F;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。さすがにもう少し完成度を上げようと思って、 数式テキストの新規作成・開く・保存 編集機能（切り取り・コピー・貼り付けなど） 数式" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/15/210406/" />
@@ -86,61 +88,37 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130115205240.png"/> 
-</figure>
-
-<p>a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/14/221302&quot;&gt;Google Chart を使った数式ツールを作ってみた - だるろぐ</a> の続き。さすがにもう少し完成度を上げようと思って、</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130115205240.png" alt="f:id:daruyanagi:20130115205240p:plain" title="f:id:daruyanagi:20130115205240p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2013/01/14/221302">Google Chart &#x3092;&#x4F7F;&#x3063;&#x305F;&#x6570;&#x5F0F;&#x30C4;&#x30FC;&#x30EB;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。さすがにもう少し完成度を上げようと思って、</p>
 <ul>
 <li>数式テキストの新規作成・開く・保存</li>
 <li>編集機能（切り取り・コピー・貼り付けなど）</li>
 <li>数式イメージのファイル保存・クリップボードへコピー</li>
-</ul>なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。
-```cs
-private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
+</ul><p>なんかを、ちびちびと実装。そのうち欲が出てきて、［Tab］キーでブラケット移動なんかもしたいなぁ、と思い始めた。で、とりあえず考えたのかこんなの。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">void</span> FormulaText_PreviewKeyDown(<span class="synType">object</span> sender, KeyEventArgs e)
 {
-    if (e.Key == Key.Tab)
-    {
-        e.Handled = true; // 握りつぶす！
-<pre><code>    var text = FormulaText.Text;
-    int start = FormulaText.SelectionStart;
-    int end = -1;
-    FormulaText.SelectionLength = 0;
-
-    if ((Keyboard.Modifiers &amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift)
-    {
-        start = text.IndexOf(&amp;#39;{&amp;#39;, start);
-        if (start &amp;lt; 0) return;
-        FormulaText.SelectionStart = start + 1;
-
-        end = text.IndexOf(&amp;#39;}&amp;#39;, FormulaText.SelectionStart);
-        if (end &amp;lt; 0) return;
-        FormulaText.SelectionLength = end - start - 1;
-    }
-    else // Shift + Tab キー
-    {
-        
-    }
+<span class="synStatement">if</span> (e.Key == Key.Tab)
+{
+e.Handled = <span class="synConstant">true</span>; <span class="synComment">// 握りつぶす！</span>
+<p>var text = FormulaText.Text;
+<span class="synType">int</span> start = FormulaText.SelectionStart;
+<span class="synType">int</span> end = -<span class="synConstant">1</span>;
+FormulaText.SelectionLength = <span class="synConstant">0</span>;</p>
+<p><span class="synStatement">if</span> ((Keyboard.Modifiers &amp; ModifierKeys.Shift) != ModifierKeys.Shift)
+{
+start = text.IndexOf(<span class="synConstant">&rsquo;{&lsquo;</span>, start);
+<span class="synStatement">if</span> (start &lt; <span class="synConstant">0</span>) <span class="synStatement">return</span>;
+FormulaText.SelectionStart = start + <span class="synConstant">1</span>;</p>
+<p>end = text.IndexOf(<span class="synConstant">&rsquo;}&lsquo;</span>, FormulaText.SelectionStart);
+<span class="synStatement">if</span> (end &lt; <span class="synConstant">0</span>) <span class="synStatement">return</span>;
+FormulaText.SelectionLength = end - start - <span class="synConstant">1</span>;
 }
-</code></pre>
-<p>}</p>
-<pre><code>
-<figure>
-    <img src="/images/20130115205746.png"/> 
-</figure>
+<span class="synStatement">else</span> <span class="synComment">// Shift + Tab キー</span>
+{</p>
+<p>}
+}
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130115205746.png" alt="f:id:daruyanagi:20130115205746p:plain" title="f:id:daruyanagi:20130115205746p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>適当に書いたのだけど、これでも案外使える感じになった。ただ、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130115205946.png" alt="f:id:daruyanagi:20130115205946p:plain" title="f:id:daruyanagi:20130115205946p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。</p><p>というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。</p></p>
 
-
-当に書いたのだけど、これでも案外使える感じになった。ただ、
-
-<figure>
-    <img src="/images/20130115205946.png"/> 
-</figure>
-
-
-スト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。
-
-
-</code></pre>
 
     <footer>
         
@@ -154,7 +132,7 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/15/210406.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/15</time> 
             </p>
         
     </footer>
@@ -206,7 +184,16 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

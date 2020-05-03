@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix で Markdown を少しだけ拡張してみる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="前回（WebMatrix で Markdown を使おう！ - だるろぐ）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少" />
+    <meta name="og:description"   property="og:description" content="前回（WebMatrix &#x3067; Markdown &#x3092;&#x4F7F;&#x304A;&#x3046;&#xFF01; - &#x3060;&#x308B;&#x308D;&#x3050;）は、「WebMatrix 2」で Markdown を使ってみ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/16/155714/" />
@@ -86,78 +88,70 @@
         </time>        
     </p>
 
-    <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/16/043012">WebMatrix で Markdown を使おう！ - だるろぐ</a>）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> Markdown.cs
-
-<span style="color:#66d9ef">using</span> System;
-<span style="color:#66d9ef">using</span> System.IO;
-<span style="color:#66d9ef">using</span> System.Text;
-<span style="color:#66d9ef">using</span> System.Web;
-
-<span style="color:#75715e">/// &amp;lt;summary&gt;
-</span><span style="color:#75715e">/// Summary description for ClassName
-</span><span style="color:#75715e">/// &amp;lt;/summary&gt;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Markdown</span>
+    <p>前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/16/043012">WebMatrix &#x3067; Markdown &#x3092;&#x4F7F;&#x304A;&#x3046;&#xFF01; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）は、「WebMatrix 2」で Markdown を使ってみました。ついでに静的クラスを用意して、コードも少しキレイにしてみました。最終的にはこんな感じです。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Markdown.cs
+<p><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.IO;
+<span class="synStatement">using</span> System.Text;
+<span class="synStatement">using</span> System.Web;</p>
+<p><span class="synComment">/// </span><span class="synIdentifier">&lt;</span><span class="synStatement">summary</span><span class="synIdentifier">&gt;</span>
+<span class="synComment">/// Summary description for ClassName</span>
+<span class="synComment">/// </span><span class="synIdentifier">&lt;/</span><span class="synStatement">summary</span><span class="synIdentifier">&gt;</span>
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> Markdown
 {
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> MarkdownSharp.Markdown md = 
-        <span style="color:#66d9ef">new</span> MarkdownSharp.Markdown();
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> Encoding encoding = Encoding.UTF8;
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">readonly</span> MarkdownSharp.Markdown md =
+<span class="synStatement">new</span> MarkdownSharp.Markdown();
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">readonly</span> Encoding encoding = Encoding.UTF8;</p>
+<p><span class="synType">public</span> <span class="synType">static</span> HtmlString Parse(<span class="synType">string</span> input)
+{
+<span class="synStatement">return</span> <span class="synStatement">new</span> HtmlString(md.Transform(input));
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> HtmlString LoadFromFile(<span class="synType">string</span> path)
+{
+<span class="synStatement">return</span> Parse(File.ReadAllText(path, encoding));
+}
+}
+</pre><p>で、 Web ページ側ではこんな感じに使います。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Page.cshtml
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HtmlString Parse(<span style="color:#66d9ef">string</span> input)
-    {
-        <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> HtmlString(md.Transform(input));
-    }
+&lt;!DOCTYPE html&gt;
 
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> HtmlString LoadFromFile(<span style="color:#66d9ef">string</span> path)
-    {
-        <span style="color:#66d9ef">return</span> Parse(File.ReadAllText(path, encoding));
-    }
+@{
+var path = Server.MapPath(
+<span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}/{1}.markdown&quot;</span>,
+<span class="synConstant">&quot;~/App_Docs/&quot;</span>,
+UrlData.Count == <span class="synConstant">0</span>
+? <span class="synConstant">&quot;Default&quot;</span>
+: <span class="synType">string</span>.Join(<span class="synConstant">&quot;/&quot;</span>, UrlData)
+)
+);
 }
 
-<span style="color:#960050;background-color:#1e0010">```で、</span> Web <span style="color:#960050;background-color:#1e0010">ページ側ではこんな感じに使います。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> Page.cshtml
-
-&amp;lt;!DOCTYPE html&gt;
-
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#66d9ef">var</span> path = Server.MapPath(
-        <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}/{1}.markdown&#34;</span>,
-            <span style="color:#e6db74">&#34;~/App_Docs/&#34;</span>,
-            UrlData.Count == <span style="color:#ae81ff">0</span>
-                ? <span style="color:#e6db74">&#34;Default&#34;</span>
-                : <span style="color:#66d9ef">string</span>.Join(<span style="color:#e6db74">&#34;/&#34;</span>, UrlData)
-        )
-    );
-}
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @Markdown.LoadFromFile(path)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-<span style="color:#960050;background-color:#1e0010">```ところで、前回は脚注にこんなことを書いておきました。</span>
-
-    &gt;
-        <span style="color:#960050;background-color:#1e0010">（</span>Markdown <span style="color:#960050;background-color:#1e0010">の）弱点は若干機能不足なこと。これを補う派生版が幾つかあります</span>
-
-    
-<span style="color:#960050;background-color:#1e0010">その代表例が</span> &lt;a href=<span style="color:#e6db74">&#34;http://github.github.com/github-flavored-markdown/&#34;</span>&gt;Redirecting...&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">（</span>GFM<span style="color:#960050;background-color:#1e0010">）です。たとえば、こんな書式でプログラミング言語を指定してシンタックスハイライトが行えます。</span>
-</code></pre></div><div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ruby" data-lang="ruby">require <span style="color:#f92672">&amp;</span><span style="color:#75715e">#39;redcarpet&amp;#39;</span>
-markdown <span style="color:#f92672">=</span> <span style="color:#66d9ef">Redcarpet</span><span style="color:#f92672">.</span>new(<span style="color:#e6db74">&#34;Hello World!&#34;</span>)
-puts markdown<span style="color:#f92672">.</span>to_html
-</code></pre></div><pre><code class="language-これはいいですね！　さっそく取り入れてみましょう。" data-lang="これはいいですね！　さっそく取り入れてみましょう。">
-&lt;div class=&quot;section&quot;&gt;
-    ### 準備
-    まずはシンタックスハイライト機能をどうやって実現するか…… Google Code Prettify（&lt;a href=&quot;http://google-code-prettify.googlecode.com/svn/trunk/README.html&quot;&gt;http://google-code-prettify.googlecode.com/svn/trunk/README.html&lt;/a&gt;）ならば NuGet で取得できるのですけど、今回は Highlight.js （&lt;a href=&quot;http://softwaremaniacs.org/soft/highlight/en/&quot;&gt;highlight.js&lt;/a&gt;）を使ってみることにしました。なぜかというと、こっちのほうが言語サポートが幅広いみたいだからデス。ダウンロードして、以下のように配置しました。
-</code></pre><p>~/
+&lt;html lang=<span class="synConstant">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@Markdown.LoadFromFile(path)
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>ところで、前回は脚注にこんなことを書いておきました。</p>
+<blockquote>
+<p>（Markdown の）弱点は若干機能不足なこと。これを補う派生版が幾つかあります</p>
+</blockquote>
+<p>その代表例が <a href="http://github.github.com/github-flavored-markdown/">Redirecting...</a> （GFM）です。たとえば、こんな書式でプログラミング言語を指定してシンタックスハイライトが行えます。</p>
+<pre class="code" data-lang="" data-unlink>```ruby
+require &#39;redcarpet&#39;
+markdown = Redcarpet.new(&#34;Hello World!&#34;)
+puts markdown.to_html
+```</pre><p>これはいいですね！　さっそく取り入れてみましょう。</p>
+<div class="section">
+<h3>準備</h3>
+<p>まずはシンタックスハイライト機能をどうやって実現するか…… Google Code Prettify（<a href="http://google-code-prettify.googlecode.com/svn/trunk/README.html">http://google-code-prettify.googlecode.com/svn/trunk/README.html</a>）ならば NuGet で取得できるのですけど、今回は Highlight.js （<a href="http://softwaremaniacs.org/soft/highlight/en/">highlight.js</a>）を使ってみることにしました。なぜかというと、こっちのほうが言語サポートが幅広いみたいだからデス。ダウンロードして、以下のように配置しました。</p>
+<pre class="code" data-lang="" data-unlink>~/
 /App_Code
-Highlight.cshtml &lt;&ndash; あとで説明します！
+Highlight.cshtml &lt;-- あとで説明します！
 /Highlight
 Lisence Files
 /Content
@@ -165,117 +159,79 @@ Highlight
 /    Theme Skins
 /Scripts
 /Highlight
-hilight.pack.js</p>
-<pre><code class="language-こうした状態で、" data-lang="こうした状態で、">```html
-
-
-&amp;lt;html lang=&quot;en&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-
-        &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/default.css&quot;&gt;
-        &amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;pre&gt;&amp;lt;code class=&quot;language&quot;&gt;
-            // Any Code...
-        &amp;lt;/pre&gt;&amp;lt;/code&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```などと記述すれば、 pre &gt; code 内のコードが色分け表示されます。……しっかし、 Highlight.js は NuGet ないのか……めんどくせえな。久しぶりに作るかな。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### コーディング
-    お次は Markdown.cs を拡張して、 ```～``` 記法へ対応させます。適当に正規表現で解決してみました。
-```cs
+hilight.pack.js</pre><p>こうした状態で、</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;en&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span></p>
+<p><span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;stylesheet&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Content/Highlight/default.css&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Scripts/Highlight/highlight.pack.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span><span class="synSpecial">hljs.initHighlightingOnLoad</span>()<span class="synSpecial">;</span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">pre</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">code</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;language&quot;</span><span class="synIdentifier">&gt;</span>
+// Any Code&hellip;
+<span class="synIdentifier">&lt;/</span><span class="synStatement">pre</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">code</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>などと記述すれば、 pre &gt; code 内のコードが色分け表示されます。……しっかし、 Highlight.js は NuGet ないのか……めんどくせえな。久しぶりに作るかな。</p></p>
+</div>
+<div class="section">
+<h3>コーディング</h3>
+<p>お次は Markdown.cs を拡張して、 ```～``` 記法へ対応させます。適当に正規表現で解決してみました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>：
 ：
-：
-using System.Text.RegularExpressions;
-
-public static class Markdown
+<span class="synStatement">using</span> System.Text.RegularExpressions;
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> Markdown
 {
-    ：
-    ：
-    public static bool HighlightEnabled { get; set; }
-
-    static Markdown()
-    {
-        HighlightEnabled = true;
-    }
-
-    public static string Highlight(string input)
-    {
-        const string R = @&quot;```(?&lt;type&gt;\w+)\r(?&lt;code&gt;.+)```&quot;&lt;/code&gt;&lt;/type&gt;;
-        const string F = @&quot;&lt;pre&gt;&lt;code class=&quot;&quot; {0}&quot;&quot;=&quot;&quot;&gt;{1}&lt;/code&gt;&lt;/pre&gt;&quot;;
-
-        Regex r = new Regex(R, RegexOptions.Singleline);
-
-        return r.Replace(
-            input,
-            (m) =&gt; string.Format(
-                F, m.Groups[&quot;type&quot;],
-                HttpUtility.HtmlEncode(m.Groups[&quot;code&quot;])
-            )
-        );
-    }
+：
+：
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> HighlightEnabled { get; set; }</p>
+<p><span class="synType">static</span> Markdown()
+{
+HighlightEnabled = <span class="synConstant">true</span>;
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Highlight(<span class="synType">string</span> input)
+{
+<span class="synType">const</span> <span class="synType">string</span> R = <span class="synSpecial">@</span><span class="synConstant">&quot;<code>(?&amp;lt;type&amp;gt;\w+)\r(?&amp;lt;code&amp;gt;.+)</code>&quot;</span>;
+<span class="synType">const</span> <span class="synType">string</span> F = <span class="synSpecial">@</span><span class="synConstant">&quot;&lt;pre&gt;&lt;code class=&quot;&quot;{0}&quot;&quot;&gt;{1}&lt;/code&gt;&lt;/pre&gt;&quot;</span>;</p>
+<p>Regex r = <span class="synStatement">new</span> Regex(R, RegexOptions.Singleline);</p>
+<p><span class="synStatement">return</span> r.Replace(
+input,
+(m) =&gt; <span class="synType">string</span>.Format(
+F, m.Groups[<span class="synConstant">&quot;type&quot;</span>],
+HttpUtility.HtmlEncode(m.Groups[<span class="synConstant">&quot;code&quot;</span>])
+)
+);
 }
-
-```完成&lt;a href=&quot;#f-729061fc&quot; name=&quot;fn-729061fc&quot; title=&quot;なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ&quot;&gt;*1&lt;/a&gt;！ m.Groups[&quot;code&quot;] を HTML エンコードする必要があったのでラムダ式になりましたけれど、そうでなければ @&quot;&amp;lt;pre&gt;&amp;lt;code class=&quot;&quot;${type}&quot;&quot;&gt;${code}&amp;lt;/code&gt;&amp;lt;/pre&gt;&quot; で置換できるんですね。知らなかったわー。ちなみに、正規表現のテストはオンラインツールが便利です（&lt;a href=&quot;http://regexhero.net/tester/&quot;&gt;The .NET Regex Tester | Regex Hero&lt;/a&gt;）。できあがりはこんな感じ。
-
-<figure>
-    <img src="/images/20120816153937.png"/> 
-</figure>
-
-
-ighlightEnabled = false;
-
-<figure>
-    <img src="/images/20120816153946.png"/> 
-</figure>
-
-
-ighlightEnabled = true;
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ステップアップ
-    最後に、少し細かいところをブラッシュアップしてみましょう。
-```html
-&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/default.css&quot;&gt;
-&amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
-&amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
-
-```Highlight.js を使う際のおまじない、毎回書くの面倒ですね？　なので、ヘルパーとしてまとめてみました。 ~/App_Code/Highlight.cshtml に以下のように記述します。
-```cs
-@helper Include(string theme = &quot;default&quot;){
-    &amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Highlight/@(theme).css&quot;&gt;
-    &amp;lt;script src=&quot;~/Scripts/Highlight/highlight.pack.js&quot;&gt;&amp;lt;/script&gt;
-    &amp;lt;script&gt;hljs.initHighlightingOnLoad();&amp;lt;/script&gt;
 }
-
-```これで Web ページを使うときでも、 @Higjlight.Include() を呼び出すだけでOK！
-```html
-
-
-&amp;lt;html lang=&quot;en&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-
-        @Higjlight.Include(&quot;vs&quot;) &amp;lt;-- おまじないに変換される
-    &amp;lt;/head&gt;
-
-```引数を与えることでテーマを選択できるのもいい感じでしょう？　そうでもないデスか。まぁ、「鬼に金棒」、「怠け者にヘルパー」ってもんですよ。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-729061fc&quot; name=&quot;f-729061fc&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+</pre><p>完成<a href="#f-729061fc" name="fn-729061fc" title="なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ">*1</a>！ m.Groups[&ldquo;code&rdquo;] を HTML エンコードする必要があったのでラムダ式になりましたけれど、そうでなければ @&quot;&lt;pre&gt;&lt;code class=&quot;&ldquo;${type}&quot;&quot;&gt;${code}&lt;/code&gt;&lt;/pre&gt;&rdquo; で置換できるんですね。知らなかったわー。ちなみに、正規表現のテストはオンラインツールが便利です（<a href="http://regexhero.net/tester/">The .NET Regex Tester | Regex Hero</a>）。</p><p>できあがりはこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816153937.png" alt="f:id:daruyanagi:20120816153937p:plain" title="f:id:daruyanagi:20120816153937p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>HighlightEnabled = false;</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816153946.png" alt="f:id:daruyanagi:20120816153946p:plain" title="f:id:daruyanagi:20120816153946p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>HighlightEnabled = true;</p></p>
+</div>
+<div class="section">
+<h3>ステップアップ</h3>
+<p>最後に、少し細かいところをブラッシュアップしてみましょう。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;stylesheet&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Content/Highlight/default.css&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Scripts/Highlight/highlight.pack.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span><span class="synSpecial">hljs.initHighlightingOnLoad</span>()<span class="synSpecial">;</span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+</pre><p>Highlight.js を使う際のおまじない、毎回書くの面倒ですね？　なので、ヘルパーとしてまとめてみました。 ~/App_Code/Highlight.cshtml に以下のように記述します。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@helper Include(<span class="synType">string</span> theme = <span class="synConstant">&quot;default&quot;</span>){
+&lt;link rel=<span class="synConstant">&quot;stylesheet&quot;</span> href=<span class="synConstant">&quot;~/Content/Highlight/@(theme).css&quot;</span>&gt;
+&lt;script src=<span class="synConstant">&quot;~/Scripts/Highlight/highlight.pack.js&quot;</span>&gt;&lt;/script&gt;
+&lt;script&gt;hljs.initHighlightingOnLoad();&lt;/script&gt;
+}
+</pre><p>これで Web ページを使うときでも、 @Higjlight.Include() を呼び出すだけでOK！</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;en&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span></p>
+<p><span class="synPreProc">        @Higjlight.Include(&quot;vs&quot;) </span><span class="synIdentifier">&lt;</span>&ndash;<span class="synIdentifier"> おまじないに変換される</span>
+<span class="synIdentifier">    </span><span class="synError">&lt;</span><span class="synIdentifier">/head&gt;</span>
+</pre><p>引数を与えることでテーマを選択できるのもいい感じでしょう？　そうでもないデスか。まぁ、「鬼に金棒」、「怠け者にヘルパー」ってもんですよ。</p></p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-729061fc" name="f-729061fc" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">なんで改行が \n でマッチせずに \r ではマッチするんだ……くっそくっそ</span></p>
+</div>
 
     <footer>
         
@@ -289,7 +245,7 @@ ighlightEnabled = true;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/16/155714.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/16</time> 
             </p>
         
     </footer>
@@ -341,7 +297,16 @@ ighlightEnabled = true;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

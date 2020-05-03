@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：改修工廠の早見表がほしかったので作ってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコ" />
+    <meta name="og:description"   property="og:description" content="今週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/09/19/203816/" />
@@ -86,34 +88,21 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150919201617.png"/> 
-</figure>
-
-<p>週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150919201617.png" alt="f:id:daruyanagi:20150919201617p:plain" title="f:id:daruyanagi:20150919201617p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今週は超忙しい＆体調がよろしくなかった“ので”、合間を見つけて前々からほしかった改修工廠の早見表を作ってみた。接続詞が間違っているというツッコミが入りそうだけど、こういうのって、そういうときにこそやりたくならない？</p>
 <div class="section">
-    ### 最初に作ったヤツ
-<figure>
-    <img src="/images/20150919201737.png"/> 
-</figure>
-
-<p>SP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。――というわけで、廃棄する予定。</p>
+<h3>最初に作ったヤツ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150919201737.png" alt="f:id:daruyanagi:20150919201737p:plain" title="f:id:daruyanagi:20150919201737p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ASP.NET Web Pages ＋ SQL Server Compact で作ってみたけど、だいぶ遅かった。遅いのは多分、自分が SQL わかってないせいだと思う（SELECT でごっそりとってきたデータを LINQ で加工するとかいうわけのわからないことをやっていた）。SQL が分かんないのは一朝一夕に改善できないので、とりあえずデータベースへの問い合わせ結果をキャッシュしまくってみたけれど、スタートアップの遅さは改善できない。Web サイトがスタンバイ（スリープ？　なに？）したら、キャッシュを一から再構築しなきゃいけないのも困った。</p><p>――というわけで、廃棄する予定。</p>
 <ul>
 <li><a href="http://akashi.azurewebsites.net/">http://akashi.azurewebsites.net/</a></li>
 </ul>
 </div>
 <div class="section">
-    ### 二番目に作ったヤツ
-<figure>
-    <img src="/images/20150919202146.png"/> 
-</figure>
-
-<p>、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。</p>
+<h3>二番目に作ったヤツ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150919202146.png" alt="f:id:daruyanagi:20150919202146p:plain" title="f:id:daruyanagi:20150919202146p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>で、ちょっと考えてみたんだけど、こういうデータっていうのは稀にあるサーバーのメンテナンスのときにしか更新されないわけだ。だったら、なにもデータベースに入れる必要はなかった（CURD のうち R しかやらへんやん？）。JSON か何かでデータを用意しておいて、サーバーのスタートアップ時に読み込めばいい。</p><p>俺ってアホだなーと思いながら、ぐちゃぐちゃっと今日半日で作ったら（ロジック組むより、データ打ち込む方がよっぽど時間かかった）、最初に作ったヤツよりだいぶ早くて満足。コードを整理しながらロジック見直せばもうちょっと早くなりそう。なんせ今のは cshtml に foreach が腐るほど埋まってるという正真正銘のクソコードだし……ちょうどいいから今度 GitHub にあげて、GitHub Flow ってのを勉強するネタにしようと思う。</p>
 <ul>
 <li><a href="http://akashiarsenal.azurewebsites.net/">http://akashiarsenal.azurewebsites.net/</a></li>
-</ul>ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　
+</ul><p>ほんとうはこれを Windows Phone に移植しておでコンに出したかったけれど、いつの間にか締め切り過ぎてたみたい。残念。艦これ Android 版が出るらしいし、Android アプリにするのもアリかなぁ？　</p>
 </div>
-
 
     <footer>
         
@@ -127,7 +116,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/09/19/203816.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/09/19</time> 
             </p>
         
     </footer>
@@ -179,7 +168,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

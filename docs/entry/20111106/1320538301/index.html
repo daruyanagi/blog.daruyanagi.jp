@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Amazon2Html 1.0, BlackbirdPie 1.5" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="新しい NuGet を作ってみました。手元にあるコード片は、とりあえず NuGet にし終えたかなぁ。 #### Amazon2Html Amazon の商品リンクを HTML タグに変換します。 ``` @Amazon2Html.GetHtml(&#34;http://www.amazon.co.jp/gp/product/4047274968/&#34;) ```利用には AWS の" />
+    <meta name="og:description"   property="og:description" content="新しい NuGet を作ってみました。手元にあるコード片は、とりあえず NuGet にし終えたかなぁ。 Amazon2Html Amazon の商品リンクを HTML タグに変換します。 @Amazon2Html" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20111106/1320538301/" />
@@ -88,24 +90,21 @@
 
     <p>新しい NuGet を作ってみました。手元にあるコード片は、とりあえず NuGet にし終えたかなぁ。</p>
 <div class="section">
-    #### Amazon2Html
-    Amazon の商品リンクを HTML タグに変換します。
-```
-    @Amazon2Html.GetHtml("http://www.amazon.co.jp/gp/product/4047274968/")
-```利用には AWS のAPI Key ID と Secret Key が必要です。詳しくは、ヘルプサイト <a href="#f1" name="fn1" title="Amazon2Html">*1</a> を参照のこと。
+<h4><a href="http://nuget.org/List/Packages/Amazon2Html">Amazon2Html</a></h4>
+<p>Amazon の商品リンクを HTML タグに変換します。</p>
+<pre class="code" data-unlink>    @Amazon2Html.GetHtml(&#34;http://www.amazon.co.jp/gp/product/4047274968/&#34;)</pre><p>利用には AWS のAPI Key ID と Secret Key が必要です。詳しくは、ヘルプサイト <a href="#f1" name="fn1" title="Amazon2Html">*1</a> を参照のこと。</p>
 </div>
 <div class="section">
-    #### BlackbirdPie
+<h4><a href="http://nuget.org/List/Packages/BlackbirdPie">BlackbirdPie</a></h4>
 <ul>
 <li>StyleSheet is moved to /Styles folder.</li>
 <li>IncludeStyle is renamed to EmbedStyle.</li>
 <li>Improve Default.cshtml, old one renamed Test.cshtml</li>
-</ul>機能的な変更点はほとんどないですが、ちょっと変わったところもあるので……ゴメンナサイ。ヘルプサイト <a href="#f2" name="fn2" title="BlackbirdPie">*2</a> を作成したのでそちらも参照してください。
+</ul><p>機能的な変更点はほとんどないですが、ちょっと変わったところもあるので……ゴメンナサイ。ヘルプサイト <a href="#f2" name="fn2" title="BlackbirdPie">*2</a> を作成したのでそちらも参照してください。</p>
 </div><div class="footnote">
-<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a href="http://amazon2html.daruyanagi.net/">Amazon2Html</a></span>
-<a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a href="http://blackbirdpie.daruyanagi.net/">BlackbirdPie</a></span>
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a href="http://amazon2html.daruyanagi.net/">Amazon2Html</a></span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text"><a href="http://blackbirdpie.daruyanagi.net/">BlackbirdPie</a></span></p>
 </div>
-
 
     <footer>
         
@@ -119,7 +118,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20111106/1320538301.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/11/06</time> 
             </p>
         
     </footer>
@@ -171,7 +170,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

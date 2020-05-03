@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Common フォルダをチラ見してみる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Windows ストアアプリ*1を作り始めたひとは、かならず一度は Common フォルダをジックリみたほうがいいと思う。わしはめんどいのでチラ見した。 ### LayoutAwarePage クラス &gt; 使用" />
+    <meta name="og:description"   property="og:description" content="Windows ストアアプリ*1を作り始めたひとは、かならず一度は Common フォルダをジックリみたほうがいいと思う。わしはめんどいのでチラ見した。 LayoutAwarePage クラス 使用する" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/17/235654/" />
@@ -86,67 +88,58 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120917/20120917233249.png" alt="f:id:daruyanagi:20120917233249p:plain" title="f:id:daruyanagi:20120917233249p:plain" class="hatena-fotolife"/>Windows ストアアプリ<a href="#f1" name="fn1" title="はぁ……もっといい呼び方はなかったんかいな！">*1</a>を作り始めたひとは、かならず一度は Common フォルダをジックリみたほうがいいと思う。わしはめんどいのでチラ見した。</p>
+    <p><img src="20120917233249.png" alt="f:id:daruyanagi:20120917233249p:plain" title="f:id:daruyanagi:20120917233249p:plain" class="hatena-fotolife"></p><p>Windows ストアアプリ<a href="#f1" name="fn1" title="はぁ……もっといい呼び方はなかったんかいな！">*1</a>を作り始めたひとは、かならず一度は Common フォルダをジックリみたほうがいいと思う。わしはめんどいのでチラ見した。</p>
 <div class="section">
-    ### LayoutAwarePage クラス
-<pre><code>&gt;
-    使用するテンプレート ページはすべて LayoutAwarePage クラスから派生しており、新しいアプリの MainPage.xaml に使う空白のページよりもずっと多くの既定の操作があります。LayoutAwarePage は、Metro スタイル アプリ開発の重要な機能を実現する Page を実装したものです。
-</code></pre>
-<p>**［ViewState］**アプリケーション ビュー状態を表示状態にマッピングすることで、ページをさまざまな解像度、向き、ビューに対応させることができます。
-**［Navigation］**GoBack イベント ハンドラーと GoHome イベント ハンドラーは基本的なナビゲーションをサポートします。
-**［ViewModel］**既定のビュー モデルは、単純でバインド可能なデータ ソースを提供しています。
-**［SaveState/LoadState］**SaveState と LoadState メソッドは、アプリのセッション状態を管理するために SuspensionManager クラスで利用します。
-また、ページ テンプレートでは、Metro スタイル アプリの設計ガイドラインに準拠した StandardStyles.xaml に記述されているスタイルとテンプレートを使います。冒頭部でこれらのスタイルのいくつかを使い、そのコピーを変更してアプリの外観をカスタマイズします。</p>
-<pre><code>    パート 4: ブログ リーダーを作成する (C#/VB と XAML を使った Metro スタイル アプリ)
-</code></pre>
-<p>よくわからんけど、そういうものらしい。ただ、ViewModel はタダのディクショナリで、 MVC なんかで使われる ViewModel に近い感じで、単なる初期データを表示するビューワーとしてならともかく、それ以上のことをするには何か工夫がいるのかもしれない。あと、LayoutAwarePage クラスの定義は、テンプレートによって入っていないこともある。たとえば、空のプロジェクトから始めてあとからテンプレートページを追加した場合、ビルド時に「LayoutAwarePage がない」と言われる（後述の BindableBase もそうだと思う）。そんなときはリッチなプロジェクトを一度作って、そこからコピーしてくればいいみたいだね。</p>
+<h3>LayoutAwarePage クラス</h3>
+<blockquote cite="http://msdn.microsoft.com/ja-jp/library/windows/apps/br211380.aspx">
+<p>使用するテンプレート ページはすべて LayoutAwarePage クラスから派生しており、新しいアプリの MainPage.xaml に使う空白のページよりもずっと多くの既定の操作があります。LayoutAwarePage は、Metro スタイル アプリ開発の重要な機能を実現する Page を実装したものです。</p>
+<ul>
+<li><b>［ViewState］</b>アプリケーション ビュー状態を表示状態にマッピングすることで、ページをさまざまな解像度、向き、ビューに対応させることができます。</li>
+<li><b>［Navigation］</b>GoBack イベント ハンドラーと GoHome イベント ハンドラーは基本的なナビゲーションをサポートします。</li>
+<li><b>［ViewModel］</b>既定のビュー モデルは、単純でバインド可能なデータ ソースを提供しています。</li>
+<li><b>［SaveState/LoadState］</b>SaveState と LoadState メソッドは、アプリのセッション状態を管理するために SuspensionManager クラスで利用します。</li>
+</ul><p>また、ページ テンプレートでは、<span style="color: #cc0000">Metro スタイル アプリ</span>の設計ガイドラインに準拠した StandardStyles.xaml に記述されているスタイルとテンプレートを使います。冒頭部でこれらのスタイルのいくつかを使い、そのコピーを変更してアプリの外観をカスタマイズします。</p>
+<p><cite><a href="http://msdn.microsoft.com/ja-jp/library/windows/apps/br211380.aspx">パート 4: ブログ リーダーを作成する (C#/VB と XAML を使った Metro スタイル アプリ)</a></cite></p>
+</blockquote>
+<p>よくわからんけど、そういうものらしい。ただ、ViewModel はタダのディクショナリで、 MVC なんかで使われる ViewModel に近い感じで、単なる初期データを表示するビューワーとしてならともかく、それ以上のことをするには何か工夫がいるのかもしれない。</p><p>あと、LayoutAwarePage クラスの定義は、テンプレートによって入っていないこともある。たとえば、空のプロジェクトから始めてあとからテンプレートページを追加した場合、ビルド時に「LayoutAwarePage がない」と言われる（後述の BindableBase もそうだと思う）。そんなときはリッチなプロジェクトを一度作って、そこからコピーしてくればいいみたいだね。</p>
 <div class="section">
-    #### 追記 （2012/09/18 0:42）
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120918/20120918004105.png" alt="f:id:daruyanagi:20120918004105p:plain" title="f:id:daruyanagi:20120918004105p:plain" class="hatena-fotolife"/>勝手に追加してくれるっぽい。テキトーにダイアログを読み飛ばしていたわしが悪い。
+<h4>追記 （2012/09/18 0:42）</h4>
+<p><img src="20120918004105.png" alt="f:id:daruyanagi:20120918004105p:plain" title="f:id:daruyanagi:20120918004105p:plain" class="hatena-fotolife"></p><p>勝手に追加してくれるっぽい。テキトーにダイアログを読み飛ばしていたわしが悪い。</p>
 </div>
 </div>
 <div class="section">
-    ### BindableBase クラス
-    INotifyPropertyChanged の .NET Framework 4.5 的実装。CallerMemberName っていうのが新たに追加された属性で、呼び出し元を参照して勝手に名前をいれてくれるみたい。propertyName を文字列で渡そうとしてミスタイプで自爆する……なんてことが減るかも。
-```cs
-[Windows.Foundation.Metadata.WebHostHidden]
-public abstract class BindableBase : INotifyPropertyChanged
+<h3>BindableBase クラス</h3>
+<p>INotifyPropertyChanged の .NET Framework 4.5 的実装。CallerMemberName っていうのが新たに追加された属性で、呼び出し元を参照して勝手に名前をいれてくれるみたい。propertyName を文字列で渡そうとしてミスタイプで自爆する……なんてことが減るかも。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>[Windows.Foundation.Metadata.WebHostHidden]
+<span class="synType">public</span> <span class="synType">abstract</span> <span class="synType">class</span> BindableBase : INotifyPropertyChanged
 {
-    public event PropertyChangedEventHandler PropertyChanged;
-<pre><code>protected bool SetProperty&amp;lt;T&gt;(ref T storage, T value, [CallerMemberName] String propertyName = null)
+<span class="synType">public</span> <span class="synStatement">event</span> PropertyChangedEventHandler PropertyChanged;
+<p><span class="synType">protected</span> <span class="synType">bool</span> SetProperty&lt;T&gt;(<span class="synStatement">ref</span> T storage, T <span class="synStatement">value</span>, [CallerMemberName] String propertyName = <span class="synConstant">null</span>)
 {
-    if (object.Equals(storage, value)) return false;
-
-    storage = value;
-    this.OnPropertyChanged(propertyName);
-    return true;
+<span class="synStatement">if</span> (<span class="synType">object</span>.Equals(storage, <span class="synStatement">value</span>)) <span class="synStatement">return</span> <span class="synConstant">false</span>;</p>
+<p>storage = <span class="synStatement">value</span>;
+<span class="synStatement">this</span>.OnPropertyChanged(propertyName);
+<span class="synStatement">return</span> <span class="synConstant">true</span>;
+}</p>
+<p><span class="synType">protected</span> <span class="synType">void</span> OnPropertyChanged([CallerMemberName] <span class="synType">string</span> propertyName = <span class="synConstant">null</span>)
+{
+var eventHandler = <span class="synStatement">this</span>.PropertyChanged;
+<span class="synStatement">if</span> (eventHandler != <span class="synConstant">null</span>)
+{
+eventHandler(<span class="synStatement">this</span>, <span class="synStatement">new</span> PropertyChangedEventArgs(propertyName));
 }
-
-protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
-{
-    var eventHandler = this.PropertyChanged;
-    if (eventHandler != null)
-    {
-        eventHandler(this, new PropertyChangedEventArgs(propertyName));
-    }
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-あと、バインディングに便利っぽいコンバーターとか、リッチエディット関連っぽいクラスがいくつか用意されている。" data-lang="あと、バインディングに便利っぽいコンバーターとか、リッチエディット関連っぽいクラスがいくつか用意されている。">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### StandardStyles.xaml
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120917/20120917231926.png&quot; alt=&quot;f:id:daruyanagi:20120917231926p:plain&quot; title=&quot;f:id:daruyanagi:20120917231926p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;既定のスタイルがいっぱい定義されている！（これはボタンスタイルの例）Metro、じゃねぇ、Windows ストアアプリでは、Metro、もとい、Windows ストアアプリっぽさ、デザインの統一性というのが結構重要になる。なので、なるべく既定のスタイルを使うか、既定のスタイルをベースに拡張するのが望ましいんじゃないかな。
-```xml
-Style=&quot;{StaticResource OneBarAppBarButtonStyle}&quot; /&gt;
-
-```なお、一部スタイルは初期状態でコメントアウトされているので、使うときは解除しなきゃいけないですよ。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;はぁ……もっといい呼び方はなかったんかいな！&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}
+</pre><p>あと、バインディングに便利っぽいコンバーターとか、リッチエディット関連っぽいクラスがいくつか用意されている。</p></p>
+</div>
+<div class="section">
+<h3>StandardStyles.xaml</h3>
+<p><img src="20120917231926.png" alt="f:id:daruyanagi:20120917231926p:plain" title="f:id:daruyanagi:20120917231926p:plain" class="hatena-fotolife"></p><p>既定のスタイルがいっぱい定義されている！（これはボタンスタイルの例）</p><p>Metro、じゃねぇ、Windows ストアアプリでは、Metro、もとい、Windows ストアアプリっぽさ、デザインの統一性というのが結構重要になる。なので、なるべく既定のスタイルを使うか、既定のスタイルをベースに拡張するのが望ましいんじゃないかな。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;Button </span><span class="synType">Style</span>=<span class="synConstant">&quot;{StaticResource OneBarAppBarButtonStyle}&quot;</span><span class="synIdentifier"> /&gt;</span>
+</pre><p>なお、一部スタイルは初期状態でコメントアウトされているので、使うときは解除しなきゃいけないですよ。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">はぁ……もっといい呼び方はなかったんかいな！</span></p>
+</div>
 
     <footer>
         
@@ -160,7 +153,7 @@ Style=&quot;{StaticResource OneBarAppBarButtonStyle}&quot; /&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/17/235654.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/09/17</time> 
             </p>
         
     </footer>
@@ -212,7 +205,16 @@ Style=&quot;{StaticResource OneBarAppBarButtonStyle}&quot; /&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -1,0 +1,11 @@
+---
+date: 2012-11-06T22:59:38.0000000
+draft: false
+title: "VAIO Duo 11 専用キャリングケース VGP-CK1"
+tags: ["VAIO Duo 11"]
+eyecatch: 
+---
+<p><img src="20120928150009.jpg" alt="f:id:daruyanagi:20120928150009j:plain" title="f:id:daruyanagi:20120928150009j:plain" class="hatena-fotolife"></p><p><a href="http://pur.store.sony.jp/Qnavi/Product/VGP-CK1/">&#x30BD;&#x30CB;&#x30FC;&#x30B9;&#x30C8;&#x30A2; VGP-CK1&#x306E;&#x5546;&#x54C1;&#x8AAC;&#x660E; | &#x30D1;&#x30FC;&#x30BD;&#x30CA;&#x30EB;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x95A2;&#x9023;&#x5546;&#x54C1;</a> を購入した。本体を購入した時のクーポンを使って、3,600円弱で入手。</p><p>前後はピッタリ<a href="#f1" name="fn1" title="多少隙間はあるけど許容範囲">*1</a>で質感もいいんだけど、正直、耐衝撃能力については疑問。クッションの類は一つもない。その割には左右に余裕がある。液晶画面を露出したままカバンに突っ込むよりは安心できるけれど、落としたり、満員電車で圧迫された時にはどうなるんだろう。ほとんどケースをつけている意味はないんじゃないか。</p><p>あと、指紋でベタベタになりがちな液晶画面を吹くために、布を1枚、一緒に収納したかったのだけどポケットの一つすらもない。</p><p>このキャリングケースを作った人は、何を考えて設計したのだろうか。</p><p><img src="20121106163943.jpg" alt="f:id:daruyanagi:20121106163943j:plain" title="f:id:daruyanagi:20121106163943j:plain" class="hatena-fotolife"></p><p>まぁ、そんなことは承知の上。それでも購入したのは、スタイラスを収納できるところがほしかったからだ。そうでもしないと、自分のことだから必ず失くす。</p><p><a href="http://pur.store.sony.jp/Qnavi/Product/VGP-STD1_B/">&#x30BD;&#x30CB;&#x30FC;&#x30B9;&#x30C8;&#x30A2; VGP-STD1/B&#x306E;&#x5546;&#x54C1;&#x8AAC;&#x660E; | &#x30D1;&#x30FC;&#x30BD;&#x30CA;&#x30EB;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x95A2;&#x9023;&#x5546;&#x54C1;</a></p><p>なんてったって、このペンは4,980円もする。ペンを買いなおせば、4,980円×2本の損害だ。それに比べれば、ケースなど安い。</p><p>あと、会社においておくためのACアダプターがほしいのだけれど、買うかどうか悩んでいる。</p><p><a href="http://pur.store.sony.jp/Qnavi/Purchase/VGP-AC10V7/">&#x30BD;&#x30CB;&#x30FC;&#x30B9;&#x30C8;&#x30A2; VGP-AC10V7&#x306E;&#x5546;&#x54C1;&#x8CFC;&#x5165; | &#x30D1;&#x30FC;&#x30BD;&#x30CA;&#x30EB;&#x30B3;&#x30F3;&#x30D4;&#x30E5;&#x30FC;&#x30BF;&#x95A2;&#x9023;&#x5546;&#x54C1;</a></p><p>なんせ、8,900円もするのだ。いかに独自のノイズ対策を工夫しているといえど、ちょっと高すぎるのではないか。</p><p>まぁ、いずれ買うんだろうけどさ。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">多少隙間はあるけど許容範囲</span></p>
+</div>

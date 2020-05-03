@@ -1,0 +1,13 @@
+---
+date: 2018-06-01T09:10:43.0000000
+draft: false
+title: "6月1日：松屋の冷凍牛丼を半額でゲット＋業務改善のためのスクリプト"
+tags: ["日記"]
+eyecatch: 
+---
+<p>今日は仕事を休む日。ここ1カ月は慣れない実家の机で仕事をしていたせいか、ちょっと疲弊してるので、たまったタスクをこなしながらのんびりしようかと思う。今朝は業務改善のために Slack の設定を見直したり、Microsoft Flow を組んだりしてたけど、結構楽しかった。</p><p>んで、ちょっと Microsoft Flow で躓いたのだけど、あまりお行儀のよくないフィードを読むと［プライマリリンク］が記事へのリンクになっていないときがある。Microsoft Flow は便利だが、こういうイレギュラーへの対応がちょっと面倒くさいな。</p><p>とりあえず文字列の［変数］を用意してリンク配列の foreach でバラしてぶち込み<a href="#f-5bf1acbf" name="fn-5bf1acbf" title="要するに string.Join() な感じでフラットにする">*1</a>、それを使うことにした。途中、改行の挿入はどうすればいいんだ？　って思ってググったけど、自分のサイトがヒットした。なんでもメモを取っておくものだと思った。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2018%2F02%2F03%2F054329" title="日記：金曜日は半休にして Trello＋Slack を試した＆テントを張る練習をした - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2018/02/03/054329">blog.daruyanagi.jp</a></cite></p><p>あと、常備してた松屋の冷凍牛丼を切らしていたので Amazon で追加注文をしようと思ったのだけど、フツーのお値段だと1袋400円もするらしい。そんなに出すなら食べに行くがな！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180601084554.png" alt="f:id:daruyanagi:20180601084554p:plain" title="f:id:daruyanagi:20180601084554p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>――というわけで、更新スクリプトを回して価格を監視したら、なんかその日のうちにセールで半額になった。日頃の行いが良すぎるせいか……ビックリやで。早速注文したけど、明日には来るらしい。ついでにレトルトのカレーとか、パソコンで TV 見るためのチューナーとか買った。あと、安かったらうれしいなーと思った商品へ片っ端に監視をかけておいた。</p><p>ちなみに、冷凍牛丼はあっためて生卵とネギ<a href="#f-0cebb9b1" name="fn-0cebb9b1" title="料理用のハサミを用意してザクザクきると楽。洗うのは食洗器">*2</a>をぶち込んでそのまま食べるのはもちろん、工夫次第で割と色々使える。思い切って出汁を切っちゃえば、肉じゃがとか、冷やしうどんの具とか、牛肉カレーとか……まぁ、そんな感じ。味が付きすぎていてアレンジが効きにくいのが難点<a href="#f-e5e30ac6" name="fn-e5e30ac6" title="味が薄い方がいいんだけど、そうなると牛丼として食べるときに味を足さなくちゃいけなくて面倒だよねｗｗｗ">*3</a>で、油断したらなんでも牛丼味になっちゃうけど、あんまり手間をかけずに料理するときのベースに使えるので、一袋200円ちょいなら確保しておく価値あるかな。吉野家・すき家も同じようなのを出してると思うけど、ずっと前に比べたときは確か松屋が一番安かった気がする。今はどうなんだろ……？</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-5bf1acbf" name="f-5bf1acbf" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">要するに string.Join() な感じでフラットにする</span></p>
+<p class="footnote"><a href="#fn-0cebb9b1" name="f-0cebb9b1" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">料理用のハサミを用意してザクザクきると楽。洗うのは食洗器</span></p>
+<p class="footnote"><a href="#fn-e5e30ac6" name="f-e5e30ac6" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">味が薄い方がいいんだけど、そうなると牛丼として食べるときに味を足さなくちゃいけなくて面倒だよねｗｗｗ</span></p>
+</div>

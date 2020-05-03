@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="UWP ＋ WebView ＋ XPath でスクレイピングする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。 public sealed partial class MainPage : Page { public MainPage() { this.InitializeComponent(); Loaded &#43;= MainPage_Loaded; } private void MainPage_Loaded(object sender, RoutedEventArgs e) { var browser = new WebView(); var url = &#34;https://google.co.jp/&#34;; var xpath = &#34;//h1&#34;; var result_type = &#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;; var function = $&#34;document.evaluate(&#34; &#43; &#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34;" />
+    <meta name="og:description"   property="og:description" content="WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。 public sealed partial class MainPage : Page { public MainPage() { this.InitializeComponent(); Loaded &#43;= MainPage_Loaded; } private void MainPage_Loaded(object sender, RoutedEventArgs e) { var browser = new WebView(); var url = &quot;https://google.co.jp/&quot;; var xpath = &quot;//h1&quot;; var result_type = &quot;XPathResult.FIRST_ORDERED_NODE_TYPE&quot;; var function = $&quot;document.evaluate(&quot; &#43; &quot;&#39;{xpath}&#39;, &lsquo;document&rsquo;, null, {result_type}, null&quot;" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/03/18/030810/" />
@@ -87,59 +89,36 @@
     </p>
 
     <p>WebView の InvokeScriptAsync() を利用してスクレイピングしてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">sealed</span> <span style="color:#66d9ef">partial</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">MainPage</span> : Page
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">sealed</span> <span class="synStatement">partial</span> <span class="synType">class</span> MainPage : Page
 {
-    <span style="color:#66d9ef">public</span> MainPage()
-    {
-        <span style="color:#66d9ef">this</span>.InitializeComponent();
-
-        Loaded += MainPage_Loaded;
-    }
-
-    <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> MainPage_Loaded(<span style="color:#66d9ef">object</span> sender, RoutedEventArgs e)
-    {
-        <span style="color:#66d9ef">var</span> browser = <span style="color:#66d9ef">new</span> WebView();
-        <span style="color:#66d9ef">var</span> url = <span style="color:#e6db74">&#34;https://google.co.jp/&#34;</span>;
-        <span style="color:#66d9ef">var</span> xpath = <span style="color:#e6db74">&#34;//h1&#34;</span>;
-        <span style="color:#66d9ef">var</span> result_type = <span style="color:#e6db74">&#34;XPathResult.FIRST_ORDERED_NODE_TYPE&#34;</span>;
-        <span style="color:#66d9ef">var</span> function = <span style="color:#e6db74">$&#34;document.evaluate(&#34;</span> + 
-            <span style="color:#e6db74">&#34;&amp;#39;{xpath}&amp;#39;, &amp;#39;document&amp;#39;, null, {result_type}, null&#34;</span> + 
-            <span style="color:#e6db74">&#34;).singleNodeValue.innerHTML;&#34;</span>;
-
-        browser.NavigationCompleted += <span style="color:#66d9ef">async</span> (s, args) =&gt;
-        {
-            <span style="color:#66d9ef">if</span> (!args.IsSuccess) <span style="color:#66d9ef">throw</span> <span style="color:#66d9ef">new</span> Exception();
-
-            <span style="color:#66d9ef">var</span> html = <span style="color:#66d9ef">await</span> browser.InvokeScriptAsync(
-                <span style="color:#e6db74">&#34;eval&#34;</span>, 
-                <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>[] { function, }
-            );
-
-            System.Diagnostics.Debug.WriteLine(html);
-        };
-
-        browser.Navigate(<span style="color:#66d9ef">new</span> Uri(url));
-    }
+<span class="synType">public</span> MainPage()
+{
+<span class="synStatement">this</span>.InitializeComponent();
+<p>Loaded += MainPage_Loaded;
+}</p>
+<p><span class="synType">private</span> <span class="synType">void</span> MainPage_Loaded(<span class="synType">object</span> sender, RoutedEventArgs e)
+{
+var browser = <span class="synStatement">new</span> WebView();
+var url = <span class="synConstant">&quot;https://google.co.jp/&quot;</span>;
+var xpath = <span class="synConstant">&quot;//h1&quot;</span>;
+var result_type = <span class="synConstant">&quot;XPathResult.FIRST_ORDERED_NODE_TYPE&quot;</span>;
+var function = $<span class="synConstant">&quot;document.evaluate(&quot;</span> +
+<span class="synConstant">&quot;'{xpath}', &lsquo;document&rsquo;, null, {result_type}, null&quot;</span> +
+<span class="synConstant">&quot;).singleNodeValue.innerHTML;&quot;</span>;</p>
+<p>browser.NavigationCompleted += async (s, args) =&gt;
+{
+<span class="synStatement">if</span> (!args.IsSuccess) <span class="synStatement">throw</span> <span class="synStatement">new</span> Exception();</p>
+<p>var html = await browser.InvokeScriptAsync(
+<span class="synConstant">&quot;eval&quot;</span>,
+<span class="synStatement">new</span> <span class="synType">string</span>[] { function, }
+);</p>
+<p>System.Diagnostics.Debug.WriteLine(html);
+};</p>
+<p>browser.Navigate(<span class="synStatement">new</span> Uri(url));
 }
+}
+</pre><p>一応うまくいっているみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170318025944.png" alt="f:id:daruyanagi:20170318025944p:plain" title="f:id:daruyanagi:20170318025944p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>しかし、Windows ストアなんかでスクレイピングをやろうとすると、アプリの切り替えダイアログが出てしまう（プロトコルハンドラーとか言うのか？　これ）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170318030427.png" alt="f:id:daruyanagi:20170318030427p:plain" title="f:id:daruyanagi:20170318030427p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、AngularJS みたいなサイトでは使えないかもしれない（やり方が悪いだけかもしれない）。また、WebView は UI スレッドで動作するらしいので、バックグラウンドタスクで利用することもできない。あんまりスジのいい方法ではなさそうだ、というのが今回の結論かも。</p></p>
 
-<span style="color:#960050;background-color:#1e0010">```一応うまくいっているみたい。</span>
-
-<figure>
-    <img src="/images/20170318025944.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">かし、</span>Windows <span style="color:#960050;background-color:#1e0010">ストアなんかでスクレイピングをやろうとすると、アプリの切り替えダイアログが出てしまう（プロトコルハンドラーとか言うのか？</span>　<span style="color:#960050;background-color:#1e0010">これ）。</span>
-
-<figure>
-    <img src="/images/20170318030427.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">と、</span>AngularJS <span style="color:#960050;background-color:#1e0010">みたいなサイトでは使えないかもしれない（やり方が悪いだけかもしれない）。また、</span>WebView <span style="color:#960050;background-color:#1e0010">は</span> UI <span style="color:#960050;background-color:#1e0010">スレッドで動作するらしいので、バックグラウンドタスクで利用することもできない。あんまりスジのいい方法ではなさそうだ、というのが今回の結論かも。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -153,7 +132,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/03/18/030810.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/03/18</time> 
             </p>
         
     </footer>
@@ -205,7 +184,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

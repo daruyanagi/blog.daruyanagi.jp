@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。 &gt; Web deployment task failed. (&amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;#39; のタイプ初期化子が例外をスロー" />
+    <meta name="og:description"   property="og:description" content="ちょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。 Web deployment task failed. (&#39;Microsoft.Web.Deployment.DeploymentManager&#39; のタイプ初期化子が例外をスロー" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2018/06/20/232113/20180620231506_hu092af7c3dfc56299e58b9da18653932e_14789_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2018/06/20/232113/20180620231506_hu092af7c3dfc56299e58b9da18653932e_14789_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/06/20/232113/" />
@@ -86,20 +92,15 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20180620231506.png"/> 
-</figure>
-
-<p>ょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。</p>
-<pre><code>&gt;
-    Web deployment task failed. (&amp;#39;Microsoft.Web.Deployment.DeploymentManager&amp;#39; のタイプ初期化子が例外をスローしました。)
-</code></pre>
-<p>コードはちょっといじったけど、定数値を変えただけで、ロジックは変えていない。Visual Studio のアップデートが原因か、インフラ側で何か変更があったのか。ググってみたけど対処方法がよく分かんなかったので、今は <strong>FTP 経由で発行</strong>している。発行のたびにポータルでサイトを一時停止しなくちゃいけないのがすごい面倒……セキュリティ的にも褒められたものではないだろうし、なんとかなんないかなぁ。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180620231506.png" alt="f:id:daruyanagi:20180620231506p:plain" title="f:id:daruyanagi:20180620231506p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちょっと前からだけど、Visual Studio 2017 から Azure Web Pages へ Web サイトを発行するとエラーが発生するようになった。</p>
+<blockquote>
+<p>Web deployment task failed. ('Microsoft.Web.Deployment.DeploymentManager' のタイプ初期化子が例外をスローしました。)</p>
+</blockquote>
+<p>コードはちょっといじったけど、定数値を変えただけで、ロジックは変えていない。Visual Studio のアップデートが原因か、インフラ側で何か変更があったのか。</p><p>ググってみたけど対処方法がよく分かんなかったので、今は <b>FTP 経由で発行</b>している。発行のたびにポータルでサイトを一時停止しなくちゃいけないのがすごい面倒……セキュリティ的にも褒められたものではないだろうし、なんとかなんないかなぁ。</p>
 <div class="section">
-    ### 追記（2018/06/23 19:30）
-    一旦 Web サイトを停止したら Web Deploy でも配置できるかなぁ、と思ってやってみたんだけど、ダメだった。
+<h3>追記（2018/06/23 19:30）</h3>
+<p>一旦 Web サイトを停止したら Web Deploy でも配置できるかなぁ、と思ってやってみたんだけど、ダメだった。</p>
 </div>
-
 
     <footer>
         
@@ -113,7 +114,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/20/232113.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2018/06/20</time> 
             </p>
         
     </footer>
@@ -165,7 +166,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix： 型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; #### 問題 WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、 &gt; 型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。 という" />
+    <meta name="og:description"   property="og:description" content="問題 WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、 型または名前空間 &#39;Linq&#39; は名前空間 &#39;System&#39; に存在しません。アセンブリ参照が不足しています。 というエラー" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/11/14/194808/" />
@@ -86,32 +88,27 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20141114193956.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20141114193956.png" alt="f:id:daruyanagi:20141114193956p:plain" title="f:id:daruyanagi:20141114193956p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <div class="section">
-    #### 問題
-    WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、
-<pre><code>&gt;
-    型または名前空間 &amp;#39;Linq&amp;#39; は名前空間 &amp;#39;System&amp;#39; に存在しません。アセンブリ参照が不足しています。
-</code></pre>
+<h4>問題</h4>
+<p>WebMatrix で作った ASP.NET Web Pages のプロジェクトを Visual Studio で開くと、</p>
+<blockquote>
+<p>型または名前空間 'Linq' は名前空間 'System' に存在しません。アセンブリ参照が不足しています。</p>
+</blockquote>
 <p>というエラーが出てコンパイルできない。</p>
 </div>
 <div class="section">
-    #### 解決策
-    Web.config で明示的にターゲットフレームワークを指定する。WebMatrix はこれがなくても動くのだけど、Visual Studio の方はちゃんと書いておかないと動かない。
-```xml
-<!--?-->xml version="1.0"?>
-<configuration></configuration>
-  .web>
-    targetFramework="4.0" debug="true"/>
-  .web>
-<pre><code class="language-このエラーが出るたびに「あぁ、あれか」と思うのだけど、いつも具体的なコードが思い出せなくて、結局ググってたりする。" data-lang="このエラーが出るたびに「あぁ、あれか」と思うのだけど、いつも具体的なコードが思い出せなくて、結局ググってたりする。">
-&lt;/div&gt;
-
-</code></pre>
+<h4>解決策</h4>
+<p>Web.config で明示的にターゲットフレームワークを指定する。WebMatrix はこれがなくても動くのだけど、Visual Studio の方はちゃんと書いておかないと動かない。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synComment">?&gt;</span>
+<span class="synIdentifier">&lt;configuration&gt;</span>
+<span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span>
+<span class="synIdentifier">&lt;compilation </span><span class="synType">targetFramework</span>=<span class="synConstant">&quot;4.0&quot;</span><span class="synIdentifier"> </span><span class="synType">debug</span>=<span class="synConstant">&quot;true&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span>
+<span class="synIdentifier">&lt;/configuration&gt;</span>
+</pre><p>このエラーが出るたびに「あぁ、あれか」と思うのだけど、いつも具体的なコードが思い出せなくて、結局ググってたりする。</p>
+</div>
 
     <footer>
         
@@ -125,7 +122,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/11/14/194808.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/11/14</time> 
             </p>
         
     </footer>
@@ -177,7 +174,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

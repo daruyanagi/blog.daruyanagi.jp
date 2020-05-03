@@ -1,0 +1,8 @@
+---
+date: 2015-01-24T09:15:11.0000000
+draft: false
+title: "アップデートした英語版 Windows 10 Technical Preview Build 9926 を日本語化する"
+tags: ["Windows 10"]
+eyecatch: 
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150124090641.png" alt="f:id:daruyanagi:20150124090641p:plain" title="f:id:daruyanagi:20150124090641p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［Regeion and language settings］へアクセス。日本リージョンでは使えない Cortana さん(ノД`)・゜・。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150124090730.png" alt="f:id:daruyanagi:20150124090730p:plain" title="f:id:daruyanagi:20150124090730p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［Settings］画面が表示される。だいぶデザインが変わったなー。ここで［Time & language］を選択。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150124090922.png" alt="f:id:daruyanagi:20150124090922p:plain" title="f:id:daruyanagi:20150124090922p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［Regeion and language］タブへ移動。［日本語］の［Options］を開くと、言語パックの検索が始まる。見つかったらそれをダウンロード。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150124091106.png" alt="f:id:daruyanagi:20150124091106p:plain" title="f:id:daruyanagi:20150124091106p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ダウンロード完了。Windows Update ついでに再起動すると、UI が日本語化される。一度サインアウトしてサインインするだけでもいいかも。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150124091307.png" alt="f:id:daruyanagi:20150124091307p:plain" title="f:id:daruyanagi:20150124091307p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>うちの環境では、レガシーなコントロールパネルからは日本語化できなかったかも。</p>

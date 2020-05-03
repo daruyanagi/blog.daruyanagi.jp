@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="Razor で組まれた CMS「razorC.net CMS」" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="SP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。 Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動か" />
+    <meta name="og:description"   property="og:description" content="ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。 Open Source ASP.net CMS for WebMatrix - razorC.net 実際に WebMatrix で動か" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/12/04/035903/" />
@@ -86,46 +89,27 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20131204034929.png"/> 
-</figure>
-
-<p>SP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131204034929.png" alt="f:id:daruyanagi:20131204034929p:plain" title="f:id:daruyanagi:20131204034929p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ASP.NET Web Pages（razor syntax）で開発された CMS で、WebMatrix で開いていろいろ改造できるみたい。</p>
 <ul>
 <li><a href="http://www.razorc.net/">Open Source ASP.net CMS for WebMatrix - razorC.net</a></li>
-</ul>実際に WebMatrix で動かすとこんな感じ。
-<figure>
-    <img src="/images/20131204035825.png"/> 
-</figure>
-
-<figure>
-    <img src="/images/20131204035237.png"/> 
-</figure>
-
-<p>能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。ちょっと面白いなと思ったのはコレ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#75715e">// _AppStart.cshtml
-</span><span style="color:#75715e"></span>
-@using System.Web.Routing
-
-<span style="color:#960050;background-color:#1e0010">@</span>{    
-    RouteTable.Routes.MapWebPageRoute(
-        <span style="color:#e6db74">&#34;{rcPageName}/{rc0}/{rc1}&#34;</span>,
-        <span style="color:#e6db74">&#34;~/Default.cshtml&#34;</span>,
-        <span style="color:#66d9ef">new</span> {
-            rcPageName = <span style="color:#e6db74">&#34;default&#34;</span>,
-            rc0=-<span style="color:#ae81ff">1</span>,
-            rc1=-<span style="color:#ae81ff">1</span>
-        }
-    );
+</ul><p>実際に WebMatrix で動かすとこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131204035825.png" alt="f:id:daruyanagi:20131204035825p:plain" title="f:id:daruyanagi:20131204035825p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131204035237.png" alt="f:id:daruyanagi:20131204035237p:plain" title="f:id:daruyanagi:20131204035237p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>機能的には割と普通というか、自動バックアップ機能とテーマ機能、レイアウトエディターが気になる程度。</p><p>ちょっと面白いなと思ったのはコレ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// _AppStart.cshtml</span>
+<p>@<span class="synStatement">using</span> System.Web.Routing</p>
+<p>@{
+RouteTable.Routes.MapWebPageRoute(
+<span class="synConstant">&quot;{rcPageName}/{rc0}/{rc1}&quot;</span>,
+<span class="synConstant">&quot;~/Default.cshtml&quot;</span>,
+<span class="synStatement">new</span> {
+rcPageName = <span class="synConstant">&quot;default&quot;</span>,
+rc0=-<span class="synConstant">1</span>,
+rc1=-<span class="synConstant">1</span>
 }
-
-<span style="color:#960050;background-color:#1e0010">```別に</span>&lt;a href=<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/07/06/174414&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">規約ベースのルーティング</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。</span>
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages&#34;</span>&gt;More Flexible Routing For ASP.NET Web Pages&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</code></pre></div>
+);
+}
+</pre><p>別に<a href="https://blog.daruyanagi.jp/entry/2012/07/06/174414">規約ベースのルーティング</a>を無理して使う必要はなかったんだな。言われてみればそうなのだろうけれど、割りと目から鱗だった。</p></p>
+<ul>
+<li><a href="http://www.mikesdotnetting.com/Article/187/More-Flexible-Routing-For-ASP.NET-Web-Pages">More Flexible Routing For ASP.NET Web Pages</a></li>
+</ul>
 
     <footer>
         
@@ -139,7 +123,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/12/04/035903.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/12/04</time> 
             </p>
         
     </footer>
@@ -191,7 +175,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

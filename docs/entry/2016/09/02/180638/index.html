@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Windows 10 で BSOD。 APC_INDEX_MISMATCH で起動しなくなった" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="C は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書" />
+    <meta name="og:description"   property="og:description" content="PC は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2016/09/02/180638/20160902002955_hud0d2c150fd70bcfdf5a8a3192eea098e_372730_640x480_fit_q75_box.jpg"            content="https://blog.daruyanagi.jp/entry/2016/09/02/180638/20160902002955_hud0d2c150fd70bcfdf5a8a3192eea098e_372730_640x480_fit_q75_box.jpg"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/09/02/180638/" />
@@ -86,68 +92,30 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20160902002955.jpg"/> 
-</figure>
-
-<p>C は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。とりあえず直さないと。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902002955.jpg" alt="f:id:daruyanagi:20160902002955j:plain" title="f:id:daruyanagi:20160902002955j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>PC は基本つけっぱなしなのだけど、晩飯食ったあとにウトウトして目を覚ましたら、ブルースクリーンになって死んでた。俺の顔面もブルースクリーン。書きかけのコードが次元のはざまに旅立ったかもしれない。</p><p>とりあえず直さないと。</p>
 <div class="section">
-    ### APC_INDEX_MISMATCH ってなんだ？
-<pre><code>&gt;
-    The most common cause of this bug check is when a file system or driver has a mismatched sequence of calls to disable and re-enable APCs. The key data item is the Thread-&gt;CombinedApcDisable field. The CombinedApcDisable field consists of two separate 16-bit fields: SpecialApcDisable and KernelApcDisable. A negative value of either field indicates that a driver has disabled special or normal APCs (respectively) without re-enabling them. A positive value indicates that a driver has enabled special or normal APCs too many times.
-
-    Bug Check 0x1: APC_INDEX_MISMATCH - Windows 10 hardware dev
-</code></pre>
+<h3>APC_INDEX_MISMATCH ってなんだ？</h3>
+<blockquote cite="https://msdn.microsoft.com/en-us/library/windows/hardware/ff557419(v=vs.85).aspx">
+<p>The most common cause of this bug check is when a file system or driver has a mismatched sequence of calls to disable and re-enable APCs. The key data item is the Thread->CombinedApcDisable field. The CombinedApcDisable field consists of two separate 16-bit fields: SpecialApcDisable and KernelApcDisable. A negative value of either field indicates that a driver has disabled special or normal APCs (respectively) without re-enabling them. A positive value indicates that a driver has enabled special or normal APCs too many times.</p>
+<p><cite><a href="https://msdn.microsoft.com/en-us/library/windows/hardware/ff557419(v=vs.85).aspx">Bug Check 0x1: APC_INDEX_MISMATCH - Windows 10 hardware dev</a></cite></p>
+</blockquote>
 <p>APC っていうのが非同期プロシージャ―呼び出し（<a href="https://msdn.microsoft.com/ja-jp/library/windows/desktop/ms681951(v=vs.85).aspx">Asynchronous Procedure Calls</a>）の略っぽいことはわかったが、だから何って感じだ。『Inside Windows』とかに書いてあるんだろうか。いい加減知識をアップデートしないと、最近は知らないことばっかりで困る（そういう系の本をマジメに読んだのは大学の頃が最後だよ）。</p>
 </div>
 <div class="section">
-    ### とりあえずセーフモードで起動する
-<figure>
-    <img src="/images/20160902004933.jpg"/> 
-</figure>
-
-<p>源をガチャガチャやると運よく回復メニューにたどり着けたので、まずはセーフモードで起動してみる。</p>
-<figure>
-    <img src="/images/20160902004946.jpg"/> 
-</figure>
-
-<p>トラブル シューティング］－［詳細オプション］－［スタートアップ設定］と進み、Windows を再起動。</p>
-<figure>
-    <img src="/images/20160902005038.jpg"/> 
-</figure>
-
-<p>番を選択してセーフモードで起動する。</p>
-<figure>
-    <img src="/images/20160902005146.jpg"/> 
-</figure>
-
-<p>りあえず、ログインできた。試しにここから単に再起動してみたが、やはり APC_INDEX_MISMATCH で起動できなくなる。どうやら何かごちゃごちゃしないと直らないっぽい。</p>
+<h3>とりあえずセーフモードで起動する</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902004933.jpg" alt="f:id:daruyanagi:20160902004933j:plain" title="f:id:daruyanagi:20160902004933j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>電源をガチャガチャやると運よく回復メニューにたどり着けたので、まずはセーフモードで起動してみる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902004946.jpg" alt="f:id:daruyanagi:20160902004946j:plain" title="f:id:daruyanagi:20160902004946j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［トラブル シューティング］－［詳細オプション］－［スタートアップ設定］と進み、Windows を再起動。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902005038.jpg" alt="f:id:daruyanagi:20160902005038j:plain" title="f:id:daruyanagi:20160902005038j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>4 番を選択してセーフモードで起動する。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902005146.jpg" alt="f:id:daruyanagi:20160902005146j:plain" title="f:id:daruyanagi:20160902005146j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず、ログインできた。試しにここから単に再起動してみたが、やはり APC_INDEX_MISMATCH で起動できなくなる。どうやら何かごちゃごちゃしないと直らないっぽい。</p>
 </div>
 <div class="section">
-    ### SCAN /SFCNOW → ダメ
-<figure>
-    <img src="/images/20160902175640.png"/> 
-</figure>
-
-<p><em>SCAN /SFCNOW</em>*（システムファイルのスキャン）という民間療法を試してみる。結論的には、なにも改善されなかった。</p>
+<h3>SCAN /SFCNOW → ダメ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902175640.png" alt="f:id:daruyanagi:20160902175640p:plain" title="f:id:daruyanagi:20160902175640p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>SCAN /SFCNOW</b>（システムファイルのスキャン）という民間療法を試してみる。結論的には、なにも改善されなかった。</p>
 </div>
 <div class="section">
-    ### 心当たりのあるプログラムをアンインストールする
-<figure>
-    <img src="/images/20160902175847.png"/> 
-</figure>
-
-<p>*最近なにか変なアプリをインストールした**かなぁ、と記憶をたどると、あったあった。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1017850.html" title="ランサムウェアからファイルを守る対策をさらに充実させた「ウイルスバスター クラウド」最新版" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>さっそくウイルスバスターさんには消えてもらうことにした。</p>
-<figure>
-    <img src="/images/20160902175949.png"/> 
-</figure>
-
-<p>いつ一回死んでくればいいのにと思った。けれどこの状態で再起動すると、なぜか正常に起動できた。原因はよくわからんが、ウイルス対策ソフトのアップデートと、Windows Update がコンボしてなんらかのヤバいなにかが起こったのかもしれん。念のため、公式の削除ツールで完全に削除。</p>
+<h3>心当たりのあるプログラムをアンインストールする</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902175847.png" alt="f:id:daruyanagi:20160902175847p:plain" title="f:id:daruyanagi:20160902175847p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>最近なにか変なアプリをインストールした</b>かなぁ、と記憶をたどると、あったあった。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1017850.html" title="ランサムウェアからファイルを守る対策をさらに充実させた「ウイルスバスター クラウド」最新版" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>さっそくウイルスバスターさんには消えてもらうことにした。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160902175949.png" alt="f:id:daruyanagi:20160902175949p:plain" title="f:id:daruyanagi:20160902175949p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>こいつ一回死んでくればいいのにと思った。</p><p>けれどこの状態で再起動すると、なぜか正常に起動できた。原因はよくわからんが、ウイルス対策ソフトのアップデートと、Windows Update がコンボしてなんらかのヤバいなにかが起こったのかもしれん。</p><p>念のため、公式の削除ツールで完全に削除。</p>
 <ul>
-<li><a href="https://esupport.trendmicro.com/support/vb/solution/ja-jp/1314086.aspx">ウイルスバスター クラウドアンインストールツール | サポート Q&amp;A：トレンドマイクロ</a></li>
-</ul>あとは、**［システムの回復］**を使うという手もあるけど、環境がロールバックされるのが嫌なので今回は使わなかった。そういうのを気にしない人は、これを真っ先に試した方がいいかもしれない。いい機会なので、大事なファイルはクラウド or サブ HDD に退避させて、Windows 10 を初期化。環境を再構築しておいた。Windows 10 にアップデートする前からほったらかしでカオスだったが、まっさらになって気持ちいい。
+<li><a href="https://esupport.trendmicro.com/support/vb/solution/ja-jp/1314086.aspx">&#x30A6;&#x30A4;&#x30EB;&#x30B9;&#x30D0;&#x30B9;&#x30BF;&#x30FC; &#x30AF;&#x30E9;&#x30A6;&#x30C9;&#x30A2;&#x30F3;&#x30A4;&#x30F3;&#x30B9;&#x30C8;&#x30FC;&#x30EB;&#x30C4;&#x30FC;&#x30EB; | &#x30B5;&#x30DD;&#x30FC;&#x30C8; Q&amp;A&#xFF1A;&#x30C8;&#x30EC;&#x30F3;&#x30C9;&#x30DE;&#x30A4;&#x30AF;&#x30ED;</a></li>
+</ul><p>あとは、<b>［システムの回復］</b>を使うという手もあるけど、環境がロールバックされるのが嫌なので今回は使わなかった。そういうのを気にしない人は、これを真っ先に試した方がいいかもしれない。</p><p>いい機会なので、大事なファイルはクラウド or サブ HDD に退避させて、Windows 10 を初期化。環境を再構築しておいた。Windows 10 にアップデートする前からほったらかしでカオスだったが、まっさらになって気持ちいい。</p>
 </div>
-
 
     <footer>
         
@@ -161,7 +129,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/09/02/180638.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2016/09/02</time> 
             </p>
         
     </footer>
@@ -213,7 +181,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

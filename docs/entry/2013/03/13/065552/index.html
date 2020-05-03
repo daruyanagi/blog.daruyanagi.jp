@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 2 - blog.daruyanagi.jp</title>
+<title>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加 - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 2" />
+<meta name="og:title"         property="og:title" content="WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ）に_「SignalRのサンプル作るときは、「今何人" />
+    <meta name="og:description"   property="og:description" content="緑タイツの中の人が Facebook で、昨日の記事（WebMatrix 2: SignalR &#x3092;&#x52D5;&#x304B;&#x3059; &#xFF08; 1.0.1 &#x5BFE;&#x5FDC;&#x7248;&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;）に「S" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/03/13/065552/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 2</h1>
+    <h1>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,145 +88,107 @@
         </time>        
     </p>
 
-    <p>緑タイツの中の人が Facebook で、昨日の記事（<a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613">WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - だるろぐ</a>）に_「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」_とコメントを付けてくれました。これは要するに、_「そのやり方をブログに書け」_ということですよね！（違幸い、しばやんが偶然たまたま <a href="http://shiba-yan.hatenablog.jp/entry/20130312/1363090277">ASP.NET SignalR で接続中のクライアントを数えてみる - しばやん雑記</a> という記事を書いてくれましたので、それを<del>コピペ</del>参考にして、昨日のサンプルに追加してみました。</p>
+    <p>緑タイツの中の人が Facebook で、昨日の記事（<a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613">WebMatrix 2: SignalR &#x3092;&#x52D5;&#x304B;&#x3059; &#xFF08; 1.0.1 &#x5BFE;&#x5FDC;&#x7248;&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）に<i>「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」</i>とコメントを付けてくれました。これは要するに、<i>「そのやり方をブログに書け」</i>ということですよね！（違</p><p>幸い、しばやんが偶然たまたま <a href="http://shiba-yan.hatenablog.jp/entry/20130312/1363090277">ASP.NET SignalR &#x3067;&#x63A5;&#x7D9A;&#x4E2D;&#x306E;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x3092;&#x6570;&#x3048;&#x3066;&#x307F;&#x308B; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a> という記事を書いてくれましたので、それを<del>コピペ</del>参考にして、昨日のサンプルに追加してみました。</p>
 <div class="section">
-    ### ~/_AppStart.cshtml
-    ```cs
-@using System.Web.Routing
+<h3>~/_AppStart.cshtml</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Web.Routing
 <p>@{
 RouteTable.Routes.MapHubs();
-}</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ~/App_Code/ChatHub.cshtml
-    ```cs
-using Microsoft.AspNet.SignalR;
-
-// 追加
-using Microsoft.AspNet.SignalR.Hubs;
-using System.Collections.Concurrent;
-using System.Threading.Tasks;
-
-[HubName(&quot;chat&quot;)]
-public class ChatHub : Hub 
+}
+</pre></p>
+</div>
+<div class="section">
+<h3>~/App_Code/ChatHub.cshtml</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> Microsoft.AspNet.SignalR;
+<p><span class="synComment">// 追加</span>
+<span class="synStatement">using</span> Microsoft.AspNet.SignalR.Hubs;
+<span class="synStatement">using</span> System.Collections.Concurrent;
+<span class="synStatement">using</span> System.Threading.Tasks;</p>
+<p>[HubName(<span class="synConstant">&quot;chat&quot;</span>)]
+<span class="synType">public</span> <span class="synType">class</span> ChatHub : Hub
 {
-    public void Send(string message)
-    {        
-        Clients.All.addMessage(message);
-    }
-    
-    // 以下、追加
-    private static readonly ConcurrentDictionary&amp;lt;string, bool&gt;
-        _connections = new ConcurrentDictionary&amp;lt;string, bool&gt;();
-
-    public override Task OnConnected()
-    {
-        _connections.TryAdd(Context.ConnectionId, true);
-
-        return Clients.All.notify(_connections.Count);
-    }
-
-    public override Task OnDisconnected()
-    {
-        bool value;
-
-        _connections.TryRemove(Context.ConnectionId, out value);
-
-        return Clients.All.notify(_connections.Count);
-    }
-
-    public override Task OnReconnected()
-    {
-        _connections.TryAdd(Context.ConnectionId, true);
-
-        return Clients.All.notify(_connections.Count);
-    }
+<span class="synType">public</span> <span class="synType">void</span> Send(<span class="synType">string</span> message)
+{
+Clients.All.addMessage(message);
+}</p>
+<p><span class="synComment">// 以下、追加</span>
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">readonly</span> ConcurrentDictionary&lt;<span class="synType">string</span>, <span class="synType">bool</span>&gt;
+_connections = <span class="synStatement">new</span> ConcurrentDictionary&lt;<span class="synType">string</span>, <span class="synType">bool</span>&gt;();</p>
+<p><span class="synType">public</span> <span class="synType">override</span> Task OnConnected()
+{
+_connections.TryAdd(Context.ConnectionId, <span class="synConstant">true</span>);</p>
+<p><span class="synStatement">return</span> Clients.All.notify(_connections.Count);
+}</p>
+<p><span class="synType">public</span> <span class="synType">override</span> Task OnDisconnected()
+{
+<span class="synType">bool</span> <span class="synStatement">value</span>;</p>
+<p>_connections.TryRemove(Context.ConnectionId, <span class="synStatement">out</span> <span class="synStatement">value</span>);</p>
+<p><span class="synStatement">return</span> Clients.All.notify(_connections.Count);
+}</p>
+<p><span class="synType">public</span> <span class="synType">override</span> Task OnReconnected()
+{
+_connections.TryAdd(Context.ConnectionId, <span class="synConstant">true</span>);</p>
+<p><span class="synStatement">return</span> Clients.All.notify(_connections.Count);
 }
-
-```Dictionary で 接続ID を管理する処理が追加されています。ConcurrentDictionary は、
-
-    &gt;
-        複数のスレッドから同時にアクセスできるキーと値のペアのスレッド セーフなコレクションを表します。
-
-        http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx
-    
-.NET Framework 4 から使えるのかな？しばやんの記事を読むまでは、単純に接続イベントで int Count をインクリメント・デクリメントしようと思っていたのですが、そんなに簡単なお話ではなかったようです。あと、クラス名を ChatHub に変更しました。ファイル名とクラス名は合わせたいかな、と思ったので。これには追加の名前空間（Microsoft.AspNet.SignalR.Hubs）が必要です。 [HubName(&quot;chat&quot;)] という属性を追加すれば動作に影響はありません。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ~/Default.cshtml
-    ```html
-@{
-    
 }
-
-
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-
-        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
-
-        &amp;lt;script src=&quot;~/Scripts/jquery-1.9.1.min.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script src=&quot;~/Scripts/jquery.signalR-1.0.1.min.js&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script src=&quot;~/signalr/hubs&quot;&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            $(function () {
-                var chat = $.connection.chat;
-
-                chat.client.addMessage = function (message) {
-                    $(&amp;#39;#messages&amp;#39;).append(&amp;#39;&lt;li&gt;&amp;#39;&lt;/li&gt; + message + &amp;#39;&amp;#39;);
-                };
-
-                // notify() を追加
-                chat.client.notify = function (message) {
-                    $(&amp;#39;#count&amp;#39;).html(message)
-                };
-
-                $.connection.hub.start().done(function () {
-                    $(&quot;#broadcast&quot;).click(function () {
-                        chat.server.send($(&amp;#39;#msg&amp;#39;).val());
-                        $(&quot;#msg&quot;).val(&quot;&quot;); // 追加
-                    });
-                });
-            });
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;div&gt;&lt;!-- 追加 --&gt;
-            現在、&amp;lt;span id=&quot;count&quot;&gt;&amp;lt;/span&gt;人が接続しています。
-        &amp;lt;/div&gt;&lt;!-- ここまで --&gt;
-        &amp;lt;div&gt;
-            &amp;lt;input type=&quot;text&quot; id=&quot;msg&quot; /&gt;
-            &amp;lt;input type=&quot;button&quot; id=&quot;broadcast&quot; value=&quot;broadcast&quot; /&gt;
-
-            &amp;lt;ul id=&quot;messages&quot;&gt;
-            &amp;lt;/ul&gt;
-        &amp;lt;/div&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```ハブが Clients.All.notify(接続数) するので、クライアント側でそれを span#count にセットします。ついでに、ブロードキャストしたときにテキストボックスを空にする処理を加えておきました。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 結果
-    
-
-<figure>
-    <img src="/images/20130313064343.png"/> 
-</figure>
-
-
-きました！
-
-&lt;/div&gt;
-
-</code></pre>
+</pre><p>Dictionary で 接続ID を管理する処理が追加されています。ConcurrentDictionary は、</p></p>
+<blockquote cite="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx">
+<p>複数のスレッドから同時にアクセスできるキーと値のペアのスレッド セーフなコレクションを表します。</p>
+<p><cite><a href="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx"><a href="http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx">http://msdn.microsoft.com/ja-jp/library/vstudio/dd287191.aspx</a></a></cite></p>
+</blockquote>
+<p>.NET Framework 4 から使えるのかな？</p><p>しばやんの記事を読むまでは、単純に接続イベントで int Count をインクリメント・デクリメントしようと思っていたのですが、そんなに簡単なお話ではなかったようです。</p><p>あと、クラス名を ChatHub に変更しました。ファイル名とクラス名は合わせたいかな、と思ったので。これには追加の名前空間（Microsoft.AspNet.SignalR.Hubs）が必要です。 [HubName("chat")] という属性を追加すれば動作に影響はありません。</p>
+</div>
+<div class="section">
+<h3>~/Default.cshtml</h3>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+<p>}</p>
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">http-equiv</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Content-Type&quot;</span><span class="synIdentifier"> </span><span class="synType">content</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/html; charset=utf-8&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span></p>
+<p><span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span></p>
+<p><span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/favicon.ico&quot;</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;shortcut icon&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;image/x-icon&quot;</span><span class="synIdentifier"> /&gt;</span></p>
+<p><span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Scripts/jquery-1.9.1.min.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Scripts/jquery.signalR-1.0.1.min.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/signalr/hubs&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synSpecial">            $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                </span><span class="synIdentifier">var</span><span class="synSpecial"> chat = $.connection.chat;</span></p>
+<p><span class="synSpecial">                chat.client.addMessage = </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">message</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                    $</span>(<span class="synConstant">&rsquo;#messages'</span>)<span class="synSpecial">.append</span>(<span class="synConstant">&rsquo;&lt;li&gt;&lsquo;</span><span class="synSpecial"> + message + </span><span class="synConstant">&rsquo;&lt;/li&gt;&lsquo;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                </span><span class="synIdentifier">}</span><span class="synSpecial">;</span></p>
+<p><span class="synSpecial">                </span><span class="synComment">// notify() を追加</span>
+<span class="synSpecial">                chat.client.notify = </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">message</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                    $</span>(<span class="synConstant">&rsquo;#count'</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">message</span>)
+<span class="synSpecial">                </span><span class="synIdentifier">}</span><span class="synSpecial">;</span></p>
+<p><span class="synSpecial">                $.connection.hub.start</span>()<span class="synSpecial">.done</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                    $</span>(<span class="synConstant">&quot;#broadcast&quot;</span>)<span class="synSpecial">.click</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">                        chat.server.send</span>(<span class="synSpecial">$</span>(<span class="synConstant">&rsquo;#msg'</span>)<span class="synSpecial">.val</span>())<span class="synSpecial">;</span>
+<span class="synSpecial">                        $</span>(<span class="synConstant">&quot;#msg&quot;</span>)<span class="synSpecial">.val</span>(<span class="synConstant">&quot;&quot;</span>)<span class="synSpecial">; </span><span class="synComment">// 追加</span>
+<span class="synSpecial">                    </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">        </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span><span class="synComment">&lt;!&ndash; 追加 &ndash;&gt;</span>
+現在、<span class="synIdentifier">&lt;</span><span class="synStatement">span</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;count&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">span</span><span class="synIdentifier">&gt;</span>人が接続しています。
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span><span class="synComment">&lt;!&ndash; ここまで &ndash;&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text&quot;</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;msg&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">input</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;button&quot;</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;broadcast&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;broadcast&quot;</span><span class="synIdentifier"> /&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">ul</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;messages&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">ul</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>ハブが Clients.All.notify(接続数) するので、クライアント側でそれを span#count にセットします。</p><p>ついでに、ブロードキャストしたときにテキストボックスを空にする処理を加えておきました。</p></p>
+</div>
+<div class="section">
+<h3>結果</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130313064343.png" alt="f:id:daruyanagi:20130313064343p:plain" title="f:id:daruyanagi:20130313064343p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>できました！</p>
+</div>
 
     <footer>
         
@@ -238,7 +202,7 @@ public class ChatHub : Hub
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/13/065552.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/03/13</time> 
             </p>
         
     </footer>
@@ -290,7 +254,16 @@ public class ChatHub : Hub
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

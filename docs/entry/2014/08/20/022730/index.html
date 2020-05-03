@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="TwitterRT でストア アプリからお手軽ツイート（※要改修" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="indows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、TwitterRt - Tweet from Windows Metro Apps - Home。こういう感じの WebAuthenticationBroker を使った認" />
+    <meta name="og:description"   property="og:description" content="Windows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、TwitterRt - Tweet from Windows Metro Apps - Home。こういう感じの WebAuthenticationBroker を使った認" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/08/20/022730/" />
@@ -86,58 +88,42 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140820020905.png"/> 
-</figure>
-
-<p>indows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、<a href="http://twitterrt.codeplex.com/">TwitterRt - Tweet from Windows Metro Apps - Home</a>。こういう感じの WebAuthenticationBroker を使った認証処理を一行で実現してくれるのがいい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">private</span> TwitterRt t = <span style="color:#66d9ef">new</span> TwitterRt(
-    <span style="color:#e6db74">&#34;consumerKey&#34;</span>, 
-    <span style="color:#e6db74">&#34;consumerSecret&#34;</span>,
-    <span style="color:#e6db74">&#34;callbackUrl&#34;</span>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140820020905.png" alt="f:id:daruyanagi:20140820020905p:plain" title="f:id:daruyanagi:20140820020905p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Windows ストア アプリへ手軽にツイート機能を追加したいときに便利なライブラリが、<a href="http://twitterrt.codeplex.com/">TwitterRt - Tweet from Windows Metro Apps - Home</a>。こういう感じの WebAuthenticationBroker を使った認証処理を一行で実現してくれるのがいい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> TwitterRt t = <span class="synStatement">new</span> TwitterRt(
+<span class="synConstant">&quot;consumerKey&quot;</span>,
+<span class="synConstant">&quot;consumerSecret&quot;</span>,
+<span class="synConstant">&quot;callbackUrl&quot;</span>
 );
-
- <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">void</span> Button1_Click(<span style="color:#66d9ef">object</span> sender, Windows.UI.Xaml.RoutedEventArgs args)
+<p><span class="synType">private</span> async <span class="synType">void</span> Button1_Click(<span class="synType">object</span> sender, Windows.UI.Xaml.RoutedEventArgs args)
 {
-    <span style="color:#75715e">// 認証
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> t.GainAccessToTwitter();
-}
-
- <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">void</span> Button2_Click(<span style="color:#66d9ef">object</span> sender, Windows.UI.Xaml.RoutedEventArgs args)
+<span class="synComment">// 認証</span>
+await t.GainAccessToTwitter();
+}</p>
+<p><span class="synType">private</span> async <span class="synType">void</span> Button2_Click(<span class="synType">object</span> sender, Windows.UI.Xaml.RoutedEventArgs args)
 {
-    <span style="color:#75715e">// ツイート
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">await</span> t.UpdateStatus(<span style="color:#e6db74">&#34;Hello From TwitterRt&#34;</span>);
+<span class="synComment">// ツイート</span>
+await t.UpdateStatus(<span class="synConstant">&quot;Hello From TwitterRt&quot;</span>);
 }
+</pre><p>ソースコードを斜め読みしかしてないのだけど、認証処理で取得したトークンなんかは自動で ApplicationData.RoamingSettings に保存してくれるっぽい。一度どこかの端末で認証しておけば、ほかの端末でもそれが自動で同期されるはず。超便利だな。</p><p>でも、残念ながらメンテナンスされていないようで、NuGet で取得したバイナリが動かない。しょうがないのでソースコードを落としてきてちょろちょろっと直した。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// 46行目ぐらい</span>
 
-<span style="color:#960050;background-color:#1e0010">```ソースコードを斜め読みしかしてないのだけど、認証処理で取得したトークンなんかは自動で</span> ApplicationData.RoamingSettings <span style="color:#960050;background-color:#1e0010">に保存してくれるっぽい。一度どこかの端末で認証しておけば、ほかの端末でもそれが自動で同期されるはず。超便利だな。でも、残念ながらメンテナンスされていないようで、</span>NuGet <span style="color:#960050;background-color:#1e0010">で取得したバイナリが動かない。しょうがないのでソースコードを落としてきてちょろちょろっと直した。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#75715e">// 46行目ぐらい
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// const string _updateStatusUrl = &#34;https://api.twitter.com/1/statuses/update.json&#34;;
-</span><span style="color:#75715e"></span><span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> _updateStatusUrl = <span style="color:#e6db74">&#34;https://api.twitter.com/1.1/statuses/update.json&#34;</span>;
+<span class="synComment">// const string _updateStatusUrl = &quot;https://api.twitter.com/1/statuses/update.json&quot;;</span>
+<span class="synType">const</span> <span class="synType">string</span> _updateStatusUrl = <span class="synConstant">&quot;https://api.twitter.com/1.1/statuses/update.json&quot;</span>;
+</pre><p>まずは Twitter の API を 1.0 → 1.1 へとアップデート。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// 295行目ぐらい</span>
 
-<span style="color:#960050;background-color:#1e0010">```まずは</span> Twitter <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を</span> <span style="color:#ae81ff">1.0</span> <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#ae81ff">1.1</span> <span style="color:#960050;background-color:#1e0010">へとアップデート。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#75715e">// 295行目ぐらい
-</span><span style="color:#75715e"></span>
-Request.Method = <span style="color:#e6db74">&#34;POST&#34;</span>;
-Request.ContentType = <span style="color:#e6db74">&#34;application/x-www-form-urlencoded&#34;</span>; <span style="color:#75715e">// 追加
-</span><span style="color:#75715e"></span>Request.Headers[<span style="color:#e6db74">&#34;Authorization&#34;</span>] = headers;
+Request.Method = <span class="synConstant">&quot;POST&quot;</span>;
+Request.ContentType = <span class="synConstant">&quot;application/x-www-form-urlencoded&quot;</span>; <span class="synComment">// 追加</span>
+Request.Headers[<span class="synConstant">&quot;Authorization&quot;</span>] = headers;
+</pre><p>ContentType も設定しなきゃいけないらしい。</p><p>これだけで一応動くのだけど……</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// 179行目ぐらい</span>
 
-<span style="color:#960050;background-color:#1e0010">```</span>ContentType <span style="color:#960050;background-color:#1e0010">も設定しなきゃいけないらしい。これだけで一応動くのだけど……</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#75715e">// 179行目ぐらい
-</span><span style="color:#75715e"></span>
-<span style="color:#75715e">// request.Add(&#34;status&#34;, Uri.EscapeDataString(status));
-</span><span style="color:#75715e"></span>request.Add(<span style="color:#e6db74">&#34;status&#34;</span>, Uri.EscapeDataString(status.Replace(<span style="color:#e6db74">&#34;\r\n&#34;</span>, <span style="color:#e6db74">&#34;\n&#34;</span>)));
-
-<span style="color:#960050;background-color:#1e0010">```改行を含んだテキストをツイートできるように、もう一カ所修正しておいた。</span>
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://coelacanth.jp.net/windows%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E5%85%A5%E9%96%80-vol73twitterrt%E3%81%A7%E3%81%8A%E6%89%8B%E8%BB%BD%E3%81%AB%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F/&#34;</span>&gt;Windowsストアアプリ入門 vol73:TwitterRtでお手軽につぶやく | <span style="color:#960050;background-color:#1e0010">眠るシーラカンスと水底のプログラマー</span>&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</code></pre></div>
+<span class="synComment">// request.Add(&quot;status&quot;, Uri.EscapeDataString(status));</span>
+request.Add(<span class="synConstant">&quot;status&quot;</span>, Uri.EscapeDataString(status.Replace(<span class="synConstant">&quot;</span><span class="synSpecial">\r\n</span><span class="synConstant">&quot;</span>, <span class="synConstant">&quot;</span><span class="synSpecial">\n</span><span class="synConstant">&quot;</span>)));
+</pre><p>改行を含んだテキストをツイートできるように、もう一カ所修正しておいた。</p>
+<ul>
+<li><a href="http://coelacanth.jp.net/windows%E3%82%B9%E3%83%88%E3%82%A2%E3%82%A2%E3%83%97%E3%83%AA%E5%85%A5%E9%96%80-vol73twitterrt%E3%81%A7%E3%81%8A%E6%89%8B%E8%BB%BD%E3%81%AB%E3%81%A4%E3%81%B6%E3%82%84%E3%81%8F/">Windows&#x30B9;&#x30C8;&#x30A2;&#x30A2;&#x30D7;&#x30EA;&#x5165;&#x9580; vol73:TwitterRt&#x3067;&#x304A;&#x624B;&#x8EFD;&#x306B;&#x3064;&#x3076;&#x3084;&#x304F; | &#x7720;&#x308B;&#x30B7;&#x30FC;&#x30E9;&#x30AB;&#x30F3;&#x30B9;&#x3068;&#x6C34;&#x5E95;&#x306E;&#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DE;&#x30FC;</a></li>
+</ul>
 
     <footer>
         
@@ -151,7 +137,7 @@ Request.ContentType = <span style="color:#e6db74">&#34;application/x-www-form-ur
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/08/20/022730.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/08/20</time> 
             </p>
         
     </footer>
@@ -203,7 +189,16 @@ Request.ContentType = <span style="color:#e6db74">&#34;application/x-www-form-ur
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -1,0 +1,13 @@
+---
+date: 2014-08-16T21:48:51.0000000
+draft: false
+title: "WinRT：タスク &#39;CreateAppStoreContainer&#39; に失敗しました。"
+tags: ["WinRT"]
+eyecatch: 20140816211837.png
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816211837.png" alt="f:id:daruyanagi:20140816211837p:plain" title="f:id:daruyanagi:20140816211837p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>せっかくアプリを作ったのに、アップロードパッケージ（.appupload）が作成できませんがなでんがな！　ヒドい、ヒドすぎる！！</p>
+
+<ul>
+<li><a href="http://social.msdn.microsoft.com/Forums/ja-JP/8bee78fd-6b32-4c44-a884-c89f9c900f24/create-app-package-bundle-creation-failed-access-is-denied?forum=winappswithcsharp">Create App Package Bundle Creation Failed. Access is denied.</a></li>
+<li><a href="https://connect.microsoft.com/VisualStudio/feedback/details/810786/visual-studio-express-2013-for-windows-create-app-packages-fails-0x8007005-access-is-denied">Visual Studio Express 2013 for Windows Create app packages fails 0x8007005 Access is denied | Microsoft Connect</a></li>
+</ul><p>ここら辺りをみてみたが、どうやら .appx ファイルにアクセス権限を手動で与えてやればいいようだ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816212126.png" alt="f:id:daruyanagi:20140816212126p:plain" title="f:id:daruyanagi:20140816212126p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>バイナリのフォルダを開き、.appx ファイルのアクセス権限を確かめる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816212205.png" alt="f:id:daruyanagi:20140816212205p:plain" title="f:id:daruyanagi:20140816212205p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ぁー……なんでか知らんけど、空っぽやった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816212217.png" alt="f:id:daruyanagi:20140816212217p:plain" title="f:id:daruyanagi:20140816212217p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816212230.png" alt="f:id:daruyanagi:20140816212230p:plain" title="f:id:daruyanagi:20140816212230p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Administrators にフルコントロールを与える。適当だけどこれでいいのかしら？</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816215955.png" alt="f:id:daruyanagi:20140816215955p:plain" title="f:id:daruyanagi:20140816215955p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず、これでうまくいった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140816215158.png" alt="f:id:daruyanagi:20140816215158p:plain" title="f:id:daruyanagi:20140816215158p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>バージョンを［自動的に増加］するオプションが有効な状態で一度バイナリを吐き、アップロードパッケージの作成に失敗したら一時的に無効にして再度挑戦するといい感じに成功する。ちょっとめんどくさいけど……。</p>

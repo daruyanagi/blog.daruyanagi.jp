@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title> 危険な可能性のある Request.Form 値がクライアントから検出されました - blog.daruyanagi.jp</title>
+<title>危険な可能性のある Request.Form 値がクライアントから検出されました - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content=" 危険な可能性のある Request.Form 値がクライアントから検出されました" />
+<meta name="og:title"         property="og:title" content="危険な可能性のある Request.Form 値がクライアントから検出されました" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
     <meta name="og:description"   property="og:description" content="ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationExcepti" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/02/19/022206/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1> 危険な可能性のある Request.Form 値がクライアントから検出されました</h1>
+    <h1>危険な可能性のある Request.Form 値がクライアントから検出されました</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,75 +88,58 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120219/20120219013646.png" alt="f:id:daruyanagi:20120219013646p:plain" title="f:id:daruyanagi:20120219013646p:plain" class="hatena-fotolife"/>ASP.NET 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。</p>
+    <p><img src="20120219013646.png" alt="f:id:daruyanagi:20120219013646p:plain" title="f:id:daruyanagi:20120219013646p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> 規定の動作では、入力にHTMLタグが含まれていると、バリデーションでエラーを吐く（HttpRequestValidationException）。これはこれでありがたいのだけど、どうしてもHTMLタグを受け入れたい場合はある。</p>
 <div class="section">
-    ### ページ単位でバリデーションを無効にする
-    web.config に設定を記述する。
-<pre><code>```xml
-</code></pre>
-<p>&lt;configuration&gt;
+<h3>ページ単位でバリデーションを無効にする</h3>
+<p>web.config に設定を記述する。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink>&lt;configuration&gt;
 &lt;system.web&gt;
-&lt;httpRuntime requestValidationMode=&quot;2.0&rdquo; /&gt;
-&lt;pages validateRequest=&quot;false&quot;&gt;
+&lt;httpRuntime requestValidationMode=&#34;2.0&#34; /&gt;
+&lt;pages validateRequest=&#34;false&#34;&gt;
 &lt;/pages&gt;
 &lt;/system.web&gt;
-&lt;/configuration&gt;</p>
-<pre><code>
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### メソッド単位でバリデーションを無効にする。
-    POSTメソッドをまるごと。
-
-    ```cs
-[HttpPost]
+&lt;/configuration&gt;</pre>
+</div>
+<div class="section">
+<h3>メソッド単位でバリデーションを無効にする。</h3>
+<p>POSTメソッドをまるごと。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>[HttpPost]
 [ValidateInput(false)]
 public ViewResult Edit(FormCollection form)
 {
 
-}
-</code></pre><p><a href="http://stackoverflow.com/questions/4361907/asp-net-mvc-3-validaterequestfalse-not-working-with-formcollection">ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow</a></p>
+}</pre>
+<p><a href="http://stackoverflow.com/questions/4361907/asp-net-mvc-3-validaterequestfalse-not-working-with-formcollection">ASP.NET MVC 3 ValidateRequest(false) not working with FormCollection - Stack Overflow</a></p>
 </div>
 <div class="section">
-    ### フォームデータ単位でバリデーションを無効にする。
-    Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。コントローラーで使ってみる。
-<pre><code>```cs
-</code></pre>
-<p>using System.Web.Helpers;</p>
-<p>var hoge = Request.Unvalidated().Form[&ldquo;hoge&rdquo;];</p>
-<pre><code>ビューでも使えるんだね。
+<h3>フォームデータ単位でバリデーションを無効にする。</h3>
+<p>Request クラスの拡張メソッド Unvalidated() を利用する。自分ではこれしか使わない。</p><p>コントローラーで使ってみる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>using System.Web.Helpers;
 
-    ```
-@Request.Unvalidated(&quot;html&quot;)
+var hoge = Request.Unvalidated().Form[&#34;hoge&#34;];</pre>
+<p>ビューでも使えるんだね。</p>
+<pre class="code" data-unlink>@Request.Unvalidated(&#34;html&#34;)
 
-&amp;lt;form method=&quot;post&quot;&gt;
-    &amp;lt;input type=&quot;text&quot; name=&quot;html&quot; /&gt;
-    &amp;lt;input type=&quot;submit&quot; /&gt;
-&amp;lt;/form&gt;
-</code></pre><p><a href="http://d.hatena.ne.jp/shiba-yan/20110406/1302094656">System.Web.Helpers を活用する - まめしば雑記</a></p>
+&lt;form method=&#34;post&#34;&gt;
+&lt;input type=&#34;text&#34; name=&#34;html&#34; /&gt;
+&lt;input type=&#34;submit&#34; /&gt;
+&lt;/form&gt;</pre>
+<p><a href="http://d.hatena.ne.jp/shiba-yan/20110406/1302094656">System.Web.Helpers &#x3092;&#x6D3B;&#x7528;&#x3059;&#x308B; - &#x307E;&#x3081;&#x3057;&#x3070;&#x96D1;&#x8A18;</a></p>
 </div>
 <div class="section">
-    ### 補足
-    DB に HTML タグを突っ込みたい場合は AllowHtml 属性を付与してやる。
-<pre><code>```
-</code></pre>
-<p>[AllowHtml]
-[DisplayName(&ldquo;本文&rdquo;)]
-public string Body { get; set; }</p>
-<pre><code>HTML タグを含む文字列を生のまま出力したい場合は、@Html.Raw() が利用できる。
-
-    ```
-@Html.Raw(hoge)
-</code></pre><p>HTML タグを含む文字列を変数として保持したい場合は、 HtmlString/MvcHtmlString クラスを使う。MvcHtmlString は ASP.Net 3.5 MVC 2 から使えるが、 HtmlString は MVC 3 のみ。これからは HtmlString 使えばいいんじゃないかな。中身がどう違うのかはよく知らない。</p>
-<pre><code>```
-</code></pre>
-<p>var hoge = new MvcHtmlString(&quot;&lt;b&gt;hoge&lt;/b&gt;&rdquo;);</p>
-<pre><code>HTML タグを安全に出力したい場合は HttpUtility.HtmlEncode() を使う。
-
-    ```
-@HttpUtility.HtmlEncode(hoge)
-</code></pre><p>※ 間違ってるところがあったら、ぜひ教えてほしいです&hellip;&hellip;</p>
+<h3>補足</h3>
+<p>DB に HTML タグを突っ込みたい場合は AllowHtml 属性を付与してやる。</p>
+<pre class="code" data-unlink>[AllowHtml]
+[DisplayName(&#34;本文&#34;)]
+public string Body { get; set; }</pre>
+<p>HTML タグを含む文字列を生のまま出力したい場合は、@Html.Raw() が利用できる。</p>
+<pre class="code" data-unlink>@Html.Raw(hoge)</pre>
+<p>HTML タグを含む文字列を変数として保持したい場合は、 HtmlString/MvcHtmlString クラスを使う。MvcHtmlString は ASP.Net 3.5 MVC 2 から使えるが、 HtmlString は MVC 3 のみ。これからは HtmlString 使えばいいんじゃないかな。中身がどう違うのかはよく知らない。</p>
+<pre class="code" data-unlink>var hoge = new MvcHtmlString(&#34;&lt;b&gt;hoge&lt;/b&gt;&#34;);</pre>
+<p>HTML タグを安全に出力したい場合は HttpUtility.HtmlEncode() を使う。</p>
+<pre class="code" data-unlink>@HttpUtility.HtmlEncode(hoge)</pre>
+<p>※ 間違ってるところがあったら、ぜひ教えてほしいです......</p>
 </div>
-
 
     <footer>
         
@@ -168,7 +153,7 @@ public string Body { get; set; }</p>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/02/19/022206.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/02/19</time> 
             </p>
         
     </footer>
@@ -220,7 +205,16 @@ public string Body { get; set; }</p>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

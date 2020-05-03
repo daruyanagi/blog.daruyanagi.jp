@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/10/09/232117/" />
@@ -86,111 +88,85 @@
         </time>        
     </p>
 
-    <p><a href="https://github.com/mojombo/jekyll">GitHub - jekyll/jekyll: Jekyll is a blog-aware static site generator in Ruby</a> というのは、Markdown ドキュメントを置いておくとそれを HTML に変換しておいてくれる静的コンテンツの生成システムらしい。Jekyll ドキュメントはこんなかんじ。</p>
-<pre><code>---
+    <p><a href="https://github.com/mojombo/jekyll">GitHub - jekyll/jekyll: Jekyll is a blog-aware static site generator in Ruby</a> というのは、Markdown ドキュメントを置いておくとそれを HTML に変換しておいてくれる静的コンテンツの生成システムらしい。</p><p>Jekyll ドキュメントはこんなかんじ。</p>
+<pre class="code" data-lang="" data-unlink>---
 layout: post
 title: テスト投稿タイトル
 date: 2012-04-01 09:00:00
 category : サンプル
 tags : [intro, 初心者, jekyll, tutorial]
 ---
-
-テスト投稿本文
-
-- a
-- b
-- c
-
-[http://daruyanagi.net](http://daruyanagi.net/)
-```Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/09/27/213159&quot;&gt;SignalR + WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ&lt;/a&gt; などと組み合わせたら面白いものができそうな気がする。
-
-&lt;div class=&quot;section&quot;&gt;
-    ### 必要なライブラリ
-    
-&lt;ul&gt;
-&lt;li&gt;MarkdownSharp&lt;/li&gt;
-&lt;li&gt;YamlSerializer for .NET（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/10/07/113945&quot;&gt;WebMatrix/ASP.NET Web Pages で YAML を扱う - だるろぐ&lt;/a&gt;）&lt;/li&gt;
-&lt;/ul&gt;どちらも NuGet で取得できる。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### サンプルコード
-    先ほどの Jekyll ドキュメントを ~/Default.md としておき、これを ~/Default.cshtml で読み込んで変換・表示してみる。あくまでもサンプルなので、汚いところ、あからさまにダメなところは無視してほしいかな（笑
-```cs
-@using System.Text.RegularExpressions
-@using System.Yaml
-
-@{
-    var path = Server.MapPath(&quot;~/Default.md&quot;);
-
-    var s = System.IO.File.ReadAllText(path);
-
-    // YAML Front-Matter を抽出する適当な正規表現
-    var r = new Regex(&quot;---.+---&quot;, RegexOptions.Singleline);
-
-    // YAML Front-Matter を取得（エラー処理なし！）
-
-    /* 配列として受け取る → 先頭はマッピング（ハッシュ）のはず */
-    var node = YamlNode.FromYaml(r.Match(s).ToString())[0]
-            as YamlMapping;
-
-    //YAML Front-Matter の値を変数に格納する
-
-    /* スカラ（値）の場合 */
-    var title = (node[&quot;title&quot;] as YamlScalar)
-        .Value; // &amp;lt;- 生テキスト！
-    var date = (node[&quot;date&quot;] as YamlScalar)
-        .NativeObject; // &amp;lt;- DateTime!
-    var category = (node[&quot;category&quot;] as YamlScalar).Value;
-    var layout = (node[&quot;layout&quot;] as YamlScalar).Value;
-
-    /* シーケンス（配列）の場合 */
-    var tags = (node[&quot;tags&quot;] as YamlSequence)
-        .Select(_ =&gt; (_ as YamlScalar).Value);
-
-    // YAML Front-Matter を除去（危険が危ないデシ！）
-    s = r.Replace(s, string.Empty);
-
-    // 残りは Markdown ドキュメントです
-    var m = new MarkdownSharp.Markdown();
-    var text = m.Transform(s);
-}
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;@title&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;h1&gt;@title&amp;lt;/h1&gt;
-
-        @Html.Raw(text)
-
-        &amp;lt;h2&gt;Posted at&amp;lt;/h2&gt;
-        &amp;lt;p&gt;@date&amp;lt;/p&gt;
-
-        &amp;lt;h2&gt;Category&amp;lt;/h2&gt;
-        &amp;lt;p&gt;&amp;lt;a href=&quot;~/Category/@category&quot;&gt;@category&amp;lt;/a&gt;&amp;lt;/p&gt;
-
-        &amp;lt;h2&gt;Tags&amp;lt;/h2&gt;
-        &amp;lt;ul&gt;
-        @foreach(var tag in tags)
-        {
-            &amp;lt;li&gt;&amp;lt;a href=&quot;~/Tag/@tag&quot;&gt;@tag&amp;lt;/a&gt;&amp;lt;/li&gt;
-        }
-        &amp;lt;/ul&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre><figure>
-    <img src="/images/20121009231737.png"/> 
-</figure>
-
-<p>んとなく動いてるっぽい。</p>
+<p>テスト投稿本文</p>
+<ul>
+<li>a</li>
+<li>b</li>
+<li>c</li>
+</ul>
+<p><a href="http://daruyanagi.net/" alt="http://daruyanagi.net">
+  http://daruyanagi.net
+</a></pre><p>Markdown テキストの先頭に YAML Front-Matter と呼ばれる設定を書いておけば、タイトル・レイアウト・投稿日時・カテゴリ・タグといったメタデータを付与することもできる。なんだか便利臭がプンプンするぜ。</p><p>さて、これを WebMatrix で HTML ドキュメントに変換してみようというのが今日のお題。<a href="https://blog.daruyanagi.jp/entry/2012/09/27/213159">SignalR + WebMatrix でサーバーフォルダの監視を行ってみる - だるろぐ</a> などと組み合わせたら面白いものができそうな気がする。</p></p>
+<div class="section">
+<h3>必要なライブラリ</h3>
+<ul>
+<li>MarkdownSharp</li>
+<li>YamlSerializer for .NET（<a href="https://blog.daruyanagi.jp/entry/2012/10/07/113945">WebMatrix/ASP.NET Web Pages &#x3067; YAML &#x3092;&#x6271;&#x3046; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）</li>
+</ul><p>どちらも NuGet で取得できる。</p>
 </div>
-
+<div class="section">
+<h3>サンプルコード</h3>
+<p>先ほどの Jekyll ドキュメントを ~/Default.md としておき、これを ~/Default.cshtml で読み込んで変換・表示してみる。あくまでもサンプルなので、汚いところ、あからさまにダメなところは無視してほしいかな（笑</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Text.RegularExpressions
+@<span class="synStatement">using</span> System.Yaml
+<p>@{
+var path = Server.MapPath(<span class="synConstant">&quot;~/Default.md&quot;</span>);</p>
+<p>var s = System.IO.File.ReadAllText(path);</p>
+<p><span class="synComment">// YAML Front-Matter を抽出する適当な正規表現</span>
+var r = <span class="synStatement">new</span> Regex(<span class="synConstant">&quot;&mdash;.+&mdash;&quot;</span>, RegexOptions.Singleline);</p>
+<p><span class="synComment">// YAML Front-Matter を取得（エラー処理なし！）</span></p>
+<p><span class="synComment">/* 配列として受け取る → 先頭はマッピング（ハッシュ）のはず */</span>
+var node = YamlNode.FromYaml(r.Match(s).ToString())[<span class="synConstant">0</span>]
+<span class="synStatement">as</span> YamlMapping;</p>
+<p><span class="synComment">//YAML Front-Matter の値を変数に格納する</span></p>
+<p><span class="synComment">/* スカラ（値）の場合 */</span>
+var title = (node[<span class="synConstant">&quot;title&quot;</span>] <span class="synStatement">as</span> YamlScalar)
+.Value; <span class="synComment">// &lt;- 生テキスト！</span>
+var date = (node[<span class="synConstant">&quot;date&quot;</span>] <span class="synStatement">as</span> YamlScalar)
+.NativeObject; <span class="synComment">// &lt;- DateTime!</span>
+var category = (node[<span class="synConstant">&quot;category&quot;</span>] <span class="synStatement">as</span> YamlScalar).Value;
+var layout = (node[<span class="synConstant">&quot;layout&quot;</span>] <span class="synStatement">as</span> YamlScalar).Value;</p>
+<p><span class="synComment">/* シーケンス（配列）の場合 */</span>
+var tags = (node[<span class="synConstant">&quot;tags&quot;</span>] <span class="synStatement">as</span> YamlSequence)
+.Select(_ =&gt; (_ <span class="synStatement">as</span> YamlScalar).Value);</p>
+<p><span class="synComment">// YAML Front-Matter を除去（危険が危ないデシ！）</span>
+s = r.Replace(s, <span class="synType">string</span>.Empty);</p>
+<p><span class="synComment">// 残りは Markdown ドキュメントです</span>
+var m = <span class="synStatement">new</span> MarkdownSharp.Markdown();
+var text = m.Transform(s);
+}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=<span class="synConstant">&quot;ja&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;@title&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;@title&lt;/h1&gt;</p>
+<p>@Html.Raw(text)</p>
+<p>&lt;h2&gt;Posted at&lt;/h2&gt;
+&lt;p&gt;@date&lt;/p&gt;</p>
+<p>&lt;h2&gt;Category&lt;/h2&gt;
+&lt;p&gt;&lt;a href=<span class="synConstant">&quot;~/Category/@category&quot;</span>&gt;@category&lt;/a&gt;&lt;/p&gt;</p>
+<p>&lt;h2&gt;Tags&lt;/h2&gt;
+&lt;ul&gt;
+@<span class="synStatement">foreach</span>(var tag <span class="synStatement">in</span> tags)
+{
+&lt;li&gt;&lt;a href=<span class="synConstant">&quot;~/Tag/@tag&quot;</span>&gt;@tag&lt;/a&gt;&lt;/li&gt;
+}
+&lt;/ul&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121009231737.png" alt="f:id:daruyanagi:20121009231737p:plain" title="f:id:daruyanagi:20121009231737p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんとなく動いてるっぽい。</p></p>
+</div>
 
     <footer>
         
@@ -204,7 +180,7 @@ tags : [intro, 初心者, jekyll, tutorial]
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/10/09/232117.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/10/09</time> 
             </p>
         
     </footer>
@@ -256,7 +232,16 @@ tags : [intro, 初心者, jekyll, tutorial]
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

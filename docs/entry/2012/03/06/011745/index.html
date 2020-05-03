@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="YouTube の URL を動画タグへ変換する（oEmbed）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく" />
+    <meta name="og:description"   property="og:description" content="Flickr &#x306E; URL &#x3092;&#x753B;&#x50CF;&#x30BF;&#x30B0;&#x3078;&#x5909;&#x63DB;&#x3059;&#x308B;&#xFF08;oEmbed&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050; のYoutube版も作ってみた。 Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （obje" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/03/06/011745/" />
@@ -86,22 +88,22 @@
         </time>        
     </p>
 
-    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/03/03/225037">Flickr の URL を画像タグへ変換する（oEmbed） - だるろぐ</a> のYoutube版も作ってみた。Youtube も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、Flickr の写真の場合と少し違うところ&lt;a href=&rdquo;#f1&rdquo; name=&quot;fn1&rdquo; title=&quot;Flickr も動画に対応しているのだけど、type==&rdquo; video&quot;=&rdquo;&rdquo; の場合はやっぱり=&rdquo;&rdquo; url=&rdquo;&rdquo; ではなく=&rdquo;&rdquo; html=&rdquo;&rdquo; を使う&quot;=&quot;&ldquo;&gt;*1</a>。type には、ほかに rich だの link だのがあるっぽい。詳しくは <a href="http://oembed.com/">oEmbed</a> に全部書いてあるので参照のこと。</p>
-<pre><code>```
-</code></pre>
-<p>private static readonly string SERVICE_ENDPOINT =
-@&ldquo;<a href="http://www.youtube.com/oembed%22;">http://www.youtube.com/oembed&quot;;</a>
+    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/03/03/225037">Flickr &#x306E; URL &#x3092;&#x753B;&#x50CF;&#x30BF;&#x30B0;&#x3078;&#x5909;&#x63DB;&#x3059;&#x308B;&#xFF08;oEmbed&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の<a class="keyword" href="http://d.hatena.ne.jp/keyword/Youtube">Youtube</a>版も作ってみた。</p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Youtube">Youtube</a> も oEmbed に対応しているのだけれど、画像ではなく動画なので、リンクを作る場合は url ではなく html （objectタグ）を使うのが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/Flickr">Flickr</a> の写真の場合と少し違うところ<a href="#f1" name="fn1" title="Flickr も動画に対応しているのだけど、type=="video" の場合はやっぱり url ではなく html を使う">*1</a>。type には、ほかに rich だの link だのがあるっぽい。</p><p>詳しくは <a href="http://oembed.com/">oEmbed</a> に全部書いてあるので参照のこと。</p>
+<pre class="code" data-unlink>private static readonly string SERVICE_ENDPOINT =
+@&#34;http://www.youtube.com/oembed&#34;;
 private static readonly string FORMAT_URL =
-@&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;;</p>
-<p>public static string FORMAT_HTML_VIDEO_TAG = @&rdquo;
-&lt;blockquote class='youtube youtube-video'&gt;
+@&#34;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&#34;;
+
+public static string FORMAT_HTML_VIDEO_TAG = @&#34;
+&lt;blockquote class=&#39;youtube youtube-video&#39;&gt;
 &lt;p&gt;{0}&lt;p&gt;
-&lt;p&gt;&lt;small&gt;{1} by &lt;a href='{3}'&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
+&lt;p&gt;&lt;small&gt;{1} by &lt;a href=&#39;{3}&#39;&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
 &lt;/blockquote&gt;
-&ldquo;;
-public static string FORMAT_ERROR = @&quot;&lt;p class='error'&gt;{0}&lt;/p&gt;&rdquo;;</p>
-<p>public static string GetHtml(string url,
-string max_width = &ldquo;500&rdquo;, string max_height = &ldquo;500&rdquo;)
+&#34;;
+public static string FORMAT_ERROR = @&#34;&lt;p class=&#39;error&#39;&gt;{0}&lt;/p&gt;&#34;;
+
+public static string GetHtml(string url,
+string max_width = &#34;500&#34;, string max_height = &#34;500&#34;)
 {
 try
 {
@@ -112,51 +114,50 @@ catch (Exception e)
 {
 return string.Format(FORMAT_ERROR, e.Message);
 }
-}</p>
-<p>public static string GetHtml(
+}
+
+public static string GetHtml(
 string url, int max_width, int max_height)
 {
 try
 {
-if (url.StartsWith(&ldquo;<a href="http://youtu.be/%22">http://youtu.be/&quot;</a>))
+if (url.StartsWith(&#34;http://youtu.be/&#34;))
 url = url.Replace(
-&ldquo;<a href="http://youtu.be/%22,">http://youtu.be/&quot;,</a>
-&ldquo;<a href="http://www.youtube.com/watch?v=%22);">http://www.youtube.com/watch?v=&quot;);</a></p>
-<pre><code>    var format = &quot;json&quot;;
+&#34;http://youtu.be/&#34;,
+&#34;http://www.youtube.com/watch?v=&#34;);
 
-    var address = string.Format(
-        FORMAT_URL, SERVICE_ENDPOINT, url,
-        max_width, max_height, format);
+var format = &#34;json&#34;;
 
-    using (var client = new WebClient())
-    {
-        var response = client.DownloadString(address);
-        var info = DynamicJson.Parse(response);
+var address = string.Format(
+FORMAT_URL, SERVICE_ENDPOINT, url,
+max_width, max_height, format);
 
-        switch (info.type as string)
-        {
-            case &quot;video&quot;:
-                return string.Format(FORMAT_HTML_VIDEO_TAG,
-                    info.html, info.title,
-                    info.author_name, info.author_url);
+using (var client = new WebClient())
+{
+var response = client.DownloadString(address);
+var info = DynamicJson.Parse(response);
 
-            default:
-                throw new Exception(&quot;Unknown media type.&quot;);
-        }
-    }
+switch (info.type as string)
+{
+case &#34;video&#34;:
+return string.Format(FORMAT_HTML_VIDEO_TAG,
+info.html, info.title,
+info.author_name, info.author_url);
+
+default:
+throw new Exception(&#34;Unknown media type.&#34;);
+}
+}
 }
 catch (Exception e)
 {
-    return string.Format(FORMAT_ERROR, e.Message);
+return string.Format(FORMAT_ERROR, e.Message);
 }
-</code></pre>
-<p>}</p>
-<pre><code>YouTube の短縮URLはドメイン部分を置換しただけみたい。実装も楽だし、開発者も楽だし、多少リンクが長くなる以外はなかなかイケていると思う。
-&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Flickr も動画に対応しているのだけど、type==&quot;video&quot; の場合はやっぱり url ではなく html を使う&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}</pre>
+<p>YouTube の短縮URLはドメイン部分を置換しただけみたい。実装も楽だし、開発者も楽だし、多少リンクが長くなる以外はなかなかイケていると思う。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">Flickr も動画に対応しているのだけど、type=="video" の場合はやっぱり url ではなく html を使う</span></p>
+</div>
 
     <footer>
         
@@ -170,7 +171,7 @@ catch (Exception e)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/06/011745.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/03/06</time> 
             </p>
         
     </footer>
@@ -222,7 +223,16 @@ catch (Exception e)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

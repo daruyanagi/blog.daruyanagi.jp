@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ のんびりやっ" />
+    <meta name="og:description"   property="og:description" content="WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD; &#x2015;&#x2015; &#x6E96;&#x5099;&#x7DE8; - &#x3060;&#x308B;&#x308D;&#x3050; WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;2&#xFF09; &#x2015;&#x2015; WebSecurity&#x3063;&#x3066;&#x3069;&#x3046;&#x3084;&#x3063;&#x3066;&#x4F7F;&#x3046;&#x3093;&#x3060;&#xFF1F; - &#x3060;&#x308B;&#x308D;&#x3050; のんびりやっていこう。今回はユーザー登録するで。 @{ var name = &quot;&quot;; var password = &quot;&quot;; var confirmPassword = &quot;&quot;; if (IsPost) { name = Request.Form[&quot;name&quot;]; password = Request.Form[&quot;password&quot;]; confirmPassword = Request.Form[&quot;confirmPassword&quot;]; // ここでバリデーシ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/25/003421/" />
@@ -86,300 +88,247 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120824233928.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120824233928.png" alt="f:id:daruyanagi:20120824233928p:plain" title="f:id:daruyanagi:20120824233928p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
-<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a></li>
-<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ</a></li>
-</ul>のんびりやっていこう。今回はユーザー登録するで。
-```cs
-@{
-    var name = "";
-    var password = "";
-    var confirmPassword = "";
-<pre><code>if (IsPost)
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD; &#x2015;&#x2015; &#x6E96;&#x5099;&#x7DE8; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;2&#xFF09; &#x2015;&#x2015; WebSecurity&#x3063;&#x3066;&#x3069;&#x3046;&#x3084;&#x3063;&#x3066;&#x4F7F;&#x3046;&#x3093;&#x3060;&#xFF1F; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+</ul><p>のんびりやっていこう。今回はユーザー登録するで。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var name = <span class="synConstant">&quot;&quot;</span>;
+var password = <span class="synConstant">&quot;&quot;</span>;
+var confirmPassword = <span class="synConstant">&quot;&quot;</span>;
+<p><span class="synStatement">if</span> (IsPost)
 {
-    name = Request.Form[&quot;name&quot;];
-    password = Request.Form[&quot;password&quot;];
-    confirmPassword = Request.Form[&quot;confirmPassword&quot;];
-
-    // ここでバリデーション（値が妥当なものか検証）する
-
-    if (Validation.IsValid())
-    {
-        if (WebSecurity.GetUserId(name) &gt; -1)
-        {
-            ModelState.AddFormError(&quot;Username alredy exists&quot;);
-        }
-        else
-        {
-            try
-            {
-                WebSecurity.CreateUserAndAccount(
-                    name, password, new { Name = name });
-                WebSecurity.Login(name, password);
-                Response.Redirect(&quot;~/&quot;);
-            }
-            catch (Exception e)
-            {
-                ModelState.AddFormError(e.Message);
-            }
-        }
-    }
+name = Request.Form[<span class="synConstant">&quot;name&quot;</span>];
+password = Request.Form[<span class="synConstant">&quot;password&quot;</span>];
+confirmPassword = Request.Form[<span class="synConstant">&quot;confirmPassword&quot;</span>];</p>
+<p><span class="synComment">// ここでバリデーション（値が妥当なものか検証）する</span></p>
+<p><span class="synStatement">if</span> (Validation.IsValid())
+{
+<span class="synStatement">if</span> (WebSecurity.GetUserId(name) &gt; -<span class="synConstant">1</span>)
+{
+ModelState.AddFormError(<span class="synConstant">&quot;Username alredy exists&quot;</span>);
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-まずはバリデーションを関連の記述をとっぱらったサーバー側のコード<a" data-lang="まずはバリデーションを関連の記述をとっぱらったサーバー側のコード<a">
+<span class="synStatement">else</span>
+{
+<span class="synStatement">try</span>
+{
+WebSecurity.CreateUserAndAccount(
+name, password, <span class="synStatement">new</span> { Name = name });
+WebSecurity.Login(name, password);
+Response.Redirect(<span class="synConstant">&quot;~/&quot;</span>);
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+ModelState.AddFormError(e.Message);
+}
+}
+}
+}
+}
+</pre><p>まずはバリデーションを関連の記述をとっぱらったサーバー側のコード<a href="#f-8a0f6f9f" name="fn-8a0f6f9f" title="コードビハインドっていうの？　知らんけど">*1</a>。やっていることは簡単で、</p></p>
+<ol>
+<li>フォームから値を受け取る</li>
+<li>値をバリデーション</li>
+<li>ユーザーネームにダブりがないか確認</li>
+<li>ユーザープロファイルとメンバーシップアカウントを作成</li>
+<li>ログインしてトップページへリダイレクト</li>
+<li>エラーが発生したら適宜 ModelState に登録しておく</li>
+</ol><p>みたいな感じ。</p>
+<div class="section">
+<h3>WebSecurity.CreateUserAndAccount()</h3>
+<p>WebSecurity では、ユーザーアカウントをユーザープロファイル（開発者が管理）とメンバーシップアカウント（システムが管理）にわけて管理している（<a href="https://blog.daruyanagi.jp/entry/2012/08/24/105121">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;2&#xFF09; &#x2015;&#x2015; WebSecurity&#x3063;&#x3066;&#x3069;&#x3046;&#x3084;&#x3063;&#x3066;&#x4F7F;&#x3046;&#x3093;&#x3060;&#xFF1F; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）。両者は同じ UserId で紐付けられる仕組みだ。 </p><p>WebSecurity.CreateUserAndAccount() はそのユーザープロファイルとメンバーシップアカウントの作成を同時に行うメソッド。ユーザープロファイルテーブルに挿入するデータは、第三引数で匿名オブジェクトを与えればよい。今回は名前だけを登録しておいた。</p><p>ちなみに WebSecurity.Create() だけを使った場合、さきにユーザープロファイルテーブルへ UserId とそのほかのデータを挿入しておかなければならない。“Starter Site”テンプレートではそれを SQL で行なっている。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">if</span> (Validation.IsValid())
+{
+var db = Database.Open(App.Database);
+<p>var user = db.QuerySingle(
+<span class="synConstant">&quot;SELECT Name FROM Users WHERE LOWER(Name) = LOWER(@0)&quot;</span>,
+name);</p>
+<p><span class="synStatement">if</span> (user == <span class="synConstant">null</span>)
+{
+db.Execute(
+<span class="synConstant">&quot;INSERT INTO Users (Name) VALUES (@0)&quot;</span>, name);
+WebSecurity.CreateAccount(name, password);
+</pre><p>げろげろうげー。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">if</span> (Validation.IsValid())
+{
+<span class="synStatement">if</span> (WebSecurity.GetUserId(name) &gt; -<span class="synConstant">1</span>)
+{
+ModelState.AddFormError(<span class="synConstant">&quot;Username alredy exists&quot;</span>);
+}
+<span class="synStatement">else</span>
+{
+<span class="synStatement">try</span>
+{
+WebSecurity.CreateUserAndAccount(
+name, password, <span class="synStatement">new</span> { Name = name });
+</pre><p>絶対こっちにするやろ。せっかく WebSecurity Helper を使うんだから、大いに頼ればよろしい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120825001002.png" alt="f:id:daruyanagi:20120825001002p:plain" title="f:id:daruyanagi:20120825001002p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+</div>
+<div class="section">
+<h3>ModelState</h3>
+<p>ModelState は WebPage に属しており、フォームのエラーを管理するものだとでも理解しておく。 ModelState.AddFormError() でフォーム関連のエラーが登録できるんだな。</p><p>バリデーション関連のコードはこんな感じ（“Starter Site”からコードをパクってきた）。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>Validation.RequireField(<span class="synConstant">&quot;name&quot;</span>,
+<span class="synConstant">&quot;電子メール アドレスを入力してください。&quot;</span>);
+Validation.RequireField(<span class="synConstant">&quot;password&quot;</span>,
+<span class="synConstant">&quot;パスワードを空白にすることはできません。&quot;</span>);
+Validation.Add(<span class="synConstant">&quot;confirmPassword&quot;</span>,　Validator.EqualsTo(
+<span class="synConstant">&quot;password&quot;</span>, <span class="synConstant">&quot;パスワードと確認のパスワードが一致しません。&quot;</span>)
+);
+Validation.Add(<span class="synConstant">&quot;password&quot;</span>,
+Validator.StringLength(
+<span class="synStatement">        maxLength:</span> Int32.MaxValue,
+<span class="synStatement">        minLength:</span> <span class="synConstant">6</span>,
+<span class="synStatement">        errorMessage:</span> <span class="synConstant">&quot;パスワードは 6 文字以上にする必要があります&quot;</span>
+)
+);
+</pre><p>読むだけで何をしているのかわかるのがいい。表示部分はこのようなコードになっていた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;section id=<span class="synConstant">&quot;register&quot;</span>&gt;
+&lt;form method=<span class="synConstant">&quot;post&quot;</span>&gt;
+@Html.ValidationSummary(<span class="synConstant">&quot;Log in was unsuccessful.&quot;</span> +
+<span class="synConstant">&quot;Please correct the errors and try again.&quot;</span>,
+<span class="synStatement">            excludeFieldErrors:</span> <span class="synConstant">true</span>, htmlAttributes: <span class="synConstant">null</span>)
+<p>&lt;fieldset&gt;
+&lt;legend&gt;Register Your Account&lt;/legend&gt;
 &lt;ol&gt;
-&lt;li&gt;フォームから値を受け取る&lt;/li&gt;
-&lt;li&gt;値をバリデーション&lt;/li&gt;
-&lt;li&gt;ユーザーネームにダブりがないか確認&lt;/li&gt;
-&lt;li&gt;ユーザープロファイルとメンバーシップアカウントを作成&lt;/li&gt;
-&lt;li&gt;ログインしてトップページへリダイレクト&lt;/li&gt;
-&lt;li&gt;エラーが発生したら適宜 ModelState に登録しておく&lt;/li&gt;
-&lt;/ol&gt;みたいな感じ。
+@RenderFormInputWithValidation(<span class="synStatement">this</span>, <span class="synConstant">&quot;name&quot;</span>)
+&lt;li <span class="synType">class</span>=<span class="synConstant">&quot;name&quot;</span>&gt;
+&lt;label <span class="synStatement">for</span>=<span class="synConstant">&quot;name&quot;</span> @<span class="synStatement">if</span> (!ModelState.IsValidField(<span class="synConstant">&quot;name&quot;</span>)) {&lt;text&gt;<span class="synType">class</span>=<span class="synConstant">&quot;error-label&quot;</span>&lt;/text&gt;}&gt;Name&lt;/label&gt;
+&lt;input type=<span class="synConstant">&quot;text&quot;</span>
+id=<span class="synConstant">&quot;name&quot;</span> name=<span class="synConstant">&quot;name&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;@name&quot;</span>
+@Validation.For(<span class="synConstant">&quot;name&quot;</span>) /&gt;
+@Html.ValidationMessage(<span class="synConstant">&quot;name&quot;</span>)
+&lt;/li&gt;
+&lt;li <span class="synType">class</span>=<span class="synConstant">&quot;password&quot;</span>&gt;
+&lt;label <span class="synStatement">for</span>=<span class="synConstant">&quot;password&quot;</span> @<span class="synStatement">if</span> (!ModelState.IsValidField(<span class="synConstant">&quot;password&quot;</span>)) {&lt;text&gt;<span class="synType">class</span>=<span class="synConstant">&quot;error-label&quot;</span>&lt;/text&gt;}&gt;Password&lt;/label&gt;
+&lt;input type=<span class="synConstant">&quot;password&quot;</span>
+id=<span class="synConstant">&quot;password&quot;</span> name=<span class="synConstant">&quot;password&quot;</span>
+@Validation.For(<span class="synConstant">&quot;password&quot;</span>)/&gt;
+@Html.ValidationMessage(<span class="synConstant">&quot;password&quot;</span>)
+&lt;/li&gt;
+&lt;li <span class="synType">class</span>=<span class="synConstant">&quot;confirm-password&quot;</span>&gt;
+&lt;label <span class="synStatement">for</span>=<span class="synConstant">&quot;confirm-password&quot;</span> @<span class="synStatement">if</span> (!ModelState.IsValidField(<span class="synConstant">&quot;confirmPassword&quot;</span>)) {&lt;text&gt;<span class="synType">class</span>=<span class="synConstant">&quot;error-label&quot;</span>&lt;/text&gt;}&gt;confirmPassword&lt;/label&gt;
+&lt;input type=<span class="synConstant">&quot;password&quot;</span>
+id=<span class="synConstant">&quot;confirmPassword&quot;</span> name=<span class="synConstant">&quot;confirmPassword&quot;</span>
+@Validation.For(<span class="synConstant">&quot;confirmPassword&quot;</span>)/&gt;</p>
+<p>@Html.ValidationMessage(<span class="synConstant">&quot;confirmPassword&quot;</span>)
+&lt;/li&gt;
+&lt;/ol&gt;
+&lt;input type=<span class="synConstant">&quot;submit&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;Register&quot;</span> /&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;/section&gt;
+</pre><p>ぐちゃぐちゃしてわかりにくいが、</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@Html.ValidationSummary(<span class="synConstant">&quot;Log in was unsuccessful.&quot;</span> +
+<span class="synConstant">&quot;Please correct the errors and try again.&quot;</span>,
+<span class="synStatement">    excludeFieldErrors:</span> <span class="synConstant">true</span>, htmlAttributes: <span class="synConstant">null</span>)
+</pre><p>でページ全体についてのバリデーション結果を表示する。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120825002435.png" alt="f:id:daruyanagi:20120825002435p:plain" title="f:id:daruyanagi:20120825002435p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>フォームの各フィールドは、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;label <span class="synStatement">for</span>=<span class="synConstant">&quot;name&quot;</span> @<span class="synStatement">if</span> (!ModelState.IsValidField(<span class="synConstant">&quot;name&quot;</span>)) {&lt;text&gt;<span class="synType">class</span>=<span class="synConstant">&quot;error-label&quot;</span>&lt;/text&gt;}&gt;Name&lt;/label&gt;
+&lt;input type=<span class="synConstant">&quot;text&quot;</span> id=<span class="synConstant">&quot;name&quot;</span> name=<span class="synConstant">&quot;name&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;@name&quot;</span> @Validation.For(<span class="synConstant">&quot;name&quot;</span>) /&gt;
+@Html.ValidationMessage(<span class="synConstant">&quot;name&quot;</span>)
+</pre><p>このコードでワンセットみたい。 Validation.For() は JavaScript によるバリデーションに必要な data- 属性を出力する（今回は使ってない）。 Html.ValidationMessage() はバリデーションエラーのメッセージがあれば表示する。このメッセージはさっき ModelState に登録したエラーから取得するみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120825002611.png" alt="f:id:daruyanagi:20120825002611p:plain" title="f:id:daruyanagi:20120825002611p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>後者のコードは使いまわせそうないわばイディオムなので、ヘルパーか拡張メソッドにしておくとよさそうだ。今回は以下のようにしてみたよ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>~/App_Code/WebPageExtension.cs
 
-&lt;div class=&quot;section&quot;&gt;
-    ### WebSecurity.CreateUserAndAccount()
-    WebSecurity では、ユーザーアカウントをユーザープロファイル（開発者が管理）とメンバーシップアカウント（システムが管理）にわけて管理している（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/24/105121&quot;&gt;WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？ - だるろぐ&lt;/a&gt;）。両者は同じ UserId で紐付けられる仕組みだ。 WebSecurity.CreateUserAndAccount() はそのユーザープロファイルとメンバーシップアカウントの作成を同時に行うメソッド。ユーザープロファイルテーブルに挿入するデータは、第三引数で匿名オブジェクトを与えればよい。今回は名前だけを登録しておいた。ちなみに WebSecurity.Create() だけを使った場合、さきにユーザープロファイルテーブルへ UserId とそのほかのデータを挿入しておかなければならない。“Starter Site”テンプレートではそれを SQL で行なっている。
-```cs
-if (Validation.IsValid())
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Web;
+<span class="synStatement">using</span> System.Web.WebPages;
+<span class="synStatement">using</span> System.Web.WebPages.Html;
+
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> WebPageExtension
 {
-    var db = Database.Open(App.Database);
-
-    var user = db.QuerySingle(
-        &quot;SELECT Name FROM Users WHERE LOWER(Name) = LOWER(@0)&quot;,
-        name);
-
-    if (user == null)
-    {
-        db.Execute(
-            &quot;INSERT INTO Users (Name) VALUES (@0)&quot;, name);
-        WebSecurity.CreateAccount(name, password);
-
-```げろげろうげー。
-```cs
-if (Validation.IsValid())
+<span class="synType">private</span> <span class="synType">enum</span> InputType
 {
-    if (WebSecurity.GetUserId(name) &gt; -1)
-    {
-        ModelState.AddFormError(&quot;Username alredy exists&quot;);
-    }
-    else
-    {
-        try
-        {
-            WebSecurity.CreateUserAndAccount(
-                name, password, new { Name = name });
-
-```絶対こっちにするやろ。せっかく WebSecurity Helper を使うんだから、大いに頼ればよろしい。
-
-<figure>
-    <img src="/images/20120825001002.png"/> 
-</figure>
-
-
-br/&gt;
-
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ModelState
-    ModelState は WebPage に属しており、フォームのエラーを管理するものだとでも理解しておく。 ModelState.AddFormError() でフォーム関連のエラーが登録できるんだな。バリデーション関連のコードはこんな感じ（“Starter Site”からコードをパクってきた）。
-```cs
-Validation.RequireField(&quot;name&quot;, 
-    &quot;電子メール アドレスを入力してください。&quot;);
-Validation.RequireField(&quot;password&quot;, 
-    &quot;パスワードを空白にすることはできません。&quot;);
-Validation.Add(&quot;confirmPassword&quot;,　Validator.EqualsTo(
-    &quot;password&quot;, &quot;パスワードと確認のパスワードが一致しません。&quot;)
-);
-Validation.Add(&quot;password&quot;,
-    Validator.StringLength(
-        maxLength: Int32.MaxValue,
-        minLength: 6,
-        errorMessage: &quot;パスワードは 6 文字以上にする必要があります&quot;
-    )
-);
-
-```読むだけで何をしているのかわかるのがいい。表示部分はこのようなコードになっていた。
-```cs
-&amp;lt;section id=&quot;register&quot;&gt;
-    &amp;lt;form method=&quot;post&quot;&gt;
-        @Html.ValidationSummary(&quot;Log in was unsuccessful.&quot; + 
-            &quot;Please correct the errors and try again.&quot;,
-            excludeFieldErrors: true, htmlAttributes: null)
-
-        &amp;lt;fieldset&gt;
-            &amp;lt;legend&gt;Register Your Account&amp;lt;/legend&gt;
-            &amp;lt;ol&gt;
-                @RenderFormInputWithValidation(this, &quot;name&quot;)
-                &amp;lt;li class=&quot;name&quot;&gt;
-                    &amp;lt;label for=&quot;name&quot; @if (!ModelState.IsValidField(&quot;name&quot;)) {&amp;lt;text&gt;class=&quot;error-label&quot;&amp;lt;/text&gt;}&gt;Name&amp;lt;/label&gt; 
-                    &amp;lt;input type=&quot;text&quot;
-                        id=&quot;name&quot; name=&quot;name&quot; value=&quot;@name&quot;
-                        @Validation.For(&quot;name&quot;) /&gt;
-                    @Html.ValidationMessage(&quot;name&quot;)
-                &amp;lt;/li&gt;
-                &amp;lt;li class=&quot;password&quot;&gt;
-                    &amp;lt;label for=&quot;password&quot; @if (!ModelState.IsValidField(&quot;password&quot;)) {&amp;lt;text&gt;class=&quot;error-label&quot;&amp;lt;/text&gt;}&gt;Password&amp;lt;/label&gt; 
-                    &amp;lt;input type=&quot;password&quot;
-                        id=&quot;password&quot; name=&quot;password&quot;
-                        @Validation.For(&quot;password&quot;)/&gt;
-                    @Html.ValidationMessage(&quot;password&quot;)
-                &amp;lt;/li&gt;
-                &amp;lt;li class=&quot;confirm-password&quot;&gt;
-                    &amp;lt;label for=&quot;confirm-password&quot; @if (!ModelState.IsValidField(&quot;confirmPassword&quot;)) {&amp;lt;text&gt;class=&quot;error-label&quot;&amp;lt;/text&gt;}&gt;confirmPassword&amp;lt;/label&gt; 
-                    &amp;lt;input type=&quot;password&quot;
-                        id=&quot;confirmPassword&quot; name=&quot;confirmPassword&quot;
-                        @Validation.For(&quot;confirmPassword&quot;)/&gt;
-                    
-                    @Html.ValidationMessage(&quot;confirmPassword&quot;)
-                &amp;lt;/li&gt;
-            &amp;lt;/ol&gt;
-            &amp;lt;input type=&quot;submit&quot; value=&quot;Register&quot; /&gt;
-        &amp;lt;/fieldset&gt;
-    &amp;lt;/form&gt;
-&amp;lt;/section&gt;
-
-```ぐちゃぐちゃしてわかりにくいが、
-```cs
-@Html.ValidationSummary(&quot;Log in was unsuccessful.&quot; + 
-    &quot;Please correct the errors and try again.&quot;,
-    excludeFieldErrors: true, htmlAttributes: null)
-
-```でページ全体についてのバリデーション結果を表示する。
-
-<figure>
-    <img src="/images/20120825002435.png"/> 
-</figure>
-
-
-ォームの各フィールドは、
-```cs
-&amp;lt;label for=&quot;name&quot; @if (!ModelState.IsValidField(&quot;name&quot;)) {&amp;lt;text&gt;class=&quot;error-label&quot;&amp;lt;/text&gt;}&gt;Name&amp;lt;/label&gt; 
-&amp;lt;input type=&quot;text&quot; id=&quot;name&quot; name=&quot;name&quot; value=&quot;@name&quot; @Validation.For(&quot;name&quot;) /&gt;
-@Html.ValidationMessage(&quot;name&quot;)
-
-```このコードでワンセットみたい。 Validation.For() は JavaScript によるバリデーションに必要な data- 属性を出力する（今回は使ってない）。 Html.ValidationMessage() はバリデーションエラーのメッセージがあれば表示する。このメッセージはさっき ModelState に登録したエラーから取得するみたい。
-
-<figure>
-    <img src="/images/20120825002611.png"/> 
-</figure>
-
-
-者のコードは使いまわせそうないわばイディオムなので、ヘルパーか拡張メソッドにしておくとよさそうだ。今回は以下のようにしてみたよ。
-```cs
-~/App_Code/WebPageExtension.cs
-
-using System.Linq;
-using System.Web;
-using System.Web.WebPages;
-using System.Web.WebPages.Html;
-
-public static class WebPageExtension
-{
-    private enum InputType
-    {
-        Text, Password, Checkbox, Textarea,
-    }
-
-    private static HtmlString RenderInputWithValidation(
-        this WebPage target, InputType input_type,
-        string name, string label = &quot;&quot;, object additional = null)
-    {
-        const string HTML_TAG = @&quot;
-            &lt;div class=&quot;&quot; validation-input=&quot;&quot; {0}=&quot;&quot; {1}&quot;&quot;=&quot;&quot;&gt;&lt;/div&gt;
-                &lt;label for=&quot;&quot; {0}&quot;&quot;=&quot;&quot;&gt;{2}&lt;/label&gt;
-                &lt;input type=&quot;&quot; {3}&quot;&quot;=&quot;&quot; id=&quot;&quot; {0}&quot;&quot;=&quot;&quot; name=&quot;&quot; {0}&quot;&quot;=&quot;&quot; {4}=&quot;&quot; {5}=&quot;&quot;/&gt;
-                {6}
-            &quot;;
-            
-        var attrs = (additional == null)
-            ? string.Empty
-            : string.Join(&quot; &quot;, additional
-                .GetType()
-                .GetProperties()
-                .Select((p) =&gt; string
-                    .Format(&quot;{0}=\&quot;{1}\&quot;&quot;,
-                        p.Name.ToLower(),
-                        p.GetValue(additional)
-                    )
-                )
-            );
-
-        return new HtmlString(
-            string.Format(
-                HTML_TAG, name,
-                target.ModelState.IsValidField(name)
-                    ? string.Empty
-                    : &quot;validation-failed&quot;,
-                label.IsEmpty() ? name : label,
-                input_type.ToString().ToLower(),
-                attrs,
-                target.Validation.For(name),
-                target.Html.ValidationMessage(name)
-            )
-        );
-    }
-
-    public static HtmlString RenderTextWithValidation(
-        this WebPage target, string name,
-        string label = null, object additional = null)
-    {
-        return RenderInputWithValidation(
-            target, InputType.Text, name, label, additional);
-    }
-
-    public static HtmlString RenderPasswordWithValidation(
-        this WebPage target, string name,
-        string label = null, object additional = null)
-    {
-        return RenderInputWithValidation(
-            target, InputType.Password, name, label, additional);
-    }
-
-    public static HtmlString RenderCheckBoxWithValidation(
-        this WebPage target, string name,
-        string label = null, object additional = null)
-    {
-        return RenderInputWithValidation(
-            target, InputType.Checkbox, name, label, additional);
-    }
+Text, Password, Checkbox, Textarea,
 }
 
-```ModelState が WebPage に属する関係で、 WebPage クラスの拡張メソッドとして定義してある。ほんとは HTML Helper にして、 @Html.TextWithValidation() などと呼べる方がカッコいいな。今度もう少しこのあたりはブラッシュアップしてみたい。んで、これを使って書きなおした表示部分はこうなる。
-```cs
-&amp;lt;section id=&quot;register&quot;&gt;
-    &amp;lt;form method=&quot;post&quot;&gt;
-        @Html.ValidationSummary(
-            &quot;Log in was unsuccessful.&quot; + 
-            &quot;Please correct the errors and try again.&quot;,
-            false, null)
+<span class="synType">private</span> <span class="synType">static</span> HtmlString RenderInputWithValidation(
+<span class="synStatement">this</span> WebPage target, InputType input_type,
+<span class="synType">string</span> name, <span class="synType">string</span> label = <span class="synConstant">&quot;&quot;</span>, <span class="synType">object</span> additional = <span class="synConstant">null</span>)
+{
+<span class="synType">const</span> <span class="synType">string</span> HTML_TAG = <span class="synSpecial">@</span><span class="synConstant">&quot;</span>
+<span class="synConstant">            &lt;div class=&quot;&quot;validation-input {0} {1}&quot;&quot;&gt;</span>
+<span class="synConstant">                &lt;label for=&quot;&quot;{0}&quot;&quot;&gt;{2}&lt;/label&gt;</span>
+<span class="synConstant">                &lt;input type=&quot;&quot;{3}&quot;&quot; id=&quot;&quot;{0}&quot;&quot; name=&quot;&quot;{0}&quot;&quot; {4} {5} /&gt;</span>
+<span class="synConstant">                {6}</span>
+<span class="synConstant">            &lt;/div&gt;&quot;</span>;
 
-        &amp;lt;fieldset&gt;
-            &amp;lt;legend&gt;Register Your Account&amp;lt;/legend&gt;
-            @this.RenderTextWithValidation(
-                &quot;name&quot;, &quot;Name&quot;, new { Value = name} )
-            @this.RenderPasswordWithValidation(
-                &quot;password&quot;, &quot;Password&quot;)
-            @this.RenderPasswordWithValidation(
-                &quot;confirmPassword&quot;, &quot;Confirm Password&quot;)
-            &amp;lt;input type=&quot;submit&quot; value=&quot;Register&quot; /&gt;
-        &amp;lt;/fieldset&gt;
-    &amp;lt;/form&gt;
-&amp;lt;/section&gt;
+var attrs = (additional == <span class="synConstant">null</span>)
+? <span class="synType">string</span>.Empty
+: <span class="synType">string</span>.Join(<span class="synConstant">&quot; &quot;</span>, additional
+.GetType()
+.GetProperties()
+.Select((p) =&gt; <span class="synType">string</span>
+.Format(<span class="synConstant">&quot;{0}=</span><span class="synSpecial">\&quot;</span><span class="synConstant">{1}</span><span class="synSpecial">\&quot;</span><span class="synConstant">&quot;</span>,
+p.Name.ToLower(),
+p.GetValue(additional)
+)
+)
+);
 
-```だいぶシンプルになって予はだいぶ満足したぞよ。ほかのヘルパーの真似して new { Value = name} で追加の属性を追加できるようにしてみたのがちょっとだけ自慢だ。リフレクションはちょっと苦手なので、今日は個人的にその勉強などしてみた。次回はログインとログアウトだけど、これは一瞬で終わりそう……。
+<span class="synStatement">return</span> <span class="synStatement">new</span> HtmlString(
+<span class="synType">string</span>.Format(
+HTML_TAG, name,
+target.ModelState.IsValidField(name)
+? <span class="synType">string</span>.Empty
+: <span class="synConstant">&quot;validation-failed&quot;</span>,
+label.IsEmpty() ? name : label,
+input_type.ToString().ToLower(),
+attrs,
+target.Validation.For(name),
+target.Html.ValidationMessage(name)
+)
+);
+}
 
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-8a0f6f9f&quot; name=&quot;f-8a0f6f9f&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;コードビハインドっていうの？　知らんけど&lt;/span&gt;
-&lt;/div&gt;
+<span class="synType">public</span> <span class="synType">static</span> HtmlString RenderTextWithValidation(
+<span class="synStatement">this</span> WebPage target, <span class="synType">string</span> name,
+<span class="synType">string</span> label = <span class="synConstant">null</span>, <span class="synType">object</span> additional = <span class="synConstant">null</span>)
+{
+<span class="synStatement">return</span> RenderInputWithValidation(
+target, InputType.Text, name, label, additional);
+}
 
-</code></pre>
+<span class="synType">public</span> <span class="synType">static</span> HtmlString RenderPasswordWithValidation(
+<span class="synStatement">this</span> WebPage target, <span class="synType">string</span> name,
+<span class="synType">string</span> label = <span class="synConstant">null</span>, <span class="synType">object</span> additional = <span class="synConstant">null</span>)
+{
+<span class="synStatement">return</span> RenderInputWithValidation(
+target, InputType.Password, name, label, additional);
+}
+
+<span class="synType">public</span> <span class="synType">static</span> HtmlString RenderCheckBoxWithValidation(
+<span class="synStatement">this</span> WebPage target, <span class="synType">string</span> name,
+<span class="synType">string</span> label = <span class="synConstant">null</span>, <span class="synType">object</span> additional = <span class="synConstant">null</span>)
+{
+<span class="synStatement">return</span> RenderInputWithValidation(
+target, InputType.Checkbox, name, label, additional);
+}
+}
+</pre><p>ModelState が WebPage に属する関係で、 WebPage クラスの拡張メソッドとして定義してある。ほんとは HTML Helper にして、 @Html.TextWithValidation() などと呼べる方がカッコいいな。今度もう少しこのあたりはブラッシュアップしてみたい。</p><p>んで、これを使って書きなおした表示部分はこうなる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;section id=<span class="synConstant">&quot;register&quot;</span>&gt;
+&lt;form method=<span class="synConstant">&quot;post&quot;</span>&gt;
+@Html.ValidationSummary(
+<span class="synConstant">&quot;Log in was unsuccessful.&quot;</span> +
+<span class="synConstant">&quot;Please correct the errors and try again.&quot;</span>,
+<span class="synConstant">false</span>, <span class="synConstant">null</span>)
+
+&lt;fieldset&gt;
+&lt;legend&gt;Register Your Account&lt;/legend&gt;
+@<span class="synStatement">this</span>.RenderTextWithValidation(
+<span class="synConstant">&quot;name&quot;</span>, <span class="synConstant">&quot;Name&quot;</span>, <span class="synStatement">new</span> { Value = name} )
+@<span class="synStatement">this</span>.RenderPasswordWithValidation(
+<span class="synConstant">&quot;password&quot;</span>, <span class="synConstant">&quot;Password&quot;</span>)
+@<span class="synStatement">this</span>.RenderPasswordWithValidation(
+<span class="synConstant">&quot;confirmPassword&quot;</span>, <span class="synConstant">&quot;Confirm Password&quot;</span>)
+&lt;input type=<span class="synConstant">&quot;submit&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;Register&quot;</span> /&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;/section&gt;
+</pre><p>だいぶシンプルになって予はだいぶ満足したぞよ。ほかのヘルパーの真似して new { Value = name} で追加の属性を追加できるようにしてみたのがちょっとだけ自慢だ。リフレクションはちょっと苦手なので、今日は個人的にその勉強などしてみた。</p><p>次回はログインとログアウトだけど、これは一瞬で終わりそう……。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-8a0f6f9f" name="f-8a0f6f9f" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">コードビハインドっていうの？　知らんけど</span></p>
+</div>
 
     <footer>
         
@@ -393,7 +342,7 @@ public static class WebPageExtension
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/25/003421.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/25</time> 
             </p>
         
     </footer>
@@ -445,7 +394,16 @@ public static class WebPageExtension
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

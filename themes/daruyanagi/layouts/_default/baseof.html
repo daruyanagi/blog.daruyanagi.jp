@@ -12,13 +12,17 @@
     {{ else }}
     <meta name="og:type"          property="og:type" content="article" />
     {{ end }}
+
     {{ if .Params.eyecatch }}
     {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
+    {{ if ne $resource nil }}
     {{ $thumbnail :=  $resource.Fit "640x480" }}
     <meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}"            content="{{ $thumbnail.Permalink }}"            alt="">
+    {{ end }}
     {{ else }}
     <meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}"  content="{{ .Site.Params.og_image | absURL }}"  alt="">
     {{ end }}
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="{{ .Permalink }}" />
@@ -66,7 +70,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        // pres[i].classList.add("linenums");
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

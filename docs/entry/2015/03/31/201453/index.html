@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="エラー 0x80070520 が発生して Windows 10 Technical Preview Build 10049 へアップデートできない" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="bl_impressive（開発ブランチの名前らしい）という Windows Update パッケージのインストールに失敗する現象に遭遇。 ### 解決策その一 ーザーが Microsoft アカウ" />
+    <meta name="og:description"   property="og:description" content="fbl_impressive（開発ブランチの名前らしい）という Windows Update パッケージのインストールに失敗する現象に遭遇。 解決策その一 ユーザーが Microsoft アカ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2015/03/31/201453/20150331200528_hu05cffa55c40800f5a79e67c720734336_866758_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2015/03/31/201453/20150331200528_hu05cffa55c40800f5a79e67c720734336_866758_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/03/31/201453/" />
@@ -86,33 +92,22 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150331200528.png"/> 
-</figure>
-
-<p>bl_impressive（開発ブランチの名前らしい）という Windows Update パッケージのインストールに失敗する現象に遭遇。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150331200528.png" alt="f:id:daruyanagi:20150331200528p:plain" title="f:id:daruyanagi:20150331200528p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>fbl_impressive（開発ブランチの名前らしい）という Windows Update パッケージのインストールに失敗する現象に遭遇。</p>
 <div class="section">
-    ### 解決策その一
-<figure>
-    <img src="/images/20150331201018.png"/> 
-</figure>
-
-<p>ーザーが Microsoft アカウントと紐づいている場合、一度ローカルアカウントに切り替えて、再度 Windows Update を実行する。自分の環境ではこれでうまくいった。</p>
+<h3>解決策その一</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150331201018.png" alt="f:id:daruyanagi:20150331201018p:plain" title="f:id:daruyanagi:20150331201018p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ユーザーが Microsoft アカウントと紐づいている場合、一度ローカルアカウントに切り替えて、再度 Windows Update を実行する。</p><p>自分の環境ではこれでうまくいった。</p>
 </div>
 <div class="section">
-    ### 解決策その二
-    cmd.exe を管理者権限で起動し、以下のコマンドを入力。
-```
-Net stop wuauserv
+<h3>解決策その二</h3>
+<p>cmd.exe を管理者権限で起動し、以下のコマンドを入力。</p>
+<pre class="code" data-lang="" data-unlink>Net stop wuauserv
 cd %systemroot%
 Ren SoftwareDistribution SoftwareDistribution.old
-Net start wuauserv
-```要するに Windows Update サービスを一度止め、破損した SoftwareDistribution フォルダ（Windows Update でダウンロードしたファイル群が格納される）を削除（リネーム）し、もう一度 Windows Update サービスを実行する。今回はうまくいかなかったけれど、これで直るケースもありそうなので覚えておいた方がいいかも。
+Net start wuauserv</pre><p>要するに Windows Update サービスを一度止め、破損した SoftwareDistribution フォルダ（Windows Update でダウンロードしたファイル群が格納される）を削除（リネーム）し、もう一度 Windows Update サービスを実行する。</p><p>今回はうまくいかなかったけれど、これで直るケースもありそうなので覚えておいた方がいいかも。</p>
 <ul>
 <li><a href="https://social.technet.microsoft.com/Forums/en-US/726ad1c3-721b-4e86-8682-2835bfb0d784/update-error-code-0x80070520-fblimpressive-10041-professional?forum=WinPreview2014Setup">Update Error Code: 0x80070520 fbl_impressive 10041 Professional</a></li>
 </ul>
 </div>
-
 
     <footer>
         
@@ -126,7 +121,7 @@ Net start wuauserv
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/03/31/201453.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/03/31</time> 
             </p>
         
     </footer>
@@ -178,7 +173,16 @@ Net start wuauserv
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

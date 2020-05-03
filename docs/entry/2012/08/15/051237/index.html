@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/15/051237/" />
@@ -86,72 +88,57 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="https://blog.daruyanagi.jp/entry/2012/08/07/054832">
+<p>今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/08/07/054832">WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ</a></cite></p>
 </blockquote>
-<pre><code>    今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。
-
-    WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ
-</code></pre>
-<p>というわけで、今回はテーマ機能を（試しに）作ってみた。</p>
-<figure>
-    <img src="/images/20120815044918.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+<p>というわけで、今回はテーマ機能を（試しに）作ってみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120815044918.png" alt="f:id:daruyanagi:20120815044918p:plain" title="f:id:daruyanagi:20120815044918p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li>“~/Themes/”フォルダにテーマフォルダを作成（今回は Basic と Default）</li>
 <li>それぞれのテーマフォルダにレイアウトファイル、スタイルシート、リソースなどをまとめる</li>
 <li>“App.Theme”にテーマフォルダの名前を入れれば、サイト全体のテーマが切り替わる</li>
-</ul>カッコいいか悪いかは知らないけど、とりあえず書いてみた。
-```cs
-# _AppStart.cshtml
-<p>@{  /* Configure App Setting */
-App.Theme = &ldquo;Default&rdquo;;
+</ul><p>カッコいいか悪いかは知らないけど、とりあえず書いてみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># _AppStart.cshtml
+<p>@{  <span class="synComment">/* Configure App Setting */</span>
+App.Theme = <span class="synConstant">&quot;Default&quot;</span>;
 }</p>
-<p>@using System.IO;</p>
-<p>@{  /* Define Utilities */
-const string ThemeBaseDir = &ldquo;~/Themes/&quot;;
-const string ThemeLayoutFile = &ldquo;_Layout.cshtml&rdquo;;</p>
-<pre><code>App.GetThemePath = new Func&amp;lt;string&gt;(() =&gt;
-    VirtualPathUtility.ToAbsolute(
-        Path.Combine(ThemeBaseDir, App.Theme)
-    )
+<p>@<span class="synStatement">using</span> System.IO;</p>
+<p>@{  <span class="synComment">/* Define Utilities */</span>
+<span class="synType">const</span> <span class="synType">string</span> ThemeBaseDir = <span class="synConstant">&quot;~/Themes/&quot;</span>;
+<span class="synType">const</span> <span class="synType">string</span> ThemeLayoutFile = <span class="synConstant">&quot;_Layout.cshtml&quot;</span>;</p>
+<p>App.GetThemePath = <span class="synStatement">new</span> Func&lt;<span class="synType">string</span>&gt;(() =&gt;
+VirtualPathUtility.ToAbsolute(
+Path.Combine(ThemeBaseDir, App.Theme)
+)
+);</p>
+<p>App.GetLayoutPath = <span class="synStatement">new</span> Func&lt;<span class="synType">string</span>&gt;(() =&gt;
+VirtualPathUtility.ToAbsolute(
+Path.Combine(ThemeBaseDir, App.Theme, ThemeLayoutFile)
+)
 );
-
-App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt;
-    VirtualPathUtility.ToAbsolute(
-        Path.Combine(ThemeBaseDir, App.Theme, ThemeLayoutFile)
-    )
-);
-</code></pre>
-<p>}</p>
-<pre><code class="language-“~/Themes/”を絶対パスへ変換するには、“VirtualPathUtility.ToAbsolute()”を使えばいいみたい。" data-lang="“~/Themes/”を絶対パスへ変換するには、“VirtualPathUtility.ToAbsolute()”を使えばいいみたい。">```cs
-# _PageStart.cshtml
+}
+</pre><p>“~/Themes/”を絶対パスへ変換するには、“VirtualPathUtility.ToAbsolute()”を使えばいいみたい。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># _PageStart.cshtml
 
 @{
-    Layout = App.GetLayoutPath();
-    Page.Title = Page.Title ?? &quot;Untitled Page&quot;;
+Layout = App.GetLayoutPath();
+Page.Title = Page.Title ?? <span class="synConstant">&quot;Untitled Page&quot;</span>;
 }
-
-```さっき定義した関数の使い方はこんな感じ。これでページを読み込むときにテーマが適用されると思う。やろうと思えば、 Themes フォルダ内のテーマフォルダを列挙して&lt;a href=&quot;#f-65f2844b&quot; name=&quot;fn-65f2844b&quot; title=&quot;こういう処理に慣れた .NET のやり方が使えるのが嬉しいなぁ&quot;&gt;*1&lt;/a&gt;、ブラウザーから動的にテーマを変更する、といったこともできないこともない気がする。 
-```cs
-&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Reset.css&quot; /&gt;
-&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;~/Content/Common.css&quot; /&gt;
-&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;@App.GetThemePath()/Styles/Main.css&quot; /&gt;
-
-```レイアウトファイルでリソースを読み込むとき、テーマフォルダのパスを知るにはこんな感じで使う。けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。 スタイルシートは、
-
-&lt;ol&gt;
-&lt;li&gt;**~/Content/Reset.css**：ブラウザー依存のレイアウトのリセット。適当なライブラリを使えばいいと思う。&lt;/li&gt;
-&lt;li&gt;**~/Content/Common.css**：テーマに関係ない共通のスタイルを記述。 Reset.css の不満なところを書き換えたりとか&lt;a href=&quot;#f-8594263d&quot; name=&quot;fn-8594263d&quot; title=&quot;Reset.css はなるべく書き換えたくない。ライセンスもあるし、アップデートしたらそのまま差し替えたいし&quot;&gt;*2&lt;/a&gt;。&lt;/li&gt;
-&lt;li&gt;テーマフォルダのスタイルシート&lt;/li&gt;
-&lt;/ol&gt;という順で読み込んでいくようにしてみた。なるべく分けて、論理的にやらないと、あとからだんだん訳がわからなくなってくる……
-&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-65f2844b&quot; name=&quot;f-65f2844b&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;こういう処理に慣れた .NET のやり方が使えるのが嬉しいなぁ&lt;/span&gt;
-&lt;a href=&quot;#fn-8594263d&quot; name=&quot;f-8594263d&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Reset.css はなるべく書き換えたくない。ライセンスもあるし、アップデートしたらそのまま差し替えたいし&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+</pre><p>さっき定義した関数の使い方はこんな感じ。これでページを読み込むときにテーマが適用されると思う。やろうと思えば、 Themes フォルダ内のテーマフォルダを列挙して<a href="#f-65f2844b" name="fn-65f2844b" title="こういう処理に慣れた .NET のやり方が使えるのが嬉しいなぁ">*1</a>、ブラウザーから動的にテーマを変更する、といったこともできないこともない気がする。 </p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;link rel=<span class="synConstant">&quot;stylesheet&quot;</span> href=<span class="synConstant">&quot;~/Content/Reset.css&quot;</span> /&gt;
+&lt;link rel=<span class="synConstant">&quot;stylesheet&quot;</span> href=<span class="synConstant">&quot;~/Content/Common.css&quot;</span> /&gt;
+&lt;link rel=<span class="synConstant">&quot;stylesheet&quot;</span> href=<span class="synConstant">&quot;@App.GetThemePath()/Styles/Main.css&quot;</span> /&gt;
+</pre><p>レイアウトファイルでリソースを読み込むとき、テーマフォルダのパスを知るにはこんな感じで使う。けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。 </p><p>スタイルシートは、</p>
+<ol>
+<li><b>~/Content/Reset.css</b>：ブラウザー依存のレイアウトのリセット。適当なライブラリを使えばいいと思う。</li>
+<li><b>~/Content/Common.css</b>：テーマに関係ない共通のスタイルを記述。 Reset.css の不満なところを書き換えたりとか<a href="#f-8594263d" name="fn-8594263d" title="Reset.css はなるべく書き換えたくない。ライセンスもあるし、アップデートしたらそのまま差し替えたいし">*2</a>。</li>
+<li>テーマフォルダのスタイルシート</li>
+</ol><p>という順で読み込んでいくようにしてみた。なるべく分けて、論理的にやらないと、あとからだんだん訳がわからなくなってくる……</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-65f2844b" name="f-65f2844b" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">こういう処理に慣れた .NET のやり方が使えるのが嬉しいなぁ</span></p>
+<p class="footnote"><a href="#fn-8594263d" name="f-8594263d" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">Reset.css はなるべく書き換えたくない。ライセンスもあるし、アップデートしたらそのまま差し替えたいし</span></p>
+</div>
 
     <footer>
         
@@ -165,7 +152,7 @@ App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/15/051237.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/15</time> 
             </p>
         
     </footer>
@@ -217,7 +204,16 @@ App.GetLayoutPath = new Func&amp;lt;string&gt;(() =&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

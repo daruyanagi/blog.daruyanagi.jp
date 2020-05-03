@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/tags/asp.net/" />
@@ -87,15 +89,15 @@
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550/">2013-10-14 | WebMatrix 3</a>
+        <a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550/">2013-10-14 | WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。</a>
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2013/10/01/081913/">2013-10-01 | WebMatrix 3</a>
+        <a href="https://blog.daruyanagi.jp/entry/2013/10/01/081913/">2013-10-01 | WebMatrix 3: @ でハマる（解決編</a>
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2013/09/29/122508/">2013-09-29 | WebMatrix 3</a>
+        <a href="https://blog.daruyanagi.jp/entry/2013/09/29/122508/">2013-09-29 | WebMatrix 3: @ でハマる</a>
     </li>
     
     <li>
@@ -103,7 +105,7 @@
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2013/09/12/001254/">2013-09-12 | WebMatrix 3</a>
+        <a href="https://blog.daruyanagi.jp/entry/2013/09/12/001254/">2013-09-12 | WebMatrix 3: Twitter でログインしてアクセストークン（秘）を取得する</a>
     </li>
     
     <li>
@@ -135,19 +137,19 @@
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2012/02/28/012843/">2012-02-28 |  ASP.NET MVC 3 で Dropbox の OAuth 認証を使う</a>
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/28/012843/">2012-02-28 | ASP.NET MVC 3 で Dropbox の OAuth 認証を使う</a>
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/193453/">2012-02-25 |  favicon.ico を置いてないといちいちルーティングに引っかかってめんどくさい</a>
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/193453/">2012-02-25 | favicon.ico を置いてないといちいちルーティングに引っかかってめんどくさい</a>
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/162246/">2012-02-25 |  パスに無効な文字が含まれています。</a>
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/162246/">2012-02-25 | パスに無効な文字が含まれています。</a>
     </li>
     
     <li>
-        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/084211/">2012-02-25 |  ASP.net MVC 3 で Dropbox を利用する</a>
+        <a href="https://blog.daruyanagi.jp/entry/2012/02/25/084211/">2012-02-25 | ASP.net MVC 3 で Dropbox を利用する</a>
     </li>
     
 </ul>
@@ -181,7 +183,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

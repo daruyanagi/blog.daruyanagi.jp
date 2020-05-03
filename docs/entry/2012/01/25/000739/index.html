@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title> Embedded Tweets を使ってWebページにツイートを埋め込む - blog.daruyanagi.jp</title>
+<title>Embedded Tweets を使ってWebページにツイートを埋め込む - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content=" Embedded Tweets を使ってWebページにツイートを埋め込む" />
+<meta name="og:title"         property="og:title" content="Embedded Tweets を使ってWebページにツイートを埋め込む" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。これをコードからもやってみたくて、 Embedded Tweets | Twitter Developers" />
+    <meta name="og:description"   property="og:description" content="最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。 これをコードからもやってみたくて、 Embedded Tweets | Twitter Developers" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/01/25/000739/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1> Embedded Tweets を使ってWebページにツイートを埋め込む</h1>
+    <h1>Embedded Tweets を使ってWebページにツイートを埋め込む</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,22 +88,21 @@
         </time>        
     </p>
 
-    <p>最近のTwitterでは、ツイートの埋め込み用のタグが、パーマリンクから簡単に取得できるらしい。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120125/20120125002147.png" alt="f:id:daruyanagi:20120125002147p:plain" title="f:id:daruyanagi:20120125002147p:plain" class="hatena-fotolife"/>これをコードからもやってみたくて、 <a href="https://dev.twitter.com/docs/embedded-tweets">Embedded Tweets | Twitter Developers</a> を参考にちょっとやってみた。</p>
-<pre><code>```?
-</code></pre>
-<p>var tweet_url = url;
-// 例: <a href="https://twitter.com/#!/daruyanagi/statuses/57438593853034497">https://twitter.com/#!/daruyanagi/statuses/57438593853034497</a></p>
-<p>var tweet_id = new Regex(@&ldquo;status/(?&lt;id&gt;\d+)&quot;)
-.Match(tweet_url).Groups[&ldquo;id&rdquo;].ToString();</p>
-<p>var tweet = new System.Net.WebClient()
+    <p>最近の<a class="keyword" href="http://d.hatena.ne.jp/keyword/Twitter">Twitter</a>では、ツイートの埋め込み用のタグが、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D1%A1%BC%A5%DE%A5%EA%A5%F3%A5%AF">パーマリンク</a>から簡単に取得できるらしい。</p><p><img src="20120125002147.png" alt="f:id:daruyanagi:20120125002147p:plain" title="f:id:daruyanagi:20120125002147p:plain" class="hatena-fotolife"></p><p>これをコードからもやってみたくて、 <a href="https://dev.twitter.com/docs/embedded-tweets">Embedded Tweets | Twitter Developers</a> を参考にちょっとやってみた。</p>
+<pre class="code lang-?" data-lang="?">var tweet_url = url;
+// 例: <a class="keyword" href="http://d.hatena.ne.jp/keyword/https">https</a>://<a class="keyword" href="http://d.hatena.ne.jp/keyword/twitter">twitter</a>.com/#!/daruyanagi/statuses/57438593853034497
+
+var tweet_id = new <a class="keyword" href="http://d.hatena.ne.jp/keyword/Regex">Regex</a>(@&#34;status/(?&lt;id&gt;\d+)&#34;)
+.Match(tweet_url).Groups[&#34;id&#34;].ToString();
+
+var tweet = new System.Net.WebClient()
 .DownloadString(string.Format(
-&ldquo;<a href="https://api.twitter.com/1/statuses/oembed.json?id=%7B0%7D%22,">https://api.twitter.com/1/statuses/oembed.json?id={0}&quot;,</a>
-tweet_id));</p>
-<p>return Codeplex.Data.DynamicJson.Parse(tweet).html;</p>
-<pre><code>&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120125/20120125000256.png&quot; alt=&quot;f:id:daruyanagi:20120125000256p:plain&quot; title=&quot;f:id:daruyanagi:20120125000256p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;APIを叩くとJSONデータが返ってくるので、そこから&quot;html&quot;の値を取得。このあたりの処理は DynamicJson (NuGetでインストールできる)で楽をさせてもらいました。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120125/20120125000424.png&quot; alt=&quot;f:id:daruyanagi:20120125000424p:plain&quot; title=&quot;f:id:daruyanagi:20120125000424p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;&lt;a href=&quot;https://platform.twitter.com/widgets.js&quot;&gt;https://platform.twitter.com/widgets.js&lt;/a&gt; を読み込んでおけば、勝手に整形もしてくれるみたい。ちょっと日付周りの表記がおかしいけれど、まぁ、これぐらいはしょうがないかな。
+&#34;<a class="keyword" href="http://d.hatena.ne.jp/keyword/https">https</a>://<a class="keyword" href="http://d.hatena.ne.jp/keyword/api">api</a>.<a class="keyword" href="http://d.hatena.ne.jp/keyword/twitter">twitter</a>.com/1/statuses/oembed.json?id={0}&#34;,
+tweet_id));
 
+return <a class="keyword" href="http://d.hatena.ne.jp/keyword/Codeplex">Codeplex</a>.Data.DynamicJson.Parse(tweet).html;</pre>
+<p><img src="20120125000256.png" alt="f:id:daruyanagi:20120125000256p:plain" title="f:id:daruyanagi:20120125000256p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/API">API</a>を叩くとJSONデータが返ってくるので、そこから"html"の値を取得。このあたりの処理は DynamicJson (NuGetでインストールできる)で楽をさせてもらいました。</p><p><img src="20120125000424.png" alt="f:id:daruyanagi:20120125000424p:plain" title="f:id:daruyanagi:20120125000424p:plain" class="hatena-fotolife"></p><p><a href="https://platform.twitter.com/widgets.js">https://platform.twitter.com/widgets.js</a> を読み込んでおけば、勝手に整形もしてくれるみたい。ちょっと日付周りの表記がおかしいけれど、まぁ、これぐらいはしょうがないかな。</p>
 
-</code></pre>
 
     <footer>
         
@@ -115,7 +116,7 @@ tweet_id));</p>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/01/25/000739.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/01/25</time> 
             </p>
         
     </footer>
@@ -167,7 +168,16 @@ tweet_id));</p>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

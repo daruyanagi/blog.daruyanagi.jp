@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="PowerShell：メールが文字化けする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。 &gt; NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、" />
+    <meta name="og:description"   property="og:description" content="PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。 NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/03/05/090000/" />
@@ -87,56 +89,41 @@
     </p>
 
     <p>PowerShell で SmtpClient を使ってメールを送ったのだけど、件名が化けてしまった。</p>
-<pre><code>&gt;
-    NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。
-
-    .NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記
-</code></pre>
-<p>よくわかんないのだけど、&ldquo;ISO-2022-JP と Base64 でエンコードするような処理&quot;を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
-<span style="color:#66d9ef">function</span> Encode-MailHeader($subject)
+<blockquote cite="http://blog.shibayan.jp/entry/20130317/1363521503">
+<p>NET 4.5 では内部でエンコードされた件名をデコードして持つように実装が変わったので、2 回エンコードして元の文字列が保持されるようにしないといけないということでした。</p>
+<p><cite><a href="http://blog.shibayan.jp/entry/20130317/1363521503">.NET 4.5 で SmtpClient の挙動が変わっていたらしい - しばやん雑記</a></cite></p>
+</blockquote>
+<p>よくわかんないのだけど、"ISO-2022-JP と Base64 でエンコードするような処理"を件名に対して2回行えばいいらしい。リンク先のコード（C#）をそのまま PowerShell に書き換えてみた。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synComment">#「=?iso-2022-jp?B?&lt;エンコード文字列&gt;?=」形式に変換</span>
+<span class="synStatement">function</span> <span class="synIdentifier">Encode-MailHeader</span>(<span class="synIdentifier">$subject</span>)
 {
-    $enc = <span style="color:#66d9ef">[System.Text.Encoding]</span>::GetEncoding(<span style="color:#e6db74">&#34;iso-2022-jp&#34;</span>);
-    $strBase64 = <span style="color:#66d9ef">[Convert]</span>::ToBase64String($enc.GetBytes($subject));
-
-    <span style="color:#e6db74">&#34;=?{0}?B?{1}?=&#34;</span> <span style="color:#f92672">-f</span> <span style="color:#e6db74">&#34;iso-2022-jp&#34;</span>, $strBase64
+<span class="synIdentifier">$enc</span> = <span class="synType">[System.Text.Encoding]</span>::GetEncoding(<span class="synConstant">&quot;iso-2022-jp&quot;</span>);
+<span class="synIdentifier">$strBase64</span> = <span class="synType">[Convert]</span>::ToBase64String(<span class="synIdentifier">$enc</span>.GetBytes(<span class="synIdentifier">$subject</span>));
+<p><span class="synConstant">&quot;=?{0}?B?{1}?=&quot;</span> -<span class="synStatement">f</span> <span class="synConstant">&quot;iso-2022-jp&quot;</span>, <span class="synIdentifier">$strBase64</span>
 }
-
-```あとはこの関数を使って<span style="color:#960050;background-color:#1e0010">、</span>
-```ps1
-$subject = Encode-MailHeader(Encode-MailHeader($title))
-
-```とでもすればよい<span style="color:#960050;background-color:#1e0010">。</span>とりあえず文字化けはなくなった気がする<span style="color:#960050;background-color:#1e0010">。</span>
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#75715e">### 今日学んだこと</span>
-    
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#75715e">#### 関数をパイプ対応にする</span>
-    これで完成<span style="color:#960050;background-color:#1e0010">――</span>でもいいのだけど<span style="color:#960050;background-color:#1e0010">、</span>なんかダサいので<span style="color:#960050;background-color:#1e0010">、</span>パイプで繋げるようにしてみた<span style="color:#960050;background-color:#1e0010">。</span>
-```ps1
-<span style="color:#75715e">#「=?iso-2022-jp?B?&amp;lt;エンコード文字列&gt;?=」形式に変換</span>
-<span style="color:#66d9ef">function</span> Encode-MailHeader([<span style="color:#66d9ef">Parameter</span>(<span style="color:#66d9ef">ValueFromPipeline</span>=$true)]$subject)
+</pre><p>あとはこの関数を使って、</p></p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$subject</span> = <span class="synStatement">Encode-MailHeader</span>(<span class="synStatement">Encode-MailHeader</span>(<span class="synIdentifier">$title</span>))
+</pre><p>とでもすればよい。とりあえず文字化けはなくなった気がする。</p>
+<div class="section">
+<h3>今日学んだこと</h3>
+<div class="section">
+<h4>関数をパイプ対応にする</h4>
+<p>これで完成――でもいいのだけど、なんかダサいので、パイプで繋げるようにしてみた。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synComment">#「=?iso-2022-jp?B?&lt;エンコード文字列&gt;?=」形式に変換</span>
+<span class="synStatement">function</span> <span class="synIdentifier">Encode-MailHeader</span>([Parameter(ValueFromPipeline=<span class="synConstant">$true</span>)]<span class="synIdentifier">$subject</span>)
 {
-    <span style="color:#66d9ef">process</span>
-    {
-        $enc = <span style="color:#66d9ef">[System.Text.Encoding]</span>::GetEncoding(<span style="color:#e6db74">&#34;iso-2022-jp&#34;</span>);
-        $strBase64 = <span style="color:#66d9ef">[Convert]</span>::ToBase64String($enc.GetBytes($subject));
-
-        <span style="color:#e6db74">&#34;=?{0}?B?{1}?=&#34;</span> <span style="color:#f92672">-f</span> <span style="color:#e6db74">&#34;iso-2022-jp&#34;</span>, $strBase64
-    }
+<span class="synStatement">process</span>
+{
+<span class="synIdentifier">$enc</span> = <span class="synType">[System.Text.Encoding]</span>::GetEncoding(<span class="synConstant">&quot;iso-2022-jp&quot;</span>);
+<span class="synIdentifier">$strBase64</span> = <span class="synType">[Convert]</span>::ToBase64String(<span class="synIdentifier">$enc</span>.GetBytes(<span class="synIdentifier">$subject</span>));
+<p><span class="synConstant">&quot;=?{0}?B?{1}?=&quot;</span> -<span class="synStatement">f</span> <span class="synConstant">&quot;iso-2022-jp&quot;</span>, <span class="synIdentifier">$strBase64</span>
 }
-
-```パイプを処理できるように<span style="color:#960050;background-color:#1e0010">、</span>さっきの関数を改良<span style="color:#960050;background-color:#1e0010">。</span>
-```ps1
-$subject = $title | Encode-MailHeader | Encode-MailHeader
-
-```ちょっとだけスマートになった気がする<span style="color:#960050;background-color:#1e0010">。</span>
-
-&lt;/div&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+}
+</pre><p>パイプを処理できるように、さっきの関数を改良。</p></p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$subject</span> = <span class="synIdentifier">$title</span> | <span class="synStatement">Encode-MailHeader</span> | <span class="synStatement">Encode-MailHeader</span>
+</pre><p>ちょっとだけスマートになった気がする。</p>
+</div>
+</div>
 
     <footer>
         
@@ -150,7 +137,7 @@ $subject = $title | Encode-MailHeader | Encode-MailHeader
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/03/05/090000.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2017/03/05</time> 
             </p>
         
     </footer>
@@ -202,7 +189,16 @@ $subject = $title | Encode-MailHeader | Encode-MailHeader
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

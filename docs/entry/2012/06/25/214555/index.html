@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Windows Azure Web Sites でサクッと WordPress をセットアップしてみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Windows Azure Web Sites でサクッと WordPress をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 Windows Live ID 1 とクレジットカード 2 が必要になるの" />
+    <meta name="og:description"   property="og:description" content="Windows Azure Web Sites でサクッと WordPress をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 Windows Live ID *1 とクレジットカード *2 が必要になるの" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/06/25/214555/" />
@@ -86,27 +88,26 @@
         </time>        
     </p>
 
-    <p>Windows Azure Web Sites でサクッと WordPress をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 Windows Live ID <a href="#f1" name="fn1" title="Microsoft ID になるんだっけ？"><em>1</a> とクレジットカード <a href="#f2" name="fn2" title="いきなり課金されることはないはず……"></em>2</a> が必要になるので、あらかじめ用意しておくこと。<a href="http://www.windowsazure.com/ja-jp/">
-<br/>
-Windows Azure: Microsoft's Cloud Platform | Cloud Hosting | Cloud Services
-<br/>
+    <p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> Web Sites でサクッと <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> をセットアップしてみたよ。案外サクッといったので、別に説明することもなかった。 <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Live">Windows Live</a> ID <a href="#f1" name="fn1" title="Microsoft ID になるんだっけ？">*1</a> とクレジットカード <a href="#f2" name="fn2" title="いきなり課金されることはないはず……">*2</a> が必要になるので、あらかじめ用意しておくこと。<a href="http://www.windowsazure.com/ja-jp/">
+<br />
+Windows Azure: Microsoft&#39;s Cloud Platform | Cloud Hosting | Cloud Services
+<br />
 </a></p>
 <div class="section">
-    ### 3ヶ月無償評価版の登録
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210606.png" alt="f:id:daruyanagi:20120625210606p:plain" title="f:id:daruyanagi:20120625210606p:plain" class="hatena-fotolife"/>Windows Azure は3ヶ月無償で利用できるのだそうな。本番ではいくらかかるんだろう……この3ヶ月のうちにシミュレートできるといいのだけど。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210611.png" alt="f:id:daruyanagi:20120625210611p:plain" title="f:id:daruyanagi:20120625210611p:plain" class="hatena-fotolife"/>本人確認のためにクレジットカードがいるんだって。ここは素直に登録登録。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210609.png" alt="f:id:daruyanagi:20120625210609p:plain" title="f:id:daruyanagi:20120625210609p:plain" class="hatena-fotolife"/>設定はこれだけ。さっそく［管理］っていうところをクリックしてみる。
+<h3>3ヶ月無償評価版の登録</h3>
+<p><img src="20120625210606.png" alt="f:id:daruyanagi:20120625210606p:plain" title="f:id:daruyanagi:20120625210606p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> は3ヶ月無償で利用できるのだそうな。本番ではいくらかかるんだろう……この3ヶ月のうちにシミュレートできるといいのだけど。</p><p><img src="20120625210611.png" alt="f:id:daruyanagi:20120625210611p:plain" title="f:id:daruyanagi:20120625210611p:plain" class="hatena-fotolife"></p><p>本人確認のためにクレジットカードがいるんだって。ここは素直に登録登録。</p><p><img src="20120625210609.png" alt="f:id:daruyanagi:20120625210609p:plain" title="f:id:daruyanagi:20120625210609p:plain" class="hatena-fotolife"></p><p>設定はこれだけ。さっそく［管理］っていうところをクリックしてみる。</p>
 </div>
 <div class="section">
-    ### HTML5 で作成された Windows Azure の新しいポータル画面
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210610.png" alt="f:id:daruyanagi:20120625210610p:plain" title="f:id:daruyanagi:20120625210610p:plain" class="hatena-fotolife"/>以前までは Silverlight で作られていたという話だけど、新しいプレピューポータルは HTML5 で制作されている。クロスブラウザーでヌルヌル動くのが気持ちいいですね。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210615.png" alt="f:id:daruyanagi:20120625210615p:plain" title="f:id:daruyanagi:20120625210615p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210613.png" alt="f:id:daruyanagi:20120625210613p:plain" title="f:id:daruyanagi:20120625210613p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210618.png" alt="f:id:daruyanagi:20120625210618p:plain" title="f:id:daruyanagi:20120625210618p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210620.png" alt="f:id:daruyanagi:20120625210620p:plain" title="f:id:daruyanagi:20120625210620p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210621.png" alt="f:id:daruyanagi:20120625210621p:plain" title="f:id:daruyanagi:20120625210621p:plain" class="hatena-fotolife"/>ウィザードでチュートリアルが表示される。だいたいの使い方をこれで把握できる感じ。まぁ、実際に使ったほうが覚えるのは早いと思う。ぱっと見わかりやすいしね。
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/HTML5">HTML5</a> で作成された <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> の新しいポータル画面</h3>
+<p><img src="20120625210610.png" alt="f:id:daruyanagi:20120625210610p:plain" title="f:id:daruyanagi:20120625210610p:plain" class="hatena-fotolife"></p><p>以前までは <a class="keyword" href="http://d.hatena.ne.jp/keyword/Silverlight">Silverlight</a> で作られていたという話だけど、新しいプレピューポータルは <a class="keyword" href="http://d.hatena.ne.jp/keyword/HTML5">HTML5</a> で制作されている。<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AF%A5%ED%A5%B9%A5%D6%A5%E9%A5%A6%A5%B6">クロスブラウザ</a>ーでヌルヌル動くのが気持ちいいですね。</p><p><img src="20120625210615.png" alt="f:id:daruyanagi:20120625210615p:plain" title="f:id:daruyanagi:20120625210615p:plain" class="hatena-fotolife"><img src="20120625210613.png" alt="f:id:daruyanagi:20120625210613p:plain" title="f:id:daruyanagi:20120625210613p:plain" class="hatena-fotolife"><img src="20120625210618.png" alt="f:id:daruyanagi:20120625210618p:plain" title="f:id:daruyanagi:20120625210618p:plain" class="hatena-fotolife"><img src="20120625210620.png" alt="f:id:daruyanagi:20120625210620p:plain" title="f:id:daruyanagi:20120625210620p:plain" class="hatena-fotolife"><img src="20120625210621.png" alt="f:id:daruyanagi:20120625210621p:plain" title="f:id:daruyanagi:20120625210621p:plain" class="hatena-fotolife"></p><p>ウィザードでチュートリアルが表示される。だいたいの使い方をこれで把握できる感じ。まぁ、実際に使ったほうが覚えるのは早いと思う。ぱっと見わかりやすいしね。</p>
 </div>
 <div class="section">
-    ### WordPress の設置
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210623.png" alt="f:id:daruyanagi:20120625210623p:plain" title="f:id:daruyanagi:20120625210623p:plain" class="hatena-fotolife"/>さっきのチュートリアルで、新規プロジェクトは左下の［New］アイコンから、と書いてあった気がするのでそれを選択。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210622.png" alt="f:id:daruyanagi:20120625210622p:plain" title="f:id:daruyanagi:20120625210622p:plain" class="hatena-fotolife"/>まずは［Web Sites］を選択し……<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210627.png" alt="f:id:daruyanagi:20120625210627p:plain" title="f:id:daruyanagi:20120625210627p:plain" class="hatena-fotolife"/>次に［From Gallery］と続き……<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210632.png" alt="f:id:daruyanagi:20120625210632p:plain" title="f:id:daruyanagi:20120625210632p:plain" class="hatena-fotolife"/>ギャラリーの中から WordPress をチョイス。 C# しかわかんないし Orchard CMS も考えたのだけど、まぁ、最初はやはり実績のある WordPress かなぁ、と。ほかにもいっぱいありそうだ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210631.png" alt="f:id:daruyanagi:20120625210631p:plain" title="f:id:daruyanagi:20120625210631p:plain" class="hatena-fotolife"/>サブドメインとリージョンの選択。まだアジアのリージョンはないんだな……アメリカ西海岸が無難そうだ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210637.png" alt="f:id:daruyanagi:20120625210637p:plain" title="f:id:daruyanagi:20120625210637p:plain" class="hatena-fotolife"/>MySQL サーバーの設定。データベース名は……ほかとかぶらなければなんでもいいんじゃないかな。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210639.png" alt="f:id:daruyanagi:20120625210639p:plain" title="f:id:daruyanagi:20120625210639p:plain" class="hatena-fotolife"/>できたっぽい。デプロイは1分もかからなかったと思う。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120625/20120625210651.png" alt="f:id:daruyanagi:20120625210651p:plain" title="f:id:daruyanagi:20120625210651p:plain" class="hatena-fotolife"/>あとは管理者アカウントの設定をすれば、見慣れた WordPress のサイトが現れる。ぶっちゃけ、裏が Windows Azure だってことを意識しなければ、ユーザーインターフェイスがカッコいい普通のレンタルサーバーって感じだ。
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> の設置</h3>
+<p><img src="20120625210623.png" alt="f:id:daruyanagi:20120625210623p:plain" title="f:id:daruyanagi:20120625210623p:plain" class="hatena-fotolife"></p><p>さっきのチュートリアルで、新規プロジェクトは左下の［New］アイコンから、と書いてあった気がするのでそれを選択。</p><p><img src="20120625210622.png" alt="f:id:daruyanagi:20120625210622p:plain" title="f:id:daruyanagi:20120625210622p:plain" class="hatena-fotolife"></p><p>まずは［Web Sites］を選択し……</p><p><img src="20120625210627.png" alt="f:id:daruyanagi:20120625210627p:plain" title="f:id:daruyanagi:20120625210627p:plain" class="hatena-fotolife"></p><p>次に［From Gallery］と続き……</p><p><img src="20120625210632.png" alt="f:id:daruyanagi:20120625210632p:plain" title="f:id:daruyanagi:20120625210632p:plain" class="hatena-fotolife"></p><p>ギャラリーの中から <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> をチョイス。 <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%23">C#</a> しかわかんないし Orchard <a class="keyword" href="http://d.hatena.ne.jp/keyword/CMS">CMS</a> も考えたのだけど、まぁ、最初はやはり実績のある <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> かなぁ、と。ほかにもいっぱいありそうだ。</p><p><img src="20120625210631.png" alt="f:id:daruyanagi:20120625210631p:plain" title="f:id:daruyanagi:20120625210631p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B5%A5%D6%A5%C9%A5%E1%A5%A4%A5%F3">サブドメイン</a>とリージョンの選択。まだアジアのリージョンはないんだな……アメリカ西海岸が無難そうだ。</p><p><img src="20120625210637.png" alt="f:id:daruyanagi:20120625210637p:plain" title="f:id:daruyanagi:20120625210637p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/MySQL">MySQL</a> サーバーの設定。データベース名は……ほかとかぶらなければなんでもいいんじゃないかな。</p><p><img src="20120625210639.png" alt="f:id:daruyanagi:20120625210639p:plain" title="f:id:daruyanagi:20120625210639p:plain" class="hatena-fotolife"></p><p>できたっぽい。デプロイは1分もかからなかったと思う。</p><p><img src="20120625210651.png" alt="f:id:daruyanagi:20120625210651p:plain" title="f:id:daruyanagi:20120625210651p:plain" class="hatena-fotolife"></p><p>あとは管理者アカウントの設定をすれば、見慣れた <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> のサイトが現れる。ぶっちゃけ、裏が <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> だってことを意識しなければ、ユーザーインターフェイスがカッコいい普通の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%EC%A5%F3%A5%BF%A5%EB%A5%B5%A1%BC%A5%D0">レンタルサーバ</a>ーって感じだ。</p>
 </div><div class="footnote">
-<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">Microsoft ID になるんだっけ？</span>
-<a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">いきなり課金されることはないはず……</span>
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">Microsoft ID になるんだっけ？</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">いきなり課金されることはないはず……</span></p>
 </div>
-
 
     <footer>
         
@@ -120,7 +121,7 @@ Windows Azure: Microsoft's Cloud Platform | Cloud Hosting | Cloud Services
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/06/25/214555.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/06/25</time> 
             </p>
         
     </footer>
@@ -172,7 +173,16 @@ Windows Azure: Microsoft's Cloud Platform | Cloud Hosting | Cloud Services
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

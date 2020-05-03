@@ -1,0 +1,21 @@
+---
+date: 2013-06-17T21:20:17.0000000
+draft: false
+title: "J2第19節 水戸ホーリーホック 0－2 ガンバ大阪"
+tags: ["サッカー", "Nikon 1 V1"]
+eyecatch: http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20130615/20130615112505.jpg
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615112505.jpg" alt="f:id:daruyanagi:20130615112505j:plain" title="f:id:daruyanagi:20130615112505j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>のんきにこんなこと（<a href="https://blog.daruyanagi.jp/entry/2012/11/25/230119">&#x30AC;&#x30F3;&#x30D0;&#x5927;&#x962A;&#x304C;&#x6B8B;&#x7559;&#x3059;&#x308B;&#x78BA;&#x7387;&#x3092;&#x8A08;&#x7B97;&#x3057;&#x3066;&#x307F;&#x305F;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）してるうちに J2 降格を喫したガンバ大阪。今年は一回は応援しに行きたいなぁ、と思っていたところ、@herata_jp さんに誘われたので、はるばる水戸まで行ってきたった！<a href="#f-e1545595" name="fn-e1545595" title="残念ながら @herata_jp さんは仕事の都合で観戦できず……チケットまで手配してもらったのに、なんか申し訳ない">*1</a></p>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615181950.jpg" alt="f:id:daruyanagi:20130615181950j:plain" title="f:id:daruyanagi:20130615181950j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>当日は雨の予報だったので、折り畳み傘もカッパも用意したのに、結局雨は降りませんでした。まぁ、わし、基本的に晴れ男やしな……。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130617205741.jpg" alt="f:id:daruyanagi:20130617205741j:plain" title="f:id:daruyanagi:20130617205741j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回は、サッカーを観る以外にも一つ試したいことがあった。それは、Nikon 1 V1 と FT-1 と AF-S VR Zoom-Nikkor 70-300mm f/4.5-5.6G を組み合わせて、超望遠撮影を行うこと！　理論上の焦点距離（35mm換算）はこれで 800mm を超えるはずなので、グラウンドとスタンドの距離が遠くてもちゃんと選手の姿が収められるはず。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615080658.jpg" alt="f:id:daruyanagi:20130615080658j:plain" title="f:id:daruyanagi:20130615080658j:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+
+<blockquote cite="http://dc.watch.impress.co.jp/docs/news/20130611_603165.html">
+<p>ニコンは11日、ミラーレスカメラ「Nikon 1」シリーズのボディおよびマウントアダプターFT1、GPSユニットの最新ファームウェアを公開した。これまでNikon 1ボディにFT1経由で一眼レフカメラ用AF-Sレンズを取り付けた場合、AFモードはシングルAFに限定されていたが、今回のファームアップでコンティニュアスAFにも対応する。</p>
+
+<cite><a href="http://dc.watch.impress.co.jp/docs/news/20130611_603165.html">&#x300C;Nikon 1&#x300D;&#x304C;AF-S&#x30EC;&#x30F3;&#x30BA;&#x4F7F;&#x7528;&#x6642;&#x306E;&#x30B3;&#x30F3;&#x30C6;&#x30A3;&#x30CB;&#x30E5;&#x30A2;&#x30B9;AF&#x306B;&#x5BFE;&#x5FDC; - &#x30C7;&#x30B8;&#x30AB;&#x30E1; Watch Watch</a></cite>
+</blockquote>
+<p>ファームウェアのアップデートもばっちりやで！</p><p>――でも、結果はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615181538.jpg" alt="f:id:daruyanagi:20130615181538j:plain" title="f:id:daruyanagi:20130615181538j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>鈴木師匠<a href="#f-90697d11" name="fn-90697d11" title="退場乙であります！(`・ω・́)ゝ">*2</a>。ピントが合わない！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615181640.jpg" alt="f:id:daruyanagi:20130615181640j:plain" title="f:id:daruyanagi:20130615181640j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>というか、あっちこっちに飛び交うボールを捉えるのですら一苦労だ。やっぱ素人にはムリか。航空祭なんかだと、少しは戦えるかなぁ。</p><p>試合の方は、ガンバが前半と後半に1点ずつ加えて無難に勝利。水戸のほうは少し引いてくるのかなと思っていたのだけど、案外ガップリ四つ、ガチで攻めるシーンも少なくなくて「なかなかやるなぁ」と思わされた。とはいえ、ガヤさんのミスを誘発するほどのピンチもなく、ほとんど完勝といっていい出来だったと思う。</p><p>個人的には水戸の SB 近藤が結構気に入った。プレイに魂が感じられる選手は大好き。自分が水戸ファンなら、ユニフォームを買ってもいいなと思う。ガンバ側は、明神が効いていたかな？　あと、「入場者数、10,025人！」のアナウンスでスタジオ全体がどよめいたのは、ちょっと楽しくて、行ってよかったなと思えた。</p><p>最後に。</p><p>帰るときにハンドタオルを落としたのだけど、近くにいた女の子が届けてくれました。水戸のサポーターかな？　水戸の人は優しいですなぁ……ほんま、おおきに！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130615191157.jpg" alt="f:id:daruyanagi:20130615191157j:plain" title="f:id:daruyanagi:20130615191157j:plain" class="hatena-fotolife" itemprop="image"></span></p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-e1545595" name="f-e1545595" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">残念ながら @herata_jp さんは仕事の都合で観戦できず……チケットまで手配してもらったのに、なんか申し訳ない</span></p>
+<p class="footnote"><a href="#fn-90697d11" name="f-90697d11" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">退場乙であります！(`・ω・́)ゝ</span></p>
+</div>

@@ -1,0 +1,8 @@
+---
+date: 2014-02-28T09:46:11.0000000
+draft: false
+title: "SkyDrive……じゃなくて、OneDrive を手動で同期させる"
+tags: ["SkyDrive", "OneDrive", "Windows 8.1"]
+eyecatch: 
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140228093744.png" alt="f:id:daruyanagi:20140228093744p:plain" title="f:id:daruyanagi:20140228093744p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ストアアプリを起動して画面右上のリンクをクリック。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140228093810.png" alt="f:id:daruyanagi:20140228093810p:plain" title="f:id:daruyanagi:20140228093810p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［同期］ボタンを押す。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140228093833.png" alt="f:id:daruyanagi:20140228093833p:plain" title="f:id:daruyanagi:20140228093833p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>SkyDrive……じゃなくて、OneDrive にファイルの変更がないかチェックされる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140228093927.png" alt="f:id:daruyanagi:20140228093927p:plain" title="f:id:daruyanagi:20140228093927p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>変更があれば同期が始まるはず。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140228094338.png" alt="f:id:daruyanagi:20140228094338p:plain" title="f:id:daruyanagi:20140228094338p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>アップロード中のフォルダ（↑アイコン）、ダウンロード中のフォルダ（↓アイコン）、同期されたフォルダ（雲とコンピュータのアイコン）。オンラインで利用するフォルダーにはアイコンがつかない。</p><p>ちなみに、うちの環境だとまだ SkyDrive って表示されてるんだけど……引っ越しで昨日やっと PC をセットアップできたところなので、この2週間程度の間に公開された Update とかあてていけば OneDrive になるのかな。SkyDrive の名前が変わるというのでちょっと心配していたのだけど、そんなにダサい名前じゃなくて安心した。</p>

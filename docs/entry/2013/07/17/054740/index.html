@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 3 で Wiki クローンを作る vol.0" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; &gt; Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読ん" />
+    <meta name="og:description"   property="og:description" content="Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/07/17/054740/" />
@@ -86,79 +89,47 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130717051313.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<pre><code>&gt;
-    Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。
-
-    http://tam.qmix.org/wiki/Minki00.html
-</code></pre>
-<p>昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります<a href="#f-f61de386" name="fn-f61de386" title="ほかにもできるけど、そっちを推すのはほかの人に任せる">*1</a>。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。んなわけで、“WebMatrix 3 で Wiki クローンを作る（<a href="https://blog.daruyanagi.jp/category/WebMatrix%203%20%E3%81%A7%20Wiki%20%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B">WebMatrix 3 で Wiki クローンを作る</a>）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130717051313.png" alt="f:id:daruyanagi:20130717051313p:plain" title="f:id:daruyanagi:20130717051313p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<blockquote cite="http://tam.qmix.org/wiki/Minki00.html">
+<p>Ruby on Railsには良くかけたチュートリアルがあって、最初の一歩は踏み出 しやすいようになっています。しかし、チュートリアルをひととおり読んで、 scaffoldスゲーということはわかったのだけど、次に何をしたら良いかわから ないという人が多いようです。かくいう筆者もその一人でした。</p>
+<p><cite><a href="http://tam.qmix.org/wiki/Minki00.html"><a href="http://tam.qmix.org/wiki/Minki00.html">http://tam.qmix.org/wiki/Minki00.html</a></a></cite></p>
+</blockquote>
+<p>昔、Web アプリが作りたいなぁ、と思って手を出したのが Ruby on Rails でした。このサイトを参考にしながら、少しずつ Wiki を作って勉強したのを覚えています。当時は C# で Web アプリが書けるというのを知らなかったし、その環境も整っていなかった。なので、わざわざいちから Ruby という新しい言語を覚える必要がありました。それはそれで楽しいことだったし、今でもその経験は役に立っているのですけど、やっぱり使い慣れた C# で書けるならばそれに越したことはない。</p><p>今なら C# で Web アプリが簡単に作れる WebMatrix という優秀なツールがあります<a href="#f-f61de386" name="fn-f61de386" title="ほかにもできるけど、そっちを推すのはほかの人に任せる">*1</a>。でも、僕がかつてお世話になったチュートリアル的なコンテンツはまだまだ少ないのが現状です。</p><p>んなわけで、“WebMatrix 3 で Wiki クローンを作る（<a href="https://blog.daruyanagi.jp/category/WebMatrix%203%20%E3%81%A7%20Wiki%20%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%B3%E3%82%92%E4%BD%9C%E3%82%8B">WebMatrix 3 &#x3067; Wiki &#x30AF;&#x30ED;&#x30FC;&#x30F3;&#x3092;&#x4F5C;&#x308B;</a>）”というのを、不定期にボチボチやっていこうかなと思います。でも、あんまり期待しないでください。</p>
 <div class="section">
-    ### 必要なもの
+<h3>必要なもの</h3>
 <ul>
 <li><a href="http://www.microsoft.com/web/webmatrix/">Microsoft Developer</a></li>
-</ul>これだけです。できれば <a href="http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web">http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web</a> があるといろいろ便利。フレームワークには <a href="http://msdn.microsoft.com/ja-jp/library/hh396384(v=vs.111).aspx">ASP.NET Web Pages 2 | Microsoft Docs</a> を利用しますが、とりあえず今のところは_「C# で PHP っぽく Web アプリが書けるもの」_だとでも思っていただければ結構です。
+</ul><p>これだけです。できれば <a href="http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web">http://www.microsoft.com/visualstudio/jpn/products/visual-studio-express-for-web</a> があるといろいろ便利。フレームワークには <a href="http://msdn.microsoft.com/ja-jp/library/hh396384(v=vs.111).aspx">ASP.NET Web Pages 2 | Microsoft Docs</a> を利用しますが、とりあえず今のところは<i>「C# で PHP っぽく Web アプリが書けるもの」</i>だとでも思っていただければ結構です。</p>
 </div>
 <div class="section">
-    ### プロジェクトの新規作成
-<figure>
-    <img src="/images/20130717053248.png"/> 
-</figure>
-
-<p>ンプレートギャラリーから……</p>
-<figure>
-    <img src="/images/20130717053316.png"/> 
-</figure>
-
-<p>SP.NET の“空のサイト”を選択。今回は @Webmatxirxman（<a href="https://twitter.com/WebMatrixMan"><a href="https://twitter.com/WebMatrixMan">https://twitter.com/WebMatrixMan</a></a>）に敬意を表して**「Green Tights」**としました。_“C:\Users***\Documents\My Web Sites\Green Tights”_がプロジェクトフォルダーになります。</p>
-<figure>
-    <img src="/images/20130717053725.png"/> 
-</figure>
-
-<p>ず、適当に Default.cshtml を編集しましょう。今回は冒頭の <strong>@{}</strong> コードブロックで <strong>App.Name</strong> に“Green Tights”という文字列を代入し、HTML で <strong>@App.Name</strong> のように記述して埋め込んでいます（2ケ所）。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">@{
-    App.Name = &#34;Green Tights&#34;;
+<h3>プロジェクトの新規作成</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130717053248.png" alt="f:id:daruyanagi:20130717053248p:plain" title="f:id:daruyanagi:20130717053248p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>テンプレートギャラリーから……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130717053316.png" alt="f:id:daruyanagi:20130717053316p:plain" title="f:id:daruyanagi:20130717053316p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ASP.NET の“空のサイト”を選択。今回は @Webmatxirxman（<a href="https://twitter.com/WebMatrixMan">https://twitter.com/WebMatrixMan</a>）に敬意を表して<b>「Green Tights」</b>としました。<i>“C:\Users\***\Documents\My Web Sites\Green Tights”</i>がプロジェクトフォルダーになります。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130717053725.png" alt="f:id:daruyanagi:20130717053725p:plain" title="f:id:daruyanagi:20130717053725p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まず、適当に Default.cshtml を編集しましょう。今回は冒頭の <b>@{}</b> コードブロックで <b>App.Name</b> に“Green Tights”という文字列を代入し、HTML で <b>@App.Name</b> のように記述して埋め込んでいます（2ケ所）。</p>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+App.Name = &quot;Green Tights&quot;;
 }
-
-
-
-&amp;lt;html lang=&#34;ja&#34;&gt;
-    &amp;lt;head&gt;
-&amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt;
-        &amp;lt;meta charset=&#34;utf-8&#34; /&gt;
-        &amp;lt;title&gt;@App.Name&amp;lt;/title&gt;
-        &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;p&gt;Welcome to @App.Name!&amp;lt;/p&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```［実行］ボタンを押し……
-
-<figure>
-    <img src="/images/20130717053731.png"/> 
-</figure>
-
-
-ラウザーでなにか表示されたら成功。ちゃんと動いてますね。この **@** で変数を評価して出力する記法を **Razor** と呼びます。今日のところはこれで終わり！――次回はデータベースを用意して、書き込みと読み込みを行います。たぶん。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    ### ソースコード
-    
-&lt;<span style="color:#f92672">ul</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://greentights.codeplex.com/SourceControl/changeset/97f8b9647ae928e4fc375bbb7d9914d81e9dd314&#34;</span>&gt;CodePlex Archive&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;/<span style="color:#f92672">ul</span>&gt;
-&lt;/<span style="color:#f92672">div</span>&gt;&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-f61de386&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-f61de386&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*1&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;ほかにもできるけど、そっちを推すのはほかの人に任せる&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;/<span style="color:#f92672">div</span>&gt;
-
-</code></pre></div>
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">http-equiv</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Content-Type&quot;</span><span class="synIdentifier"> </span><span class="synType">content</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/html; charset=utf-8&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>@App.Name<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/favicon.ico&quot;</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;shortcut icon&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;image/x-icon&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>Welcome to @App.Name!<span class="synIdentifier">&lt;/</span><span class="synStatement">p</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>［実行］ボタンを押し……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130717053731.png" alt="f:id:daruyanagi:20130717053731p:plain" title="f:id:daruyanagi:20130717053731p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ブラウザーでなにか表示されたら成功。ちゃんと動いてますね。この <b>@</b> で変数を評価して出力する記法を <b>Razor</b> と呼びます。</p><p>今日のところはこれで終わり！――次回はデータベースを用意して、書き込みと読み込みを行います。たぶん。</p></p>
+</div>
+<div class="section">
+<h3>ソースコード</h3>
+<ul>
+<li><a href="https://greentights.codeplex.com/SourceControl/changeset/97f8b9647ae928e4fc375bbb7d9914d81e9dd314">CodePlex Archive</a></li>
+</ul>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-f61de386" name="f-f61de386" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ほかにもできるけど、そっちを推すのはほかの人に任せる</span></p>
+</div>
 
     <footer>
         
@@ -172,7 +143,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/07/17/054740.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/07/17</time> 
             </p>
         
     </footer>
@@ -182,7 +153,7 @@
 
     <p>
         
-        <a href="https://blog.daruyanagi.jp/entry/2013/07/16/000517/">&laquo; Older</a>
+        <a href="https://blog.daruyanagi.jp/entry/2013/07/17/044130/">&laquo; Older</a>
         
         <span > - </span>
             <a href="/">🏠 Home</a>
@@ -224,7 +195,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

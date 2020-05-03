@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする（2）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ 前回、AngleSharp を使えばよかったかもといったのですが、結" />
+    <meta name="og:description"   property="og:description" content="blog.daruyanagi.jp 前回、AngleSharp を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。 var document = default(IHtmlDocument); using (var client = new HttpClient()) using (var stream = await client.GetStreamAsync(Target))" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2017/09/09/171921/20170909170801_hu6a72f88aecc44cef6077df70e9aadfdb_46496_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2017/09/09/171921/20170909170801_hu6a72f88aecc44cef6077df70e9aadfdb_46496_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/09/09/171921/" />
@@ -86,222 +92,176 @@
         </time>        
     </p>
 
-    <p><a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450" alt="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ">
-  Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ
-</a>前回、<a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450">AngleSharp</a> を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> document = <span style="color:#66d9ef">default</span>(IHtmlDocument);
-            
-<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> client = <span style="color:#66d9ef">new</span> HttpClient())
-<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> stream = <span style="color:#66d9ef">await</span> client.GetStreamAsync(Target))
+    <p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F09%2F08%2F235450" title="Razor Pages：PhantomJS で動的サイトをスクレイピングする - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450">blog.daruyanagi.jp</a></cite></p><p>前回、<a href="http://blog.daruyanagi.jp/entry/2017/09/08/235450">AngleSharp</a> を使えばよかったかもといったのですが、結果的にはちょっと大変かなって感じでした。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>var document = <span class="synStatement">default</span>(IHtmlDocument);
+<p><span class="synStatement">using</span> (var client = <span class="synStatement">new</span> HttpClient())
+<span class="synStatement">using</span> (var stream = await client.GetStreamAsync(Target))
 {
-    <span style="color:#66d9ef">var</span> parser = <span style="color:#66d9ef">new</span> HtmlParser();
-    document = <span style="color:#66d9ef">await</span> parser.ParseAsync(stream);
+var parser = <span class="synStatement">new</span> HtmlParser();
+document = await parser.ParseAsync(stream);
+}</p>
+<p>Result = document.QuerySelector(Selector)?.InnerHtml;</p>
+<p><span class="synStatement">return</span> Page();
+</pre><p>確かにシンプルなのですが、外部 JavaScript を読んで、評価して……までやりだすと、いろいろ大変な感じ<a href="#f-4db4db9a" name="fn-4db4db9a" title="すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった">*1</a>。これまで通り PhantomJS でやった方がよさそう。</p><p>――というわけで。</p><p>今回はそっちを置いておいて、Web API として使えるようにしてみました。ASP.NET API（Core）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">namespace</span> WebApplication7.Controllers
+{
+[Route(<span class="synConstant">&quot;api/[controller]&quot;</span>)]
+<span class="synType">public</span> <span class="synType">class</span> ValuesController : Controller
+{
+<span class="synComment">// GET api/values</span>
+[HttpGet]
+<span class="synType">public</span> IEnumerable&lt;<span class="synType">string</span>&gt; Get()
+{
+<span class="synStatement">return</span> <span class="synStatement">new</span> <span class="synType">string</span>[] { <span class="synConstant">&quot;value1&quot;</span>, <span class="synConstant">&quot;value2&quot;</span> };
+}
+}
+}
+</pre><p><code>/api/values</code> をゲットでたたくと、<code>{ "value1", "value2" }</code> が返ってくる。これと組み合わせて、API Controller を Razor Pages で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、API と Razor Pages で共通のロジックをまとめて（適当に <code>Services</code> フォルダーにまとめました）、共有することにしました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170909170801.png" alt="f:id:daruyanagi:20170909170801p:plain" title="f:id:daruyanagi:20170909170801p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>共有部分はこんな感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>
+<span class="synComment">// サービスと名付けたモノ（/Services）</span>
+
+<span class="synType">namespace</span> WebApplication7.Services
+{
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> DynamicScrapingService
+{
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Process(Models.ScrapingRequest request)
+{
+var root_dir = Hosting.Environment.ContentRootPath;
+var work_dir = System.IO.Path.Combine(root_dir, <span class="synConstant">&quot;Tools&quot;</span>);
+var script_name = <span class="synConstant">&quot;scrape.js&quot;</span>;
+
+var info = <span class="synStatement">new</span> System.Diagnostics.ProcessStartInfo()
+{
+Arguments = $<span class="synSpecial">@</span><span class="synConstant">&quot;&quot;&quot;{script_name}&quot;&quot; &quot;&quot;{request?.Target}&quot;&quot; &quot;&quot;{request?.Selector}&quot;&quot;&quot;</span>,
+FileName = System.IO.Path.Combine(work_dir, <span class="synConstant">&quot;phantomjs.exe&quot;</span>),
+CreateNoWindow = <span class="synConstant">true</span>,
+RedirectStandardOutput = <span class="synConstant">true</span>,
+StandardOutputEncoding = System.Text.Encoding.UTF8,
+UseShellExecute = <span class="synConstant">false</span>,
+WorkingDirectory = work_dir,
+};
+
+<span class="synStatement">using</span> (var process = <span class="synStatement">new</span> System.Diagnostics.Process() { StartInfo = info, })
+{
+var output = <span class="synType">string</span>.Empty;
+
+process.OutputDataReceived += (s, a) =&gt; { output += a.Data; };
+
+process.Start();
+process.BeginOutputReadLine();
+process.WaitForExit();
+
+<span class="synComment">// エラー出力をちょん切る</span>
+var r = <span class="synStatement">new</span> System.Text.RegularExpressions.Regex(<span class="synConstant">&quot;{.+}&quot;</span>);
+output = r.Match(output).Value;
+
+<span class="synStatement">return</span> output;
+}
+}
+}
 }
 
-Result = document.QuerySelector(Selector)?.InnerHtml;
+<span class="synComment">// モデル的なモノ（/Models）</span>
 
-<span style="color:#66d9ef">return</span> Page();
-
-<span style="color:#960050;background-color:#1e0010">```確かにシンプルなのですが、外部</span> JavaScript <span style="color:#960050;background-color:#1e0010">を読んで、評価して……までやりだすと、いろいろ大変な感じ</span>&lt;a href=<span style="color:#e6db74">&#34;#f-4db4db9a&#34;</span> name=<span style="color:#e6db74">&#34;fn-4db4db9a&#34;</span> title=<span style="color:#e6db74">&#34;すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。これまで通り</span> PhantomJS <span style="color:#960050;background-color:#1e0010">でやった方がよさそう。――というわけで。今回はそっちを置いておいて、</span>Web API <span style="color:#960050;background-color:#1e0010">として使えるようにしてみました。</span>ASP.NET API<span style="color:#960050;background-color:#1e0010">（</span>Core<span style="color:#960050;background-color:#1e0010">）を使うのは初めてだったんですが、今回のような単純なモノであれば一瞬でできました。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">namespace</span> WebApplication7.Controllers
+<span class="synType">namespace</span> WebApplication7.Models
 {
-<span style="color:#a6e22e">    [Route(&#34;api/[controller]</span><span style="color:#e6db74">&#34;)]
-</span><span style="color:#e6db74"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ValuesController</span> : Controller
-    {
-        <span style="color:#75715e">// GET api/values
-</span><span style="color:#75715e"></span><span style="color:#a6e22e">        [HttpGet]</span>
-        <span style="color:#66d9ef">public</span> IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt; Get()
-        {
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> <span style="color:#66d9ef">string</span>[] { <span style="color:#e6db74">&#34;value1&#34;</span>, <span style="color:#e6db74">&#34;value2&#34;</span> };
-        }
-    }
+<span class="synType">public</span> <span class="synType">class</span> ScrapingRequest
+{
+<span class="synType">public</span> Uri Target { get; set; }
+<span class="synType">public</span> <span class="synType">string</span> Selector { get; set; }
+}
 }
 
-<span style="color:#960050;background-color:#1e0010">```</span>&lt;code&gt;/api/values&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">をゲットでたたくと、</span>&lt;code&gt;{ <span style="color:#e6db74">&#34;value1&#34;</span>, <span style="color:#e6db74">&#34;value2&#34;</span> }&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">が返ってくる。これと組み合わせて、</span>API Controller <span style="color:#960050;background-color:#1e0010">を</span> Razor Pages <span style="color:#960050;background-color:#1e0010">で呼び出して使いたいなーと、ちょっと四苦八苦していたのですが、それはちょっと筋悪だったよう。結局は、</span>API <span style="color:#960050;background-color:#1e0010">と</span> Razor Pages <span style="color:#960050;background-color:#1e0010">で共通のロジックをまとめて（適当に</span> &lt;code&gt;Services&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">フォルダーにまとめました）、共有することにしました。</span>
-
-<figure>
-    <img src="/images/20170909170801.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">有部分はこんな感じ。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#75715e">// サービスと名付けたモノ（/Services）
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> WebApplication7.Services
+<span class="synType">namespace</span> WebApplication7.Models
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicScrapingService</span>
-    {
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Process(Models.ScrapingRequest request)
-        {
-            <span style="color:#66d9ef">var</span> root_dir = Hosting.Environment.ContentRootPath;
-            <span style="color:#66d9ef">var</span> work_dir = System.IO.Path.Combine(root_dir, <span style="color:#e6db74">&#34;Tools&#34;</span>);
-            <span style="color:#66d9ef">var</span> script_name = <span style="color:#e6db74">&#34;scrape.js&#34;</span>;
+<span class="synType">public</span> <span class="synType">class</span> ScrapingResult
+{
+<span class="synType">public</span> <span class="synType">string</span> Url { get; set; }
 
-            <span style="color:#66d9ef">var</span> info = <span style="color:#66d9ef">new</span> System.Diagnostics.ProcessStartInfo()
-            {
-                Arguments = <span style="color:#e6db74">$@&#34;&#34;&#34;{script_name}&#34;&#34; &#34;&#34;{request?.Target}&#34;&#34; &#34;&#34;{request?.Selector}&#34;&#34;&#34;</span>,
-                FileName = System.IO.Path.Combine(work_dir, <span style="color:#e6db74">&#34;phantomjs.exe&#34;</span>),
-                CreateNoWindow = <span style="color:#66d9ef">true</span>,
-                RedirectStandardOutput = <span style="color:#66d9ef">true</span>,
-                StandardOutputEncoding = System.Text.Encoding.UTF8,
-                UseShellExecute = <span style="color:#66d9ef">false</span>,
-                WorkingDirectory = work_dir,
-            };
+<span class="synType">public</span> <span class="synType">string</span> Selector { get; set; }
 
-            <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> process = <span style="color:#66d9ef">new</span> System.Diagnostics.Process() { StartInfo = info, })
-            {
-                <span style="color:#66d9ef">var</span> output = <span style="color:#66d9ef">string</span>.Empty;
+<span class="synType">public</span> <span class="synType">string</span> Status { get; set; }
 
-                process.OutputDataReceived += (s, a) =&gt; { output += a.Data; };
-
-                process.Start();
-                process.BeginOutputReadLine();
-                process.WaitForExit();
-
-                <span style="color:#75715e">// エラー出力をちょん切る
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> r = <span style="color:#66d9ef">new</span> System.Text.RegularExpressions.Regex(<span style="color:#e6db74">&#34;{.+}&#34;</span>);
-                output = r.Match(output).Value;
-
-                <span style="color:#66d9ef">return</span> output;
-            }
-        }
-    }
+<span class="synType">public</span> <span class="synType">string</span> Text { get; set; }
+}
+}
+</pre><p>これを Index.cshtml では</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">namespace</span> WebApplication7.Pages
+{
+<span class="synType">public</span> <span class="synType">class</span> IndexModel : PageModel
+{
+<span class="synType">public</span> IndexModel()
+{
+ScrapinRequest = <span class="synStatement">new</span> Models.ScrapingRequest()
+{
+Target = <span class="synStatement">new</span> Uri(<span class="synConstant">&quot;https://blog.daruyanagi.jp/&quot;</span>),
+Selector = <span class="synConstant">&quot;footer&quot;</span>,
+};
 }
 
-<span style="color:#75715e">// モデル的なモノ（/Models）
-</span><span style="color:#75715e"></span>
-<span style="color:#66d9ef">namespace</span> WebApplication7.Models
+<span class="synType">public</span> Models.ScrapingRequest ScrapinRequest { get; set; }
+<span class="synType">public</span> Models.ScrapingResult ScrapingResult { get; set; }
+
+<span class="synType">public</span> <span class="synType">void</span> OnPost()
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScrapingRequest</span>
-    {
-        <span style="color:#66d9ef">public</span> Uri Target { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Selector { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-    }
+var output = Services.DynamicScrapingService.Process(ScrapinRequest);
+ScrapingResult = Newtonsoft.Json.JsonConvert.DeserializeObject&lt;Models.ScrapingResult&gt;(output);
 }
-
-<span style="color:#66d9ef">namespace</span> WebApplication7.Models
+}
+}
+</pre><p>こんな感じに呼び出します。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170909171117.png" alt="f:id:daruyanagi:20170909171117p:plain" title="f:id:daruyanagi:20170909171117p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>API Controller ではこんな感じに使ってみました。JSON で渡して、JSON で返してくれる感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">namespace</span> WebApplication7.Controllers
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">ScrapingResult</span>
-    {
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Url { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-        
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Selector { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-        
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Status { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-        
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">string</span> Text { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```これを</span> Index.cshtml <span style="color:#960050;background-color:#1e0010">では</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">namespace</span> WebApplication7.Pages
+[Route(<span class="synConstant">&quot;api/[controller]&quot;</span>)]
+<span class="synType">public</span> <span class="synType">class</span> DynamicScrapingController : Controller
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">IndexModel</span> : PageModel
-    {
-        <span style="color:#66d9ef">public</span> IndexModel()
-        {
-            ScrapinRequest = <span style="color:#66d9ef">new</span> Models.ScrapingRequest()
-            {
-                Target = <span style="color:#66d9ef">new</span> Uri(<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/&#34;</span>),
-                Selector = <span style="color:#e6db74">&#34;footer&#34;</span>,
-            };
-        }
-
-        <span style="color:#66d9ef">public</span> Models.ScrapingRequest ScrapinRequest { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-        <span style="color:#66d9ef">public</span> Models.ScrapingResult ScrapingResult { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> OnPost()
-        {
-            <span style="color:#66d9ef">var</span> output = Services.DynamicScrapingService.Process(ScrapinRequest);
-            ScrapingResult = Newtonsoft.Json.JsonConvert.DeserializeObject&amp;lt;Models.ScrapingResult&gt;(output);
-        }
-    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```こんな感じに呼び出します。</span>
-
-<figure>
-    <img src="/images/20170909171117.png"/> 
-</figure>
-
-
-PI Controller <span style="color:#960050;background-color:#1e0010">ではこんな感じに使ってみました。</span>JSON <span style="color:#960050;background-color:#1e0010">で渡して、</span>JSON <span style="color:#960050;background-color:#1e0010">で返してくれる感じ。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">namespace</span> WebApplication7.Controllers
+[HttpPost]
+<span class="synType">public</span> IActionResult Index([FromBody] Models.ScrapingRequest request)
 {
-<span style="color:#a6e22e">    [Route(&#34;api/[controller]</span><span style="color:#e6db74">&#34;)]
-</span><span style="color:#e6db74"></span>    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">DynamicScrapingController</span> : Controller
-    {   
-<span style="color:#a6e22e">        [HttpPost]</span>
-        <span style="color:#66d9ef">public</span> IActionResult Index([FromBody] Models.ScrapingRequest request)
-        {
-            <span style="color:#66d9ef">var</span> output = Services.DynamicScrapingService.Process(request);
-            <span style="color:#66d9ef">return</span> Json(output);
-        }
-    }
+var output = Services.DynamicScrapingService.Process(request);
+<span class="synStatement">return</span> Json(output);
 }
-
-<span style="color:#960050;background-color:#1e0010">```テストはむかし</span> @nakaji <span style="color:#960050;background-color:#1e0010">せんせいが教えてくれた</span> Chrome <span style="color:#960050;background-color:#1e0010">拡張機能を使ってみました。</span>[WebAPIの動作確認にはAdvanced REST clientが便利そう - <span style="color:#960050;background-color:#1e0010">なか日記</span>](http:<span style="color:#75715e">//blog.nakajix.jp/entry/2014/06/24/005200)大変便利なのでこれからも常用していこうと思います。
-</span><span style="color:#75715e"></span>
-<figure>
-    <img src="/images/20170909171326.png"/> 
-</figure>
-
-
-br/&gt;
-
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追伸</span>
-    <span style="color:#960050;background-color:#1e0010">前回書き忘れたのですが、</span>ASP.NET Core <span style="color:#960050;background-color:#1e0010">には</span> &lt;code&gt;Server.MapPath()&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">がないみたい。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">namespace</span> WebApplication7
+}
+}
+</pre><p>テストはむかし @nakaji せんせいが教えてくれた Chrome 拡張機能を使ってみました。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.nakajix.jp%2Fentry%2F2014%2F06%2F24%2F005200" title="WebAPIの動作確認にはAdvanced REST clientが便利そう - なか日記" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.nakajix.jp/entry/2014/06/24/005200">blog.nakajix.jp</a></cite></p><p>大変便利なのでこれからも常用していこうと思います。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170909171326.png" alt="f:id:daruyanagi:20170909171326p:plain" title="f:id:daruyanagi:20170909171326p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<div class="section">
+<h3>追伸</h3>
+<p>前回書き忘れたのですが、ASP.NET Core には <code>Server.MapPath()</code> がないみたい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">namespace</span> WebApplication7
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span>
-    {
-        <span style="color:#66d9ef">public</span> Startup(IConfiguration configuration)
-        {
-            Configuration = configuration;
-        }
-
-        <span style="color:#66d9ef">public</span> IConfiguration Configuration { <span style="color:#66d9ef">get</span>; }
-
-        <span style="color:#75715e">// This method gets called by the runtime. Use this method to add services to the container.
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services)
-        {
-            services.AddMvc();
-        }
-
-        <span style="color:#75715e">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-</span><span style="color:#75715e"></span>        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
-        {
-            app.UseMvc();
-
-            Hosting.Environment = env;
-        }
-    }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Hosting</span>
-    {
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> IHostingEnvironment Environment { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">set</span>; }
-    }
+<span class="synType">public</span> <span class="synType">class</span> Startup
+{
+<span class="synType">public</span> Startup(IConfiguration configuration)
+{
+Configuration = configuration;
 }
-
-<span style="color:#960050;background-color:#1e0010">```適当に</span> IHostingEnvironment <span style="color:#960050;background-color:#1e0010">を保存しておくようにしたのですが（</span>&lt;code&gt;Hosting.Environment.ContentRootPath&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">でルートがわかるので、それを</span> &lt;code&gt;Path.Combine()&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">なんかでごにょごにょする）、これがいい作法なのかどうかは自信がない。</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追伸</span><span style="color:#ae81ff">2</span>
-    <span style="color:#960050;background-color:#1e0010">そのまま</span> Azure Web Site <span style="color:#960050;background-color:#1e0010">に置けなくて泣いてる。</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-4db4db9a&#34;</span> name=<span style="color:#e6db74">&#34;f-4db4db9a&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">すごく頑張ればできなくはなさそうだけど、バージョンアップで</span> API <span style="color:#960050;background-color:#1e0010">が変わってたりでちょっと調べるのが面倒になった</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+<p><span class="synType">public</span> IConfiguration Configuration { get; }</p>
+<p><span class="synComment">// This method gets called by the runtime. Use this method to add services to the container.</span>
+<span class="synType">public</span> <span class="synType">void</span> ConfigureServices(IServiceCollection services)
+{
+services.AddMvc();
+}</p>
+<p><span class="synComment">// This method gets called by the runtime. Use this method to configure the HTTP request pipeline.</span>
+<span class="synType">public</span> <span class="synType">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env, ILoggerFactory loggerFactory)
+{
+app.UseMvc();</p>
+<p>Hosting.Environment = env;
+}
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> Hosting
+{
+<span class="synType">public</span> <span class="synType">static</span> IHostingEnvironment Environment { get; set; }
+}
+}
+</pre><p>適当に IHostingEnvironment を保存しておくようにしたのですが（<code>Hosting.Environment.ContentRootPath</code> でルートがわかるので、それを <code>Path.Combine()</code> なんかでごにょごにょする）、これがいい作法なのかどうかは自信がない。</p></p>
+</div>
+<div class="section">
+<h3>追伸2</h3>
+<p>そのまま Azure Web Site に置けなくて泣いてる。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-4db4db9a" name="f-4db4db9a" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">すごく頑張ればできなくはなさそうだけど、バージョンアップで API が変わってたりでちょっと調べるのが面倒になった</span></p>
+</div>
 
     <footer>
         
@@ -315,7 +275,7 @@ br/&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/09/09/171921.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/09/09</time> 
             </p>
         
     </footer>
@@ -367,7 +327,16 @@ br/&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

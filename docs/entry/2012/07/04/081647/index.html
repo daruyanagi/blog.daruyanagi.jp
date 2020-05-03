@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="SignalR のデモがちょっとかっこいい" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Video streaming by Ustream &gt; イベントの方向とタイトル的に ASP.NET 全体を少しずつ喋る形にしたのですが、SignalR だけで 45 分話してもいけたかなという印象を持ちました" />
+    <meta name="og:description"   property="og:description" content="Video streaming by Ustream イベントの方向とタイトル的に ASP.NET 全体を少しずつ喋る形にしたのですが、SignalR だけで 45 分話してもいけたかなという印象を持ちました。" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/07/04/081647/" />
@@ -86,27 +88,23 @@
         </time>        
     </p>
 
-    <iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/23660820" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe><br/><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Video streaming by Ustream</a>
-<pre><code>&gt;
-    イベントの方向とタイトル的に ASP.NET 全体を少しずつ喋る形にしたのですが、SignalR だけで 45 分話してもいけたかなという印象を持ちました。
-
-    Go Azure お疲れ様でした - まめしば雑記
-</code></pre>
+    <p><iframe width="480" height="296" src="http://www.ustream.tv/embed/recorded/23660820" scrolling="no" frameborder="0" style="border: 0px none transparent;">    </iframe><br /><a href="http://www.ustream.tv/" style="padding: 2px 0px 4px; width: 400px; background: #ffffff; display: block; color: #000000; font-weight: normal; font-size: 10px; text-decoration: underline; text-align: center;" target="_blank">Video streaming by Ustream</a></p>
+<blockquote cite="http://d.hatena.ne.jp/shiba-yan/20120702/1341200408">
+<p>イベントの方向とタイトル的に <a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> 全体を少しずつ喋る形にしたのですが、SignalR だけで 45 分話してもいけたかなという印象を持ちました。</p>
+<p><cite><a href="http://d.hatena.ne.jp/shiba-yan/20120702/1341200408">Go Azure お疲れ様でした - まめしば雑記</a></cite></p>
+</blockquote>
 <p>あんまりまだよくわかってないけど、あのデモは結構興味惹かれたかも。</p>
-<pre><code>&gt;
-    SignalR は、このあと見て行くように、単なる WebSocket 開発のためだけのライブラリーではなく、さらに多くの付加価値を含んだ上位のフレームワークです。抽象度も高く、日本語のエンコードなど含めプリミティブな処理を開発者が記述する必要はありません。
-
-    
+<blockquote cite="http://blogs.msdn.com/b/tsmatsuz/archive/2012/04/27/signalr-websocket-development-and-cross-browser-compatibility.aspx">
+<p>SignalR は、このあと見て行くように、単なる WebSocket 開発のためだけのライブラリーではなく、さらに多くの付加価値を含んだ上位の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D5%A5%EC%A1%BC%A5%E0%A5%EF%A1%BC%A5%AF">フレームワーク</a>です。抽象度も高く、日本語の<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%A8%A5%F3%A5%B3%A1%BC%A5%C9">エンコード</a>など含めプリミティブな処理を開発者が記述する必要はありません。</p>
+<p><cite><a href="http://blogs.msdn.com/b/tsmatsuz/archive/2012/04/27/signalr-websocket-development-and-cross-browser-compatibility.aspx">
 WebSocket サーバー開発 : SignalR とクロス ブラウザーへの対応 - 松崎 剛 Blog - Site Home - MSDN Blogs
-
-
-
-&gt;
-    SignalR という非同期でリアルタイムな双方向通信を実現するライブラリが面白そうなので試してみました。作者は ASP.NET チームの Damian Edwards 氏と David Fowler 氏です。
-
-    SignalR を簡単に使ってみた - まめしば雑記
-</code></pre>
-<p>二日目はオンライン参加だったので、セッションが終わってすぐ手元のPCで実際にサンプルを試してみた。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120704/20120704080210.png" alt="f:id:daruyanagi:20120704080210p:plain" title="f:id:daruyanagi:20120704080210p:plain" class="hatena-fotolife"/>まず、 NuGet で SignalR のサンプルをインストール。依存関係のあるものも自動ででろでろっとダウンロード・インストールされる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120704/20120704080345.png" alt="f:id:daruyanagi:20120704080345p:plain" title="f:id:daruyanagi:20120704080345p:plain" class="hatena-fotolife"/>サンプルは株価の上がり下がりを表示するもので、サーバー側からデータが送られてきてクライアント側（Webブラウザー）の表示が更新されるという、要はプッシュ通知のデモになっている。見てるだけでもちょっと楽しい。SignalR のもう一つのキモは、ブラウザーが対応する技術に応じて Web Socket やフレームを使い分けてくれるところ。これを確かめるために、今回は「IE Tester」というツールを利用してみた。<a href="http://my-debugbar.com/wiki/IETester/HomePage">My DebugBar | IETester / Browser Compatibility Check for Internet Explorer Versions from 5.5 to 10 </a>本当は仮想マシン環境でも用意すべきなんだろうけど、さすがにそれは面倒だった。ちなみに、 Microsoft では IE の旧バージョンをテストするための仮想環境を用意しているので、空き時間とディスク空き容量が豊富な人は試してみるとよいかもしれない。<a href="http://www.forest.impress.co.jp/docs/news/20120416_526780.html">窓の杜 - 【NEWS】Microsoft、互換性検証を目的としたIE6/7/8/9環境の仮想マシンイメージを更新</a><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120704/20120704080652.png" alt="f:id:daruyanagi:20120704080652p:plain" title="f:id:daruyanagi:20120704080652p:plain" class="hatena-fotolife"/>残念ながら、 IE7 以下の環境では失敗したものの、<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120704/20120704080658.png" alt="f:id:daruyanagi:20120704080658p:plain" title="f:id:daruyanagi:20120704080658p:plain" class="hatena-fotolife"/>Web Socket に対応していない IE8 でも動作した。「IE Tester」が完全に旧バージョンのIEをエミュレートしているとは限らないので、これをもって IE7 非対応とは言えないと思うが、まぁ、参考として。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120704/20120704081526.png" alt="f:id:daruyanagi:20120704081526p:plain" title="f:id:daruyanagi:20120704081526p:plain" class="hatena-fotolife"/>株式会社だるだる を追加して遊んでみた。ふふふ……</p>
+</a></cite></p>
+</blockquote>
+<blockquote cite="http://d.hatena.ne.jp/shiba-yan/20120314/1331650899">
+<p>SignalR という非同期でリアルタイムな双方向通信を実現するライブラリが面白そうなので試してみました。作者は <a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> チームの Damian Edwards 氏と David Fowler 氏です。</p>
+<p><cite><a href="http://d.hatena.ne.jp/shiba-yan/20120314/1331650899">SignalR を簡単に使ってみた - まめしば雑記</a></cite></p>
+</blockquote>
+<p>二日目はオンライン参加だったので、セッションが終わってすぐ手元のPCで実際にサンプルを試してみた。</p><p><img src="20120704080210.png" alt="f:id:daruyanagi:20120704080210p:plain" title="f:id:daruyanagi:20120704080210p:plain" class="hatena-fotolife"></p><p>まず、 NuGet で SignalR のサンプルをインストール。依存関係のあるものも自動ででろでろっとダウンロード・インストールされる。</p><p><img src="20120704080345.png" alt="f:id:daruyanagi:20120704080345p:plain" title="f:id:daruyanagi:20120704080345p:plain" class="hatena-fotolife"></p><p>サンプルは株価の上がり下がりを表示するもので、サーバー側からデータが送られてきてクライアント側（Webブラウザー）の表示が更新されるという、要はプッシュ通知のデモになっている。見てるだけでもちょっと楽しい。</p><p>SignalR のもう一つのキモは、ブラウザーが対応する技術に応じて Web Socket やフレームを使い分けてくれるところ。これを確かめるために、今回は「IE Tester」というツールを利用してみた。</p><p><a href="http://my-debugbar.com/wiki/IETester/HomePage">My DebugBar | IETester / Browser Compatibility Check for Internet Explorer Versions from 5.5 to 10 </a></p><p>本当は<a class="keyword" href="http://d.hatena.ne.jp/keyword/%B2%BE%C1%DB%A5%DE%A5%B7%A5%F3">仮想マシン</a>環境でも用意すべきなんだろうけど、さすがにそれは面倒だった。ちなみに、 Microsoft では IE の旧バージョンをテストするための仮想環境を用意しているので、空き時間とディスク空き容量が豊富な人は試してみるとよいかもしれない。</p><p><a href="http://www.forest.impress.co.jp/docs/news/20120416_526780.html">&#x7A93;&#x306E;&#x675C; - &#x3010;NEWS&#x3011;Microsoft&#x3001;&#x4E92;&#x63DB;&#x6027;&#x691C;&#x8A3C;&#x3092;&#x76EE;&#x7684;&#x3068;&#x3057;&#x305F;IE6/7/8/9&#x74B0;&#x5883;&#x306E;&#x4EEE;&#x60F3;&#x30DE;&#x30B7;&#x30F3;&#x30A4;&#x30E1;&#x30FC;&#x30B8;&#x3092;&#x66F4;&#x65B0;</a></p><p><img src="20120704080652.png" alt="f:id:daruyanagi:20120704080652p:plain" title="f:id:daruyanagi:20120704080652p:plain" class="hatena-fotolife"></p><p>残念ながら、 <a class="keyword" href="http://d.hatena.ne.jp/keyword/IE7">IE7</a> 以下の環境では失敗したものの、</p><p><img src="20120704080658.png" alt="f:id:daruyanagi:20120704080658p:plain" title="f:id:daruyanagi:20120704080658p:plain" class="hatena-fotolife"></p><p>Web Socket に対応していない IE8 でも動作した。「IE Tester」が完全に旧バージョンのIEをエミュレートしているとは限らないので、これをもって <a class="keyword" href="http://d.hatena.ne.jp/keyword/IE7">IE7</a> 非対応とは言えないと思うが、まぁ、参考として。</p><p><img src="20120704081526.png" alt="f:id:daruyanagi:20120704081526p:plain" title="f:id:daruyanagi:20120704081526p:plain" class="hatena-fotolife"></p><p>株式会社だるだる を追加して遊んでみた。ふふふ……</p>
 
 
     <footer>
@@ -121,7 +119,7 @@ WebSocket サーバー開発 : SignalR とクロス ブラウザーへの対応 
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/07/04/081647.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/07/04</time> 
             </p>
         
     </footer>
@@ -137,7 +135,7 @@ WebSocket サーバー開発 : SignalR とクロス ブラウザーへの対応 
             <a href="/">🏠 Home</a>
         <span > - </span>
         
-            <a href="https://blog.daruyanagi.jp/entry/2012/07/05/015015/">Newer &raquo;</a>
+            <a href="https://blog.daruyanagi.jp/entry/2012/07/04/205252/">Newer &raquo;</a>
         
     </p>    
     
@@ -173,7 +171,16 @@ WebSocket サーバー開発 : SignalR とクロス ブラウザーへの対応 
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

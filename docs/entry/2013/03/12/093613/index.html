@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 2 - blog.daruyanagi.jp</title>
+<title>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 2" />
+<meta name="og:title"         property="og:title" content="WebMatrix 2: SignalR を動かす （ 1.0.1 対応版）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。 ASP.NET SignalR 1.0.1 が出てました - しばやん雑記 最新版は 1.0.1 ですかね。ASP.NET SignalR" />
+    <meta name="og:description"   property="og:description" content="もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。 ASP.NET SignalR 1.0.1 &#x304C;&#x51FA;&#x3066;&#x307E;&#x3057;&#x305F; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18; 最新版は 1.0.1 ですかね。 ASP.NET SignalR は「WebMatrix 2」からも" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/03/12/093613/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 2</h1>
+    <h1>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版）</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -88,130 +90,80 @@
 
     <p>もうだいぶ昔の話になりますが、ASP.NET SignalR が正式リリースされました。</p>
 <ul>
-<li><a href="http://shiba-yan.hatenablog.jp/entry/20130303/1362291390">ASP.NET SignalR 1.0.1 が出てました - しばやん雑記</a></li>
-</ul>最新版は 1.0.1 ですかね。ASP.NET SignalR は「WebMatrix 2」からも使えますが、ベータのとき（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! に参加してきた＋WebMatrix で SignalR 動かしてみた - だるろぐ</a>）とは少し変わっている部分もあるようなので、もう一度やってみました。とりあえず、<a href="https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs">QuickStart Hubs · SignalR/SignalR Wiki · GitHub</a> を動作させるのが目標。
+<li><a href="http://shiba-yan.hatenablog.jp/entry/20130303/1362291390">ASP.NET SignalR 1.0.1 &#x304C;&#x51FA;&#x3066;&#x307E;&#x3057;&#x305F; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a></li>
+</ul><p>最新版は 1.0.1 ですかね。</p><p>ASP.NET SignalR は「WebMatrix 2」からも使えますが、ベータのとき（<a href="https://blog.daruyanagi.jp/entry/2012/08/31/031730">SignalR Deep Dive ! &#x306B;&#x53C2;&#x52A0;&#x3057;&#x3066;&#x304D;&#x305F;&#xFF0B;WebMatrix &#x3067; SignalR &#x52D5;&#x304B;&#x3057;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）とは少し変わっている部分もあるようなので、もう一度やってみました。とりあえず、<a href="https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs">QuickStart Hubs &middot; SignalR/SignalR Wiki &middot; GitHub</a> を動作させるのが目標。</p>
 <div class="section">
-    ### NuGet で SignalR を取得
-<figure>
-    <img src="/images/20130312085421.png"/> 
-</figure>
-
-<p>式パッケージソースで「SignalR」を検索すると、三番目ぐらいに出てくるはず。</p>
+<h3>NuGet で SignalR を取得</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130312085421.png" alt="f:id:daruyanagi:20130312085421p:plain" title="f:id:daruyanagi:20130312085421p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>公式パッケージソースで「SignalR」を検索すると、三番目ぐらいに出てくるはず。</p>
 </div>
 <div class="section">
-    ### サーバー（ハブ）
-<figure>
-    <img src="/images/20130312090003.png"/> 
-</figure>
-
-<p>/App_Code フォルダに ChatHub.cs を作成し、以下のようなクラスを用意します。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> Microsoft.AspNet.SignalR;
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Chat</span> : Hub 
+<h3>サーバー（ハブ）</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130312090003.png" alt="f:id:daruyanagi:20130312090003p:plain" title="f:id:daruyanagi:20130312090003p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>~/App_Code フォルダに ChatHub.cs を作成し、以下のようなクラスを用意します。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> Microsoft.AspNet.SignalR;
+<p><span class="synType">public</span> <span class="synType">class</span> Chat : Hub
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Send(<span style="color:#66d9ef">string</span> message)
-    {
-        <span style="color:#75715e">// Call the addMessage method on all clients            
-</span><span style="color:#75715e"></span>        Clients.All.addMessage(message);
-    }
+<span class="synType">public</span> <span class="synType">void</span> Send(<span class="synType">string</span> message)
+{
+<span class="synComment">// Call the addMessage method on all clients            </span>
+Clients.All.addMessage(message);
 }
-
-<span style="color:#960050;background-color:#1e0010">```受け取ったメッセージを接続中のすべてのクライアントへそのまま一斉送信する（クライアントクラスの</span> addMessage() <span style="color:#960050;background-color:#1e0010">を呼び出す）だけの簡単なクラスです。これがサーバー側のコードになります。名前空間が変わったのかな？</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">ハブのマッピング</span>
-    
-
-<figure>
-    <img src="/images/20130312090455.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">きほど記述したハブをルートテーブルにマップして使えるようにします。</span>~/_AppStart.cshtml <span style="color:#960050;background-color:#1e0010">を作成し、以下のように記述しましょう。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-@using System.Web.Routing
-
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    RouteTable.Routes.MapHubs();
 }
-
-<span style="color:#960050;background-color:#1e0010">```</span>&lt;a href=<span style="color:#e6db74">&#34;https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs&#34;</span>&gt;QuickStart Hubs <span style="color:#960050;background-color:#1e0010">·</span> SignalR/SignalR Wiki <span style="color:#960050;background-color:#1e0010">·</span> GitHub&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">に掲載されているコードと少し違いますが、「</span>WebMatrix <span style="color:#ae81ff">2</span><span style="color:#960050;background-color:#1e0010">」の場合はこれで</span> OK <span style="color:#960050;background-color:#1e0010">です。正直、あんまりよくわかっていないのですけれど、これをコメントアウトすると次のセクションに出てくる</span> &amp;lt;script src=<span style="color:#e6db74">&#34;/signalr/hubs&#34;</span>&gt;&amp;lt;/script&gt; <span style="color:#960050;background-color:#1e0010">が</span> <span style="color:#ae81ff">404</span> <span style="color:#960050;background-color:#1e0010">になってしまうので、まぁ、そういうのことをしてくれているのではないでしょうか。クライアントコードで</span> <span style="color:#960050;background-color:#1e0010">$</span>.connection.chat <span style="color:#960050;background-color:#1e0010">と書いてハブプロキシを呼び出せるようにごにょごにょするとか、そういう準備全般だと思います。</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">クライアント（</span>Javascript + HTML<span style="color:#960050;background-color:#1e0010">）</span>
-    
-
-<figure>
-    <img src="/images/20130312091147.png"/> 
-</figure>
-
-
-/Default.cshtml <span style="color:#960050;background-color:#1e0010">を以下のように書き換えます。自分の場合は</span> jQuery <span style="color:#960050;background-color:#1e0010">をアップデートしてあるのですが、古いものでも大丈夫なのかな？</span>　<span style="color:#960050;background-color:#1e0010">コピペで動かす場合は、スクリプトのバージョンだけ間違わないように気を付けてくださいね。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    
+</pre><p>受け取ったメッセージを接続中のすべてのクライアントへそのまま一斉送信する（クライアントクラスの addMessage() を呼び出す）だけの簡単なクラスです。これがサーバー側のコードになります。</p><p>名前空間が変わったのかな？</p></p>
+</div>
+<div class="section">
+<h3>ハブのマッピング</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130312090455.png" alt="f:id:daruyanagi:20130312090455p:plain" title="f:id:daruyanagi:20130312090455p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>さきほど記述したハブをルートテーブルにマップして使えるようにします。~/_AppStart.cshtml を作成し、以下のように記述しましょう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Web.Routing
+<p>@{
+RouteTable.Routes.MapHubs();
 }
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;ja&#34;</span>&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta http-equiv=<span style="color:#e6db74">&#34;Content-Type&#34;</span> content=<span style="color:#e6db74">&#34;text/html; charset=utf-8&#34;</span>/&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-
-        &amp;lt;title&gt;<span style="color:#960050;background-color:#1e0010">マイ</span> <span style="color:#960050;background-color:#1e0010">サイトのタイトル</span>&amp;lt;/title&gt;
-
-        &amp;lt;link href=<span style="color:#e6db74">&#34;~/favicon.ico&#34;</span> rel=<span style="color:#e6db74">&#34;shortcut icon&#34;</span> type=<span style="color:#e6db74">&#34;image/x-icon&#34;</span> /&gt;
-
-        &amp;lt;script src=<span style="color:#e6db74">&#34;~/Scripts/jquery-1.9.1.min.js&#34;</span>&gt;&amp;lt;/script&gt;
-        &amp;lt;script src=<span style="color:#e6db74">&#34;~/Scripts/jquery.signalR-1.0.1.min.js&#34;</span>&gt;&amp;lt;/script&gt;
-        &amp;lt;script src=<span style="color:#e6db74">&#34;~/signalr/hubs&#34;</span>&gt;&amp;lt;/script&gt;
-        &amp;lt;script&gt;
-            <span style="color:#960050;background-color:#1e0010">$</span>(function () {
-                <span style="color:#75715e">// ハブプロキシを作成        
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> chat = <span style="color:#960050;background-color:#1e0010">$</span>.connection.chat;
-
-                <span style="color:#75715e">// サーバーが addMessage() を呼んだら……         
-</span><span style="color:#75715e"></span>                chat.client.addMessage = function (message) {
-                    <span style="color:#960050;background-color:#1e0010">$</span>(&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span>messages&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).append(&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;&lt;li&gt;&lt;/li&gt;&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>; + message + &amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;);
-                };
-
-                <span style="color:#75715e">// 接続開始
-</span><span style="color:#75715e"></span>                <span style="color:#960050;background-color:#1e0010">$</span>.connection.hub.start().done(function() {
-                    <span style="color:#75715e">// imput#broadcast がクリックされたら……
-</span><span style="color:#75715e"></span>                    <span style="color:#960050;background-color:#1e0010">$</span>(<span style="color:#e6db74">&#34;#broadcast&#34;</span>).click(function () {
-                        <span style="color:#75715e">// サーバーの Send() を実行する
-</span><span style="color:#75715e"></span>                        chat.server.send(<span style="color:#960050;background-color:#1e0010">$</span>(&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;<span style="color:#960050;background-color:#1e0010">#</span>msg&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).val());
-                    });
-                });
-            });
-        &amp;lt;/script&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;div&gt;
-            &amp;lt;input type=<span style="color:#e6db74">&#34;text&#34;</span> id=<span style="color:#e6db74">&#34;msg&#34;</span> /&gt;
-            &amp;lt;input type=<span style="color:#e6db74">&#34;button&#34;</span> id=<span style="color:#e6db74">&#34;broadcast&#34;</span> <span style="color:#66d9ef">value</span>=<span style="color:#e6db74">&#34;broadcast&#34;</span> /&gt;
-
-            &amp;lt;ul id=<span style="color:#e6db74">&#34;messages&#34;</span>&gt;
-            &amp;lt;/ul&gt;
-        &amp;lt;/div&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-<span style="color:#960050;background-color:#1e0010">```</span>input<span style="color:#960050;background-color:#1e0010">#</span>broadcast <span style="color:#960050;background-color:#1e0010">を押したら、</span>input<span style="color:#960050;background-color:#1e0010">#</span>msg <span style="color:#960050;background-color:#1e0010">の内容を引数にサーバーの</span> ChatHub.Send(<span style="color:#66d9ef">string</span><span style="color:#960050;background-color:#1e0010">）</span> <span style="color:#960050;background-color:#1e0010">を実行します。</span> <span style="color:#960050;background-color:#1e0010">すると、それがすべてのクライアントに送信され、それを受け取ったクライアントは</span> ul<span style="color:#960050;background-color:#1e0010">#</span>messages <span style="color:#960050;background-color:#1e0010">にそれを追加する、というわけ。</span>
-
-<figure>
-    <img src="/images/20130312092011.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">りあえずブラウザーをいくつか起動して適当に入力してみてください。ちゃんとブロードキャストされているかな？</span>
-
+</pre><p><a href="https://github.com/SignalR/SignalR/wiki/QuickStart-Hubs">QuickStart Hubs · SignalR/SignalR Wiki · GitHub</a> に掲載されているコードと少し違いますが、「WebMatrix 2」の場合はこれで OK です。</p><p>正直、あんまりよくわかっていないのですけれど、これをコメントアウトすると次のセクションに出てくる &lt;script src=&rdquo;/signalr/hubs&rdquo;&gt;&lt;/script&gt; が 404 になってしまうので、まぁ、そういうのことをしてくれているのではないでしょうか。クライアントコードで $.connection.chat と書いてハブプロキシを呼び出せるようにごにょごにょするとか、そういう準備全般だと思います。</p></p>
+</div>
+<div class="section">
+<h3>クライアント（Javascript + HTML）</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130312091147.png" alt="f:id:daruyanagi:20130312091147p:plain" title="f:id:daruyanagi:20130312091147p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>~/Default.cshtml を以下のように書き換えます。自分の場合は jQuery をアップデートしてあるのですが、古いものでも大丈夫なのかな？　コピペで動かす場合は、スクリプトのバージョンだけ間違わないように気を付けてくださいね。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+<p>}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=<span class="synConstant">&quot;ja&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta http-equiv=<span class="synConstant">&quot;Content-Type&quot;</span> content=<span class="synConstant">&quot;text/html; charset=utf-8&quot;</span>/&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;</p>
+<p>&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;</p>
+<p>&lt;link href=<span class="synConstant">&quot;~/favicon.ico&quot;</span> rel=<span class="synConstant">&quot;shortcut icon&quot;</span> type=<span class="synConstant">&quot;image/x-icon&quot;</span> /&gt;</p>
+<p>&lt;script src=<span class="synConstant">&quot;~/Scripts/jquery-1.9.1.min.js&quot;</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="synConstant">&quot;~/Scripts/jquery.signalR-1.0.1.min.js&quot;</span>&gt;&lt;/script&gt;
+&lt;script src=<span class="synConstant">&quot;~/signalr/hubs&quot;</span>&gt;&lt;/script&gt;
+&lt;script&gt;
+$(function () {
+<span class="synComment">// ハブプロキシを作成        </span>
+var chat = $.connection.chat;</p>
+<p><span class="synComment">// サーバーが addMessage() を呼んだら……         </span>
+chat.client.addMessage = function (message) {
+$(<span class="synConstant">'</span><span class="synError">#messages</span><span class="synConstant">'</span>).append(<span class="synConstant">'</span><span class="synError">&lt;li&gt;</span><span class="synConstant">'</span> + message + <span class="synConstant">'</span><span class="synError">&lt;/li&gt;</span><span class="synConstant">'</span>);
+};</p>
+<p><span class="synComment">// 接続開始</span>
+$.connection.hub.start().done(function() {
+<span class="synComment">// imput#broadcast がクリックされたら……</span>
+$(<span class="synConstant">&quot;#broadcast&quot;</span>).click(function () {
+<span class="synComment">// サーバーの Send() を実行する</span>
+chat.server.send($(<span class="synConstant">'</span><span class="synError">#msg</span><span class="synConstant">'</span>).val());
+});
+});
+});
+&lt;/script&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;div&gt;
+&lt;input type=<span class="synConstant">&quot;text&quot;</span> id=<span class="synConstant">&quot;msg&quot;</span> /&gt;
+&lt;input type=<span class="synConstant">&quot;button&quot;</span> id=<span class="synConstant">&quot;broadcast&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;broadcast&quot;</span> /&gt;</p>
+<p>&lt;ul id=<span class="synConstant">&quot;messages&quot;</span>&gt;
+&lt;/ul&gt;
 &lt;/div&gt;
-
-</code></pre></div>
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>input#broadcast を押したら、input#msg の内容を引数にサーバーの ChatHub.Send(string） を実行します。 すると、それがすべてのクライアントに送信され、それを受け取ったクライアントは ul#messages にそれを追加する、というわけ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130312092011.png" alt="f:id:daruyanagi:20130312092011p:plain" title="f:id:daruyanagi:20130312092011p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえずブラウザーをいくつか起動して適当に入力してみてください。ちゃんとブロードキャストされているかな？</p></p>
+</div>
 
     <footer>
         
@@ -225,7 +177,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/12/093613.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/03/12</time> 
             </p>
         
     </footer>
@@ -277,7 +229,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

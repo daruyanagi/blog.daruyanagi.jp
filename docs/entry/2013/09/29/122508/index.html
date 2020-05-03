@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 3 - blog.daruyanagi.jp</title>
+<title>WebMatrix 3: @ でハマる - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 3" />
+<meta name="og:title"         property="og:title" content="WebMatrix 3: @ でハマる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。 #App_Code/Logger.cshtml @helper Write(string message) { System.IO.File.AppendAllText( Server.MapPath(&#34;~/log.txt&#34;), string.Format(&#34;{0}:\t{1}\r\n&#34;, DateTime.Now, message) ); } ```これを Default.cshtml でテストしてみた。 ```html @{" />
+    <meta name="og:description"   property="og:description" content="ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。 #App_Code/Logger.cshtml @helper Write(string message) { System.IO.File.AppendAllText( Server.MapPath(&quot;~/log.txt&quot;), string.Format(&quot;{0}:\t{1}\r\n&quot;, DateTime.Now, message) ); } これを Default.cshtml でテストしてみた。 @{ Logg" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2013/09/29/122508/20130929121802_hu90dcc41a329cfba918911928ee286924_49403_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2013/09/29/122508/20130929121802_hu90dcc41a329cfba918911928ee286924_49403_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/09/29/122508/" />
@@ -78,7 +84,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 3</h1>
+    <h1>WebMatrix 3: @ でハマる</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,74 +92,45 @@
         </time>        
     </p>
 
-    <p>ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。</p>
-<figure>
-    <img src="/images/20130929121802.png"/> 
-</figure>
-
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span>App_Code/Logger.cshtml
-
-@helper Write(<span style="color:#66d9ef">string</span> message)
+    <p>ちょいとログを外部ファイルに吐きたくなって、テキトーにこんなコードを書いてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130929121802.png" alt="f:id:daruyanagi:20130929121802p:plain" title="f:id:daruyanagi:20130929121802p:plain" class="hatena-fotolife" itemprop="image"></span></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>#App_Code/Logger.cshtml
+<p>@helper Write(<span class="synType">string</span> message)
 {
-    System.IO.File.AppendAllText(
-        Server.MapPath(<span style="color:#e6db74">&#34;~/log.txt&#34;</span>),
-        <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}:\t{1}\r\n&#34;</span>, DateTime.Now, message)
-    );
+System.IO.File.AppendAllText(
+Server.MapPath(<span class="synConstant">&quot;~/log.txt&quot;</span>),
+<span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}:</span><span class="synSpecial">\t</span><span class="synConstant">{1}</span><span class="synSpecial">\r\n</span><span class="synConstant">&quot;</span>, DateTime.Now, message)
+);
+}
+</pre><p>これを Default.cshtml でテストしてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130929122015.png" alt="f:id:daruyanagi:20130929122015p:plain" title="f:id:daruyanagi:20130929122015p:plain" class="hatena-fotolife" itemprop="image"></span></p></p>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+Logger.Write(&quot;冒頭のコードブロック内で記述&quot;);
 }
 
-<span style="color:#960050;background-color:#1e0010">```これを</span> Default.cshtml <span style="color:#960050;background-color:#1e0010">でテストしてみた。</span>
+<span class="synComment">&lt;!DOCTYPE html&gt;</span>
 
-<figure>
-    <img src="/images/20130929122015.png"/> 
-</figure>
-
-<span style="color:#960050;background-color:#1e0010">```</span>html
-<span style="color:#960050;background-color:#1e0010">@</span>{
-     Logger.Write(<span style="color:#e6db74">&#34;冒頭のコードブロック内で記述&#34;</span>);
+<span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">http-equiv</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Content-Type&quot;</span><span class="synIdentifier"> </span><span class="synType">content</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/html; charset=utf-8&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/favicon.ico&quot;</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;shortcut icon&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;image/x-icon&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+@Logger.Write(&quot;Body 内で記述&quot;)
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>結果はというと――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130929122031.png" alt="f:id:daruyanagi:20130929122031p:plain" title="f:id:daruyanagi:20130929122031p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>――冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。</p>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+@Logger.Write(&quot;冒頭のコードブロック内で記述&quot;);
 }
-
-
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;ja&#34;</span>&gt;
-    &amp;lt;head&gt;
-&amp;lt;meta http-equiv=<span style="color:#e6db74">&#34;Content-Type&#34;</span> content=<span style="color:#e6db74">&#34;text/html; charset=utf-8&#34;</span>/&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &amp;lt;title&gt;<span style="color:#960050;background-color:#1e0010">マイ</span> <span style="color:#960050;background-color:#1e0010">サイトのタイトル</span>&amp;lt;/title&gt;
-        &amp;lt;link href=<span style="color:#e6db74">&#34;~/favicon.ico&#34;</span> rel=<span style="color:#e6db74">&#34;shortcut icon&#34;</span> type=<span style="color:#e6db74">&#34;image/x-icon&#34;</span> /&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @Logger.Write(<span style="color:#e6db74">&#34;Body 内で記述&#34;</span>)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-<span style="color:#960050;background-color:#1e0010">```結果はというと――</span>
-
-<figure>
-    <img src="/images/20130929122031.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">―冒頭のコードブロック内で記述したログは記録されない。「あれ、なんでだろう？」と思って、あちこちごちゃごちゃ弄ってみたのだけど、正解はコレだった。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-<span style="color:#960050;background-color:#1e0010">@</span>{
-     @Logger.Write(<span style="color:#e6db74">&#34;冒頭のコードブロック内で記述&#34;</span>);
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130929122557.png" alt="f:id:daruyanagi:20130929122557p:plain" title="f:id:daruyanagi:20130929122557p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Logger.Write() のまえに @ を足せば実行される。</p>
+<pre class="code lang-html" data-lang="html" data-unlink>@{
+@(
+Logger.Write(&quot;冒頭のコードブロック内で記述&quot;)
+)
 }
+</pre><p>でもいいのだけど。</p><p>しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。</p>
 
-</code></pre></div><figure>
-    <img src="/images/20130929122557.png"/> 
-</figure>
-
-<p>ogger.Write() のまえに @ を足せば実行される。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">@{
-     @(
-         Logger.Write(&#34;冒頭のコードブロック内で記述&#34;)
-     )
-}
-
-```でもいいのだけど。しっかし、これ、なぜなんだろう。自分はまだまだ Razor がわかってないな。
-
-
-</code></pre></div>
 
     <footer>
         
@@ -167,7 +144,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/09/29/122508.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/09/29</time> 
             </p>
         
     </footer>
@@ -219,7 +196,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

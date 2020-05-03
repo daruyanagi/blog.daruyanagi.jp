@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="デスクトップ全体を一時的に暗転させたい (2)" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="デスクトップ全体を一時的に暗転させたい - だるろぐ がなぜか動かんなぁ、と思っていろいろ試していた（08式机上撮影機 v1.5.0 - だるろぐ）のだけど、原因" />
+    <meta name="og:description"   property="og:description" content="&#x30C7;&#x30B9;&#x30AF;&#x30C8;&#x30C3;&#x30D7;&#x5168;&#x4F53;&#x3092;&#x4E00;&#x6642;&#x7684;&#x306B;&#x6697;&#x8EE2;&#x3055;&#x305B;&#x305F;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050; がなぜか動かんなぁ、と思っていろいろ試していた（08&#x5F0F;&#x673A;&#x4E0A;&#x64AE;&#x5F71;&" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/06/19/022455/" />
@@ -86,58 +88,50 @@
         </time>        
     </p>
 
-    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/05/27/155731">デスクトップ全体を一時的に暗転させたい - だるろぐ</a> がなぜか動かんなぁ、と思っていろいろ試していた（<a href="http://daruyanagi.hatenablog.com/entry/2012/06/18/202158">08式机上撮影機 v1.5.0 - だるろぐ</a>）のだけど、原因は FormWindowState.Maximized だったっぽい。これをコメントアウトすると動いた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HIDE = <span style="color:#ae81ff">0</span>x10000;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_ACTIVATE = <span style="color:#ae81ff">0</span>x20000;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_SLIDE = <span style="color:#ae81ff">0</span>x40000;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_BLEND = <span style="color:#ae81ff">0</span>x80000;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HOR_POSITIVE = <span style="color:#ae81ff">0</span>x00000001;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_HOR_NEGATIVE = <span style="color:#ae81ff">0</span>x00000002;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_VER_POSITIVE = <span style="color:#ae81ff">0</span>x00000004;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_VER_NEGATIVE = <span style="color:#ae81ff">0</span>x00000008;
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> AW_CENTER = <span style="color:#ae81ff">0</span>x00000010;
-<span style="color:#a6e22e">
-</span><span style="color:#a6e22e">[DllImport(&#34;user32.dll&#34;, CharSet = CharSet.Auto, SetLastError = true)]</span>
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">extern</span> <span style="color:#66d9ef">int</span> AnimateWindow(
-    IntPtr hWnd, <span style="color:#66d9ef">int</span> dwTime, <span style="color:#66d9ef">int</span> dwFlags);
-
-<span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> form = <span style="color:#66d9ef">new</span> Form()
+    <p><a href="http://daruyanagi.hatenablog.com/entry/2012/05/27/155731">&#x30C7;&#x30B9;&#x30AF;&#x30C8;&#x30C3;&#x30D7;&#x5168;&#x4F53;&#x3092;&#x4E00;&#x6642;&#x7684;&#x306B;&#x6697;&#x8EE2;&#x3055;&#x305B;&#x305F;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050;</a> がなぜか動かんなぁ、と思っていろいろ試していた（<a href="http://daruyanagi.hatenablog.com/entry/2012/06/18/202158">08&#x5F0F;&#x673A;&#x4E0A;&#x64AE;&#x5F71;&#x6A5F; v1.5.0 - &#x3060;&#x308B;&#x308D;&#x3050;</a>）のだけど、原因は FormWindowState.Maximized だったっぽい。これをコメントアウトすると動いた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_HIDE = <span class="synConstant">0x10000</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_ACTIVATE = <span class="synConstant">0x20000</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_SLIDE = <span class="synConstant">0x40000</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_BLEND = <span class="synConstant">0x80000</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_HOR_POSITIVE = <span class="synConstant">0x00000001</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_HOR_NEGATIVE = <span class="synConstant">0x00000002</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_VER_POSITIVE = <span class="synConstant">0x00000004</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_VER_NEGATIVE = <span class="synConstant">0x00000008</span>;
+<span class="synType">public</span> <span class="synType">const</span> <span class="synType">int</span> AW_CENTER = <span class="synConstant">0x00000010</span>;
+<p>[DllImport(<span class="synConstant">&quot;user32.dll&quot;</span>, CharSet = CharSet.Auto, SetLastError = <span class="synConstant">true</span>)]
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">extern</span> <span class="synType">int</span> AnimateWindow(
+IntPtr hWnd, <span class="synType">int</span> dwTime, <span class="synType">int</span> dwFlags);</p>
+<p><span class="synStatement">using</span> (var form = <span class="synStatement">new</span> Form()
 {
-	BackColor = Color.Black,
-	ShowInTaskbar = <span style="color:#66d9ef">false</span>,
-	TopMost = <span style="color:#66d9ef">true</span>,
-	<span style="color:#75715e">// WindowState = FormWindowState.Maximized, &amp;lt;- 諸悪の根源！
-</span><span style="color:#75715e"></span>	Left = <span style="color:#ae81ff">0</span>,
-	Top = <span style="color:#ae81ff">0</span>,
-	Width = Screen.PrimaryScreen.Bounds.Width,
-	Height = Screen.PrimaryScreen.Bounds.Height,
-	FormBorderStyle = FormBorderStyle.None,
+BackColor = Color.Black,
+ShowInTaskbar = <span class="synConstant">false</span>,
+TopMost = <span class="synConstant">true</span>,
+<span class="synComment">// WindowState = FormWindowState.Maximized, &lt;- 諸悪の根源！</span>
+Left = <span class="synConstant">0</span>,
+Top = <span class="synConstant">0</span>,
+Width = Screen.PrimaryScreen.Bounds.Width,
+Height = Screen.PrimaryScreen.Bounds.Height,
+FormBorderStyle = FormBorderStyle.None,
 })
 {
-	<span style="color:#66d9ef">int</span> result = <span style="color:#ae81ff">0</span>;
-	<span style="color:#66d9ef">const</span> <span style="color:#66d9ef">int</span> interval = <span style="color:#ae81ff">200</span>;
-
-	result = AnimateWindow(form.Handle,
-            interval, AW_BLEND | AW_ACTIVATE);
-	<span style="color:#66d9ef">if</span> (result != <span style="color:#ae81ff">0</span>) Debug.WriteLine(
-            Marshal.GetLastWin32Error());
-	form.Show();
-
-	<span style="color:#66d9ef">if</span> (settings.SoundEnabled &amp;amp;&amp;amp;
-            File.Exists(<span style="color:#e6db74">&#34;PrintScreen.wav&#34;</span>))
-	    <span style="color:#66d9ef">new</span> SoundPlayer(<span style="color:#e6db74">&#34;PrintScreen.wav&#34;</span>).Play();
-
-	result = AnimateWindow(form.Handle, interval,
-            AW_BLEND | AW_HIDE);
-	<span style="color:#66d9ef">if</span> (result != <span style="color:#ae81ff">0</span>) Debug.WriteLine(
-            Marshal.GetLastWin32Error());
-	form.Hide();
+<span class="synType">int</span> result = <span class="synConstant">0</span>;
+<span class="synType">const</span> <span class="synType">int</span> interval = <span class="synConstant">200</span>;</p>
+<p>result = AnimateWindow(form.Handle,
+interval, AW_BLEND | AW_ACTIVATE);
+<span class="synStatement">if</span> (result != <span class="synConstant">0</span>) Debug.WriteLine(
+Marshal.GetLastWin32Error());
+form.Show();</p>
+<p><span class="synStatement">if</span> (settings.SoundEnabled &amp;&amp;
+File.Exists(<span class="synConstant">&quot;PrintScreen.wav&quot;</span>))
+<span class="synStatement">new</span> SoundPlayer(<span class="synConstant">&quot;PrintScreen.wav&quot;</span>).Play();</p>
+<p>result = AnimateWindow(form.Handle, interval,
+AW_BLEND | AW_HIDE);
+<span class="synStatement">if</span> (result != <span class="synConstant">0</span>) Debug.WriteLine(
+Marshal.GetLastWin32Error());
+form.Hide();
 }
+</pre><p>調べてる時に知ったのだけど、Wind32 <a class="keyword" href="http://d.hatena.ne.jp/keyword/API">API</a> を DllImport するときに SetLastError = true を指定しておけば、GetLastError() を利用しなくてもマネージドな Marshal.GetLastWin32Error() でエラーの内容が取得できるのだそうだ。</p><p>一つ賢くなった。</p></p>
 
-<span style="color:#960050;background-color:#1e0010">```調べてる時に知ったのだけど、</span>Wind32 API <span style="color:#960050;background-color:#1e0010">を</span> DllImport <span style="color:#960050;background-color:#1e0010">するときに</span> SetLastError = <span style="color:#66d9ef">true</span> <span style="color:#960050;background-color:#1e0010">を指定しておけば、</span>GetLastError() <span style="color:#960050;background-color:#1e0010">を利用しなくてもマネージドな</span> Marshal.GetLastWin32Error() <span style="color:#960050;background-color:#1e0010">でエラーの内容が取得できるのだそうだ。一つ賢くなった。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -151,7 +145,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/06/19/022455.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/06/19</time> 
             </p>
         
     </footer>
@@ -203,7 +197,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

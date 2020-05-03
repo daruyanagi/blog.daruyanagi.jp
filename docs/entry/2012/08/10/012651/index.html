@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix &#43; ASP.NET Web Pages でキレイにコーディングしたい（3）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日 知ってたさ！ でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだ" />
+    <meta name="og:description"   property="og:description" content="だるさん、Razor には @functions って記法もあるんやで &mdash; しばやん (@shibayan) 2012年8月8日 知ってたさ！ でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/10/012651/" />
@@ -86,78 +88,61 @@
         </time>        
     </p>
 
-    <blockquote>
-<p>だるさん、Razor には @functions って記法もあるんやで— しばやん (@shibayan) 2012年8月8日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-</blockquote>
-<p>知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！<a href="#f-d33ff292" name="fn-d33ff292" title="忘れてた">*1</a><br/></p>
+    <p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">だるさん、Razor には <a href="https://twitter.com/functions?ref_src=twsrc%5Etfw">@functions</a> って記法もあるんやで</p>&mdash; しばやん (@shibayan) <a href="https://twitter.com/shibayan/status/233077862264078336?ref_src=twsrc%5Etfw">2012年8月8日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>知ってたさ！　でも、なんか Func&lt;&gt; ってカッコいいから使ってみたかったんだよ！<a href="#f-d33ff292" name="fn-d33ff292" title="忘れてた">*1</a><br />
+</p>
 <div class="section">
-    ### @functions
-    というわけで、レイアウトファイルで @functions を使ってみた。
-```cs
-&lt;!DOCTYPE html>
-<p>&lt;html lang=&rdquo;@App.Language&quot;&gt;
+<h3>@functions</h3>
+<p>というわけで、レイアウトファイルで @functions を使ってみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>&lt;!DOCTYPE html&gt;
+<p>&lt;html lang=<span class="synConstant">&quot;@App.Language&quot;</span>&gt;
 &lt;head&gt;
 :
 :
-&lt;div id=&quot;site-content&quot;&gt;
-&lt;article id=&quot;site-body&quot;&gt;
+&lt;div id=<span class="synConstant">&quot;site-content&quot;</span>&gt;
+&lt;article id=<span class="synConstant">&quot;site-body&quot;</span>&gt;
 @RenderBody()
 &lt;/article&gt;
-&lt;aside id=&quot;site-sidebar&quot;&gt;
+&lt;aside id=<span class="synConstant">&quot;site-sidebar&quot;</span>&gt;
 @RenderSideBar()
 &lt;/aside&gt;
 &lt;/div&gt;</p>
-<pre><code>    &amp;lt;footer id=&quot;site-footer&quot;&gt;
-</code></pre>
-<p>@RenderFooter()
+<p>&lt;footer id=<span class="synConstant">&quot;site-footer&quot;</span>&gt;
+@RenderFooter()
 &lt;/footer&gt;
 &lt;/body&gt;
 &lt;/html&gt;</p>
 <p>@functions {
-public HelperResult RenderHeader()
+<span class="synType">public</span> HelperResult RenderHeader()
 {
-return RenderPage(&quot;_Header.cshtml&rdquo;);
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;_Header.cshtml&quot;</span>);
 }
-public HelperResult RenderNavigation()
+<span class="synType">public</span> HelperResult RenderNavigation()
 {
-return RenderPage(&quot;_Navigation.cshtml&rdquo;);
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;_Navigation.cshtml&quot;</span>);
 }
-public HelperResult RenderSideBar()
+<span class="synType">public</span> HelperResult RenderSideBar()
 {
-return RenderPage(&quot;_SideBar.cshtml&rdquo;);
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;_SideBar.cshtml&quot;</span>);
 }
-public HelperResult RenderFooter()
+<span class="synType">public</span> HelperResult RenderFooter()
 {
-return RenderPage(&quot;_Footer.cshtml&rdquo;);
+<span class="synStatement">return</span> RenderPage(<span class="synConstant">&quot;_Footer.cshtml&quot;</span>);
 }
-}</p>
-<pre><code class="language-@functions{……}" data-lang="@functions{……}">
-    &gt;
-        とりあえず今のところ単純なラムダ式でなんとかなっているけれど、たとえばRenderFooter でエラー処理を追加する場合（“_Footer.cshtml”がない場合がありえる）を考えると、「レイアウトファイルを簡潔にしたい」という目的からはだいぶ外れてくる。
-
-        WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（2） - だるろぐ
-    
-という懸念はないね。ながながとラムダ式を書くのはアレだけれど、一般的な関数ならばまぁ、いいや。あと、冒頭じゃなくて末尾に書けるのも何気に美味しい。レイアウトファイルのメインはあくまでも HTML ファイルだと思うし、ユーティリティ関数みたいなのは隅っこに書いておきたいって思う。 @{……} セクションで宣言した変数だと使う前に宣言しておかないとダメみたいだけれど、 @functions{……} で宣言した関数はあとで宣言してもいいみたいだ。
-
-<figure>
-    <img src="/images/20120810011157.png"/> 
-</figure>
-
-
-isual Studio のツールチップでみてみたのだけれど、何がなんだかよくわかんないね。なんなんだろう、このテンポラリクラスは。こうなってくると、ちょっと中身を知りたくなってくる。あと、テンポラリクラス名でわかるかもしれないけれど、テーマ機能もつけてみた。
-
-    &gt;
-        今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。
-
-        WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ
-    
-その話はまた今度するかもしれないし、しないかもしれない。ちなみに、このコーナーはあくまでも自分の試行錯誤を書いてみただけで、このやり方が正しいというわけでは**決してない**ので注意してください。
-
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-d33ff292&quot; name=&quot;f-d33ff292&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;忘れてた&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}
+</pre><p>@functions{……} を使う利点はいくつかあるけど、</p></p>
+<blockquote cite="https://blog.daruyanagi.jp/entry/2012/08/08/035745">
+<p>とりあえず今のところ単純なラムダ式でなんとかなっているけれど、たとえばRenderFooter でエラー処理を追加する場合（“_Footer.cshtml”がない場合がありえる）を考えると、「レイアウトファイルを簡潔にしたい」という目的からはだいぶ外れてくる。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/08/08/035745">WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（2） - だるろぐ</a></cite></p>
+</blockquote>
+<p>という懸念はないね。ながながとラムダ式を書くのはアレだけれど、一般的な関数ならばまぁ、いいや。あと、冒頭じゃなくて末尾に書けるのも何気に美味しい。レイアウトファイルのメインはあくまでも HTML ファイルだと思うし、ユーティリティ関数みたいなのは隅っこに書いておきたいって思う。 @{……} セクションで宣言した変数だと使う前に宣言しておかないとダメみたいだけれど、 @functions{……} で宣言した関数はあとで宣言してもいいみたいだ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120810011157.png" alt="f:id:daruyanagi:20120810011157p:plain" title="f:id:daruyanagi:20120810011157p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Visual Studio のツールチップでみてみたのだけれど、何がなんだかよくわかんないね。なんなんだろう、このテンポラリクラスは。こうなってくると、ちょっと中身を知りたくなってくる。あと、テンポラリクラス名でわかるかもしれないけれど、テーマ機能もつけてみた。</p>
+<blockquote cite="https://blog.daruyanagi.jp/entry/2012/08/07/054832">
+<p>今見返してふと思ったのは、比較的簡単にテーマ機能なんかを実装できるなということ。ただデザインを変えたいがために、毎回一からこんなの作るのはアホらしい。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/08/07/054832">WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい - だるろぐ</a></cite></p>
+</blockquote>
+<p>その話はまた今度するかもしれないし、しないかもしれない。</p><p>ちなみに、このコーナーはあくまでも自分の試行錯誤を書いてみただけで、このやり方が正しいというわけでは<b>決してない</b>ので注意してください。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-d33ff292" name="f-d33ff292" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">忘れてた</span></p>
+</div>
 
     <footer>
         
@@ -171,7 +156,7 @@ isual Studio のツールチップでみてみたのだけれど、何がなん�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/10/012651.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/10</time> 
             </p>
         
     </footer>
@@ -223,7 +208,16 @@ isual Studio のツールチップでみてみたのだけれど、何がなん�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

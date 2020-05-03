@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="PowerShell：ストアアプリのセール情報を取得する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="# スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &#34;StoreApps.txt&#34; $urls = (Get-Content $path) -as [string[]] # デバッグ用のサンプル # $urls =@( # &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34; # ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url # アプリ名" />
+    <meta name="og:description"   property="og:description" content="# スクリプトと同じパスにある StoreApps.txt から URL を読み込む $path = $PSScriptRoot | Join-Path -ChildPath &quot;StoreApps.txt&quot; $urls = (Get-Content $path) -as [string[]] # デバッグ用のサンプル # $urls =@( # &quot;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&quot; # ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url # アプリ名" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/03/04/220000/" />
@@ -86,147 +88,131 @@
         </time>        
     </p>
 
-    <div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># スクリプトと同じパスにある StoreApps.txt から URL を読み込む</span>
-$path = $PSScriptRoot | Join-Path -ChildPath <span style="color:#e6db74">&#34;StoreApps.txt&#34;</span>
-$urls = (Get-Content $path) <span style="color:#f92672">-as</span> <span style="color:#66d9ef">[string[]]</span>
+    <pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synComment"># スクリプトと同じパスにある StoreApps.txt から URL を読み込む</span>
+<span class="synIdentifier">$path</span> = <span class="synIdentifier">$PSScriptRoot</span> | <span class="synStatement">Join-Path</span> -ChildPath <span class="synConstant">&quot;StoreApps.txt&quot;</span>
+<span class="synIdentifier">$urls</span> = (<span class="synStatement">Get-Content</span> <span class="synIdentifier">$path</span>) -<span class="synStatement">as</span> <span class="synType">[string[]]</span>
 
-<span style="color:#75715e"># デバッグ用のサンプル</span>
-<span style="color:#75715e"># $urls =@(</span>
-<span style="color:#75715e"># &#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34;</span>
-<span style="color:#75715e"># )</span>
+<span class="synComment"># デバッグ用のサンプル</span>
+<span class="synComment"># $urls =@(</span>
+<span class="synComment"># &quot;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&quot;</span>
+<span class="synComment"># )</span>
 
-<span style="color:#66d9ef">foreach</span> ($url <span style="color:#66d9ef">in</span> $urls)
+<span class="synStatement">foreach</span> (<span class="synIdentifier">$url</span> <span class="synStatement">in</span> <span class="synIdentifier">$urls</span>)
 {
-    <span style="color:#66d9ef">try</span>
-    {
-        $request = Invoke-WebRequest $url
-        
-        <span style="color:#75715e"># アプリ名を取得</span>
-        $title = $request.AllElements.FindById(<span style="color:#e6db74">&#34;page-title&#34;</span>).innerText
+<span class="synStatement">try</span>
+{
+<span class="synIdentifier">$request</span> = <span class="synStatement">Invoke-WebRequest</span> <span class="synIdentifier">$url</span>
 
-        <span style="color:#75715e"># ParsedHtml もめっちゃ便利やったぞ！</span>
-        <span style="color:#75715e"># 例：打消し線の付いた定価タグを取得</span>
-        $body = $request.ParsedHtml
-        $price_node = $body.getElementsByTagName(<span style="color:#e6db74">&#34;s&#34;</span>) | where { 
-            $_.getAttributeNode(<span style="color:#e6db74">&#34;class&#34;</span>).Value  <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;srv_saleprice&#34;</span>
-        }
+<span class="synComment"># アプリ名を取得</span>
+<span class="synIdentifier">$title</span> = <span class="synIdentifier">$request</span>.AllElements.FindById(<span class="synConstant">&quot;page-title&quot;</span>).innerText
 
-        <span style="color:#75715e"># 定価が打ち消されていたらセール中ってこと</span>
-        <span style="color:#66d9ef">if</span> ($price_node)
-        {
-            $price = $price_node.innerText
-
-            <span style="color:#75715e"># 販売価格（セール価格）の取得</span>
-            $sales_node = $body.getElementsByTagName(<span style="color:#e6db74">&#34;meta&#34;</span>) | where {
-                $_.getAttributeNode(<span style="color:#e6db74">&#34;itemprop&#34;</span>).Value  <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;price&#34;</span>
-            }
-            $sales = <span style="color:#e6db74">&#34;¥{0:#,0}&#34;</span>
-                <span style="color:#f92672">-f</span> <span style="color:#66d9ef">[int]</span>$sales_node.getAttributeNode(<span style="color:#e6db74">&#34;content&#34;</span>).Value
-
-            <span style="color:#75715e"># セール期間を取得</span>
-            $countdown_node = $body.getElementsByTagName(<span style="color:#e6db74">&#34;div&#34;</span>) | where {
-                $_.getAttributeNode(<span style="color:#e6db74">&#34;class&#34;</span>).Value
-                <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;caption text-muted srv_countdown&#34;</span>
-            }
-            $countdown = $countdown_node.innerText
-            $countdown = $countdown.Replace(<span style="color:#e6db74">&#34; • &#34;</span>, <span style="color:#e6db74">&#34;&#34;</span>).Trim()
-
-            <span style="color:#75715e"># デバッグに使ってた</span>
-            <span style="color:#75715e"># [PSCustomObject] @{</span>
-            <span style="color:#75715e">#    Title = $title; Sales = $sales;</span>
-            <span style="color:#75715e">#    Price = $price; Url = $url</span>
-            <span style="color:#75715e"># }</span>
-
-<span style="color:#75715e"># 今回は成形したはてな記法テキストを出力</span>
-<span style="color:#e6db74">@&#34;
-</span><span style="color:#e6db74">* $title
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">&lt;s&gt;&lt;/s&gt;$price → &lt;b&gt;&lt;/b&gt;$sales（$countdown）
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">$url`:embed
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">&#34;@</span>
-        }
-    
-    }
-    <span style="color:#66d9ef">catch</span>
-    {
-        Write-Host $Error[0] $url
-    }
-    <span style="color:#66d9ef">finally</span>
-    {
-        $sales_node = $null
-        $sales = $null
-        $price_node = $null
-        $price = $null
-    }
+<span class="synComment"># ParsedHtml もめっちゃ便利やったぞ！</span>
+<span class="synComment"># 例：打消し線の付いた定価タグを取得</span>
+<span class="synIdentifier">$body</span> = <span class="synIdentifier">$request</span>.ParsedHtml
+<span class="synIdentifier">$price_node</span> = <span class="synIdentifier">$body</span>.getElementsByTagName(<span class="synConstant">&quot;s&quot;</span>) | <span class="synStatement">where</span> {
+<span class="synType">$_</span>.getAttributeNode(<span class="synConstant">&quot;class&quot;</span>).Value  -<span class="synStatement">eq</span> <span class="synConstant">&quot;srv_saleprice&quot;</span>
 }
 
-```結果はこんな感じ<span style="color:#960050;background-color:#1e0010">。</span>
-</code></pre></div><ul>
-<li>Nextgen Reader</li>
-</ul>
-<p>&lt;s&gt;¥200&lt;/s&gt; → &lt;b&gt;&amp;yen;100&lt;/b&gt;（¥100 値引き  あと 7 日です）</p>
-<p><a href="https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262:embed">https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262:embed</a></p>
-<ul>
-<li>Minecraft: Windows 10 Edition</li>
-</ul>
-<p>&lt;s&gt;¥3,150&lt;/s&gt; → &lt;b&gt;&amp;yen;1,150&lt;/b&gt;（¥2,000 値引き  あと 17 日です）</p>
-<p><a href="https://www.microsoft.com/ja-jp/store/p/minecraft-windows-10-edition/9nblggh2jhxj:embed">https://www.microsoft.com/ja-jp/store/p/minecraft-windows-10-edition/9nblggh2jhxj:embed</a></p>
-<pre><code class="language-これをそのまま投稿するとこんな記事になりました。<iframe" data-lang="これをそのまま投稿するとこんな記事になりました。<iframe">
+<span class="synComment"># 定価が打ち消されていたらセール中ってこと</span>
+<span class="synStatement">if</span> (<span class="synIdentifier">$price_node</span>)
+{
+<span class="synIdentifier">$price</span> = <span class="synIdentifier">$price_node</span>.innerText
 
-&lt;div class=&quot;section&quot;&gt;
-    ### 今日学んだこと
-    
-&lt;div class=&quot;section&quot;&gt;
-    #### スクリプトのあるフォルダーを取得する
-    PowerScript v3 以降では
-```ps1
-$PSScriptRoot
-
-```が利用できる。それ以前だと、ちょっとめんどい（といってもひと手間増える程度だけど
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### キャストっぽいことをする
-    型演算子 -as が使える。割と柔軟に使えるみたいだけど、俺みたいな万年初心者には、どこまで柔軟にやってくれるのかよくわかんないのが不安。
-```ps1
-$urls = (Get-Content $path) -as [string[]]
-
-```失敗すると $null が返る。親戚として -is、-isnot もチェック！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### 指定したクラスのタグを取得する
-    たとえば s.srv_saleprice は以下のコードでとれる。
-```ps1
-$price_node = $request.ParsedHtml.getElementsByTagName(&quot;s&quot;) | where { 
-    $_.getAttributeNode(&quot;class&quot;).Value  -eq &quot;srv_saleprice&quot;
+<span class="synComment"># 販売価格（セール価格）の取得</span>
+<span class="synIdentifier">$sales_node</span> = <span class="synIdentifier">$body</span>.getElementsByTagName(<span class="synConstant">&quot;meta&quot;</span>) | <span class="synStatement">where</span> {
+<span class="synType">$_</span>.getAttributeNode(<span class="synConstant">&quot;itemprop&quot;</span>).Value  -<span class="synStatement">eq</span> <span class="synConstant">&quot;price&quot;</span>
 }
-$price_node.innerText
+<span class="synIdentifier">$sales</span> = <span class="synConstant">&quot;&amp;yen;{0:#,0}&quot;</span>
+-<span class="synStatement">f</span> <span class="synType">[int]</span><span class="synIdentifier">$sales_node</span>.getAttributeNode(<span class="synConstant">&quot;content&quot;</span>).Value
 
-```ちなみに、クラスが&quot;caption text-muted srv_countdown&quot;みたいに複数指定されてるときは&quot;srv_countdown&quot;だけで -eq 判定してもダメ。全体で -eq 評価するか、-match を使う。まぁ、デフォルトでここまでできるのは便利だけど、それ以上はいろいろめんどいし、そろそろ HtmlAgilityPack でやるかなー。AllElements でとったタグの innerText を読むと改行が飛ぶといった挙動もあまり気に入らない（正規表現でお茶を濁した）。
+<span class="synComment"># セール期間を取得</span>
+<span class="synIdentifier">$countdown_node</span> = <span class="synIdentifier">$body</span>.getElementsByTagName(<span class="synConstant">&quot;div&quot;</span>) | <span class="synStatement">where</span> {
+<span class="synType">$_</span>.getAttributeNode(<span class="synConstant">&quot;class&quot;</span>).Value
+-<span class="synStatement">eq</span> <span class="synConstant">&quot;caption text-muted srv_countdown&quot;</span>
+}
+<span class="synIdentifier">$countdown</span> = <span class="synIdentifier">$countdown_node</span>.innerText
+<span class="synIdentifier">$countdown</span> = <span class="synIdentifier">$countdown</span>.Replace(<span class="synConstant">&quot; • &quot;</span>, <span class="synConstant">&quot;&quot;</span>).Trim()
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### ヒアドキュメント
-    ```ps1
-@&quot;
-ヒアドキュメント $url 変数も評価される
-$url`:embed（はてな記法
-&quot;@
+<span class="synComment"># デバッグに使ってた</span>
+<span class="synComment"># [PSCustomObject] @{</span>
+<span class="synComment">#    Title = $title; Sales = $sales;</span>
+<span class="synComment">#    Price = $price; Url = $url</span>
+<span class="synComment"># }</span>
 
-```変数に“:”が続くとそのまま評価されてしまう。困る場合は、バッククォートでエスケープすればいいみたい。ちなみに、変数を評価してほしくない場合はシングルクォートでくくる。
+<span class="synComment"># 今回は成形したはてな記法テキストを出力</span>
+<span class="synConstant">@&quot;</span>
+<span class="synConstant">* </span><span class="synIdentifier">$title</span>
 
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### はてな記法で PowerShell を構文色分け
-    コード記法で`ps1`を使う。
+<span class="synConstant">&lt;s&gt;</span><span class="synIdentifier">$price</span><span class="synConstant">&lt;/s&gt; → &lt;b&gt;</span><span class="synIdentifier">$sales</span><span class="synConstant">&lt;/b&gt;（</span><span class="synIdentifier">$countdown</span><span class="synConstant">）</span>
 
-&lt;/div&gt;
-&lt;/div&gt;
+<span class="synIdentifier">$url</span><span class="synSpecial">`:</span><span class="synConstant">embed</span>
 
-</code></pre>
+<span class="synConstant">&quot;@</span>
+}
+
+}
+<span class="synStatement">catch</span>
+{
+<span class="synStatement">Write-Host</span> <span class="synType">$Error[0]</span> <span class="synIdentifier">$url</span>
+}
+<span class="synStatement">finally</span>
+{
+<span class="synIdentifier">$sales_node</span> = <span class="synConstant">$null</span>
+<span class="synIdentifier">$sales</span> = <span class="synConstant">$null</span>
+<span class="synIdentifier">$price_node</span> = <span class="synConstant">$null</span>
+<span class="synIdentifier">$price</span> = <span class="synConstant">$null</span>
+}
+}
+</pre><p>結果はこんな感じ。</p>
+<pre class="code" data-lang="" data-unlink>* Nextgen Reader
+
+&lt;s&gt;¥200&lt;/s&gt; → &lt;b&gt;&amp;yen;100&lt;/b&gt;（¥100 値引き  あと 7 日です）
+
+https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262:embed
+
+* Minecraft: Windows 10 Edition
+
+&lt;s&gt;¥3,150&lt;/s&gt; → &lt;b&gt;&amp;yen;1,150&lt;/b&gt;（¥2,000 値引き  あと 17 日です）
+
+https://www.microsoft.com/ja-jp/store/p/minecraft-windows-10-edition/9nblggh2jhxj:embed
+</pre><p>これをそのまま投稿するとこんな記事になりました。</p><p><iframe src="http://store-watch.hatenadiary.jp/embed/2017/03/04/174241" title="本日のセール：Nextgen Reader、Minecraft: Windows 10 Edition - Windows Store Watch" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><br />
+</p>
+<div class="section">
+<h3>今日学んだこと</h3>
+<div class="section">
+<h4>スクリプトのあるフォルダーを取得する</h4>
+<p>PowerScript v3 以降では</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$PSScriptRoot</span>
+</pre><p>が利用できる。それ以前だと、ちょっとめんどい（といってもひと手間増える程度だけど</p>
+</div>
+<div class="section">
+<h4>キャストっぽいことをする</h4>
+<p>型演算子 -as が使える。割と柔軟に使えるみたいだけど、俺みたいな万年初心者には、どこまで柔軟にやってくれるのかよくわかんないのが不安。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$urls</span> = (<span class="synStatement">Get-Content</span> <span class="synIdentifier">$path</span>) -<span class="synStatement">as</span> <span class="synType">[string[]]</span>
+</pre><p>失敗すると $null が返る。親戚として -is、-isnot もチェック！</p>
+</div>
+<div class="section">
+<h4>指定したクラスのタグを取得する</h4>
+<p>たとえば s.srv_saleprice は以下のコードでとれる。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$price_node</span> = <span class="synIdentifier">$request</span>.ParsedHtml.getElementsByTagName(<span class="synConstant">&quot;s&quot;</span>) | <span class="synStatement">where</span> {
+<span class="synType">$_</span>.getAttributeNode(<span class="synConstant">&quot;class&quot;</span>).Value  -<span class="synStatement">eq</span> <span class="synConstant">&quot;srv_saleprice&quot;</span>
+}
+<span class="synIdentifier">$price_node</span>.innerText
+</pre><p>ちなみに、クラスが"caption text-muted srv_countdown"みたいに複数指定されてるときは"srv_countdown"だけで -eq 判定してもダメ。全体で -eq 評価するか、-match を使う。</p><p>まぁ、デフォルトでここまでできるのは便利だけど、それ以上はいろいろめんどいし、そろそろ HtmlAgilityPack でやるかなー。AllElements でとったタグの innerText を読むと改行が飛ぶといった挙動もあまり気に入らない（正規表現でお茶を濁した）。</p>
+</div>
+<div class="section">
+<h4>ヒアドキュメント</h4>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synConstant">@&quot;</span>
+<span class="synConstant">ヒアドキュメント </span><span class="synIdentifier">$url</span><span class="synConstant"> 変数も評価される</span>
+<span class="synIdentifier">$url</span><span class="synSpecial">`:</span><span class="synConstant">embed（はてな記法</span>
+<span class="synConstant">&quot;@</span>
+</pre><p>変数に“:”が続くとそのまま評価されてしまう。困る場合は、バッククォートでエスケープすればいいみたい。</p><p>ちなみに、変数を評価してほしくない場合はシングルクォートでくくる。</p>
+</div>
+<div class="section">
+<h4>はてな記法で PowerShell を構文色分け</h4>
+<p>コード記法で`ps1`を使う。</p>
+</div>
+</div>
 
     <footer>
         
@@ -240,7 +226,7 @@ $url`:embed（はてな記法
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/03/04/220000.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2017/03/04</time> 
             </p>
         
     </footer>
@@ -292,7 +278,16 @@ $url`:embed（はてな記法
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

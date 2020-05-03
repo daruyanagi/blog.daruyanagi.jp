@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Firefox 36 の検索機能……とは関係ない話。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="索機能の新しいユーザーインターフェイスが日本語版でも利用できるようになったらしい。これは割りと便利だと思った。で、それを試していたところ、変" />
+    <meta name="og:description"   property="og:description" content="検索機能の新しいユーザーインターフェイスが日本語版でも利用できるようになったらしい。これは割りと便利だと思った。 で、それを試していたところ、" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/02/26/220232/" />
@@ -82,76 +84,32 @@
     
     <p class="published text-right">
         公開日：<time>
-            2015/04/16
+            2015/02/26
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150226213345.png"/> 
-</figure>
-
-<p>索機能の新しいユーザーインターフェイスが日本語版でも利用できるようになったらしい。これは割りと便利だと思った。で、それを試していたところ、変なのを見つけた。</p>
-<figure>
-    <img src="/images/20150226213552.png"/> 
-</figure>
-
-<p>a href=&quot;http://www.opensearch.org/Home&quot;&gt;Home - OpenSearch</a> っていう規格があって、それに対応しているサイトを検索エンジンとして組み込めるようだ。“Firefox Add-ons”のソースコードを覗いてみると、こんな記述があった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;link title=&#34;Firefox アドオン&#34;
-      rel=&#34;search&#34; type=&#34;application/opensearchdescription+xml&#34;
-      href=&#34;/ja/firefox/opensearch.xml&#34; /&gt;
-
-```href で参照されている XML の中身はこんな感じ。
-```xml
-xmlns=&#34;http://a9.com/-/spec/opensearch/1.1/&#34;&gt;
-&lt;<span style="color:#f92672">shortname</span>&gt;&lt;/<span style="color:#f92672">shortname</span>&gt;Firefox アドオン
-type=&#34;text/html&#34; method=&#34;get&#34; template=&#34;https://addons.mozilla.org/ja/firefox/search/?q={searchTerms}&#34;&gt;
-height=&#34;16&#34; width=&#34;16&#34;&gt;
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226213345.png" alt="f:id:daruyanagi:20150226213345p:plain" title="f:id:daruyanagi:20150226213345p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>検索機能の新しいユーザーインターフェイスが日本語版でも利用できるようになったらしい。これは割りと便利だと思った。</p><p>で、それを試していたところ、変なのを見つけた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226213552.png" alt="f:id:daruyanagi:20150226213552p:plain" title="f:id:daruyanagi:20150226213552p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="http://www.opensearch.org/Home">Home - OpenSearch</a> っていう規格があって、それに対応しているサイトを検索エンジンとして組み込めるようだ。“Firefox Add-ons”のソースコードを覗いてみると、こんな記述があった。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Firefox アドオン&quot;</span>
+<span class="synIdentifier">      </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;search&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/opensearchdescription+xml&quot;</span>
+<span class="synIdentifier">      </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;/ja/firefox/opensearch.xml&quot;</span><span class="synIdentifier"> /&gt;</span>
+</pre><p>href で参照されている XML の中身はこんな感じ。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;OpenSearchDescription </span><span class="synType">xmlns</span>=<span class="synConstant">&quot;http://a9.com/-/spec/opensearch/1.1/&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;ShortName&gt;</span>Firefox アドオン<span class="synIdentifier">&lt;/ShortName&gt;</span>
+<span class="synIdentifier">&lt;Url </span><span class="synType">type</span>=<span class="synConstant">&quot;text/html&quot;</span><span class="synIdentifier"> </span><span class="synType">method</span>=<span class="synConstant">&quot;get&quot;</span><span class="synIdentifier"> </span><span class="synType">template</span>=<span class="synConstant">&quot;https://addons.mozilla.org/ja/firefox/search/?q={searchTerms}&quot;</span><span class="synIdentifier">&gt;&lt;/Url&gt;</span>
+<span class="synIdentifier">&lt;Image </span><span class="synType">height</span>=<span class="synConstant">&quot;16&quot;</span><span class="synIdentifier"> </span><span class="synType">width</span>=<span class="synConstant">&quot;16&quot;</span><span class="synIdentifier">&gt;</span>
 data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABHNCSVQICAgIfAhkiAAAAAlwSFlz%0D%0AAAAN1wAADdcBQiibeAAAABl0RVh0U29mdHdhcmUAd3d3Lmlua3NjYXBlLm9yZ5vuPBoAAAKoSURB%0D%0AVDiNjZNLaJRnFIaf75vvy2UGTWr8NYkxl0IFUYkNXSSZQNWFWlxIEVy1FLLo0i4adddVXRnS4kJw%0D%0AYxci2GaRTWlSFGKFGRXNmFBF62VMO4TENBdjMv9k5p%2F%2FOy4SLzgqHs7yPc95eTlHiQjvqniPbVYR%0D%0AzuBoR%2BFQDEvId4neIPNCY945DayNVff%2F8NUvn9XXNJMv5hhKnTvYP3ymHmj%2FIMBSbmHjjP8fycxv%0D%0A%2BMEzGqtatUI1vK7R7wM4J32XUv3Li%2Fl5imGBkbtXlsMw%2FPF1jXozg3iP3aM0Z8XRBFDr1fl7Og9E%0D%0AnTguXx30p%2F6fjAIozb%2Fi6C4BdB2z6QOfH27ZUFNL0QUELs%2Ftycs4J2zdGEerCADTM1P8df3PxyUZ%0D%0AiKPF8zyGHpwGFLC6QCCRuYA4QQQ6mw4hjhYT77GN2qiBWFnV5sXc0xMAgfKx5foVYKURB2vLPbxo%0D%0AM8auODE6ws%2FfH%2B77dHtjhxp5OHzywpWf%2FIIsRk25Rq0CRFY4UVNNndkmqZFRf3YuWaYUS0aE3RP5%0D%0AMXX3%2FiCOgu3Y1WYfL90sdSDgxRoYTY5mZ2anjwC%2FAqEBdM4tMJ4dwYs1YiOGSBkYrVHqlQNxoC34%0D%0AOV8BdxK9gQ%2Bguo7bwdYdrXu92nU6nR7Pzc%2FPSXxfazTj30IpRaWpIqbX4UQoBDkWJlRwLzVeLBTy%0D%0AGs2UcUX5duzvsfPqNpvDovQhnBIdELGaWFk1hclYmLx2fxmFbNm5qXJNvdi2DQ1WAsO1P%2F5petsh%0D%0Ayf6v25gJ0nxUUUeiP531s%2FkvAcor7MDOL2pjz3JzVKpqUoMTpb8QsSqdeTT98fomjyDv8LP5aKI3%0D%0AuAgQP2orCkGAVRVMZxbQhnQJIAzkm3s3Js6GSfkEQEd4%2Bbpa8%2BTW71P1ANqoB65I93OA2DgV%2BZ%2Bo%0D%0AmgAAAABJRU5ErkJggg%3D%3D
+<span class="synIdentifier">&lt;/Image&gt;</span>
+<span class="synIdentifier">&lt;OutputEncoding&gt;</span>UTF-8<span class="synIdentifier">&lt;/OutputEncoding&gt;</span>
+<span class="synIdentifier">&lt;InputEncoding&gt;</span>UTF-8<span class="synIdentifier">&lt;/InputEncoding&gt;</span>
+<span class="synIdentifier">&lt;/OpenSearchDescription&gt;</span>
+</pre><p>かなり昔からあるもののようで、そういえば聞いたことがあるような、ないような気もする。</p><p>Internet Explorer や Google Chrome でも対応していたっぽいのだけど、まったく気づかず（IE の検索プロバイダーってこれなんだっけ……？）、ユーザーインターフェイスの変更で気付いたという次第。余力があればこういうのにも対応しておくと、サービスの使い勝手向上につながるのかもしれない。</p><p>ちなみに Google Chrome だと OpenSearch の XML ファイルを用意しなくても、検索エンジンとして追加できる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226214652.png" alt="f:id:daruyanagi:20150226214652p:plain" title="f:id:daruyanagi:20150226214652p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>検索フォームのコンテキストメニューから追加。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226214655.png" alt="f:id:daruyanagi:20150226214655p:plain" title="f:id:daruyanagi:20150226214655p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>よくわかんないけど、キーワードの部分を %s にでもしておくといいみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226214658.png" alt="f:id:daruyanagi:20150226214658p:plain" title="f:id:daruyanagi:20150226214658p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>オムニバーで検索エンジン名を入力して［Tab］キーを押すと……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150226214703.png" alt="f:id:daruyanagi:20150226214703p:plain" title="f:id:daruyanagi:20150226214703p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サイトの検索が行える。</p><p>この機能は割と便利で、いつもお世話になっていたりする。調べてみると「Opera」（Chrome とほぼ同じ）や「Firefox」（“この検索にキーワードを設定”という、一度聞いただけではよく意味が分からないメニューを使えば実現できる）でも利用できるようだ。世の中、知らないことだらけだな。</p>
+<ul>
+<li><a href="http://www.forest.impress.co.jp/docs/news/20131120_624409.html">&#x300C;Opera 18&#x300D;&#x304C;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x3001;&#x300C;Opera Developer 19&#x300D;&#x3067;&#x306F;&#x540C;&#x671F;&#x6A5F;&#x80FD;&#x3092;&#x5B9F;&#x9A13;&#x7684;&#x306B;&#x30B5;&#x30DD;&#x30FC;&#x30C8; - &#x7A93;&#x306E;&#x675C;</a></li>
+</ul><p>――わざわざ拡張機能みたいな仕組みを使わなくても、サイトの検索機能をブラウザーに追加できることがあるよ、という話でした。</p><p>たとえば、カーリルなんかを追加しておくと便利かもしれない。</p>
+<ul>
+<li><a href="http://blog.calil.jp/2010/06/firefoxieopensearch.html">Firefox&#x3001;IE&#x306E;OpenSearch&#x691C;&#x7D22;&#x30D7;&#x30E9;&#x30B0;&#x30A4;&#x30F3;&#x306B;&#x30AB;&#x30FC;&#x30EA;&#x30EB;&#x3092;&#x8FFD;&#x52A0;&#xFF01; | &#x30AB;&#x30FC;&#x30EA;&#x30EB;&#x306E;&#x30D6;&#x30ED;&#x30B0;</a></li>
+</ul><p>Amazon は Chrome だとはじめから組み込まれているのかな？　これも結構使える。</p>
 
-&lt;<span style="color:#f92672">outputencoding</span>&gt;&lt;/<span style="color:#f92672">outputencoding</span>&gt;UTF-8
-&lt;<span style="color:#f92672">inputencoding</span>&gt;&lt;/<span style="color:#f92672">inputencoding</span>&gt;UTF-8
-
-
-```かなり昔からあるもののようで、そういえば聞いたことがあるような、ないような気もする。Internet Explorer や Google Chrome でも対応していたっぽいのだけど、まったく気づかず（IE の検索プロバイダーってこれなんだっけ……？）、ユーザーインターフェイスの変更で気付いたという次第。余力があればこういうのにも対応しておくと、サービスの使い勝手向上につながるのかもしれない。ちなみに Google Chrome だと OpenSearch の XML ファイルを用意しなくても、検索エンジンとして追加できる。
-
-<figure>
-    <img src="/images/20150226214652.png"/> 
-</figure>
-
-
-索フォームのコンテキストメニューから追加。
-
-<figure>
-    <img src="/images/20150226214655.png"/> 
-</figure>
-
-
-くわかんないけど、キーワードの部分を %s にでもしておくといいみたい。
-
-<figure>
-    <img src="/images/20150226214658.png"/> 
-</figure>
-
-
-ムニバーで検索エンジン名を入力して［Tab］キーを押すと……
-
-<figure>
-    <img src="/images/20150226214703.png"/> 
-</figure>
-
-
-イトの検索が行える。この機能は割と便利で、いつもお世話になっていたりする。調べてみると「Opera」（Chrome とほぼ同じ）や「Firefox」（“この検索にキーワードを設定”という、一度聞いただけではよく意味が分からないメニューを使えば実現できる）でも利用できるようだ。世の中、知らないことだらけだな。
-
-&lt;<span style="color:#f92672">ul</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.forest.impress.co.jp/docs/news/20131120_624409.html&#34;</span>&gt;「Opera 18」がリリース、「Opera Developer 19」では同期機能を実験的にサポート - 窓の杜&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;/<span style="color:#f92672">ul</span>&gt;――わざわざ拡張機能みたいな仕組みを使わなくても、サイトの検索機能をブラウザーに追加できることがあるよ、という話でした。たとえば、カーリルなんかを追加しておくと便利かもしれない。
-
-&lt;<span style="color:#f92672">ul</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://blog.calil.jp/2010/06/firefoxieopensearch.html&#34;</span>&gt;Firefox、IEのOpenSearch検索プラグインにカーリルを追加！ | カーリルのブログ&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;/<span style="color:#f92672">ul</span>&gt;Amazon は Chrome だとはじめから組み込まれているのかな？　これも結構使える。
-
-
-</code></pre></div>
 
     <footer>
         
@@ -165,7 +123,7 @@ data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABHNCS
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/02/26/220232.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/02/26</time> 
             </p>
         
     </footer>
@@ -175,13 +133,13 @@ data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABHNCS
 
     <p>
         
-        <a href="https://blog.daruyanagi.jp/entry/2015/04/16/053928/">&laquo; Older</a>
+        <a href="https://blog.daruyanagi.jp/entry/2015/02/22/182748/">&laquo; Older</a>
         
         <span > - </span>
             <a href="/">🏠 Home</a>
         <span > - </span>
         
-            <a href="https://blog.daruyanagi.jp/entry/2015/04/18/164239/">Newer &raquo;</a>
+            <a href="https://blog.daruyanagi.jp/entry/2015/02/28/042423/">Newer &raquo;</a>
         
     </p>    
     
@@ -217,7 +175,16 @@ data:image/x-icon;base64,iVBORw0KGgoAAAANSUhEUgAAABAAAAAQCAYAAAAf8%2F9hAAAABHNCS
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -1,0 +1,11 @@
+---
+date: 2020-01-22T18:13:48.0000000
+draft: false
+title: "耐猫最強防具"
+tags: ["ネコ", "今日のお役立ち"]
+eyecatch: 20200122180234.png
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200122180234.png" alt="f:id:daruyanagi:20200122180234p:plain" title="f:id:daruyanagi:20200122180234p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>11月に8カ月の♂ネコをお迎えしたのだが、なかなか慣れてくれない。小さい頃に人と接することが少なかったようで、近づくと極度におびえる。まぁ、それだけなら別にいいのだけど、モノを片付けようと近寄ろうものなら、シャーっと威嚇して、噛んだり引っ掻かれたりするのは少し困る。どうしても手で触れなければならないときは、バイク用の冬グローブをはめて自衛に努めていたが、ネコの爪や牙はそれすら貫通するのだ。</p><p>というわけで、防具を買った。</p><p><div class="hatena-asin-detail"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B07WDFRP57/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/418RlWl-GQL._SL160_.jpg" class="hatena-asin-detail-image" alt="Mare GooDs 噛みつき防止 ペットグローブ ロング (ホワイト)" title="Mare GooDs 噛みつき防止 ペットグローブ ロング (ホワイト)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B07WDFRP57/bestylesnet-22/">Mare GooDs 噛みつき防止 ペットグローブ ロング (ホワイト)</a></p><ul><li><span class="hatena-asin-detail-label">メディア:</span> その他</li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>ドカタ時代によく使っていた革手が、肘まで伸びた感じ。少しサイズが大きな気もするが、革手というのは手にぴったりフィットしていなければならないものでもないし、あまり気にはならない<a href="#f-9e416e1d" name="fn-9e416e1d" title="ドカタ時代は軍手の上に革手をしていたが、一度、クレーンのフックに指を持っていかれたとき、革手だけで済んで助かった">*1</a>。</p><p>試しにこれを付けてネコにちょっかいをかけてみたが、ネコパンチごときでは傷一つ……ついたけど、なかまでは貫通しない。牙をたてられても、痛痒を感じない。これはかなりの防御力だ。今期のアニメに『痛いのは嫌なので防御力に極振りしたいと思います。』というのがあるが、その気持ちがよく分かった。ネコ氏のほうも、2、3回攻撃してまったく通用しないと悟ると、小さく唸ってプリンターの裏に引っ込んでしまった。見たか、これが文明の力だ！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200122181304.png" alt="f:id:daruyanagi:20200122181304p:plain" title="f:id:daruyanagi:20200122181304p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ネコには早く慣れてもらって、まず病院で異常がないかなどを確認したり、予防接種があれば受けさせたいのだけど、かなり時間がかかりそう。ストレスも感じてるみたいだし、なるべく無視して、無害な存在であることをアピールせねばなるまい。とはいえ、夜になると活動的になり、飼い主の上で踏んだり蹴ったりと元気なので、そんなに心配しないでもいいかなぁって思ってる。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn-9e416e1d" name="f-9e416e1d" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ドカタ時代は軍手の上に革手をしていたが、一度、クレーンのフックに指を持っていかれたとき、革手だけで済んで助かった</span></p>
+</div>

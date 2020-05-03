@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/11/03/184149/" />
@@ -87,77 +89,61 @@
     </p>
 
     <p>string クラスのためにこんな拡張機能があれば便利かなぁ、と思った。指定した要素タグでソーステキストを括って、HTML タグを出力できる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element)
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Wrap(<span class="synStatement">this</span> <span class="synType">string</span> source, <span class="synType">string</span> element)
 {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element);
+<span class="synStatement">return</span> <span class="synType">string</span>.Format(<span class="synConstant">&quot;&lt;{1}&gt;{0}&lt;/{1}&gt;&quot;</span>, source, element);
+}
+</pre><p>たとえば、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synConstant">&quot;これを強調してぇ&quot;</span>.Wrap(<span class="synConstant">&quot;strong&quot;</span>)
+</pre><p>で</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">strong</span><span class="synIdentifier">&gt;</span>これを強調してぇ<span class="synIdentifier">&lt;/</span><span class="synStatement">strong</span><span class="synIdentifier">&gt;</span>
+</pre><p>が得られる。でも、どうせなら class 属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsNullOrEmpty(<span class="synStatement">this</span> <span class="synType">string</span> source)
+{
+<span class="synStatement">return</span> <span class="synType">string</span>.IsNullOrEmpty(source);
+}
+<dl>
+<dt><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Wrap(</dt>
+<dt><span class="synStatement">this</span> <span class="synType">string</span> source, <span class="synType">string</span> element, <span class="synType">string</span> @<span class="synType">class</span> = <span class="synConstant">null</span>)</dt>
+<dt>{</dt>
+<dt><span class="synStatement">return</span> @<span class="synType">class</span>.IsNullOrEmpty()</dt>
+<dt>? <span class="synType">string</span>.Format(<span class="synConstant">&quot;&lt;{1}&gt;{0}&lt;/{1}&gt;&quot;</span>, source, element)</dt>
+<dd><span class="synType">string</span>.Format(<span class="synConstant">&quot;&lt;{1} class=</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">{2}</span><span class="synSpecial">&amp;quot;</span><span class="synConstant">&gt;{0}&lt;/{1}&gt;&quot;</span>, source, element, @<span class="synType">class</span>);
+}
+</pre><p>こうすると、</p></dd>
+</dl>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synConstant">&quot;これを強調してぇ&quot;</span>.Wrap(<span class="synConstant">&quot;span&quot;</span>, <span class="synConstant">&quot;label label-warning&quot;</span>)
+</pre><p>で</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">span</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;label label-warning&quot;</span><span class="synIdentifier">&gt;</span>これを強調してぇ<span class="synIdentifier">&lt;/</span><span class="synStatement">span</span><span class="synIdentifier">&gt;</span>
+</pre><p>が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Join(<span class="synStatement">this</span> IEnumerable&lt;<span class="synType">string</span>&gt; source, <span class="synType">string</span> delimitter)
+{
+<span class="synStatement">return</span> <span class="synType">string</span>.Join(delimitter, source);
 }
 
-<span style="color:#960050;background-color:#1e0010">```たとえば、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#e6db74">&#34;これを強調してぇ&#34;</span>.Wrap(<span style="color:#e6db74">&#34;strong&#34;</span>)
-
-<span style="color:#960050;background-color:#1e0010">```で</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-&amp;lt;strong&gt;<span style="color:#960050;background-color:#1e0010">これを強調してぇ</span>&amp;lt;/strong&gt;
-
-<span style="color:#960050;background-color:#1e0010">```が得られる。でも、どうせなら</span> <span style="color:#66d9ef">class</span> <span style="color:#960050;background-color:#1e0010">属性なんかも指定したくなるよね、と思う。たとえばこんな感じかな。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsNullOrEmpty(<span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source)
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Wrap(
+<span class="synStatement">this</span> <span class="synType">string</span> source, <span class="synType">string</span> element, <span class="synType">object</span> attributes)
 {
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.IsNullOrEmpty(source);
-}
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(
-    <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element, <span style="color:#66d9ef">string</span> @class = <span style="color:#66d9ef">null</span>)
+var text = attributes.GetType().GetProperties().Select(_ =&gt;
 {
-    <span style="color:#66d9ef">return</span> @class.IsNullOrEmpty()
-        ? <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element)
-        : <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1} class=\&#34;{2}\&#34;&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element, @class);
+var name = _.Name;
+var <span class="synStatement">value</span> = _.GetValue(attributes, <span class="synConstant">null</span>).ToString();
+
+<span class="synStatement">if</span> (<span class="synStatement">value</span>.IsNullOrEmpty())
+<span class="synStatement">return</span> <span class="synType">string</span>.Empty;
+<span class="synStatement">else</span>
+<span class="synStatement">return</span> <span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}=</span><span class="synSpecial">\&quot;</span><span class="synConstant">{1}</span><span class="synSpecial">\&quot;</span><span class="synConstant">&quot;</span>, name, <span class="synStatement">value</span>);
+})
+.Where(_ =&gt; !_.IsNullOrEmpty())
+.Join(<span class="synConstant">&quot; &quot;</span>);
+
+<span class="synStatement">return</span> <span class="synType">string</span>.Format(<span class="synConstant">&quot;&lt;{1} {2}&gt;{0}&lt;/{1}&gt;&quot;</span>, source, element, text);
 }
+</pre><p>（Select() のなかで continue 使えたら Where() 要らないのになぁ）</p><p>こんな感じで使える。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// a タグで囲う</span>
+title.Wrap(<span class="synConstant">&quot;a&quot;</span>, <span class="synStatement">new</span> { href = source, title = title, });
+</pre><p>GetType() した後どうすればいいんだ、と思って、MSDN を彷徨ってしまった。</p>
 
-<span style="color:#960050;background-color:#1e0010">```こうすると、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#e6db74">&#34;これを強調してぇ&#34;</span>.Wrap(<span style="color:#e6db74">&#34;span&#34;</span>, <span style="color:#e6db74">&#34;label label-warning&#34;</span>)
-
-<span style="color:#960050;background-color:#1e0010">```で</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-&amp;lt;span class=<span style="color:#e6db74">&#34;label label-warning&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">これを強調してぇ</span>&amp;lt;/span&gt;
-
-<span style="color:#960050;background-color:#1e0010">```が得られると思う。ここまでするのならば、ほかの属性なんかも指定できるようになった方が便利なはずだ。第二引数（拡張メソッドの第三引数）を匿名型にして、いろいろ受け付けられるようにしてみたい。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Join(<span style="color:#66d9ef">this</span> IEnumerable&amp;lt;<span style="color:#66d9ef">string</span>&gt; source, <span style="color:#66d9ef">string</span> delimitter)
-{
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Join(delimitter, source);
-}
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Wrap(
-    <span style="color:#66d9ef">this</span> <span style="color:#66d9ef">string</span> source, <span style="color:#66d9ef">string</span> element, <span style="color:#66d9ef">object</span> attributes)
-{
-    <span style="color:#66d9ef">var</span> text = attributes.GetType().GetProperties().Select(_ =&gt;
-    {
-        <span style="color:#66d9ef">var</span> name = _.Name;
-        <span style="color:#66d9ef">var</span> <span style="color:#66d9ef">value</span> = _.GetValue(attributes, <span style="color:#66d9ef">null</span>).ToString();
-
-        <span style="color:#66d9ef">if</span> (<span style="color:#66d9ef">value</span>.IsNullOrEmpty())
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Empty;
-        <span style="color:#66d9ef">else</span>
-            <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;{0}=\&#34;{1}\&#34;&#34;</span>, name, <span style="color:#66d9ef">value</span>);
-    })
-    .Where(_ =&gt; !_.IsNullOrEmpty())
-    .Join(<span style="color:#e6db74">&#34; &#34;</span>);
-
-    <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">string</span>.Format(<span style="color:#e6db74">&#34;&amp;lt;{1} {2}&gt;{0}&lt;!--{1}--&gt;&#34;</span>, source, element, text);
-}
-
-<span style="color:#960050;background-color:#1e0010">```（</span>Select() <span style="color:#960050;background-color:#1e0010">のなかで</span> <span style="color:#66d9ef">continue</span> <span style="color:#960050;background-color:#1e0010">使えたら</span> Where() <span style="color:#960050;background-color:#1e0010">要らないのになぁ）こんな感じで使える。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#75715e">// a タグで囲う
-</span><span style="color:#75715e"></span>title.Wrap(<span style="color:#e6db74">&#34;a&#34;</span>, <span style="color:#66d9ef">new</span> { href = source, title = title, });
-
-<span style="color:#960050;background-color:#1e0010">```</span>GetType() <span style="color:#960050;background-color:#1e0010">した後どうすればいいんだ、と思って、</span>MSDN <span style="color:#960050;background-color:#1e0010">を彷徨ってしまった。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -171,7 +157,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/11/03/184149.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2014/11/03</time> 
             </p>
         
     </footer>
@@ -223,7 +209,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

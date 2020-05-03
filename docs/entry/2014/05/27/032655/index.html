@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="ただの日記： HTML5 Canvas に挑戦したった。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="別に技術的な内容ではない。ただの日記だ。成果をまとめてるといつまでたってもブログが書けないし、それは自分の役割でもない気がする。ただ、近頃は" />
+    <meta name="og:description"   property="og:description" content="（別に技術的な内容ではない。ただの日記だ。成果をまとめてるといつまでたってもブログが書けないし、それは自分の役割でもない気がする。ただ、近頃" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2014/05/27/032655/20140527030620_hud10340f52ea206b2abc43963615d3279_579835_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2014/05/27/032655/20140527030620_hud10340f52ea206b2abc43963615d3279_579835_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/05/27/032655/" />
@@ -86,64 +92,43 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140527030620.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140527030620.png" alt="f:id:daruyanagi:20140527030620p:plain" title="f:id:daruyanagi:20140527030620p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（別に技術的な内容ではない。ただの日記だ。成果をまとめてるといつまでたってもブログが書けないし、それは自分の役割でもない気がする。ただ、近頃はこんなことをして遊んでるというだけの話だ。最近は時間がとれないので、こういう形が増えそうな気がする）</p><p>太平洋戦争期の艦隊編成を年表みたいに表示できたらいいなと思って（<a href="http://www.jyai.net/military/data-08/kuchikutai_00.htm">&#x3053;&#x3093;&#x306A;&#x304B;&#x3093;&#x3058;</a>）、いろいろ頑張ってみた。</p><p>最初は div を position: absolute で配置していく感じにしたのだけど、データが複雑になるにつれて破綻していくように思えたので、Canvas に図を書くことにした。Canvas に書いちゃうとテキストにリンクが貼れないのがちょっとアレだけど、それはそれで仕方ない。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140527031021.png" alt="f:id:daruyanagi:20140527031021p:plain" title="f:id:daruyanagi:20140527031021p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず線を引くとこから始めて、半日後にはこんな感じに成長した。HTML5 Canvas は割りと低レベルな API っぽくて、線を一本引くだけでもダルい。みんなどうやっているんだろう。なんかラッパーを書くのかな？　ライブラリを使うのかな？</p><p>まぁ、それはともかく。</p><p>最初はグラフとデータが一体化していたのだけど（1941年12月8日は x px に、1945年8月15日は y px にマッピングしてそれを線で結ぶ、とかとか）、JavaScript に慣れるにしたがって少しずつ分けていった。そのデータも、最初は</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synIdentifier">var</span> events = <span class="synIdentifier">[]</span>;
+events.push(<span class="synStatement">new</span> Event(<span class="synConstant">&quot;1941/12/08&quot;</span>, <span class="synConstant">&quot;開戦時編成&quot;</span>));
+events.push(<span class="synStatement">new</span> Event(<span class="synConstant">&quot;1943/7/1&quot;</span>, <span class="synConstant">&quot;解体&quot;</span>));
+events.push(<span class="synStatement">new</span> Event(<span class="synConstant">&quot;1944/8/15&quot;</span>, <span class="synConstant">&quot;再建&quot;</span>));
+events.push(<span class="synStatement">new</span> Event(<span class="synConstant">&quot;1945/2/10&quot;</span>, <span class="synConstant">&quot;解体&quot;</span>));
+events.push(<span class="synStatement">new</span> Event(<span class="synConstant">&quot;1945/8/15&quot;</span>, <span class="synConstant">&quot;終戦&quot;</span>));
+</pre><p>みたいな糞ダサいコードで用意していたのだけど（とりあえず動いてくれ！！）、最後には</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synIdentifier">var</span> model = <span class="synIdentifier">{</span>
+<span class="synConstant">&quot;fleetEvents&quot;</span>: <span class="synIdentifier">[</span>
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1944/11/15&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;再編&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1945/1/1&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;再編&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1945/1/20&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;再編&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1945/5/6&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;解体&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">]</span>,
+<span class="synConstant">&quot;warEvents&quot;</span>: <span class="synIdentifier">[</span>
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1941/12/08&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;開戦&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1942/2/27&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;スラバヤ沖海戦&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1942/6/5&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;ミッドウェー海戦&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1944/10/25&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;サマール沖海戦&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1945/8/15&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;終戦&quot;</span> <span class="synIdentifier">}</span>,
+<span class="synIdentifier">]</span>,
+<span class="synConstant">&quot;ships&quot;</span>: <span class="synIdentifier">[</span>
+<span class="synIdentifier">{</span>
+<span class="synConstant">&quot;name&quot;</span>: <span class="synConstant">&quot;妙高&quot;</span>,
+<span class="synConstant">&quot;comm&quot;</span>: <span class="synConstant">&quot;1929/7/31&quot;</span>,
+<span class="synConstant">&quot;lost&quot;</span>: <span class="synConstant">&quot;1946/7/8&quot;</span>,
+<span class="synConstant">&quot;join&quot;</span>: <span class="synConstant">&quot;1941/12/08&quot;</span>,
+<span class="synConstant">&quot;left&quot;</span>: <span class="synConstant">&quot;1945/1/20&quot;</span>,
+<span class="synConstant">&quot;beforeJoin&quot;</span>: <span class="synConstant">&quot;開戦時在籍&quot;</span>,
+<span class="synConstant">&quot;afterLeft&quot;</span>: <span class="synConstant">&quot;第一南遣艦隊付属&quot;</span>,
+<span class="synConstant">&quot;damaged&quot;</span>: <span class="synIdentifier">[</span>
+<span class="synIdentifier">{</span> <span class="synConstant">&quot;date&quot;</span>: <span class="synConstant">&quot;1944/12/13&quot;</span>, <span class="synConstant">&quot;title&quot;</span>: <span class="synConstant">&quot;大破&quot;</span> <span class="synIdentifier">}</span>
+<span class="synIdentifier">]</span>
+<span class="synIdentifier">}</span>,
+</pre><p>みたいな JSON データを読み込む感じにできた。これで、こんな JSON を返すサーバーを作れば動的にグラフが書けるハズ（今度はどうやってサーバーを書けばいいかわからん。Dapper で少し考えてみたけど、自分は結合とかよくわかってないから SQL だけでサクッと書けない。まぁ、C# で書けばいいのか）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140527031652.png" alt="f:id:daruyanagi:20140527031652p:plain" title="f:id:daruyanagi:20140527031652p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最初のスクリーンショットは第二駆逐艦のデータを使ったけど、次は同じプレゼンテーションコードに第五戦隊のデータをぶち込んでみた。テキストが被りまくってるのを除けば、だいたいうまくできてる（ってことは、ちゃんとデータとビューが分離できたってことなのかな？）。あとは measureText() でちゃんとテキストの大きさを図って、ずらして描画していけばいいはず。</p><p>ちょっと JavaScript が楽しくなってきた。いまだに文法あんまり覚えてなくて、細かいところでハマって時間を浪費しているけれど、これから先 C# しかわかんないのもどうかと思うので頑張る。</p>
 
-<p>別に技術的な内容ではない。ただの日記だ。成果をまとめてるといつまでたってもブログが書けないし、それは自分の役割でもない気がする。ただ、近頃はこんなことをして遊んでるというだけの話だ。最近は時間がとれないので、こういう形が増えそうな気がする）太平洋戦争期の艦隊編成を年表みたいに表示できたらいいなと思って（<a href="http://www.jyai.net/military/data-08/kuchikutai_00.htm">こんなかんじ</a>）、いろいろ頑張ってみた。最初は div を position: absolute で配置していく感じにしたのだけど、データが複雑になるにつれて破綻していくように思えたので、Canvas に図を書くことにした。Canvas に書いちゃうとテキストにリンクが貼れないのがちょっとアレだけど、それはそれで仕方ない。</p>
-<figure>
-    <img src="/images/20140527031021.png"/> 
-</figure>
-
-<p>りあえず線を引くとこから始めて、半日後にはこんな感じに成長した。HTML5 Canvas は割りと低レベルな API っぽくて、線を一本引くだけでもダルい。みんなどうやっているんだろう。なんかラッパーを書くのかな？　ライブラリを使うのかな？まぁ、それはともかく。最初はグラフとデータが一体化していたのだけど（1941年12月8日は x px に、1945年8月15日は y px にマッピングしてそれを線で結ぶ、とかとか）、JavaScript に慣れるにしたがって少しずつ分けていった。そのデータも、最初は</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-javascript" data-lang="javascript"><span style="color:#66d9ef">var</span> <span style="color:#a6e22e">events</span> <span style="color:#f92672">=</span> [];
-<span style="color:#a6e22e">events</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>(<span style="color:#e6db74">&#34;1941/12/08&#34;</span>, <span style="color:#e6db74">&#34;開戦時編成&#34;</span>));
-<span style="color:#a6e22e">events</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>(<span style="color:#e6db74">&#34;1943/7/1&#34;</span>, <span style="color:#e6db74">&#34;解体&#34;</span>));
-<span style="color:#a6e22e">events</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>(<span style="color:#e6db74">&#34;1944/8/15&#34;</span>, <span style="color:#e6db74">&#34;再建&#34;</span>));
-<span style="color:#a6e22e">events</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>(<span style="color:#e6db74">&#34;1945/2/10&#34;</span>, <span style="color:#e6db74">&#34;解体&#34;</span>));
-<span style="color:#a6e22e">events</span>.<span style="color:#a6e22e">push</span>(<span style="color:#66d9ef">new</span> <span style="color:#a6e22e">Event</span>(<span style="color:#e6db74">&#34;1945/8/15&#34;</span>, <span style="color:#e6db74">&#34;終戦&#34;</span>));
-
-<span style="color:#e6db74">```みたいな糞ダサいコードで用意していたのだけど（とりあえず動いてくれ！！）、最後には
-</span><span style="color:#e6db74">```</span><span style="color:#a6e22e">javascript</span>
-<span style="color:#66d9ef">var</span> <span style="color:#a6e22e">model</span> <span style="color:#f92672">=</span> {
-    <span style="color:#e6db74">&#34;fleetEvents&#34;</span><span style="color:#f92672">:</span> [
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1944/11/15&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;再編&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1945/1/1&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;再編&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1945/1/20&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;再編&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1945/5/6&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;解体&#34;</span> },
-    ],
-    <span style="color:#e6db74">&#34;warEvents&#34;</span><span style="color:#f92672">:</span> [
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1941/12/08&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;開戦&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1942/2/27&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;スラバヤ沖海戦&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1942/6/5&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;ミッドウェー海戦&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1944/10/25&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;サマール沖海戦&#34;</span> },
-        { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1945/8/15&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;終戦&#34;</span> },
-    ],
-    <span style="color:#e6db74">&#34;ships&#34;</span><span style="color:#f92672">:</span> [
-        {
-            <span style="color:#e6db74">&#34;name&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;妙高&#34;</span>,
-            <span style="color:#e6db74">&#34;comm&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1929/7/31&#34;</span>,
-            <span style="color:#e6db74">&#34;lost&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1946/7/8&#34;</span>,
-            <span style="color:#e6db74">&#34;join&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1941/12/08&#34;</span>,
-            <span style="color:#e6db74">&#34;left&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1945/1/20&#34;</span>,
-            <span style="color:#e6db74">&#34;beforeJoin&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;開戦時在籍&#34;</span>,
-            <span style="color:#e6db74">&#34;afterLeft&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;第一南遣艦隊付属&#34;</span>,
-            <span style="color:#e6db74">&#34;damaged&#34;</span><span style="color:#f92672">:</span> [
-                { <span style="color:#e6db74">&#34;date&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;1944/12/13&#34;</span>, <span style="color:#e6db74">&#34;title&#34;</span><span style="color:#f92672">:</span> <span style="color:#e6db74">&#34;大破&#34;</span> }
-            ]
-        },
-
-<span style="color:#e6db74">```みたいな JSON データを読み込む感じにできた。これで、こんな JSON を返すサーバーを作れば動的にグラフが書けるハズ（今度はどうやってサーバーを書けばいいかわからん。Dapper で少し考えてみたけど、自分は結合とかよくわかってないから SQL だけでサクッと書けない。まぁ、C# で書けばいいのか）。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74"><figure>
-    <img src="/images/20140527031652.png"/> 
-</figure>
-
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">初のスクリーンショットは第二駆逐艦のデータを使ったけど、次は同じプレゼンテーションコードに第五戦隊のデータをぶち込んでみた。テキストが被りまくってるのを除けば、だいたいうまくできてる（ってことは、ちゃんとデータとビューが分離できたってことなのかな？）。あとは measureText() でちゃんとテキストの大きさを図って、ずらして描画していけばいいはず。ちょっと JavaScript が楽しくなってきた。いまだに文法あんまり覚えてなくて、細かいところでハマって時間を浪費しているけれど、これから先 C# しかわかんないのもどうかと思うので頑張る。
-</span><span style="color:#e6db74">
-</span><span style="color:#e6db74">
-</span></code></pre></div>
 
     <footer>
         
@@ -157,7 +142,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/05/27/032655.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/05/27</time> 
             </p>
         
     </footer>
@@ -209,7 +194,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

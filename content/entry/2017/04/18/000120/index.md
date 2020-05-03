@@ -1,0 +1,56 @@
+---
+date: 2017-04-18T00:01:20.0000000
+draft: false
+title: "織田信長 vs 伊賀忍者最終決戦の地・伊賀柏原城を訪ねてみた。"
+tags: ["歴史", "名張", "城郭"]
+eyecatch: 
+---
+<p>この前、墓参りで名張へ帰ったついでに、赤目の柏原城を訪れてみました。</p><p><iframe src="http://blog.daruyanagi.jp/embed/2017/03/21/152242" title="墓参り（松山 → 京都 → 奈良 → 三重 → 大阪 → 松山）中に食べたもの - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/03/21/152242">blog.daruyanagi.jp</a></cite></p><p>天正伊賀の乱（織田信長 vs 伊賀忍者たち）で、伊賀衆が玉砕（？　後述）を遂げた城です。</p>
+
+<div class="section">
+<h3>プロローグ</h3>
+<p><a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20150419/20150419061443.png" class="http-image" target="_blank"><img src="20150419061443.png" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20150419/20150419061443.png"></a></p><p>むかしむかし、伊賀の国を仁木氏（清和源氏、足利氏の祖・義康の庶長子・義清の流れ、管領・細川家の元）という守護が治めていました。しかし、東大寺をはじめとする寺院の荘園が多かったこともあり、仁木氏と坊主が対立、隣国の近江（六角）・伊勢（北畠）など諸勢力が絡み、割とカオスな状態になってしまっていまいました。</p><p>ただでさえ豊かとはいえない伊賀で血みどろの抗争を続ける――そんな状況に終止符を打とうと立ち上がったのが、百地氏・藤林氏・服部氏をはじめとする<b>「伊賀十二人衆」</b>でした。彼らは十一ヶ条からなる掟を定め、合議体制“惣”を敷き、諸外国の干渉を退けます。また、長い戦乱で鍛えた攪乱・諜報能の力を海外へ売り込む、現在でいうところの人材派遣業にも力を入れました。これがいわゆる<b>忍者</b>です（話半分に聞いてね）。<b>百地氏、藤林氏、服部氏</b>を“伊賀<b>上忍</b>三家”とし、それぞれが<b>中忍</b>と呼ばれる中間管理職を監督、中忍が下っ端である<b>下忍</b>をこき使うという、日本伝統の下請け構造がここに完成したのです。</p><p>こうして伊賀衆は幸せに（？）暮らしていたのですが――</p>
+
+</div>
+<div class="section">
+<h3>覇王、降臨</h3>
+<p>永禄10（1567）年、織田信長が次男・信勝を伊勢の北畠具教の養子にねじ込み、伊勢を手中に。天正4（1576）年には北畠具教を暗殺して禍根を絶ち、伊勢の支配を盤石とします。すでに近江の六角は亡く、大和の筒井氏も傘下。織田家に<i>「伊賀も占領しとこかな？（別に要らんけど）」</i>という機運が高まってきます。天正7年（1579年）、伊賀忍者・下山甲斐が“惣”を裏切り、「伊賀の団結なんてたいしたもんじゃおまへんで」と、織田家に伊賀侵攻を進言。父・信長にちょっといいところを見せたかったのか、織田（北畠）信雄はこの言葉に乗り、丸山城（現・伊賀鉄道丸山駅のあたり？）を修築して侵略の拠点としました。</p><p>これを耳聡い忍者たちが見逃すはずがありません。どこからともなく現れた大量の忍者たちが丸山城を奇襲、信雄は大敗を喫して伊勢に逃げ帰りました（<b>第一次天正伊賀の乱</b>）。</p><p>これを聞いてムカチャッカファイヤー（死語）したのが、パパ・信長です。信長は信雄の勝手を叱る（<b>「絶縁するぞ、コラ(# ﾟДﾟ)」</b>）一方で、2年後の天正9（1581）年、4万の兵を率いて四方から伊賀へ退去侵入しました。これが<b>第二次天正伊賀の乱</b>です。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170417222940.png" alt="f:id:daruyanagi:20170417222940p:plain" title="f:id:daruyanagi:20170417222940p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>陣容は、近江から</p>
+
+<ul>
+<li>玉滝口：蒲生氏郷、脇坂安治ら 7,000余騎</li>
+<li>多羅尾口：堀秀政ら 2,300余騎</li>
+</ul><p>玉滝口は伊賀衆に棟梁を殺されて遺恨を抱いていた柘植氏が先導、多羅尾口は甲賀忍者・多羅尾光俊が手引きします。</p><p>そして、伊勢から主力の</p>
+
+<ul>
+<li>柘植口：丹羽長秀、滝川一益ら 12,000</li>
+<li>伊勢地口：北畠信雄ら 10,000余騎</li>
+</ul><p>が、最後に大和からの応援</p>
+
+<ul>
+<li>笠間口：筒井順慶ら 3,700余騎</li>
+<li>初瀬口：浅野長政ら 7,000余騎</li>
+</ul><p>が同時に侵入するという手はず。（地図は割と適当です）。めっちゃ本気ですね。</p><p>伊賀衆は先導役の伊賀衆を殺害するなどして抵抗しますが、近江・大和の軍勢を抑えきれず、<b>比自山城</b>で包囲されます。ここで散々抵抗し、攻め手を疲れさせたところへお得意の刺客を放って筒井順慶の首を狙うなどしますが、敵方にいた伊賀忍者に気付かれ失敗。丹羽長秀、滝川一益ら伊勢本隊の接近を察知するや、夜陰に紛れて城を捨て、城兵はみな逃亡しました。蛻の殻となった城を占領した織田軍は悔しがり、城や近隣の諸堂をことごとく焼き払ったそうです。</p>
+
+</div>
+<div class="section">
+<h3>そして、決戦</h3>
+<p>その後は全土でゲリラ作戦を展開。主力を南伊賀、<b>滝野吉政</b>の居城・<b>柏原城</b>に集めて織田信雄の軍を引き付け、力攻めを跳ねのける一方で、北伊賀では土豪の決起を促し、織田の兵站・忍田城を攻撃せしむるなどして苦しめました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170417231044.jpg" alt="f:id:daruyanagi:20170417231044j:plain" title="f:id:daruyanagi:20170417231044j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>しかし、多勢に無勢、伊賀衆は次第に追い詰められていきます。とくに一度命を狙われた筒井順慶などは激おこで、<i>「一人なりとも許すことは相ならぬ」</i>と、伊賀の民衆を虐殺したそうです（まぁ、ゲリラだしね、敵味方わかんないからしょうがないかもね）。</p><p>そしてとうとう、柏原城は十重二十重に包囲され、外部との連絡を完全に断たれてしまいました。所謂、兵糧攻めですね。これを打開するために、決死の忍者3人が城を抜け出て、織田軍の背後で農民を使って松明で陽動を行い、脅かすなどしましたが、これは丹羽長秀に見破られて失敗しています。</p><p>万策尽きるとはこのことでしょう。柏原城は天正9年秋、陥落。滝野吉政が城兵の人命保護を条件に信雄と交渉して和睦したとも、裏切りが起こって落城したとも言われています。</p>
+
+</div>
+<div class="section">
+<h3>柏原城</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170417231528.png" alt="f:id:daruyanagi:20170417231528p:plain" title="f:id:daruyanagi:20170417231528p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>柏原城は、近鉄赤目口駅（名張駅から大阪寄りに一駅）から徒歩15分ぐらいのところです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319134851.jpg" alt="f:id:daruyanagi:20170319134851j:plain" title="f:id:daruyanagi:20170319134851j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>赤目といえば、やっぱり温泉と“赤目四十八滝”ですかね。いろんな滝が連なっていて、目に楽しく、なかなか良いハイキングコースです。天然記念物に指定されているオオサンショウウオを見ることもできます（割とおいしい美味しいらしいのですけど、絶滅危惧種なので食べちゃダメですよ）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319143343.jpg" alt="f:id:daruyanagi:20170319143343j:plain" title="f:id:daruyanagi:20170319143343j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>城址までは、いかにも伊賀っぽい田んぼ道。ところどころに小さな案内がでているので、あんまり迷うことはないと思います。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141045.jpg" alt="f:id:daruyanagi:20170319141045j:plain" title="f:id:daruyanagi:20170319141045j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>勝手神社という神社があれば、城址はすぐそこです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319140828.jpg" alt="f:id:daruyanagi:20170319140828j:plain" title="f:id:daruyanagi:20170319140828j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>いかにも、な石碑もたってますね。この辺りはかつて信仰が厚く、大小さまざまな寺社があったらしいのですが、いつしかその多くが廃れてしまったのだそうです。しかし、滝野吉政が勧請したというこの神社は村民の崇敬を受け、文禄2年に再建されたという立派な社殿を受け継いでいます。このあたりの公民館も併設されているようで、僕が訪れた時はなにか熱心におじさんたちが議論をしていました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141608.jpg" alt="f:id:daruyanagi:20170319141608j:plain" title="f:id:daruyanagi:20170319141608j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>城址は勝手神社の裏側にあります。見た目はこんもりとした山ですね。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141711.jpg" alt="f:id:daruyanagi:20170319141711j:plain" title="f:id:daruyanagi:20170319141711j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>入り口には地元の人たちが建ててくれた柏原城（滝野城）の由来をみることができます。伊賀土豪千六百余りがここに籠り、三万数千の織田軍とたたかったとの由。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141756.jpg" alt="f:id:daruyanagi:20170319141756j:plain" title="f:id:daruyanagi:20170319141756j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>中に踏み入ると、「勝手神社にお城の資料を置いてあるからどうぞやで」みたいなお手紙が置いてありました。痛み入ります、あとで忘れずにもらって帰らないと。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141815.jpg" alt="f:id:daruyanagi:20170319141815j:plain" title="f:id:daruyanagi:20170319141815j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、マムシに注意ですね。僕はこの名張市で10年ぐらい住んでいたのですが、裏庭のビールの空き瓶ケースにマムシが住み着いて、割と困ったことがあります。伊賀はマムシに愛されておる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141849.jpg" alt="f:id:daruyanagi:20170319141849j:plain" title="f:id:daruyanagi:20170319141849j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>申し訳程度の大きさの虎口を抜けると、すり鉢状の広場に出ました。ここが本丸なのかな。入るときに超えてきた溝が、お堀というわけですね。この規模でよくも千人以上収容して、三万の大軍をしのいだな。今ではちょっと当時の様子がよくわからないのですが、実際は勝手神社のあたりまで城塞化されていたんでしょうね。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141930.jpg" alt="f:id:daruyanagi:20170319141930j:plain" title="f:id:daruyanagi:20170319141930j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>本丸の隅には“お滝女郎化粧井戸”という井戸がポツンとあります。建てられていた看板によると、近所にお滝と吉松という許嫁同志がいたのですが（リア充爆発しろ）、結婚の直前、吉松が病死してしまったのだそう。愛する吉松を喪ったお滝は、この井戸に身投げして死んだのだそうな（涙）。</p><p>あるいは、祭りのとき、獅子舞に追われて逃げる途中、この井戸に落ちたのだとか、美人のお滝さんが化粧水として組み上げていた井戸だとかいう説もあるそうです――おい、さっきの俺の涙、返せ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319142009.jpg" alt="f:id:daruyanagi:20170319142009j:plain" title="f:id:daruyanagi:20170319142009j:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319141959.jpg" alt="f:id:daruyanagi:20170319141959j:plain" title="f:id:daruyanagi:20170319141959j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>本丸の周りは土が盛ってあるのでしょうか。登ると、その外には深めの堀が掘られていました。この辺りはちょっとお城の雰囲気あるなぁ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319143644.jpg" alt="f:id:daruyanagi:20170319143644j:plain" title="f:id:daruyanagi:20170319143644j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>帰りにもう一度勝手神社に寄り、資料をいただいてきました。ありがとうのお賽銭も多めにいれて、おみくじも引いてみましたが、“小吉”でした。恋愛は「良い人です信じなさい（誰をだよ！）」、縁談は「いろいろさわりあり　ひそかにすればよし（密かに？）」でした。</p>
+
+</div>
+<div class="section">
+<h3>極楽寺＆和紙製造</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319145623.jpg" alt="f:id:daruyanagi:20170319145623j:plain" title="f:id:daruyanagi:20170319145623j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>帰りはちょっと足を延ばして、極楽寺に寄りました。</p>
+
+<blockquote cite="http://www.gokurakuji-nabari.jp/">
+<p>奈良東大寺二月堂で、毎年3月12日に行われる「お水取り」の行事に使用される松明（たいまつ）を、およそ760年前からここ伊賀国一ノ井（現在の名張市赤目町一ノ井）の地より、毎年調進させていただいています。</p>
+
+<cite><a href="http://www.gokurakuji-nabari.jp/">&#x6975;&#x697D;&#x5BFA; &#x6771;&#x5927;&#x5BFA;&#x4E8C;&#x6708;&#x5802;&#x306E;&#x4FEE;&#x4E8C;&#x4F1A;&#xFF08;&#x304A;&#x6C34;&#x53D6;&#x308A;&#xFF09;&#x306B;&#x3001;&#x677E;&#x660E;&#x3092;&#x304A;&#x7D0D;&#x3081;&#x3057;&#x3066;&#x3044;&#x307E;&#x3059;</a></cite>
+</blockquote>
+<p>さっきの伊賀の適当歴史でもちょっと触れましたが、このあたりは東大寺などの荘園が多かったようで、その縁でしょうかね。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170319144613.jpg" alt="f:id:daruyanagi:20170319144613j:plain" title="f:id:daruyanagi:20170319144613j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ここいらの集落の規模にしては立派なお寺ですが、このあたりは明治から昭和初期にかけて、赤目滝から出る宇陀川（淀川の上流に当たります）の清流を利用した手すき和紙の生産で栄えたのだそうです。作られたわしは伊賀上野へ送られ、当地の特産である和傘の製造に使われたのだそうな。</p><p><a href="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140102/20140102142052.jpg" class="http-image" target="_blank"><img src="20140102142052.jpg" class="http-image" alt="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20140102/20140102142052.jpg"></a></p><p>柏原城（滝野城）、極楽寺、手すき和紙は、地元で盛んな「名張郷土かるた」にも取り入れられているのですが――</p><p><iframe src="http://blog.daruyanagi.jp/embed/2014/01/03/125011" title="書き初めとかしてみた。 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2014/01/03/125011">blog.daruyanagi.jp</a></cite></p><p>毎年一族で遊んでたりするのに、恥ずかしながらちゃんと足を運んで見に行ったのは初めてで、いろいろ感慨深かったです。また機会があれば、上野の方の史跡も訪ねたいですね。</p><p><iframe src="http://blog.daruyanagi.jp/embed/2016/01/25/050000" title="独断と偏見による簡単な伊賀の国の歴史 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2016/01/25/050000">blog.daruyanagi.jp</a></cite></p><p><iframe src="http://blog.daruyanagi.jp/embed/2016/04/18/232248" title="散策：藤堂高吉と名張城（？）。そして名松線 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2016/04/18/232248">blog.daruyanagi.jp</a></cite></p>
+
+</div>

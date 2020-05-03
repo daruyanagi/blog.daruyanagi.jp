@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Aoba 1.2.0：連射モードの追加と通知の改善 / GitHub で Pull Request を Merge できなくなった" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケー" />
+    <meta name="og:description"   property="og:description" content="連射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2016/08/29/045312/20160829043442_hud19255634c7a823c2759931270fe34d5_25270_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2016/08/29/045312/20160829043442_hud19255634c7a823c2759931270fe34d5_25270_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/08/29/045312/" />
@@ -86,38 +92,14 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20160829043442.png"/> 
-</figure>
-
-<p>射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。</p>
-<figure>
-    <img src="/images/20160829043648.png"/> 
-</figure>
-
-<p>ューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz</p>
-<figure>
-    <img src="/images/20160829043826.png"/> 
-</figure>
-
-<p>知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.2.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><br/></p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160829043442.png" alt="f:id:daruyanagi:20160829043442p:plain" title="f:id:daruyanagi:20160829043442p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>連射モードを追加。指定したインターバルでタイマーが動き、取得済みのゲームエリアをパシャパシャするヤツ。タイマーが動いていることを示すインジケーターがいいの思いつかなかったので、とりあえずアイコンをオレンジにしておいた。この辺りは永遠に適当。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160829043648.png" alt="f:id:daruyanagi:20160829043648p:plain" title="f:id:daruyanagi:20160829043648p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ビューに Brush をバインドしたつもりが動かずに悩んだけど、System.Windows.Media ではなく System.Drawing になっていた orz</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160829043826.png" alt="f:id:daruyanagi:20160829043826p:plain" title="f:id:daruyanagi:20160829043826p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>通知もいい感じにしておいた。通知は切ることもできるけど、ゲームエリアの取得に失敗したときだけはでるようにしている。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAoba%2Freleases%2Ftag%2Fv1.2.0" title="daruyanagi/Aoba" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><br />
+</p>
 <div class="section">
-    #### Git の使い方わからん
-    GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。
-<figure>
-    <img src="/images/20160829044207.png"/> 
-</figure>
-
-<p>したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……</p>
-<figure>
-    <img src="/images/20160829044434.png"/> 
-</figure>
-
-<p>んかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。Visual Studio 拡張機能にもいいところがあるんだろうけど、_ブランチ切って<a href="#f-c3e131e4" name="fn-c3e131e4" title="今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？">*1</a>、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）_っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。</p>
+<h4>Git の使い方わからん</h4>
+<p>GitHub の Visual Studio 拡張機能を使っていたのだけど、操作をミスって Pull Request を Merge できなくなった。GitHub で「コマンドラインでコンフリクトをなんとかしろやボケ」と言われてしまう（スクショとり忘れた）。</p><p>とりあえず閉じておいた。ローカルの master とリモートの master に齟齬ができたみたいだなぁ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160829044207.png" alt="f:id:daruyanagi:20160829044207p:plain" title="f:id:daruyanagi:20160829044207p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>直したいのだけど、やり方がさっぱりわからなかったのだが、「GitHub for Windows」を起動してごちゃごちゃしていると……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160829044434.png" alt="f:id:daruyanagi:20160829044434p:plain" title="f:id:daruyanagi:20160829044434p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんかコンフリクトのあるファイルが表示されたので、当該部分を消してコミットして Sync しておいた（Sync がなにやってんのかはイマイチよくわからんが）。なんかよくわからんけど助かった……。</p><p>Visual Studio 拡張機能にもいいところがあるんだろうけど、<i>ブランチ切って<a href="#f-c3e131e4" name="fn-c3e131e4" title="今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？">*1</a>、コードをしこしこ書いて、終わったらプルリクエスト作って、GitHub で Merge して、Release を作成する（、ブランチを削除する）</i>っていうのがシームレスにできる「GitHub for Windows」の方が自分はいいかも。手を動かしてるうちに、いろいろ分かってくるかもだし（ただし、Sync はイマイチよくわからん）。</p>
 </div><div class="footnote">
-<a href="#fn-c3e131e4" name="f-c3e131e4" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？</span>
+<p class="footnote"><a href="#fn-c3e131e4" name="f-c3e131e4" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">今回はここで間違ったみたい。remote と local が同期されていないのに remote からブランチをきって local にコミットしたのか？</span></p>
 </div>
-
 
     <footer>
         
@@ -131,7 +113,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/08/29/045312.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2016/08/29</time> 
             </p>
         
     </footer>
@@ -183,7 +165,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

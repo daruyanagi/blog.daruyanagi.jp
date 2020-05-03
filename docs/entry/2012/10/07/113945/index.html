@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix/ASP.NET Web Pages で YAML を扱う" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。 ### YAML って？ &gt; YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうる" />
+    <meta name="og:description"   property="og:description" content="ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。 YAML って？ YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/10/07/113945/" />
@@ -88,210 +90,192 @@
 
     <p>ちょっと YAML を使いたいなーというシーンがあったので、いろいろ調べたみた。</p>
 <div class="section">
-    ### YAML って？
-<pre><code>&gt;
-    YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。
-</code></pre>
-<p>ほんとう？　それを確かめるためにちょっと比較してみました。例は <a href="http://www.ibm.com/developerworks/jp/xml/library/x-matters23/">XMLの論考: YAMLはXMLに改良を加える</a> のものをベースに、<a href="http://bluehawk.infinitybird.com/dev/xmljson.html">XML-JSON相互変換ツール - Bluehawk's lab.</a> で作成した JSON 形式のものを追加してあります。</p>
+<h3>YAML って？</h3>
+<blockquote>
+<p>YAML は XML よりも読みやすく、書きやすく、JSON よりも型にうるさく、しかも自由度がある、Ruby 使い達に人気の(?) データ記述形式です。</p>
+</blockquote>
+<p>ほんとう？　それを確かめるためにちょっと比較してみました。例は <a href="http://www.ibm.com/developerworks/jp/xml/library/x-matters23/">XML&#x306E;&#x8AD6;&#x8003;: YAML&#x306F;XML&#x306B;&#x6539;&#x826F;&#x3092;&#x52A0;&#x3048;&#x308B;</a> のものをベースに、<a href="http://bluehawk.infinitybird.com/dev/xmljson.html">XML-JSON&#x76F8;&#x4E92;&#x5909;&#x63DB;&#x30C4;&#x30FC;&#x30EB; - Bluehawk&#39;s lab.</a> で作成した JSON 形式のものを追加してあります。</p>
 <div class="section">
-    #### XML で表現した場合
-    ```xml
-<!--?-->xml version="1.0"?>
-<club></club>
-  <players></players>
-    id="kramnik"
-            name="Vladimir Kramnik"
-            rating="2700"
-            status="GM" />
-    id="fritz"
-            name="Deep Fritz"
-            rating="2700"
-            status="Computer" />
-    id="mertz"
-            name="David Mertz"
-            rating="1400"
-            status="Amateur" />
-<p><matches></matches>
-<match></match>
-<date></date>2002-10-04
-refid=&quot;fritz&rdquo; /&gt;
-refid=&quot;kramnik&rdquo; /&gt;
-<result></result>Draw</p>
-<pre><code>&lt;match&gt;&lt;/match&gt;
-    &lt;date&gt;&lt;/date&gt;2002-10-06
-    refid=&quot;kramnik&quot; /&gt;
-    refid=&quot;fritz&quot; /&gt;
-    &lt;result&gt;&lt;/result&gt;White
-</code></pre>
-<pre><code class="language-タグがウザい。何でもできるけれど、少し厳格すぎるきらいがある。" data-lang="タグがウザい。何でもできるけれど、少し厳格すぎるきらいがある。">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### JSON で表現した場合
-    ```
+<h4>XML で表現した場合</h4>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synComment">?&gt;</span>
+<span class="synIdentifier">&lt;club&gt;</span>
+<span class="synIdentifier">&lt;players&gt;</span>
+<span class="synIdentifier">&lt;player </span><span class="synType">id</span>=<span class="synConstant">&quot;kramnik&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">name</span>=<span class="synConstant">&quot;Vladimir Kramnik&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">rating</span>=<span class="synConstant">&quot;2700&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">status</span>=<span class="synConstant">&quot;GM&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;player </span><span class="synType">id</span>=<span class="synConstant">&quot;fritz&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">name</span>=<span class="synConstant">&quot;Deep Fritz&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">rating</span>=<span class="synConstant">&quot;2700&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">status</span>=<span class="synConstant">&quot;Computer&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;player </span><span class="synType">id</span>=<span class="synConstant">&quot;mertz&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">name</span>=<span class="synConstant">&quot;David Mertz&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">rating</span>=<span class="synConstant">&quot;1400&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">status</span>=<span class="synConstant">&quot;Amateur&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/players&gt;</span>
+<span class="synIdentifier">&lt;matches&gt;</span>
+<span class="synIdentifier">&lt;match&gt;</span>
+<span class="synIdentifier">&lt;Date&gt;</span>2002-10-04<span class="synIdentifier">&lt;/Date&gt;</span>
+<span class="synIdentifier">&lt;White </span><span class="synType">refid</span>=<span class="synConstant">&quot;fritz&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;Black </span><span class="synType">refid</span>=<span class="synConstant">&quot;kramnik&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;Result&gt;</span>Draw<span class="synIdentifier">&lt;/Result&gt;</span>
+<span class="synIdentifier">&lt;/match&gt;</span>
+<span class="synIdentifier">&lt;match&gt;</span>
+<span class="synIdentifier">&lt;Date&gt;</span>2002-10-06<span class="synIdentifier">&lt;/Date&gt;</span>
+<span class="synIdentifier">&lt;White </span><span class="synType">refid</span>=<span class="synConstant">&quot;kramnik&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;Black </span><span class="synType">refid</span>=<span class="synConstant">&quot;fritz&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;Result&gt;</span>White<span class="synIdentifier">&lt;/Result&gt;</span>
+<span class="synIdentifier">&lt;/match&gt;</span>
+<span class="synIdentifier">&lt;/matches&gt;</span>
+<span class="synIdentifier">&lt;/club&gt;</span>
+</pre><p>タグがウザい。何でもできるけれど、少し厳格すぎるきらいがある。</p>
+</div>
+<div class="section">
+<h4>JSON で表現した場合</h4>
+<pre class="code lang-" data-lang="" data-unlink>{
+&#34;club&#34;: {
+&#34;players&#34;: {
+&#34;player&#34;: [
 {
-  &quot;club&quot;: {
-    &quot;players&quot;: {
-      &quot;player&quot;: [
-        {
-          &quot;-id&quot;: &quot;kramnik&quot;,
-          &quot;-name&quot;: &quot;Vladimir Kramnik&quot;,
-          &quot;-rating&quot;: &quot;2700&quot;,
-          &quot;-status&quot;: &quot;GM&quot;
-        },
-        {
-          &quot;-id&quot;: &quot;fritz&quot;,
-          &quot;-name&quot;: &quot;Deep Fritz&quot;,
-          &quot;-rating&quot;: &quot;2700&quot;,
-          &quot;-status&quot;: &quot;Computer&quot;
-        },
-        {
-          &quot;-id&quot;: &quot;mertz&quot;,
-          &quot;-name&quot;: &quot;David Mertz&quot;,
-          &quot;-rating&quot;: &quot;1400&quot;,
-          &quot;-status&quot;: &quot;Amateur&quot;
-        }
-      ]
-    },
-    &quot;matches&quot;: {
-      &quot;match&quot;: [
-        {
-          &quot;Date&quot;: &quot;2002-10-04&quot;,
-          &quot;White&quot;: { &quot;-refid&quot;: &quot;fritz&quot; },
-          &quot;Black&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; },
-          &quot;Result&quot;: &quot;Draw&quot;
-        },
-        {
-          &quot;Date&quot;: &quot;2002-10-06&quot;,
-          &quot;White&quot;: { &quot;-refid&quot;: &quot;kramnik&quot; },
-          &quot;Black&quot;: { &quot;-refid&quot;: &quot;fritz&quot; },
-          &quot;Result&quot;: &quot;White&quot;
-        }
-      ]
-    }
-  }
+&#34;-id&#34;: &#34;kramnik&#34;,
+&#34;-name&#34;: &#34;Vladimir Kramnik&#34;,
+&#34;-rating&#34;: &#34;2700&#34;,
+&#34;-status&#34;: &#34;GM&#34;
+},
+{
+&#34;-id&#34;: &#34;fritz&#34;,
+&#34;-name&#34;: &#34;Deep Fritz&#34;,
+&#34;-rating&#34;: &#34;2700&#34;,
+&#34;-status&#34;: &#34;Computer&#34;
+},
+{
+&#34;-id&#34;: &#34;mertz&#34;,
+&#34;-name&#34;: &#34;David Mertz&#34;,
+&#34;-rating&#34;: &#34;1400&#34;,
+&#34;-status&#34;: &#34;Amateur&#34;
 }
-```ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### YAML で表現した場合
-    ```yaml
----
-players:
-  Vladimir Kramnik: &amp;amp;kramnik
-    rating: 2700
-    status: GM
-  Deep Fritz: &amp;amp;fritz
-    rating: 2700
-    status: Computer
-  David Mertz: &amp;amp;mertz
-    rating: 1400
-    status: Amateur
-matches:
-  -
-    Date: 2002-10-04
-    White: *fritz
-    Black: *kramnik
-    Result: Draw
-  -
-    Date: 2002-10-06
-    White: *kramnik
-    Black: *fritz
-    Result: White
-
-```タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://jp.rubyist.net/magazine/?0009-YAML&quot;&gt;Rubyist Magazine - プログラマーのための YAML 入門 (初級編)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 
-	YamlSerializer for .NET
-
-    
-    &gt;
-        主に２つの目的で使うことができます。
-
-
-C# のオブジェクトをそのまま YAML テキストにシリアライズ・デシリアライズすることができます。=&gt; YamlSerizlizer クラス
-一般の YAML ファイルを扱うこともできます。 =&gt; YamlNode クラス
-
-    
-というわけで、今日はこのライブラリを使ってみる。ちゃんと NuGet にもパッケージングされていて、WebMatrix からもサックリ使えるよ。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121007/20121007113028.png&quot; alt=&quot;f:id:daruyanagi:20121007113028p:plain&quot; title=&quot;f:id:daruyanagi:20121007113028p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
-
-&lt;div class=&quot;section&quot;&gt;
-    #### サンプルコード
-    ```cs
-# Default.cshtml
-
-@functions {
-    // シリアライズ・デシリアライズのためのサンプルクラス
-    public class Person
-    {
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        
-        public override string ToString()
-        {
-            return string.Format(&quot;{0} {1}&quot;, FirstName, LastName);
-        }
-    }
+]
+},
+&#34;matches&#34;: {
+&#34;match&#34;: [
+{
+&#34;Date&#34;: &#34;2002-10-04&#34;,
+&#34;White&#34;: { &#34;-refid&#34;: &#34;fritz&#34; },
+&#34;Black&#34;: { &#34;-refid&#34;: &#34;kramnik&#34; },
+&#34;Result&#34;: &#34;Draw&#34;
+},
+{
+&#34;Date&#34;: &#34;2002-10-06&#34;,
+&#34;White&#34;: { &#34;-refid&#34;: &#34;kramnik&#34; },
+&#34;Black&#34;: { &#34;-refid&#34;: &#34;fritz&#34; },
+&#34;Result&#34;: &#34;White&#34;
 }
-
-@{
-    var person = new Person()
-    {
-        FirstName = &quot;Hidetoshi&quot;, LastName = &quot;Yanagi&quot;,
-    };
-
-    // シリアライザの生成
-    // using System.Yaml.Serialization;
-    var serializer = new YamlSerializer();
-
-    // YML形式のテキスト
-    string yml =@&quot;
-LastName: 柳
-FirstName: 英俊
-&quot;;
-
-    // YMLテキスト → Person
-    var deserialised = serializer.Deserialize(
-        yml, typeof(Person)
-    );
+]
 }
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &amp;lt;pre&gt;
-        @serializer.Serialize(person) //&amp;lt;-- YMLテキストに！
-        &amp;lt;/pre&gt;
-
-        // 返り値は object 配列だよ！
-        &amp;lt;h1&gt;フルネームは @(deserialised[0] as Person) です。&amp;lt;/h1&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div>
+}
+}</pre><p>ネストが深い。JavaScript との相性が抜群だが、いろいろユルい部分も多い。</p>
+</div>
 <div class="section">
-    #### 結果
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121007/20121007113045.png" alt="f:id:daruyanagi:20121007113045p:plain" title="f:id:daruyanagi:20121007113045p:plain" class="hatena-fotolife"/>ちょっとアレだな、とおもったのは @(deserialised[0] as Person) の部分だけれど、dynamic でうければいいのかもしれない。
-```cs
-dynamic deserialised = serializer.Deserialize(
-        yml, typeof(Person)
-    )[0];
-<p>deserialised.FirstName;</p>
-<pre><code>&lt;/div&gt;
-&lt;/div&gt;
-
-</code></pre>
+<h4>YAML で表現した場合</h4>
+<pre class="code lang-yaml" data-lang="yaml" data-unlink><span class="synPreProc">---</span>
+<span class="synIdentifier">players</span><span class="synSpecial">:</span>
+<span class="synIdentifier">Vladimir Kramnik</span><span class="synSpecial">:</span> <span class="synType">&amp;kramnik</span>
+<span class="synIdentifier">rating</span><span class="synSpecial">:</span> <span class="synConstant">2700</span>
+<span class="synIdentifier">status</span><span class="synSpecial">:</span> GM
+<span class="synIdentifier">Deep Fritz</span><span class="synSpecial">:</span> <span class="synType">&amp;fritz</span>
+<span class="synIdentifier">rating</span><span class="synSpecial">:</span> <span class="synConstant">2700</span>
+<span class="synIdentifier">status</span><span class="synSpecial">:</span> Computer
+<span class="synIdentifier">David Mertz</span><span class="synSpecial">:</span> <span class="synType">&amp;mertz</span>
+<span class="synIdentifier">rating</span><span class="synSpecial">:</span> <span class="synConstant">1400</span>
+<span class="synIdentifier">status</span><span class="synSpecial">:</span> Amateur
+<span class="synIdentifier">matches</span><span class="synSpecial">:</span>
+<span class="synStatement">-</span>
+<span class="synIdentifier">Date</span><span class="synSpecial">:</span> <span class="synConstant">2002-10-0</span>4
+<span class="synIdentifier">White</span><span class="synSpecial">:</span> <span class="synType">*fritz</span>
+<span class="synIdentifier">Black</span><span class="synSpecial">:</span> <span class="synType">*kramnik</span>
+<span class="synIdentifier">Result</span><span class="synSpecial">:</span> Draw
+<span class="synStatement">-</span>
+<span class="synIdentifier">Date</span><span class="synSpecial">:</span> <span class="synConstant">2002-10-0</span>6
+<span class="synIdentifier">White</span><span class="synSpecial">:</span> <span class="synType">*kramnik</span>
+<span class="synIdentifier">Black</span><span class="synSpecial">:</span> <span class="synType">*fritz</span>
+<span class="synIdentifier">Result</span><span class="synSpecial">:</span> White
+</pre><p>タグがないし、ネストも深くないのでスッキリ。ただ、構造化データを記述する以外の用途には向かない。</p><p>あと、参照の仕組み（アンカーとエイリアス、アドレスとポインタのようなもの）をもっているのがいい。これって、データベースをテキストに書きだしたり、オブジェクトをシリアライズするときにも便利だよね。</p>
+<ul>
+<li><a href="http://jp.rubyist.net/magazine/?0009-YAML">Rubyist Magazine - &#x30D7;&#x30ED;&#x30B0;&#x30E9;&#x30DE;&#x30FC;&#x306E;&#x305F;&#x3081;&#x306E; YAML &#x5165;&#x9580; (&#x521D;&#x7D1A;&#x7DE8;)</a></li>
+</ul>
+</div>
+</div>
+<div class="section">
+<h3><a href="http://yamlserializer.codeplex.com/wikipage?title=Home-ja">
+YamlSerializer for .NET
+</a></h3>
+<blockquote>
+<p>主に２つの目的で使うことができます。</p>
+<ul>
+<li>C# のオブジェクトをそのまま YAML テキストにシリアライズ・デシリアライズすることができます。=> YamlSerizlizer クラス</li>
+<li>一般の YAML ファイルを扱うこともできます。 => YamlNode クラス</li>
+</ul>
+</blockquote>
+<p>というわけで、今日はこのライブラリを使ってみる。ちゃんと NuGet にもパッケージングされていて、WebMatrix からもサックリ使えるよ。</p><p><img src="20121007113028.png" alt="f:id:daruyanagi:20121007113028p:plain" title="f:id:daruyanagi:20121007113028p:plain" class="hatena-fotolife"></p>
+<div class="section">
+<h4>サンプルコード</h4>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Default.cshtml
+<p>@functions {
+<span class="synComment">// シリアライズ・デシリアライズのためのサンプルクラス</span>
+<span class="synType">public</span> <span class="synType">class</span> Person
+{
+<span class="synType">public</span> <span class="synType">string</span> FirstName { get; set; }
+<span class="synType">public</span> <span class="synType">string</span> LastName { get; set; }</p>
+<p><span class="synType">public</span> <span class="synType">override</span> <span class="synType">string</span> ToString()
+{
+<span class="synStatement">return</span> <span class="synType">string</span>.Format(<span class="synConstant">&quot;{0} {1}&quot;</span>, FirstName, LastName);
+}
+}
+}</p>
+<p>@{
+var person = <span class="synStatement">new</span> Person()
+{
+FirstName = <span class="synConstant">&quot;Hidetoshi&quot;</span>, LastName = <span class="synConstant">&quot;Yanagi&quot;</span>,
+};</p>
+<p><span class="synComment">// シリアライザの生成</span>
+<span class="synComment">// using System.Yaml.Serialization;</span>
+var serializer = <span class="synStatement">new</span> YamlSerializer();</p>
+<p><span class="synComment">// YML形式のテキスト</span>
+<span class="synType">string</span> yml =<span class="synSpecial">@</span><span class="synConstant">&quot;</span>
+<span class="synStatement">LastName:</span> 柳
+<span class="synStatement">FirstName:</span> 英俊
+<span class="synConstant">&quot;;</span></p>
+<p><span class="synComment">// YMLテキスト → Person</span>
+var deserialised = serializer.Deserialize(
+yml, <span class="synStatement">typeof</span>(Person)
+);
+}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=<span class="synConstant">&quot;ja&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;pre&gt;
+@serializer.Serialize(person) <span class="synComment">//&lt;&ndash; YMLテキストに！</span>
+&lt;/pre&gt;</p>
+<p><span class="synComment">// 返り値は object 配列だよ！</span>
+&lt;h1&gt;フルネームは @(deserialised[<span class="synConstant">0</span>] <span class="synStatement">as</span> Person) です。&lt;/h1&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+</pre></p>
+</div>
+<div class="section">
+<h4>結果</h4>
+<p><img src="20121007113045.png" alt="f:id:daruyanagi:20121007113045p:plain" title="f:id:daruyanagi:20121007113045p:plain" class="hatena-fotolife"></p><p>ちょっとアレだな、とおもったのは @(deserialised[0] as Person) の部分だけれど、dynamic でうければいいのかもしれない。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>dynamic deserialised = serializer.Deserialize(
+yml, <span class="synStatement">typeof</span>(Person)
+)[<span class="synConstant">0</span>];
+<p>deserialised.FirstName;
+</pre></p>
+</div>
+</div>
 
     <footer>
         
@@ -305,7 +289,7 @@ dynamic deserialised = serializer.Deserialize(
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/10/07/113945.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/10/07</time> 
             </p>
         
     </footer>
@@ -357,7 +341,16 @@ dynamic deserialised = serializer.Deserialize(
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

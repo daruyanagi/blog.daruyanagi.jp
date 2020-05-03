@@ -1,0 +1,8 @@
+---
+date: 2015-08-10T17:30:29.0000000
+draft: false
+title: "「Google Chrome 45」でダウンロードするときのぐるぐるのアレ"
+tags: ["Google Chrome", "Windows デスクトップ アプリ"]
+eyecatch: 
+---
+<p><blockquote class="twitter-tweet" lang="ja"><p lang="ja" dir="ltr">今回のベータ版から？　カコイイ（割とどうでもいいけど <a href="http://t.co/gmFCbvuPOm">pic.twitter.com/gmFCbvuPOm</a></p>&mdash; ハロー！！だるやなぎモザイク (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/625886822132879361">2015, 7月 28</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>Google Chrome 44 → 45 でダウンロードの進捗を示すプログレスインジケーターのデザインがちょっと変わっていたのでメモ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150810172556.png" alt="f:id:daruyanagi:20150810172556p:plain" title="f:id:daruyanagi:20150810172556p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Google Chrome 44</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150810172638.png" alt="f:id:daruyanagi:20150810172638p:plain" title="f:id:daruyanagi:20150810172638p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Google Chrome 45（beta）</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fwww.forest.impress.co.jp%2Fdocs%2Fnews%2F20150728_713758.html" title="「Google Chrome 45」がベータ版に。新しいJavaScriptの言語機能をサポート - 窓の杜" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="http://www.forest.impress.co.jp/docs/news/20150728_713758.html">「Google Chrome 45」がベータ版に。新しいJavaScriptの言語機能をサポート - 窓の杜</a></iframe></p>

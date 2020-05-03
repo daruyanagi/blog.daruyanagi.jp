@@ -37,9 +37,15 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2019/02/03/005114/20190203003129_hu45c8ff973b226aba9aad652c35d90263_76496_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2019/02/03/005114/20190203003129_hu45c8ff973b226aba9aad652c35d90263_76496_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2019/02/03/005114/" />
@@ -90,27 +96,18 @@
 <ul>
 <li>OneDrive がプライベート用とビジネス用で分かれるのがだるい</li>
 <li>よく考えたらビジネス向けの機能をほぼ使ってない</li>
-</ul>みたいな感じでほぼ「メールを独自ドメインで運用」するためだけに使っている状態だった（他にもメリットがないわけではなかったが……）。しかし、それも不要になった。daruyanagi.net を取り返し、G Suite（むかしからずっと使ってた Google Apps の無料版）が再び利用できるようになったためだ。あとは daruyanagi.jp でも G Suite でメールを受け取れるようにすれば、ぼっち 365 は完全に要らなくなる。
+</ul><p>みたいな感じでほぼ「メールを独自ドメインで運用」するためだけに使っている状態だった（他にもメリットがないわけではなかったが……）。しかし、それも不要になった。daruyanagi.net を取り返し、G Suite（むかしからずっと使ってた Google Apps の無料版）が再び利用できるようになったためだ。あとは daruyanagi.jp でも G Suite でメールを受け取れるようにすれば、ぼっち 365 は完全に要らなくなる。</p>
 <div class="section">
-    ### ドメイン エイリアス
-<figure>
-    <img src="/images/20190203003129.png"/> 
-</figure>
-
-<p>Suite には「ドメイン エイリアス」という機能があって、これを利用すると</p>
+<h3>ドメイン エイリアス</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20190203003129.png" alt="f:id:daruyanagi:20190203003129p:plain" title="f:id:daruyanagi:20190203003129p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>G Suite には「ドメイン エイリアス」という機能があって、これを利用すると</p>
 <ul>
-<li>**mail@sample.net **：← 元のドメイン</li>
-<li>**mail@sample.jp**：sample.jp は sample.net のドメイン エイリアス</li>
-</ul>のどっちでもメールを受け取れるようになる。うちの場合は、こんな感じ。
-<figure>
-    <img src="/images/20190203003457.png"/> 
-</figure>
-
-<p>atch All（@ の前が何でも受信トレイに受け取れるようにするヤツ）にしてるので *@～ という表記になっているが、3つのドメインでメールアドレスが作られているのがわかる。ドメイン エイリアスを利用するには、メイン ドメインと同様、ドメインの所有権を確認する必要がある。やり方はメイン ドメインと同じで、txt レコードを設定したり、meta タグを埋めたりするヤツ。メールを受信するための mx レコードの設定もメイン ドメインと同じ感じでやる。mx レコードのセットアップが Google 側で認識されると、勝手にメールアドレスが追加される。 すぐには反映されないので、半日ぐらい放っておくといいと思う。あとは、Gmail で差出人アドレスとして使えるようにしたり～とかいろいろやれば完了。daruyanagi.net/jp のどちらでもメールを受け取れるようになった。送信もオッケーだ。以前、名刺を刷った後に daruyanagi.net を失い、daruyanagi.jp のメールアドレスで名刺を作り直す羽目になったけど、今はどっちでも受け取れるから、昔の名刺を使っても問題ない。やったね！　無駄にならずにすんだよ！！（震え声</p>
+<li><b>mail@sample.net </b>：← 元のドメイン</li>
+<li><b>mail@sample.jp</b>：sample.jp は sample.net のドメイン エイリアス</li>
+</ul><p>のどっちでもメールを受け取れるようになる。うちの場合は、こんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20190203003457.png" alt="f:id:daruyanagi:20190203003457p:plain" title="f:id:daruyanagi:20190203003457p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Catch All（@ の前が何でも受信トレイに受け取れるようにするヤツ）にしてるので *@～ という表記になっているが、3つのドメインでメールアドレスが作られているのがわかる。</p><p>ドメイン エイリアスを利用するには、メイン ドメインと同様、ドメインの所有権を確認する必要がある。やり方はメイン ドメインと同じで、txt レコードを設定したり、meta タグを埋めたりするヤツ。メールを受信するための mx レコードの設定もメイン ドメインと同じ感じでやる。mx レコードのセットアップが Google 側で認識されると、勝手にメールアドレスが追加される。 すぐには反映されないので、半日ぐらい放っておくといいと思う。</p><p>あとは、Gmail で差出人アドレスとして使えるようにしたり～とかいろいろやれば完了。daruyanagi.net/jp のどちらでもメールを受け取れるようになった。送信もオッケーだ。</p><p>以前、名刺を刷った後に daruyanagi.net を失い、daruyanagi.jp のメールアドレスで名刺を作り直す羽目になったけど、今はどっちでも受け取れるから、昔の名刺を使っても問題ない。やったね！　無駄にならずにすんだよ！！（震え声</p>
 </div>
 <div class="section">
-    ### 問題：メールボックスの容量が足りない
-    こんな感じで Office 365（Outlook）から G Suite（Gmail）に移行できそうなのだけど、すべてがうれしいことだらけでもない。
+<h3>問題：メールボックスの容量が足りない</h3>
+<p>こんな感じで Office 365（Outlook）から G Suite（Gmail）に移行できそうなのだけど、すべてがうれしいことだらけでもない。</p>
 <ul>
 <li>利点
 <ul>
@@ -121,9 +118,8 @@
 <li>メールボックスが <s>3GB しかない</s>15GB だった（Office 365 は 50GB ぐらいあるのかな？　無料版だし仕方ないが）</li>
 <li>Windows 10 メールで［優先トレイ］機能が利用できなくなる</li>
 </ul></li>
-</ul>まぁ、これは満タンになってから対処を考えることにする。ビジネス版の代わりに Office 365 Solo を契約してるから（メールボックス 50GB ある！）、古いメールはそっちに逃がしちゃってもいいな。
+</ul><p>まぁ、これは満タンになってから対処を考えることにする。ビジネス版の代わりに Office 365 Solo を契約してるから（メールボックス 50GB ある！）、古いメールはそっちに逃がしちゃってもいいな。</p>
 </div>
-
 
     <footer>
         
@@ -137,7 +133,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2019/02/03/005114.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2019/02/03</time> 
             </p>
         
     </footer>
@@ -189,7 +185,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

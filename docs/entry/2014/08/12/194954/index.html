@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 3：oEmbed ヘルパーを作ってみた（２）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ の続き。今回は Flickr の埋め込みをやってみようかと思う。 ### ~/App_Code/OEmbed.cshtml ```cs @helper Flickr(string url) { const string API_ENDPOINT = &#34;http://www.flickr.com/services/oembed/&#34;; using (var downloader = new WebClient()) { try {" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 3&#xFF1A;oEmbed &#x30D8;&#x30EB;&#x30D1;&#x30FC;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。今回は Flickr の埋め込みをやってみようかと思う。 ~/App_Code/OEmbed.cshtml @helper Flickr(string url) { const string API_ENDPOINT = &quot;http://www.flickr.com/services/oembed/&quot;; using (var downloader = new WebClient()) { try { // URL を組み立てて JSON の oEmbed データを取得 var request = string.Format(&quot;{0}?url={1}&amp;format={2}&quot;," />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/08/12/194954/" />
@@ -86,112 +88,86 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2014/08/08/185357">WebMatrix 3：oEmbed ヘルパーを作ってみた - だるろぐ</a> の続き。今回は Flickr の埋め込みをやってみようかと思う。</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2014/08/08/185357">WebMatrix 3&#xFF1A;oEmbed &#x30D8;&#x30EB;&#x30D1;&#x30FC;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。今回は Flickr の埋め込みをやってみようかと思う。</p>
 <div class="section">
-    ### ~/App_Code/OEmbed.cshtml
-    ```cs
-@helper Flickr(string url) {
-    const string API_ENDPOINT = "http://www.flickr.com/services/oembed/";
-<pre><code>using (var downloader = new WebClient())
+<h3>~/App_Code/OEmbed.cshtml</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@helper Flickr(<span class="synType">string</span> url) {
+<span class="synType">const</span> <span class="synType">string</span> API_ENDPOINT = <span class="synConstant">&quot;http://www.flickr.com/services/oembed/&quot;</span>;
+<p><span class="synStatement">using</span> (var downloader = <span class="synStatement">new</span> WebClient())
 {
-    try
-    {
-        // URL を組み立てて JSON の oEmbed データを取得
-        var request = string.Format(&quot;{0}?url={1}&amp;amp;format={2}&quot;, API_ENDPOINT, url, &quot;json&quot;);
-        var oembed_data = downloader.DownloadString(request);
-        var oembed_json = Json.Decode(oembed_data);
-
-        @ObjectInfo.Print(oembed_json) // デバッグのため
-
-        var embed_type = oembed_json.type as string;
-
-        switch (embed_type) // photo と video の二種類がある
-        {
-            case &quot;photo&quot;:
-</code></pre>
-<p>&lt;figure&gt;
-&lt;img src='@oembed_json.url' alt='@oembed_json.title'&gt;
+<span class="synStatement">try</span>
+{
+<span class="synComment">// URL を組み立てて JSON の oEmbed データを取得</span>
+var request = <span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}?url={1}&amp;format={2}&quot;</span>, API_ENDPOINT, url, <span class="synConstant">&quot;json&quot;</span>);
+var oembed_data = downloader.DownloadString(request);
+var oembed_json = Json.Decode(oembed_data);</p>
+<p>@ObjectInfo.Print(oembed_json) <span class="synComment">// デバッグのため</span></p>
+<p>var embed_type = oembed_json.type <span class="synStatement">as</span> <span class="synType">string</span>;</p>
+<p><span class="synStatement">switch</span> (embed_type) <span class="synComment">// photo と video の二種類がある</span>
+{
+<span class="synStatement">case</span> <span class="synConstant">&quot;photo&quot;</span>:
+&lt;figure&gt;
+&lt;img src=<span class="synConstant">'</span><span class="synError">@oembed_json.url</span><span class="synConstant">'</span> alt=<span class="synConstant">'</span><span class="synError">@oembed_json.title</span><span class="synConstant">'</span>&gt;
 &lt;figcaption&gt;
-&lt;img src='http://favicon.qfor.info/f/@oembed_json.provider_url' /&gt;
-&lt;a href='@oembed_json.web_page'&gt;@oembed_json.title&lt;/a&gt;
-by &lt;a href='@oembed_json.author_url'&gt;@oembed_json.author_name&lt;/a&gt;
+&lt;img src=<span class="synConstant">'</span><span class="synError"><a href="http://favicon.qfor.info/f/@oembed_json.provider_url">http://favicon.qfor.info/f/@oembed_json.provider_url</a></span><span class="synConstant">'</span> /&gt;
+&lt;a href=<span class="synConstant">'</span><span class="synError">@oembed_json.web_page</span><span class="synConstant">'</span>&gt;@oembed_json.title&lt;/a&gt;
+by &lt;a href=<span class="synConstant">'</span><span class="synError">@oembed_json.author_url</span><span class="synConstant">'</span>&gt;@oembed_json.author_name&lt;/a&gt;
 &lt;/figcaption&gt;
 &lt;/figure&gt;
-break;
-case &ldquo;video&rdquo;:
+<span class="synStatement">break</span>;
+<span class="synStatement">case</span> <span class="synConstant">&quot;video&quot;</span>:
 &lt;figure&gt;
 @Html.Raw(oembed_json.html)
 &lt;/figure&gt;
-break;
-default:
-break;</p>
-<pre><code>        }
-    }
-    catch (Exception exception)
-    {
-        &amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @exception.Message&amp;lt;/p&gt;
-    }
+<span class="synStatement">break</span>;
+<span class="synStatement">default</span>:
+<span class="synStatement">break</span>;</p>
+<p>}
 }
-</code></pre>
-<p>}</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ~/Default.cshtml
-    ```html
-
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta http-equiv=&quot;Content-Type&quot; content=&quot;text/html; charset=utf-8&quot;/&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;link href=&quot;~/favicon.ico&quot; rel=&quot;shortcut icon&quot; type=&quot;image/x-icon&quot; /&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @OEmbed.Flickr(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
-        @OEmbed.Flickr(&quot;https://www.flickr.com/photos/dmartinie/5760711397/&quot;)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div>
-<div class="section">
-    ### 結果
-    たとえば Photo の場合。Twitter のときみたいに html を返してくれないので、自分で組み立てる。
-<figure>
-    <img src="/images/20140812194342.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;figure&gt;
-    &amp;lt;img src=&amp;#39;https://farm7.staticflickr.com/6162/6219334657_ba91a4498d_z.jpg&amp;#39; alt=&amp;#39;SMSはやく使えるようになりたい&amp;#39;&gt;
-    &amp;lt;figcaption&gt;
-        &amp;lt;img src=&amp;#39;http://favicon.qfor.info/f/https://www.flickr.com/&amp;#39; /&gt;
-        &amp;lt;a href=&amp;#39;https://www.flickr.com/photos/daruyanagi/6219334657/&amp;#39;&gt;SMSはやく使えるようになりたい&amp;lt;/a&gt;
-        by &amp;lt;a href=&amp;#39;https://www.flickr.com/photos/daruyanagi/&amp;#39;&gt;daruyanagi&amp;lt;/a&gt;
-    &amp;lt;/figcaption&gt;
-&amp;lt;/figure&gt;
-
-```Video の場合。これは html があるのでそれを使う。
-
-<figure>
-    <img src="/images/20140812194506.png"/> 
-</figure>
-
-
-br/&gt;
-
-```html
-&amp;lt;figure&gt;
-    &amp;lt;object type=&#34;application/x-shockwave-flash&#34; width=&#34;500&#34; height=&#34;281&#34; data=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34; classid=&#34;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&#34;&gt; &amp;lt;param name=&#34;flashvars&#34; value=&#34;intl_lang=en-us&amp;amp;photo_secret=5f7c3bff83&amp;amp;photo_id=5760711397&amp;amp;flickr_show_info_box=true&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;movie&#34; value=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;bgcolor&#34; value=&#34;#000000&#34;&gt;&amp;lt;/param&gt; &amp;lt;param name=&#34;allowFullScreen&#34; value=&#34;true&#34;&gt;&amp;lt;/param&gt;&amp;lt;embed type=&#34;application/x-shockwave-flash&#34; src=&#34;https://www.flickr.com/apps/video/stewart.swf?v=145061&#34; bgcolor=&#34;#000000&#34; allowfullscreen=&#34;true&#34; flashvars=&#34;intl_lang=en-us&amp;amp;photo_secret=5f7c3bff83&amp;amp;photo_id=5760711397&amp;amp;flickr_show_info_box=true&#34; height=&#34;281&#34; width=&#34;500&#34;&gt;&amp;lt;/embed&gt;&amp;lt;/object&gt;
-&amp;lt;/figure&gt;
-
-</code></pre></div><figure>
-    <img src="/images/20140812194912.png"/> 
-</figure>
-
-<p>真の方は CSS でいい感じにデコってみた。なかなかいいかも。</p>
+<span class="synStatement">catch</span> (Exception exception)
+{
+&lt;p <span class="synType">class</span>=<span class="synConstant">'</span><span class="synError">error</span><span class="synConstant">'</span>&gt;@url: @exception.Message&lt;/p&gt;
+}
+}
+}
+</pre></p>
 </div>
-
+<div class="section">
+<h3>~/Default.cshtml</h3>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">http-equiv</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Content-Type&quot;</span><span class="synIdentifier"> </span><span class="synType">content</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/html; charset=utf-8&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/favicon.ico&quot;</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;shortcut icon&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;image/x-icon&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+@OEmbed.Flickr(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
+@OEmbed.Flickr(&quot;https://www.flickr.com/photos/dmartinie/5760711397/&quot;)
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre></p>
+</div>
+<div class="section">
+<h3>結果</h3>
+<p>たとえば Photo の場合。Twitter のときみたいに html を返してくれないので、自分で組み立てる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140812194342.png" alt="f:id:daruyanagi:20140812194342p:plain" title="f:id:daruyanagi:20140812194342p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span>figure<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">img</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">'https://farm7.staticflickr.com/6162/6219334657_ba91a4498d_z.jpg'</span><span class="synIdentifier"> </span><span class="synType">alt</span><span class="synIdentifier">=</span><span class="synConstant">'SMSはやく使えるようになりたい'</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>figcaption<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">img</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">'http://favicon.qfor.info/f/https://www.flickr.com/'</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">'https://www.flickr.com/photos/daruyanagi/6219334657/'</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">SMSはやく使えるようになりたい</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+by <span class="synIdentifier">&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">'https://www.flickr.com/photos/daruyanagi/'</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">daruyanagi</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>figcaption<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>figure<span class="synIdentifier">&gt;</span>
+</pre><p>Video の場合。これは html があるのでそれを使う。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140812194506.png" alt="f:id:daruyanagi:20140812194506p:plain" title="f:id:daruyanagi:20140812194506p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span>figure<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">object</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/x-shockwave-flash&quot;</span><span class="synIdentifier"> </span><span class="synType">width</span><span class="synIdentifier">=</span><span class="synConstant">&quot;500&quot;</span><span class="synIdentifier"> </span><span class="synType">height</span><span class="synIdentifier">=</span><span class="synConstant">&quot;281&quot;</span><span class="synIdentifier"> </span><span class="synType">data</span><span class="synIdentifier">=</span><span class="synConstant">&quot;https://www.flickr.com/apps/video/stewart.swf?v=145061&quot;</span><span class="synIdentifier"> </span><span class="synType">classid</span><span class="synIdentifier">=</span><span class="synConstant">&quot;clsid:D27CDB6E-AE6D-11cf-96B8-444553540000&quot;</span><span class="synIdentifier">&gt;</span> <span class="synIdentifier">&lt;</span><span class="synStatement">param</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;flashvars&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;intl_lang=en-us&amp;photo_secret=5f7c3bff83&amp;photo_id=5760711397&amp;flickr_show_info_box=true&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">param</span><span class="synIdentifier">&gt;</span> <span class="synIdentifier">&lt;</span><span class="synStatement">param</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;movie&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;https://www.flickr.com/apps/video/stewart.swf?v=145061&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">param</span><span class="synIdentifier">&gt;</span> <span class="synIdentifier">&lt;</span><span class="synStatement">param</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;bgcolor&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;#000000&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">param</span><span class="synIdentifier">&gt;</span> <span class="synIdentifier">&lt;</span><span class="synStatement">param</span><span class="synIdentifier"> </span><span class="synType">name</span><span class="synIdentifier">=</span><span class="synConstant">&quot;allowFullScreen&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span><span class="synIdentifier">=</span><span class="synConstant">&quot;true&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">param</span><span class="synIdentifier">&gt;&lt;</span>embed<span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/x-shockwave-flash&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;https://www.flickr.com/apps/video/stewart.swf?v=145061&quot;</span><span class="synIdentifier"> </span><span class="synType">bgcolor</span><span class="synIdentifier">=</span><span class="synConstant">&quot;#000000&quot;</span><span class="synIdentifier"> allowfullscreen=</span><span class="synConstant">&quot;true&quot;</span><span class="synIdentifier"> flashvars=</span><span class="synConstant">&quot;intl_lang=en-us&amp;photo_secret=5f7c3bff83&amp;photo_id=5760711397&amp;flickr_show_info_box=true&quot;</span><span class="synIdentifier"> </span><span class="synType">height</span><span class="synIdentifier">=</span><span class="synConstant">&quot;281&quot;</span><span class="synIdentifier"> </span><span class="synType">width</span><span class="synIdentifier">=</span><span class="synConstant">&quot;500&quot;</span><span class="synIdentifier">&gt;&lt;/</span>embed<span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">object</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span>figure<span class="synIdentifier">&gt;</span>
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140812194912.png" alt="f:id:daruyanagi:20140812194912p:plain" title="f:id:daruyanagi:20140812194912p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>写真の方は CSS でいい感じにデコってみた。なかなかいいかも。</p>
+</div>
 
     <footer>
         
@@ -205,7 +181,7 @@ br/&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/08/12/194954.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/08/12</time> 
             </p>
         
     </footer>
@@ -257,7 +233,16 @@ br/&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

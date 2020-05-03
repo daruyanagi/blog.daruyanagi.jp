@@ -1,0 +1,8 @@
+---
+date: 2012-01-04T12:01:44.0000000
+draft: false
+title: "『贈与の歴史学  儀礼と経済のあいだ』"
+tags: ["未分類"]
+eyecatch: 
+---
+<p><div class="mm-middle" style="margin-bottom:0px;"><div class="mm-image" style="float:left;"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4121021398/bestylesnet-22/ref=nosim" target="_blank"><img src="http://ecx.images-amazon.com/images/I/41Aq9nc78UL._SL160_.jpg" alt="贈与の歴史学  儀礼と経済のあいだ (中公新書)" title="贈与の歴史学  儀礼と経済のあいだ (中公新書)" width="103" height="160" border="0" /></a></div><div class="mm-content" style="float:left;margin-left:15px;line-height:120%"><div class="mm-title" style="line-height:120%"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4121021398/bestylesnet-22/ref=nosim" target="_blank">贈与の歴史学  儀礼と経済のあいだ (中公新書)</a></div><div class="mm-detail" style="margin-top:10px;">桜井 英治<br />中央公論新社 ( 2011-11-24 )<br />ISBN: 9784121021397<br /><div style="margin:7px 0px"><a href="http://mediamarker.net/u/daruyanagi/?asin=4121021398" target="_blank">だるやなぎ書房で詳細を見る</a></div></div></div><div style="clear:left"></div></div></p><p>あんまりブログ書くパワーがわかないので、あんまり色々書かないけど、これは結構面白い。自分が去年読んだ中では、最も面白い部類に入る。</p><p>「市場経済」というものは、たぶん「民主主義」何かと同じで、ある程度社会的文化的に発展した社会でないと、外部から植えても根付かないのだと思う。「贈与経済」の発展は「市場経済」の必要条件なのじゃないかなと長い間考えてきたけど、それについては再考の余地がありそうだ。「贈与経済」はいくら精緻化しても、「市場経済」に限りなく接近することはあれ、それを生み出すものではないみたい。</p><p>あと、贈与（互恵）に不可欠なのは、最初に与えることと返礼を行うことだけで、そのほかの義務要素についてはまた別の枠組みで考えたほうがいいと思う（「贈与の強制」問題）。先の考え方に至ったのも「贈与の強制」問題が原因で、やはり特定の集団（小さな社会）における強制として贈与の形式化が行われている以上、異質な社会を繋げる大きな社会の枠組としての「市場経済」とはまだまだ異質な部分が多いと思った。</p><p>「市場経済」への離陸に必要な要素ってなんなんだろう。</p><p>でも、贈答状がなかば信用債券のように機能するのは面白い。本来あった時候の挨拶や宛先などの情報が欠落して、質入れや支払いに便利なように振出人と目録のみの記述へと簡素化されていく過程は、非情に興味深い。</p>

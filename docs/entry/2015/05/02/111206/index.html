@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="はてなダイアリーで特定カテゴリーの記事をお知らせとしてトップに掲出する方法を考えてみた。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="れな。ドメイン失くしてごめんなさい的な告知を出しておきたかった。 ### カテゴリーのフィードを探す。 まずはカテゴリーのフィードを探す。カテゴリーペ" />
+    <meta name="og:description"   property="og:description" content="これな。ドメイン失くしてごめんなさい的な告知を出しておきたかった。 カテゴリーのフィードを探す。 まずはカテゴリーのフィードを探す。カテゴリーペ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/05/02/111206/" />
@@ -86,80 +89,51 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150502105752.png"/> 
-</figure>
-
-<p>れな。ドメイン失くしてごめんなさい的な告知を出しておきたかった。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150502105752.png" alt="f:id:daruyanagi:20150502105752p:plain" title="f:id:daruyanagi:20150502105752p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これな。ドメイン失くしてごめんなさい的な告知を出しておきたかった。</p>
 <div class="section">
-    ### カテゴリーのフィードを探す。
-    まずはカテゴリーのフィードを探す。カテゴリーページを開いてソースを見ると……
-<figure>
-    <img src="/images/20150502110020.png"/> 
-</figure>
-
-<p>んな風に書いてある。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;link rel=&#34;alternate&#34; type=&#34;application/atom+xml&#34; title=&#34;Atom&#34;
-href=&#34;https://blog.daruyanagi.jp/feed/category/%E5%91%8A%E7%9F%A5&#34;/&gt;
-&amp;lt;link rel=&#34;alternate&#34; type=&#34;application/rss+xml&#34; title=&#34;RSS2.0&#34;
-href=&#34;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&#34;/&gt;
-
-```なんでもいいと思うのだけど、今回は RSS2.0 の方を使った。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    ### JavaScript でフィードを取得して主力する
-    Google Feed API を利用するのが一般的な方法らしい。
-
-&lt;<span style="color:#f92672">ul</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://developers.google.com/feed/v1/?hl=ja&#34;</span>&gt;Google Developers&lt;/<span style="color:#f92672">a</span>&gt;&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;/<span style="color:#f92672">ul</span>&gt;最初の1個だけ取得して、#target 要素を書き換えるようにしてみる。
-```javascript
-&amp;lt;script type=&#34;text/javascript&#34; src=&#34;http://www.google.com/jsapi&#34;&gt;&amp;lt;/script&gt;
-&amp;lt;script type=&#34;text/javascript&#34;&gt;
-    function GetAnnouncement(target, url) {
-        google.load(&#34;feeds&#34;, &#34;1&#34;);
-
-        function initialize() {
-            var feed = new google.feeds.Feed(url);
-            feed.setNumEntries(1);
-            feed.load(function (result) {
-                if (!result.error) {
-                    var container = document.getElementById(target);
-                    var feed = result.feed.entries[0];
-                    var html = &#34; + feed.link + &#34;&amp;#39;&gt;&#34; + feed.title + &#34;&#34;;
-                    container.innerHTML = html;
-                } else {
-                    console.log(result.error.code + &#34;:&#34; + result.error.message);
-                }
-            });
-        }
-
-        google.setOnLoadCallback(initialize);
-    }
-
-    GetAnnouncement(&#34;feed&#34;, &#34;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&#34;);
-&amp;lt;/script&gt;
-
-&amp;lt;span id=&#34;feed&#34;&gt;ここにはいる&amp;lt;/span&gt;
-
-```JavaScript 力が低い（ついでにスタイルシートとかもかいて、装飾しておくとよいかと。ソースコードの見た目？　んなもん気にしない。キャッシュが効いていて更新が遅いので、気になる人は URL の尻尾になんかランダムの値を足しておくといいかも。毎回フィードをとりに行くので、表示は遅くなるが。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    ### はてなのトップに掲出する
-    
-
-<figure>
-    <img src="/images/20150502110738.png"/> 
-</figure>
-
-
-ザイン設定画面のヘッダーのところにさっきのソースコードをペタッと貼る。あとは見栄えをチェックして完了。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-
-</code></pre></div>
+<h3>カテゴリーのフィードを探す。</h3>
+<p>まずはカテゴリーのフィードを探す。カテゴリーページを開いてソースを見ると……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150502110020.png" alt="f:id:daruyanagi:20150502110020p:plain" title="f:id:daruyanagi:20150502110020p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>こんな風に書いてある。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;alternate&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/atom+xml&quot;</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Atom&quot;</span>
+<span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;https://blog.daruyanagi.jp/feed/category/%E5%91%8A%E7%9F%A5&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;alternate&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/rss+xml&quot;</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;RSS2.0&quot;</span>
+<span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&quot;</span><span class="synIdentifier">/&gt;</span>
+</pre><p>なんでもいいと思うのだけど、今回は RSS2.0 の方を使った。</p>
+</div>
+<div class="section">
+<h3>JavaScript でフィードを取得して主力する</h3>
+<p>Google Feed API を利用するのが一般的な方法らしい。</p>
+<ul>
+<li><a href="https://developers.google.com/feed/v1/?hl=ja">Google Developers</a></li>
+</ul><p>最初の1個だけ取得して、#target 要素を書き換えるようにしてみる。</p>
+<pre class="code lang-javascript" data-lang="javascript" data-unlink>&lt;script type=<span class="synConstant">&quot;text/javascript&quot;</span> src=<span class="synConstant">&quot;http://www.google.com/jsapi&quot;</span>&gt;&lt;/script&gt;
+&lt;script type=<span class="synConstant">&quot;text/javascript&quot;</span>&gt;
+<span class="synIdentifier">function</span> GetAnnouncement(target, url) <span class="synIdentifier">{</span>
+google.load(<span class="synConstant">&quot;feeds&quot;</span>, <span class="synConstant">&quot;1&quot;</span>);
+<p><span class="synIdentifier">function</span> initialize() <span class="synIdentifier">{</span>
+<span class="synIdentifier">var</span> feed = <span class="synStatement">new</span> google.feeds.Feed(url);
+feed.setNumEntries(1);
+feed.load(<span class="synIdentifier">function</span> (result) <span class="synIdentifier">{</span>
+<span class="synStatement">if</span> (!result.error) <span class="synIdentifier">{</span>
+<span class="synIdentifier">var</span> container = <span class="synStatement">document</span>.getElementById(target);
+<span class="synIdentifier">var</span> feed = result.feed.entries<span class="synIdentifier">[</span>0<span class="synIdentifier">]</span>;
+<span class="synIdentifier">var</span> html = <span class="synConstant">&quot;&lt;a href=&rsquo;&quot;</span> + feed.link + <span class="synConstant">&quot;'&gt;&quot;</span> + feed.title + <span class="synConstant">&quot;&lt;/a&gt;&quot;</span>;
+container.innerHTML = html;
+<span class="synIdentifier">}</span> <span class="synStatement">else</span> <span class="synIdentifier">{</span>
+console.log(result.error.code + <span class="synConstant">&quot;:&quot;</span> + result.error.message);
+<span class="synIdentifier">}</span>
+<span class="synIdentifier">}</span>);
+<span class="synIdentifier">}</span></p>
+<p>google.setOnLoadCallback(initialize);
+<span class="synIdentifier">}</span></p>
+<p>GetAnnouncement(<span class="synConstant">&quot;feed&quot;</span>, <span class="synConstant">&quot;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&quot;</span>);
+&lt;/script&gt;</p>
+<p>&lt;span id=<span class="synConstant">&quot;feed&quot;</span>&gt;ここにはいる&lt;/span&gt;
+</pre><p>JavaScript 力が低い（</p><p>ついでにスタイルシートとかもかいて、装飾しておくとよいかと。ソースコードの見た目？　んなもん気にしない。</p><p>キャッシュが効いていて更新が遅いので、気になる人は URL の尻尾になんかランダムの値を足しておくといいかも。毎回フィードをとりに行くので、表示は遅くなるが。</p></p>
+</div>
+<div class="section">
+<h3>はてなのトップに掲出する</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150502110738.png" alt="f:id:daruyanagi:20150502110738p:plain" title="f:id:daruyanagi:20150502110738p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>デザイン設定画面のヘッダーのところにさっきのソースコードをペタッと貼る。あとは見栄えをチェックして完了。</p>
+</div>
 
     <footer>
         
@@ -173,7 +147,7 @@ href=&#34;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&#34;/&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/05/02/111206.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/05/02</time> 
             </p>
         
     </footer>
@@ -225,7 +199,16 @@ href=&#34;https://blog.daruyanagi.jp/rss/category/%E5%91%8A%E7%9F%A5&#34;/&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

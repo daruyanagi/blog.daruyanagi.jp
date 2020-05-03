@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix でユーザー認証機能 ―― 準備編" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="お次はユーザー認証機能に挑戦しますかね？ Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。というわけで、“Starta" />
+    <meta name="og:description"   property="og:description" content="お次はユーザー認証機能に挑戦しますかね？ Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。 というわけで、“Starta" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/24/095023/" />
@@ -86,78 +88,64 @@
         </time>        
     </p>
 
-    <p>お次はユーザー認証機能に挑戦しますかね？　Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。というわけで、“Startar Site”テンプレートをみながら勉強しようかなぁ、と思ったのだけど……<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824092022.png" alt="f:id:daruyanagi:20120824092022p:plain" title="f:id:daruyanagi:20120824092022p:plain" class="hatena-fotolife"/>ナンテコッタイ／(^o^)＼　ソースを見てみたら文字化けしてたり改行が吹っ飛んでたりで、一部ソースコードがぶっ壊れていた。修正を試みたのだけれど、途中で「いや待て、“Empty Site”から自分で作ったほうが勉強になるかもしれない」と思い直し、まっさらなWebサイトを作ってユーザー認証機能を追加してみることにした。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824092316.png" alt="f:id:daruyanagi:20120824092316p:plain" title="f:id:daruyanagi:20120824092316p:plain" class="hatena-fotolife"/></p>
+    <p>お次はユーザー認証機能に挑戦しますかね？　Webサイトでデータを扱うとき、ユーザー認証機能がなかったらだいぶ困る。</p><p>というわけで、“Startar Site”テンプレートをみながら勉強しようかなぁ、と思ったのだけど……</p><p><img src="20120824092022.png" alt="f:id:daruyanagi:20120824092022p:plain" title="f:id:daruyanagi:20120824092022p:plain" class="hatena-fotolife"></p><p>ナンテコッタイ／(^o^)＼　ソースを見てみたら文字化けしてたり改行が吹っ飛んでたりで、一部<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>がぶっ壊れていた。修正を試みたのだけれど、途中で「いや待て、“Empty Site”から自分で作ったほうが勉強になるかもしれない」と思い直し、まっさらなWebサイトを作ってユーザー認証機能を追加してみることにした。</p><p><img src="20120824092316.png" alt="f:id:daruyanagi:20120824092316p:plain" title="f:id:daruyanagi:20120824092316p:plain" class="hatena-fotolife"></p>
 <div class="section">
-    ### データベースを作成
-    まずはユーザー情報を格納するデータベースを作成。名前は……思いつかなかったから“database.sdf”でいいや。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824092517.png" alt="f:id:daruyanagi:20120824092517p:plain" title="f:id:daruyanagi:20120824092517p:plain" class="hatena-fotolife"/>リネームした時のことを考えて、データベース名は App に格納しておくことにした。アプリケーションの起動時に実行される _AppStart.cshtml に記述しておく。
-```cs
-#_AppStart.cshtml
+<h3>データベースを作成</h3>
+<p>まずはユーザー情報を格納するデータベースを作成。名前は……思いつかなかったから“database.sdf”でいいや。</p><p><img src="20120824092517.png" alt="f:id:daruyanagi:20120824092517p:plain" title="f:id:daruyanagi:20120824092517p:plain" class="hatena-fotolife"></p><p>リネームした時のことを考えて、データベース名は App に格納しておくことにした。アプリケーションの起動時に実行される _AppStart.cshtml に記述しておく。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>#_AppStart.cshtml
 <p>@{
-App.Database = &ldquo;database&rdquo;; // 拡張子は要らないっぽい
-}</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ユーザー情報テーブルを作成
-    次に、認証情報を保存しておくテーブルを作成する。 WebMatrix では WebSecurity Helper というお手軽な認証システムがあるらしい。“Startar Site”テンプレートでも利用されていたのでそれを使おう。 WebSecurity.InitializeDatabaseConnection() でユーザー情報を管理するテーブルが初期化されるみたい。
-```cs
-#_AppStart.cshtml
-
-@{
-    App.Database = &quot;database&quot;;
-    
-    WebSecurity.InitializeDatabaseConnection(
-        App.Database, // データベース名
-        &quot;Users&quot;,      // テーブル名
-        &quot;UserId&quot;,     // ID を格納するカラム
-        &quot;Name&quot;,       // 一意なユーザー名を格納するカラム
-        true          // テーブルがなかったら作れ
-    );
+App.Database = <span class="synConstant">&quot;database&quot;</span>; <span class="synComment">// 拡張子は要らないっぽい</span>
 }
-
-```しかし、「WebSecurity などというクラスは知らない」と怒られてしまう。デフォルトでは入っていないのね……&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093457.png&quot; alt=&quot;f:id:daruyanagi:20120824093457p:plain&quot; title=&quot;f:id:daruyanagi:20120824093457p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;“Startar Site”テンプレートを「Visual Studio」でみてみたら、 WebMatrix.WebData.dll というアセンブリが必要であるらしい。これもどうせ NuGet で取得できるんでしょ？ わかってる、わかってる！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### Microsoft ASP.NET Web Page 2 Web Data をインストール
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093635.png&quot; alt=&quot;f:id:daruyanagi:20120824093635p:plain&quot; title=&quot;f:id:daruyanagi:20120824093635p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;そこで適当に「WebData」などと検索してみたところ、「Microsoft ASP.NET Web Page 2 Web Data」というのがどうもあやしいくさい。さっそくインストールしてみると……ビンゴ！　無事、Web サイトを［実行］できました。テーブルもちゃんと作成されているみたい（まだからっぽだけど！）。&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120824/20120824093836.png&quot; alt=&quot;f:id:daruyanagi:20120824093836p:plain&quot; title=&quot;f:id:daruyanagi:20120824093836p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
-```html
-#Default.cshtml
-
-@{
-    
+</pre></p>
+</div>
+<div class="section">
+<h3>ユーザー情報テーブルを作成</h3>
+<p>次に、認証情報を保存しておくテーブルを作成する。 <a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> では WebSecurity Helper というお手軽な認証システムがあるらしい。“Startar Site”テンプレートでも利用されていたのでそれを使おう。 WebSecurity.InitializeDatabaseConnection() でユーザー情報を管理するテーブルが初期化されるみたい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>#_AppStart.cshtml
+<p>@{
+App.Database = <span class="synConstant">&quot;database&quot;</span>;</p>
+<p>WebSecurity.InitializeDatabaseConnection(
+App.Database, <span class="synComment">// データベース名</span>
+<span class="synConstant">&quot;Users&quot;</span>,      <span class="synComment">// テーブル名</span>
+<span class="synConstant">&quot;UserId&quot;</span>,     <span class="synComment">// ID を格納するカラム</span>
+<span class="synConstant">&quot;Name&quot;</span>,       <span class="synComment">// 一意なユーザー名を格納するカラム</span>
+<span class="synConstant">true</span>          <span class="synComment">// テーブルがなかったら作れ</span>
+);
 }
-
-
-
-&amp;lt;html lang=&quot;ja&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        &lt;!-- Starter Site テンプレートからパクって魔改造してみた！ --&gt;
-        &amp;lt;section id=&quot;login&quot;&gt;
-        @if (WebSecurity.IsAuthenticated) {
-            &amp;lt;ul&gt;
-                &amp;lt;li&gt;&amp;lt;a href=&quot;~/Users/@WebSecurity.CurrentUserName&quot;&gt;
-                @WebSecurity.CurrentUserName&amp;lt;/a&gt;&amp;lt;/li&gt;
-                &amp;lt;li&gt;&amp;lt;a href=&quot;~/Account/Logout&quot;&gt;ログアウト&amp;lt;/a&gt;&amp;lt;/li&gt;
-            &amp;lt;/ul&gt;
-        } else {
-            &amp;lt;ul&gt;
-                &amp;lt;li&gt;&amp;lt;a href=&quot;~/Account/Register&quot;&gt;登録&amp;lt;/a&gt;&amp;lt;/li&gt;
-                &amp;lt;li&gt;&amp;lt;a href=&quot;~/Account/Login&quot;&gt;ログイン&amp;lt;/a&gt;&amp;lt;/li&gt;
-            &amp;lt;/ul&gt;
-        }
-        &amp;lt;/section&gt;
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```コレで準備は完了といったところかな。とりあえず、 Register / Login / Logout を作って、ユーザーページも表示できるようにしたいな。
-
-&lt;/div&gt;
-
-</code></pre>
+</pre><p>しかし、「WebSecurity などというクラスは知らない」と怒られてしまう。デフォルトでは入っていないのね……</p><p><img src="20120824093457.png" alt="f:id:daruyanagi:20120824093457p:plain" title="f:id:daruyanagi:20120824093457p:plain" class="hatena-fotolife"></p><p>“Startar Site”テンプレートを「<a class="keyword" href="http://d.hatena.ne.jp/keyword/Visual%20Studio">Visual Studio</a>」でみてみたら、 <a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a>.WebData.dll というアセンブリが必要であるらしい。これもどうせ NuGet で取得できるんでしょ？ わかってる、わかってる！</p></p>
+</div>
+<div class="section">
+<h3>Microsoft <a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> Web Page 2 Web Data をインストール</h3>
+<p><img src="20120824093635.png" alt="f:id:daruyanagi:20120824093635p:plain" title="f:id:daruyanagi:20120824093635p:plain" class="hatena-fotolife"></p><p>そこで適当に「WebData」などと検索してみたところ、「Microsoft <a class="keyword" href="http://d.hatena.ne.jp/keyword/ASP.NET">ASP.NET</a> Web Page 2 Web Data」というのがどうもあやしいくさい。さっそくインストールしてみると……ビンゴ！　無事、Web サイトを［実行］できました。テーブルもちゃんと作成されているみたい（まだからっぽだけど！）。</p><p><img src="20120824093836.png" alt="f:id:daruyanagi:20120824093836p:plain" title="f:id:daruyanagi:20120824093836p:plain" class="hatena-fotolife"></p>
+<pre class="code lang-html" data-lang="html" data-unlink>#Default.cshtml
+<p>@{</p>
+<p>}</p>
+<p><span class="synComment">&lt;!DOCTYPE html&gt;</span></p>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;<a class="keyword" href="http://d.hatena.ne.jp/keyword/utf-8">utf-8</a>&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synComment">&lt;!&ndash; Starter Site テンプレートからパクって<a class="keyword" href="http://d.hatena.ne.jp/keyword/%CB%E2%B2%FE%C2%A4">魔改造</a>してみた！ &ndash;&gt;</span>
+<span class="synIdentifier">&lt;</span>section<span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;login&quot;</span><span class="synIdentifier">&gt;</span>
+@if (WebSecurity.IsAuthenticated) {
+<span class="synIdentifier">&lt;</span><span class="synStatement">ul</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">li</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Users/@WebSecurity.CurrentUserName&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synUnderlined">                @WebSecurity.CurrentUserName</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">li</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">li</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Account/Logout&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">ログアウト</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">li</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">ul</span><span class="synIdentifier">&gt;</span>
+} else {
+<span class="synIdentifier">&lt;</span><span class="synStatement">ul</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">li</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Account/Register&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">登録</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">li</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">li</span><span class="synIdentifier">&gt;&lt;</span><span class="synStatement">a</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Account/Login&quot;</span><span class="synIdentifier">&gt;</span><span class="synUnderlined">ログイン</span><span class="synIdentifier">&lt;/</span><span class="synStatement">a</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">li</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">ul</span><span class="synIdentifier">&gt;</span>
+}
+<span class="synIdentifier">&lt;/</span>section<span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>コレで準備は完了といったところかな。とりあえず、 Register / Login / Logout を作って、ユーザーページも表示できるようにしたいな。</p></p>
+</div>
 
     <footer>
         
@@ -171,7 +159,7 @@ App.Database = &ldquo;database&rdquo;; // 拡張子は要らないっぽい
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/24/095023.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/08/24</time> 
             </p>
         
     </footer>
@@ -223,7 +211,16 @@ App.Database = &ldquo;database&rdquo;; // 拡張子は要らないっぽい
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

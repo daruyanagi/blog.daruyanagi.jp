@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="インストール済みの Windows Store Apps を列挙する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; ### 方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。 ### 準備 当にコードを" />
+    <meta name="og:description"   property="og:description" content="方針 PackageManager.FindPackagesForUser(String) Method (Windows) を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。 準備 適当にコードを書い" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2014/06/06/135749/20140606135118_huf54b7a42aead1feb1f519bafe236fbe9_14466_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2014/06/06/135749/20140606135118_huf54b7a42aead1feb1f519bafe236fbe9_14466_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/06/06/135749/" />
@@ -86,118 +92,68 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140606135118.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606135118.png" alt="f:id:daruyanagi:20140606135118p:plain" title="f:id:daruyanagi:20140606135118p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <div class="section">
-    ### 方針
-    <a href="http://msdn.microsoft.com/ja-jp/library/windows/apps/br240968.aspx">PackageManager.FindPackagesForUser(String) Method (Windows)</a> を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。
+<h3>方針</h3>
+<p><a href="http://msdn.microsoft.com/ja-jp/library/windows/apps/br240968.aspx">PackageManager.FindPackagesForUser(String) Method (Windows)</a> を使えばよい――が、この API は Windows Store Apps では使うことができない。今回は Windows Desktop Apps （コンソール）からこの API を呼んでみる。</p>
 </div>
 <div class="section">
-    ### 準備
-<figure>
-    <img src="/images/20140606133749.png"/> 
-</figure>
-
-<p>当にコードを書いて実行すると、</p>
-<pre><code>&gt;
-    アセンブリ &amp;#39;System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a&amp;#39; への参照を追加してください。
-</code></pre>
-<p>というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、<a href="http://www.atmarkit.co.jp/ait/articles/1304/26/news058_2.html">特集：デスクトップでもWinRT活用：開発者が知っておくべき、ライブラリとしてのWindowsランタイム (2/5) - ＠IT</a> に解決策があった。まとめると、</p>
-<figure>
-    <img src="/images/20140606134302.png"/> 
-</figure>
-
-<p>ロジェクトを一度アンロードして……</p>
-<figure>
-    <img src="/images/20140606134305.png"/> 
-</figure>
-
-<p>*.csproj ファイルを編集し……</p>
-<figure>
-    <img src="/images/20140606134309.png"/> 
-</figure>
-
-<p>argetPlatformVersion を 8.0 にする。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
-ToolsVersion=&#34;12.0&#34; DefaultTargets=&#34;Build&#34; xmlns=&#34;http://schemas.microsoft.com/developer/msbuild/2003&#34;&gt;
-  Project=&#34;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&#34; Condition=&#34;Exists(&amp;#39;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&amp;#39;)&#34; /&gt;
-  <span style="color:#f92672">&lt;propertygroup&gt;&lt;/propertygroup&gt;</span>
-    :
-    :
-    <span style="color:#f92672">&lt;targetplatformversion&gt;&lt;/targetplatformversion&gt;</span>8.0 // &amp;lt;-- この行を追加
-
-</code></pre></div><figure>
-    <img src="/images/20140606134457.png"/> 
-</figure>
-
-<p>、もう一度プロジェクトを読み込んで［参照の追加］をすると、</p>
-<figure>
-    <img src="/images/20140606134515.png"/> 
-</figure>
-
-<p>Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows.Management と Windows.ApplicationModel を参照に追加。さらに、最初のビルドエラーで要求されていた System.Runtime も参照に追加しておく。</p>
-<figure>
-    <img src="/images/20140606134654.png"/> 
-</figure>
-
-<p>%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework.NETFramework\v4.5\Facades\System.Runtime.dll”ファイルを指定して参照に加える。これで準備は完了。</p>
+<h3>準備</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606133749.png" alt="f:id:daruyanagi:20140606133749p:plain" title="f:id:daruyanagi:20140606133749p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>適当にコードを書いて実行すると、</p>
+<blockquote>
+<p>アセンブリ 'System.Runtime, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a' への参照を追加してください。</p>
+</blockquote>
+<p>というエラーが出る。とりあえず System.Runtime を参照に追加しろということらしいがどうすればよいのだろう……と思ったら、<a href="http://www.atmarkit.co.jp/ait/articles/1304/26/news058_2.html">&#x7279;&#x96C6;&#xFF1A;&#x30C7;&#x30B9;&#x30AF;&#x30C8;&#x30C3;&#x30D7;&#x3067;&#x3082;WinRT&#x6D3B;&#x7528;&#xFF1A;&#x958B;&#x767A;&#x8005;&#x304C;&#x77E5;&#x3063;&#x3066;&#x304A;&#x304F;&#x3079;&#x304D;&#x3001;&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;&#x3068;&#x3057;&#x3066;&#x306E;Windows&#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0; (2/5) - &#xFF20;IT</a> に解決策があった。</p><p>まとめると、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134302.png" alt="f:id:daruyanagi:20140606134302p:plain" title="f:id:daruyanagi:20140606134302p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>プロジェクトを一度アンロードして……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134305.png" alt="f:id:daruyanagi:20140606134305p:plain" title="f:id:daruyanagi:20140606134305p:plain" class="hatena-fotolife" itemprop="image"></span></p><p> *.csproj ファイルを編集し……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134309.png" alt="f:id:daruyanagi:20140606134309p:plain" title="f:id:daruyanagi:20140606134309p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>TargetPlatformVersion を 8.0 にする。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<span class="synIdentifier">&lt;Project </span><span class="synType">ToolsVersion</span>=<span class="synConstant">&quot;12.0&quot;</span><span class="synIdentifier"> </span><span class="synType">DefaultTargets</span>=<span class="synConstant">&quot;Build&quot;</span><span class="synIdentifier"> </span><span class="synType">xmlns</span>=<span class="synConstant">&quot;http://schemas.microsoft.com/developer/msbuild/2003&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;Import </span><span class="synType">Project</span>=<span class="synConstant">&quot;$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props&quot;</span><span class="synIdentifier"> </span><span class="synType">Condition</span>=<span class="synConstant">&quot;Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;PropertyGroup&gt;</span>
+:
+:
+<span class="synIdentifier">&lt;TargetPlatformVersion&gt;</span>8.0<span class="synIdentifier">&lt;/TargetPlatformVersion&gt;</span> // <span class="synIdentifier">&lt;-- この行を追加</span>
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134457.png" alt="f:id:daruyanagi:20140606134457p:plain" title="f:id:daruyanagi:20140606134457p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>で、もう一度プロジェクトを読み込んで［参照の追加］をすると、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134515.png" alt="f:id:daruyanagi:20140606134515p:plain" title="f:id:daruyanagi:20140606134515p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［Windows］という欄ができている。今回は、パッケージ関連の API を利用するので Windows.Management と Windows.ApplicationModel を参照に追加。さらに、最初のビルドエラーで要求されていた System.Runtime も参照に追加しておく。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606134654.png" alt="f:id:daruyanagi:20140606134654p:plain" title="f:id:daruyanagi:20140606134654p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>“%ProgramFiles(x86)%\Reference Assemblies\Microsoft\Framework\.NETFramework\v4.5\Facades\System.Runtime.dll”ファイルを指定して参照に加える。これで準備は完了。</p>
 </div>
 <div class="section">
-    ### コード
-    ```cs
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-<p>namespace Sample3
+<h3>コード</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Collections.Generic;
+<span class="synStatement">using</span> System.Linq;
+<span class="synStatement">using</span> System.Text;
+<span class="synStatement">using</span> System.Threading.Tasks;
+<p><span class="synType">namespace</span> Sample3
 {
-using Windows.Management.Deployment;</p>
-<pre><code>class Program
+<span class="synStatement">using</span> Windows.Management.Deployment;</p>
+<p><span class="synType">class</span> Program
 {
-    static void Main(string[] args)
-    {
-        var manager = new PackageManager();
-        var packages = manager.FindPackagesForUser(string.Empty);
-
-        foreach (var package in packages)
-        {
-            Console.WriteLine(package.DisplayName);
-            Console.WriteLine(package.Id.Name);
-            Console.WriteLine(package.Id.Publisher);
-            Console.WriteLine(package.Id.FullName);
-            Console.WriteLine(package.Id.FamilyName);
-            Console.WriteLine(package.Id.Version.Major);
-            Console.WriteLine(package.Id.Version.Minor);
-            Console.WriteLine(package.Id.Version.Build);
-            Console.WriteLine(package.Id.Version.Revision);
-            Console.WriteLine(package.Description);
-            Console.WriteLine(package.PublisherDisplayName);
-            Console.WriteLine(&quot;---&quot;);
-        }
-
-        Console.ReadKey();
-    }
+<span class="synType">static</span> <span class="synType">void</span> Main(<span class="synType">string</span>[] args)
+{
+var manager = <span class="synStatement">new</span> PackageManager();
+var packages = manager.FindPackagesForUser(<span class="synType">string</span>.Empty);</p>
+<p><span class="synStatement">foreach</span> (var package <span class="synStatement">in</span> packages)
+{
+Console.WriteLine(package.DisplayName);
+Console.WriteLine(package.Id.Name);
+Console.WriteLine(package.Id.Publisher);
+Console.WriteLine(package.Id.FullName);
+Console.WriteLine(package.Id.FamilyName);
+Console.WriteLine(package.Id.Version.Major);
+Console.WriteLine(package.Id.Version.Minor);
+Console.WriteLine(package.Id.Version.Build);
+Console.WriteLine(package.Id.Version.Revision);
+Console.WriteLine(package.Description);
+Console.WriteLine(package.PublisherDisplayName);
+Console.WriteLine(<span class="synConstant">&quot;&mdash;&quot;</span>);
+}</p>
+<p>Console.ReadKey();
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-適当にこんな感じにして実行。" data-lang="適当にこんな感じにして実行。">
-<figure>
-    <img src="/images/20140606135118.png"/> 
-</figure>
-
-
-ackage.DisplayName や package.Description などが表示されないが、この情報はそもそも提供されていないらしい。がっかりだ。ただ、 &lt;a href=&quot;https://github.com/luisrigoni/metro-apps-list&quot;&gt;luisrigoni/metro-apps-list · GitHub&lt;/a&gt; で示されているように、Win32 API で PRI を読むなどすれば取得できないこともないらしい。だいぶ面倒だな……。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx&quot;&gt;リソース管理システム (Windows)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-</code></pre>
+}
+}
+</pre><p>適当にこんな感じにして実行。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140606135118.png" alt="f:id:daruyanagi:20140606135118p:plain" title="f:id:daruyanagi:20140606135118p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>package.DisplayName や package.Description などが表示されないが、この情報はそもそも提供されていないらしい。がっかりだ。</p><p>ただ、 <a href="https://github.com/luisrigoni/metro-apps-list">luisrigoni/metro-apps-list · GitHub</a> で示されているように、Win32 API で PRI を読むなどすれば取得できないこともないらしい。だいぶ面倒だな……。</p></p>
+<ul>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/windows/apps/jj552947.aspx">&#x30EA;&#x30BD;&#x30FC;&#x30B9;&#x7BA1;&#x7406;&#x30B7;&#x30B9;&#x30C6;&#x30E0; (Windows)</a></li>
+</ul>
+</div>
 
     <footer>
         
@@ -211,7 +167,7 @@ ackage.DisplayName や package.Description などが表示されないが、こ�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/06/06/135749.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/06/06</time> 
             </p>
         
     </footer>
@@ -263,7 +219,16 @@ ackage.DisplayName や package.Description などが表示されないが、こ�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

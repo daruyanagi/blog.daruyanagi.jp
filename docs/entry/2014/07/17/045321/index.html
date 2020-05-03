@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。  - blog.daruyanagi.jp</title>
+<title>WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。 - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。 " />
+<meta name="og:title"         property="og:title" content="WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; WebMatrix.Data.Database.Open(&#34;MYDB&#34;); ```ローカルと Azure ではイケるのに、ExpressWeb では WebMatrix.Data.DatabaseOpen() が失敗する件について。 &lt;div class=&#34;section&#34;&gt; ### 解決策その一 &gt; New connection string keyword: “File Access Retry Timeou" />
+    <meta name="og:description"   property="og:description" content="WebMatrix.Data.Database.Open(&quot;MYDB&quot;); ローカルと Azure ではイケるのに、ExpressWeb では WebMatrix.Data.DatabaseOpen() が失敗する件について。 解決策その一 New connection string keyword: “File Access Retry Timeout” – will reattempt connection open from" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/17/045321/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。 </h1>
+    <h1>WebMatrix：キーワード &amp;#39;file access retry timeout&amp;#39; はサポートされていません。</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,42 +88,29 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140717044635.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">WebMatrix.Data.Database.Open(<span style="color:#e6db74">&#34;MYDB&#34;</span>);
-
-<span style="color:#960050;background-color:#1e0010">```ローカルと</span> Azure <span style="color:#960050;background-color:#1e0010">ではイケるのに、</span>ExpressWeb <span style="color:#960050;background-color:#1e0010">では</span> WebMatrix.Data.DatabaseOpen() <span style="color:#960050;background-color:#1e0010">が失敗する件について。</span>
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">解決策その一</span>
-    
-    &gt;
-        New connection <span style="color:#66d9ef">string</span> keyword: <span style="color:#960050;background-color:#1e0010">“</span>File Access Retry Timeout<span style="color:#960050;background-color:#1e0010">”</span> <span style="color:#960050;background-color:#1e0010">–</span> will reattempt connection open <span style="color:#66d9ef">from</span> <span style="color:#ae81ff">0</span> <span style="color:#960050;background-color:#1e0010">–</span> <span style="color:#ae81ff">30</span> seconds, with a <span style="color:#66d9ef">default</span> <span style="color:#66d9ef">value</span> of <span style="color:#ae81ff">0.</span>
-
-        Everything SQL Server Compact: SQL Server Compact <span style="color:#ae81ff">4.0</span> SP1 CTP1 available
-    
-SQL Server Compact <span style="color:#ae81ff">4.0</span> SP1 CTP1 <span style="color:#960050;background-color:#1e0010">で追加された要素らしいので、それ以前のバージョンを利用する。</span>
-
-&lt;/div&gt;
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">解決策その二</span>
-    <span style="color:#960050;background-color:#1e0010">```</span>cs
-WebMatrix.Data.Database.OpenConnectionString(
-    <span style="color:#e6db74">&#34;Data Source=|DataDirectory|\\MYDB.sdf&#34;</span>,
-    <span style="color:#e6db74">&#34;System.Data.SqlServerCe.4.0&#34;</span>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717044635.png" alt="f:id:daruyanagi:20140717044635p:plain" title="f:id:daruyanagi:20140717044635p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>WebMatrix.Data.Database.Open(<span class="synConstant">&quot;MYDB&quot;</span>);
+</pre><p>ローカルと Azure ではイケるのに、ExpressWeb では WebMatrix.Data.DatabaseOpen() が失敗する件について。</p>
+<div class="section">
+<h3>解決策その一</h3>
+<blockquote cite="http://erikej.blogspot.jp/2012/03/sql-server-compact-40-sp1-ctp1.html">
+<p>New connection string keyword: “File Access Retry Timeout” – will reattempt connection open from 0 – 30 seconds, with a default value of 0.</p>
+<p><cite><a href="http://erikej.blogspot.jp/2012/03/sql-server-compact-40-sp1-ctp1.html">Everything SQL Server Compact: SQL Server Compact 4.0 SP1 CTP1 available</a></cite></p>
+</blockquote>
+<p>SQL Server Compact 4.0 SP1 CTP1 で追加された要素らしいので、それ以前のバージョンを利用する。</p>
+</div>
+<div class="section">
+<h3>解決策その二</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink>WebMatrix.Data.Database.OpenConnectionString(
+<span class="synConstant">&quot;Data Source=|DataDirectory|</span><span class="synSpecial">\\</span><span class="synConstant">MYDB.sdf&quot;</span>,
+<span class="synConstant">&quot;System.Data.SqlServerCe.4.0&quot;</span>
 );
-
-<span style="color:#960050;background-color:#1e0010">```</span>.NET Framework <span style="color:#960050;background-color:#1e0010">データ</span> <span style="color:#960050;background-color:#1e0010">プロバイダーを指定して、接続文字列で開く。</span>
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=<span style="color:#e6db74">&#34;http://stackoverflow.com/questions/11299263/file-access-retry-timeout-asp-net-webpages-razor-c&#34;</span>&gt;File access retry timeout (ASP.NET WebPages/Razor/C<span style="color:#960050;background-color:#1e0010">#</span>) - Stack Overflow&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+</pre><p>.NET Framework データ プロバイダーを指定して、接続文字列で開く。</p>
+<ul>
+<li><a href="http://stackoverflow.com/questions/11299263/file-access-retry-timeout-asp-net-webpages-razor-c">File access retry timeout (ASP.NET WebPages/Razor/C#) - Stack Overflow</a></li>
+</ul>
+</div>
 
     <footer>
         
@@ -135,7 +124,7 @@ WebMatrix.Data.Database.OpenConnectionString(
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/17/045321.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/17</time> 
             </p>
         
     </footer>
@@ -187,7 +176,16 @@ WebMatrix.Data.Database.OpenConnectionString(
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

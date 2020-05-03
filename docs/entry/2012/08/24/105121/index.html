@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix でユーザー認証機能（2） ―― WebSecurityってどうやって使うんだ？" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="さて、前回（WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタ" />
+    <meta name="og:description"   property="og:description" content="さて、前回（WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD; &#x2015;&#x2015; &#x6E96;&#x5099;&#x7DE8; - &#x3060;&#x308B;&#x308D;&#x3050;）準備した WebSecurity Helper ですけど、これってどうや" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/24/105121/" />
@@ -86,114 +88,84 @@
         </time>        
     </p>
 
-    <p>さて、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a>）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System;
-<span style="color:#66d9ef">using</span> System.Web;
-
-<span style="color:#66d9ef">namespace</span> WebMatrix.WebData
+    <p>さて、前回（<a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD; &#x2015;&#x2015; &#x6E96;&#x5099;&#x7DE8; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）準備した WebSecurity Helper ですけど、これってどうやって使うんでしょうね。ちょっとメタデータからプロパティやメソッドを引っ張ってみました。名前と引数をみるだけで使い方がだいたい分かる感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Web;
+<p><span class="synType">namespace</span> WebMatrix.WebData
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">WebSecurity</span>
-    {
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">readonly</span> <span style="color:#66d9ef">string</span> EnableSimpleMembershipKey;
-
-<span style="color:#960050;background-color:#1e0010">```</span>WebSecurity <span style="color:#960050;background-color:#1e0010">は静的クラスです。“</span>EnableSimpleMembershipKey<span style="color:#960050;background-color:#1e0010">”はよくわかりませんが、</span> <span style="color:#66d9ef">readonly</span> <span style="color:#960050;background-color:#1e0010">だしとくにわからなくても問題無さそう。</span> AppSetting <span style="color:#960050;background-color:#1e0010">から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。</span> ASP.NET <span style="color:#960050;background-color:#1e0010">の認証システムは全然わかってないけれど、おいおい解決していきたいです。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> CurrentUserId { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CurrentUserName { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> HasUserId { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> Initialized { <span style="color:#66d9ef">get</span>; }
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAuthenticated { <span style="color:#66d9ef">get</span>; }
-
-<span style="color:#960050;background-color:#1e0010">```お次はプロパティ群ですね。</span> CurrentUser <span style="color:#960050;background-color:#1e0010">に関するさまざまな情報を取得できます。</span> Initialized <span style="color:#960050;background-color:#1e0010">だけは</span> &lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx&#34;</span>&gt;http:<span style="color:#75715e">//msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx&lt;/a&gt; に記述がなくてわからない。たぶん、前回やった初期化が完了しているかどうかを取得できるのだと思う。
-</span><span style="color:#75715e"></span><span style="color:#960050;background-color:#1e0010">```</span>cs
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ChangePassword(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> currentPassword,
-            <span style="color:#66d9ef">string</span> newPassword);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ConfirmAccount(
-            <span style="color:#66d9ef">string</span> accountConfirmationToken);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ConfirmAccount(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> accountConfirmationToken);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CreateAccount(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
-            <span style="color:#66d9ef">bool</span> requireConfirmationToken = <span style="color:#66d9ef">false</span>);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> CreateUserAndAccount(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
-            <span style="color:#66d9ef">object</span> propertyValues = <span style="color:#66d9ef">null</span>,
-            <span style="color:#66d9ef">bool</span> requireConfirmationToken = <span style="color:#66d9ef">false</span>);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> GeneratePasswordResetToken(
-            <span style="color:#66d9ef">string</span> userName,
-            <span style="color:#66d9ef">int</span> tokenExpirationInMinutesFromNow = <span style="color:#ae81ff">1440</span>);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetCreateDate(<span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetLastPasswordFailureDate(
-            <span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> DateTime GetPasswordChangedDate(
-            <span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetPasswordFailuresSinceLastSuccess(
-            <span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetUserId(<span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">int</span> GetUserIdFromPasswordResetToken(
-            <span style="color:#66d9ef">string</span> token);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeDatabaseConnection(
-            <span style="color:#66d9ef">string</span> connectionStringName, <span style="color:#66d9ef">string</span> userTableName,
-            <span style="color:#66d9ef">string</span> userIdColumn, <span style="color:#66d9ef">string</span> userNameColumn,
-            <span style="color:#66d9ef">bool</span> autoCreateTables);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> InitializeDatabaseConnection(
-            <span style="color:#66d9ef">string</span> connectionString, <span style="color:#66d9ef">string</span> providerName,
-            <span style="color:#66d9ef">string</span> userTableName, <span style="color:#66d9ef">string</span> userIdColumn,
-            <span style="color:#66d9ef">string</span> userNameColumn, <span style="color:#66d9ef">bool</span> autoCreateTables);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAccountLockedOut(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">int</span> allowedPasswordAttempts,
-            <span style="color:#66d9ef">int</span> intervalInSeconds);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsAccountLockedOut(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">int</span> allowedPasswordAttempts,
-            TimeSpan interval);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsConfirmed(<span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> IsCurrentUser(<span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> Login(
-            <span style="color:#66d9ef">string</span> userName, <span style="color:#66d9ef">string</span> password,
-            <span style="color:#66d9ef">bool</span> persistCookie = <span style="color:#66d9ef">false</span>);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Logout();
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireAuthenticatedUser();
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireRoles(<span style="color:#66d9ef">params</span> <span style="color:#66d9ef">string</span>[] roles);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireUser(<span style="color:#66d9ef">int</span> userId);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> RequireUser(<span style="color:#66d9ef">string</span> userName);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> ResetPassword(
-            <span style="color:#66d9ef">string</span> passwordResetToken, <span style="color:#66d9ef">string</span> newPassword);
-        <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">bool</span> UserExists(<span style="color:#66d9ef">string</span> userName);
-    }
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> WebSecurity
+{
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">readonly</span> <span class="synType">string</span> EnableSimpleMembershipKey;
+</pre><p>WebSecurity は静的クラスです。</p><p>“EnableSimpleMembershipKey”はよくわかりませんが、 readonly だしとくにわからなくても問題無さそう。 AppSetting から読み込んだキーを保存しているみたいですけどね。外部に公開してるんだから、どっかの外部クラスが使うんだろうか……。 ASP.NET の認証システムは全然わかってないけれど、おいおい解決していきたいです。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>        <span class="synType">public</span> <span class="synType">static</span> <span class="synType">int</span> CurrentUserId { get; }
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> CurrentUserName { get; }
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> HasUserId { get; }
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> Initialized { get; }
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsAuthenticated { get; }
+</pre><p>お次はプロパティ群ですね。 CurrentUser に関するさまざまな情報を取得できます。 Initialized だけは <a href="http://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx">http://msdn.microsoft.com/en-us/library/webmatrix.webdata.websecurity(v=vs.99).aspx</a> に記述がなくてわからない。たぶん、前回やった初期化が完了しているかどうかを取得できるのだと思う。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>        <span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> ChangePassword(
+<span class="synType">string</span> userName, <span class="synType">string</span> currentPassword,
+<span class="synType">string</span> newPassword);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> ConfirmAccount(
+<span class="synType">string</span> accountConfirmationToken);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> ConfirmAccount(
+<span class="synType">string</span> userName, <span class="synType">string</span> accountConfirmationToken);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> CreateAccount(
+<span class="synType">string</span> userName, <span class="synType">string</span> password,
+<span class="synType">bool</span> requireConfirmationToken = <span class="synConstant">false</span>);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> CreateUserAndAccount(
+<span class="synType">string</span> userName, <span class="synType">string</span> password,
+<span class="synType">object</span> propertyValues = <span class="synConstant">null</span>,
+<span class="synType">bool</span> requireConfirmationToken = <span class="synConstant">false</span>);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> GeneratePasswordResetToken(
+<span class="synType">string</span> userName,
+<span class="synType">int</span> tokenExpirationInMinutesFromNow = <span class="synConstant">1440</span>);
+<span class="synType">public</span> <span class="synType">static</span> DateTime GetCreateDate(<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> DateTime GetLastPasswordFailureDate(
+<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> DateTime GetPasswordChangedDate(
+<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">int</span> GetPasswordFailuresSinceLastSuccess(
+<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">int</span> GetUserId(<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">int</span> GetUserIdFromPasswordResetToken(
+<span class="synType">string</span> token);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> InitializeDatabaseConnection(
+<span class="synType">string</span> connectionStringName, <span class="synType">string</span> userTableName,
+<span class="synType">string</span> userIdColumn, <span class="synType">string</span> userNameColumn,
+<span class="synType">bool</span> autoCreateTables);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> InitializeDatabaseConnection(
+<span class="synType">string</span> connectionString, <span class="synType">string</span> providerName,
+<span class="synType">string</span> userTableName, <span class="synType">string</span> userIdColumn,
+<span class="synType">string</span> userNameColumn, <span class="synType">bool</span> autoCreateTables);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsAccountLockedOut(
+<span class="synType">string</span> userName, <span class="synType">int</span> allowedPasswordAttempts,
+<span class="synType">int</span> intervalInSeconds);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsAccountLockedOut(
+<span class="synType">string</span> userName, <span class="synType">int</span> allowedPasswordAttempts,
+TimeSpan interval);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsConfirmed(<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> IsCurrentUser(<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> Login(
+<span class="synType">string</span> userName, <span class="synType">string</span> password,
+<span class="synType">bool</span> persistCookie = <span class="synConstant">false</span>);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Logout();
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> RequireAuthenticatedUser();
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> RequireRoles(<span class="synStatement">params</span> <span class="synType">string</span>[] roles);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> RequireUser(<span class="synType">int</span> userId);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> RequireUser(<span class="synType">string</span> userName);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> ResetPassword(
+<span class="synType">string</span> passwordResetToken, <span class="synType">string</span> newPassword);
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">bool</span> UserExists(<span class="synType">string</span> userName);
 }
+}
+</pre><p>WebSecurity クラスのメンバーたち（このうち、InitializeDatabaseConnection() は前回使いました）。</p>
+<ul>
+<li>メールなどを利用した本人確認</li>
+<li>パスワードのリセット（忘れちゃった時のためかな？）</li>
+<li>パスワードの入力ミスを複数回繰り返すとアカウントをロック</li>
+</ul><p>なんてことができるみたい。</p><p>気になったのは CreateUserAndAccount() ですかね。 Account （メンバーシップアカウント）と User （ユーザープロファイル、ユーザー情報）って別物なんだ。“Starter Site”テンプレートで使っていたのは CreateAccount() で、ほかにサンプルも見当たらなかったのでよくわかりませんが……。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120824104305.png" alt="f:id:daruyanagi:20120824104305p:plain" title="f:id:daruyanagi:20120824104305p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちょっと DB のテーブル構成を見てみましょう。なんかいろいろありますけど、メンバーシップアカウントは webpages_Membership 、ユーザープロファイルは Users（初期設定は UserProfile）で管理するというのがなんとなく想像できます。どうやら webpages_ というプレフィックスがついたテーブルはシステム（WebSecurity Helper）が管理するみたい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120824103854.png" alt="f:id:daruyanagi:20120824103854p:plain" title="f:id:daruyanagi:20120824103854p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>実際、webpages_Membership テーブルには認証情報を格納するカラムがたくさん用意されていますが、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120824103857.png" alt="f:id:daruyanagi:20120824103857p:plain" title="f:id:daruyanagi:20120824103857p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>UserProfile テーブルのほうはかなりスッキリしていて「好きに使え」と言わんばかり。たとえばユーザーのプロフィール画像なんかの情報はこっちに保存しておいたほうがいいみたいですね。これはおいおい試していきたいと思います。</p>
 
-<span style="color:#960050;background-color:#1e0010">```</span>WebSecurity <span style="color:#960050;background-color:#1e0010">クラスのメンバーたち（このうち、</span>InitializeDatabaseConnection() <span style="color:#960050;background-color:#1e0010">は前回使いました）。</span>
-
-&lt;ul&gt;
-&lt;li&gt;<span style="color:#960050;background-color:#1e0010">メールなどを利用した本人確認</span>&lt;/li&gt;
-&lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードのリセット（忘れちゃった時のためかな？）</span>&lt;/li&gt;
-&lt;li&gt;<span style="color:#960050;background-color:#1e0010">パスワードの入力ミスを複数回繰り返すとアカウントをロック</span>&lt;/li&gt;
-&lt;/ul&gt;<span style="color:#960050;background-color:#1e0010">なんてことができるみたい。気になったのは</span> CreateUserAndAccount() <span style="color:#960050;background-color:#1e0010">ですかね。</span> Account <span style="color:#960050;background-color:#1e0010">（メンバーシップアカウント）と</span> User <span style="color:#960050;background-color:#1e0010">（ユーザープロファイル、ユーザー情報）って別物なんだ。“</span>Starter Site<span style="color:#960050;background-color:#1e0010">”テンプレートで使っていたのは</span> CreateAccount() <span style="color:#960050;background-color:#1e0010">で、ほかにサンプルも見当たらなかったのでよくわかりませんが……。</span>
-
-<figure>
-    <img src="/images/20120824104305.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">ょっと</span> DB <span style="color:#960050;background-color:#1e0010">のテーブル構成を見てみましょう。なんかいろいろありますけど、メンバーシップアカウントは</span> webpages_Membership <span style="color:#960050;background-color:#1e0010">、ユーザープロファイルは</span> Users<span style="color:#960050;background-color:#1e0010">（初期設定は</span> UserProfile<span style="color:#960050;background-color:#1e0010">）で管理するというのがなんとなく想像できます。どうやら</span> webpages_ <span style="color:#960050;background-color:#1e0010">というプレフィックスがついたテーブルはシステム（</span>WebSecurity Helper<span style="color:#960050;background-color:#1e0010">）が管理するみたい。</span>
-
-<figure>
-    <img src="/images/20120824103854.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">際、</span>webpages_Membership <span style="color:#960050;background-color:#1e0010">テーブルには認証情報を格納するカラムがたくさん用意されていますが、</span>
-
-<figure>
-    <img src="/images/20120824103857.png"/> 
-</figure>
-
-
-serProfile <span style="color:#960050;background-color:#1e0010">テーブルのほうはかなりスッキリしていて「好きに使え」と言わんばかり。たとえばユーザーのプロフィール画像なんかの情報はこっちに保存しておいたほうがいいみたいですね。これはおいおい試していきたいと思います。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -207,7 +179,7 @@ serProfile <span style="color:#960050;background-color:#1e0010">テーブルの�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/24/105121.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/24</time> 
             </p>
         
     </footer>
@@ -259,7 +231,16 @@ serProfile <span style="color:#960050;background-color:#1e0010">テーブルの�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

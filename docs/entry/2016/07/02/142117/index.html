@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="ASP.NET Core なるものを Visual Studio Code でしてみむとするなり" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は Introduction to ASP.NET Core — ASP.NET documentation にほぼ書かれているので、" />
+    <meta name="og:description"   property="og:description" content="をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は Introduction to ASP.NET Core &mdash; ASP.NET documentation にほぼ書かれているので、" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2016/07/02/142117/20160702133715_hu9258093e11d4c272fa9ae880cbbd1a51_27283_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2016/07/02/142117/20160702133715_hu9258093e11d4c272fa9ae880cbbd1a51_27283_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/07/02/142117/" />
@@ -88,41 +94,28 @@
 
     <p>をのこもすなる ASP.NET Core といふものを、だるやなぎも Visual Studio Code でしてみむとてするなり。ちなみに、ここでの作業内容は</p>
 <ul>
-<li><a href="https://docs.asp.net/en/latest/intro.html">Introduction to ASP.NET Core — ASP.NET documentation</a></li>
-</ul>にほぼ書かれているので、そっちを読む方がよい。
+<li><a href="https://docs.asp.net/en/latest/intro.html">Introduction to ASP.NET Core &mdash; ASP.NET documentation</a></li>
+</ul><p>にほぼ書かれているので、そっちを読む方がよい。</p>
 <div class="section">
-    ### .NET Core SDK for Windows のインストール
-<figure>
-    <img src="/images/20160702133715.png"/> 
-</figure>
-
-<p>ずはこれが必要らしい。“Preview 2”とか書いてあるけど気にせずインストールした。</p>
+<h3>.NET Core SDK for Windows のインストール</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702133715.png" alt="f:id:daruyanagi:20160702133715p:plain" title="f:id:daruyanagi:20160702133715p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まずはこれが必要らしい。“Preview 2”とか書いてあるけど気にせずインストールした。</p>
 <ul>
 <li><a href="https://www.microsoft.com/net/core#windows">.NET - Powerful Open Source Development</a></li>
-</ul>セットアップは一瞬で終わる。
+</ul><p>セットアップは一瞬で終わる。</p>
 <div class="section">
-    #### 追記
-<figure>
-    <img src="/images/20160702194913.png"/> 
-</figure>
-
-<p>れをインストールすると dnvm（DotNet Version Manager）コマンドが利用できるようになるのかな？</p>
+<h4>追記</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702194913.png" alt="f:id:daruyanagi:20160702194913p:plain" title="f:id:daruyanagi:20160702194913p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これをインストールすると dnvm（DotNet Version Manager）コマンドが利用できるようになるのかな？</p>
 </div>
 </div>
 <div class="section">
-    ### Chocolatey のインストール
-<figure>
-    <img src="/images/20160702134422.png"/> 
-</figure>
-
-<p>こからは node.js や npm のセットアップに入るのだが、コマンドラインでやってしまいたいので、Chocolatey をインストールする。</p>
+<h3>Chocolatey のインストール</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702134422.png" alt="f:id:daruyanagi:20160702134422p:plain" title="f:id:daruyanagi:20160702134422p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ここからは node.js や npm のセットアップに入るのだが、コマンドラインでやってしまいたいので、Chocolatey をインストールする。</p>
 <ul>
 <li><a href="https://chocolatey.org/">Chocolatey</a></li>
-</ul>Chocolatey というのは Linux で言うところの yum や apt-get みたいなもの（Linux はあんまり知らんけど）。管理者権限で「コマンド プロンプト」を起動し、Chocolatery の公式サイトに書いてある呪文を入力する。
-```
-Microsoft Windows [Version 10.0.10586]
+</ul><p>Chocolatey というのは Linux で言うところの yum や apt-get みたいなもの（Linux はあんまり知らんけど）。管理者権限で「コマンド プロンプト」を起動し、Chocolatery の公式サイトに書いてある呪文を入力する。</p>
+<pre class="code" data-lang="" data-unlink>Microsoft Windows [Version 10.0.10586]
 (c) 2015 Microsoft Corporation. All rights reserved.
-<p>C:\Windows\system32&gt;@powershell -NoProfile -ExecutionPolicy Bypass -Command &ldquo;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&rdquo; &amp;&amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin</p>
+<p>C:\Windows\system32&gt;@powershell -NoProfile -ExecutionPolicy Bypass -Command &quot;iex ((new-object net.webclient).DownloadString('https://chocolatey.org/install.ps1'))&quot; &amp;&amp; SET PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin</p>
 <p>Mode                LastWriteTime         Length Name</p>
 <hr>
 <p>d&mdash;&ndash;       2016/07/02     13:19                chocInstall
@@ -171,14 +164,13 @@ Run choco /? for a list of functions.
 You may need to shut down and restart powershell and/or consoles
 first prior to using choco.
 Ensuring chocolatey commands are on the path
-Ensuring chocolatey.nupkg is in the lib folder</p>
-<pre><code class="language-これで" data-lang="これで">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### node.js と npm のインストール
-    次に nodejs パッケージと npm パッケージを Chocolatey でインストール。
-</code></pre><p>C:\Windows\system32&gt;choco
-Chocolatey v0.9.10.3</p>
+Ensuring chocolatey.nupkg is in the lib folder</pre><p>これで choco コマンドによるパッケージのインストールや削除が可能となる。</p></p>
+</div>
+<div class="section">
+<h3>node.js と npm のインストール</h3>
+<p>次に nodejs パッケージと npm パッケージを Chocolatey でインストール。</p>
+<pre class="code" data-lang="" data-unlink>C:\Windows\system32&gt;choco
+Chocolatey v0.9.10.3
 <p>C:\Windows\system32&gt;choco install npm
 Installing the following packages:
 npm
@@ -194,40 +186,33 @@ By installing you accept licenses for the packages.</p>
 ：
 ：</p>
 <p>Chocolatey installed 2/2 packages. 0 packages failed.
-See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).</p>
-<pre><code class="language-簡単だな。refreshenv" data-lang="簡単だな。refreshenv"></code></pre><p>C:\Windows\system32&gt;refreshenv
-Reading environment variables from registry. Please wait&hellip; Done.</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### yo bower grunt-cli gulp を npm でインストール
-    次に yoeman をインストールする。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://yeoman.io/&quot;&gt;The web&amp;#39;s scaffolding tool for modern webapps | Yeoman&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;Yoeman（ヨーマン）というのはアプリケーションのテンプレートジェネレーターらしい。JavaScript や CSS のパッケージマネージャー bower やビルドツール grunt が必要になるので、一緒にインストールしておく。
-</code></pre><p>C:\Windows\system32&gt;npm install -g yo bower grunt-cli gulp
-npm http GET <a href="https://registry.npmjs.org/yo">https://registry.npmjs.org/yo</a>
-npm http GET <a href="https://registry.npmjs.org/gulp">https://registry.npmjs.org/gulp</a>
-npm http GET <a href="https://registry.npmjs.org/bower">https://registry.npmjs.org/bower</a>
+See the log for details (C:\ProgramData\chocolatey\logs\chocolatey.log).</pre><p>簡単だな。refreshenv コマンドで環境変数を再読み込みしておけというので、従っておく。</p></p>
+<pre class="code" data-lang="" data-unlink>C:\Windows\system32&gt;refreshenv
+Reading environment variables from registry. Please wait... Done.</pre>
+</div>
+<div class="section">
+<h3>yo bower grunt-cli gulp を npm でインストール</h3>
+<p>次に yoeman をインストールする。</p>
+<ul>
+<li><a href="http://yeoman.io/">The web&#39;s scaffolding tool for modern webapps | Yeoman</a></li>
+</ul><p>Yoeman（ヨーマン）というのはアプリケーションのテンプレートジェネレーターらしい。JavaScript や CSS のパッケージマネージャー bower やビルドツール grunt が必要になるので、一緒にインストールしておく。</p>
+<pre class="code" data-lang="" data-unlink>C:\Windows\system32&gt;npm install -g yo bower grunt-cli gulp
+npm http GET https://registry.npmjs.org/yo
+npm http GET https://registry.npmjs.org/gulp
+npm http GET https://registry.npmjs.org/bower
 ：
 ：
-npm http 200 <a href="https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz">https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz</a>
-npm http GET <a href="https://registry.npmjs.org/buffer-shims">https://registry.npmjs.org/buffer-shims</a>
-npm http 304 <a href="https://registry.npmjs.org/buffer-shims">https://registry.npmjs.org/buffer-shims</a></p>
-<blockquote>
-<p><a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\tabtab\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
-node postinstall</p>
-</blockquote>
-<blockquote>
-<p><a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\yeoman-environment\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
-node postinstall</p>
-</blockquote>
+npm http 200 https://registry.npmjs.org/typedarray/-/typedarray-0.0.6.tgz
+npm http GET https://registry.npmjs.org/buffer-shims
+npm http 304 https://registry.npmjs.org/buffer-shims
+<p>&gt; <a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\tabtab\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
+&gt; node postinstall</p>
+<p>&gt; <a href="mailto:spawn-sync@1.0.15">spawn-sync@1.0.15</a> postinstall C:\Program Files\nodejs\node_modules\yo\node_modules\yeoman-environment\node_modules\inquirer\node_modules\external-editor\node_modules\spawn-sync
+&gt; node postinstall</p>
 <p>C:\Program Files\nodejs\yo -&gt; C:\Program Files\nodejs\node_modules\yo\lib\cli.js
 C:\Program Files\nodejs\yo-complete -&gt; C:\Program Files\nodejs\node_modules\yo\lib\completion\index.js</p>
-<blockquote>
-<p><a href="mailto:yo@1.8.4">yo@1.8.4</a> postinstall C:\Program Files\nodejs\node_modules\yo
-yodoctor</p>
-</blockquote>
+<p>&gt; <a href="mailto:yo@1.8.4">yo@1.8.4</a> postinstall C:\Program Files\nodejs\node_modules\yo
+&gt; yodoctor</p>
 <p>Yeoman Doctor
 Running sanity checks on your system</p>
 <p>√ Global configuration file is valid
@@ -288,63 +273,53 @@ C:\Program Files\nodejs\bower -&gt; C:\Program Files\nodejs\node_modules\bower\b
 ├── <a href="mailto:insight@0.7.0">insight@0.7.0</a> (<a href="mailto:tough-cookie@2.2.2">tough-cookie@2.2.2</a>, <a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:lodash.debounce@3.1.1">lodash.debounce@3.1.1</a>, <a href="mailto:inquirer@0.10.1">inquirer@0.10.1</a>, <a href="mailto:os-name@1.0.3">os-name@1.0.3</a>, <a href="mailto:request@2.72.0">request@2.72.0</a>)
 ├── <a href="mailto:yeoman-environment@1.6.1">yeoman-environment@1.6.1</a> (<a href="mailto:log-symbols@1.0.2">log-symbols@1.0.2</a>, <a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:untildify@2.1.0">untildify@2.1.0</a>, <a href="mailto:text-table@0.2.0">text-table@0.2.0</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:diff@2.2.3">diff@2.2.3</a>, <a href="mailto:globby@4.1.0">globby@4.1.0</a>, <a href="mailto:mem-fs@1.1.3">mem-fs@1.1.3</a>, <a href="mailto:grouped-queue@0.3.2">grouped-queue@0.3.2</a>, <a href="mailto:inquirer@1.1.0">inquirer@1.1.0</a>, <a href="mailto:lodash@4.13.1">lodash@4.13.1</a>)
 └── <a href="mailto:tabtab@1.3.2">tabtab@1.3.2</a> (<a href="mailto:object-assign@4.1.0">object-assign@4.1.0</a>, <a href="mailto:minimist@1.2.0">minimist@1.2.0</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a>, <a href="mailto:npmlog@2.0.4">npmlog@2.0.4</a>, <a href="mailto:inquirer@1.1.0">inquirer@1.1.0</a>)</p>
-<p><a href="mailto:bower@1.7.9">bower@1.7.9</a> C:\Program Files\nodejs\node_modules\bower</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### generator-aspnet を npm でインストール
-    最後に generator-aspnet をインストール。これをインストールすると yo aspnet でアプリケーションのひな形が作れるみたい。
-</code></pre><p>C:\Windows\system32&gt;npm install -g generator-aspnet
-npm http GET <a href="https://registry.npmjs.org/generator-aspnet">https://registry.npmjs.org/generator-aspnet</a>
-npm http 200 <a href="https://registry.npmjs.org/generator-aspnet">https://registry.npmjs.org/generator-aspnet</a>
-npm http GET <a href="https://registry.npmjs.org/generator-aspnet/-/generator-aspnet-0.2.0.tgz">https://registry.npmjs.org/generator-aspnet/-/generator-aspnet-0.2.0.tgz</a>
+<p><a href="mailto:bower@1.7.9">bower@1.7.9</a> C:\Program Files\nodejs\node_modules\bower</pre></p>
+</div>
+<div class="section">
+<h3>generator-aspnet を npm でインストール</h3>
+<p>最後に generator-aspnet をインストール。これをインストールすると yo aspnet でアプリケーションのひな形が作れるみたい。</p>
+<pre class="code" data-lang="" data-unlink>C:\Windows\system32&gt;npm install -g generator-aspnet
+npm http GET https://registry.npmjs.org/generator-aspnet
+npm http 200 https://registry.npmjs.org/generator-aspnet
+npm http GET https://registry.npmjs.org/generator-aspnet/-/generator-aspnet-0.2.0.tgz
 ：
 ：
-npm http 304 <a href="https://registry.npmjs.org/escape-string-regexp">https://registry.npmjs.org/escape-string-regexp</a>
-npm http 200 <a href="https://registry.npmjs.org/strip-ansi/-/strip-ansi-2.0.1.tgz">https://registry.npmjs.org/strip-ansi/-/strip-ansi-2.0.1.tgz</a>
-npm http 200 <a href="https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz">https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz</a>
-<a href="mailto:generator-aspnet@0.2.0">generator-aspnet@0.2.0</a> C:\Program Files\nodejs\node_modules\generator-aspnet
-├── <a href="mailto:vs_projectname@1.0.2">vs_projectname@1.0.2</a>
-├── <a href="mailto:uuid@2.0.2">uuid@2.0.2</a>
-├── <a href="mailto:mkdirp@0.5.1">mkdirp@0.5.1</a> (<a href="mailto:minimist@0.0.8">minimist@0.0.8</a>)
-├── <a href="mailto:chalk@1.1.3">chalk@1.1.3</a> (<a href="mailto:escape-string-regexp@1.0.5">escape-string-regexp@1.0.5</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:supports-color@2.0.0">supports-color@2.0.0</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:has-ansi@2.0.0">has-ansi@2.0.0</a>)
-├── <a href="mailto:yosay@1.2.0">yosay@1.2.0</a> (<a href="mailto:ansi-regex@2.0.0">ansi-regex@2.0.0</a>, <a href="mailto:wrap-ansi@2.0.0">wrap-ansi@2.0.0</a>, <a href="mailto:cli-boxes@1.0.0">cli-boxes@1.0.0</a>, <a href="mailto:pad-component@0.0.1">pad-component@0.0.1</a>, <a href="mailto:strip-ansi@3.0.1">strip-ansi@3.0.1</a>, <a href="mailto:ansi-styles@2.2.1">ansi-styles@2.2.1</a>, <a href="mailto:taketalk@1.0.0">taketalk@1.0.0</a>, <a href="mailto:string-width@1.0.1">string-width@1.0.1</a>, <a href="mailto:repeating@2.0.1">repeating@2.0.1</a>)
-├── <a href="mailto:chai@3.5.0">chai@3.5.0</a> (<a href="mailto:assertion-error@1.0.2">assertion-error@1.0.2</a>, <a href="mailto:type-detect@1.0.0">type-detect@1.0.0</a>, <a href="mailto:deep-eql@0.1.3">deep-eql@0.1.3</a>)
-├── <a href="mailto:findup-sync@0.3.0">findup-sync@0.3.0</a> (<a href="mailto:glob@5.0.15">glob@5.0.15</a>)
-├── <a href="mailto:nconf@0.8.4">nconf@0.8.4</a> (<a href="mailto:ini@1.3.4">ini@1.3.4</a>, <a href="mailto:secure-keys@1.0.0">secure-keys@1.0.0</a>, <a href="mailto:async@1.5.2">async@1.5.2</a>, <a href="mailto:yargs@3.32.0">yargs@3.32.0</a>)
-└── <a href="mailto:yeoman-generator@0.19.2">yeoman-generator@0.19.2</a> (<a href="mailto:detect-conflict@1.0.0">detect-conflict@1.0.0</a>, <a href="mailto:read-chunk@1.0.1">read-chunk@1.0.1</a>, <a href="mailto:diff@1.4.0">diff@1.4.0</a>, <a href="mailto:yeoman-welcome@1.0.1">yeoman-welcome@1.0.1</a>, <a href="mailto:xdg-basedir@1.0.1">xdg-basedir@1.0.1</a>, <a href="mailto:user-home@1.1.1">user-home@1.1.1</a>, <a href="mailto:async@0.9.2">async@0.9.2</a>, <a href="mailto:mime@1.3.4">mime@1.3.4</a>, <a href="mailto:dargs@4.1.0">dargs@4.1.0</a>, <a href="mailto:text-table@0.2.0">text-table@0.2.0</a>, <a href="mailto:nopt@3.0.6">nopt@3.0.6</a>, <a href="mailto:class-extend@0.1.2">class-extend@0.1.2</a>, <a href="mailto:debug@2.2.0">debug@2.2.0</a>, <a href="mailto:cross-spawn@0.2.9">cross-spawn@0.2.9</a>, <a href="mailto:istextorbinary@1.0.2">istextorbinary@1.0.2</a>, <a href="mailto:shelljs@0.4.0">shelljs@0.4.0</a>, <a href="mailto:mem-fs-editor@1.2.3">mem-fs-editor@1.2.3</a>, <a href="mailto:through2@0.6.5">through2@0.6.5</a>, <a href="mailto:glob@5.0.15">glob@5.0.15</a>, <a href="mailto:run-async@0.1.0">run-async@0.1.0</a>, <a href="mailto:cli-table@0.3.1">cli-table@0.3.1</a>, <a href="mailto:findup-sync@0.2.1">findup-sync@0.2.1</a>, <a href="mailto:yeoman-assert@1.0.0">yeoman-assert@1.0.0</a>, <a href="mailto:rimraf@2.5.2">rimraf@2.5.2</a>, <a href="mailto:pretty-bytes@1.0.4">pretty-bytes@1.0.4</a>, <a href="mailto:github-username@1.1.1">github-username@1.1.1</a>, <a href="mailto:underscore.string@3.3.4">underscore.string@3.3.4</a>, <a href="mailto:dateformat@1.0.12">dateformat@1.0.12</a>, <a href="mailto:sinon@1.17.4">sinon@1.17.4</a>, <a href="mailto:download@4.4.3">download@4.4.3</a>, <a href="mailto:html-wiring@1.2.0">html-wiring@1.2.0</a>, <a href="mailto:lodash@3.10.1">lodash@3.10.1</a>, <a href="mailto:inquirer@0.8.5">inquirer@0.8.5</a>, <a href="mailto:yeoman-environment@1.6.1">yeoman-environment@1.6.1</a>, <a href="mailto:gruntfile-editor@1.2.0">gruntfile-editor@1.2.0</a>)</p>
-<pre><code class="language-<br/>" data-lang="<br/>">これでようやく準備が完成。ここまでの作業が必要なのは最初だけで、次回からは yo aspnet だけでアプリケーションのスケルトンを作成できる……のだと思う。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ASP.NET プロジェクトの作成
-    
-
-<figure>
-    <img src="/images/20160702141051.png"/> 
-</figure>
-
-
-こからは Visual Studio Code 内蔵のシェルでやろうと思ったんだけど、いろいろ動きがヤバかったので、引き続き「コマンド プロンプト」で。
-
-&lt;ol&gt;
-&lt;li&gt;プロジェクト管理フォルダーへ移動（今回は %USERPROFILE%\Projects にした）&lt;/li&gt;
-&lt;li&gt;yo aspnet
-&lt;ol&gt;
-&lt;li&gt;プロジェクトタイプを選択&lt;/li&gt;
-&lt;li&gt;プロジェクト名を指定&lt;/li&gt;
-&lt;li&gt;（管理フォルダーの下にプロジェクトフォルダーが生成される）&lt;/li&gt;
-&lt;/ol&gt;&lt;/li&gt;
-&lt;li&gt;プロジェクトフォルダーへ移動&lt;/li&gt;
-&lt;li&gt;そこで Visual Studio Code を起動する（code .）&lt;/li&gt;
-&lt;/ol&gt;みたいなのが大まかな流れ。最初試したときは先に mkdir してプロジェクトフォルダーを作成してコマンドを使ったのだけど、その下にまたプロジェクトフォルダーを掘られてしまった。あわあわ
-</code></pre><p>C:\Windows\system32&gt;cd %USERPROFILE%</p>
+npm http 304 https://registry.npmjs.org/escape-string-regexp
+npm http 200 https://registry.npmjs.org/strip-ansi/-/strip-ansi-2.0.1.tgz
+npm http 200 https://registry.npmjs.org/mute-stream/-/mute-stream-0.0.4.tgz
+generator-aspnet@0.2.0 C:\Program Files\nodejs\node_modules\generator-aspnet
+├── vs_projectname@1.0.2
+├── uuid@2.0.2
+├── mkdirp@0.5.1 (minimist@0.0.8)
+├── chalk@1.1.3 (escape-string-regexp@1.0.5, ansi-styles@2.2.1, supports-color@2.0.0, strip-ansi@3.0.1, has-ansi@2.0.0)
+├── yosay@1.2.0 (ansi-regex@2.0.0, wrap-ansi@2.0.0, cli-boxes@1.0.0, pad-component@0.0.1, strip-ansi@3.0.1, ansi-styles@2.2.1, taketalk@1.0.0, string-width@1.0.1, repeating@2.0.1)
+├── chai@3.5.0 (assertion-error@1.0.2, type-detect@1.0.0, deep-eql@0.1.3)
+├── findup-sync@0.3.0 (glob@5.0.15)
+├── nconf@0.8.4 (ini@1.3.4, secure-keys@1.0.0, async@1.5.2, yargs@3.32.0)
+└── yeoman-generator@0.19.2 (detect-conflict@1.0.0, read-chunk@1.0.1, diff@1.4.0, yeoman-welcome@1.0.1, xdg-basedir@1.0.1, user-home@1.1.1, async@0.9.2, mime@1.3.4, dargs@4.1.0, text-table@0.2.0, nopt@3.0.6, class-extend@0.1.2, debug@2.2.0, cross-spawn@0.2.9, istextorbinary@1.0.2, shelljs@0.4.0, mem-fs-editor@1.2.3, through2@0.6.5, glob@5.0.15, run-async@0.1.0, cli-table@0.3.1, findup-sync@0.2.1, yeoman-assert@1.0.0, rimraf@2.5.2, pretty-bytes@1.0.4, github-username@1.1.1, underscore.string@3.3.4, dateformat@1.0.12, sinon@1.17.4, download@4.4.3, html-wiring@1.2.0, lodash@3.10.1, inquirer@0.8.5, yeoman-environment@1.6.1, gruntfile-editor@1.2.0)</pre><p><br />
+これでようやく準備が完成。ここまでの作業が必要なのは最初だけで、次回からは yo aspnet だけでアプリケーションのスケルトンを作成できる……のだと思う。</p>
+</div>
+<div class="section">
+<h3>ASP.NET プロジェクトの作成</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702141051.png" alt="f:id:daruyanagi:20160702141051p:plain" title="f:id:daruyanagi:20160702141051p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ここからは Visual Studio Code 内蔵のシェルでやろうと思ったんだけど、いろいろ動きがヤバかったので、引き続き「コマンド プロンプト」で。</p>
+<ol>
+<li>プロジェクト管理フォルダーへ移動（今回は %USERPROFILE%\Projects にした）</li>
+<li>yo aspnet
+<ol>
+<li>プロジェクトタイプを選択</li>
+<li>プロジェクト名を指定</li>
+<li>（管理フォルダーの下にプロジェクトフォルダーが生成される）</li>
+</ol></li>
+<li>プロジェクトフォルダーへ移動</li>
+<li>そこで Visual Studio Code を起動する（code .）</li>
+</ol><p>みたいなのが大まかな流れ。最初試したときは先に mkdir してプロジェクトフォルダーを作成してコマンドを使ったのだけど、その下にまたプロジェクトフォルダーを掘られてしまった。あわあわ</p>
+<pre class="code" data-lang="" data-unlink>C:\Windows\system32&gt;cd %USERPROFILE%
 <p>C:\Windows\system32&gt;cd Projects</p>
 <p>C:\Users\Hidetoshi\Projects&gt;yo aspnet</p>
-<pre><code> _-----_     ╭──────────────────────────╮
+<p><em>&mdash;&ndash;</em>     ╭──────────────────────────╮
 |       |    │      Welcome to the      │
-|--(o)--|    │  marvellous ASP.NET Core │
-</code></pre>
-<p><code>---------´   │        generator!        │ ( _´U</code>_ )    ╰──────────────────────────╯
+|&ndash;(o)&ndash;|    │  marvellous ASP.NET Core │
+<code>---------´   │        generator!        │ ( _´U</code>_ )    ╰──────────────────────────╯
 /___A___\   /
 |  ~  |
 __'.___.'__
@@ -360,16 +335,15 @@ create Empty\Dockerfile
 create Empty\Properties\launchSettings.json
 create Empty\README.md</p>
 <p>Your project is now created, you can use the following commands to get going
-cd &ldquo;Empty&rdquo;
+cd &quot;Empty&quot;
 dotnet restore
 dotnet build (optional, build will also happen when it's run)
-dotnet run</p>
-<pre><code class="language-あとはプロジェクトフォルダーに移動して" data-lang="あとはプロジェクトフォルダーに移動して">
-&lt;ol&gt;
-&lt;li&gt;dotnet restore&lt;/li&gt;
-&lt;li&gt;dotnet run&lt;/li&gt;
-&lt;/ol&gt;でいいみたい。new、restore、run ね。ハイハイ。restore は足りないものをいろいろもってきてくれるコマンドかな？
-</code></pre><p>C:\Users\Hidetoshi\Projects&gt;cd Empty</p>
+dotnet run</pre><p>あとはプロジェクトフォルダーに移動して</p></p>
+<ol>
+<li>dotnet restore</li>
+<li>dotnet run</li>
+</ol><p>でいいみたい。new、restore、run ね。ハイハイ。restore は足りないものをいろいろもってきてくれるコマンドかな？</p>
+<pre class="code" data-lang="" data-unlink>C:\Users\Hidetoshi\Projects&gt;cd Empty
 <p>C:\Users\Hidetoshi\Projects\Empty&gt;dotnet restore
 log  : Restoring packages for C:\Users\Hidetoshi\Projects\Empty\project.json&hellip;
 log  : Installing System.Net.WebSockets 4.0.0.
@@ -393,38 +367,18 @@ Application started. Press Ctrl+C to shut down.
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[1]
 Request starting HTTP/1.1 GET http://localhost:5000/
 info: Microsoft.AspNetCore.Hosting.Internal.WebHost[2]
-Request finished in 90.0779ms 200</p>
-<pre><code>
-<figure>
-    <img src="/images/20160702140311.png"/> 
-</figure>
-
-
-a href=&quot;http://localhost:5000/&quot;&gt;http://localhost:5000/&lt;/a&gt; を叩いたら、“Hello! World”が表示された。Empty テンプレートはシンプルすぎてちょっとよくわからなさ過ぎた（await context.Response.WriteAsync(&quot;Hello World!&quot;);！）ので、最初はフツーのテンプレートを作って処理を追っていくと構造が把握しやすいかも。
-
-<figure>
-    <img src="/images/20160702140609.png"/> 
-</figure>
-
-
-と Visual Studio Code でなんか OmniSharp のエラーが出たんだけど、大丈夫かな。今まで WebMatrix で甘やかされてきたからコマンドラインは苦行だけど、Rails のころはフツーにやってたわけで、がんばればなんとか慣れると思う。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 追記
-    [ERROR:OmniSharp.Dnx.DnxPaths] The specified runtime path &amp;#39;default&amp;#39; does not exist. というエラーは、「コマンド プロンプト」で dnvm upgrade をかけると解消された。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/dotBunny/VSCode/issues/23&quot;&gt;The specified runtime path &amp;#39;default&amp;#39; does not exist. · Issue #23 · dotBunny/VSCode · GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;Error while installing .NET Core Debugger というエラーは放置。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://github.com/OmniSharp/omnisharp-vscode/issues/96&quot;&gt;Error while Downloading and configuring the .NET Core Debugger · Issue #96 · OmniSharp/omnisharp-vscode · GitHub&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;なんかバージョンの齟齬があるっぽいけど（？）、Preview だし、多少はね？　って感じ。
-
-&lt;/div&gt;
-
-</code></pre>
+Request finished in 90.0779ms 200</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702140311.png" alt="f:id:daruyanagi:20160702140311p:plain" title="f:id:daruyanagi:20160702140311p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="http://localhost:5000/">http://localhost:5000/</a> を叩いたら、“Hello! World”が表示された。Empty テンプレートはシンプルすぎてちょっとよくわからなさ過ぎた（await context.Response.WriteAsync(&ldquo;Hello World!&quot;);！）ので、最初はフツーのテンプレートを作って処理を追っていくと構造が把握しやすいかも。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160702140609.png" alt="f:id:daruyanagi:20160702140609p:plain" title="f:id:daruyanagi:20160702140609p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと Visual Studio Code でなんか OmniSharp のエラーが出たんだけど、大丈夫かな。今まで WebMatrix で甘やかされてきたからコマンドラインは苦行だけど、Rails のころはフツーにやってたわけで、がんばればなんとか慣れると思う。</p></p>
+</div>
+<div class="section">
+<h3>追記</h3>
+<p>[ERROR:OmniSharp.Dnx.DnxPaths] The specified runtime path 'default' does not exist. というエラーは、「コマンド プロンプト」で dnvm upgrade をかけると解消された。</p>
+<ul>
+<li><a href="https://github.com/dotBunny/VSCode/issues/23">The specified runtime path &#39;default&#39; does not exist. &middot; Issue #23 &middot; dotBunny/VSCode &middot; GitHub</a></li>
+</ul><p>Error while installing .NET Core Debugger というエラーは放置。</p>
+<ul>
+<li><a href="https://github.com/OmniSharp/omnisharp-vscode/issues/96">Error while Downloading and configuring the .NET Core Debugger &middot; Issue #96 &middot; OmniSharp/omnisharp-vscode &middot; GitHub</a></li>
+</ul><p>なんかバージョンの齟齬があるっぽいけど（？）、Preview だし、多少はね？　って感じ。</p>
+</div>
 
     <footer>
         
@@ -438,7 +392,7 @@ a href=&quot;http://localhost:5000/&quot;&gt;http://localhost:5000/&lt;/a&gt; �
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/07/02/142117.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2016/07/02</time> 
             </p>
         
     </footer>
@@ -490,7 +444,16 @@ a href=&quot;http://localhost:5000/&quot;&gt;http://localhost:5000/&lt;/a&gt; �
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

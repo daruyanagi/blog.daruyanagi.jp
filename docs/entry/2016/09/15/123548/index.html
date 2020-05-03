@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="C#：非同期なイベント？" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。 public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled &#43;= (sender, reason) =&gt; { Hoge(); }; } ```イベントハンドラ内で" />
+    <meta name="og:description"   property="og:description" content="たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。 public void Run(IBackgroundTaskInstance taskInstance) { taskInstance.Canceled &#43;= (sender, reason) =&gt; { Hoge(); }; } イベントハンドラ内で非同期" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/09/15/123548/" />
@@ -87,81 +89,67 @@
     </p>
 
     <p>たとえばこんなコードがあるとする。ラムダ式でイベントハンドラを実装する、よくあるヤツ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Run(IBackgroundTaskInstance taskInstance)
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">void</span> Run(IBackgroundTaskInstance taskInstance)
 {
-    taskInstance.Canceled += (sender, reason) =&gt; { Hoge(); };
+taskInstance.Canceled += (sender, reason) =&gt; { Hoge(); };
 }
-
-<span style="color:#960050;background-color:#1e0010">```イベントハンドラ内で非同期コードがある場合は、こんな感じになる。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Run(IBackgroundTaskInstance taskInstance)
+</pre><p>イベントハンドラ内で非同期コードがある場合は、こんな感じになる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">void</span> Run(IBackgroundTaskInstance taskInstance)
 {
-    taskInstance.Canceled += <span style="color:#66d9ef">async</span> (sender, reason) =&gt;
-    { 
-        <span style="color:#66d9ef">await</span> Hoge(); 
-    };
+taskInstance.Canceled += async (sender, reason) =&gt;
+{
+await Hoge();
+};
 }
-
-<span style="color:#960050;background-color:#1e0010">```</span><span style="color:#66d9ef">async</span>/<span style="color:#66d9ef">await</span> <span style="color:#960050;background-color:#1e0010">を付け足すだけなので、そんなに難しくはない。次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。非同期じゃない場合はこんな感じ。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Run(IBackgroundTaskInstance taskInstance)
+</pre><p>async/await を付け足すだけなので、そんなに難しくはない。</p><p>次に、イベントハンドラのコードが肥大化してきたので、これを外に出すことにする。</p><p>非同期じゃない場合はこんな感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">void</span> Run(IBackgroundTaskInstance taskInstance)
 {
-    taskInstance.Canceled += taskInstanceCanceled;
-}
-
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> taskInstanceCanceled(
-    IBackgroundTaskInstance sender, 
-    BackgroundTaskCancellationReason reason)
-{
-    Hoge();
-    <span style="color:#960050;background-color:#1e0010">：</span>
-    <span style="color:#960050;background-color:#1e0010">：</span>
-}
-
-<span style="color:#960050;background-color:#1e0010">```これをさっきみたいに非同期にすると、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Run(IBackgroundTaskInstance taskInstance)
-{
-    taskInstance.Canceled += taskInstanceCanceled;
-    <span style="color:#75715e">// taskInstance.Canceled += async taskInstanceCanceled;
-</span><span style="color:#75715e"></span>}
-
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">async</span> Task taskInstanceCanceled(
-    IBackgroundTaskInstance sender, 
-    BackgroundTaskCancellationReason reason)
-{
-    <span style="color:#66d9ef">await</span> Hoge();
-    <span style="color:#960050;background-color:#1e0010">：</span>
-    <span style="color:#960050;background-color:#1e0010">：</span>
-}
-
-<span style="color:#960050;background-color:#1e0010">```になると思うんだけど、</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
 taskInstance.Canceled += taskInstanceCanceled;
-
-<span style="color:#960050;background-color:#1e0010">```ここでエラーになる（</span>taskInstanceCanceled <span style="color:#960050;background-color:#1e0010">の返り値が</span> <span style="color:#66d9ef">void</span> <span style="color:#960050;background-color:#1e0010">ではなく</span> Task <span style="color:#960050;background-color:#1e0010">なので）。しょうがないので、ちょっと考えてこうした。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Run(IBackgroundTaskInstance taskInstance)
+}
+<p><span class="synType">private</span> <span class="synType">void</span> taskInstanceCanceled(
+IBackgroundTaskInstance sender,
+BackgroundTaskCancellationReason reason)
 {
-    taskInstance.Canceled += <span style="color:#66d9ef">async</span> (sender, reason) =&gt;
-    {
-        <span style="color:#66d9ef">await</span> taskInstanceCanceled(sender, reason);
-    };
+Hoge();
+：
+：
+}
+</pre><p>これをさっきみたいに非同期にすると、</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">void</span> Run(IBackgroundTaskInstance taskInstance)
+{
+taskInstance.Canceled += taskInstanceCanceled;
+<span class="synComment">// taskInstance.Canceled += async taskInstanceCanceled;</span>
 }
 
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">async</span> Task taskInstanceCanceled(
-    IBackgroundTaskInstance sender, 
-    BackgroundTaskCancellationReason reason)
+<span class="synType">private</span> async Task taskInstanceCanceled(
+IBackgroundTaskInstance sender,
+BackgroundTaskCancellationReason reason)
 {
-    <span style="color:#66d9ef">await</span> Hoge();
-    <span style="color:#960050;background-color:#1e0010">：</span>
-    <span style="color:#960050;background-color:#1e0010">：</span>
+await Hoge();
+：
+：
+}
+</pre><p>になると思うんだけど、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>taskInstance.Canceled += taskInstanceCanceled;
+</pre><p>ここでエラーになる（taskInstanceCanceled の返り値が void ではなく Task なので）。</p><p>しょうがないので、ちょっと考えてこうした。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">void</span> Run(IBackgroundTaskInstance taskInstance)
+{
+taskInstance.Canceled += async (sender, reason) =&gt;
+{
+await taskInstanceCanceled(sender, reason);
+};
 }
 
-<span style="color:#960050;background-color:#1e0010">```動いたっぽいんだけどなんかしっくりこないので、今度詳しい人に聞いてみたい。</span>
+<span class="synType">private</span> async Task taskInstanceCanceled(
+IBackgroundTaskInstance sender,
+BackgroundTaskCancellationReason reason)
+{
+await Hoge();
+：
+：
+}
+</pre><p>動いたっぽいんだけどなんかしっくりこないので、今度詳しい人に聞いてみたい。</p>
 
-
-</code></pre></div>
 
     <footer>
         
@@ -175,7 +163,7 @@ taskInstance.Canceled += taskInstanceCanceled;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/09/15/123548.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2016/09/15</time> 
             </p>
         
     </footer>
@@ -227,7 +215,16 @@ taskInstance.Canceled += taskInstanceCanceled;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

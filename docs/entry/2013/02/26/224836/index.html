@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="数学について、最近俺にもようやくわかってきたこと――等しいということについて" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="たとえば、 &gt; A は （B である） : true とき、A と B をひっくり返して &gt; B は （A である） : true と言っても問題がない場合、 &gt; A と B は等しい : といってよい。" />
+    <meta name="og:description"   property="og:description" content="たとえば、 A は （B である） : true とき、A と B をひっくり返して B は （A である） : true と言っても問題がない場合、 A と B は等しい : といってよい。だから" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/02/26/224836/" />
@@ -87,21 +89,21 @@
     </p>
 
     <p>たとえば、</p>
-<pre><code>&gt;
-    A は （B である） : true
-</code></pre>
+<blockquote>
+<p>A は （B である） : true</p>
+</blockquote>
 <p>とき、A と B をひっくり返して</p>
-<pre><code>&gt;
-    B は （A である） : true
-</code></pre>
+<blockquote>
+<p>B は （A である） : true</p>
+</blockquote>
 <p>と言っても問題がない場合、</p>
-<pre><code>&gt;
-    A と B は等しい : 
-</code></pre>
-<p>といってよい。だから、「等しい」というのは結局のところ、_「右辺と左辺（主語と述語）を取り替えっこしても大丈夫」<em>という意味なのだな。</em>「おめー、なに当たり前のこと言ってるんだ？」_いや、今までしっくりきてなかったんだよ、これが！　_「“等しい”ってどういうことですか？」<em>って聞かれても、たぶん、これまでは答えられなかった。けれど、今は――少なくとも形式的には――答えられる。</em>「逆でもおっけーってことです」_ちなみに、取り替えっこしたあとが成り立たない場合は、</p>
-<pre><code>&gt;
-    A は B に含まれる : 
-</code></pre>
+<blockquote>
+<p>A と B は等しい : <img src="http://chart.apis.google.com/chart?cht=tx&chl=A%20%3D%20B" alt="A = B"/></p>
+</blockquote>
+<p>といってよい。だから、「等しい」というのは結局のところ、<i>「右辺と左辺（主語と述語）を取り替えっこしても大丈夫」</i>という意味なのだな。<i>「おめー、なに当たり前のこと言ってるんだ？」</i>いや、今までしっくりきてなかったんだよ、これが！　<i>「“等しい”ってどういうことですか？」</i>って聞かれても、たぶん、これまでは答えられなかった。けれど、今は――少なくとも形式的には――答えられる。<i>「逆でもおっけーってことです」</i></p><p>ちなみに、取り替えっこしたあとが成り立たない場合は、</p>
+<blockquote>
+<p>A は B に含まれる : <img src="http://chart.apis.google.com/chart?cht=tx&chl=A%20%5Csubset%20B" alt="A \subset B"/></p>
+</blockquote>
 <p>という。右辺と左辺を取り替えっこするときは、記号もひっくり返す。</p>
 
 
@@ -117,7 +119,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/02/26/224836.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2013/02/26</time> 
             </p>
         
     </footer>
@@ -169,7 +171,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

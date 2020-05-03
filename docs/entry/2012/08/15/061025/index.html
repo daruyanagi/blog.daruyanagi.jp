@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/15/061025/" />
@@ -86,77 +88,55 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="https://blog.daruyanagi.jp/entry/2012/08/15/051237">
+<p>けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/08/15/051237">WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（4） - だるろぐ</a></cite></p>
 </blockquote>
-<pre><code>    けれど、これだと IntelliSense の助けが得られないな。無理して App に Theme 関連の変数や関数が属すようにせず、 Static な Theme クラスを作って、そっちで管理するほうがいいかもしれない。
-
-    WebMatrix + ASP.NET Web Pages でキレイにコーディングしたい（4） - だるろぐ
-</code></pre>
-<p>さっそくやってみた。まず、 App_Code フォルダに Theme.cs を作成して、以下のようにコーディング。前回のと内容的には殆ど変わらない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">using</span> System.Web;
-
-<span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Theme</span>
+<p>さっそくやってみた。</p><p>まず、 App_Code フォルダに Theme.cs を作成して、以下のようにコーディング。前回のと内容的には殆ど変わらない。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System.Web;
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> Theme
 {
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> ThemeBaseDir = <span style="color:#e6db74">&#34;~/Themes/&#34;</span>;
-    <span style="color:#66d9ef">const</span> <span style="color:#66d9ef">string</span> ThemeLayoutFile = <span style="color:#e6db74">&#34;_Layout.cshtml&#34;</span>;
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">void</span> Load(<span style="color:#66d9ef">string</span> name) { Name = name; }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Name { <span style="color:#66d9ef">get</span>; <span style="color:#66d9ef">private</span> <span style="color:#66d9ef">set</span>; }
-
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Path
-    { 
-        <span style="color:#66d9ef">get</span> 
-        { 
-            <span style="color:#66d9ef">return</span> VirtualPathUtility.ToAbsolute(
-                System.IO.Path.Combine(ThemeBaseDir, Name)
-            );
-        }
-    }
-    
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">string</span> Layout
-    {
-        <span style="color:#66d9ef">get</span>
-        {
-            <span style="color:#66d9ef">return</span> VirtualPathUtility.ToAbsolute(
-                System.IO.Path.Combine(ThemeBaseDir, Name, ThemeLayoutFile)
-            );
-        }
-    }
+<span class="synType">const</span> <span class="synType">string</span> ThemeBaseDir = <span class="synConstant">&quot;~/Themes/&quot;</span>;
+<span class="synType">const</span> <span class="synType">string</span> ThemeLayoutFile = <span class="synConstant">&quot;_Layout.cshtml&quot;</span>;</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Load(<span class="synType">string</span> name) { Name = name; }</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Name { get; <span class="synType">private</span> set; }</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Path
+{
+<span class="synStatement">get</span>
+{
+<span class="synStatement">return</span> VirtualPathUtility.ToAbsolute(
+System.IO.Path.Combine(ThemeBaseDir, Name)
+);
 }
-
-<span style="color:#960050;background-color:#1e0010">```“</span>_AppStart.cshtml<span style="color:#960050;background-color:#1e0010">”も書き換えておく。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#75715e">// App.Theme = &#34;Default&#34;;
-</span><span style="color:#75715e"></span>    Theme.Load(<span style="color:#e6db74">&#34;Default&#34;</span>);
+}</p>
+<p><span class="synType">public</span> <span class="synType">static</span> <span class="synType">string</span> Layout
+{
+<span class="synStatement">get</span>
+{
+<span class="synStatement">return</span> VirtualPathUtility.ToAbsolute(
+System.IO.Path.Combine(ThemeBaseDir, Name, ThemeLayoutFile)
+);
 }
-
-<span style="color:#960050;background-color:#1e0010">```最初は</span> Theme.Name <span style="color:#960050;background-color:#1e0010">を</span> <span style="color:#66d9ef">public</span> <span style="color:#960050;background-color:#1e0010">にして</span> Theme.Name = <span style="color:#e6db74">&#34;Default&#34;</span> <span style="color:#960050;background-color:#1e0010">みたいな感じで使うようにしていたけれど、</span> Theme.Load() <span style="color:#960050;background-color:#1e0010">の方が意図が明確になると思った。さてはて、レイアウトファイルの方も書き換えよう。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>html
-&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;~/Content/Reset.css&#34;</span> /&gt;
-&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;~/Content/Common.css&#34;</span> /&gt;
-&lt;!-- &lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@App.GetThemePath()/Styles/Main.css&#34;</span> /&gt; --&gt;
-&amp;lt;link rel=<span style="color:#e6db74">&#34;stylesheet&#34;</span> href=<span style="color:#e6db74">&#34;@Theme.Path/Styles/Main.css&#34;</span> /&gt;
-
-</code></pre></div><figure>
-    <img src="/images/20120815053803.png"/> 
-</figure>
-
-<p>ynamic 型にしたら入力補完されないけれど、ちゃんとクラスにしたら……ほら！　クラスの責務も明確になるし、断然こっちのほうがいいなと自己満足した。</p>
+}
+}
+</pre><p>“_AppStart.cshtml”も書き換えておく。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+<span class="synComment">// App.Theme = &quot;Default&quot;;</span>
+Theme.Load(<span class="synConstant">&quot;Default&quot;</span>);
+}
+</pre><p>最初は Theme.Name を public にして Theme.Name = "Default" みたいな感じで使うようにしていたけれど、 Theme.Load() の方が意図が明確になると思った。</p><p>さてはて、レイアウトファイルの方も書き換えよう。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;stylesheet&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Content/Reset.css&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;stylesheet&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/Content/Common.css&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synComment">&lt;!-- &lt;link rel=&quot;stylesheet&quot; href=&quot;@App.GetThemePath()/Styles/Main.css&quot; /&gt; --&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;stylesheet&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;@Theme.Path/Styles/Main.css&quot;</span><span class="synIdentifier"> /&gt;</span>
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120815053803.png" alt="f:id:daruyanagi:20120815053803p:plain" title="f:id:daruyanagi:20120815053803p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>dynamic 型にしたら入力補完されないけれど、ちゃんとクラスにしたら……ほら！　クラスの責務も明確になるし、断然こっちのほうがいいなと自己満足した。</p>
 <div class="section">
-    ### 閑話休題
-    WebMatrix 2 RC 版はなかなか完成度が高いと思うけれど、テキストのコピーにやたら時間がかかったり<a href="#f-76078fae" name="fn-76078fae" title="とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある">*1</a>、まれにコピー＆ペーストそのものができなくなってしまう。 NuGet のリボンボタンが行方不明になるのもたまに困る。
-<figure>
-    <img src="/images/20120815054857.png"/> 
-</figure>
-
-<p>と、［Alt］キーでメニューのナビゲーションが出るのだけれど、そっちにフォーカスがとられて矩形選択や IME の切り替え<a href="#f-52b40b4a" name="fn-52b40b4a" title="英語配列だと［Alt］＋［~］キーが標準">*2</a>に支障が出るのもなおしてほしいところかな。［Alt］キー ＝ メニュー操作 というのは確かにわかりやすいのだけれど。不具合のいくつかはすでに報告済み。 RTM でちゃんとなおればいいなぁ、と思った。</p>
+<h3>閑話休題</h3>
+<p>WebMatrix 2 RC 版はなかなか完成度が高いと思うけれど、テキストのコピーにやたら時間がかかったり<a href="#f-76078fae" name="fn-76078fae" title="とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある">*1</a>、まれにコピー＆ペーストそのものができなくなってしまう。 NuGet のリボンボタンが行方不明になるのもたまに困る。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120815054857.png" alt="f:id:daruyanagi:20120815054857p:plain" title="f:id:daruyanagi:20120815054857p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、［Alt］キーでメニューのナビゲーションが出るのだけれど、そっちにフォーカスがとられて矩形選択や IME の切り替え<a href="#f-52b40b4a" name="fn-52b40b4a" title="英語配列だと［Alt］＋［~］キーが標準">*2</a>に支障が出るのもなおしてほしいところかな。［Alt］キー ＝ メニュー操作 というのは確かにわかりやすいのだけれど。</p><p>不具合のいくつかはすでに報告済み。 RTM でちゃんとなおればいいなぁ、と思った。</p>
 </div><div class="footnote">
-<a href="#fn-76078fae" name="f-76078fae" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある</span>
-<a href="#fn-52b40b4a" name="f-52b40b4a" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">英語配列だと［Alt］＋［~］キーが標準</span>
+<p class="footnote"><a href="#fn-76078fae" name="f-76078fae" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">とくに［テキストを折り返す］を ON にすると絶望的に遅いことがある</span></p>
+<p class="footnote"><a href="#fn-52b40b4a" name="f-52b40b4a" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">英語配列だと［Alt］＋［~］キーが標準</span></p>
 </div>
-
 
     <footer>
         
@@ -170,7 +150,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/15/061025.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/15</time> 
             </p>
         
     </footer>
@@ -222,7 +202,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

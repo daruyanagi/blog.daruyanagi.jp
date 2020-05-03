@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：IHttpModule で定期実行を実装する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の neue cc - ASP.NET" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 3: Twitter Bot &#xFF08;&#xFF0B;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x30ED;&#x30B0;&#x8868;&#x793A;&#x4ED8;&#x304D;&#xFF09;&#x3067;&#x3082;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x308B;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050; で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の neue cc - ASP.NET&#x3067;&#x306E;&#x5B9A;&#x671F;&#x7684;&#x306A;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x624B;&#x6CD5; でもう一度実装しなおしてみた。 Web.config &lt;?xml version=&quot;1.0&quot;encoding=&quot;utf-8&quot;?&gt; &lt;configuration&gt; &lt;system.web&gt; &lt;compilation debug=&quot;true&quot;targetFramework=&quot;4.0&quot;/&gt; &lt;/system.web&gt; &lt;system.webServer&gt; &lt;modules&gt; &lt;add name=&quot;SchedulerModule&quot;type=&quot;SchedulerModule&quot;/&gt; &lt;/modules&gt; &lt;/system.webServer&gt; &lt;/configuration&gt; Web.config" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/20/223507/" />
@@ -86,81 +88,58 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot （＋リアルタイムログ表示付き）でも作ってみる。 - だるろぐ</a> で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の <a href="http://neue.cc/2013/07/20_416.html">neue cc - ASP.NETでの定期的なモニタリング手法</a> でもう一度実装しなおしてみた。</p>
-<figure>
-    <img src="/images/20140720222501.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot &#xFF08;&#xFF0B;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x30ED;&#x30B0;&#x8868;&#x793A;&#x4ED8;&#x304D;&#xFF09;&#x3067;&#x3082;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x308B;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の <a href="http://neue.cc/2013/07/20_416.html">neue cc - ASP.NET&#x3067;&#x306E;&#x5B9A;&#x671F;&#x7684;&#x306A;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x624B;&#x6CD5;</a> でもう一度実装しなおしてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140720222501.png" alt="f:id:daruyanagi:20140720222501p:plain" title="f:id:daruyanagi:20140720222501p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <div class="section">
-    ### Web.config
-    ```xml
-<!--?-->xml version="1.0" encoding="utf-8"?>
-<p><configuration></configuration>
-.web&gt;
-debug=&quot;true&rdquo; targetFramework=&quot;4.0&rdquo; /&gt;
-.web&gt;</p>
-<p>.webServer&gt;
-<modules></modules>
-name=&quot;SchedulerModule&rdquo; type=&quot;SchedulerModule&rdquo;/&gt;</p>
-<p>.webServer&gt;</p>
-<pre><code class="language-Web.config" data-lang="Web.config">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ~/App_Code/ScheduleModule.cs
-    ```cs
-using System;
-using System.Threading;
-using System.Web;
-
-public class SchedulerModule : IHttpModule
+<h3>Web.config</h3>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;configuration&gt;</span>
+<span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span>
+<span class="synIdentifier">&lt;compilation </span><span class="synType">debug</span>=<span class="synConstant">&quot;true&quot;</span><span class="synIdentifier"> </span><span class="synType">targetFramework</span>=<span class="synConstant">&quot;4.0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span></p>
+<p><span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">webServer&gt;</span>
+<span class="synIdentifier">&lt;modules&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">name</span>=<span class="synConstant">&quot;SchedulerModule&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span>=<span class="synConstant">&quot;SchedulerModule&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/modules&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">webServer&gt;</span>
+<span class="synIdentifier">&lt;/configuration&gt;</span>
+</pre><p>Web.config でモジュールを登録する。</p></p>
+</div>
+<div class="section">
+<h3>~/App_Code/ScheduleModule.cs</h3>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.Threading;
+<span class="synStatement">using</span> System.Web;
+<p><span class="synType">public</span> <span class="synType">class</span> SchedulerModule : IHttpModule
 {
-    static int initializedModuleCount = 0;
-    static Timer timer;
- 
-    public void Init(HttpApplication context)
-    {
-        var count = Interlocked.Increment(ref initializedModuleCount);
-
-        if (count != 1) return;
- 
-        timer = new Timer(_ =&gt;
-        {
-            try
-            {
-                System.Diagnostics.Debug.WriteLine(&quot;だん！&quot;);
-            }
-            catch (Exception e)
-            {
-                System.Diagnostics.Debug.WriteLine(e.Message);
-            }
-        }, null, TimeSpan.FromMinutes(1), TimeSpan.FromMinutes(1));
-    }
- 
-    public void Dispose()
-    {
-        var count = Interlocked.Decrement(ref initializedModuleCount);
-
-        if (count != 0) return;
-
-        var target = Interlocked.Exchange(ref timer, null);
-
-        if (target != null) target.Dispose();
-    }
+<span class="synType">static</span> <span class="synType">int</span> initializedModuleCount = <span class="synConstant">0</span>;
+<span class="synType">static</span> Timer timer;</p>
+<p><span class="synType">public</span> <span class="synType">void</span> Init(HttpApplication context)
+{
+var count = Interlocked.Increment(<span class="synStatement">ref</span> initializedModuleCount);</p>
+<p><span class="synStatement">if</span> (count != <span class="synConstant">1</span>) <span class="synStatement">return</span>;</p>
+<p>timer = <span class="synStatement">new</span> Timer(_ =&gt;
+{
+<span class="synStatement">try</span>
+{
+System.Diagnostics.Debug.WriteLine(<span class="synConstant">&quot;だん！&quot;</span>);
 }
-
-```SchedulerModule はこんな感じ。IHttpModule インターフェイス（Init、Dispose）を実装する。
-
-<figure>
-    <img src="/images/20140720222920.png"/> 
-</figure>
-
-
-ExpressWeb で動かして initializedModuleCount をインクリメント・デクリメントをメールで通知するようにしてみたらこんな感じ）SchedulerModule はいくつも作成（＆いくつも殺される）ので、ちゃんと数をカウントして、タイマーが大量生産されないように管理する必要があるそうな（← ASP.NET のライフサイクルをちゃんとわかってない。確かライフサイクルを書いたポスターがあったはずなので、今度確認しておこう）。
-
-&lt;/div&gt;
-
-</code></pre>
+<span class="synStatement">catch</span> (Exception e)
+{
+System.Diagnostics.Debug.WriteLine(e.Message);
+}
+}, <span class="synConstant">null</span>, TimeSpan.FromMinutes(<span class="synConstant">1</span>), TimeSpan.FromMinutes(<span class="synConstant">1</span>));
+}</p>
+<p><span class="synType">public</span> <span class="synType">void</span> Dispose()
+{
+var count = Interlocked.Decrement(<span class="synStatement">ref</span> initializedModuleCount);</p>
+<p><span class="synStatement">if</span> (count != <span class="synConstant">0</span>) <span class="synStatement">return</span>;</p>
+<p>var target = Interlocked.Exchange(<span class="synStatement">ref</span> timer, <span class="synConstant">null</span>);</p>
+<p><span class="synStatement">if</span> (target != <span class="synConstant">null</span>) target.Dispose();
+}
+}
+</pre><p>SchedulerModule はこんな感じ。IHttpModule インターフェイス（Init、Dispose）を実装する。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140720222920.png" alt="f:id:daruyanagi:20140720222920p:plain" title="f:id:daruyanagi:20140720222920p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（ExpressWeb で動かして initializedModuleCount をインクリメント・デクリメントをメールで通知するようにしてみたらこんな感じ）</p><p>SchedulerModule はいくつも作成（＆いくつも殺される）ので、ちゃんと数をカウントして、タイマーが大量生産されないように管理する必要があるそうな（← ASP.NET のライフサイクルをちゃんとわかってない。確かライフサイクルを書いたポスターがあったはずなので、今度確認しておこう）。</p></p>
+</div>
 
     <footer>
         
@@ -174,7 +153,7 @@ ExpressWeb で動かして initializedModuleCount をインクリメント・デ
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/20/223507.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/20</time> 
             </p>
         
     </footer>
@@ -226,7 +205,16 @@ ExpressWeb で動かして initializedModuleCount をインクリメント・デ
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

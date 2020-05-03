@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Windows 8 の［Windows］＋［X］メニューをカスタマイズする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="### 基本的な仕組み ［Windows］＋［X］キーで利用できる Windows 8 の管理メニューの構成は、 ``` %LocalAppData%\Microsoft\Windows\WinX ```に保存されている。単にフォルダ分けして、ショ" />
+    <meta name="og:description"   property="og:description" content="基本的な仕組み ［Windows］＋［X］キーで利用できる Windows 8 の管理メニューの構成は、 %LocalAppData%\Microsoft\Win" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/11/10/131055/" />
@@ -87,44 +89,40 @@
     </p>
 
     <div class="section">
-    ### 基本的な仕組み
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124222.png" alt="f:id:daruyanagi:20121110124222p:plain" title="f:id:daruyanagi:20121110124222p:plain" class="hatena-fotolife"/>［Windows］＋［X］キーで利用できる Windows 8 の管理メニューの構成は、
-```
-%LocalAppData%\Microsoft\Windows\WinX
-```に保存されている。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124004.png" alt="f:id:daruyanagi:20121110124004p:plain" title="f:id:daruyanagi:20121110124004p:plain" class="hatena-fotolife"/>単にフォルダ分けして、ショートカットファイルが収められているだけなので、簡単にカスタマイズできる……ように見える（後述）。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124112.png" alt="f:id:daruyanagi:20121110124112p:plain" title="f:id:daruyanagi:20121110124112p:plain" class="hatena-fotolife"/>ショートカットファイルをフォルダ分けしておくと、メニューが表示されるときにスプリッタ―で分割されるので、多少見やすくなる。「Group*」という命名規則に従う必要は必ずしもないようだが、もしかしたら表示順序などには関係するのかもしれない。従っておいたほうが無難だと思う。
+<h3>基本的な仕組み</h3>
+<p><img src="20121110124222.png" alt="f:id:daruyanagi:20121110124222p:plain" title="f:id:daruyanagi:20121110124222p:plain" class="hatena-fotolife"></p><p>［Windows］＋［X］キーで利用できる Windows 8 の管理メニューの構成は、</p>
+<pre class="code" data-unlink>%LocalAppData%\Microsoft\Windows\WinX</pre><p>に保存されている。</p><p><img src="20121110124004.png" alt="f:id:daruyanagi:20121110124004p:plain" title="f:id:daruyanagi:20121110124004p:plain" class="hatena-fotolife"></p><p>単にフォルダ分けして、ショートカットファイルが収められているだけなので、簡単にカスタマイズできる……ように見える（後述）。</p><p><img src="20121110124112.png" alt="f:id:daruyanagi:20121110124112p:plain" title="f:id:daruyanagi:20121110124112p:plain" class="hatena-fotolife"></p><p>ショートカットファイルをフォルダ分けしておくと、メニューが表示されるときにスプリッタ―で分割されるので、多少見やすくなる。「Group*」という命名規則に従う必要は必ずしもないようだが、もしかしたら表示順序などには関係するのかもしれない。従っておいたほうが無難だと思う。</p>
 <div class="section">
-    #### 寄り道
-    ここで少し気になるのは、コマンドプロンプトのショートカットファイルが2種類あることだろう。この違いは管理者権限の有無だ。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124601.png" alt="f:id:daruyanagi:20121110124601p:plain" title="f:id:daruyanagi:20121110124601p:plain" class="hatena-fotolife"/>これはショートカットファイルの［詳細設定］で変更できる。ちょっと階層が深い……。
+<h4>寄り道</h4>
+<p>ここで少し気になるのは、コマンドプロンプトのショートカットファイルが2種類あることだろう。この違いは管理者権限の有無だ。</p><p><img src="20121110124601.png" alt="f:id:daruyanagi:20121110124601p:plain" title="f:id:daruyanagi:20121110124601p:plain" class="hatena-fotolife"></p><p>これはショートカットファイルの［詳細設定］で変更できる。ちょっと階層が深い……。</p>
 </div>
 </div>
 <div class="section">
-    ### メニュー項目をカスタマイズしてみる
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124905.png" alt="f:id:daruyanagi:20121110124905p:plain" title="f:id:daruyanagi:20121110124905p:plain" class="hatena-fotolife"/>とりあえずデスクトップに転がっていたショートカットファイルを「新しいフォルダー」に突っ込んでみた。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110124943.png" alt="f:id:daruyanagi:20121110124943p:plain" title="f:id:daruyanagi:20121110124943p:plain" class="hatena-fotolife"/>これだけだと何も起こらないので、エクスプローラーを再起動してみる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20121110/20121110123900.png" alt="f:id:daruyanagi:20121110123900p:plain" title="f:id:daruyanagi:20121110123900p:plain" class="hatena-fotolife"/>すると、スプリッタ―だけが追加された。メニュー項目は追加されない。
-<pre><code>&gt;
-    The entries on the menu are driven by shortcut (.lnk) files present in each Group folder located at %LocalAppData%\Microsoft\Windows\WinX. But you can’t manipulate the shortcuts within or add new ones. That’s because at first invocation (e.g. a fresh boot), the menu scans for and only adds approved shortcuts.
-
-    Windows 8 Secrets: The WinX Menu and its hashing algorithm Within Windows
-</code></pre>
-<p>どうやら管理メニューが最初に呼び出されるときに、ショートカットファイルをスキャンして“承認された”ものであるかどうかチェックが入るようだ。“承認された”ショートカットファイルを作成するには、</p>
+<h3>メニュー項目をカスタマイズしてみる</h3>
+<p><img src="20121110124905.png" alt="f:id:daruyanagi:20121110124905p:plain" title="f:id:daruyanagi:20121110124905p:plain" class="hatena-fotolife"></p><p>とりあえずデスクトップに転がっていたショートカットファイルを「新しいフォルダー」に突っ込んでみた。</p><p><img src="20121110124943.png" alt="f:id:daruyanagi:20121110124943p:plain" title="f:id:daruyanagi:20121110124943p:plain" class="hatena-fotolife"></p><p>これだけだと何も起こらないので、エクスプローラーを再起動してみる。</p><p><img src="20121110123900.png" alt="f:id:daruyanagi:20121110123900p:plain" title="f:id:daruyanagi:20121110123900p:plain" class="hatena-fotolife"></p><p>すると、スプリッタ―だけが追加された。メニュー項目は追加されない。</p>
+<blockquote cite="http://www.withinwindows.com/2012/04/04/windows-8-secrets-the-winx-menu-and-its-hashing-algorithm/">
+<p>The entries on the menu are driven by shortcut (.lnk) files present in each Group folder located at %LocalAppData%\Microsoft\Windows\WinX. But you can’t manipulate the shortcuts within or add new ones. That’s because at first invocation (e.g. a fresh boot), the menu scans for and only adds approved shortcuts.</p>
+<p><cite><a href="http://www.withinwindows.com/2012/04/04/windows-8-secrets-the-winx-menu-and-its-hashing-algorithm/">Windows 8 Secrets: The WinX Menu and its hashing algorithm Within Windows</a></cite></p>
+</blockquote>
+<p>どうやら管理メニューが最初に呼び出されるときに、ショートカットファイルをスキャンして“承認された”ものであるかどうかチェックが入るようだ。</p><p>“承認された”ショートカットファイルを作成するには、</p>
 <ul>
 <li>The link’s target application path/file (e.g. C:\Games\Minecraft.exe)</li>
 <li>The link’s target application arguments (e.g. –windowed)</li>
-</ul>これらのハッシュをとって、ショートカットファイルの特定のデータチャンクへ埋め込まなければならない。
+</ul><p>これらのハッシュをとって、ショートカットファイルの特定のデータチャンクへ埋め込まなければならない。</p>
 <ul>
 <li><a href="http://msdn.microsoft.com/en-us/library/dd871305(v=prot.20).aspx">[MS-SHLLINK]: Shell Link (.LNK) Binary File Format</a></li>
-</ul>ショートカットファイルの構造って結構メンドイのな……。うはぁ、めんどくさい！
+</ul><p>ショートカットファイルの構造って結構メンドイのな……。うはぁ、めんどくさい！</p>
 </div>
 <div class="section">
-    ### まとめ
-    “WinX”フォルダーを編集すれば、［Windows］＋［X］メニューはカスタマイズできる。ただし、新たにショートカットファイルを登録する場合は、ハッシュを埋め込む必要がある。これを簡単なツールが、
+<h3>まとめ</h3>
+<p>“WinX”フォルダーを編集すれば、［Windows］＋［X］メニューはカスタマイズできる。ただし、新たにショートカットファイルを登録する場合は、ハッシュを埋め込む必要がある。これを簡単なツールが、</p>
 <ul>
-<li><a href="https://github.com/riverar/hashlnk">riverar/hashlnk · GitHub</a></li>
-</ul>で公開されている。ショートカットファイルの移動や削除だけならば、比較的簡単に行える。また、エンドユーザー向けにはとあるロシア人が作ってくれたわかりやすいツールが用意されている。
+<li><a href="https://github.com/riverar/hashlnk">riverar/hashlnk &middot; GitHub</a></li>
+</ul><p>で公開されている。</p><p>ショートカットファイルの移動や削除だけならば、比較的簡単に行える。</p><p>また、エンドユーザー向けにはとあるロシア人が作ってくれたわかりやすいツールが用意されている。</p>
 <ul>
-<li><a href="http://www.forest.impress.co.jp/docs/review/20121108_571662.html">窓の杜 - 【REVIEW】Windows 8の［Windows］＋［X］メニューを自分好みに編集「Win+X Menu Editor」</a></li>
-</ul>あと、このメニューはユーザーがカスタマイズして利用することがあまり想定されていないようだ。多少悲しいことがあっても、泣いちゃいけない。
+<li><a href="http://www.forest.impress.co.jp/docs/review/20121108_571662.html">&#x7A93;&#x306E;&#x675C; - &#x3010;REVIEW&#x3011;Windows 8&#x306E;&#xFF3B;Windows&#xFF3D;&#xFF0B;&#xFF3B;X&#xFF3D;&#x30E1;&#x30CB;&#x30E5;&#x30FC;&#x3092;&#x81EA;&#x5206;&#x597D;&#x307F;&#x306B;&#x7DE8;&#x96C6;&#x300C;Win+X Menu Editor&#x300D;</a></li>
+</ul><p>あと、このメニューはユーザーがカスタマイズして利用することがあまり想定されていないようだ。多少悲しいことがあっても、泣いちゃいけない。</p>
 </div>
-
 
     <footer>
         
@@ -138,7 +136,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/11/10/131055.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/11/10</time> 
             </p>
         
     </footer>
@@ -190,7 +188,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

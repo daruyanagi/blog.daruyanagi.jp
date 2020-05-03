@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Markdown で好みのヘルパーを使えるようにする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="連日プログラミングの話になる。WebMatrix &#43; Markdown …… リファクタリング。 で、 &gt; Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する" />
+    <meta name="og:description"   property="og:description" content="連日プログラミングの話になる。 WebMatrix &#43; Markdown …… リファクタリング。 で、 Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出して" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20111113/1321153887/" />
@@ -86,109 +88,93 @@
         </time>        
     </p>
 
-    <p>連日プログラミングの話になる。<a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> で、</p>
-<pre><code>&gt;
-    Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出している。これについては、また今度。
-</code></pre>
+    <p>連日プログラミングの話になる。</p><p><a href="http://blog.daruyanagi.net/archives/424">WebMatrix + Markdown …… リファクタリング。</a> で、</p>
+<blockquote>
+<p>Daruboard.Transform(content); は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出している。これについては、また今度。</p>
+</blockquote>
 <p>と書いたと思うんだけど、今日はその話。以下に <code>/App_Code/Daruboard.cshtml</code> の内容を示す。</p>
-<pre><code>	@using System.Text.RegularExpressions
-	@using System.Reflection
-
-	@functions {
-
-	    private struct FormatHelper
-	    {
-	        public string Signature;
-	        public Type Type;
-	        public string Method;
-	        public object[] DefaultParams;
-	    }
-
-	    private static List&amp;lt;FormatHelper&gt; FormatHelpers = new List&amp;lt;FormatHelper&gt;();
-
-	    public static void RegisterHelper(
-	        string signature, Type type, string method_name, object[] default_params)
-	    {
-	        if (FormatHelpers.Any(f =&gt; f.Signature == signature))
-	        {
-	            throw new Exception(string.Format(
-	                &quot;Daruboard.RegisterHelper(): {0} has already exist.&quot;,
-	                signature));
-	        }
-
-	        MethodInfo method = type.GetMethod(method_name);
-	        if (method == null)
-	        {
-	            throw new Exception(string.Format(
-	                &quot;Daruboard.RegisterHelper(): {0} does not have {1}().&quot;,
-	                type, method_name));
-	        }
-
-	        FormatHelpers.Add(new FormatHelper() {
-	            Signature = signature,
-	            Type = type,
-	            Method = method_name,
-	            DefaultParams = default_params
-	        });
-	    }
-
-	    public static string Transform(string text)
-	    {
-	        var r = new Regex(@&quot;
-	            (&amp;lt;p&gt;)?\[\[
-	                (?&amp;lt;signature&gt;[^\[\]\|]*)(\|(?&amp;lt;params&gt;[^\[\]]*))*
-	            \]\](&amp;lt;/p&gt;)?&quot;,
-	            RegexOptions.Singleline | 
-	            RegexOptions.IgnorePatternWhitespace | 
-	            RegexOptions.Compiled
-	        );
-	        
-	        text = r.Replace(text, m =&gt;
-	        {
-	            var s = m.Groups[&quot;signature&quot;].Value;
-	            var p = m.Groups[&quot;params&quot;].Value.Split(&amp;#39;|&amp;#39;);
-	            var f = FormatHelpers.Find(_ =&gt; _.Signature == s);
-
-	            if (f.Signature == null)
-	            {
-	                return string.Format(&quot;&amp;lt;a href=&amp;#39;/{0}&amp;#39;&gt;{0}&amp;lt;/a&gt;&quot;, s);
-	            }
-	            else
-	            {
-	                try
-	                {
-	                    MethodInfo method = f.Type.GetMethod(f.Method);
-	                    object[] parameter = f.DefaultParams;
-	                    parameter[0] = p[0];
-	                    return method.Invoke(null, parameter).ToString();
-	                }
-	                catch (Exception e)
-	                {
-	                    return string.Format(&quot;[{0}: {1}]&quot;, e.GetType(), e.Message);
-	                }
-	            }
-	        });
-
-	        return text;
-	    }
-	}
-``` &lt;a href=&quot;http://d.hatena.ne.jp/keyword/sigunature%7Cparam1%7Cparam2...&quot;&gt;sigunature|param1|param2...&lt;/a&gt; という書式を見つけたら、指定した Signature をもつヘルパーを登録済みリストから探し出し、登録時に指定した Method をリフレクションで呼び出す。ヘルパーの登録は、&lt;code&gt;＿AppStart.cshtml&lt;/code&gt;あたりで、
-</code></pre><pre><code>Daruboard.RegisterHelper(&quot;twitter&quot;,
-    typeof(BlackbirdPie),
-    &quot;GetHtml&quot;,
-    new object[] { null, false, true, Locale.ja }
-);
-</code></pre>
-<pre><code class="language-などとと書いておく" data-lang="などとと書いておく"></code></pre><pre><code>[[twitter|ツイートへのURL]]
-</code></pre>
-<pre><code class="language-が、" data-lang="が、"></code></pre><pre><code>@BlackbirdPie.GetHtml(ツイートへのURL)
-</code></pre>
-<pre><code class="language-と解釈されてレンダリングされるというわけ。さて、ここまでやっちゃうとだんだん読み込み速度が気になってきた。というわけで、今度はキャッシュの使い方を勉強しようかなぁと思う。これまで作った" data-lang="と解釈されてレンダリングされるというわけ。さて、ここまでやっちゃうとだんだん読み込み速度が気になってきた。というわけで、今度はキャッシュの使い方を勉強しようかなぁと思う。これまで作った">&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;今のところ、パラメーターは一つ、しかも string 型しか渡せない。true/false ならともかく、Location.ja を string 型から変換するのは面倒くさすぎると思った。将来的には、もう少し改善したい&lt;/span&gt;
-&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;Markdown の\[URL\](URL)記法の簡略表記として使えるので便利&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+<pre class="code" data-unlink>	@using System.Text.RegularExpressions
+@using System.Reflection
+<p>@functions {</p>
+<p>private struct FormatHelper
+{
+public string Signature;
+public Type Type;
+public string Method;
+public object[] DefaultParams;
+}</p>
+<p>private static List&lt;FormatHelper&gt; FormatHelpers = new List&lt;FormatHelper&gt;();</p>
+<p>public static void RegisterHelper(
+string signature, Type type, string method_name, object[] default_params)
+{
+if (FormatHelpers.Any(f =&gt; f.Signature == signature))
+{
+throw new Exception(string.Format(
+&quot;Daruboard.RegisterHelper(): {0} has already exist.&quot;,
+signature));
+}</p>
+<p>MethodInfo method = type.GetMethod(method_name);
+if (method == null)
+{
+throw new Exception(string.Format(
+&quot;Daruboard.RegisterHelper(): {0} does not have {1}().&quot;,
+type, method_name));
+}</p>
+<p>FormatHelpers.Add(new FormatHelper() {
+Signature = signature,
+Type = type,
+Method = method_name,
+DefaultParams = default_params
+});
+}</p>
+<p>public static string Transform(string text)
+{
+var r = new Regex(@&quot;
+(&lt;p&gt;)?[[
+(?&lt;signature&gt;[^[]|]<em>)(|(?&lt;params&gt;[^[]]</em>))*
+]](&lt;/p&gt;)?&quot;,
+RegexOptions.Singleline |
+RegexOptions.IgnorePatternWhitespace |
+RegexOptions.Compiled
+);</p>
+<p>text = r.Replace(text, m =&gt;
+{
+var s = m.Groups[&quot;signature&quot;].Value;
+var p = m.Groups[&quot;params&quot;].Value.Split('|');
+var f = FormatHelpers.Find(_ =&gt; _.Signature == s);</p>
+<p>if (f.Signature == null)
+{
+return string.Format(&quot;&lt;a href='/{0}'&gt;{0}&lt;/a&gt;&quot;, s);
+}
+else
+{
+try
+{
+MethodInfo method = f.Type.GetMethod(f.Method);
+object[] parameter = f.DefaultParams;
+parameter[0] = p[0];
+return method.Invoke(null, parameter).ToString();
+}
+catch (Exception e)
+{
+return string.Format(&quot;[{0}: {1}]&quot;, e.GetType(), e.Message);
+}
+}
+});</p>
+<p>return text;
+}
+}</pre><p> <a href="http://d.hatena.ne.jp/keyword/sigunature%7Cparam1%7Cparam2...">sigunature|param1|param2&hellip;</a> という書式を見つけたら、指定した Signature をもつヘルパーを登録済みリストから探し出し、登録時に指定した Method をリフレクションで呼び出す。ヘルパーの登録は、<code>＿AppStart.cshtml</code>あたりで、</p></p>
+<pre class="code" data-unlink>    Daruboard.RegisterHelper(&#34;twitter&#34;,
+typeof(BlackbirdPie),
+&#34;GetHtml&#34;,
+new object[] { null, false, true, Locale.ja }
+);</pre><p>などとと書いておく <a href="#f1" name="fn1" title="今のところ、パラメーターは一つ、しかも string 型しか渡せない。true/false ならともかく、Location.ja を string 型から変換するのは面倒くさすぎると思った。将来的には、もう少し改善したい">*1</a> 。書式に Signature しかない場合は、それを URL とみなしリンクにする <a href="#f2" name="fn2" title="Markdown の\[URL\](URL)記法の簡略表記として使えるので便利">*2</a> 処理を入れてある。</p><p>まぁ、これで、</p>
+<pre class="code" data-unlink>    [[twitter|ツイートへのURL]]</pre><p>が、</p>
+<pre class="code" data-unlink>    @BlackbirdPie.GetHtml(ツイートへのURL)</pre><p>と解釈されてレンダリングされるというわけ。</p><p>さて、ここまでやっちゃうとだんだん読み込み速度が気になってきた。というわけで、今度はキャッシュの使い方を勉強しようかなぁと思う。これまで作った Webアプリは、daruyanagi.net で実際に利用されている（11/11/13現在）。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">今のところ、パラメーターは一つ、しかも string 型しか渡せない。true/false ならともかく、Location.ja を string 型から変換するのは面倒くさすぎると思った。将来的には、もう少し改善したい</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">Markdown の\[URL\](URL)記法の簡略表記として使えるので便利</span></p>
+</div>
 
     <footer>
         
@@ -202,7 +188,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20111113/1321153887.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/11/13</time> 
             </p>
         
     </footer>
@@ -254,7 +240,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

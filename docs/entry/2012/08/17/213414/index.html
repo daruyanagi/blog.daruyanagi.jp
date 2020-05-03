@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="HTML5 &#43; jQuery &#43; PHP 製の D&amp;amp;D 対応画像アップローダーを WebMatrix で試す" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTMLドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと" />
+    <meta name="og:description"   property="og:description" content="Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTML ドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒で" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/17/213414/" />
@@ -86,20 +88,19 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212329.png" alt="f:id:daruyanagi:20120817212329p:plain" title="f:id:daruyanagi:20120817212329p:plain" class="hatena-fotolife"/><a href="http://www.inserthtml.com/2012/08/file-uploader/">Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTML</a>ドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒ですよね。フロントエンドは HTML5 + jQuery なので Web ブラウザーだけで動きますけど、バックエンドはたいてい PHP スクリプトなので Web サーバーが必要です。つまり、</p>
+    <p><img src="20120817212329.png" alt="f:id:daruyanagi:20120817212329p:plain" title="f:id:daruyanagi:20120817212329p:plain" class="hatena-fotolife"></p><p><a href="http://www.inserthtml.com/2012/08/file-uploader/">Creating a Complete HTML5 Drag and Drop File Uploader with jQuery | InsertHTML</a></p><p>ドラッグ＆ドロップで画像ファイルをアップロードできるアプリってたまに公開されてますけど、ちょっと試したくても面倒ですよね。フロントエンドは <a class="keyword" href="http://d.hatena.ne.jp/keyword/HTML5">HTML5</a> + <a class="keyword" href="http://d.hatena.ne.jp/keyword/jQuery">jQuery</a> なので Web ブラウザーだけで動きますけど、バックエンドはたいてい <a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a> スクリプトなので Web サーバーが必要です。</p><p>つまり、</p>
 <ul>
 <li>Web サーバーを動かす</li>
-<li>PHP のセットアップ</li>
-</ul>なんてことを、わざわざしなきゃいけないんですよ！　ちょっと試したいだけなのにね。そんなときは「WebMatrix 2」を使ってください（<a href="http://www.forest.impress.co.jp/docs/news/20120608_538907.html">窓の杜 - 【NEWS】「WebMatrix 2」がリリース候補版に、“Node.js”サポートや“Azure”連携を追加</a>）。デフォルトで PHP が有効で、サーバーだって IIS Express が利用できる。めっちゃ簡単ですよ！
+<li><a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a> のセットアップ</li>
+</ul><p>なんてことを、わざわざしなきゃいけないんですよ！　ちょっと試したいだけなのにね。</p><p>そんなときは「<a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> 2」を使ってください（<a href="http://www.forest.impress.co.jp/docs/news/20120608_538907.html">&#x7A93;&#x306E;&#x675C; - &#x3010;NEWS&#x3011;&#x300C;WebMatrix 2&#x300D;&#x304C;&#x30EA;&#x30EA;&#x30FC;&#x30B9;&#x5019;&#x88DC;&#x7248;&#x306B;&#x3001;&ldquo;Node.js&rdquo;&#x30B5;&#x30DD;&#x30FC;&#x30C8;&#x3084;&ldquo;Azure&rdquo;&#x9023;&#x643A;&#x3092;&#x8FFD;&#x52A0;</a>）。デフォルトで <a class="keyword" href="http://d.hatena.ne.jp/keyword/PHP">PHP</a> が有効で、サーバーだって <a class="keyword" href="http://d.hatena.ne.jp/keyword/IIS">IIS</a> Express が利用できる。めっちゃ簡単ですよ！</p>
 <div class="section">
-    ### 準備
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212936.png" alt="f:id:daruyanagi:20120817212936p:plain" title="f:id:daruyanagi:20120817212936p:plain" class="hatena-fotolife"/>「Empty Site」テンプレートで Web サイトを作成します。画像アップロード先が“Images”フォルダなので、あらかじめ作成しておきましょう。そして、アップローダーをダウンロードして展開し、 Web サイトのルートにまるっとコピーします。これだけ。
+<h3>準備</h3>
+<p><img src="20120817212936.png" alt="f:id:daruyanagi:20120817212936p:plain" title="f:id:daruyanagi:20120817212936p:plain" class="hatena-fotolife"></p><p>「Empty Site」テンプレートで Web サイトを作成します。画像アップロード先が“Images”フォルダなので、あらかじめ作成しておきましょう。そして、アップローダーをダウンロードして展開し、 Web サイトのルートにまるっとコピーします。</p><p>これだけ。</p>
 </div>
 <div class="section">
-    ### 使ってみよう！
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817212957.png" alt="f:id:daruyanagi:20120817212957p:plain" title="f:id:daruyanagi:20120817212957p:plain" class="hatena-fotolife"/>Web サイトを実行して、画像ファイルをブラウザーにドラッグ＆ドロップしてください。なお、 Web ブラウザーは IE 以外で。 IE9 でもゴニョゴニョすれば使えるはず（<a href="http://html5labs.interoperabilitybridges.com/">HTML5Labs - Home</a>）だけど、初期状態では残念ながら利用できません。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120817/20120817213139.png" alt="f:id:daruyanagi:20120817213139p:plain" title="f:id:daruyanagi:20120817213139p:plain" class="hatena-fotolife"/>ちゃんとアップロードされ……あれ？　複数ファイルのアップロードにも対応してるはずだけど、2つ目以降がちゃんとアップロードされていない。まぁ、いいや。こんな感じで簡単にお試しできるので入れておいて損はないんじゃないかな？
+<h3>使ってみよう！</h3>
+<p><img src="20120817212957.png" alt="f:id:daruyanagi:20120817212957p:plain" title="f:id:daruyanagi:20120817212957p:plain" class="hatena-fotolife"></p><p>Web サイトを実行して、画像ファイルをブラウザーにドラッグ＆ドロップしてください。なお、 Web ブラウザーは IE 以外で。 <a class="keyword" href="http://d.hatena.ne.jp/keyword/IE9">IE9</a> でもゴニョゴニョすれば使えるはず（<a href="http://html5labs.interoperabilitybridges.com/">HTML5Labs - Home</a>）だけど、初期状態では残念ながら利用できません。</p><p><img src="20120817213139.png" alt="f:id:daruyanagi:20120817213139p:plain" title="f:id:daruyanagi:20120817213139p:plain" class="hatena-fotolife"></p><p>ちゃんとアップロードされ……あれ？　複数ファイルのアップロードにも対応してるはずだけど、2つ目以降がちゃんとアップロードされていない。まぁ、いいや。こんな感じで簡単にお試しできるので入れておいて損はないんじゃないかな？</p>
 </div>
-
 
     <footer>
         
@@ -113,7 +114,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/17/213414.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/08/17</time> 
             </p>
         
     </footer>
@@ -165,7 +166,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

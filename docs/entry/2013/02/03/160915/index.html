@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2：OAuth でログインする（２）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 2：OAuth でログインする - だるろぐ の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。ま" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2&#xFF1A;OAuth &#x3067;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/02/03/160915/" />
@@ -86,139 +88,97 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/27/102043">WebMatrix 2：OAuth でログインする - だるろぐ</a> の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2013/01/27/102043">WebMatrix 2&#xFF1A;OAuth &#x3067;&#x30ED;&#x30B0;&#x30A4;&#x30F3;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。今回は“空のサイト”テンプレートから、OAuth によるログイン処理を書いていくことにする。まぁ、“スターターサイト”テンプレートのコードを読めば分かる人もいると思うけど、こういうのは一度自分で書いてみるに限ると思う。</p>
 <div class="section">
-    ### NuGet で必要なものをインストール
-<figure>
-    <img src="/images/20130203152828.png"/> 
-</figure>
-
-<p>uGet で <a href="http://nuget.org/packages/Microsoft.AspNet.WebPages.OAuth">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。まえにやったとき（<a href="https://blog.daruyanagi.jp/entry/2012/09/04/023414">さて、WebMatrix で OAuth 認証を……Σ(ﾟдﾟlll)ｶﾞｰﾝ - だるろぐ</a>）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。</p>
-<figure>
-    <img src="/images/20130203153208.png"/> 
-</figure>
-
-<p>れをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。</p>
+<h3>NuGet で必要なものをインストール</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130203152828.png" alt="f:id:daruyanagi:20130203152828p:plain" title="f:id:daruyanagi:20130203152828p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>MuGet で <a href="http://nuget.org/packages/Microsoft.AspNet.WebPages.OAuth">NuGet Gallery | Microsoft.AspNet.WebPages.OAuth 3.2.7</a> をインストール。</p><p>まえにやったとき（<a href="https://blog.daruyanagi.jp/entry/2012/09/04/023414">&#x3055;&#x3066;&#x3001;WebMatrix &#x3067; OAuth &#x8A8D;&#x8A3C;&#x3092;&hellip;&hellip;&Sigma;(&#xFF9F;&#x434;&#xFF9F;lll)&#xFF76;&#xFF9E;&#xFF70;&#xFF9D; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）はインストールできなかったのだけど、今はできるようになってる。何が悪かったのかな？　ま、直ってるならいいや。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130203153208.png" alt="f:id:daruyanagi:20130203153208p:plain" title="f:id:daruyanagi:20130203153208p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これをインストールすると、 DotNetOpenAuth を初めとする必要なライブラリも同時にインストールされる。DotNetOpenAuth 系はいろいろあってどれを入れていいのかよくわからないけれど、Microsoft WebPages OAuth library をいれておけばおっけーなのかな。</p>
 </div>
 <div class="section">
-    ### ~/_AppStart.cshtml
-    Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。
-```cs
-@{
-    // いろんなところで使うので、グローバルにアクセスできるようにしとくか
-    App.Database = "Database";
-<pre><code>// ユーザー管理用のテーブルを初期化・作成
+<h3>~/_AppStart.cshtml</h3>
+<p>Web サイトを初めて実行するときにロードされる ~/_AppStart.cshtml で、初期設定を行う。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+<span class="synComment">// いろんなところで使うので、グローバルにアクセスできるようにしとくか</span>
+App.Database = <span class="synConstant">&quot;Database&quot;</span>;
+<p><span class="synComment">// ユーザー管理用のテーブルを初期化・作成</span>
 WebSecurity.InitializeDatabaseConnection(
-    App.Database,
-    &quot;UserProfile&quot;, &quot;UserId&quot;, &quot;UserName&quot;,
-    autoCreateTables: true);
-
-// Google の OAuth を使います！
+App.Database,
+<span class="synConstant">&quot;UserProfile&quot;</span>, <span class="synConstant">&quot;UserId&quot;</span>, <span class="synConstant">&quot;UserName&quot;</span>,
+<span class="synStatement">        autoCreateTables:</span> <span class="synConstant">true</span>);</p>
+<p><span class="synComment">// Google の OAuth を使います！</span>
 OAuthWebSecurity.RegisterGoogleClient();
-</code></pre>
-<p>}</p>
-<pre><code class="language-WebSecurity.InitializeDatabaseConnection" data-lang="WebSecurity.InitializeDatabaseConnection">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ~/Account/Login.cshtml
-    お次はログインフォーム。
-```cs
-@{
-    Page.Title = &quot;ログイン&quot;;
-
-    var provider = Request.Form[&quot;provider&quot;];
 }
-
-@{  // POST のときは外部サイトの認証ページへ飛ばす
-
-    if (!provider.IsEmpty() &amp;amp;&amp;amp; IsPost)
-    {
-        AntiForgery.Validate(); // CSRF 対策
-
-        // 外部認証サービスでの認証を行う
-        // 成功したら ~/Account/RegisterService.cshtml を開く
-        OAuthWebSecurity.RequestAuthentication(
-            provider,
-            Href(&quot;~/Account/RegisterService&quot;)
-        );
-
-        return;
-    }
-}
-
-@{  // GET のとき（だけじゃないけど）は、
-    // 外部認証サービスを選択するフォームを表示する
-
-    if (OAuthWebSecurity.RegisteredClientData.Count == 0)
-    {
-        &amp;lt;p&gt;外部認証サービスが構成されていません。&amp;lt;/p&gt;
-    }
-    else
-    {
-        &amp;lt;form method=&quot;post&quot;&gt;
-            @AntiForgery.GetHtml()
-            &amp;lt;p&gt;
-            @foreach (var client in OAuthWebSecurity.RegisteredClientData)
-            {
-                &amp;lt;button type=&quot;submit&quot; name=&quot;provider&quot;
-                    value=&quot;@client.AuthenticationClient.ProviderName&quot;
-                    title=&quot;@client.DisplayName アカウントを使用してログイン&quot;&gt;
-                    @client.DisplayName
-                &amp;lt;/button&gt;
-            }
-            &amp;lt;/p&gt;
-        &amp;lt;/form&gt;
-    }
-}
-
-</code></pre><figure>
-    <img src="/images/20130203155104.png"/> 
-</figure>
-
-<p>のボタンを押すと、</p>
-<figure>
-    <img src="/images/20130203155926.png"/> 
-</figure>
-
-<p>oogle の認証ページに飛ぶはず。</p>
+</pre><p>WebSecurity.InitializeDatabaseConnection は以前（<a href="https://blog.daruyanagi.jp/entry/2012/08/24/095023">WebMatrix でユーザー認証機能 ―― 準備編 - だるろぐ</a>）も使った。OAuth のときもこれを使うみたいだね。</p></p>
 </div>
 <div class="section">
-    ### ~/Account/RegisterService.cshtml
-    Google での認証が成功すると、このページに着地する。まぁ、名前は好きにすればいいと思う。
-```cs
-@{
-    Page.Title = "登録";
+<h3>~/Account/Login.cshtml</h3>
+<p>お次はログインフォーム。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+Page.Title = <span class="synConstant">&quot;ログイン&quot;</span>;
+<p>var provider = Request.Form[<span class="synConstant">&quot;provider&quot;</span>];
+}</p>
+<p>@{  <span class="synComment">// POST のときは外部サイトの認証ページへ飛ばす</span></p>
+<p><span class="synStatement">if</span> (!provider.IsEmpty() &amp;&amp; IsPost)
+{
+AntiForgery.Validate(); <span class="synComment">// CSRF 対策</span></p>
+<p><span class="synComment">// 外部認証サービスでの認証を行う</span>
+<span class="synComment">// 成功したら ~/Account/RegisterService.cshtml を開く</span>
+OAuthWebSecurity.RequestAuthentication(
+provider,
+Href(<span class="synConstant">&quot;~/Account/RegisterService&quot;</span>)
+);</p>
+<p><span class="synStatement">return</span>;
+}
+}</p>
+<p>@{  <span class="synComment">// GET のとき（だけじゃないけど）は、</span>
+<span class="synComment">// 外部認証サービスを選択するフォームを表示する</span></p>
+<p><span class="synStatement">if</span> (OAuthWebSecurity.RegisteredClientData.Count == <span class="synConstant">0</span>)
+{
+&lt;p&gt;外部認証サービスが構成されていません。&lt;/p&gt;
+}
+<span class="synStatement">else</span>
+{
+&lt;form method=<span class="synConstant">&quot;post&quot;</span>&gt;
+@AntiForgery.GetHtml()
+&lt;p&gt;
+@<span class="synStatement">foreach</span> (var client <span class="synStatement">in</span> OAuthWebSecurity.RegisteredClientData)
+{
+&lt;button type=<span class="synConstant">&quot;submit&quot;</span> name=<span class="synConstant">&quot;provider&quot;</span>
+<span class="synStatement">value</span>=<span class="synConstant">&quot;@client.AuthenticationClient.ProviderName&quot;</span>
+title=<span class="synConstant">&quot;@client.DisplayName アカウントを使用してログイン&quot;</span>&gt;
+@client.DisplayName
+&lt;/button&gt;
+}
+&lt;/p&gt;
+&lt;/form&gt;
+}
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130203155104.png" alt="f:id:daruyanagi:20130203155104p:plain" title="f:id:daruyanagi:20130203155104p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>このボタンを押すと、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130203155926.png" alt="f:id:daruyanagi:20130203155926p:plain" title="f:id:daruyanagi:20130203155926p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Google の認証ページに飛ぶはず。</p></p>
+</div>
+<div class="section">
+<h3>~/Account/RegisterService.cshtml</h3>
+<p>Google での認証が成功すると、このページに着地する。まぁ、名前は好きにすればいいと思う。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+Page.Title = <span class="synConstant">&quot;登録&quot;</span>;
 }
 <p>&lt;dl&gt;
-@foreach (var key in Request.Params.Keys)
+@<span class="synStatement">foreach</span> (var key <span class="synStatement">in</span> Request.Params.Keys)
 {
 &lt;dt&gt;@key&lt;/dt&gt;
 &lt;dd&gt;@Request.Params[key.ToString()]&lt;/dd&gt;
 }
-&lt;/dl&gt;</p>
-<pre><code>
-<figure>
-    <img src="/images/20130203160114.png"/> 
-</figure>
-
-
-回はパラメーターを列挙するだけにしておいた。ほんとはここから
-
-&lt;ul&gt;
-&lt;li&gt;認証がうまくいったか&lt;/li&gt;
-&lt;li&gt;認証データの取り出し&lt;/li&gt;
-&lt;li&gt;このサイトでの認証とデータベースへの登録&lt;/li&gt;
-&lt;/ul&gt;などを行わないといけない。外部認証サービスによって返ってくるデータは微妙に違うけれど、
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/jj158354(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.VerifyAuthentication Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trydeserializeprovideruserid(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.TryDeserializeProviderUserId(String, String, String) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trygetoauthclientdata(v=vs.111).aspx&quot;&gt;OAuthWebSecurity.TryGetOAuthClientData(String, AuthenticationClientData) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;などを使うことによって、統一的に扱えるようなので安心……という感じのようだ。知らんけど。今日のところは、ここまで。
-
-&lt;/div&gt;
-
-</code></pre>
+&lt;/dl&gt;
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130203160114.png" alt="f:id:daruyanagi:20130203160114p:plain" title="f:id:daruyanagi:20130203160114p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回はパラメーターを列挙するだけにしておいた。ほんとはここから</p></p>
+<ul>
+<li>認証がうまくいったか</li>
+<li>認証データの取り出し</li>
+<li>このサイトでの認証とデータベースへの登録</li>
+</ul><p>などを行わないといけない。外部認証サービスによって返ってくるデータは微妙に違うけれど、</p>
+<ul>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/jj158354(v=vs.111).aspx">OAuthWebSecurity.VerifyAuthentication Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a></li>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trydeserializeprovideruserid(v=vs.111).aspx">OAuthWebSecurity.TryDeserializeProviderUserId(String, String, String) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a></li>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/microsoft.web.webpages.oauth.oauthwebsecurity.trygetoauthclientdata(v=vs.111).aspx">OAuthWebSecurity.TryGetOAuthClientData(String, AuthenticationClientData) Method (Microsoft.Web.WebPages.OAuth) | Microsoft Docs</a></li>
+</ul><p>などを使うことによって、統一的に扱えるようなので安心……という感じのようだ。知らんけど。</p><p>今日のところは、ここまで。</p>
+</div>
 
     <footer>
         
@@ -232,7 +192,7 @@ OAuthWebSecurity.RegisterGoogleClient();
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/02/03/160915.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/02/03</time> 
             </p>
         
     </footer>
@@ -284,7 +244,16 @@ OAuthWebSecurity.RegisterGoogleClient();
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

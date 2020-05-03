@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 3：サイトをライブタイルに対応させてみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="indows 8.1 で（Windows 8 は切り捨てた）http://daruyanagi.net/ をスタート画面へピン留めすると、こんな感じになるハズ。前々" />
+    <meta name="og:description"   property="og:description" content="Windows 8.1 で（Windows 8 は切り捨てた）http://daruyanagi.net/ をスタート画面へピン留めすると、こんな感じになるハズ。前々" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2014/07/26/035349/20140726031239_hu5300299694cbfc4730ddf25d78e6097e_2096429_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2014/07/26/035349/20140726031239_hu5300299694cbfc4730ddf25d78e6097e_2096429_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/26/035349/" />
@@ -86,18 +92,11 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20140726031239.png"/> 
-</figure>
-
-<p>indows 8.1 で（Windows 8 は切り捨てた）<a href="http://daruyanagi.net/"><a href="http://daruyanagi.net/">http://daruyanagi.net/</a></a> をスタート画面へピン留めすると、こんな感じになるハズ。前々からやってみたかったのだけど、なかなか腰が上がらなかった。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140726031239.png" alt="f:id:daruyanagi:20140726031239p:plain" title="f:id:daruyanagi:20140726031239p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Windows 8.1 で（Windows 8 は切り捨てた）<a href="http://daruyanagi.net/">http://daruyanagi.net/</a> をスタート画面へピン留めすると、こんな感じになるハズ。前々からやってみたかったのだけど、なかなか腰が上がらなかった。</p>
 <div class="section">
-    ### 用意するもの
-<figure>
-    <img src="/images/20140726033408.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+<h3>用意するもの</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140726033408.png" alt="f:id:daruyanagi:20140726033408p:plain" title="f:id:daruyanagi:20140726033408p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li>browserconfig.xml
 <ul>
@@ -109,7 +108,7 @@
 <li>今回はデータベースをもとに Notifications.cshtml で動的に生成</li>
 <li>最大5つまで</li>
 </ul></li>
-<li><code>&lt;meta name="application-name" content="アプリ名"/></code>
+<li><code>&lt;meta name="application-name" content="アプリ名"/&gt;</code>
 <ul>
 <li>レイアウトファイルに一行挿入</li>
 <li>browserconfig.xml の内容をメタタグとして埋め込むスタイルもあるが、今回は分離しておく。はてなブログをタイルに対応させる場合は、ヘッダーへメタタグを記述する方式がよさそう</li>
@@ -121,188 +120,173 @@
 </ul></li>
 </ul>
 <table>
-    <tbody><tr>
-    <td>タイルのサイズ	</td>
-    <td>標準のタイルのサイズ	</td>
-    <td>最小画像サイズ	</td>
-    <td>推奨される画像のサイズ</td>
-    </tr>
-    <tr>
-    <td>小サイズ	</td>
-    <td>70 x 70	</td>
-    <td>56 x 56	</td>
-    <td>128 x 128</td>
-    </tr>
-    <tr>
-    <td>普通サイズ	</td>
-    <td>150 x 150	</td>
-    <td>120 x 120	</td>
-    <td>270 x 270</td>
-    </tr>
-    <tr>
-    <td>ワイド サイズ	</td>
-    <td>310 x 150	</td>
-    <td>248 x 120	</td>
-    <td>558 x 270</td>
-    </tr>
-    <tr>
-    <td>大サイズ	</td>
-    <td>310 x 310	</td>
-    <td>248 x 248	</td>
-    <td>558 x 558</td>
-    </tr>
-</tbody></table>
+<tr>
+<td>タイルのサイズ	</td>
+<td>標準のタイルのサイズ	</td>
+<td>最小画像サイズ	</td>
+<td>推奨される画像のサイズ</td>
+</tr>
+<tr>
+<td>小サイズ	</td>
+<td>70 x 70	</td>
+<td>56 x 56	</td>
+<td>128 x 128</td>
+</tr>
+<tr>
+<td>普通サイズ	</td>
+<td>150 x 150	</td>
+<td>120 x 120	</td>
+<td>270 x 270</td>
+</tr>
+<tr>
+<td>ワイド サイズ	</td>
+<td>310 x 150	</td>
+<td>248 x 120	</td>
+<td>558 x 270</td>
+</tr>
+<tr>
+<td>大サイズ	</td>
+<td>310 x 310	</td>
+<td>248 x 248	</td>
+<td>558 x 558</td>
+</tr>
+</table>
 </div>
 <div class="section">
-    ### browserconfig.xml
-    こんな感じで記述
-```xml
-<!--?-->xml version="1.0" encoding="utf-8"?>
-<browserconfig></browserconfig>
-  <msapplication></msapplication>
-    <tile></tile>
-      src="tiny.png"/>
-      src="square.png"/>
-      src="wide.png"/>
-      src="large.png"/>
-      <tilecolor></tilecolor>#007fff // “aliceblue”なんかは使えない鴨
-<pre><code>&lt;notification&gt;&lt;/notification&gt; // 必須ではない。まずはこれなしで動くかテストすることをお勧め
-  src=&quot;http://daruyanagi.net/Notifications/0&quot;/&gt;
-  src=&quot;http://daruyanagi.net/Notifications/1&quot;/&gt;
-  src=&quot;http://daruyanagi.net/Notifications/2&quot;/&gt;
-  src=&quot;http://daruyanagi.net/Notifications/3&quot;/&gt;
-  src=&quot;http://daruyanagi.net/Notifications/4&quot;/&gt;
-  &lt;frequency&gt;&lt;/frequency&gt;30 // 30、60、360、720、1440 のいずれか
-  &lt;cycle&gt;&lt;/cycle&gt;1 // 0 ～ 7 のいずれか
-</code></pre>
-<pre><code class="language-cycle" data-lang="cycle">
-&lt;ul&gt;
-&lt;li&gt;0: (通知が 1 つだけの場合の既定値) 循環しません。&lt;/li&gt;
-&lt;li&gt;1: (通知が複数ある場合の既定値) すべてのタイルのサイズで通知を循環します。&lt;/li&gt;
-&lt;li&gt;2: 普通サイズのタイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;li&gt;3: ワイド タイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;li&gt;4: 大きいタイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;li&gt;5: 普通サイズのタイルやワイド タイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;li&gt;6: 普通サイズのタイルや大きいタイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;li&gt;7: ワイド タイルや大きいタイルに対する通知のみを循環します。&lt;/li&gt;
-&lt;/ul&gt;ちゃんと規定値があるので、めんどくさいなら省いてもいいぐらい。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/dn455106(v=vs.85).aspx&quot;&gt;IE11 での Web サイト用カスタム タイルの作成 (Windows)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### Notifications.cshtml
-    小・ワイド・大の3つに対応したタイルスキーマを返しておく。テンプレートについては
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/dn456348(v=vs.85).aspx&quot;&gt;Internet Explorer 11 でのライブ タイル テンプレートの選択 (Windows)&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;を参照のこと。
-```xml
-@{
-    Response.ContentType = &quot;application/xml&quot;;
-
-    dynamic item;
-
-    using (var db = Database.Open(“***”))
-    {
-        item = db.Query(&quot;SELECT * From ***&quot;)
-            .ElementAt(UrlData[0].AsInt(0));
-    }
+<h3>browserconfig.xml</h3>
+<p>こんな感じで記述</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<span class="synIdentifier">&lt;browserconfig&gt;</span>
+<span class="synIdentifier">&lt;msapplication&gt;</span>
+<span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;square70x70logo </span><span class="synType">src</span>=<span class="synConstant">&quot;tiny.png&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;square150x150logo </span><span class="synType">src</span>=<span class="synConstant">&quot;square.png&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;wide310x150logo </span><span class="synType">src</span>=<span class="synConstant">&quot;wide.png&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;square310x310logo </span><span class="synType">src</span>=<span class="synConstant">&quot;large.png&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;TileColor&gt;</span>#007fff<span class="synIdentifier">&lt;/TileColor&gt;</span> // “aliceblue”なんかは使えない鴨
+<span class="synIdentifier">&lt;/tile&gt;</span>
+<span class="synIdentifier">&lt;notification&gt;</span> // 必須ではない。まずはこれなしで動くかテストすることをお勧め
+<span class="synIdentifier">&lt;polling-uri </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Notifications/0&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;polling-uri2 </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Notifications/1&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;polling-uri3 </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Notifications/2&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;polling-uri4 </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Notifications/3&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;polling-uri5 </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Notifications/4&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;frequency&gt;</span>30<span class="synIdentifier">&lt;/frequency&gt;</span> // 30、60、360、720、1440 のいずれか
+<span class="synIdentifier">&lt;cycle&gt;</span>1<span class="synIdentifier">&lt;/cycle&gt;</span> // 0 ～ 7 のいずれか
+<span class="synIdentifier">&lt;/notification&gt;</span>
+<span class="synIdentifier">&lt;/msapplication&gt;</span>
+<span class="synIdentifier">&lt;/browserconfig&gt;</span>
+</pre><p>cycle 属性の値はこんな感じ。</p>
+<ul>
+<li>0: (通知が 1 つだけの場合の既定値) 循環しません。</li>
+<li>1: (通知が複数ある場合の既定値) すべてのタイルのサイズで通知を循環します。</li>
+<li>2: 普通サイズのタイルに対する通知のみを循環します。</li>
+<li>3: ワイド タイルに対する通知のみを循環します。</li>
+<li>4: 大きいタイルに対する通知のみを循環します。</li>
+<li>5: 普通サイズのタイルやワイド タイルに対する通知のみを循環します。</li>
+<li>6: 普通サイズのタイルや大きいタイルに対する通知のみを循環します。</li>
+<li>7: ワイド タイルや大きいタイルに対する通知のみを循環します。</li>
+</ul><p>ちゃんと規定値があるので、めんどくさいなら省いてもいいぐらい。</p>
+<ul>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/dn455106(v=vs.85).aspx">IE11 &#x3067;&#x306E; Web &#x30B5;&#x30A4;&#x30C8;&#x7528;&#x30AB;&#x30B9;&#x30BF;&#x30E0; &#x30BF;&#x30A4;&#x30EB;&#x306E;&#x4F5C;&#x6210; (Windows)</a></li>
+</ul>
+</div>
+<div class="section">
+<h3>Notifications.cshtml</h3>
+<p>小・ワイド・大の3つに対応したタイルスキーマを返しておく。テンプレートについては</p>
+<ul>
+<li><a href="http://msdn.microsoft.com/ja-jp/library/dn456348(v=vs.85).aspx">Internet Explorer 11 &#x3067;&#x306E;&#x30E9;&#x30A4;&#x30D6; &#x30BF;&#x30A4;&#x30EB; &#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8;&#x306E;&#x9078;&#x629E; (Windows)</a></li>
+</ul><p>を参照のこと。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink>@{
+Response.ContentType = &quot;application/xml&quot;;
+<p>dynamic item;</p>
+<p>using (var db = Database.Open(“***”))
+{
+item = db.Query(&quot;SELECT * From ***&quot;)
+.ElementAt(UrlData[0].AsInt(0));
 }
-&lt;tile&gt;&lt;/tile&gt;
-  lang=&quot;en-US&quot; version=&quot;2&quot;&gt;  
-    template=&quot;TileSquare150x150PeekImageAndText04&quot; branding=&quot;name&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt;
-      id=&quot;1&quot;&gt;@App.Title 
-      id=&quot;2&quot;&gt;@item.Title 
-    
+}
+<span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;visual </span><span class="synType">lang</span>=<span class="synConstant">&quot;en-US&quot;</span><span class="synIdentifier"> </span><span class="synType">version</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare150x150PeekImageAndText04&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;name&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@App.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>@item.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span></p>
+<p><span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileWide310x150SmallImageAndText04&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;logo&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@App.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>@item.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span></p>
+<p><span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare310x310ImageAndTextOverlay02&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;logo&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@App.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>@item.Title<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
+<span class="synIdentifier">&lt;/visual&gt;</span>
+<span class="synIdentifier">&lt;/tile&gt;</span>
+</pre><p><a href="http://daruyanagi.net/Notifications/0"><a href="http://daruyanagi.net/Notifications/0">http://daruyanagi.net/Notifications/0</a></a> を叩くと</p></p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;visual </span><span class="synType">lang</span>=<span class="synConstant">&quot;en-US&quot;</span><span class="synIdentifier"> </span><span class="synType">version</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare150x150PeekImageAndText04&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;name&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@daruyanagi<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
 
-    template=&quot;TileWide310x150SmallImageAndText04&quot; branding=&quot;logo&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt; 
-      id=&quot;1&quot;&gt;@App.Title 
-      id=&quot;2&quot;&gt;@item.Title 
-    
- 
-    template=&quot;TileSquare310x310ImageAndTextOverlay02&quot; branding=&quot;logo&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt;
-      id=&quot;1&quot;&gt;@App.Title 
-      id=&quot;2&quot;&gt;@item.Title 
-    
-  
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileWide310x150SmallImageAndText04&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;logo&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@daruyanagi<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
 
-
-```&lt;a href=&quot;http://daruyanagi.net/Notifications/0&quot;&gt;http://daruyanagi.net/Notifications/0&lt;/a&gt; を叩くと
-```xml
-&lt;tile&gt;&lt;/tile&gt;
-  lang=&quot;en-US&quot; version=&quot;2&quot;&gt;  
-    template=&quot;TileSquare150x150PeekImageAndText04&quot; branding=&quot;name&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt;
-      id=&quot;1&quot;&gt;@daruyanagi 
-      id=&quot;2&quot;&gt;Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている 
-    
-
-    template=&quot;TileWide310x150SmallImageAndText04&quot; branding=&quot;logo&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt; 
-      id=&quot;1&quot;&gt;@daruyanagi 
-      id=&quot;2&quot;&gt;Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている 
-    
- 
-    template=&quot;TileSquare310x310ImageAndTextOverlay02&quot; branding=&quot;logo&quot;&gt;
-      id=&quot;1&quot; src=&quot;http://daruyanagi.net/Tile.jpg&quot;/&gt;
-      id=&quot;1&quot;&gt;@daruyanagi 
-      id=&quot;2&quot;&gt;Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている 
-    
-  
-
-
-```が返る。branding 属性はタイル左下に表示される項目を指定するもので、規定は name のようだ。logo にしておくと favicon が表示される。これで準備は完了のはず。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 注意する点。
-    
-&lt;ul&gt;
-&lt;li&gt;画像へのパスが間違ってるとライブタイルは更新されない&lt;/li&gt;
-&lt;li&gt;パスの指定はドメインを含めたすべてを指定しなければならないようだ&lt;/li&gt;
-&lt;li&gt;タイルの version 1 は要らない&lt;/li&gt;
-&lt;li&gt;フォールバック（fallback）属性を書くと、ライブタイルは動作しない&lt;/li&gt;
-&lt;/ul&gt;とくに最後の項目は &lt;a href=&quot;http://msdn.microsoft.com/ja-jp/library/hh761491.aspx&quot;&gt;タイル テンプレート カタログ (Windows ランタイム アプリ) - Windows app development&lt;/a&gt; からコードをコピペした場合に注意。
-```xml
-&lt;tile&gt;&lt;/tile&gt;
-  &lt;visual&gt;&lt;/visual&gt;
-    template=&quot;TileSquarePeekImageAndText02&quot;&gt;
-      id=&quot;1&quot; src=&quot;image1&quot; alt=&quot;alt text&quot;/&gt;
-      id=&quot;1&quot;&gt;Text Field 1 (larger text)
-      id=&quot;2&quot;&gt;Text Field 2
-      
-  
-
-
-&lt;tile&gt;&lt;/tile&gt;
-  version=&quot;2&quot;&gt;
-    template=&quot;TileSquare150x150PeekImageAndText02&quot; fallback=&quot;TileSquarePeekImageAndText02&quot;&gt;
-      id=&quot;1&quot; src=&quot;image1&quot; alt=&quot;alt text&quot;/&gt;
-      id=&quot;1&quot;&gt;Text Field 1 (larger text)
-      id=&quot;2&quot;&gt;Text Field 2
-      
-  
-
-
-```これをコピペしても動かない。正しくはこんな感じ。
-```xml
-&lt;tile&gt;&lt;/tile&gt;
-  version=&quot;2&quot;&gt;
-    template=&quot;TileSquare150x150PeekImageAndText02&quot;&gt;
-      id=&quot;1&quot; src=&quot;image1&quot; alt=&quot;alt text&quot;/&gt;
-      id=&quot;1&quot;&gt;Text Field 1 (larger text)
-      id=&quot;2&quot;&gt;Text Field 2
-      
-  
-
-
-</code></pre></div>
-
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare310x310ImageAndTextOverlay02&quot;</span><span class="synIdentifier"> </span><span class="synType">branding</span>=<span class="synConstant">&quot;logo&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;http://daruyanagi.net/Tile.jpg&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>@daruyanagi<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Surface Pro 3：COM Surrogate や Peer Name Resolution Protcol が妙にリソースを食っている<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
+<span class="synIdentifier">&lt;/visual&gt;</span>
+<span class="synIdentifier">&lt;/tile&gt;</span>
+</pre><p>が返る。branding 属性はタイル左下に表示される項目を指定するもので、規定は name のようだ。logo にしておくと favicon が表示される。</p><p>これで準備は完了のはず。</p>
+</div>
+<div class="section">
+<h3>注意する点。</h3>
+<ul>
+<li>画像へのパスが間違ってるとライブタイルは更新されない</li>
+<li>パスの指定はドメインを含めたすべてを指定しなければならないようだ</li>
+<li>タイルの version 1 は要らない</li>
+<li>フォールバック（fallback）属性を書くと、ライブタイルは動作しない</li>
+</ul><p>とくに最後の項目は <a href="http://msdn.microsoft.com/ja-jp/library/hh761491.aspx">&#x30BF;&#x30A4;&#x30EB; &#x30C6;&#x30F3;&#x30D7;&#x30EC;&#x30FC;&#x30C8; &#x30AB;&#x30BF;&#x30ED;&#x30B0; (Windows &#x30E9;&#x30F3;&#x30BF;&#x30A4;&#x30E0; &#x30A2;&#x30D7;&#x30EA;) - Windows app development</a> からコードをコピペした場合に注意。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;visual&gt;</span>
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquarePeekImageAndText02&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;image1&quot;</span><span class="synIdentifier"> </span><span class="synType">alt</span>=<span class="synConstant">&quot;alt text&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>Text Field 1 (larger text)<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Text Field 2<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
+<span class="synIdentifier">&lt;/visual&gt;</span>
+<span class="synIdentifier">&lt;/tile&gt;</span>
+<p><span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;visual </span><span class="synType">version</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare150x150PeekImageAndText02&quot;</span><span class="synIdentifier"> </span><span class="synType">fallback</span>=<span class="synConstant">&quot;TileSquarePeekImageAndText02&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;image1&quot;</span><span class="synIdentifier"> </span><span class="synType">alt</span>=<span class="synConstant">&quot;alt text&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>Text Field 1 (larger text)<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Text Field 2<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
+<span class="synIdentifier">&lt;/visual&gt;</span>
+<span class="synIdentifier">&lt;/tile&gt;</span>
+</pre><p>これをコピペしても動かない。正しくはこんな感じ。</p></p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;tile&gt;</span>
+<span class="synIdentifier">&lt;visual </span><span class="synType">version</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;binding </span><span class="synType">template</span>=<span class="synConstant">&quot;TileSquare150x150PeekImageAndText02&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;image </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier"> </span><span class="synType">src</span>=<span class="synConstant">&quot;image1&quot;</span><span class="synIdentifier"> </span><span class="synType">alt</span>=<span class="synConstant">&quot;alt text&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">&gt;</span>Text Field 1 (larger text)<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;text </span><span class="synType">id</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">&gt;</span>Text Field 2<span class="synIdentifier">&lt;/text&gt;</span>
+<span class="synIdentifier">&lt;/binding&gt;</span>
+<span class="synIdentifier">&lt;/visual&gt;</span>
+<span class="synIdentifier">&lt;/tile&gt;</span>
+</pre>
+</div>
 
     <footer>
         
@@ -316,7 +300,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/26/035349.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/26</time> 
             </p>
         
     </footer>
@@ -368,7 +352,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

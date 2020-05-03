@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="PowerShell：スクレイピングすると“HRESULT からの例外:0x800A01B6”が発生する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、PowerShell：ストアアプリのセール情報を取得する - だるろぐ 以" />
+    <meta name="og:description"   property="og:description" content="メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、 blog.daruyanagi.jp 以前に作った PowerShell が動作しなくなった。 $urls =@( &quot;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&quot; ) foreach ($url in $urls) { try { $request = Invoke-WebRequest $url $body" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/04/30/155040/" />
@@ -86,54 +88,38 @@
         </time>        
     </p>
 
-    <p>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、<a href="http://blog.daruyanagi.jp/entry/2017/03/04/220000" alt="PowerShell：ストアアプリのセール情報を取得する - だるろぐ">
-  PowerShell：ストアアプリのセール情報を取得する - だるろぐ
-</a>以前に作った PowerShell が動作しなくなった。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$urls =@(
-  <span style="color:#e6db74">&#34;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&#34;</span>
+    <p>メインに使っているデスクトップ端末を Windows 10 Creators Update へアップデートしたのだけど、</p><p><iframe src="http://blog.daruyanagi.jp/embed/2017/03/04/220000" title="PowerShell：ストアアプリのセール情報を取得する - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/03/04/220000">blog.daruyanagi.jp</a></cite></p><p>以前に作った PowerShell が動作しなくなった。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$urls</span> =@(
+<span class="synConstant">&quot;https://www.microsoft.com/ja-jp/store/p/nextgen-reader/9wzdncrfj262&quot;</span>
 )
-
-<span style="color:#66d9ef">foreach</span> ($url <span style="color:#66d9ef">in</span> $urls)
+<p><span class="synStatement">foreach</span> (<span class="synIdentifier">$url</span> <span class="synStatement">in</span> <span class="synIdentifier">$urls</span>)
 {
-    <span style="color:#66d9ef">try</span>
-    {
-        $request = Invoke-WebRequest $url
-        
-        $body = $request.ParsedHtml
-        $price_node = $body.getElementsByTagName(<span style="color:#e6db74">&#34;s&#34;</span>) | where { 
-            $_.getAttributeNode(<span style="color:#e6db74">&#34;class&#34;</span>).Value  <span style="color:#f92672">-eq</span> <span style="color:#e6db74">&#34;srv_saleprice&#34;</span>
-        }　<span style="color:#75715e">#&amp;lt;-- ここで例外</span>
-
-```<span style="color:#960050;background-color:#1e0010">――</span>結果<span style="color:#960050;background-color:#1e0010">。</span>
-</code></pre></div><p>HRESULT からの例外:0x800A01B6</p>
-<pre><code class="language-Internet" data-lang="Internet">
-&lt;div class=&quot;section&quot;&gt;
-    ### 解決
-    &lt;code&gt;getElementsByTagName()&lt;/code&gt; のかわりに &lt;code&gt;IHTMLDocument3_getElementsByTagName()&lt;/code&gt; を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。
-</code></pre><p>getElementsByTagName -&gt;
-IHTMLDocument3_getElementsByTagName</p>
+<span class="synStatement">try</span>
+{
+<span class="synIdentifier">$request</span> = <span class="synStatement">Invoke-WebRequest</span> <span class="synIdentifier">$url</span></p>
+<p><span class="synIdentifier">$body</span> = <span class="synIdentifier">$request</span>.ParsedHtml
+<span class="synIdentifier">$price_node</span> = <span class="synIdentifier">$body</span>.getElementsByTagName(<span class="synConstant">&quot;s&quot;</span>) | <span class="synStatement">where</span> {
+<span class="synType">$_</span>.getAttributeNode(<span class="synConstant">&quot;class&quot;</span>).Value  -<span class="synStatement">eq</span> <span class="synConstant">&quot;srv_saleprice&quot;</span>
+}　<span class="synComment">#&lt;&ndash; ここで例外</span>
+</pre><p>――結果。</p></p>
+<pre class="code" data-lang="" data-unlink>HRESULT からの例外:0x800A01B6</pre><p>Internet Explorer（<code>Invoke-WebRequest()</code> などで内部的に利用されている）がメソッドをサポートしていないときにでるエラーみたい。</p>
+<div class="section">
+<h3>解決</h3>
+<p><code>getElementsByTagName()</code> のかわりに <code>IHTMLDocument3_getElementsByTagName()</code> を用いる。以下のメソッドでも同様のエラーが出るので、適宜読み替える。</p>
+<pre class="code" data-lang="" data-unlink>getElementsByTagName -&gt;
+IHTMLDocument3_getElementsByTagName
 <p>getElementsByName -&gt;
 IHTMLDocument3_getElementsByName</p>
 <p>getElementByID -&gt;
-IHTMLDocument3_getElementByID</p>
-<pre><code>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname&quot;&gt;PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### なぞ
-    
-
-<figure>
-    <img src="/images/20170430154724.png"/> 
-</figure>
-
-
-owerShell スクリプトからではなく、PowerShell のシェルから &lt;code&gt;getElementsByTagName()&lt;/code&gt; を使うとそのまま通った。よくわからんな……。
-
-&lt;/div&gt;
-
-</code></pre>
+IHTMLDocument3_getElementByID</pre></p>
+<ul>
+<li><a href="https://www.sepago.com/blog/2016/05/03/powershell-exception-0x800a01b6-while-using-getelementsbytagname-getelementsbyname">PowerShell Exception 0x800A01B6 while using getElementsByTagName, getElementsByName or getElementByID | sepago</a></li>
+</ul>
+</div>
+<div class="section">
+<h3>なぞ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170430154724.png" alt="f:id:daruyanagi:20170430154724p:plain" title="f:id:daruyanagi:20170430154724p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>PowerShell スクリプトからではなく、PowerShell のシェルから <code>getElementsByTagName()</code> を使うとそのまま通った。よくわからんな……。</p>
+</div>
 
     <footer>
         
@@ -147,7 +133,7 @@ owerShell スクリプトからではなく、PowerShell のシェルから &lt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/04/30/155040.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/04/30</time> 
             </p>
         
     </footer>
@@ -199,7 +185,16 @@ owerShell スクリプトからではなく、PowerShell のシェルから &lt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

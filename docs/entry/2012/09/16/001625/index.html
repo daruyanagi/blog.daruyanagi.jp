@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Windows ストアアプリ開発に挑戦してみたけど難しい……" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。まず、MarkdownSharp が動かな" />
+    <meta name="og:description"   property="og:description" content="「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。 まず、MarkdownSharp が動かな" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/16/001625/" />
@@ -86,30 +88,24 @@
         </time>        
     </p>
 
-    <p><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120915/20120915234152.png" alt="f:id:daruyanagi:20120915234152p:plain" title="f:id:daruyanagi:20120915234152p:plain" class="hatena-fotolife"/>「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。まず、MarkdownSharp が動かない。これは30分ぐらいかけて手直ししたら動くようになった。HashTable 使っているのを Dictionary に、ArrayList を List に……といった感じ。MD5 の計算ルーチンも動かなかったので、これも WinRT 向けに書き直した。RegexOption.Compiled がないっぽいんだけど、どういうことなんだろうか。まぁ、適当に消しといたけど。そこまではいいんだ。とりあえずデザインなんかを考えずに、エディターとプレビュー用の WebView を同じ画面に置いて、エディターの内容を NavigateToString() で WebView に表示するというのを作った。そしたら、 NavigateToString() するたびにフォーカスが WebView にとられてしまう。これは困った。WPF/Silverlight でも似たようなのを作ってあるのだけれど<a href="#f1" name="fn1" title="途中で飽きて放置してある">*1</a>、そっちはそんな挙動じゃなかったのだけど。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">MarkdownSharp.Markdown markdown = <span style="color:#66d9ef">new</span> MarkdownSharp.Markdown();
-
-<span style="color:#66d9ef">private</span> <span style="color:#66d9ef">void</span> editor_TextChanged_1(
-   <span style="color:#66d9ef">object</span> sender, TextChangedEventArgs e)
+    <p><img src="20120915234152.png" alt="f:id:daruyanagi:20120915234152p:plain" title="f:id:daruyanagi:20120915234152p:plain" class="hatena-fotolife"></p><p>「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。</p><p>まず、MarkdownSharp が動かない。これは30分ぐらいかけて手直ししたら動くようになった。HashTable 使っているのを Dictionary に、ArrayList を List に……といった感じ。MD5 の計算ルーチンも動かなかったので、これも WinRT 向けに書き直した。RegexOption.Compiled がないっぽいんだけど、どういうことなんだろうか。まぁ、適当に消しといたけど。</p><p>そこまではいいんだ。</p><p>とりあえずデザインなんかを考えずに、エディターとプレビュー用の WebView を同じ画面に置いて、エディターの内容を NavigateToString() で WebView に表示するというのを作った。</p><p>そしたら、 NavigateToString() するたびにフォーカスが WebView にとられてしまう。これは困った。WPF/Silverlight でも似たようなのを作ってあるのだけれど<a href="#f1" name="fn1" title="途中で飽きて放置してある">*1</a>、そっちはそんな挙動じゃなかったのだけど。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>MarkdownSharp.Markdown markdown = <span class="synStatement">new</span> MarkdownSharp.Markdown();
+<p><span class="synType">private</span> <span class="synType">void</span> editor_TextChanged_1(
+<span class="synType">object</span> sender, TextChangedEventArgs e)
 {
-    preview.NavigateToString(markdown.Transform(editor.Text));
-    <span style="color:#66d9ef">await</span> Dispatcher.RunAsync(
-        Windows.UI.Core.CoreDispatcherPriority.High, () =&gt;
-        editor.Focus(Windows.UI.Xaml.FocusState.Programmatic));
+preview.NavigateToString(markdown.Transform(editor.Text));
+await Dispatcher.RunAsync(
+Windows.UI.Core.CoreDispatcherPriority.High, () =&gt;
+editor.Focus(Windows.UI.Xaml.FocusState.Programmatic));
 }
-
-<span style="color:#960050;background-color:#1e0010">```ダメもとで強引にエディターへフォーカスを戻そうとしてもやっぱりイマイチだし……どうすればいいんだろうな。ページを遷移させてプレビューさせるのはもちろんできるのだけれど、それはあまりにも不便すぎる。頑張って</span> Rx <span style="color:#960050;background-color:#1e0010">にして、キー入力のアイドル時にプレビュー</span> <span style="color:#960050;background-color:#1e0010">→</span> <span style="color:#960050;background-color:#1e0010">即座にフォーカスをエディターへ戻すというのも考えたけど、フォーカスが移るたびにソフトウェアキーボードがぴょこぴょこするのが萎える。同様の悩みを抱える人はいるみたいで、</span> Connect <span style="color:#960050;background-color:#1e0010">にもバグ報告があった。でも、すぐには治りそうにないよなぁ……。どうしよ。また違うネタ考えるかな。</span>RSS <span style="color:#960050;background-color:#1e0010">のテンプレをちょちょいといじって提出するのでも最悪構わないけれど、それも面白くないしなぁ。</span>&lt;a href=<span style="color:#e6db74">&#34;https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it&#34;</span>&gt;https:<span style="color:#75715e">//connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it&lt;/a&gt;まぁ、もうちょっと勉強してから再挑戦するかな。無難に ToDo 管理アプリとか作ってみるか。それにしても、9月末までにちゃんとしたアプリを完成させるのはだいぶ難しそうだ。
-</span><span style="color:#75715e"></span>
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">追記</span>
-    &lt;div class=<span style="color:#e6db74">&#34;twitter-detail twitter-detail-left&#34;</span>&gt;&lt;div class=<span style="color:#e6db74">&#34;twitter-detail-user&#34;</span>&gt;&lt;a class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span> href=<span style="color:#e6db74">&#34;http://twitter.com/kamebuchi&#34;</span>&gt;&lt;img src=<span style="color:#e6db74">&#34;http://a0.twimg.com/profile_images/2255188606/mabi1_normal.png&#34;</span> alt=<span style="color:#e6db74">&#34;kamebuchi&#34;</span> height=<span style="color:#e6db74">&#34;48&#34;</span> width=<span style="color:#e6db74">&#34;48&#34;</span>/&gt;&lt;/a&gt;&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;twitter-detail-tweet&#34;</span>&gt;      <span style="color:#960050;background-color:#1e0010">@</span>&lt;a class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span> href=<span style="color:#e6db74">&#34;http://twitter.com/daruyanagi&#34;</span> target=<span style="color:#e6db74">&#34;_top&#34;</span>&gt;daruyanagi&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">っ</span> &lt;a class=<span style="color:#e6db74">&#34;twitter-tweet-url&#34;</span> href=<span style="color:#e6db74">&#34;http://t.co/ywv6mUtn&#34;</span> target=<span style="color:#e6db74">&#34;_top&#34;</span>&gt;&lt;span&gt;URL&lt;/span&gt;&lt;/a&gt;&lt;a href=<span style="color:#e6db74">&#34;http://twitter.com/kamebuchi/status/246997124988948480&#34;</span> class=<span style="color:#e6db74">&#34;twitter-detail-info-permalink&#34;</span>&gt;&lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-date&#34;</span>&gt;<span style="color:#ae81ff">2012</span>-<span style="color:#ae81ff">09</span>-<span style="color:#ae81ff">16</span>&lt;/span&gt; &lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-time&#34;</span>&gt;<span style="color:#ae81ff">00</span>:<span style="color:#ae81ff">41</span>:<span style="color:#ae81ff">18</span>&lt;/span&gt;&lt;/a&gt; &lt;span class=<span style="color:#e6db74">&#34;twitter-detail-info-source&#34;</span>&gt;via &lt;a href=<span style="color:#e6db74">&#34;http://krile2.starwing.net/&#34;</span> rel=<span style="color:#e6db74">&#34;nofollow&#34;</span>&gt;Krile2&lt;/a&gt;&lt;/span&gt; to <span style="color:#960050;background-color:#1e0010">@</span>&lt;a href=<span style="color:#e6db74">&#34;http://twitter.com/daruyanagi/&#34;</span> class=<span style="color:#e6db74">&#34;twitter-user-screen-name&#34;</span>&gt;daruyanagi&lt;/a&gt;&lt;/div&gt;&lt;/div&gt;<span style="color:#960050;background-color:#1e0010">もうすでにあるし（＝＝！</span>&lt;img src=<span style="color:#e6db74">&#34;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120916/20120916085918.png&#34;</span> alt=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120916085918p:plain&#34;</span> title=<span style="color:#e6db74">&#34;f:id:daruyanagi:20120916085918p:plain&#34;</span> class=<span style="color:#e6db74">&#34;hatena-fotolife&#34;</span>/&gt;<span style="color:#960050;background-color:#1e0010">ソースもみてみたけど、</span> HTML<span style="color:#960050;background-color:#1e0010">＋</span>JavaScript <span style="color:#960050;background-color:#1e0010">だった。実は</span> Windows Phone <span style="color:#960050;background-color:#1e0010">への移植も考えている</span>&lt;a href=<span style="color:#e6db74">&#34;#f2&#34;</span> name=<span style="color:#e6db74">&#34;fn2&#34;</span> title=<span style="color:#e6db74">&#34;というか、そっちがもともと&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">ので、</span> <span style="color:#960050;background-color:#1e0010">なるべく</span> C<span style="color:#960050;background-color:#1e0010">#＋</span>XAML <span style="color:#960050;background-color:#1e0010">でやりたいんだけどな。</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn1&#34;</span> name=<span style="color:#e6db74">&#34;f1&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">途中で飽きて放置してある</span>&lt;/span&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn2&#34;</span> name=<span style="color:#e6db74">&#34;f2&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">2</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">というか、そっちがもともと</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+</pre><p>ダメもとで強引にエディターへフォーカスを戻そうとしてもやっぱりイマイチだし……どうすればいいんだろうな。ページを遷移させてプレビューさせるのはもちろんできるのだけれど、それはあまりにも不便すぎる。頑張って Rx にして、キー入力のアイドル時にプレビュー → 即座にフォーカスをエディターへ戻すというのも考えたけど、フォーカスが移るたびにソフトウェアキーボードがぴょこぴょこするのが萎える。</p><p>同様の悩みを抱える人はいるみたいで、 Connect にもバグ報告があった。でも、すぐには治りそうにないよなぁ……。どうしよ。また違うネタ考えるかな。RSS のテンプレをちょちょいといじって提出するのでも最悪構わないけれど、それも面白くないしなぁ。</p><p><a href="https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it"><a href="https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it">https://connect.microsoft.com/VisualStudio/feedback/details/753422/webview-in-windows-8-does-not-gain-focus-automatically-when-hovering-mouse-back-to-it</a></a></p><p>まぁ、もうちょっと勉強してから再挑戦するかな。無難に ToDo 管理アプリとか作ってみるか。それにしても、9月末までにちゃんとしたアプリを完成させるのはだいぶ難しそうだ。</p></p>
+<div class="section">
+<h3>追記</h3>
+<p><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/kamebuchi"><img src="http://a0.twimg.com/profile_images/2255188606/mabi1_normal.png" alt="kamebuchi" height="48" width="48"></a></div><div class="twitter-detail-tweet"><p class="twitter-detail-text">      @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> っ <a class="twitter-tweet-url" href="http://t.co/ywv6mUtn" target="_top"><span>URL</span></a></p><p class="twitter-detail-info"><a href="http://twitter.com/kamebuchi/status/246997124988948480" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-16</span> <span class="twitter-detail-info-time">00:41:18</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/daruyanagi/"  class="twitter-user-screen-name">daruyanagi</a></p></div></div></p><p>もうすでにあるし（＝＝！</p><p><img src="20120916085918.png" alt="f:id:daruyanagi:20120916085918p:plain" title="f:id:daruyanagi:20120916085918p:plain" class="hatena-fotolife"></p><p>ソースもみてみたけど、 HTML＋JavaScript だった。実は Windows Phone への移植も考えている<a href="#f2" name="fn2" title="というか、そっちがもともと">*2</a>ので、 なるべく C#＋XAML でやりたいんだけどな。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">途中で飽きて放置してある</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">というか、そっちがもともと</span></p>
+</div>
 
     <footer>
         
@@ -123,7 +119,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/16/001625.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/09/16</time> 
             </p>
         
     </footer>
@@ -175,7 +171,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

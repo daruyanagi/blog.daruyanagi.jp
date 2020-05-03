@@ -1,0 +1,8 @@
+---
+date: 2017-01-06T10:42:42.0000000
+draft: false
+title: "だるやなぎ LINE スタンプが再び発売されています"
+tags: ["だるやなぎ", "告知"]
+eyecatch: 20170106103628.png
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170106103628.png" alt="f:id:daruyanagi:20170106103628p:plain" title="f:id:daruyanagi:20170106103628p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>お待たせしました！　アカウント移行の関係で一時的に購入できなかった「柳 英俊 （だるやなぎ）」LINE スタンプが再び購入できるようになっています。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fstore.line.me%2Fstickershop%2Fproduct%2F1366689" title="YANAGI Hidetoshi  (Daruyanagi) - Creators&#39; Stickers" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://store.line.me/stickershop/product/1366689">store.line.me</a></cite></p><p>もう持っている方は買わなくていいのですが、2点ほど素材が入れ替わっています（どれだかわかるかな？）。買いなおしてくれると、僕の財布におカネがチャリンチャリンでうれしいです（前のバージョンは僕の懐には入っていないんだな）。</p><p>それにしても毎回、ダメだしを食らうスタンプが変わるように思えたのは気のせいかな。とても面倒くさかった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170106103827.png" alt="f:id:daruyanagi:20170106103827p:plain" title="f:id:daruyanagi:20170106103827p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170106103851.png" alt="f:id:daruyanagi:20170106103851p:plain" title="f:id:daruyanagi:20170106103851p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、インドネシアでは販売できなくなりました。インドネシアのだるやなぎファンの方がいたら本当にすみません。俺の顔、インドネシアでは文化的に NG なのかもしれん……（震え声</p>

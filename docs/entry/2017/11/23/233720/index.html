@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="ASP.NET Core 2.0 なサイトを放置してたら死んでた → 復旧" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="日見たら daruyanagi.jp が死んでた。 &gt; HTTP Error 502.5 - Process Failure Common causes of this issue: The application process failed to start The application process started but then stopped The application process started but failed to listen on the configured port Troubleshooting steps: Check the system event log for error messages Enable logging the application process&#39; stdout messages Attach a debugger to the" />
+    <meta name="og:description"   property="og:description" content="今日見たら daruyanagi.jp が死んでた。 HTTP Error 502.5 - Process Failure Common causes of this issue: The application process failed to start The application process started but then stopped The application process started but failed to listen on the configured port Troubleshooting steps: Check the system event log for error messages Enable logging the application process&#39; stdout messages Attach a debugger to the" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2017/11/23/233720/20171123232731_hu854626e811f063b2aff3c07f2698e72e_50872_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2017/11/23/233720/20171123232731_hu854626e811f063b2aff3c07f2698e72e_50872_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/11/23/233720/" />
@@ -86,49 +92,31 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20171123232731.png"/> 
-</figure>
-
-<p>日見たら daruyanagi.jp が死んでた。</p>
-<pre><code>&gt;
-    HTTP Error 502.5 - Process Failure 
-</code></pre>
-<p>Common causes of this issue:</p>
-<p>The application process failed to start 
-The application process started but then stopped 
-The application process started but failed to listen on the configured port 
-Troubleshooting steps:</p>
-<p>Check the system event log for error messages 
-Enable logging the application process' stdout messages 
-Attach a debugger to the application process and inspect</p>
-<p>昨日あたりまでは生きていた気がするんだが……彼に何が起こったのか。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20171123232731.png" alt="f:id:daruyanagi:20171123232731p:plain" title="f:id:daruyanagi:20171123232731p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今日見たら daruyanagi.jp が死んでた。</p>
 <blockquote>
-<p>せやな— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<p>HTTP Error 502.5 - Process Failure <br />
+Common causes of this issue: </p>
+<ul>
+<li>The application process failed to start </li>
+<li>The application process started but then stopped </li>
+<li>The application process started but failed to listen on the configured port </li>
+</ul><p>Troubleshooting steps: </p>
+<ul>
+<li>Check the system event log for error messages </li>
+<li>Enable logging the application process' stdout messages </li>
+<li>Attach a debugger to the application process and inspect </li>
+</ul>
 </blockquote>
-<p>赤い帽子のヤツは助けてくれないし（役立たずめ！）、とりあえずソースコードを探して Visual Studio で開いて実行してみたけど、とくに問題はないみたい。念のため、NuGet を確認してみたら ASP.NET Core 2.0.0 のプレビュー版みたいなやつが入っていたのでアップデート（→ 2.0.3）して再ビルド、発行。</p>
-<figure>
-    <img src="/images/20171123233457.png"/> 
-</figure>
-
-<p>したら普通に動いた。ﾌｧｯｷﾝ！</p>
-<blockquote>
-<p>(・д・)ﾁｯ ばれたか— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-</blockquote>
-<p>知ってるなら教えろ、ﾌｧｯｷﾝ！</p>
+<p>昨日あたりまでは生きていた気がするんだが……彼に何が起こったのか。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">せやな</p>&mdash; しばやん (@shibayan) <a href="https://twitter.com/shibayan/status/933664170150473728?ref_src=twsrc%5Etfw">2017年11月23日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>赤い帽子のヤツは助けてくれないし（役立たずめ！）、とりあえずソースコードを探して Visual Studio で開いて実行してみたけど、とくに問題はないみたい。念のため、NuGet を確認してみたら ASP.NET Core 2.0.0 のプレビュー版みたいなやつが入っていたのでアップデート（→ 2.0.3）して再ビルド、発行。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20171123233457.png" alt="f:id:daruyanagi:20171123233457p:plain" title="f:id:daruyanagi:20171123233457p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そしたら普通に動いた。ﾌｧｯｷﾝ！</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">(・д・)ﾁｯ ばれたか</p>&mdash; しばやん (@shibayan) <a href="https://twitter.com/shibayan/status/933702935313244160?ref_src=twsrc%5Etfw">2017年11月23日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>知ってるなら教えろ、ﾌｧｯｷﾝ！</p>
 <div class="section">
-    ### 追記
-<blockquote>
-<p>https://t.co/N11NqxSBkC / “https://t.co/9vTmtCukjr Core 2.0 なサイトを放置してたら死んでた → 復旧 - だるろぐ” https://t.co/Vy42aMkqxu— しばやん (@shibayan) 2017年11月23日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+<h3>追記</h3>
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://t.co/N11NqxSBkC">https://t.co/N11NqxSBkC</a> / “<a href="https://t.co/9vTmtCukjr">https://t.co/9vTmtCukjr</a> Core 2.0 なサイトを放置してたら死んでた → 復旧 - だるろぐ” <a href="https://t.co/Vy42aMkqxu">https://t.co/Vy42aMkqxu</a></p>&mdash; しばやん (@shibayan) <a href="https://twitter.com/shibayan/status/933706351582232577?ref_src=twsrc%5Etfw">2017年11月23日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script><br />
+</p>
+<blockquote cite="https://github.com/Azure/app-service-announcements/issues/35">
+<p>Now that Core 2.0 has been release, App Service will remove support for 2.0 preview runtimes and SDK. This will happen starting in early October 2017.</p><p>Action item: make sure that you upgrade all your 2.0 Preview apps to the official 2.0 bits.</p><p>See also #27 for a similar announcement relating to prerelease Core 1.x bits.</p><p>Please use Azure/app-service-announcements-discussions#12 for discussions about this change.</p>
+<p><cite><a href="https://github.com/Azure/app-service-announcements/issues/35">Deprecation of Prerelease .NET Core 2.0 runtimes and SDK from App Service · Issue #35 · Azure/app-service-announcements · GitHub</a></cite></p>
 </blockquote>
-<br/>
-<pre><code>&gt;
-    Now that Core 2.0 has been release, App Service will remove support for 2.0 preview runtimes and SDK. This will happen starting in early October 2017.Action item: make sure that you upgrade all your 2.0 Preview apps to the official 2.0 bits.See also #27 for a similar announcement relating to prerelease Core 1.x bits.Please use Azure/app-service-announcements-discussions#12 for discussions about this change.
-
-    Deprecation of Prerelease .NET Core 2.0 runtimes and SDK from App Service · Issue #35 · Azure/app-service-announcements · GitHub
-</code></pre>
 </div>
-
 
     <footer>
         
@@ -142,7 +130,7 @@ Attach a debugger to the application process and inspect</p>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/11/23/233720.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/11/23</time> 
             </p>
         
     </footer>
@@ -194,7 +182,16 @@ Attach a debugger to the application process and inspect</p>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

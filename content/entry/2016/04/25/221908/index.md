@@ -1,0 +1,14 @@
+---
+date: 2016-04-25T22:19:08.0000000
+draft: false
+title: "ゆるふわ.rb　in 大洲　〜Rails 5 の新機能を探せ！〜 に参加してきました。"
+tags: ["勉強会", "食べ物", "Ruby"]
+eyecatch: 
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423135600.jpg" alt="f:id:daruyanagi:20160423135600j:plain" title="f:id:daruyanagi:20160423135600j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>先週の土曜日は、ゆるふわ.rb に参加。お刺身食べてきました！</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fyurufuwa.doorkeeper.jp%2Fevents%2F42658" title="ゆるふわ.rb　in 大洲　〜Rails 5 の新機能を探せ！〜" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>残念ながら今回が最後かもしれないということで、いつもより多くの人が集まったのかな？　みんなで Rails 5 の新しいところをサラッと学んで、それ以外の新機能をググって探してみるという感じでお勉強。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423124932.jpg" alt="f:id:daruyanagi:20160423124932j:plain" title="f:id:daruyanagi:20160423124932j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（ウェルカムドリンクのあおさ汁（あおさが見えないけど！）と、お誕生日プレゼントにいただいた「<a href="http://agora-m.co.jp/sixth-industry/food/uwakai-hime-oil/">&#x5B87;&#x548C;&#x6D77;&#x306E;&#x5730;&#x9B5A;&#x3072;&#x3081;&#x30AA;&#x30A4;&#x30EB;&#x716E;</a>」。）</p><p>自分はチャチャっと<i>「Ruby on Rails API っていうのがあるらしいで（知らんけど」</i>と報告して済まし、ビールにありつきました。</p><p>実は、それ以外のネタとして Windows Insider Preview の環境で Rails を動かしてみようと個人的に四苦八苦していたのですが、どうやら apt-get ですんなりインストールできるのが Ruby 1.9 のようで、Rails 5 を入れるのは大変めんどくさそうでした。もうちょっと頑張ってみてもよかったのだけど、お刺身が早く食べたかったので、<i>「Bash あるから Rails 環境の構築も簡単だぜ！」</i>というわけにはいかないらしいという学びだけ得て、ここはおとなしく引き下がることにします。いやー、Ruby とか Rails とか触るのなんて、2.0 のとき以来だわ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423132404.jpg" alt="f:id:daruyanagi:20160423132404j:plain" title="f:id:daruyanagi:20160423132404j:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423135606.jpg" alt="f:id:daruyanagi:20160423135606j:plain" title="f:id:daruyanagi:20160423135606j:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423143536.jpg" alt="f:id:daruyanagi:20160423143536j:plain" title="f:id:daruyanagi:20160423143536j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回はヒトが多かったのもあって、お魚も多彩。とくに鯛の白子が超美味で、大変満足でした。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423154240.jpg" alt="f:id:daruyanagi:20160423154240j:plain" title="f:id:daruyanagi:20160423154240j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、大洲に来る途中に寄った エディオン で購入した Macbook の開封式と艦これをプレイするための環境設定もやりました。Mac の操作方法が全然わからなくてだいぶ困ったのですが、皆さんのおかげでかなり助かりました（Spotlight をホットキーで呼び出す方法とか！）。ありがとうございます。</p>
+
+<div class="section">
+<h4>追記</h4>
+<p>ゆるふわの後継になるかはわかんないけど、こういうゆるい集まりは松山でもやりたいですねー。まずは刺身包丁を買わねば。</p>
+
+</div>

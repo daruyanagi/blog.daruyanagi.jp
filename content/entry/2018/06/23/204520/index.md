@@ -1,0 +1,36 @@
+---
+date: 2018-06-23T20:45:20.0000000
+draft: false
+title: "ASP.NET Core：daruyanagi.jp を ASP.NET Core 2.1 へ移行させた"
+tags: ["ASP.NET Core"]
+eyecatch: 
+---
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">今まで「2.1？　あ、そぅ」と聞き流していた俺氏、移行作業をせざるを得ない模様 / “「.NET Core 2.0」のサポートは9月1日で終了 ～「.NET Core 2.1」への移行を - 窓の杜” <a href="https://t.co/3qCA4Fnozt">https://t.co/3qCA4Fnozt</a></p>&mdash; だるやなぎ 帝国元帥 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1009660814456848384?ref_src=twsrc%5Etfw">2018年6月21日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>Current とか LTS とかよくわかんないんですが、ASP.NET Core 2.0 のサポートが終わるそうなので、daruyanagi.jp の移行作業を行いました。</p>
+
+<div class="section">
+<h3>SDK のインストール</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202128.png" alt="f:id:daruyanagi:20180623202128p:plain" title="f:id:daruyanagi:20180623202128p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえずターゲット フレームワークを切り替えとくか、と思ったのですが 2.1 がプルダウンに出てこないので、SDK のインストールを行います。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.microsoft.com%2Fnet%2Flearn%2Fapps%2Fweb%2Fget-started%2Fwindows" title="ASP.NET - Get started in 10 minutes" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://www.microsoft.com/net/learn/apps/web/get-started/windows">www.microsoft.com</a></cite></p><p>なんとなくインストーラーをダウンロードしちゃったのですが、2.0 のインストールは chocolatey でやった気がするからコマンドラインでもよかった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202320.png" alt="f:id:daruyanagi:20180623202320p:plain" title="f:id:daruyanagi:20180623202320p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202323.png" alt="f:id:daruyanagi:20180623202323p:plain" title="f:id:daruyanagi:20180623202323p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちゃんとプルダウンに 2.1 がでてきたので切り替えました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202524.png" alt="f:id:daruyanagi:20180623202524p:plain" title="f:id:daruyanagi:20180623202524p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+
+</div>
+<div class="section">
+<h3>とりあえずデバッグ → エラー</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202603.png" alt="f:id:daruyanagi:20180623202603p:plain" title="f:id:daruyanagi:20180623202603p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず［F5］してみると、エラーが発生。エラーメッセージの意味はよくわかんなかったのですが、IIS Express がダメだというのはわかったので、それ以外に切り替えました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623202756.png" alt="f:id:daruyanagi:20180623202756p:plain" title="f:id:daruyanagi:20180623202756p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>それ以外にもいろいろ警告が出ていた気がするけど、キレイさっぱりなくなって、見慣れた daruyanagi.jp が「Microsoft Edge」で実行されました。IIS Express じゃなくても、ASP.NET Core に内蔵の Webrick みたいなサーバーが使えるんだな（何度聞いても名前が覚えられないんだけど、<a href="https://docs.microsoft.com/ja-jp/aspnet/core/fundamentals/servers/?view=aspnetcore-2.1&tabs=aspnetcore2x">Kestrel </a>っていうらしい？）。</p>
+
+</div>
+<div class="section">
+<h3>NuGet パッケージの入れ替え</h3>
+<p>このままデプロイしちゃおうかなって思ったのですが、変なところでハマると嫌だなーと思い、しばやんのブログでもう一度いろいろ確かめました。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.shibayan.jp%2Fentry%2F20180603%2F1527958208" title="ASP.NET Core 2.0 から 2.1 へのアップデートを行ったメモ - しばやん雑記" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.shibayan.jp/entry/20180603/1527958208">blog.shibayan.jp</a></cite></p><p>頭悪すぎて色々よくわからなかったのですが、</p>
+
+<blockquote>
+<p>ASP.NET Core 2.0 から Microsoft.AspNetCore.All という狂気に満ちたメタパッケージが用意されましたが、2.1 からはマイルドになった Microsoft.AspNetCore.App というメタパッケージが追加されました。</p>
+
+</blockquote>
+<p>っていう部分はウチの環境でも対応しておいた方がいいかなって思ったので、NuGet パッケージを入れ替えました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623203608.png" alt="f:id:daruyanagi:20180623203608p:plain" title="f:id:daruyanagi:20180623203608p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>更新インジケーターが出ている Microsoft.AspNetCore.All をブッコ抜き、Microsoft.AspNetCore.App に入れ替えるだけ。これで狂気から解放されたようです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623203730.png" alt="f:id:daruyanagi:20180623203730p:plain" title="f:id:daruyanagi:20180623203730p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これでウチの移行作業はだいたい終わりですが、リポジトリ上での変更はマジで<b>ターゲット フレームワークの変更だけ</b>でした。あとでいろいろ問題が出ないとも限らないけど、スクショとりながら進めるほどの作業でもなかった。</p>
+
+</div>
+<div class="section">
+<h3>Web Deploy できない問題</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623203918.png" alt="f:id:daruyanagi:20180623203918p:plain" title="f:id:daruyanagi:20180623203918p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>さて、あとはデプロイするだけなのですが、ウチの環境はいろいろ腐り始めてるっぽくてエラーがでる。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2018%2F06%2F20%2F232113" title="未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2018/06/20/232113">blog.daruyanagi.jp</a></cite></p><p>一通りググってみたけどピッタリの解決策は見つからなくて、FTP でデプロイするという邪悪な方法でしのいできたのですが――</p><p><blockquote class="hatena-bookmark-comment"><a class="comment-info" href="http://b.hatena.ne.jp/entry/366160930/comment/nakaji999" data-user-id="nakaji999" data-entry-url="http://b.hatena.ne.jp/entry/s/blog.daruyanagi.jp/entry/2018/06/20/232113" data-original-href="https://blog.daruyanagi.jp/entry/2018/06/20/232113" data-entry-favicon="https://cdn-ak2.favicon.st-hatena.com/?url=https%3A%2F%2Fblog.daruyanagi.jp%2F" data-user-icon="/users/nakaji999/profile.png">未解決：Visual Studio 2017 から Azure へデプロイできなくなった（回避策） - だるろぐ</a><br><p style="clear: left">GitHubからデプロイするようにするのはダメなのかしら？</p><a class="datetime" href="http://b.hatena.ne.jp/nakaji999/20180620#bookmark-366160930"><span class="datetime-body">2018/06/20 23:50</span></a></blockquote><script src="https://b.st-hatena.com/js/comment-widget.js" charset="utf-8" async></script><cite class="hatena-citation"><a href="http://b.hatena.ne.jp/entry/366160930/comment/nakaji999">b.hatena.ne.jp</a></cite></p><p>賢者の声がしたので、それに従ってみました。いや、前々からやろうと思ってたんだけど、なんかめんどくさくて後回しになってただけなんだからねっ！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180623204237.png" alt="f:id:daruyanagi:20180623204237p:plain" title="f:id:daruyanagi:20180623204237p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>で、やってみたらフツーにイケました。ソースコード管理は GitHub でやってるし、こっちの方が断然いいな。ちゃんと master ブランチを触らない癖も付きそうだ。</p>
+
+</div>

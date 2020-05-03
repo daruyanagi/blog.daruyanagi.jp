@@ -1,0 +1,13 @@
+---
+date: 2012-06-11T22:46:13.0000000
+draft: false
+title: "近所の中華屋に潜入"
+tags: ["IS12T", "Windows Phone", "食べ物"]
+eyecatch: 
+---
+<p><a href="http://daruyanagi.hatenablog.com/entry/2012/06/09/173818">&#x713C;&#x8089;&#x98DF;&#x3079;&#x306B;&#x884C;&#x3063;&#x305F;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で酔っ払って IS12T を落としたらしい。しかもそのまま、カメラボタンがどこかに飛んでいってしまったらしい。日曜日、気づいたらなかった。あうあう。写真が撮れない。</p><p>そんなわけで、今日は会社帰りに au ショップへ寄った。直さねば。</p><p>カメラボタンのところだけ、部品だけ送ってくれたらあとは自分でやるのに、そこは融通の効かないところ。預かり修理しか受け付けられないという。これで10日間は電話なしだ<a href="#f1" name="fn1" title="修理代はタダになりそうだが">*1</a>。しかも、代替機は <a class="keyword" href="http://d.hatena.ne.jp/keyword/Android">Android</a> 。だから嫌なんだ。何もわかってない。 Windows Phone OS が使いたくてわざわざ（<b>仕方なく</b>） IS12T を買ったのに、 <a class="keyword" href="http://d.hatena.ne.jp/keyword/Android">Android</a> を貸します、と。 OS 違うだろ。まぁ、いろいろあるのはわかるけど、どうせ0円で投げ売りしてるんだから、それを貸してくれよ<a href="#f2" name="fn2" title="実際に店ではこんなめんどくさいこと言いませんけどね">*2</a>。</p><p>そんなこんなで。家で飯作るのが面倒になったので、今日は近所のごはん屋さんを開拓することにした。</p><p><img src="20120611222331.jpg" alt="f:id:daruyanagi:20120611222331j:plain" title="f:id:daruyanagi:20120611222331j:plain" class="hatena-fotolife"></p><p>すると、中華屋さんを発見。</p><p>ビール頼んだら、ツキダシも出てくる。ただ、わしはレバーが苦手なんだ。レバ刺しは大好きなのだけれど、火を入れたのは苦手。でも、出されたものは残さないように教育を受けているので、残さず食べる。食べてみれば、別にマズくはないし、食べられる。自分でお金出してまでは食べたくないけど。しかし逆に考えれば、レバーなんか久しぶりに食べたわけだ。レバ刺しがお店に出なくなってから、久しく食べていなかった……。日頃食べないものが食べられた、これはこれでラッキーな事なことのかもしれない。</p><p>ここはフツーの中華屋で、味もフツーで、お値段も中華屋価格<a href="#f3" name="fn3" title="街の中華屋って安くはないよね">*3</a>で、お店も単身者ばかりで、テーブルは相席で、みんなスポーツ新聞とマンガ雑誌を読んでいた。</p><p>わしは <a class="keyword" href="http://d.hatena.ne.jp/keyword/iPhone">iPhone</a> を触っていたのだけど、この店は <a class="keyword" href="http://d.hatena.ne.jp/keyword/Foursquare">Foursquare</a> に登録されていなかった。メイヤーが狙える (￣ー+￣)ｷﾗﾘ</p><p>結局、餃子と肉野菜炒めと瓶ビール二本飲んで退散。変な居心地の良さがあったのでまた寄ると思う。デブなひとが大盛りチャーハンを食べていたので、あれがきっとコストパフォーマンス最高。一度真似してみたい。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">修理代はタダになりそうだが</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">実際に店ではこんなめんどくさいこと言いませんけどね</span></p>
+<p class="footnote"><a href="#fn3" name="f3" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">街の中華屋って安くはないよね</span></p>
+</div>

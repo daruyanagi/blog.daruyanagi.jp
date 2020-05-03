@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：愛媛のニュースだけ読みたいので、Google ニュースから引っ張ってくる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。 # ~/App_Code/GoogleNews.cshtml @using System.ServiceModel.Syndication @using System.Xml @helper Get(string query) { var url = string.Format( &#34;http://news.google.com/news?q={0}&amp;amp;output=rss&#34;, query ); using (var reader =" />
+    <meta name="og:description"   property="og:description" content="地元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。 # ~/App_Code/GoogleNews.cshtml @using System.ServiceModel.Syndication @using System.Xml @helper Get(string query) { var url = string.Format( &quot;http://news.google.com/news?q={0}&amp;output=rss&quot;, query ); using (var reader" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2015/01/18/081720/20150118081201_huf37d70e5077d58fafe8639d7ca88e478_397711_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2015/01/18/081720/20150118081201_huf37d70e5077d58fafe8639d7ca88e478_397711_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/01/18/081720/" />
@@ -86,87 +92,62 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150118081201.png"/> 
-</figure>
-
-<p>元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> ~/App_Code/GoogleNews.cshtml
-
-@using System.ServiceModel.Syndication
-@using System.Xml
-
-@helper Get(<span style="color:#66d9ef">string</span> query)
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150118081201.png" alt="f:id:daruyanagi:20150118081201p:plain" title="f:id:daruyanagi:20150118081201p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>地元のニュースだけ読みたいので、それを Google ニュース引っ張ってくる BOT でも作ろうかと思って少し調べてみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/App_Code/GoogleNews.cshtml
+<p>@<span class="synStatement">using</span> System.ServiceModel.Syndication
+@<span class="synStatement">using</span> System.Xml</p>
+<p>@helper Get(<span class="synType">string</span> query)
 {
-    <span style="color:#66d9ef">var</span> url = <span style="color:#66d9ef">string</span>.Format(
-        <span style="color:#e6db74">&#34;http://news.google.com/news?q={0}&amp;amp;output=rss&#34;</span>,
-        query
-    );
-
-    <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> reader = XmlReader.Create(url))
-    {
-        <span style="color:#66d9ef">var</span> feed = SyndicationFeed.Load(reader);
-
-        <span style="color:#75715e">// @ObjectInfo.Print(feed);
-</span><span style="color:#75715e"></span>
-        <span style="color:#66d9ef">var</span> data = feed.Items.Select(_ =&gt; <span style="color:#66d9ef">new</span> {
-            Title = _.Title.Text,
-            Summary = _.Summary.Text,
-            PublishDate = _.PublishDate,
-            Url = _.Links.First().Uri.ToString().Split(&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;=&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;).Last(),
-        });
-
-        <span style="color:#75715e">// @ObjectInfo.Print(data);
-</span><span style="color:#75715e"></span>
-        <span style="color:#66d9ef">foreach</span> (<span style="color:#66d9ef">var</span> d <span style="color:#66d9ef">in</span> data)
-        {
-            <span style="color:#75715e">// &lt;h2&gt;&lt;a href=&#34;@d.Url&#34;&gt;@d.Title&lt;/a&gt;&lt;/h2&gt;
-</span><span style="color:#75715e"></span>            &amp;lt;p&gt;@Html.Raw(d.Summary)&amp;lt;/p&gt;
-            <span style="color:#75715e">// &lt;p&gt;@d.PublishDate&lt;/p&gt;
-</span><span style="color:#75715e"></span>        }
-    }
+var url = <span class="synType">string</span>.Format(
+<span class="synConstant">&quot;http://news.google.com/news?q={0}&amp;output=rss&quot;</span>,
+query
+);</p>
+<p><span class="synStatement">using</span> (var reader = XmlReader.Create(url))
+{
+var feed = SyndicationFeed.Load(reader);</p>
+<p><span class="synComment">// @ObjectInfo.Print(feed);</span></p>
+<p>var data = feed.Items.Select(_ =&gt; <span class="synStatement">new</span> {
+Title = _.Title.Text,
+Summary = _.Summary.Text,
+PublishDate = _.PublishDate,
+Url = _.Links.First().Uri.ToString().Split(<span class="synConstant">'='</span>).Last(),
+});</p>
+<p><span class="synComment">// @ObjectInfo.Print(data);</span></p>
+<p><span class="synStatement">foreach</span> (var d <span class="synStatement">in</span> data)
+{
+<span class="synComment">// &lt;h2&gt;&lt;a href=&quot;@d.Url&quot;&gt;@d.Title&lt;/a&gt;&lt;/h2&gt;</span>
+&lt;p&gt;@Html.Raw(d.Summary)&lt;/p&gt;
+<span class="synComment">// &lt;p&gt;@d.PublishDate&lt;/p&gt;</span>
 }
-
-<span style="color:#960050;background-color:#1e0010">```パラメーターに</span> output=rss <span style="color:#960050;background-color:#1e0010">をくっつけると</span> RSS <span style="color:#960050;background-color:#1e0010">形式でデータを取得できるので</span> XmlReader <span style="color:#960050;background-color:#1e0010">と</span> SyndicationFeed <span style="color:#960050;background-color:#1e0010">で読み込み・整形してやるとよさげ。残念なのでは地域ごとに絞れないこと</span>&lt;a href=<span style="color:#e6db74">&#34;#f-68c7e51c&#34;</span> name=<span style="color:#e6db74">&#34;fn-68c7e51c&#34;</span> title=<span style="color:#e6db74">&#34;本当はパラメーターに ned=jp を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の Google ニュースでは利用できないようだ。&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;<span style="color:#960050;background-color:#1e0010">。そのため「松山」で検索すると台湾の松山のニュースも引っかかるが……まぁ、これは仕方ないかな。</span>JavaScript <span style="color:#960050;background-color:#1e0010">の</span> API <span style="color:#960050;background-color:#1e0010">を利用すれば、ちゃんと制御できるようなので、</span>JavaScript <span style="color:#960050;background-color:#1e0010">ができる人はそちらで書けばいいと思う。</span>
-
-&lt;div class=<span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">結果</span>
-    
-
-<figure>
-    <img src="/images/20150118080353.png"/> 
-</figure>
-
-
-br/&gt;
-
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> ~/Default.cshtml
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=<span style="color:#e6db74">&#34;en&#34;</span>&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=<span style="color:#e6db74">&#34;utf-8&#34;</span> /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-        &amp;lt;style&gt;
-            * {
-                font-family: Meiryo, sans-serif;
-            }
-        &amp;lt;/style&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @GoogleNews.Get(<span style="color:#e6db74">&#34;愛媛 OR 松山 -秀樹 -ゴルフ&#34;</span>)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-<span style="color:#960050;background-color:#1e0010">```天気予報機能も付けて（「☀時々☁、最高</span><span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">度最低</span><span style="color:#ae81ff">0</span><span style="color:#960050;background-color:#1e0010">度、西風後南西風海上後南西風稍強、波</span><span style="color:#ae81ff">0.5</span><span style="color:#960050;background-color:#1e0010">米後</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">米」）、</span>Twitter BOT <span style="color:#960050;background-color:#1e0010">にでもしようかな。</span>
-
-&lt;/div&gt;&lt;div class=<span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;a href=<span style="color:#e6db74">&#34;#fn-68c7e51c&#34;</span> name=<span style="color:#e6db74">&#34;f-68c7e51c&#34;</span> class=<span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*<span style="color:#ae81ff">1</span>&lt;/a&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/span&gt;&lt;span class=<span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">本当はパラメーターに</span> ned=jp <span style="color:#960050;background-color:#1e0010">を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の</span> Google <span style="color:#960050;background-color:#1e0010">ニュースでは利用できないようだ。</span>&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre></div>
+}
+}
+</pre><p>パラメーターに output=rss をくっつけると RSS 形式でデータを取得できるので XmlReader と SyndicationFeed で読み込み・整形してやるとよさげ。</p><p>残念なのでは地域ごとに絞れないこと<a href="#f-68c7e51c" name="fn-68c7e51c" title="本当はパラメーターに ned=jp を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の Google ニュースでは利用できないようだ。">*1</a>。そのため「松山」で検索すると台湾の松山のニュースも引っかかるが……まぁ、これは仕方ないかな。JavaScript の API を利用すれば、ちゃんと制御できるようなので、JavaScript ができる人はそちらで書けばいいと思う。</p></p>
+<div class="section">
+<h3>結果</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150118080353.png" alt="f:id:daruyanagi:20150118080353p:plain" title="f:id:daruyanagi:20150118080353p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># ~/Default.cshtml
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=<span class="synConstant">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;style&gt;</p>
+<ul>
+<li>{
+font-family: Meiryo, sans-serif;
+}
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@GoogleNews.Get(<span class="synConstant">&quot;愛媛 OR 松山 -秀樹 -ゴルフ&quot;</span>)
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>天気予報機能も付けて（「☀時々☁、最高10度最低0度、西風後南西風海上後南西風稍強、波0.5米後1米」）、Twitter BOT にでもしようかな。</p></li>
+</ul>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-68c7e51c" name="f-68c7e51c" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">本当はパラメーターに ned=jp を付けるとその国のニュースのみにデータを絞れるはずなのだけど、日本語版の Google ニュースでは利用できないようだ。</span></p>
+</div>
 
     <footer>
         
@@ -180,7 +161,7 @@ br/&gt;
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/01/18/081720.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/01/18</time> 
             </p>
         
     </footer>
@@ -232,7 +213,16 @@ br/&gt;
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

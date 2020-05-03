@@ -1,0 +1,21 @@
+---
+date: 2016-01-16T23:10:16.0000000
+draft: false
+title: "『乙女戦争　ディーヴチー・ヴァールカ』"
+tags: ["歴史", "マンガ"]
+eyecatch: 20160116225108.png
+---
+
+<blockquote>
+<p>1420年、ボヘミア王国。戦争により家族を虐殺された12歳の少女シャールカは、フス派義勇軍の英雄ヤン・ジシュカに導かれ、仲間たちと共に反カトリックの戦いに身を投じていく。15世紀、中央ヨーロッパで起こり「宗教改革」の端緒となった「フス戦争」をモチーフに、少女の視点で、史実に基づいた凄惨な戦争を描く歴史巨編!!</p>
+
+</blockquote>
+<p>ヨーロッパが中世の永い眠りから覚め、近代の重い扉を押し開けようともがいていた時代。ボヘミア（チェコ）では、人々が魂の自由を勝ち取るための戦いにその身を投じていました。ルターにの“革命”に先駆けて行われた宗教戦争、<b>フス戦争</b>です。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116225108.png" alt="f:id:daruyanagi:20160116225108p:plain" title="f:id:daruyanagi:20160116225108p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+
+<blockquote cite="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%B9%E6%88%A6%E4%BA%89">
+<p>フス戦争（チェコ語: Husitské války、ポーランド語: Wojny husyckie、ドイツ語: Hussitenkriege、イタリア語: Crociata Hussita）は、15世紀に中央ヨーロッパで起こった戦争。ヤン・フスの開いたキリスト教改革派のフス派（プロテスタントの先駆）の信者（ボヘミアとポーランドを中心とする）と、それを異端としたカトリック、神聖ローマ帝国の間で戦われた。</p>
+
+<cite><a href="https://ja.wikipedia.org/wiki/%E3%83%95%E3%82%B9%E6%88%A6%E4%BA%89">&#x30D5;&#x30B9;&#x6226;&#x4E89; - Wikipedia</a></cite>
+</blockquote>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116225837.jpg" alt="f:id:daruyanagi:20160116225837j:plain" title="f:id:daruyanagi:20160116225837j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>きっかけは、プラハ大学の神学教授<b>ヤン・フス</b>が唱えた教会改革論でした（ヤンは英語で言うところのジョンです）。フスはオックスフォード大学のジョン・ウィクリフの影響を受け（名前が一緒なので気が合ったのでしょうかｗ）、腐敗した教会を痛烈に批判しました。当時のプラハは神聖ローマ帝国の首都になることもあったヨーロッパ有数の都市でした。また、プラハ大学は帝国領ではじめて設立された大学でもあります。そうした進歩的な雰囲気の中、チェコ語を使ったフスの説法は市民の間へ瞬く間に浸透し、熱い支持を集めるようになります。</p><p>しかし1414年、神聖ローマ皇帝<b>ジギスムント</b>によって開催されたコンスタンツ公会議で、フスは異端に認定。火刑に処されてしまいます（このほかにも、この公会議では当時分裂していたローマ教会の統一などが図られています）。これにプラハのフス派は激怒。当時のドイツ人市長がフス派を市政から追い出そうとしたのをきっかけに不満が爆発し、第一次プラハ窓外投擲事件が発生します。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116225046.jpg" alt="f:id:daruyanagi:20160116225046j:plain" title="f:id:daruyanagi:20160116225046j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>文字通り、市長が市役所の窓からポイされてしまったのです（同じような事件はまた起こるので、プラハの人はこういうのが好きなのかもしれない）。カトリックとフス派の調停に心を砕いていたボヘミア王ヴァーツラフ4世（ジギスムントのお兄さん）はこれを聞いてショックで急死。ジギスムントがボヘミアの王冠を頂くことになると、これに抵抗するプラハ市民との間で全面的な戦争へ発展してしまいました。</p><p>異端を根絶やしにしろとばかりに、周りの国から次々と送り込まれる十字軍（十字軍はべつに中東でイスラム教徒とばかり戦っていたわけではありません！　異端と戦うのがお仕事なのです）。無敵の重装騎兵に、プラハ市民はなすすべがありませんでした。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116221734.png" alt="f:id:daruyanagi:20160116221734p:plain" title="f:id:daruyanagi:20160116221734p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そこに登場したのが、“騎士殺し”の異名を持つ<b>ヤン・ジシュカ</b>。彼はフス派信徒を組織化し、新兵器「ピーシュチャラ（ピストルの語源。原始的なハンドキャノン）」と「ターボル（荷車を野戦防御に利用した、現在の戦車・装甲車のようなもの）」を駆使して、十字軍相手に勝利をおさめます。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116230209.jpg" alt="f:id:daruyanagi:20160116230209j:plain" title="f:id:daruyanagi:20160116230209j:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>『乙女戦争　ディーヴチー・ヴァールカ』</b>は、少女<b>シャールカ</b>の目から見たジシュカとフス戦争を描いた歴史漫画です。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160116221717.png" alt="f:id:daruyanagi:20160116221717p:plain" title="f:id:daruyanagi:20160116221717p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>一見かわいらしい少女漫画かな？　といった趣なのですが、ページをめくるとかわいいのは女の子だけ。宗教戦争物としてはよくあることですが、強姦・虐殺・処刑・拷問・乱交のシーンもあり、不快に感じる人も少なくないのではないかと思います。けれど、ストーリーは骨太で、中世の戦争もよく描けていると思います。騎士の時代を終わらせ、ナポレオンの国民軍の先駆けともなったジュシカの軍隊。今後の活躍にも目が離せません！</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017VDFM9C/bestylesnet-22/"><img src="http://ecx.images-amazon.com/images/I/D1VsUQCoMdS._SL160_.png" class="hatena-asin-detail-image" alt="[まとめ買い] 乙女戦争　ディーヴチー・ヴァールカ" title="[まとめ買い] 乙女戦争　ディーヴチー・ヴァールカ"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017VDFM9C/bestylesnet-22/">[まとめ買い] 乙女戦争　ディーヴチー・ヴァールカ</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 大西巷一</li><li><span class="hatena-asin-detail-label">メディア:</span> Kindle版</li><li><a href="http://d.hatena.ne.jp/asin/B017VDFM9C/bestylesnet-22" target="_blank">この商品を含むブログ (2件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>

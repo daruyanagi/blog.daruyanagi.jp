@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/07/05/015015/" />
@@ -86,53 +88,47 @@
         </time>        
     </p>
 
-    <p>近年どうもサポートに不安のある CoreServer で運用していた旧ブログを、最新のクラウドプラットフォーム Windows Azure Websites に引越させたいなぁ、と思っていろいろ画策してみた。Windows Azure の細かいところはまだよくわからないので、ここは WebMatrix の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。</p>
+    <p>近年どうもサポートに不安のある <a class="keyword" href="http://d.hatena.ne.jp/keyword/CoreServer">CoreServer</a> で運用していた旧ブログを、最新のクラウドプラットフォーム <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> Websites に引越させたいなぁ、と思っていろいろ画策してみた。</p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> の細かいところはまだよくわからないので、ここは <a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> の助けを借りようかと思う。結果的には、最後の最後で躓いちゃったけれど……惜しいところまでいったような気がする。</p>
 <div class="section">
-    ### XREA/CoreServer からデータをバックアップ
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705012338.png" alt="f:id:daruyanagi:20120705012338p:plain" title="f:id:daruyanagi:20120705012338p:plain" class="hatena-fotolife"/>FTP 接続でファイルをローカルに保存。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705012559.png" alt="f:id:daruyanagi:20120705012559p:plain" title="f:id:daruyanagi:20120705012559p:plain" class="hatena-fotolife"/>と、そのまえに MySQL データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/XREA">XREA</a>/<a class="keyword" href="http://d.hatena.ne.jp/keyword/CoreServer">CoreServer</a> からデータをバックアップ</h3>
+<p><img src="20120705012338.png" alt="f:id:daruyanagi:20120705012338p:plain" title="f:id:daruyanagi:20120705012338p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/FTP">FTP</a> 接続でファイルをローカルに保存。</p><p><img src="20120705012559.png" alt="f:id:daruyanagi:20120705012559p:plain" title="f:id:daruyanagi:20120705012559p:plain" class="hatena-fotolife"></p><p>と、そのまえに <a class="keyword" href="http://d.hatena.ne.jp/keyword/MySQL">MySQL</a> データベースのダンプファイルを作成しておく。コントロールパネルのデータベースのところで［複製］ボタンみたいなのを押せば、ルートフォルダにダンプファイルが作成される。</p>
 </div>
 <div class="section">
-    ### Windows Azure Websites で WordPress サイトを作成・ダウンロード
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011411.png" alt="f:id:daruyanagi:20120705011411p:plain" title="f:id:daruyanagi:20120705011411p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011412.png" alt="f:id:daruyanagi:20120705011412p:plain" title="f:id:daruyanagi:20120705011412p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011419.png" alt="f:id:daruyanagi:20120705011419p:plain" title="f:id:daruyanagi:20120705011419p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011416.png" alt="f:id:daruyanagi:20120705011416p:plain" title="f:id:daruyanagi:20120705011416p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011422.png" alt="f:id:daruyanagi:20120705011422p:plain" title="f:id:daruyanagi:20120705011422p:plain" class="hatena-fotolife"/>ふつーに Windows Azure Websites で WordPress サイトを作成する。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011425.png" alt="f:id:daruyanagi:20120705011425p:plain" title="f:id:daruyanagi:20120705011425p:plain" class="hatena-fotolife"/><img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011423.png" alt="f:id:daruyanagi:20120705011423p:plain" title="f:id:daruyanagi:20120705011423p:plain" class="hatena-fotolife"/>初期設定まで Azure 上でやっておいた。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011420.png" alt="f:id:daruyanagi:20120705011420p:plain" title="f:id:daruyanagi:20120705011420p:plain" class="hatena-fotolife"/>あとは WebMatrix でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の WordPress がローカルで動作する。
+<h3><a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> Websites で <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> サイトを作成・ダウンロード</h3>
+<p><img src="20120705011411.png" alt="f:id:daruyanagi:20120705011411p:plain" title="f:id:daruyanagi:20120705011411p:plain" class="hatena-fotolife"><img src="20120705011412.png" alt="f:id:daruyanagi:20120705011412p:plain" title="f:id:daruyanagi:20120705011412p:plain" class="hatena-fotolife"><img src="20120705011419.png" alt="f:id:daruyanagi:20120705011419p:plain" title="f:id:daruyanagi:20120705011419p:plain" class="hatena-fotolife"><img src="20120705011416.png" alt="f:id:daruyanagi:20120705011416p:plain" title="f:id:daruyanagi:20120705011416p:plain" class="hatena-fotolife"><img src="20120705011422.png" alt="f:id:daruyanagi:20120705011422p:plain" title="f:id:daruyanagi:20120705011422p:plain" class="hatena-fotolife"></p><p>ふつーに <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> Websites で <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> サイトを作成する。</p><p><img src="20120705011425.png" alt="f:id:daruyanagi:20120705011425p:plain" title="f:id:daruyanagi:20120705011425p:plain" class="hatena-fotolife"><img src="20120705011423.png" alt="f:id:daruyanagi:20120705011423p:plain" title="f:id:daruyanagi:20120705011423p:plain" class="hatena-fotolife"></p><p>初期設定まで Azure 上でやっておいた。</p><p><img src="20120705011420.png" alt="f:id:daruyanagi:20120705011420p:plain" title="f:id:daruyanagi:20120705011420p:plain" class="hatena-fotolife"></p><p>あとは <a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> でローカルへダウンロード。 Web サイトのボタンからダウンロードできるはず。これで、 Azure Websites に紐づけられた空の <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> がローカルで動作する。</p>
 </div>
 <div class="section">
-    ### ファイルのコピーとデータベースのインポート、ローカルで WordPress を動作させる
-    先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705013652.png" alt="f:id:daruyanagi:20120705013652p:plain" title="f:id:daruyanagi:20120705013652p:plain" class="hatena-fotolife"/>
-```
-mysql -u root -p DB_NAME &lt; DUMP_FILE_NAME
-```WebMatrix のデータベースを開いて、旧Webサイトのドメインを“<a href="http://localhost:****">http://localhost:****</a>”（テスト環境のIPアドレス）に書き換えておこう<a href="#f1" name="fn1" title="2、3箇所あったはず">*1</a>。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011432.png" alt="f:id:daruyanagi:20120705011432p:plain" title="f:id:daruyanagi:20120705011432p:plain" class="hatena-fotolife"/>この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011429.png" alt="f:id:daruyanagi:20120705011429p:plain" title="f:id:daruyanagi:20120705011429p:plain" class="hatena-fotolife"/>どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。<img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011434.png" alt="f:id:daruyanagi:20120705011434p:plain" title="f:id:daruyanagi:20120705011434p:plain" class="hatena-fotolife"/>ちゃんと動いた！　WebMatrix では URL Rewrite が動かないようで、パーマリンクをカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。
+<h3>ファイルのコピーとデータベースのインポート、ローカルで <a class="keyword" href="http://d.hatena.ne.jp/keyword/WordPress">WordPress</a> を動作させる</h3>
+<p>先ほどバックアップしたファイルを、Documents/Web Sites/site_name へコピー。つぎに、ダンプファイルをデータベースへインポートする。</p><p><img src="20120705013652.png" alt="f:id:daruyanagi:20120705013652p:plain" title="f:id:daruyanagi:20120705013652p:plain" class="hatena-fotolife"></p>
+<pre class="code lang-" data-lang="" data-unlink>mysql -u root -p DB_NAME &lt; DUMP_FILE_NAME</pre><p>WebMatrix のデータベースを開いて、旧Webサイトのドメインを“<a href="http://localhost:****">http://localhost:****</a>”（テスト環境の<a class="keyword" href="http://d.hatena.ne.jp/keyword/IP%A5%A2%A5%C9%A5%EC%A5%B9">IPアドレス</a>）に書き換えておこう<a href="#f1" name="fn1" title="2、3箇所あったはず">*1</a>。</p><p><img src="20120705011432.png" alt="f:id:daruyanagi:20120705011432p:plain" title="f:id:daruyanagi:20120705011432p:plain" class="hatena-fotolife"></p><p>この状態で［実行］してみるが……動かない。焦るなかれ。管理画面（/wp-admin）には入れる。</p><p><img src="20120705011429.png" alt="f:id:daruyanagi:20120705011429p:plain" title="f:id:daruyanagi:20120705011429p:plain" class="hatena-fotolife"></p><p>どうやらテーマファイルが認識されていないようだ。デフォルトのテーマを Activate してみる。</p><p><img src="20120705011434.png" alt="f:id:daruyanagi:20120705011434p:plain" title="f:id:daruyanagi:20120705011434p:plain" class="hatena-fotolife"></p><p>ちゃんと動いた！　<a class="keyword" href="http://d.hatena.ne.jp/keyword/WebMatrix">WebMatrix</a> では URL Rewrite が動かないようで、<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%D1%A1%BC%A5%DE%A5%EA%A5%F3%A5%AF">パーマリンク</a>をカスタマイズしている場合、個別ページが見られないが、自分で Web.config を書き換えれば動きそうだ。これに関してはまた稿を改める。</p>
 </div>
 <div class="section">
-    ### Azure へ発行……失敗
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120705/20120705011433.png" alt="f:id:daruyanagi:20120705011433p:plain" title="f:id:daruyanagi:20120705011433p:plain" class="hatena-fotolife"/>あとは Windows Azure Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。
-```
-2012/07/05 0:12
+<h3>Azure へ発行……失敗</h3>
+<p><img src="20120705011433.png" alt="f:id:daruyanagi:20120705011433p:plain" title="f:id:daruyanagi:20120705011433p:plain" class="hatena-fotolife"></p><p>あとは <a class="keyword" href="http://d.hatena.ne.jp/keyword/Windows%20Azure">Windows Azure</a> Websites へもう一度アップロード（発行）してやれば引っ越しは完了！……のはずだが。</p>
+<pre class="code lang-" data-lang="" data-unlink>2012/07/05 0:12
 0:18:17: Using ID &#39;d4c71007-****&#39; for connections to the remote server.
 0:20:12: Updating setAcl (****/wp-content).
 0:20:12: Using ID &#39;9e5d8bfc-****&#39; for connections to the remote server.
 0:22:30: Updating setAcl (****/wp-content).
 0:30:00: Adding child sqlScript (MSDeploy.Continous/dbMySql[@path=&#39;server=us-cdbr-azure-east-a.cloudapp.net;database=bestyles;user id=b7b0e016175271;allow user variables=True&#39;]/sqlScript).
 0:30:00: Opening SQL Connection with connection string &#39;server=us-cdbr-azure-east-a.cloudapp.net;database=****;user id=****;allow user variables=True&#39;. The &#39;transacted&#39; setting for this connection is &#39;False&#39;.
-ERROR: データベースを発行できません。詳細については、"http://go.microsoft.com/fwlink/?LinkId=205387" を参照してください
-0:30:02: データベースを発行できません。詳細については、"http://go.microsoft.com/fwlink/?LinkId=205387" を参照してください
-0:30:02: 発行できません。 データベースを発行できません。詳細については、"http://go.microsoft.com/fwlink/?LinkId=205387" を参照してください
+ERROR: データベースを発行できません。詳細については、&#34;http://go.microsoft.com/fwlink/?LinkId=205387&#34; を参照してください
+0:30:02: データベースを発行できません。詳細については、&#34;http://go.microsoft.com/fwlink/?LinkId=205387&#34; を参照してください
+0:30:02: 発行できません。 データベースを発行できません。詳細については、&#34;http://go.microsoft.com/fwlink/?LinkId=205387&#34; を参照してください
 0:30:02: エラーの詳細:
-0:30:02: An error occurred during execution of the database script. The error occurred between the following lines of the script: "145" and "255". The verbose log might have more information about the error. The command started with the following:
-0:30:02: "--
+0:30:02: An error occurred during execution of the database script. The error occurred between the following lines of the script: &#34;145&#34; and &#34;255&#34;. The verbose log might have more information about the error. The command started with the following:
+0:30:02: &#34;--
 -- Dumping data for table `wp_morpheme`
 --
-<p>LOC&rdquo;
+<p>LOC&quot;
 0:30:02:  Packets larger than max_allowed_packet are not allowed. <a href="http://go.microsoft.com/fwlink/?LinkId=178587">http://go.microsoft.com/fwlink/?LinkId=178587</a>
 0:30:02:   Learn more at: <a href="http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE">http://go.microsoft.com/fwlink/?LinkId=221672#ERROR_SQL_EXECUTION_FAILURE</a>.
 ：
-：</p>
-<pre><code class="language-失敗してしまったみたい。“Packets" data-lang="失敗してしまったみたい。“Packets">
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;2、3箇所あったはず&lt;/span&gt;
-&lt;a href=&quot;#fn2&quot; name=&quot;f2&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;スパムやけどな！&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+：</pre><p>失敗してしまったみたい。“Packets larger than max_allowed_packet are not allowed”っていうのは、データがデカすぎるっていうことなのかな？</p><p><img src="20120705011435.png" alt="f:id:daruyanagi:20120705011435p:plain" title="f:id:daruyanagi:20120705011435p:plain" class="hatena-fotolife"></p><p>データのインポートは途中まで成功していて、コメントなどは無事インポートされていた<a href="#f2" name="fn2" title="スパムやけどな！">*2</a>。あともう少し！！</p></p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">2、3箇所あったはず</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">スパムやけどな！</span></p>
+</div>
 
     <footer>
         
@@ -146,7 +142,7 @@ ERROR: データベースを発行できません。詳細については、"htt
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/07/05/015015.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/07/05</time> 
             </p>
         
     </footer>
@@ -156,7 +152,7 @@ ERROR: データベースを発行できません。詳細については、"htt
 
     <p>
         
-        <a href="https://blog.daruyanagi.jp/entry/2012/07/04/081647/">&laquo; Older</a>
+        <a href="https://blog.daruyanagi.jp/entry/2012/07/04/205252/">&laquo; Older</a>
         
         <span > - </span>
             <a href="/">🏠 Home</a>
@@ -198,7 +194,16 @@ ERROR: データベースを発行できません。詳細については、"htt
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

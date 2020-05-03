@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 3 - blog.daruyanagi.jp</title>
+<title>WebMatrix 3: Response.OutputStream - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,21 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 3" />
+<meta name="og:title"         property="og:title" content="WebMatrix 3: Response.OutputStream" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出" />
+    <meta name="og:description"   property="og:description" content="動的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2013/10/14/004317/20131014003724_hu8757efa33f90aee8a8b2683f2d85bd67_424288_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2013/10/14/004317/20131014003724_hu8757efa33f90aee8a8b2683f2d85bd67_424288_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/10/14/004317/" />
@@ -78,7 +84,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 3</h1>
+    <h1>WebMatrix 3: Response.OutputStream</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,63 +92,76 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20131014003724.png"/> 
-</figure>
-
-<p>的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.Drawing
-
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#66d9ef">var</span> text = UrlData[<span style="color:#ae81ff">0</span>] == <span style="color:#66d9ef">string</span>.Empty ? <span style="color:#e6db74">&#34;Sample&#34;</span> : UrlData[<span style="color:#ae81ff">0</span>];
-
-    <span style="color:#66d9ef">try</span>
-    {
-        <span style="color:#66d9ef">var</span> bitmap = <span style="color:#66d9ef">new</span> Bitmap(<span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">480</span>);
-
-        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> g = Graphics.FromImage(bitmap)) {
-        <span style="color:#66d9ef">using</span> (<span style="color:#66d9ef">var</span> font = newFont(<span style="color:#e6db74">&#34;Meiryo&#34;</span>, <span style="color:#ae81ff">24</span>)) 
-        {
-            <span style="color:#66d9ef">var</span> rect = <span style="color:#66d9ef">new</span> RectangleF(<span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">0</span>, <span style="color:#ae81ff">600</span>, <span style="color:#ae81ff">480</span>);
-            <span style="color:#66d9ef">var</span> format = StringFormat.GenericDefault;
-            format.Alignment = StringAlignment.Center;
-            format.LineAlignment = StringAlignment.Center;
-
-            g.FillRectangle(
-                Brushes.CornflowerBlue,
-                rect
-            );
-
-            g.DrawString(
-                text, font, 
-                Brushes.AntiqueWhite,
-                rect, format
-            );
-        } }
-
-        bitmap.Save(
-            Response.OutputStream,
-            Imaging.ImageFormat.Png
-        );
-
-        Response.ContentType = <span style="color:#e6db74">&#34;image/png&#34;</span>;
-        Response.Flush();
-        Response.End();
-    }
-    <span style="color:#66d9ef">catch</span> (Exception e)
-    {
-        Response.ContentType = <span style="color:#e6db74">&#34;text/plain&#34;</span>;
-        Response.Write(e);
-        Response.End();
-    }
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131014003724.png" alt="f:id:daruyanagi:20131014003724p:plain" title="f:id:daruyanagi:20131014003724p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>動的に画像を出力したい、という場合はこんな感じでいいのかな。以下は「~/Download/あほー」にアクセスると、「あほー」と描かれた画像を出力する例。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Drawing
+<p>@{
+var text = UrlData[<span class="synConstant">0</span>] == <span class="synType">string</span>.Empty ? <span class="synConstant">&quot;Sample&quot;</span> : UrlData[<span class="synConstant">0</span>];</p>
+<p><span class="synStatement">try</span>
+{
+var bitmap = <span class="synStatement">new</span> Bitmap(<span class="synConstant">600</span>, <span class="synConstant">480</span>);</p>
+<p><span class="synStatement">using</span> (var g = Graphics.FromImage(bitmap)) {
+<span class="synStatement">using</span> (var font = newFont(<span class="synConstant">&quot;Meiryo&quot;</span>, <span class="synConstant">24</span>))
+{
+var rect = <span class="synStatement">new</span> RectangleF(<span class="synConstant">0</span>, <span class="synConstant">0</span>, <span class="synConstant">600</span>, <span class="synConstant">480</span>);
+var format = StringFormat.GenericDefault;
+format.Alignment = StringAlignment.Center;
+format.LineAlignment = StringAlignment.Center;</p>
+<p>g.FillRectangle(
+Brushes.CornflowerBlue,
+rect
+);</p>
+<p>g.DrawString(
+text, font,
+Brushes.AntiqueWhite,
+rect, format
+);
+} }</p>
+<p>bitmap.Save(
+Response.OutputStream,
+Imaging.ImageFormat.Png
+);</p>
+<p>Response.ContentType = <span class="synConstant">&quot;image/png&quot;</span>;
+Response.Flush();
+Response.End();
 }
-
-</code></pre></div><figure>
-    <img src="/images/20131014003819.png"/> 
-</figure>
-
-<p>係ないけれど、Razor だと using 句の {} が省略できない（if などのほかの制御文でも同じ）なので、using 句を連続して使う場合はネストが深くなる。仕方ないけれど、気持ち悪い。</p>
-
+<span class="synStatement">catch</span> (Exception e)
+{
+Response.ContentType = <span class="synConstant">&quot;text/plain&quot;</span>;
+Response.Write(e);
+Response.End();
+}
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131014003819.png" alt="f:id:daruyanagi:20131014003819p:plain" title="f:id:daruyanagi:20131014003819p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>関係ないけれど、Razor だと using 句の {} が省略できない（if などのほかの制御文でも同じ）なので、using 句を連続して使う場合はネストが深くなる。仕方ないけれど、気持ち悪い。</p></p>
+<p>静的な画像を出力する場合。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+<span class="synStatement">try</span>
+{
+var path = Server.MapPath(<span class="synSpecial">@</span><span class="synConstant">&quot;~/Images/image.jpg&quot;</span>);
+var bitmap = <span class="synStatement">new</span> System.Drawing.Bitmap(path);
+<p>bitmap.Save(
+Response.OutputStream,
+System.Drawing.Imaging.ImageFormat.Png
+);</p>
+<p>Response.ContentType = <span class="synConstant">&quot;image/png&quot;</span>;
+Response.Flush();
+Response.End();
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+Response.ContentType = <span class="synConstant">&quot;text/plain&quot;</span>;
+Response.Write(e);
+Response.End();
+}
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131014003954.png" alt="f:id:daruyanagi:20131014003954p:plain" title="f:id:daruyanagi:20131014003954p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>エラーを起こしてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131014004024.png" alt="f:id:daruyanagi:20131014004024p:plain" title="f:id:daruyanagi:20131014004024p:plain" class="hatena-fotolife" itemprop="image"></span></p></p>
+<blockquote cite="http://wiz.came.ac/blog/2010/02/aspnet.html">
+<p>実際に、Visual Studio でデバッグしてみてもちゃんと動作するので、安心してIIS 5.0に持って行ってみると、「GDI+で一般的なエラーが発生しました」というエラーを吐き出す。</p><p>いろいろと試してみたところ、MemoryStream に一度書き出してからOutputStreamへ送り込めば大丈夫。おそらく、原因は OutputStream がシークと読み取りを禁止している点。Image クラスの Save メソッド内で読み返しが行われているのか、CanSeek / CanReadをチェックしているのかは不明ですが、直接書き出すのは無理っぽい。</p>
+<p><cite><a href="http://wiz.came.ac/blog/2010/02/aspnet.html">「ASP.NETで動的に画像を作る」でハマった - うぃずのひとりごと</a></cite></p>
+</blockquote>
+<p>試してはないけど、こういうハマりどころもあるみたい。「気をつけねば」<a href="#f1" name="fn1" title="そもそも ASP.NET で GDI+ 使うのはあんまりよくないって聞いたこともある気がする">*1</a></p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">そもそも ASP.NET で GDI+ 使うのはあんまりよくないって聞いたこともある気がする</span></p>
+</div>
 
     <footer>
         
@@ -156,7 +175,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/10/14/004317.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/10/14</time> 
             </p>
         
     </footer>
@@ -208,7 +227,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

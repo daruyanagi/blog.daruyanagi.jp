@@ -1,0 +1,13 @@
+---
+date: 2013-07-08T09:59:47.0000000
+draft: false
+title: "『丕緒の鳥』"
+tags: ["読書"]
+eyecatch: http://ecx.images-amazon.com/images/I/61jYFFykFdL.jpg
+---
+<p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4101240582/bestylesnet-22/"><img src="http://ecx.images-amazon.com/images/I/61jYFFykFdL._SL160_.jpg" class="hatena-asin-detail-image" alt="丕緒の鳥 十二国記 (新潮文庫 お 37-58 十二国記)" title="丕緒の鳥 十二国記 (新潮文庫 お 37-58 十二国記)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4101240582/bestylesnet-22/">丕緒の鳥 十二国記 (新潮文庫 お 37-58 十二国記)</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 小野不由美,山田章博</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 新潮社</li><li><span class="hatena-asin-detail-label">発売日:</span> 2013/06/26</li><li><span class="hatena-asin-detail-label">メディア:</span> 文庫</li><li><a href="http://d.hatena.ne.jp/asin/4101240582/bestylesnet-22" target="_blank">この商品を含むブログ (45件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>昨日、表題の短編「丕緒の鳥」だけ読んだ。すでに「<a href="http://www.shinchosha.co.jp/yomyom/">yom yom&#xFF5C;&#x65B0;&#x6F6E;&#x793E;</a>」で掲載されたときに目を通していたのだけど……改めて読んで<i>面白かった ( ﾟДﾟ)！</i></p><p>以前読んだときだってもちろん楽しめたのだけど、あのときはたぶん、ちゃんと読んでいるようで読んでいなかった。</p><p>あれだ、結局のところ、夏の西瓜みたいなもんなんだよ。</p><p>ジメジメとした梅雨が明け、カンカン照りの太陽と入道雲の下、氷で冷やした西瓜にかぶりつけること、ただそのシチュエーションだけで舞い上がってしまっていて、肝心の西瓜の味をちゃんと楽しめていなかった。そんな感じ。</p><p>この短編のテーマは、諌止かな？　諌止には直諫と暗諫<a href="#f1" name="fn1" title="これはわしの造語かもな">*1</a>がある。</p><p>直諫といえば斉の晏嬰、唐の魏徴だが、彼の諫言もそれを受け入れた君主の度量があってのことだし、それ相応の地位がなければ許されない<a href="#f2" name="fn2" title="唐には諫議大夫というそれ専門の職があった">*2</a>。もし暗君を戴いたり、諫言できる地位になければ、諌めるにも暗諫に頼らざるを得ない<a href="#f3" name="fn3" title="晏嬰の場合、直諫だけでなく暗諫も行った">*3</a>。</p><p>たとえば、機嫌を損ねないよう比喩などをもって遠回しな批判を行ったり（諷諫）、虚栄心や自信の欠如といった君主の性格の弱点を突いて、それとなく行動を誘導する。前者が通じ、なおかつ諫言を必要とするならば、相手は“有能な暴君”である可能性が高く、まず殺される。後者を行えば、仮に成功したとしても阿諛追従の臣であると断罪される場合が多い。</p><p>どちらにしろ、そのような諫言を行って君主を正しく導き、なおかつ天寿をまっとうした例は少ない。丕緒のような立場によるまっすぐな暗諌が通じることなど、ほとんど奇跡に等しい。さすが名君だな、俺の陽子たんは。</p><p>十二国記は、彼女が道を踏み外して、天譴を受けるまでやってほしい。</p><p><i>あと、このエピソードはぜひアニメ化を……！！</i></p><p>どんなきれいな映像になるのか、楽しみ。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">これはわしの造語かもな</span></p>
+<p class="footnote"><a href="#fn2" name="f2" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">唐には諫議大夫というそれ専門の職があった</span></p>
+<p class="footnote"><a href="#fn3" name="f3" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">晏嬰の場合、直諫だけでなく暗諫も行った</span></p>
+</div>

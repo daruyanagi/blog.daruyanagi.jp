@@ -33,13 +33,16 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix：Web.config の appSettings を使いこなす" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ でちょっと興味がわいたので、Web.config につい" />
+    <meta name="og:description"   property="og:description" content="WebMatrix&#xFF1A;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x3068;&#x30EA;&#x30E2;&#x30FC;&#x30C8;&#x3067;&#x7570;&#x306A;&#x308B;&#x8A2D;&#x5B9A;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050; でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。 基本 Default.cshtml &lt;!DOCTYPE html&gt; @using System.Configuration &lt;htmllang=&quot;ja&quot;&gt; &lt;head&gt; &lt;metacharset=&quot;utf-8&quot;/&gt; &lt;title&gt;マイ サイ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/07/17/012107/" />
@@ -86,153 +89,106 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2014/07/15/224549">WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ</a> でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。</p>
+    <p><a href="https://blog.daruyanagi.jp/entry/2014/07/15/224549">WebMatrix&#xFF1A;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x3068;&#x30EA;&#x30E2;&#x30FC;&#x30C8;&#x3067;&#x7570;&#x306A;&#x308B;&#x8A2D;&#x5B9A;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> でちょっと興味がわいたので、Web.config について少しいろいろ試してみた。</p>
 <div class="section">
-    ### 基本
-<figure>
-    <img src="/images/20140717005913.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+<h3>基本</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717005913.png" alt="f:id:daruyanagi:20140717005913p:plain" title="f:id:daruyanagi:20140717005913p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <div class="section">
-    #### Default.cshtml
-    ```html
+<h4>Default.cshtml</h4>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
 <p>@using System.Configuration</p>
-<p>&lt;html lang=&quot;ja&quot;&gt;
-&lt;head&gt;
-&lt;meta charset=&quot;utf-8&rdquo; /&gt;
-&lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
-&lt;/head&gt;
-&lt;body&gt;
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
 @ObjectInfo.Print(ConfigurationManager.AppSettings)
-&lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-Web.config" data-lang="Web.config">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### Web.config
-    ```xml
-&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-
-&lt;configuration&gt;&lt;/configuration&gt;
-  .web&gt;
-    debug=&quot;true&quot; targetFramework=&quot;4.0&quot; /&gt;
-  .web&gt;
-
-    file=&quot;Web2.config&quot;&gt;
-        key=&quot;A&quot; value=&quot;a&quot;/&gt;
-        key=&quot;B&quot; value=&quot;b&quot;/&gt;
-        key=&quot;C&quot; value=&quot;c&quot;/&gt;
-        key=&quot;D&quot; value=&quot;d&quot;/&gt;
-        key=&quot;E&quot; value=&quot;e&quot;/&gt;
-        key=&quot;F&quot; value=&quot;f&quot;/&gt;
-        key=&quot;G&quot; value=&quot;g&quot;/&gt;
-    
-
-
-```appSettings セクションにアプリケーション設定を記述。&lt;code&gt;file=&quot;Web2.config&quot;&lt;/code&gt; は後述。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### 結果
-    
-
-<figure>
-    <img src="/images/20140717011748.png"/> 
-</figure>
-
-
-とえば、
-```cs
-var a = System.Configuration.ConfigurationManager.AppSettings[&quot;A&quot;];
-
-```などとすることで、Web.config の appSettings セクションに記述したアプリケーション設定が得られる。ちょっとめんどくさいけれど、API キーなどの静的値はなるべくハードコードせず、appSettings に書いておくべき。
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 外部 .config ファイルを利用したアプリケーション設定のオーバーライド
-    
-
-<figure>
-    <img src="/images/20140717011257.png"/> 
-</figure>
-
-
-下のような Web2.config ファイルを追加。
-
-&lt;div class=&quot;section&quot;&gt;
-    #### Web2.config
-    ```xml
-&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-
-&lt;appsettings&gt;&lt;/appsettings&gt;
-    key=&quot;E&quot; value=&quot;1&quot;/&gt;
-    key=&quot;F&quot; value=&quot;2&quot;/&gt;
-    key=&quot;G&quot; value=&quot;3&quot;/&gt;
-
-
-</code></pre></div>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre><p>Web.config の appSettings セクションに記述したアプリケーション設定を読み込む。</p><p>@ObjectInfo.Print は WebMatrix でちょっとしたデバッグをするときに便利なのでぜひ覚えておこう。</p></p>
+</div>
 <div class="section">
-    #### 結果
-<figure>
-    <img src="/images/20140717010123.png"/> 
-</figure>
-
-<p>onfigurationManager.AppSettings[&ldquo;E&rdquo;] 以降の値が Web2.config の内容によって書き換えられる。Web.config の file 属性で指定した外部 .config ファイルが存在しない場合は、読み込み処理がスキップされる。</p>
+<h4>Web.config</h4>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;configuration&gt;</span>
+<span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span>
+<span class="synIdentifier">&lt;compilation </span><span class="synType">debug</span>=<span class="synConstant">&quot;true&quot;</span><span class="synIdentifier"> </span><span class="synType">targetFramework</span>=<span class="synConstant">&quot;4.0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span></p>
+<p><span class="synIdentifier">&lt;appSettings </span><span class="synType">file</span>=<span class="synConstant">&quot;Web2.config&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;A&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;a&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;B&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;b&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;C&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;c&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;D&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;d&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;E&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;e&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;F&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;f&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;G&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;g&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/appSettings&gt;</span>
+<span class="synIdentifier">&lt;/configuration&gt;</span>
+</pre><p>appSettings セクションにアプリケーション設定を記述。<code>file=&quot;Web2.config&quot;</code> は後述。</p></p>
+</div>
+<div class="section">
+<h4>結果</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717011748.png" alt="f:id:daruyanagi:20140717011748p:plain" title="f:id:daruyanagi:20140717011748p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>たとえば、</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>var a = System.Configuration.ConfigurationManager.AppSettings[<span class="synConstant">&quot;A&quot;</span>];
+</pre><p>などとすることで、Web.config の appSettings セクションに記述したアプリケーション設定が得られる。</p><p>ちょっとめんどくさいけれど、API キーなどの静的値はなるべくハードコードせず、appSettings に書いておくべき。</p>
 </div>
 </div>
 <div class="section">
-    ### 外部 .config ファイルを利用したアプリケーション設定の強制削除
-    ちょっと Web2.config をイジってみる。
+<h3>外部 .config ファイルを利用したアプリケーション設定のオーバーライド</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717011257.png" alt="f:id:daruyanagi:20140717011257p:plain" title="f:id:daruyanagi:20140717011257p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>以下のような Web2.config ファイルを追加。</p>
 <div class="section">
-    #### Web2.config
-    ```xml
-<!--?-->xml version="1.0" encoding="utf-8"?>
-<p><appsettings></appsettings>
-<clear></clear> // &lt;- 追加
-&lt;add key=&quot;E&rdquo; value=&quot;1&rdquo;/&gt;
-key=&quot;F&rdquo; value=&quot;2&rdquo;/&gt;
-key=&quot;G&rdquo; value=&quot;3&rdquo;/&gt;</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### 結果
-    
-
-<figure>
-    <img src="/images/20140717010556.png"/> 
-</figure>
-
-
-eb.config で記述したアプリケーション設定がクリアされる。要するに、ASP.NET は .config を読んで、appSettings セクションに書かれた add や clear といったコマンドを AppSettings（Dictionary 型）に対して行っているだけ。なので、
-```xml
-&lt;!--?--&gt;xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&gt;
-
-&lt;appsettings&gt;&lt;/appsettings&gt;
-    key=&quot;A&quot; /&gt;
-
-
-```とすれば、特定のキーだけを消すことも可能。これを使えば、Web.config で行ったアプリケーション設定を Web2.config から自由にイジれる。使い方間違うとハマるかもだけど。
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 外部 .config ファイルを隠しファイルにする
-    結論を先に言うと、Web2.config を隠しファイルにしても、appSettings はちゃんと読み込まれる。なので &lt;a href=&quot;https://blog.daruyanagi.jp/entry/2014/07/17/004650&quot;&gt;WebMatrix：特定のファイルを発行対象に含まない - だるろぐ&lt;/a&gt; と組み合わせることで、
-
-&lt;ul&gt;
-&lt;li&gt;Web.config&lt;/li&gt;
-&lt;li&gt;Web2.config（隠しファイル、リモートに発行されない）&lt;/li&gt;
-&lt;/ul&gt;という構成にすれば、
-
-&lt;ul&gt;
-&lt;li&gt;ローカル：Web.config ＋ Web2.config のアプリケーション設定で動作&lt;/li&gt;
-&lt;li&gt;リモート：Web.config のアプリケーション設定で動作&lt;/li&gt;
-&lt;/ul&gt;という風に運用できる（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2014/07/15/224549&quot;&gt;WebMatrix：ローカルとリモートで異なる設定を利用する方法を考えてみた - だるろぐ&lt;/a&gt; は発想を逆にすればよかった！）。
-
-&lt;/div&gt;
-
-</code></pre>
+<h4>Web2.config</h4>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;appSettings&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;E&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;F&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;G&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;3&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/appSettings&gt;</span>
+</pre></p>
+</div>
+<div class="section">
+<h4>結果</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717010123.png" alt="f:id:daruyanagi:20140717010123p:plain" title="f:id:daruyanagi:20140717010123p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ConfigurationManager.AppSettings["E"] 以降の値が Web2.config の内容によって書き換えられる。</p><p>Web.config の file 属性で指定した外部 .config ファイルが存在しない場合は、読み込み処理がスキップされる。</p>
+</div>
+</div>
+<div class="section">
+<h3>外部 .config ファイルを利用したアプリケーション設定の強制削除</h3>
+<p>ちょっと Web2.config をイジってみる。</p>
+<div class="section">
+<h4>Web2.config</h4>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;appSettings&gt;</span>
+<span class="synIdentifier">&lt;clear /&gt;</span> // <span class="synIdentifier">&lt;- 追加</span>
+<span class="synIdentifier">    </span><span class="synError">&lt;</span><span class="synIdentifier">add </span><span class="synType">key</span>=<span class="synConstant">&quot;E&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;1&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;F&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;2&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">key</span>=<span class="synConstant">&quot;G&quot;</span><span class="synIdentifier"> </span><span class="synType">value</span>=<span class="synConstant">&quot;3&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/appSettings&gt;</span>
+</pre></p>
+</div>
+<div class="section">
+<h4>結果</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140717010556.png" alt="f:id:daruyanagi:20140717010556p:plain" title="f:id:daruyanagi:20140717010556p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Web.config で記述したアプリケーション設定がクリアされる。</p><p>要するに、ASP.NET は .config を読んで、appSettings セクションに書かれた add や clear といったコマンドを AppSettings（Dictionary 型）に対して行っているだけ。</p><p>なので、</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;appSettings&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">key</span>=<span class="synConstant">&quot;A&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/appSettings&gt;</span>
+</pre><p>とすれば、特定のキーだけを消すことも可能。これを使えば、Web.config で行ったアプリケーション設定を Web2.config から自由にイジれる。使い方間違うとハマるかもだけど。</p></p>
+</div>
+</div>
+<div class="section">
+<h3>外部 .config ファイルを隠しファイルにする</h3>
+<p>結論を先に言うと、Web2.config を隠しファイルにしても、appSettings はちゃんと読み込まれる。</p><p>なので <a href="https://blog.daruyanagi.jp/entry/2014/07/17/004650">WebMatrix&#xFF1A;&#x7279;&#x5B9A;&#x306E;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x3092;&#x767A;&#x884C;&#x5BFE;&#x8C61;&#x306B;&#x542B;&#x307E;&#x306A;&#x3044; - &#x3060;&#x308B;&#x308D;&#x3050;</a> と組み合わせることで、</p>
+<ul>
+<li>Web.config</li>
+<li>Web2.config（隠しファイル、リモートに発行されない）</li>
+</ul><p>という構成にすれば、</p>
+<ul>
+<li>ローカル：Web.config ＋ Web2.config のアプリケーション設定で動作</li>
+<li>リモート：Web.config のアプリケーション設定で動作</li>
+</ul><p>という風に運用できる（<a href="https://blog.daruyanagi.jp/entry/2014/07/15/224549">WebMatrix&#xFF1A;&#x30ED;&#x30FC;&#x30AB;&#x30EB;&#x3068;&#x30EA;&#x30E2;&#x30FC;&#x30C8;&#x3067;&#x7570;&#x306A;&#x308B;&#x8A2D;&#x5B9A;&#x3092;&#x5229;&#x7528;&#x3059;&#x308B;&#x65B9;&#x6CD5;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> は発想を逆にすればよかった！）。</p>
+</div>
 
     <footer>
         
@@ -246,7 +202,7 @@ eb.config で記述したアプリケーション設定がクリアされる。�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/17/012107.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/07/17</time> 
             </p>
         
     </footer>
@@ -298,7 +254,16 @@ eb.config で記述したアプリケーション設定がクリアされる。�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

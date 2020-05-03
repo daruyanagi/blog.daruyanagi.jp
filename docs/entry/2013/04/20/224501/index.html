@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 3 - blog.daruyanagi.jp</title>
+<title>WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編） - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,18 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 3" />
+<meta name="og:title"         property="og:title" content="WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="んな感じのソーシャル共有＋ RSS 購読ボタンをサイトに追加したいな、と思って、今朝少し WebMatrix と格闘していた。SNS における共有数の取得部分は JavaScript だけで完" />
+    <meta name="og:description"   property="og:description" content="こんな感じのソーシャル共有＋ RSS 購読ボタンをサイトに追加したいな、と思って、今朝少し WebMatrix と格闘していた。 SNS における共有数の取得部分は JavaScript だけで完結" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/04/20/224501/" />
@@ -78,7 +81,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 3</h1>
+    <h1>WebMatrix 3: フィードの購読者数を取得する（1：サーバーサイド編）</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,12 +89,60 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130420221551.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130420221551.png" alt="f:id:daruyanagi:20130420221551p:plain" title="f:id:daruyanagi:20130420221551p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>こんな感じのソーシャル共有＋ RSS 購読ボタンをサイトに追加したいな、と思って、今朝少し WebMatrix と格闘していた。</p><p>SNS における共有数の取得部分は JavaScript だけで完結するのだけれど、RSS 購読数の取得部分は JavaScript だけでは少ししんどいのかなぁ。Same origin policy というものに引っかかってしまう。まぁ、こういうときは WebMatrix でサーバー側に RSS 購読数を取得するようにすればいいよね。</p>
+<br />
+<p>~/FeedCount/<a href="https://blog.daruyanagi.jp/">https://blog.daruyanagi.jp/</a> で <a href="https://blog.daruyanagi.jp/">https://blog.daruyanagi.jp/</a> の RSS 購読数を取得する FeedCount.cshtml を書いてみた。とりあえず今回は一番簡単な Livedoor Reader だけ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.Text
+@<span class="synStatement">using</span> System.Text.RegularExpressions
+<p>@functions
+{
+<span class="synType">public</span> <span class="synType">int</span> GetSubscriptionCountOfLiveDoorReader(<span class="synType">string</span> url)
+{
+<span class="synStatement">try</span>
+{
+<span class="synStatement">using</span> (var client = <span class="synStatement">new</span> WebClient() {
+Encoding = Encoding.UTF8 } )
+{
+var text = client.DownloadString(
+<span class="synSpecial">@</span><span class="synConstant">&quot;http://reader.livedoor.com/about/&quot;</span> + url);
+var m = <span class="synStatement">new</span> Regex(
+<span class="synSpecial">@</span><span class="synConstant">&quot;&quot;&quot;subscriber_count&quot;&quot;&amp;gt; ((\d+) users)&quot;</span>)
+.Matches(text);</p>
+<p><span class="synStatement">return</span> m.Count == <span class="synConstant">0</span> ? <span class="synConstant">0</span> : m[<span class="synConstant">0</span>].Groups[<span class="synConstant">1</span>].Value.AsInt();
+}
+}
+<span class="synStatement">catch</span>
+{
+<span class="synStatement">return</span> <span class="synConstant">0</span>;
+}
+}
+}
+</pre><p>Livedoor Reader の購読者数は、<a href="http://reader.livedoor.com/about/"><a href="http://reader.livedoor.com/about/">http://reader.livedoor.com/about/</a></a>（URL）へアクセスすると取得できるらしい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130420223407.png" alt="f:id:daruyanagi:20130420223407p:plain" title="f:id:daruyanagi:20130420223407p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あとは正規表現で当該部分を取得すればいい。AsInt() は ASP.NET Web Pages の便利関数。知っておくと便利だよ。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var url = <span class="synType">string</span>.Join(<span class="synConstant">&quot;//&quot;</span>,
+UrlData.Where(_ =&gt; !<span class="synType">string</span>.IsNullOrEmpty(_)));
 
-<p>んな感じのソーシャル共有＋ RSS 購読ボタンをサイトに追加したいな、と思って、今朝少し WebMatrix と格闘していた。SNS における共有数の取得部分は JavaScript だけで完結するのだけれど、RSS 購読数の取得部分は JavaScript だけでは少ししんどいのかなぁ。Same origin policy というものに引っかかってしまう。まぁ、こういうときは WebMatrix でサーバー側に RSS 購読数を取得するようにすればいいよね。</p>
+var livedoor = GetSubscriptionCountOfLiveDoorReader(url);
 
+var data = <span class="synStatement">new</span> {
+livedoor = livedoor,
+total = livedoor,
+};
+
+Response.Clear();
+Response.ContentType = <span class="synConstant">&quot;application/json&quot;</span>;
+Response.Write(Json.Encode(data));
+Response.End();
+}
+</pre><p>今回は JSON で値を返すことにしました。JsonHelper を使うとカンタン。</p><p>結果はこんな感じ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130420224202.png" alt="f:id:daruyanagi:20130420224202p:plain" title="f:id:daruyanagi:20130420224202p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<pre class="code" data-lang="" data-unlink>({&#34;livedoor&#34;:6,&#34;total&#34;:6})</pre><p>次回はこれを JavaScript から呼んで、Web ページの表示しましょう。</p>
+<div class="section">
+<h4>注記</h4>
+<p>なお、UrlDate で <a href="https://blog.daruyanagi.jp/">https://blog.daruyanagi.jp/</a> を取得しようとすると、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130420223145.png" alt="f:id:daruyanagi:20130420223145p:plain" title="f:id:daruyanagi:20130420223145p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>このようなエラー<a href="#f-755e4e80" name="fn-755e4e80" title="危険な可能性のある Request.Path 値がクライアント (:) から検出されました。 ">*1</a>が発生したり、そのほかにもいろいろあるのだけれど、それについてはまた稿を改めたい。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-755e4e80" name="f-755e4e80" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">危険な可能性のある Request.Path 値がクライアント (:) から検出されました。 </span></p>
+</div>
 
     <footer>
         
@@ -105,7 +156,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/04/20/224501.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/04/20</time> 
             </p>
         
     </footer>
@@ -157,7 +208,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

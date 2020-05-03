@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>Google Chart を使った数式ツールを作ってみた（3）  - blog.daruyanagi.jp</title>
+<title>Google Chart を使った数式ツールを作ってみた（3） - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="Google Chart を使った数式ツールを作ってみた（3） " />
+<meta name="og:title"         property="og:title" content="Google Chart を使った数式ツールを作ってみた（3）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; &gt; ネスト（入れ子）が認識できない。あと、［Shift］&#43;［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃ" />
+    <meta name="og:description"   property="og:description" content="ネスト（入れ子）が認識できない。あと、［Shift］&#43;［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなく" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/17/065707/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>Google Chart を使った数式ツールを作ってみた（3） </h1>
+    <h1>Google Chart を使った数式ツールを作ってみた（3）</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,202 +88,172 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130115205946.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<pre><code>&gt;
-    ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。
-
-    Google Chart を使った数式ツールを作ってみた（2） - だるろぐ
-</code></pre>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130115205946.png" alt="f:id:daruyanagi:20130115205946p:plain" title="f:id:daruyanagi:20130115205946p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<blockquote cite="https://blog.daruyanagi.jp/entry/2013/01/15/210406">
+<p>ネスト（入れ子）が認識できない。あと、［Shift］+［Tab］キーで逆向きに移動したいけれど、これがなかなかめんどくさい。{} だけじゃなくて () にも対応させたい、なんて考えだすと破たんするのが目に見えてるし。</p><p>というわけで、解決策は正規表現か、構文解析かって感じなんだけど。正規表現も大変だし、しかも限界が見えているので、ここは頑張って簡単な構文解析をするべきかと思っている。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2013/01/15/210406">Google Chart を使った数式ツールを作ってみた（2） - だるろぐ</a></cite></p>
+</blockquote>
 <p>構文解析というか、対応する { と } をペアにして、その出現位置をメモる方向で考えてみた。括弧の種類が増えていけば破たんするけれど、とりあえず最初は動けばいいや。アルゴリズムは、</p>
 <ul>
 <li>テキストを先頭から一文字ずつ取り出して、</li>
 <li>{ だったら [i, ?] をリストに保存。（i は { の出現位置、? は } の位置を保存するプレースホルダ）</li>
 <li>} だったら最後の ? へ出現位置を保存。</li>
 <li>これを文末まで繰り返す。</li>
-</ul>みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。たとえば、
+</ul><p>みたいな感じ。大雑把に言えば、{ は前から詰めて、} は後ろから詰める、と。</p><p>たとえば、</p>
 <table>
-    <tbody><tr>
-    <td>0</td>
-    <td>1</td>
-    <td>2</td>
-    <td>3</td>
-    <td>4</td>
-    <td>5</td>
-    <td>6</td>
-    <td>7</td>
-    <td>8</td>
-    <td>9</td>
-    <td>10</td>
-    <td>11</td>
-    <td>12</td>
-    <td>13</td>
-    <td>14</td>
-    <td>15</td>
-    </tr>
-    <tr>
-    <td>\</td>
-    <td>f</td>
-    <td>r</td>
-    <td>a</td>
-    <td>c</td>
-    <td>{</td>
-    <td>\</td>
-    <td>f</td>
-    <td>r</td>
-    <td>a</td>
-    <td>c</td>
-    <td>{</td>
-    <td>}</td>
-    <td>{</td>
-    <td>}</td>
-    <td>}</td>
-    </tr>
-</tbody></table>だったら、
+<tr>
+<td>0</td>
+<td>1</td>
+<td>2</td>
+<td>3</td>
+<td>4</td>
+<td>5</td>
+<td>6</td>
+<td>7</td>
+<td>8</td>
+<td>9</td>
+<td>10</td>
+<td>11</td>
+<td>12</td>
+<td>13</td>
+<td>14</td>
+<td>15</td>
+</tr>
+<tr>
+<td>\</td>
+<td>f</td>
+<td>r</td>
+<td>a</td>
+<td>c</td>
+<td>{</td>
+<td>\</td>
+<td>f</td>
+<td>r</td>
+<td>a</td>
+<td>c</td>
+<td>{</td>
+<td>}</td>
+<td>{</td>
+<td>}</td>
+<td>}</td>
+</tr>
+</table><p>だったら、</p>
 <table>
-    <tbody><tr>
-    <td>{ の出現位置</td>
-    <td>（対応する）} の出現位置</td>
-    </tr>
-    <tr>
-    <td>5</td>
-    <td>15</td>
-    </tr>
-    <tr>
-    <td>11</td>
-    <td>12</td>
-    </tr>
-    <tr>
-    <td>13</td>
-    <td>14</td>
-    </tr>
-</tbody></table>こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、? には text.Length - 1 を突っ込んでおいた。int? にして null をプレースホルダにしてもよかったのだけれど、ちょっとめんどくさいかな、と思って。
-```cs
-private Dictionary&lt;int, int> BuidBracketIndo(string text)
+<tr>
+<td>{ の出現位置</td>
+<td>（対応する）} の出現位置</td>
+</tr>
+<tr>
+<td>5</td>
+<td>15</td>
+</tr>
+<tr>
+<td>11</td>
+<td>12</td>
+</tr>
+<tr>
+<td>13</td>
+<td>14</td>
+</tr>
+</table><p>こういうリストを得るのがゴールになるかな。もしかしたら再帰でイケるのかな？　と思ったけど、よくわかんなかったので素直に for を使って書くことにした。あと、? には text.Length - 1 を突っ込んでおいた。int? にして null をプレースホルダにしてもよかったのだけれど、ちょっとめんどくさいかな、と思って。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> Dictionary&lt;<span class="synType">int</span>, <span class="synType">int</span>&gt; BuidBracketIndo(<span class="synType">string</span> text)
 {
-    var result = new Dictionary&lt;int, int>();
-    var last_index = text.Length - 1;
-<pre><code>for (int i = 0; i &amp;lt;= last_index; i++)
+var result = <span class="synStatement">new</span> Dictionary&lt;<span class="synType">int</span>, <span class="synType">int</span>&gt;();
+var last_index = text.Length - <span class="synConstant">1</span>;
+<p><span class="synStatement">for</span> (<span class="synType">int</span> i = <span class="synConstant">0</span>; i &lt;= last_index; i++)
 {
-    switch (text[i])
-    {
-        case &amp;#39;{&amp;#39;:
-            result.Add(i, last_index);
-            break;
-        case &amp;#39;}&amp;#39;:
-            try
-            {
-                var item = result.Last(_ =&gt; _.Value == last_index);
-                result[item.Key] = i;
-            }
-            catch { }
-            break;
-    }
+<span class="synStatement">switch</span> (text[i])
+{
+<span class="synStatement">case</span> <span class="synConstant">&rsquo;{&lsquo;</span>:
+result.Add(i, last_index);
+<span class="synStatement">break</span>;
+<span class="synStatement">case</span> <span class="synConstant">&rsquo;}&lsquo;</span>:
+<span class="synStatement">try</span>
+{
+var item = result.Last(_ =&gt; _.Value == last_index);
+result[item.Key] = i;
+}
+<span class="synStatement">catch</span> { }
+<span class="synStatement">break</span>;
+}
+}</p>
+<p><span class="synStatement">return</span> result;
+}
+</pre><p>これを TextChanged イベントで呼んで括弧の対応位置情報を毎回リフレッシュし、［Tab］キーの入力時に利用する。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// 「\frac{}{}」（分数の TeX 表現）を挿入する。</span>
+<span class="synComment">// 挿入後は［Tab］キーの押し下げを一度行い、</span>
+<span class="synComment">// 最初の {} の間にキャレットを移動させる</span>
+<span class="synType">private</span> <span class="synType">void</span> Button_Click_4(<span class="synType">object</span> sender, RoutedEventArgs e)
+{
+<span class="synComment">// 途中でFormulaText.SelectionStart == 0 になってしまう（？）ので</span>
+<span class="synComment">// キャレット位置を保存しておく</span>
+var start = FormulaText.SelectionStart;
+FormulaText.Text = FormulaText.Text
+.Remove(start, FormulaText.SelectionLength)
+.Insert(start, <span class="synSpecial">@</span><span class="synConstant">&quot;\frac{}{}&quot;</span>);
+FormulaText.Focus();
+FormulaText.SelectionStart = start;
+
+<span class="synComment">// ［Tab］キーの押し下げをエミュレート</span>
+var tab_key_down_event_args = <span class="synStatement">new</span> KeyEventArgs(
+Keyboard.PrimaryDevice,
+PresentationSource.FromVisual(FormulaText),
+(<span class="synType">int</span>)DateTime.Now.Ticks,
+Key.Tab
+);
+tab_key_down_event_args.RoutedEvent = Keyboard.PreviewKeyDownEvent;
+FormulaText_PreviewKeyDown(sender, tab_key_down_event_args);
 }
 
-return result;
-</code></pre>
-<p>}</p>
-<pre><code class="language-これを" data-lang="これを">```cs
-// 「\frac{}{}」（分数の TeX 表現）を挿入する。
-// 挿入後は［Tab］キーの押し下げを一度行い、
-// 最初の {} の間にキャレットを移動させる
-private void Button_Click_4(object sender, RoutedEventArgs e)
+<span class="synComment">// 括弧の位置情報： TextChanged イベントでリフレッシュされる</span>
+<span class="synType">private</span> Dictionary&lt;<span class="synType">int</span>, <span class="synType">int</span>&gt; brackets = <span class="synConstant">null</span>;
+
+<span class="synComment">// キーの押し下げイベントを処理</span>
+<span class="synType">private</span> <span class="synType">void</span> FormulaText_PreviewKeyDown(<span class="synType">object</span> sender, KeyEventArgs e)
 {
-    // 途中でFormulaText.SelectionStart == 0 になってしまう（？）ので
-    // キャレット位置を保存しておく
-    var start = FormulaText.SelectionStart;
-    FormulaText.Text = FormulaText.Text
-        .Remove(start, FormulaText.SelectionLength)
-        .Insert(start, @&quot;\frac{}{}&quot;);
-    FormulaText.Focus(); 
-    FormulaText.SelectionStart = start;
-
-    // ［Tab］キーの押し下げをエミュレート
-    var tab_key_down_event_args = new KeyEventArgs(
-        Keyboard.PrimaryDevice,
-        PresentationSource.FromVisual(FormulaText),
-        (int)DateTime.Now.Ticks,
-        Key.Tab
-    );
-    tab_key_down_event_args.RoutedEvent = Keyboard.PreviewKeyDownEvent;
-    FormulaText_PreviewKeyDown(sender, tab_key_down_event_args);
-}
-
-// 括弧の位置情報： TextChanged イベントでリフレッシュされる
-private Dictionary&amp;lt;int, int&gt; brackets = null;
-
-// キーの押し下げイベントを処理
-private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
+<span class="synStatement">switch</span> (e.Key)
 {
-    switch (e.Key)
-    {
-        case Key.Tab:
-            try
-            {
-                /* ［Tab］キーで次のブラケット内へ進む */
-                if ((Keyboard.Modifiers &amp;amp; ModifierKeys.Shift) != ModifierKeys.Shift)
-                {
-                    var b = brackets.First(_ =&gt; FormulaText.SelectionStart &amp;lt; _.Key);
-                    FormulaText.SelectionStart = b.Key + 1;
-                    FormulaText.SelectionLength = b.Value - b.Key - 1;
-                }
-                /* ［Shift］＋［Tab］キーで前のブラケット内へ戻る */
-                else
-                {
-                    var b = brackets.Last(_ =&gt; _.Key &amp;lt; FormulaText.SelectionStart - 1);
-                    FormulaText.SelectionStart = b.Key + 1;
-                    FormulaText.SelectionLength = b.Value - b.Key - 1;
-                }
-            }
-            catch
-            {
-                /* 不正な操作を行ったらビープ音を鳴らす */
-                System.Media.SystemSounds.Beep.Play();
-            }
-            finally
-            {
-                e.Handled = true; // イベントを握りつぶす！
-            }
-            break;
-
-        case Key.Escape:
-            /* 選択状態を解除する */
-            FormulaText.SelectionLength = 0;
-            break;
-    }
+<span class="synStatement">case</span> Key.Tab:
+<span class="synStatement">try</span>
+{
+<span class="synComment">/* ［Tab］キーで次のブラケット内へ進む */</span>
+<span class="synStatement">if</span> ((Keyboard.Modifiers &amp; ModifierKeys.Shift) != ModifierKeys.Shift)
+{
+var b = brackets.First(_ =&gt; FormulaText.SelectionStart &lt; _.Key);
+FormulaText.SelectionStart = b.Key + <span class="synConstant">1</span>;
+FormulaText.SelectionLength = b.Value - b.Key - <span class="synConstant">1</span>;
 }
+<span class="synComment">/* ［Shift］＋［Tab］キーで前のブラケット内へ戻る */</span>
+<span class="synStatement">else</span>
+{
+var b = brackets.Last(_ =&gt; _.Key &lt; FormulaText.SelectionStart - <span class="synConstant">1</span>);
+FormulaText.SelectionStart = b.Key + <span class="synConstant">1</span>;
+FormulaText.SelectionLength = b.Value - b.Key - <span class="synConstant">1</span>;
+}
+}
+<span class="synStatement">catch</span>
+{
+<span class="synComment">/* 不正な操作を行ったらビープ音を鳴らす */</span>
+System.Media.SystemSounds.Beep.Play();
+}
+<span class="synStatement">finally</span>
+{
+e.Handled = <span class="synConstant">true</span>; <span class="synComment">// イベントを握りつぶす！</span>
+}
+<span class="synStatement">break</span>;
 
-```ついでに［Esc］キーで選択を解除できるようにしておいた。手元ではちゃんと動いている気がするけど、もう少し様子を見てから、アイコンなんかをつけて公開しようかと思う。
-
-&lt;div class=&quot;section&quot;
-
-&gt;
-    ### 追記
-    &lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;
-
-&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291670265044295681');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291670265044295681',el[i],{});        }    });&lt;/script&gt;
-
-&lt;div class=&quot;twitter-syntax-tweet-id-291670265044295681&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;
-
-&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291671521745846272');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291671521745846272',el[i],{});        }    });&lt;/script&gt;
-
-&lt;div class=&quot;twitter-syntax-tweet-id-291671521745846272&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;
-
-&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291672851386351616');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291672851386351616',el[i],{});        }    });&lt;/script&gt;
-
-&lt;div class=&quot;twitter-syntax-tweet-id-291672851386351616&quot;&gt;&lt;/div&gt;&lt;script&gt;    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &quot;https://platform.twitter.com/widgets.js&quot;;        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &quot;script&quot;, &quot;twitter-wjs&quot;));&lt;/script&gt;
-
-&lt;script&gt;    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291673084769992704');        for (var i=0;i&lt;el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291673084769992704',el[i],{});        }    });&lt;/script&gt;
-
-&lt;div class=&quot;twitter-syntax-tweet-id-291673084769992704&quot;&gt;&lt;/div&gt;ご指摘感謝！　ブログの方はそのままにしておくので適当に読み直してください。List&amp;lt;KeyValuePair&amp;lt;int,int&gt;&gt; に書き換えればいいんですよね？
-
-&lt;/div&gt;
-
-</code></pre>
+<span class="synStatement">case</span> Key.Escape:
+<span class="synComment">/* 選択状態を解除する */</span>
+FormulaText.SelectionLength = <span class="synConstant">0</span>;
+<span class="synStatement">break</span>;
+}
+}
+</pre><p>ついでに［Esc］キーで選択を解除できるようにしておいた。手元ではちゃんと動いている気がするけど、もう少し様子を見てから、アイコンなんかをつけて公開しようかと思う。</p>
+<div class="section">
+<h3>追記</h3>
+<p><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291670265044295681');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291670265044295681',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-291670265044295681"></div><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291671521745846272');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291671521745846272',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-291671521745846272"></div><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291672851386351616');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291672851386351616',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-291672851386351616"></div><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-291673084769992704');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('291673084769992704',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-291673084769992704"></div></p><p>ご指摘感謝！　ブログの方はそのままにしておくので適当に読み直してください。List&lt;KeyValuePair&lt;int,int&gt;&gt; に書き換えればいいんですよね？</p>
+</div>
 
     <footer>
         
@@ -295,7 +267,7 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/17/065707.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/17</time> 
             </p>
         
     </footer>
@@ -347,7 +319,16 @@ private void FormulaText_PreviewKeyDown(object sender, KeyEventArgs e)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

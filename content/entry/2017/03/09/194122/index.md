@@ -1,0 +1,14 @@
+---
+date: 2017-03-09T19:41:22.0000000
+draft: false
+title: "もっと早く買っておけばよかった！　ブックスタンドは本読みながらブログ書くマンに必須だと思う"
+tags: ["今日のお役立ち"]
+eyecatch: https://images-fe.ssl-images-amazon.com/images/I/51MeGSRiM2L._SL160_.jpg
+---
+<p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B013S2V48I/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/51MeGSRiM2L._SL160_.jpg" class="hatena-asin-detail-image" alt="Readaeer ブックスタンド 筆記台 書見台 本立て 6段階調整 竹製" title="Readaeer ブックスタンド 筆記台 書見台 本立て 6段階調整 竹製"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B013S2V48I/bestylesnet-22/">Readaeer ブックスタンド 筆記台 書見台 本立て 6段階調整 竹製</a></p><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> Readaeer</li><li><span class="hatena-asin-detail-label">メディア:</span> オフィス用品</li><li><a href="http://d.hatena.ne.jp/asin/B013S2V48I/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>Facebook で「ソースコードの写経に便利」みたいなやりとりしているのをみて、購入してみた。書見台といえば格好いいけど、まぁ、要はブックスタンドやね。ページを開いて押さえといてくれる。</p><p>この手の商品は 2,000 円程度で割と豊富にあるようだ。今回は値引き率が高くてお得感があったのと、できれば木製の温かみのあるやつがよかったので、この商品を選んだ。たいへん無難で、とくに文句の付けどころもない、よい買い物だった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170308152639.jpg" alt="f:id:daruyanagi:20170308152639j:plain" title="f:id:daruyanagi:20170308152639j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>試しに PowerShell のポケットリファレンスを広げながら、スクリプトを書いてみる。これはウンコ便利ですわ。なぜもっと早く買わなかったのだろう。インカ文明の人が車輪を見たら、同じ感想を抱くと思う。今までは開いた本を膝に置いて机に押し付けてページを固定したり、エアコンのリモコンを文鎮代わりに置いて弾かれたりしてたんだけど、ほんと人生を無駄にしてたわ。</p><p>ページの押さえは若干キツめで、取り扱いに少し神経を使うけれど、分厚いハードカバーでもガッチリ押さえてくれそうで安心感がある。でも、ページの薄い辞書にはちょっと使えないかなぁ……。油断したらページがくしゃっとなりそう。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170308152802.jpg" alt="f:id:daruyanagi:20170308152802j:plain" title="f:id:daruyanagi:20170308152802j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>本を立てておかないときは、タブレットでも立てておけばいい……と思ったけど、iPad mini（初代）には少し大きすぎた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170308153630.jpg" alt="f:id:daruyanagi:20170308153630j:plain" title="f:id:daruyanagi:20170308153630j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Surface 3 は割とピッタリ。iPad のデカいほうでもイケるんじゃないかな、もってないからよくわからんけど。</p><p>これはもう、俺の机がまた文明開化ですわ。★5つ付けたい。</p>
+
+<div class="section">
+<h3>追伸</h3>
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi">@daruyanagi</a> それ、エロ本挟んどくやつやろ。</p>&mdash; subsfn (@subsfn) <a href="https://twitter.com/subsfn/status/839420571829972994">2017年3月8日</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+
+</div>

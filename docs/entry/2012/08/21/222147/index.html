@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="NuGet Package Explorer で NuGet パッケージを作ってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="NuGet Package Explorer*（http://npe.codeplex.com/）を使ってみたかったので、 WebMatrix でファイルのアップロード（3） - FileUpload ヘルパ" />
+    <meta name="og:description"   property="og:description" content="NuGet Package Explorer（http://npe.codeplex.com/）を使ってみたかったので、 WebMatrix &#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30A2;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C9;&#xFF08;3&#xFF09; - FileUpload &#x30D8;&#x30EB;&#x30D1;&#x30FC;&#x3092;&#x4F7F;&#x3046; - &#x3060;&#x308B;&#x308D;&#x3050; で利用した HttpFileCollectionBase の拡張メソッドを NuGet" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/21/222147/" />
@@ -86,34 +88,18 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120821220536.png"/> 
-</figure>
-
-<p><em>NuGet Package Explorer</em>*（<a href="http://npe.codeplex.com/"><a href="http://npe.codeplex.com/">http://npe.codeplex.com/</a></a>）を使ってみたかったので、 <a href="https://blog.daruyanagi.jp/entry/2012/08/20/202253">WebMatrix でファイルのアップロード（3） - FileUpload ヘルパーを使う - だるろぐ</a> で利用した HttpFileCollectionBase の拡張メソッドを NuGet パッケージにしてみた。 ClickOnce 形式のインストーラーになっていて、セットアップは簡単。やっぱ GUI で編集できるのはいいな。</p>
-<pre><code>/
-    HttpFileCollectionBaseExtension.nuspec
-
-    content/
-        web.config.transform
-        App_Code/
-            HttpFileCollectionBaseExtension.cs
-            ReadMe.txt
-```というフォルダー階層にして .nuspec を開いたら、 &amp;lt;Files&gt; を書いてなくてちゃんと Contentが読み込まれた。なるほど。別に使い方は難しくないけれど、いくつか躓いたところもある。まず、メタデータ（.nuspec）を保存するのを忘れやすい。［Save］メニューは .nupack を保存するコマンドなので、 .nuspec を保存するには［Save metadata］メニューを利用する。
-
-<figure>
-    <img src="/images/20120821221424.png"/> 
-</figure>
-
-
-と、公開（push）の終了がわかりづらい。まぁ、重複して公開するとエラーになる（実害はない）のでわかるのだけれど。
-
-&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;https://nuget.org/packages/HttpFileCollectionBaseExtension&quot;&gt;NuGet Gallery | HttpFileCollectionBaseExtension 1.1.0&lt;/a&gt;&lt;/li&gt;
-&lt;li&gt;&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/17/034631&quot;&gt;Highlight.js を NuGet パッケージにしてみました - だるろぐ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;
-
-</code></pre>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120821220536.png" alt="f:id:daruyanagi:20120821220536p:plain" title="f:id:daruyanagi:20120821220536p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>NuGet Package Explorer</b>（<a href="http://npe.codeplex.com/">http://npe.codeplex.com/</a>）を使ってみたかったので、 <a href="https://blog.daruyanagi.jp/entry/2012/08/20/202253">WebMatrix &#x3067;&#x30D5;&#x30A1;&#x30A4;&#x30EB;&#x306E;&#x30A2;&#x30C3;&#x30D7;&#x30ED;&#x30FC;&#x30C9;&#xFF08;3&#xFF09; - FileUpload &#x30D8;&#x30EB;&#x30D1;&#x30FC;&#x3092;&#x4F7F;&#x3046; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で利用した HttpFileCollectionBase の拡張メソッドを NuGet パッケージにしてみた。 ClickOnce 形式のインストーラーになっていて、セットアップは簡単。やっぱ GUI で編集できるのはいいな。</p>
+<pre class="code" data-lang="" data-unlink>/
+HttpFileCollectionBaseExtension.nuspec
+<p>content/
+web.config.transform
+App_Code/
+HttpFileCollectionBaseExtension.cs
+ReadMe.txt</pre><p>というフォルダー階層にして .nuspec を開いたら、 &lt;Files&gt; を書いてなくてちゃんと Contentが読み込まれた。なるほど。</p><p>別に使い方は難しくないけれど、いくつか躓いたところもある。</p><p>まず、メタデータ（.nuspec）を保存するのを忘れやすい。［Save］メニューは .nupack を保存するコマンドなので、 .nuspec を保存するには［Save metadata］メニューを利用する。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120821221424.png" alt="f:id:daruyanagi:20120821221424p:plain" title="f:id:daruyanagi:20120821221424p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、公開（push）の終了がわかりづらい。まぁ、重複して公開するとエラーになる（実害はない）のでわかるのだけれど。</p></p>
+<ul>
+<li><a href="https://nuget.org/packages/HttpFileCollectionBaseExtension">NuGet Gallery | HttpFileCollectionBaseExtension 1.1.0</a></li>
+<li><a href="https://blog.daruyanagi.jp/entry/2012/08/17/034631">Highlight.js &#x3092; NuGet &#x30D1;&#x30C3;&#x30B1;&#x30FC;&#x30B8;&#x306B;&#x3057;&#x3066;&#x307F;&#x307E;&#x3057;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+</ul>
 
     <footer>
         
@@ -127,7 +113,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/21/222147.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/21</time> 
             </p>
         
     </footer>
@@ -179,7 +165,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

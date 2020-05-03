@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 3：oEmbed ヘルパーを作ってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly. oEmbed 要はこういうのです。 # はてな記法の場合 https://twitter.com/daruyanagi/status/497645195769298944:embed 乱暴" />
+    <meta name="og:description"   property="og:description" content="oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly. oEmbed 要はこういうのです。 # はてな記法の場合 htt" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/08/08/185357/" />
@@ -86,109 +88,81 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="http://oembed.com/">
+<p>oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly.</p>
+<p><cite><a href="http://oembed.com/">oEmbed</a></cite></p>
 </blockquote>
-<pre><code>    oEmbed is a format for allowing an embedded representation of a URL on third party sites. The simple API allows a website to display embedded content (such as photos or videos) when a user posts a link to that resource, without having to parse the resource directly.
-
-    oEmbed
-</code></pre>
 <p>要はこういうのです。</p>
-<pre><code># はてな記法の場合
-https://twitter.com/daruyanagi/status/497645195769298944:embed
-</code></pre><blockquote>
-<p>乱暴するんでしょう？　エロ同人誌みたいに！— だるやなぎ に天使が舞い降りた！ (@daruyanagi) 2014年8月8日<script async="" src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
-</blockquote>
-<p>URL → 埋め込み HTML を得るための API って感じですかね。oEmbed API の提供方法は二種類あります。</p>
+<pre class="code" data-lang="" data-unlink># はてな記法の場合
+https://twitter.com/daruyanagi/status/497645195769298944:embed</pre><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">乱暴するんでしょう？　エロ同人誌みたいに！</p>&mdash; だるやなぎ に天使が舞い降りた！ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/497645195769298944?ref_src=twsrc%5Etfw">2014年8月8日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>URL → 埋め込み HTML を得るための API って感じですかね。</p><p>oEmbed API の提供方法は二種類あります。</p>
 <ul>
 <li>API Endpoint があらかじめ公開されており、それを叩く</li>
 <li>link タグに埋め込み oEmbed のURLが埋め込まれいるので、それを叩く</li>
-</ul>両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、<a href="https://dev.twitter.com/docs/api/1/get/statuses/oembed">一応公開されています</a>が一般的な API に比べてちょっとめんどいので link タグ探した方がいい）もします。今回は後者だけ実装してみました。前者については、
+</ul><p>両方とも提供してくれている場合もありますが（たとえば YouTube）、前者だけだったり（Flickr）、後者だけだったり（Twitter、<a href="https://dev.twitter.com/docs/api/1/get/statuses/oembed">&#x4E00;&#x5FDC;&#x516C;&#x958B;&#x3055;&#x308C;&#x3066;&#x3044;&#x307E;&#x3059;</a>が一般的な API に比べてちょっとめんどいので link タグ探した方がいい）もします。</p><p>今回は後者だけ実装してみました。前者については、</p>
 <ul>
-<li><a href="https://blog.daruyanagi.jp/entry/2013/07/18/033539">WebMatrix 3: Windows Store oEmbed API を利用する - だるろぐ</a></li>
-</ul>で一度やったことがあります。URL パターンとエンドポイントのディクショナリでももっておいて、URL がパターンにマッチした時はエンドポイントを叩く……みたいに実装すれば汎用的になるかと。
+<li><a href="https://blog.daruyanagi.jp/entry/2013/07/18/033539">WebMatrix 3: Windows Store oEmbed API &#x3092;&#x5229;&#x7528;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a></li>
+</ul><p>で一度やったことがあります。URL パターンとエンドポイントのディクショナリでももっておいて、URL がパターンにマッチした時はエンドポイントを叩く……みたいに実装すれば汎用的になるかと。</p>
 <div class="section">
-    ### 準備
-<figure>
-    <img src="/images/20140808184043.png"/> 
-</figure>
-
-<p>TML から</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html">&amp;lt;link rel=&#34;alternate&#34; type=&#34;application/json+oembed&#34; href=&#34;***&#34; title=&#34;***&#34;&gt;
-
-```みたいなのを探してとってくる必要があるので、スクレイパー御用達の &lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://htmlagilitypack.codeplex.com/&#34;</span>&gt;CodePlex Archive&lt;/<span style="color:#f92672">a</span>&gt; を NuGet で追加しておきます。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    ### コード
-    んじゃ、ガリガリ書いていきます。
-
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    #### ~/App_Code/OEmbed.cshtml
-    まずは、ヘルパー部分を書き書き。
-```cs
-@using HtmlAgilityPack
-
-@helper GetHtml(string url){
-    try
-    {
-        using (var downloader = new WebClient())
-        {
-            var html = downloader.DownloadString(url);
-
-            var document = new HtmlDocument();
-            document.LoadHtml(html);
-
-            url = document.DocumentNode.Descendants(&#34;link&#34;)
-                .Where(_ =&gt; _.GetAttributeValue(&#34;type&#34;, string.Empty) == &#34;application/json+oembed&#34;)
-                .Select(_ =&gt; _.GetAttributeValue(&#34;href&#34;, string.Empty))
-                .First();
-
-            var oembed_data = downloader.DownloadString(url);
-            var oembed_json = Json.Decode(oembed_data);
-
-            @Html.Raw(oembed_json.html)
-        }
-    }
-    catch (Exception e)
-    {
-        &amp;lt;p class=&amp;#39;error&amp;#39;&gt;@url: @e.Message&amp;lt;/p&gt;
-    }
+<h3>準備</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140808184043.png" alt="f:id:daruyanagi:20140808184043p:plain" title="f:id:daruyanagi:20140808184043p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>HTML から </p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;alternate&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;application/json+oembed&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;***&quot;</span><span class="synIdentifier"> </span><span class="synType">title</span><span class="synIdentifier">=</span><span class="synConstant">&quot;***&quot;</span><span class="synIdentifier">&gt;</span>
+</pre><p>みたいなのを探してとってくる必要があるので、スクレイパー御用達の <a href="http://htmlagilitypack.codeplex.com/">CodePlex Archive</a> を NuGet で追加しておきます。</p>
+</div>
+<div class="section">
+<h3>コード</h3>
+<p>んじゃ、ガリガリ書いていきます。</p>
+<div class="section">
+<h4>~/App_Code/OEmbed.cshtml</h4>
+<p>まずは、ヘルパー部分を書き書き。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> HtmlAgilityPack
+<p>@helper GetHtml(<span class="synType">string</span> url){
+<span class="synStatement">try</span>
+{
+<span class="synStatement">using</span> (var downloader = <span class="synStatement">new</span> WebClient())
+{
+var html = downloader.DownloadString(url);</p>
+<p>var document = <span class="synStatement">new</span> HtmlDocument();
+document.LoadHtml(html);</p>
+<p>url = document.DocumentNode.Descendants(<span class="synConstant">&quot;link&quot;</span>)
+.Where(_ =&gt; _.GetAttributeValue(<span class="synConstant">&quot;type&quot;</span>, <span class="synType">string</span>.Empty) == <span class="synConstant">&quot;application/json+oembed&quot;</span>)
+.Select(_ =&gt; _.GetAttributeValue(<span class="synConstant">&quot;href&quot;</span>, <span class="synType">string</span>.Empty))
+.First();</p>
+<p>var oembed_data = downloader.DownloadString(url);
+var oembed_json = Json.Decode(oembed_data);</p>
+<p>@Html.Raw(oembed_json.html)
 }
-
-```oEmbed は XML 形式か JSON 形式でレスポンスを返すのですが、Twitter は JSON のみをサポートします。どのサービスも JSON には対応していることが多いので、JSON だけ処理すればたいていは十分です。あと、oembed_json.html を直接使うのは怖い。サニタイズしておいた方がいいかも。ほんとはキャッシュの仕組みとかも入れておきたいですね。
-
-&lt;/<span style="color:#f92672">div</span>&gt;
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    #### ~/Default.cshtml
-    次にテスト用のページを書きかき。
-```html
-
-
-&amp;lt;html lang=&#34;ja&#34;&gt;
-    &amp;lt;head&gt;
-&amp;lt;meta http-equiv=&#34;Content-Type&#34; content=&#34;text/html; charset=utf-8&#34;/&gt;
-        &amp;lt;meta charset=&#34;utf-8&#34; /&gt;
-        &amp;lt;title&gt;マイ サイトのタイトル&amp;lt;/title&gt;
-        &amp;lt;link href=&#34;~/favicon.ico&#34; rel=&#34;shortcut icon&#34; type=&#34;image/x-icon&#34; /&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @OEmbed.GetHtml(&#34;https://twitter.com/daruyanagi/status/497645195769298944&#34;)
-        @OEmbed.GetHtml(&#34;https://twitter.com/daruyanagi/status/49764519576929894&#34;)
-        @OEmbed.GetHtml(&#34;https://www.flickr.com/photos/daruyanagi/6219334657/&#34;)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-</code></pre></div></div>
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+&lt;p <span class="synType">class</span>=<span class="synConstant">'</span><span class="synError">error</span><span class="synConstant">'</span>&gt;@url: @e.Message&lt;/p&gt;
+}
+}
+</pre><p>oEmbed は XML 形式か JSON 形式でレスポンスを返すのですが、Twitter は JSON のみをサポートします。どのサービスも JSON には対応していることが多いので、JSON だけ処理すればたいていは十分です。</p><p>あと、oembed_json.html を直接使うのは怖い。サニタイズしておいた方がいいかも。ほんとはキャッシュの仕組みとかも入れておきたいですね。</p></p>
+</div>
 <div class="section">
-    #### 結果
-<figure>
-    <img src="/images/20140808184012.png"/> 
-</figure>
-
-<p>番目は URL を間違ってみた。3番目は oEmbed 対応だけど link タグ形式ではないサービス（Flickr）で試してみた。Flickr については、API Endpoint を叩いてーという処理が必要になりますね。</p>
+<h4>~/Default.cshtml</h4>
+<p>次にテスト用のページを書きかき。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!DOCTYPE html&gt;</span>
+<p><span class="synIdentifier">&lt;</span><span class="synStatement">html</span><span class="synIdentifier"> </span><span class="synType">lang</span><span class="synIdentifier">=</span><span class="synConstant">&quot;ja&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">http-equiv</span><span class="synIdentifier">=</span><span class="synConstant">&quot;Content-Type&quot;</span><span class="synIdentifier"> </span><span class="synType">content</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/html; charset=utf-8&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">meta</span><span class="synIdentifier"> </span><span class="synType">charset</span><span class="synIdentifier">=</span><span class="synConstant">&quot;utf-8&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>マイ サイトのタイトル<span class="synIdentifier">&lt;/</span><span class="synStatement">title</span><span class="synIdentifier">&gt;</span>
+<span class="synPreProc">        </span><span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;~/favicon.ico&quot;</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;shortcut icon&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;image/x-icon&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synPreProc">    </span><span class="synIdentifier">&lt;/</span><span class="synStatement">head</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+@OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/497645195769298944&quot;)
+@OEmbed.GetHtml(&quot;https://twitter.com/daruyanagi/status/49764519576929894&quot;)
+@OEmbed.GetHtml(&quot;https://www.flickr.com/photos/daruyanagi/6219334657/&quot;)
+<span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
+</pre></p>
+</div>
+<div class="section">
+<h4>結果</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140808184012.png" alt="f:id:daruyanagi:20140808184012p:plain" title="f:id:daruyanagi:20140808184012p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>2番目は URL を間違ってみた。3番目は oEmbed 対応だけど link タグ形式ではないサービス（Flickr）で試してみた。Flickr については、API Endpoint を叩いてーという処理が必要になりますね。</p>
 </div>
 </div>
-
 
     <footer>
         
@@ -202,7 +176,7 @@ https://twitter.com/daruyanagi/status/497645195769298944:embed
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/08/08/185357.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2014/08/08</time> 
             </p>
         
     </footer>
@@ -254,7 +228,16 @@ https://twitter.com/daruyanagi/status/497645195769298944:embed
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

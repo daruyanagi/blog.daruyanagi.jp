@@ -1,0 +1,32 @@
+---
+date: 2017-09-18T17:23:20.0000000
+draft: false
+title: "最近読んだ本：『図説 金の文化史』『人はどのように鉄を作ってきたか』『鉄を生みだした帝国』"
+tags: ["読書", "歴史"]
+eyecatch: 
+---
+
+<div class="section">
+<h3>『図説 金の文化史』</h3>
+<p>貨幣を追ううちに、その素材であった金属にも興味が出た時期があって、その時に買い込んだまま積んであったのを読み終えた。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F03%2F24%2F193845" title="『銀の世界史』 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/03/24/193845">blog.daruyanagi.jp</a></cite></p><p>（ちなみに、この『銀の世界史』はイマイチだった）</p><p>これを読んだからと言って何か本質的な理解が進んだような気はまったくしないんだが<a href="#f-4c0a56ed" name="fn-4c0a56ed" title="そういうのを意図してないっぽいことは書いてあるから期待しても仕方がない">*1</a>、とにかく金に関する雑学が博覧強記な感じ。よくもまぁ、洋の東西を問わずいろいろ知ってんなーと思った<a href="#f-4a0b7609" name="fn-4a0b7609" title="とはいえ、日本の知識は怪しいところがあったから気を付けた方がいい部分もありそう">*2</a>。</p><p>図版もキレいで、本棚に並べてたまに眺めて遊ぶ本かな。読み終えた後、もう一回図版に目を通して、大まかにラインナップを再確認しておいた。他の本で言及されてた時に「どんなんだっけ」って振り替えられるように。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4562053534/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/61zBdBMT%2BlL._SL160_.jpg" class="hatena-asin-detail-image" alt="図説 金の文化史" title="図説 金の文化史"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4562053534/bestylesnet-22/">図説 金の文化史</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> レベッカゾラック,ジュニア,マイケル・W.フィリップス,Rebecca Zorach,Jr.,Michael W. Phillips,高尾菜つこ</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 原書房</li><li><span class="hatena-asin-detail-label">発売日:</span> 2016/11/11</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li><li><a href="http://d.hatena.ne.jp/asin/4562053534/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>
+
+</div>
+<div class="section">
+<h3>『人はどのように鉄を作ってきたか』</h3>
+<p>内容的にはこっちの方がだいぶ面白かった。あらかじめ期待して買ったわけではないが、たたら製鉄についてが大変詳しい（もちろん、ほかの製鉄方法についても詳しい）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170918164020.png" alt="f:id:daruyanagi:20170918164020p:plain" title="f:id:daruyanagi:20170918164020p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そもそも“たたら”って言われてももけもけ姫しか思いつかんのだけど……（ぉ</p>
+
+<blockquote>
+<p>日本のたたら炉の立地条件は、原材料産地に近くて運搬の便が良く、<b>賃米</b>である米が安価であることである。</p><p>たたら製鉄では、<b>「砂鉄七里に炭三里」</b>と言われるように、かさ張る<b>木炭</b>の運搬が重要</p><p>鑪（たたら）炉自体は水、湿りを嫌うが、鑪場としては水が引きやすくかつその量も多い</p><p>一段と高い土地がよく、谷に鉄滓を捨てやすい場所がよい</p><p><b>水力</b>を利用するために「製鐵場を選定すべき位置は<b>水利</b>の便あり」としている。</p><p>たたらに適している風を「<b>かたい風</b>」と言い、「湿気のない風、乾燥した風、冷たい風、谷の風」である。砂鉄の最終的水洗による比重選鉱を行い、水車動力を使うためには「<b>水利の便</b>」が重要であるが、堀江村下（註：引用論文の著者）はさらに炉の温度を上げるためには「乾燥した風」が重要</p>
+
+</blockquote>
+<p>よく勉強して絵を作ってるんだな、とちょっと感心した。割とピッタリじゃない？（風についての描写はそれほどでもないかもだけど）</p><p>そもそも日本で“たたら”という独自の製鉄方法が発展したのは、大陸で採れる<b>赤鉄鉱石</b>が火山国ゆえ欠けており、<b>砂鉄</b>に頼らざるを得なかったかららしい。赤鉄鉱石は800度で還元するが、砂鉄は1000度を要する。その分、技術的なハードルは高かったが、“玉鋼”と呼ばれる優秀な鋼を得ることができた。</p><p>面白いのはスウェーデンでは湖の底から鉄鉱石が定期的に“沸く”らしい。スウェーデンは7世紀頃、すでに鉄をもたらす国「ヤンバラランド（Jarnbaraland）」と呼ばれており、農民が炉を構えて製鉄を行っていた。これは“たたら”と同様、近代製鉄に駆逐される19世紀辺りまで続いていたのだそうな。</p><p>あと、炭素含有量と硬さの関係は知ってた気がするけど、融点が変わるのは知らなかったかもしれない（多いほど融点は下がる。金属というのは不純物が含まれるとだいたい下がるっぽいけど、文系人間なのでよく知らん）。炭素をはじめ、混合によって性質が変わることは人間の歴史にとっていろいろ絶妙だったのがわかった。</p><p>面白かったので、鉄の性質と歴史は別の機会にまとめなおそうかと思う。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4065020174/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/519cY15i6AL._SL160_.jpg" class="hatena-asin-detail-image" alt="人はどのように鉄を作ってきたか 4000年の歴史と製鉄の原理 (ブルーバックス)" title="人はどのように鉄を作ってきたか 4000年の歴史と製鉄の原理 (ブルーバックス)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4065020174/bestylesnet-22/">人はどのように鉄を作ってきたか 4000年の歴史と製鉄の原理 (ブルーバックス)</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 永田和宏</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> 講談社</li><li><span class="hatena-asin-detail-label">発売日:</span> 2017/05/17</li><li><span class="hatena-asin-detail-label">メディア:</span> 新書</li><li><a href="http://d.hatena.ne.jp/asin/4065020174/bestylesnet-22" target="_blank">この商品を含むブログ (2件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>
+
+</div>
+<div class="section">
+<h3>『鉄を生みだした帝国』</h3>
+<p>『人はどのように鉄を作ってきたか』で興味をもったので取り寄せたけど、絶版っぽくて古本しかなかった。安かったからいいけど。</p><p>予想に反して物語チックだったけど、それはそれで面白い感じ。トルコ語がわかんない状態でアンカラの大学に飛び込み、ヒッタイト語と考古学を学びながら、製鉄のふるさとを見つける……みたいな。古代名の比定はツッコみ役の親友ならずとも「それでいいんかなー」と思わんでもないが、ロマン満載で楽しかった。鉄を生み出したプロト・ヒッタイトの人たちは、案外ヒッタイトに大事にされたのかもしれんな。</p><p>副次的作用として、アナトリアの地形がなんとなくわかるようになった。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4140013915/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/51W-1Nb9ZFL._SL160_.jpg" class="hatena-asin-detail-image" alt="鉄を生みだした帝国―ヒッタイト発掘 (NHKブックス 391)" title="鉄を生みだした帝国―ヒッタイト発掘 (NHKブックス 391)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4140013915/bestylesnet-22/">鉄を生みだした帝国―ヒッタイト発掘 (NHKブックス 391)</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 大村幸弘</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> NHK出版</li><li><span class="hatena-asin-detail-label">発売日:</span> 1981/01</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本</li><li><span class="hatena-asin-detail-label">購入</span>: 1人 <span class="hatena-asin-detail-label">クリック</span>: 5回</li><li><a href="http://d.hatena.ne.jp/asin/4140013915/bestylesnet-22" target="_blank">この商品を含むブログ (2件) を見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>
+
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-4c0a56ed" name="f-4c0a56ed" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">そういうのを意図してないっぽいことは書いてあるから期待しても仕方がない</span></p>
+<p class="footnote"><a href="#fn-4a0b7609" name="f-4a0b7609" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">とはいえ、日本の知識は怪しいところがあったから気を付けた方がいい部分もありそう</span></p>
+</div>

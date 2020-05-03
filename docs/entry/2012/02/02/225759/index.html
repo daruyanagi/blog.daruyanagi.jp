@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title> RSS 2.0 を実装する - blog.daruyanagi.jp</title>
+<title>RSS 2.0 を実装する - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content=" RSS 2.0 を実装する" />
+<meta name="og:title"         property="og:title" content="RSS 2.0 を実装する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="http://sample.com/Post/LastUpdated.rss で RSS が吐かれるようにしてみたかった。まずはルーティング。 ``` #Global.asax.cs routes.MapRoute( &ldquo;Mode&rdquo;, // ルート名 &ldquo;{controller}/{action}.{mode}&quot;, // パラメーター付きの URL new { controller = &ldquo;Home&rdquo;, action = &ldquo;Index&rdquo;, id = UrlParameter.Optional, mode = &ldquo;html&rdquo; } // パラメー" />
+    <meta name="og:description"   property="og:description" content="http://sample.com/Post/LastUpdated.rss で RSS が吐かれるようにしてみたかった。 まずはルーティング。 #Global.asax.cs routes.MapRoute( &#34;Mode&#34;, // ルート名 &#34;{controller}/{action}.{mode}&#34;, // パラメーター付きの URL new { controller = &#34;Home&#34;, action = &#34;Index&#34;, id = UrlParameter.Optional, mode = &#34;html&#34; } // パラメータ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/02/02/225759/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1> RSS 2.0 を実装する</h1>
+    <h1>RSS 2.0 を実装する</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,72 +88,71 @@
         </time>        
     </p>
 
-    <p><a href="http://sample.com/Post/LastUpdated.rss"><a href="http://sample.com/Post/LastUpdated.rss">http://sample.com/Post/LastUpdated.rss</a></a> で RSS が吐かれるようにしてみたかった。まずはルーティング。</p>
-<pre><code>```
-</code></pre>
-<p>#Global.asax.cs</p>
-<p>routes.MapRoute(
-&ldquo;Mode&rdquo;, // ルート名
-&ldquo;{controller}/{action}.{mode}&quot;, // パラメーター付きの URL
-new { controller = &ldquo;Home&rdquo;,
-action = &ldquo;Index&rdquo;,
-id = UrlParameter.Optional,
-mode = &ldquo;html&rdquo; } // パラメーターの既定値
-);</p>
-<pre><code>次はコントローラー。IPagedList は自分で作ったページング機能付きのリスト。&quot;&lt;a href=&quot;http://sample.com/Post/LastUpdated?mode=rss&quot;&gt;http://sample.com/Post/LastUpdated?mode=rss&lt;/a&gt;&quot; でアクセスしてもいい。レポジトリパターンにしたのにここで IPagedList 作ってるのはダサいので、あとで直そう…
+    <p><a href="http://sample.com/Post/LastUpdated.rss">http://sample.com/Post/LastUpdated.rss</a> で <a class="keyword" href="http://d.hatena.ne.jp/keyword/RSS">RSS</a> が吐かれるようにしてみたかった。</p><p>まずはルーティング。</p>
+<pre class="code">#Global.asax.cs
 
-    ```
-#Post.cs
+routes.MapRoute(
+&#34;Mode&#34;, // ルート名
+&#34;{controller}/{action}.{mode}&#34;, // パラメーター付きの URL
+new { controller = &#34;Home&#34;,
+action = &#34;Index&#34;,
+id = UrlParameter.Optional,
+mode = &#34;html&#34; } // パラメーターの既定値
+);</pre>
+<p>次はコントローラー。IPagedList は自分で作ったページング機能付きのリスト。"<a href="http://sample.com/Post/LastUpdated?mode=rss">http://sample.com/Post/LastUpdated?mode=rss</a>" でアクセスしてもいい。</p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%EC%A5%DD%A5%B8%A5%C8%A5%EA">レポジトリ</a>パターンにしたのにここで IPagedList 作ってるのはダサいので、あとで直そう…</p>
+<pre class="code">#Post.cs
 
 //
 // GET: /Post/LastUpdated
 
-public ViewResult LastUpdated(int current = 1, int items_per_page = 10, string mode = &quot;html&quot;)
+public ViewResult LastUpdated(int current = 1, int items_per_page = 10, string mode = &#34;html&#34;)
 {
-    var posts = new PagedList&amp;lt;Post&gt;(
-        repository.GetList().OrderByDescending(p =&gt; p.UpdatedAt),
-        current, items_per_page);
+var posts = new PagedList&lt;Post&gt;(
+repository.GetList().OrderByDescending(p =&gt; p.UpdatedAt),
+current, items_per_page);
 
-    switch (mode)
-    {
-        case &quot;rss&quot;:
-            return View(&quot;LastUpdated.rss&quot;, posts);
-        default:
-            return View(posts);
-    }
+switch (mode)
+{
+case &#34;<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>&#34;:
+return View(&#34;LastUpdated.<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>&#34;, posts);
+default:
+return View(posts);
 }
-</code></pre><p>最後にビュー。&ldquo;LastUpdated.rss.cshtml&quot;ってのを追加する。XML宣言をファイルの先頭にしたほうがいいのかな。あと、Response.ContentType に &ldquo;application/rss+xml&rdquo; を設定して、「今から返すんはRSSやで！」と教えておく。</p>
-<pre><code>```
-</code></pre>
-<p>&lt;?xml version=&quot;1.0&rdquo; encoding=&quot;utf-8&rdquo;?&gt;</p>
-<p>@model IEnumerable&lt;Daruwiki.Models.Post&gt;</p>
-<p>@{
+}</pre>
+<p>最後にビュー。"LastUpdated.<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>.cshtml"ってのを追加する。<a class="keyword" href="http://d.hatena.ne.jp/keyword/XML">XML</a>宣言をファイルの先頭にしたほうがいいのかな。あと、Response.ContentType に "application/<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>+<a class="keyword" href="http://d.hatena.ne.jp/keyword/xml">xml</a>" を設定して、「今から返すんは<a class="keyword" href="http://d.hatena.ne.jp/keyword/RSS">RSS</a>やで！」と教えておく。</p>
+<pre class="code">&lt;?<a class="keyword" href="http://d.hatena.ne.jp/keyword/xml">xml</a> version=&#34;1.0&#34; encoding=&#34;<a class="keyword" href="http://d.hatena.ne.jp/keyword/utf-8">utf-8</a>&#34;?&gt;
+
+@model IEnumerable&lt;Daruwiki.Models.Post&gt;
+
+@{
 Layout = string.Empty;
-Response.ContentType = &ldquo;application/rss+xml&rdquo;;</p>
-<pre><code>var Title = App.Name;
-var SiteUrl = &quot;http://&quot; + Request.Url.Authority;
+Response.ContentType = &#34;application/<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>+<a class="keyword" href="http://d.hatena.ne.jp/keyword/xml">xml</a>&#34;;
+
+var Title = App.Name;
+var SiteUrl = &#34;http://&#34; + Request.Url.Authority;
 var RssUrl = Request.Url;
-var Description = &quot;&quot;;
+var Description = &#34;&#34;;
 var LastUpdated = GetUnixTime(Model
-    .OrderByDescending(p =&gt; p.CreatedAt).First().CreatedAt);
-</code></pre>
-<p>}</p>
-<p>@functions
-{
-private static DateTime UNIX_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);</p>
-<pre><code>public static long GetUnixTime(DateTime targetTime)
-{
-    targetTime = targetTime.ToUniversalTime();
-    TimeSpan elapsedTime = targetTime - UNIX_EPOCH;
-    return (long)elapsedTime.TotalSeconds;
+.OrderByDescending(p =&gt; p.CreatedAt).First().CreatedAt);
 }
-</code></pre>
-<p>}</p>
-<p>&lt;rss version=&quot;2.0&rdquo; xmlns:atom=&quot;http://www.w3.org/2005/Atom&quot;&gt;
+
+@functions
+{
+private static DateTime <a class="keyword" href="http://d.hatena.ne.jp/keyword/UNIX">UNIX</a>_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);
+
+public static long GetUnixTime(DateTime targetTime)
+{
+targetTime = targetTime.ToUniversalTime();
+TimeSpan elapsedTime = targetTime - <a class="keyword" href="http://d.hatena.ne.jp/keyword/UNIX">UNIX</a>_EPOCH;
+return (long)elapsedTime.TotalSeconds;
+}
+}
+
+&lt;<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a> version=&#34;2.0&#34; xmlns:atom=&#34;http://www.w3.org/2005/Atom&#34;&gt;
 &lt;channel&gt;
 &lt;title&gt;@Title&lt;/title&gt;
 &lt;link&gt;@SiteUrl&lt;/link&gt;
-&lt;atom:link href=&rdquo;@RssUrl&rdquo; rel=&quot;self&rdquo; type=&quot;application/rss+xml&rdquo; /&gt;
+&lt;atom:link href=&#34;@RssUrl&#34; rel=&#34;self&#34; type=&#34;application/<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>+<a class="keyword" href="http://d.hatena.ne.jp/keyword/xml">xml</a>&#34; /&gt;
 &lt;description&gt;@Description&lt;/description&gt;
 &lt;language&gt;ja&lt;/language&gt;
 &lt;lastBuildDate&gt;@LastUpdated&lt;/lastBuildDate&gt;
@@ -166,23 +167,17 @@ private static DateTime UNIX_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);</p>
 &lt;/item&gt;
 }
 &lt;/channel&gt;
-&lt;/rss&gt;</p>
-<pre><code>
-    &gt;
-        でけた。でも、その直後に RssResult っていうのがあるっぽいことを知った
+&lt;/<a class="keyword" href="http://d.hatena.ne.jp/keyword/rss">rss</a>&gt;</pre>
+<blockquote cite="https://twitter.com/#!/daruyanagi/status/165063412446003201">
+<p>でけた。でも、その直後に RssResult っていうのがあるっぽいことを知った</p>
+<p><cite><a href="https://twitter.com/#!/daruyanagi/status/165063412446003201">Twitter</a></cite></p>
+</blockquote>
+<blockquote cite="https://twitter.com/#!/shibayan/status/165063859919532033">
+<p>@daruyanagi <a class="keyword" href="http://d.hatena.ne.jp/keyword/WCF">WCF</a> とか使えば出力できそうな気が</p>
+<p><cite><a href="https://twitter.com/#!/shibayan/status/165063859919532033">Twitter</a></cite></p>
+</blockquote>
+<p>勉強が足りない。</p>
 
-        Twitter
-    
-
-    &gt;
-        @daruyanagi WCF とか使えば出力できそうな気が
-
-        Twitter
-    
-勉強が足りない。
-
-
-</code></pre>
 
     <footer>
         
@@ -196,7 +191,7 @@ private static DateTime UNIX_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);</p>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/02/02/225759.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/02/02</time> 
             </p>
         
     </footer>
@@ -248,7 +243,16 @@ private static DateTime UNIX_EPOCH =  new DateTime(1970, 1, 1, 0, 0, 0, 0);</p>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

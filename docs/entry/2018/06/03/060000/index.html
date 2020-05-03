@@ -37,9 +37,15 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2018/06/03/060000/20180602233805_hua5fcdae001bd41c48f8a4955c6a7ba4c_19844_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2018/06/03/060000/20180602233805_hua5fcdae001bd41c48f8a4955c6a7ba4c_19844_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/06/03/060000/" />
@@ -92,20 +98,16 @@
 <li>スクリプトで Web アプリをガシガシ書く</li>
 <li>それを Web サーバーにホストして、アクセスできるようにする</li>
 <li>サーバーが落ちたり、プラットフォームの更新があれば対応する</li>
-</ol>という感じで運用するんだと思いますが、ちょっとしたモノにそこまで手間をかけるのはウンコ面倒です。というわけで、今回はそれを Microsoft Flow でやってみました。Microsoft Flow はよく「IFTTT」みたいなものと表現されますが、ずっと強力であることが分かると思います。Web サービスの方が柔軟性はありますが、Microsoft Flow で作ると
+</ol><p>という感じで運用するんだと思いますが、ちょっとしたモノにそこまで手間をかけるのはウンコ面倒です。というわけで、今回はそれを Microsoft Flow でやってみました。Microsoft Flow はよく「IFTTT」みたいなものと表現されますが、ずっと強力であることが分かると思います。</p><p>Web サービスの方が柔軟性はありますが、Microsoft Flow で作ると</p>
 <ul>
 <li>Excel なのでみんなで気軽にデータを追加・削除できる（データベースの管理 UI が要らないし、気分的にとっつきやすい。ただし、素人がぐちゃぐちゃにする恐れはある）</li>
 <li>スクリプト言語苦手でも、多少ロジックが組める人なら大丈夫（関数とかほとんど出てこない）</li>
 <li>サーバーを用意したり、管理する必要がなくなる</li>
-</ul>のは結構メリットなんじゃないでしょうか。
+</ul><p>のは結構メリットなんじゃないでしょうか。</p>
 <div class="section">
-    ### 三分間クッキング
-    今回は題材として「なにかを問い合わせたら Excel のデータを舐めて変換する」サービスを作ってみます。たまたま手元に「ベクターのソフト公開ページの URL と作者サイト・窓の杜ライブラリの関係」を管理した Excel ファイルがあるので、それを使って「ベクターの URL を投げたら、作者と窓の杜ライブラリの URL を返す」アプリ（Web サービス）を作ってみます。完成イメージはこんな感じです。
-<figure>
-    <img src="/images/20180602230616.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+<h3>三分間クッキング</h3>
+<p>今回は題材として「なにかを問い合わせたら Excel のデータを舐めて変換する」サービスを作ってみます。たまたま手元に「ベクターのソフト公開ページの URL と作者サイト・窓の杜ライブラリの関係」を管理した Excel ファイルがあるので、それを使って「ベクターの URL を投げたら、作者と窓の杜ライブラリの URL を返す」アプリ（Web サービス）を作ってみます。</p><p>完成イメージはこんな感じです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602230616.png" alt="f:id:daruyanagi:20180602230616p:plain" title="f:id:daruyanagi:20180602230616p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li>JSON で HTTP 要求を受けたら</li>
 <li>OneDrive に置いた Excel のテーブルを読んで</li>
@@ -118,149 +120,70 @@
 <li>200 で JSON を返す</li>
 </ul></li>
 </ul></li>
-</ul>ウンコ簡単だね！！
+</ul><p>ウンコ簡単だね！！</p>
 <div class="section">
-    #### 1. JSON で HTTP 要求を受けたら
-<figure>
-    <img src="/images/20180602231144.png"/> 
-</figure>
-
-<p>ず、［HTTP 要求の受信時］というトリガー（切っ掛け）を追加。［サンプルのペイロードを使用してスキーマを生成する］でサンプルをぶち込んでスキーマを作ります。今回はシンプルにこんな感じのペイロード（リクエストの中身）にしてみました。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-json" data-lang="json">{
-  <span style="color:#f92672">&#34;url&#34;</span>:<span style="color:#e6db74">&#34;https://www.vector.co.jp/...&#34;</span>
-}
-
-<span style="color:#960050;background-color:#1e0010">```Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">はたいへん賢いので、これを読み込ませると勝手にスキーマ（リクエストの型枠）を作ってくれます。</span>
-<span style="color:#960050;background-color:#1e0010">```json</span>
-{
-    <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;object&#34;</span>,
-    <span style="color:#f92672">&#34;properties&#34;</span>: {
-        <span style="color:#f92672">&#34;url&#34;</span>: {
-            <span style="color:#f92672">&#34;type&#34;</span>: <span style="color:#e6db74">&#34;string&#34;</span>
-        }
-    }
-}
-
-<span style="color:#960050;background-color:#1e0010">```これで受け付けは完了。すごく長い</span> <span style="color:#960050;background-color:#1e0010">URL</span> <span style="color:#960050;background-color:#1e0010">が生成されるので、それを</span>  <span style="color:#960050;background-color:#1e0010">**content-type</span> <span style="color:#960050;background-color:#1e0010">ヘッダーを</span> <span style="color:#960050;background-color:#1e0010">application/json</span> <span style="color:#960050;background-color:#1e0010">に**して</span> <span style="color:#960050;background-color:#1e0010">**POST**</span> <span style="color:#960050;background-color:#1e0010">で叩けばフロー（一連の処理）が始まります。</span>
-
-<span style="color:#960050;background-color:#1e0010">&lt;/div&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;div</span> <span style="color:#960050;background-color:#1e0010">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
-    <span style="color:#960050;background-color:#1e0010">####</span> <span style="color:#960050;background-color:#1e0010">OneDrive</span> <span style="color:#960050;background-color:#1e0010">に置いた</span> <span style="color:#960050;background-color:#1e0010">Excel</span> <span style="color:#960050;background-color:#1e0010">のテーブルを読む</span>
-    
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">に、Excel</span> <span style="color:#960050;background-color:#1e0010">ファイルを読みます。Microsoft</span> <span style="color:#960050;background-color:#1e0010">のサービスだけあって、OneDrive</span> <span style="color:#960050;background-color:#1e0010">との相性がいいですが、別に</span> <span style="color:#960050;background-color:#1e0010">Google</span> <span style="color:#960050;background-color:#1e0010">スプレッドシートでも構わないと思います。試してないけど。今回はしょうもないところでコケるのもアホらしいので、OneDrive</span> <span style="color:#960050;background-color:#1e0010">で試してみました。</span>
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">の変哲もない</span> <span style="color:#960050;background-color:#1e0010">Excel</span> <span style="color:#960050;background-color:#1e0010">ファイルですが以下の点には気を付けてください。</span>
-
-<span style="color:#960050;background-color:#1e0010">&lt;ul&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;li&gt;個人向け</span> <span style="color:#960050;background-color:#1e0010">OneDrive</span> <span style="color:#960050;background-color:#1e0010">を利用している場合は、他の人と共有しているフォルダーに配置しないでください。見れないっぽい……&lt;/li&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;li&gt;</span><span style="color:#ae81ff">10</span><span style="color:#960050;background-color:#1e0010">,</span><span style="color:#ae81ff">000</span> <span style="color:#960050;background-color:#1e0010">行とかになると扱えなくなります……おとなしく自分でアプリ組め&lt;/li&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;li&gt;テーブルにはわかりやすい名前を付けておくといいよ。ヘッダーにも適切な名前があるといいかもね&lt;/li&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;li&gt;一度</span> <span style="color:#960050;background-color:#1e0010">Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">で使うと勝手に</span> <span style="color:#960050;background-color:#1e0010">__PowerAppsId__</span> <span style="color:#960050;background-color:#1e0010">という列が追加されるが、気にするな&lt;/li&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;/ul&gt;この［行を取得］コマンドは</span> <span style="color:#960050;background-color:#1e0010">&lt;code&gt;value&lt;/code&gt;</span> <span style="color:#960050;background-color:#1e0010">という名前で取得した行をすべて返します。Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">には</span> <span style="color:#960050;background-color:#1e0010">FindFirst()</span> <span style="color:#960050;background-color:#1e0010">みたいな要素を</span><span style="color:#ae81ff">1</span><span style="color:#960050;background-color:#1e0010">つだけ取得する処理はないので、複数の値が返ってくるかもしれません。</span>
-
-<span style="color:#960050;background-color:#1e0010">&lt;/div&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;div</span> <span style="color:#960050;background-color:#1e0010">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
-    <span style="color:#960050;background-color:#1e0010">####</span> <span style="color:#960050;background-color:#1e0010">ベクターの</span> <span style="color:#960050;background-color:#1e0010">URL</span> <span style="color:#960050;background-color:#1e0010">に合致する行を取得</span>
-    
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">いて、［配列のフィルター処理］を追加して、目的の</span> <span style="color:#960050;background-color:#1e0010">URL</span> <span style="color:#960050;background-color:#1e0010">が含まれる行だけを取得します。</span>
-
-<span style="color:#960050;background-color:#1e0010">&lt;/div&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;/div&gt;</span>
-<span style="color:#960050;background-color:#1e0010">&lt;div</span> <span style="color:#960050;background-color:#1e0010">class=</span><span style="color:#e6db74">&#34;section&#34;</span><span style="color:#960050;background-color:#1e0010">&gt;</span>
-    <span style="color:#960050;background-color:#1e0010">###</span> <span style="color:#960050;background-color:#1e0010">要素がなければ</span> <span style="color:#ae81ff">404</span> <span style="color:#960050;background-color:#1e0010">を返す、あれば処理を続ける</span>
-    <span style="color:#960050;background-color:#1e0010">(</span><span style="color:#ae81ff">2018</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#ae81ff">06</span><span style="color:#960050;background-color:#1e0010">/</span><span style="color:#ae81ff">05</span> <span style="color:#960050;background-color:#1e0010">追記：Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">にこのサービスを組み込む場合、</span><span style="color:#ae81ff">404</span> <span style="color:#960050;background-color:#1e0010">を返すと次のステップに進めなくなります。分岐を削除して、生成した配列をそのまま返すといいです)</span>
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">*この処理はなくてもいいです**（空の</span> <span style="color:#960050;background-color:#1e0010">JSON</span> <span style="color:#960050;background-color:#1e0010">を返してもいいわけで）。今回はほかの</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">と接続するときに条件分岐がしやすいように、あらかじめチェックをくわえておきました。</span>
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">とんどの処理をブロックで表現できる</span> <span style="color:#960050;background-color:#1e0010">Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">でも、「要素の数を求める」みたいなのはさすがに無理みたいで、ここで初めて関数が登場します。&lt;code&gt;length(body(&amp;#</span><span style="color:#ae81ff">39</span><span style="color:#960050;background-color:#1e0010">;配列のフィルター処理&amp;#</span><span style="color:#ae81ff">39</span><span style="color:#960050;background-color:#1e0010">;))&lt;/code&gt;</span> <span style="color:#960050;background-color:#1e0010">というのがそれです。［配列のフィルター処理］の結果（body）に</span> <span style="color:#960050;background-color:#1e0010">&lt;code&gt;Length()&lt;/code&gt;</span> <span style="color:#960050;background-color:#1e0010">関数を適用しています（</span><span style="color:#e6db74">&#34;配列のフィルター処理&#34;</span><span style="color:#960050;background-color:#1e0010">というのが気に入らなければ、前の処理の名前をわかりやすいのに変えてね！）。</span>
-
-<span style="color:#960050;background-color:#1e0010"></span>
-
-<span style="color:#960050;background-color:#1e0010">れてる人は</span> <span style="color:#960050;background-color:#1e0010">Microsoft</span> <span style="color:#960050;background-color:#1e0010">Flow</span> <span style="color:#960050;background-color:#1e0010">の内部表現で直接書いてもいいです（詳細モード）。</span>
-</code></pre></div><p>@equals(length(body('配列のフィルター処理')), 0)</p>
-<pre><code>&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 配列を生成
-    
-
-<figure>
-    <img src="/images/20180602233805.png"/> 
-</figure>
-
-
-よいよ大詰め、返すデータを準備しましょう。日本語訳があまりよくなくて［選択］となっていますが、これが要するに「新しい配列を作る」コマンドです（SQL/LINQ の Select() です）。［配列のフィルター処理］を通った後の結果（body、クソ翻訳では&quot;本文&quot;）をテーブルにマップしていきます。ここでは「列3のデータには Author っていう名前を付けるよ、列4 は Madonomori ね」ってことです。
-
-<figure>
-    <img src="/images/20180602234136.png"/> 
-</figure>
-
-
-後に、最初の要求受け付けのときと同じようにスキーマを作ります。これもサンプルから簡単に生成できます。
-```json
-[{&quot;Author&quot;:&quot;http://...&quot;,&quot;Madonomori&quot;:&quot;&quot;}]
-
-```みたいな感じでゲットできればいいわけなので、それを渡すと
-```json
-{
-    &quot;type&quot;: &quot;object&quot;,
-    &quot;properties&quot;: {
-        &quot;Author&quot;: {
-            &quot;type&quot;: &quot;string&quot;
-        },
-        &quot;Madonomori&quot;: {
-            &quot;type&quot;: &quot;string&quot;
-        }
-    }
-}
-
-```というスキーマが出力されます。これで完成！　あ、配列じゃなくて1要素だけ返したいときは、［データ操作 - 作成］っていうコマンドで &lt;code&gt;first()&lt;/code&gt; 関数を当ててやると最初のデータだけを抜くことができるみたいです。スキーマは、今回挙げたサンプルから一番外側の [] を抜いて再生成すればオッケーだと思う。知らんけど。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 試してみる
-    
-
-<figure>
-    <img src="/images/20180602234713.png"/> 
-</figure>
-
-
-きあがったフローは、**「Advanced Rest Client」**っていう Chrome アプリで試すといいです。最初に言ったけど、**content-type ヘッダーを application/json に**して **POST** で叩くのを忘れずにね。API のエンドポイントの名前が長いから、短縮 URL とかするといいのかもしれませんねぇ（ただし、セキュリティには気をつけてな、第三者にはあまり漏らさない方がいいと思う）。
-&lt;div class=&quot;github-card&quot; data-user=&quot;jarrodek&quot; data-repo=&quot;ChromeRestClient&quot; data-width=&quot;400&quot; data-height=&quot;&quot; data-theme=&quot;default&quot;&gt;&lt;/div
-
-&gt;
-&lt;script src=&quot;https://cdn.jsdelivr.net/github-cards/latest/widget.js&quot;&gt;&lt;/script&gt;
-ちなみに、失敗したときは Microsoft Flow  の実行履歴をみると、フローのどの段階でコケているのかがわかります。
-
-<figure>
-    <img src="/images/20180602235125.png"/> 
-</figure>
-
-
-んじゃーね！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 謝辞
-    
-
-&gt;たぶん typo なんだと思う（— だる☆やなぎ (@daruyanagi) 2018年6月2日&lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
-&lt;/div&gt;
-
-</code></pre>
+<h4>1. JSON で HTTP 要求を受けたら</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602231144.png" alt="f:id:daruyanagi:20180602231144p:plain" title="f:id:daruyanagi:20180602231144p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まず、［HTTP 要求の受信時］というトリガー（切っ掛け）を追加。［サンプルのペイロードを使用してスキーマを生成する］でサンプルをぶち込んでスキーマを作ります。</p><p>今回はシンプルにこんな感じのペイロード（リクエストの中身）にしてみました。</p>
+<pre class="code lang-json" data-lang="json" data-unlink><span class="synSpecial">{</span>
+&quot;<span class="synStatement">url</span>&quot;:&quot;<span class="synConstant">https://www.vector.co.jp/...</span>&quot;
+<span class="synSpecial">}</span>
+</pre><p>Microsoft Flow はたいへん賢いので、これを読み込ませると勝手にスキーマ（リクエストの型枠）を作ってくれます。</p>
+<pre class="code lang-json" data-lang="json" data-unlink><span class="synSpecial">{</span>
+&quot;<span class="synStatement">type</span>&quot;: &quot;<span class="synConstant">object</span>&quot;,
+&quot;<span class="synStatement">properties</span>&quot;: <span class="synSpecial">{</span>
+&quot;<span class="synStatement">url</span>&quot;: <span class="synSpecial">{</span>
+&quot;<span class="synStatement">type</span>&quot;: &quot;<span class="synConstant">string</span>&quot;
+<span class="synSpecial">}</span>
+<span class="synSpecial">}</span>
+<span class="synSpecial">}</span>
+</pre><p>これで受け付けは完了。すごく長い URL が生成されるので、それを  <b>content-type ヘッダーを application/json に</b>して <b>POST</b> で叩けばフロー（一連の処理）が始まります。</p>
+</div>
+<div class="section">
+<h4>OneDrive に置いた Excel のテーブルを読む</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602232505.png" alt="f:id:daruyanagi:20180602232505p:plain" title="f:id:daruyanagi:20180602232505p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>次に、Excel ファイルを読みます。Microsoft のサービスだけあって、OneDrive との相性がいいですが、別に Google スプレッドシートでも構わないと思います。試してないけど。今回はしょうもないところでコケるのもアホらしいので、OneDrive で試してみました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602232030.png" alt="f:id:daruyanagi:20180602232030p:plain" title="f:id:daruyanagi:20180602232030p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>何の変哲もない Excel ファイルですが以下の点には気を付けてください。</p>
+<ul>
+<li>個人向け OneDrive を利用している場合は、他の人と共有しているフォルダーに配置しないでください。見れないっぽい……</li>
+<li>10,000 行とかになると扱えなくなります……おとなしく自分でアプリ組め</li>
+<li>テーブルにはわかりやすい名前を付けておくといいよ。ヘッダーにも適切な名前があるといいかもね</li>
+<li>一度 Microsoft Flow で使うと勝手に __PowerAppsId__ という列が追加されるが、気にするな</li>
+</ul><p>この［行を取得］コマンドは <code>value</code> という名前で取得した行をすべて返します。Microsoft Flow には FindFirst() みたいな要素を1つだけ取得する処理はないので、複数の値が返ってくるかもしれません。</p>
+</div>
+<div class="section">
+<h4>ベクターの URL に合致する行を取得</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602232559.png" alt="f:id:daruyanagi:20180602232559p:plain" title="f:id:daruyanagi:20180602232559p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>続いて、［配列のフィルター処理］を追加して、目的の URL が含まれる行だけを取得します。</p>
+</div>
+</div>
+<div class="section">
+<h3>要素がなければ 404 を返す、あれば処理を続ける</h3>
+<p>(2018/06/05 追記：Microsoft Flow にこのサービスを組み込む場合、404 を返すと次のステップに進めなくなります。分岐を削除して、生成した配列をそのまま返すといいです)</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602232900.png" alt="f:id:daruyanagi:20180602232900p:plain" title="f:id:daruyanagi:20180602232900p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><b>この処理はなくてもいいです</b>（空の JSON を返してもいいわけで）。今回はほかの Flow と接続するときに条件分岐がしやすいように、あらかじめチェックをくわえておきました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602233620.png" alt="f:id:daruyanagi:20180602233620p:plain" title="f:id:daruyanagi:20180602233620p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ほとんどの処理をブロックで表現できる Microsoft Flow でも、「要素の数を求める」みたいなのはさすがに無理みたいで、ここで初めて関数が登場します。<code>length(body('配列のフィルター処理'))</code> というのがそれです。［配列のフィルター処理］の結果（body）に <code>Length()</code> 関数を適用しています（"配列のフィルター処理"というのが気に入らなければ、前の処理の名前をわかりやすいのに変えてね！）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602233724.png" alt="f:id:daruyanagi:20180602233724p:plain" title="f:id:daruyanagi:20180602233724p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>慣れてる人は Microsoft Flow の内部表現で直接書いてもいいです（詳細モード）。</p>
+<pre class="code" data-lang="" data-unlink>@equals(length(body(&#39;配列のフィルター処理&#39;)), 0)</pre>
+</div>
+<div class="section">
+<h3>配列を生成</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602233805.png" alt="f:id:daruyanagi:20180602233805p:plain" title="f:id:daruyanagi:20180602233805p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>いよいよ大詰め、返すデータを準備しましょう。日本語訳があまりよくなくて［選択］となっていますが、これが要するに「新しい配列を作る」コマンドです（SQL/LINQ の Select() です）。［配列のフィルター処理］を通った後の結果（body、クソ翻訳では"本文"）をテーブルにマップしていきます。ここでは「列3のデータには Author っていう名前を付けるよ、列4 は Madonomori ね」ってことです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602234136.png" alt="f:id:daruyanagi:20180602234136p:plain" title="f:id:daruyanagi:20180602234136p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最後に、最初の要求受け付けのときと同じようにスキーマを作ります。これもサンプルから簡単に生成できます。</p>
+<pre class="code lang-json" data-lang="json" data-unlink><span class="synSpecial">[{</span>&quot;<span class="synStatement">Author</span>&quot;:&quot;<span class="synConstant">http://...</span>&quot;,&quot;<span class="synStatement">Madonomori</span>&quot;:&quot;&quot;<span class="synSpecial">}]</span>
+</pre><p>みたいな感じでゲットできればいいわけなので、それを渡すと</p>
+<pre class="code lang-json" data-lang="json" data-unlink><span class="synSpecial">{</span>
+&quot;<span class="synStatement">type</span>&quot;: &quot;<span class="synConstant">object</span>&quot;,
+&quot;<span class="synStatement">properties</span>&quot;: <span class="synSpecial">{</span>
+&quot;<span class="synStatement">Author</span>&quot;: <span class="synSpecial">{</span>
+&quot;<span class="synStatement">type</span>&quot;: &quot;<span class="synConstant">string</span>&quot;
+<span class="synSpecial">}</span>,
+&quot;<span class="synStatement">Madonomori</span>&quot;: <span class="synSpecial">{</span>
+&quot;<span class="synStatement">type</span>&quot;: &quot;<span class="synConstant">string</span>&quot;
+<span class="synSpecial">}</span>
+<span class="synSpecial">}</span>
+<span class="synSpecial">}</span>
+</pre><p>というスキーマが出力されます。これで完成！　あ、配列じゃなくて1要素だけ返したいときは、［データ操作 - 作成］っていうコマンドで <code>first()</code> 関数を当ててやると最初のデータだけを抜くことができるみたいです。スキーマは、今回挙げたサンプルから一番外側の [] を抜いて再生成すればオッケーだと思う。知らんけど。</p>
+</div>
+<div class="section">
+<h3>試してみる</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602234713.png" alt="f:id:daruyanagi:20180602234713p:plain" title="f:id:daruyanagi:20180602234713p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>できあがったフローは、<b>「Advanced Rest Client」</b>っていう Chrome アプリで試すといいです。最初に言ったけど、<b>content-type ヘッダーを application/json に</b>して <b>POST</b> で叩くのを忘れずにね。API のエンドポイントの名前が長いから、短縮 URL とかするといいのかもしれませんねぇ（ただし、セキュリティには気をつけてな、第三者にはあまり漏らさない方がいいと思う）。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fjarrodek%2FChromeRestClient" title="jarrodek/ChromeRestClient" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/jarrodek/ChromeRestClient">github.com</a></cite></p><p>ちなみに、失敗したときは Microsoft Flow  の実行履歴をみると、フローのどの段階でコケているのかがわかります。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180602235125.png" alt="f:id:daruyanagi:20180602235125p:plain" title="f:id:daruyanagi:20180602235125p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>そんじゃーね！</p>
+</div>
+<div class="section">
+<h3>謝辞</h3>
+<p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">たぶん typo なんだと思う（</p>&mdash; だる☆やなぎ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1003021517741961216?ref_src=twsrc%5Etfw">2018年6月2日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p>
+</div>
 
     <footer>
         
@@ -274,7 +197,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/03/060000.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2018/06/03</time> 
             </p>
         
     </footer>
@@ -326,7 +249,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

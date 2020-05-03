@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="メトロっぽいカスタムボタンを XAML で作る" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="tandardStyles.xaml はお宝の宝庫や！ という話を前回（Common フォルダをチラ見してみる - だるろぐ）少しした。たとえば、ボタンなんかはほとんど自分で作る必要が" />
+    <meta name="og:description"   property="og:description" content="StandardStyles.xaml はお宝の宝庫や！ という話を前回（Common &#x30D5;&#x30A9;&#x30EB;&#x30C0;&#x3092;&#x30C1;&#x30E9;&#x898B;&#x3057;&#x3066;&#x307F;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;）少しした。たとえば、ボタ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/18/002231/" />
@@ -86,71 +88,28 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120917231926.png"/> 
-</figure>
-
-<p>tandardStyles.xaml はお宝の宝庫や！　という話を前回（<a href="https://blog.daruyanagi.jp/entry/2012/09/17/235654">Common フォルダをチラ見してみる - だるろぐ</a>）少しした。たとえば、ボタンなんかはほとんど自分で作る必要がないぐらい、豊富に取り揃えられている。けれど、それでも足りない場合があるかもしれない。おれは足りなかった。<a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920">燃費記録用の Windows ストアアプリを作ってみた - だるろぐ</a> に使う「ガソリン」アイコンのボタンがほしい！　なんでないんだっ？　レドモンドは何をしているっ！そこでふと、死んだじいちゃんの言葉を思い出した。「なければ自分で作れ」。そうだ、じいちゃん。作ってみるよ、おれ！</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120917231926.png" alt="f:id:daruyanagi:20120917231926p:plain" title="f:id:daruyanagi:20120917231926p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>StandardStyles.xaml はお宝の宝庫や！　という話を前回（<a href="https://blog.daruyanagi.jp/entry/2012/09/17/235654">Common &#x30D5;&#x30A9;&#x30EB;&#x30C0;&#x3092;&#x30C1;&#x30E9;&#x898B;&#x3057;&#x3066;&#x307F;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）少しした。たとえば、ボタンなんかはほとんど自分で作る必要がないぐらい、豊富に取り揃えられている。</p><p>けれど、それでも足りない場合があるかもしれない。おれは足りなかった。<a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920">&#x71C3;&#x8CBB;&#x8A18;&#x9332;&#x7528;&#x306E; Windows &#x30B9;&#x30C8;&#x30A2;&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> に使う「ガソリン」アイコンのボタンがほしい！　なんでないんだっ？　レドモンドは何をしているっ！</p><p>そこでふと、死んだじいちゃんの言葉を思い出した。「なければ自分で作れ」。そうだ、じいちゃん。作ってみるよ、おれ！</p>
 <div class="section">
-    ### まずは偵察
-    ```xml
-x:Key="FourBarsAppBarButtonStyle"
-       TargetType="ButtonBase"
-       BasedOn="{StaticResource AppBarButtonStyle}">
-    Property="AutomationProperties.AutomationId"
-            Value="FourBarsAppBarButton"/>
-    Property="AutomationProperties.Name"
-            Value="Four Bars"/>
-    Property="Content" Value="&amp;#xE1E9;"/>
-<pre><code class="language-これは" data-lang="これは">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 適当にカスタマイズしてみる
-    
-
-<figure>
-    <img src="/images/20120918001039.png"/> 
-</figure>
-
-
-ず、文字コード表から目的の文字を探す。あった！　たいていのモノはありそうだな。次に文字コードをもとにさきほどのスタイルをコピペして魔改造する。
-
-<figure>
-    <img src="/images/20120918001322.png"/> 
-</figure>
-
-
-で、実際にバインドして使ってみる。
-
-<figure>
-    <img src="/images/20120918001358.png"/> 
-</figure>
-
-
-ークルが、消えている！ (；ﾟДﾟ) ﾅｾﾞﾀﾞ！
-
-<figure>
-    <img src="/images/20120918001514.png"/> 
-</figure>
-
-
-んか、FlowLayout を RightToLeft にしていると消えてしまうみたい。理由まで調べるのは面倒だったけど、既定通り LeftToRight に戻したらサークルが出た。これを応用したらボタンを腐るほど量産できるな！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### おまけ
-    
-
-<figure>
-    <img src="/images/20120918002004.jpg"/> 
-</figure>
-
-
-っとボタンがほしければ、こういうのもある。有名ソフトのアイコンまでカバーされていていい感じ。&lt;a href=&quot;http://www.forest.impress.co.jp/docs/news/20120809_552162.html&quot;&gt;米Syncfusion、“Metro”アイコンの作成ソフト「Metro Studio 2」を正式公開 - 窓の杜&lt;/a&gt;
-
-&lt;/div&gt;
-
-</code></pre>
+<h3>まずは偵察</h3>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;Style </span><span class="synType">x</span><span class="synComment">:</span><span class="synType">Key</span>=<span class="synConstant">&quot;FourBarsAppBarButtonStyle&quot;</span>
+<span class="synIdentifier">       </span><span class="synType">TargetType</span>=<span class="synConstant">&quot;ButtonBase&quot;</span>
+<span class="synIdentifier">       </span><span class="synType">BasedOn</span>=<span class="synConstant">&quot;{StaticResource AppBarButtonStyle}&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;Setter </span><span class="synType">Property</span>=<span class="synConstant">&quot;AutomationProperties.AutomationId&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">Value</span>=<span class="synConstant">&quot;FourBarsAppBarButton&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;Setter </span><span class="synType">Property</span>=<span class="synConstant">&quot;AutomationProperties.Name&quot;</span>
+<span class="synIdentifier">            </span><span class="synType">Value</span>=<span class="synConstant">&quot;Four Bars&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;Setter </span><span class="synType">Property</span>=<span class="synConstant">&quot;Content&quot;</span><span class="synIdentifier"> </span><span class="synType">Value</span>=<span class="synConstant">&quot;</span><span class="synType">&amp;</span><span class="synStatement">#xE1E9</span><span class="synType">;</span><span class="synConstant">&quot;</span><span class="synIdentifier">/&gt;</span>
+<span class="synIdentifier">&lt;/Style&gt;</span>
+</pre><p>これは StandardStyles.xaml で定義されている「バリ4」アイコンのソース。AppBarButtonStyle を継承していて、AutomationProperties.AutomationId、AutomationProperties.Name、Content の3つのプロパティを書き換えているのがわかる。</p><p>ちなみに、AppBarButtonStyle のコードは読む気が起きなかった。たぶん、Content を丸で囲って、下にテキストを追加する、みたいなことをやっているのだろう。知らんけど。</p><p>Content は文字の実態参照（っていうんだっけ？）で、AppBarButtonStyle はそれを Segoe UI Symbol で描画しているらしい。へぇ、あのアイコンの絵って、全部フォントだったんだ。</p><p>AutomationProperties はアイコンの下にでてくるテキストに関係があるみたい。試しに空にしてみたらテキストが消えた。</p><p>これでだいたい偵察が済んだ。簡単にカスタマイズできそうだ。</p>
+</div>
+<div class="section">
+<h3>適当にカスタマイズしてみる</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918001039.png" alt="f:id:daruyanagi:20120918001039p:plain" title="f:id:daruyanagi:20120918001039p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まず、文字コード表から目的の文字を探す。あった！　たいていのモノはありそうだな。</p><p>次に文字コードをもとにさきほどのスタイルをコピペして魔改造する。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918001322.png" alt="f:id:daruyanagi:20120918001322p:plain" title="f:id:daruyanagi:20120918001322p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>んで、実際にバインドして使ってみる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918001358.png" alt="f:id:daruyanagi:20120918001358p:plain" title="f:id:daruyanagi:20120918001358p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サークルが、消えている！ (；ﾟДﾟ) ﾅｾﾞﾀﾞ！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918001514.png" alt="f:id:daruyanagi:20120918001514p:plain" title="f:id:daruyanagi:20120918001514p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんか、FlowLayout を RightToLeft にしていると消えてしまうみたい。理由まで調べるのは面倒だったけど、既定通り LeftToRight に戻したらサークルが出た。</p><p>これを応用したらボタンを腐るほど量産できるな！</p>
+</div>
+<div class="section">
+<h3>おまけ</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918002004.jpg" alt="f:id:daruyanagi:20120918002004j:plain" title="f:id:daruyanagi:20120918002004j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>もっとボタンがほしければ、こういうのもある。有名ソフトのアイコンまでカバーされていていい感じ。</p><p><a href="http://www.forest.impress.co.jp/docs/news/20120809_552162.html">&#x7C73;Syncfusion&#x3001;&ldquo;Metro&rdquo;&#x30A2;&#x30A4;&#x30B3;&#x30F3;&#x306E;&#x4F5C;&#x6210;&#x30BD;&#x30D5;&#x30C8;&#x300C;Metro Studio 2&#x300D;&#x3092;&#x6B63;&#x5F0F;&#x516C;&#x958B; - &#x7A93;&#x306E;&#x675C;</a></p>
+</div>
 
     <footer>
         
@@ -164,7 +123,7 @@ x:Key="FourBarsAppBarButtonStyle"
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/18/002231.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/18</time> 
             </p>
         
     </footer>
@@ -216,7 +175,16 @@ x:Key="FourBarsAppBarButtonStyle"
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

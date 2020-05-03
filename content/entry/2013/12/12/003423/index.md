@@ -1,0 +1,31 @@
+---
+date: 2013-12-12T00:34:23.0000000
+draft: false
+title: "WordPress 日本語版を WebMatrix で利用する"
+tags: ["WebMatrix", "WordPress"]
+eyecatch: http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20131208/20131208222506.png
+---
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224639.png" alt="f:id:daruyanagi:20131208224639p:plain" title="f:id:daruyanagi:20131208224639p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>※ <a href="http://www.adventar.org/calendars/132">One ASP.NET Advent Calendar 2013 - Adventar</a> が埋まらなかったら使おうと思っていたちょっとヘチョいネタです。</p><p>WebMatrix のアプリケーション ギャラリーからインストールできる WordPress は英語版のようだ。まぁ、英語版に言語パッチをいれれば同等になるものと思われるが、今回は日本語サイトから WordPress の日本語版をダウンロードして WebMatrix で起動させてみることにする。</p>
+
+<div class="section">
+<h3>WordPress 日本語版のダウンロード</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208222732.png" alt="f:id:daruyanagi:20131208222732p:plain" title="f:id:daruyanagi:20131208222732p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="http://ja.wordpress.org/">WordPress &rsaquo; &#x65E5;&#x672C;&#x8A9E;</a> からダウンロード。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208222935.png" alt="f:id:daruyanagi:20131208222935p:plain" title="f:id:daruyanagi:20131208222935p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちょっと笑ってしまったのだけど、ブラウザーの横幅が足りないと英語版の WordPress がダウンロードされてしまうようだ<a href="#f1" name="fn1" title="ダメなモバイル対応の典型のような例ですね！">*1</a>。ファイル名が wordpress-3.7.1-ja.zip であることを確認しよう（3.7.1 はバージョン）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223226.png" alt="f:id:daruyanagi:20131208223226p:plain" title="f:id:daruyanagi:20131208223226p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>次にアーカイブを展開して、フォルダのコンテキストメニューから［Microsoft WebMatrix で Web サイトとして開く］を選択する。</p>
+
+</div>
+<div class="section">
+<h3>WebMatrix の設定</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223403.png" alt="f:id:daruyanagi:20131208223403p:plain" title="f:id:daruyanagi:20131208223403p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>WordPress 日本語版を WebMatrix で開くと、PHP などの欠けている必要モジュールが検出され、ダウンロードが始まる。MySQL も検出されると思われるが、ウチの環境では既にセットアップ済みだったので追加インストールは不要だった。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223552.png" alt="f:id:daruyanagi:20131208223552p:plain" title="f:id:daruyanagi:20131208223552p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>次いで現れる Windows Azure Websites の作成画面はスキップしてよい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223642.png" alt="f:id:daruyanagi:20131208223642p:plain" title="f:id:daruyanagi:20131208223642p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>これでセットアップは完了。とりあえず［実行］ボタンを押してみる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223726.png" alt="f:id:daruyanagi:20131208223726p:plain" title="f:id:daruyanagi:20131208223726p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>［さぁ、始めましょう！］をクリックして続行。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223757.png" alt="f:id:daruyanagi:20131208223757p:plain" title="f:id:daruyanagi:20131208223757p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>My SQL のユーザー名とパスワードを入力して［送信］。ユーザー名は通常 root で、パスワードは WebMatrix で MySQL をセットアップしたときに指定するアレだ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208223859.png" alt="f:id:daruyanagi:20131208223859p:plain" title="f:id:daruyanagi:20131208223859p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>失敗。データベースを作成するのを忘れていた。</p>
+
+</div>
+<div class="section">
+<h3>MySQL のデータベースを作成</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224023.png" alt="f:id:daruyanagi:20131208224023p:plain" title="f:id:daruyanagi:20131208224023p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ワークスペースを［データベース］に切り替え、ルートフォルダーのコンテキストメニューから［新しい MySQL データベース］を選択。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224307.png" alt="f:id:daruyanagi:20131208224307p:plain" title="f:id:daruyanagi:20131208224307p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回、データベース名は wordpress_jp_sample とした。［新しい MySQL 接続］メニューで既存の WordPress データベースと接続させれば、そのデータを利用して WordPress を構築することもできるはず。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224413.png" alt="f:id:daruyanagi:20131208224413p:plain" title="f:id:daruyanagi:20131208224413p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>無事、空っぽのデータベースが作成された。</p>
+
+</div>
+<div class="section">
+<h3>再度セットアップに挑戦</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224503.png" alt="f:id:daruyanagi:20131208224503p:plain" title="f:id:daruyanagi:20131208224503p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>もう一度セットアップ画面に戻ってやり直すと、今度はデータベースに接続できるはず。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224538.png" alt="f:id:daruyanagi:20131208224538p:plain" title="f:id:daruyanagi:20131208224538p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あとは必要な項目を入力して――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224557.png" alt="f:id:daruyanagi:20131208224557p:plain" title="f:id:daruyanagi:20131208224557p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>終わり。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224613.png" alt="f:id:daruyanagi:20131208224613p:plain" title="f:id:daruyanagi:20131208224613p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>試しにログインしてみると――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20131208224626.png" alt="f:id:daruyanagi:20131208224626p:plain" title="f:id:daruyanagi:20131208224626p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>管理画面にアクセスできる。おぉ、ユーザーインターフェイスが日本語化されておるぞ！</p>
+
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">ダメなモバイル対応の典型のような例ですね！</span></p>
+</div>

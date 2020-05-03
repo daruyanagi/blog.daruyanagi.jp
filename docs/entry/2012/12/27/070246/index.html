@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2：ASP.NET と PHP（2）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix 2：ASP.NET と PHP - だるろぐ あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」と" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2&#xFF1A;ASP.NET &#x3068; PHP - &#x3060;&#x308B;&#x308D;&#x3050; あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたので" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/12/27/070246/" />
@@ -86,102 +88,68 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/12/11/085125">WebMatrix 2：ASP.NET と PHP - だるろぐ</a> あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。たとえば前回の例の場合、こんなふうに書きます。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-vb" data-lang="vb"><span style="color:#960050;background-color:#1e0010">@</span>Code
-    <span style="color:#66d9ef">Dim</span> s <span style="color:#f92672">=</span> <span style="color:#e6db74">&#34;Hello! World&#34;</span> <span style="color:#f92672">&amp;</span>#39<span style="color:#960050;background-color:#1e0010">;</span> 追加
-<span style="color:#66d9ef">End</span> Code
-
-<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>!DOCTYPE html<span style="color:#f92672">&gt;</span>
-
-<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>html lang<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;en&#34;</span><span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>head<span style="color:#f92672">&gt;</span>
-        <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>meta charset<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;utf-8&#34;</span> <span style="color:#f92672">/&gt;</span>
-        <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>title<span style="color:#f92672">&gt;&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>title<span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>head<span style="color:#f92672">&gt;</span>
-    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>body<span style="color:#f92672">&gt;</span>
-        <span style="color:#960050;background-color:#1e0010">@</span>s <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span>!<span style="color:#f92672">--</span> 追加 <span style="color:#f92672">--&gt;</span>
-    <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>body<span style="color:#f92672">&gt;</span>
-<span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;</span><span style="color:#f92672">/</span>html<span style="color:#f92672">&gt;</span>
-
-<span style="color:#960050;background-color:#1e0010">```</span>C# の <span style="color:#960050;background-color:#1e0010">@</span>{ <span style="color:#960050;background-color:#1e0010">…</span> } が <span style="color:#960050;background-color:#1e0010">@</span>Code <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#66d9ef">End</span> Code に置き換わったぐらいかな<span style="color:#960050;background-color:#1e0010">。</span><span style="color:#66d9ef">For</span> 文の書き方なんかも VB 風に書けます<span style="color:#960050;background-color:#1e0010">。</span>詳しいことは <span style="color:#f92672">&lt;</span>a href<span style="color:#f92672">=</span><span style="color:#e6db74">&#34;http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html&#34;</span><span style="color:#f92672">&gt;</span>VB Razor構文 基礎文法 総まとめ <span style="color:#f92672">-</span> <span style="color:#960050;background-color:#1e0010">＠</span>IT<span style="color:#f92672">&lt;/</span>a<span style="color:#f92672">&gt;</span> でも参照してください<span style="color:#960050;background-color:#1e0010">。</span>個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います<span style="color:#960050;background-color:#1e0010">。</span>XML の処理などは簡単なんだそうですけど<span style="color:#960050;background-color:#1e0010">。</span>あと<span style="color:#960050;background-color:#1e0010">、</span>前回は言わなかったけれど <span style="color:#f92672">&amp;</span>lt<span style="color:#960050;background-color:#1e0010">;%</span> <span style="color:#960050;background-color:#1e0010">…</span> <span style="color:#960050;background-color:#1e0010">%</span><span style="color:#f92672">&gt;</span> という ASP.NET の古い記法<span style="color:#960050;background-color:#1e0010">（</span>ASPX<span style="color:#960050;background-color:#1e0010">、</span>C# または Visual Basic<span style="color:#960050;background-color:#1e0010">）</span>を利用することもできます<span style="color:#960050;background-color:#1e0010">。</span> まぁ<span style="color:#960050;background-color:#1e0010">、</span>それはともかく<span style="color:#960050;background-color:#1e0010">。</span>
-
-
-
-んなにいっぱいあるんだったら<span style="color:#960050;background-color:#1e0010">、</span>どれが一番いいのかって気になりますよね<span style="color:#960050;background-color:#1e0010">。</span>前にも言った通り<span style="color:#960050;background-color:#1e0010">、</span>ぶっちゃけ好きなものを選べばいいと思うんですけど<span style="color:#960050;background-color:#1e0010">（</span>Razor<span style="color:#f92672">/</span>C# を推しますけどね<span style="color:#960050;background-color:#1e0010">）、</span>今回は簡単なプログラム<span style="color:#960050;background-color:#1e0010">（</span>0から10,000までの2乗をリスト表記<span style="color:#960050;background-color:#1e0010">）</span>で速さを計測してみました<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
-    ### PHP
-    
-
-
-
-HP はあんまり知らないのでこれでいいのか多少不安ですけど<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;ul&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.007682秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.004367秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.003787秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.003856秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.003891秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;/ul&gt;</span>最初だけ時間を食いましたが<span style="color:#960050;background-color:#1e0010">、</span>こんな感じ<span style="color:#960050;background-color:#1e0010">。</span>以下<span style="color:#960050;background-color:#1e0010">、</span>初回計測時にはサーバーを一度再起動させています<span style="color:#960050;background-color:#1e0010">。</span>PHP の結果を見ると<span style="color:#960050;background-color:#1e0010">、</span>初回起動時はちょっと時間がかかるのかなと感じたので<span style="color:#960050;background-color:#1e0010">。</span>念のためもう一度計測したら<span style="color:#960050;background-color:#1e0010">、</span>サーバー再起動後で 0.0035609999999999秒 でした<span style="color:#960050;background-color:#1e0010">。</span>0.007秒というのは<span style="color:#960050;background-color:#1e0010">、</span>異常値として処理しちゃってもいいレベルかな<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;/div&gt;</span>
-<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
-    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (ASPX<span style="color:#f92672">/</span>C#)
-    
-
-
-
-br<span style="color:#f92672">/&gt;</span>
-
-
-<span style="color:#a6e22e">&lt;ul&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0029692秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0025189秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0024252秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0024489秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0024761秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;/ul&gt;</span>安定して速かったです<span style="color:#960050;background-color:#1e0010">。</span>ただ<span style="color:#960050;background-color:#1e0010">、</span>これで書こうかという気は起こらないのですけど<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;/div&gt;</span>
-<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
-    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (Razor<span style="color:#f92672">/</span>C#)
-    
-
-
-
-br<span style="color:#f92672">/&gt;</span>
-
-
-<span style="color:#a6e22e">&lt;ul&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0028398秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0024506秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0024667秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0025609秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0026207秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;/ul&gt;</span>ASPX よりはわずかながら遅いような<span style="color:#960050;background-color:#1e0010">（</span>ほとんど誤差レベルですが<span style="color:#960050;background-color:#1e0010">）。</span>PHP よりは速かった<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;/div&gt;</span>
-<span style="color:#a6e22e">&lt;div class=&#34;section&#34;&gt;</span>
-    ### <span style="color:#960050;background-color:#1e0010">•</span>ASP.NET (Razor<span style="color:#f92672">/</span>Visual Basic)
-    
-
-
-
-br<span style="color:#f92672">/&gt;</span>
-
-
-<span style="color:#a6e22e">&lt;ul&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0046345秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0039607秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0036215秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0036577秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;li&gt;</span>0.0038143秒<span style="color:#f92672">&lt;/</span>li<span style="color:#f92672">&gt;</span>
-<span style="color:#a6e22e">&lt;/ul&gt;</span>ついでに Razor だけ VB でも試してみました<span style="color:#960050;background-color:#1e0010">。</span>PHP よりはマシという感じの速さですね<span style="color:#960050;background-color:#1e0010">。</span>まぁ<span style="color:#960050;background-color:#1e0010">、</span>簡単すぎてあんまり参考にならないレベルですけどちょっと興味がわいたので試してみました<span style="color:#960050;background-color:#1e0010">。</span>著しく不公平なところがあれば<span style="color:#960050;background-color:#1e0010">、</span>ぜひ教えてください<span style="color:#960050;background-color:#1e0010">。</span>正直あんまり自信ない<span style="color:#960050;background-color:#1e0010">。</span>
-
-<span style="color:#a6e22e">&lt;/div&gt;</span>
-
-</code></pre></div>
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/12/11/085125">WebMatrix 2&#xFF1A;ASP.NET &#x3068; PHP - &#x3060;&#x308B;&#x308D;&#x3050;</a> あたりを書いた時に Twitter で「WebMatrix 2（というより、Razor 記法）は Visual Basic に対応していないのか？」という疑問を見かけたのですが、ちゃんと対応しています。</p><p>たとえば前回の例の場合、こんなふうに書きます。</p>
+<pre class="code lang-vb" data-lang="vb" data-unlink>@Code
+<span class="synStatement">Dim</span> s <span class="synStatement">=</span> <span class="synConstant">&quot;Hello! World&quot;</span><span class="synComment"> ' 追加</span>
+<span class="synStatement">End</span> Code
+<p><span class="synStatement">&lt;</span>!DOCTYPE html<span class="synStatement">&gt;</span></p>
+<p><span class="synStatement">&lt;</span>html lang<span class="synStatement">=</span><span class="synConstant">&quot;en&quot;</span><span class="synStatement">&gt;</span>
+<span class="synStatement">&lt;</span>head<span class="synStatement">&gt;</span>
+<span class="synStatement">&lt;</span>meta charset<span class="synStatement">=</span><span class="synConstant">&quot;utf-8&quot;</span> <span class="synStatement">/&gt;</span>
+<span class="synStatement">&lt;</span>title<span class="synStatement">&gt;&lt;/</span>title<span class="synStatement">&gt;</span>
+<span class="synStatement">&lt;/</span>head<span class="synStatement">&gt;</span>
+<span class="synStatement">&lt;</span>body<span class="synStatement">&gt;</span>
+@s <span class="synStatement">&lt;</span>!<span class="synStatement">&ndash;</span> 追加 <span class="synStatement">&ndash;&gt;</span>
+<span class="synStatement">&lt;/</span>body<span class="synStatement">&gt;</span>
+<span class="synStatement">&lt;/</span>html<span class="synStatement">&gt;</span>
+</pre><p>C# の @{ … } が @Code … End Code に置き換わったぐらいかな。For 文の書き方なんかも VB 風に書けます。詳しいことは <a href="http://www.atmarkit.co.jp/fdotnet/rapidmaster/rapidmaster_04/rapidmaster_04.html">VB Razor構文 基礎文法 総まとめ - ＠IT</a> でも参照してください。個人的にはこれから始める人が VB で Razor を書く意味はあまりないのではないかなと思います。XML の処理などは簡単なんだそうですけど。</p><p>あと、前回は言わなかったけれど &lt;% … %&gt; という ASP.NET の古い記法（ASPX、C# または Visual Basic）を利用することもできます。 </p><p>まぁ、それはともかく。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121227064529.png" alt="f:id:daruyanagi:20121227064529p:plain" title="f:id:daruyanagi:20121227064529p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>こんなにいっぱいあるんだったら、どれが一番いいのかって気になりますよね。前にも言った通り、ぶっちゃけ好きなものを選べばいいと思うんですけど（Razor/C# を推しますけどね）、今回は簡単なプログラム（0から10,000までの2乗をリスト表記）で速さを計測してみました。</p></p>
+<div class="section">
+<h3>PHP</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121227064356.png" alt="f:id:daruyanagi:20121227064356p:plain" title="f:id:daruyanagi:20121227064356p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>PHP はあんまり知らないのでこれでいいのか多少不安ですけど。</p>
+<ul>
+<li>0.007682秒</li>
+<li>0.004367秒</li>
+<li>0.003787秒</li>
+<li>0.003856秒</li>
+<li>0.003891秒</li>
+</ul><p>最初だけ時間を食いましたが、こんな感じ。</p><p>以下、初回計測時にはサーバーを一度再起動させています。PHP の結果を見ると、初回起動時はちょっと時間がかかるのかなと感じたので。念のためもう一度計測したら、サーバー再起動後で 0.0035609999999999秒 でした。0.007秒というのは、異常値として処理しちゃってもいいレベルかな。</p>
+</div>
+<div class="section">
+<h3>•ASP.NET (ASPX/C#)</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121227064720.png" alt="f:id:daruyanagi:20121227064720p:plain" title="f:id:daruyanagi:20121227064720p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<ul>
+<li>0.0029692秒</li>
+<li>0.0025189秒</li>
+<li>0.0024252秒</li>
+<li>0.0024489秒</li>
+<li>0.0024761秒</li>
+</ul><p>安定して速かったです。ただ、これで書こうかという気は起こらないのですけど。</p>
+</div>
+<div class="section">
+<h3>•ASP.NET (Razor/C#)</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121227065042.png" alt="f:id:daruyanagi:20121227065042p:plain" title="f:id:daruyanagi:20121227065042p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<ul>
+<li>0.0028398秒</li>
+<li>0.0024506秒</li>
+<li>0.0024667秒</li>
+<li>0.0025609秒</li>
+<li>0.0026207秒</li>
+</ul><p>ASPX よりはわずかながら遅いような（ほとんど誤差レベルですが）。PHP よりは速かった。</p>
+</div>
+<div class="section">
+<h3>•ASP.NET (Razor/Visual Basic)</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20121227065439.png" alt="f:id:daruyanagi:20121227065439p:plain" title="f:id:daruyanagi:20121227065439p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<ul>
+<li>0.0046345秒</li>
+<li>0.0039607秒</li>
+<li>0.0036215秒</li>
+<li>0.0036577秒</li>
+<li>0.0038143秒</li>
+</ul><p>ついでに Razor だけ VB でも試してみました。PHP よりはマシという感じの速さですね。</p><p>まぁ、簡単すぎてあんまり参考にならないレベルですけどちょっと興味がわいたので試してみました。著しく不公平なところがあれば、ぜひ教えてください。正直あんまり自信ない。</p>
+</div>
 
     <footer>
         
@@ -195,7 +163,7 @@ br<span style="color:#f92672">/&gt;</span>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/12/27/070246.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/12/27</time> 
             </p>
         
     </footer>
@@ -247,7 +215,16 @@ br<span style="color:#f92672">/&gt;</span>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

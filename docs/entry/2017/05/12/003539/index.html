@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="PowerShell：String を String で分割する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。さて、この間こんな感じのコードを書いたんですよ。 $text = &amp;#39;Microsoft Edge" />
+    <meta name="og:description"   property="og:description" content="まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。 さて、この間こんな感じのコードを書いたんですよ。 $text = &#39;Microsoft Edge" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/05/12/003539/" />
@@ -86,31 +88,21 @@
         </time>        
     </p>
 
-    <p>まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。さて、この間こんな感じのコードを書いたんですよ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$text = &amp;<span style="color:#75715e">#39;Microsoft Edge on Windows 10 Version 1511 for x64-based Systems&amp;#39;</span>
+    <p>まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。</p><p>さて、この間こんな感じのコードを書いたんですよ。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$text</span> = <span class="synConstant">'Microsoft Edge on Windows 10 Version 1511 for x64-based Systems'</span>
+<p><span class="synIdentifier">$text</span>.Split(<span class="synConstant">&rsquo; on &lsquo;</span>)[-<span class="synConstant">1</span>]
+</pre><p>意図としては、文字列を“ on ”で分割して後ろ部分“Windows 10 Version 1511 for x64-based Systems”を取り出したい、みたいな感じだったのですが……結果はこうでした</p></p>
+<pre class="code" data-lang="" data-unlink>Systems</pre><p>そもそも <code>String.Split()</code> のシグネチャを間違えて雰囲気で書いてしまっているので正しく動作するはずはないのですが、一瞬なんでこんな結果になるのかわからず ( ；´Д｀)？ となってしまいました。</p><p>ちょっと考えたらわかるのですが、<code>' on '</code> が <code>char</code> の配列として解釈され、.NET でいうところの</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>text.Split(<span class="synStatement">new</span> <span class="synType">char</span>[] { <span class="synConstant">' '</span>, <span class="synConstant">'o'</span>, <span class="synConstant">'n'</span>, <span class="synConstant">' '</span> })
+</pre><p>が実行されたんですね？（C# ならコンパイルエラーで止まる、というか、IntelliSense が補ってくれるから間違えない）　ためしに <code>| write</code> と書き足してみたところ、ぐちゃぐちゃに引き裂かれた文字列たちが出力されました(´；ω；`)ｳｯ…</p><p>でも、これちょっと面白いかも。文字列を文字列で分割したい場合、.NET だと <code>String.Split(string[], StringSplitOptions)</code> を使えばよいので、PowerShell だとこんな感じになるみたいです。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink>// text.Split(new string[] { <span class="synConstant">&quot; on &quot;</span> }, StringSplitOptions.None) のつもり
 
-$text.Split(&amp;<span style="color:#75715e">#39; on &amp;#39;)[-1] </span>
+<span class="synIdentifier">$text</span>.Split(@(<span class="synConstant">&quot; on &quot;</span>), <span class="synConstant">'None'</span>)[-<span class="synConstant">1</span>]
+</pre><p>これでいいのかイマイチよくわかっていないのですが、これで意図通りに動きました。</p>
+<pre class="code" data-lang="" data-unlink>Windows 10 Version 1511 for x64-based Systems</pre><p>ちょっと気持ち悪いような、なるほど、みたいな、不思議な感じ。でも、みなさんは PowerShell なのだから PowerShell っぽく書くのがよいと思います。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink>(<span class="synIdentifier">$text</span> -<span class="synStatement">split</span> <span class="synConstant">' on '</span>)[-<span class="synConstant">1</span>]
+</pre><p><code>-split</code> 演算子というのが用意されているので、これを使えばいいでしょう。なんか正規表現も使えるらしいぜ？</p><p>まだまだ PowerShell がちゃんとしゃべれなくて恥ずかしいですが、少しずつ使いこなせるようになりたいと思います。</p>
 
-```意図としては<span style="color:#960050;background-color:#1e0010">、</span>文字列を<span style="color:#960050;background-color:#1e0010">“</span> on <span style="color:#960050;background-color:#1e0010">”</span>で分割して後ろ部分<span style="color:#960050;background-color:#1e0010">“</span>Windows 10 Version 1511 <span style="color:#66d9ef">for</span> x64-based Systems<span style="color:#960050;background-color:#1e0010">”</span>を取り出したい<span style="color:#960050;background-color:#1e0010">、</span>みたいな感じだったのですが<span style="color:#960050;background-color:#1e0010">……</span>結果はこうでした
-</code></pre></div><p>Systems</p>
-<pre><code class="language-そもそも" data-lang="そもそも">```cs
-text.Split(new char[] { &amp;#39; &amp;#39;, &amp;#39;o&amp;#39;, &amp;#39;n&amp;#39;, &amp;#39; &amp;#39; })
-
-```が実行されたんですね？（C# ならコンパイルエラーで止まる、というか、IntelliSense が補ってくれるから間違えない）　ためしに &lt;code&gt;| write&lt;/code&gt; と書き足してみたところ、ぐちゃぐちゃに引き裂かれた文字列たちが出力されました(´；ω；`)ｳｯ…でも、これちょっと面白いかも。文字列を文字列で分割したい場合、.NET だと &lt;code&gt;String.Split(string[], StringSplitOptions)&lt;/code&gt; を使えばよいので、PowerShell だとこんな感じになるみたいです。
-```ps1
-// text.Split(new string[] { &quot; on &quot; }, StringSplitOptions.None) のつもり
-
-$text.Split(@(&quot; on &quot;), &amp;#39;None&amp;#39;)[-1]
-
-```これでいいのかイマイチよくわかっていないのですが、これで意図通りに動きました。
-</code></pre><p>Windows 10 Version 1511 for x64-based Systems</p>
-<pre><code class="language-ちょっと気持ち悪いような、なるほど、みたいな、不思議な感じ。でも、みなさんは" data-lang="ちょっと気持ち悪いような、なるほど、みたいな、不思議な感じ。でも、みなさんは">```ps1
-($text -split &amp;#39; on &amp;#39;)[-1]
-
-```&lt;code&gt;-split&lt;/code&gt; 演算子というのが用意されているので、これを使えばいいでしょう。なんか正規表現も使えるらしいぜ？まだまだ PowerShell がちゃんとしゃべれなくて恥ずかしいですが、少しずつ使いこなせるようになりたいと思います。
-
-
-</code></pre>
 
     <footer>
         
@@ -124,7 +116,7 @@ $text.Split(@(&quot; on &quot;), &amp;#39;None&amp;#39;)[-1]
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/05/12/003539.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2017/05/12</time> 
             </p>
         
     </footer>
@@ -176,7 +168,16 @@ $text.Split(@(&quot; on &quot;), &amp;#39;None&amp;#39;)[-1]
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

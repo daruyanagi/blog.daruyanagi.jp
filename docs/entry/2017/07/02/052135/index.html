@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する（3）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ 3年前のブログ記事のソースコードを（ググったらでてきた……）" />
+    <meta name="og:description"   property="og:description" content="blog.daruyanagi.jp 3年前のブログ記事のソースコードを（ググったらでてきた……）そのままコピーしても動かなかったので。 復習しておくと、システムにインストールさ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/07/02/052135/" />
@@ -86,9 +88,7 @@
         </time>        
     </p>
 
-    <p><a href="http://blog.daruyanagi.jp/entry/2014/09/11/025615" alt="WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ">
-  WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ
-</a>3年前のブログ記事のソースコードを（ググったらでてきた……）そのままコピーしても動かなかったので。復習しておくと、システムにインストールされた Windows ストア アプリを列挙するフローはこんな感じ。</p>
+    <p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2014%2F09%2F11%2F025615" title="WinRT：システムにインストールされた Windows ストア アプリを列挙する（2） - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2014/09/11/025615">blog.daruyanagi.jp</a></cite></p><p>3年前のブログ記事のソースコードを（ググったらでてきた……）そのままコピーしても動かなかったので。</p><p>復習しておくと、システムにインストールされた Windows ストア アプリを列挙するフローはこんな感じ。</p>
 <ul>
 <li>Windows.Management.Deployment.PackageManager の FindPackages() などでパッケージ package を取得</li>
 <li>package.DisplayName は残念ながら空
@@ -100,79 +100,66 @@
 <ul>
 <li>SHLoadIndirectString() API で文字列を取得する</li>
 </ul></li>
-</ul>まず、AppxManifest.xml を解析。前回との違いは、ネームスペースが変わっていても大丈夫なよう LocalName で要素を探すようにしたところぐらい。
-```cs
-private string GetDisplayNameFromManifest(string installedPath)
+</ul><p>まず、AppxManifest.xml を解析。前回との違いは、ネームスペースが変わっていても大丈夫なよう LocalName で要素を探すようにしたところぐらい。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">private</span> <span class="synType">string</span> GetDisplayNameFromManifest(<span class="synType">string</span> installedPath)
 {
-    var xml = File.ReadAllText(Path.Combine(installedPath, "AppxManifest.xml"));
-    var doc = XDocument.Parse(xml);
-    var value = doc.Descendants().First(_ => _.Name.LocalName == "DisplayName").Value;
-<pre><code>return value;
-</code></pre>
-<p>}</p>
-<pre><code class="language-次に" data-lang="次に">
-&lt;ul&gt;
-&lt;li&gt;ms-resource://Microsoft.SkypeApp/Resources/SkypeVideo_ProductName&lt;/li&gt;
-&lt;li&gt;ms-resource:///Resources/AppStoreName&lt;/li&gt;
-&lt;li&gt;ms-resource:PackageDisplayName&lt;/li&gt;
-&lt;/ul&gt;最初のパターンに寄せてから、SHLoadIndirectString() を使うことにした。
-```cs
-[DllImport(&quot;shlwapi.dll&quot;, BestFitMapping = false, CharSet = CharSet.Unicode, ExactSpelling = true, SetLastError = false, ThrowOnUnmappableChar = true)]
-public static extern int SHLoadIndirectString(string pszSource, StringBuilder pszOutBuf, int cchOutBuf, IntPtr ppvReserved);
-
-private string GetTextFromResource(string installedPath, string name, string key)
-{
-    var pri = Path.Combine(installedPath, &quot;resources.pri&quot;);
-    var resourceKey = string.Empty;
-
-    if (key.Contains(name))
-    {
-        // キーにアプリ名が含まれているパターン → そのままリソースキーとして扱う
-        // ms-resource://Microsoft.SkypeApp/Resources/SkypeVideo_ProductName
-        resourceKey = key;
-    }
-    else
-    {
-        // リソースキーの解析が必要なパターン
-        // → とりあえずプロトコルを省く
-        // ms-resource:///Resources/AppStoreName
-        // ms-resource:/manifest/DisplayName
-        // ms-resource:PackageDisplayName
-        resourceKey = key.Split(&amp;#39;:&amp;#39;).Last();
-
-        if (resourceKey.StartsWith(&quot;/&quot;))
-        {
-            // パスになっているパターン → アプリ名入りのパスに
-            // :///Resources/AppStoreName
-            // :/manifest/DisplayName
-            resourceKey = resourceKey.TrimStart(&amp;#39;/&amp;#39;);
-            resourceKey = $&quot;ms-resource://{name}/{resourceKey}&quot;;
-        }
-        else
-        {
-            // リソース名になっているパターン → リソースへのパスに
-            // :PackageDisplayName
-            resourceKey = $&quot;ms-resource://{name}/resources/{resourceKey}&quot;;
-        }
-    }
-
-    var buffer = new StringBuilder(1024); // ← 適当
-
-    var result = SHLoadIndirectString(
-        $&quot;@{{{pri}? {resourceKey}}}&quot;, 
-        buffer, buffer.Capacity, 
-        IntPtr.Zero
-    );
-
-    // 失敗したときはパスをそのまま返しておく
-    return result == 0 ? buffer.ToString() : key; 
+var xml = File.ReadAllText(Path.Combine(installedPath, <span class="synConstant">&quot;AppxManifest.xml&quot;</span>));
+var doc = XDocument.Parse(xml);
+var <span class="synStatement">value</span> = doc.Descendants().First(_ =&gt; _.Name.LocalName == <span class="synConstant">&quot;DisplayName&quot;</span>).Value;
+<p><span class="synStatement">return</span> <span class="synStatement">value</span>;
 }
-
-</code></pre><figure>
-    <img src="/images/20170702051825.png"/> 
-</figure>
-
-<p>まくいっているみたい。「ストア」アプリと表記の違うパッケージもあるけど、今のところは気にしないことにする。</p>
+</pre><p>次に ms-resource:// で記述されている場合の処理。ms-resource:// の書き方は数パターンあるようで、それに応じて処理を変えないといけない。</p></p>
+<ul>
+<li>ms-resource://Microsoft.SkypeApp/Resources/SkypeVideo_ProductName</li>
+<li>ms-resource:///Resources/AppStoreName</li>
+<li>ms-resource:PackageDisplayName</li>
+</ul><p>最初のパターンに寄せてから、SHLoadIndirectString() を使うことにした。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>
+[DllImport(<span class="synConstant">&quot;shlwapi.dll&quot;</span>, BestFitMapping = <span class="synConstant">false</span>, CharSet = CharSet.Unicode, ExactSpelling = <span class="synConstant">true</span>, SetLastError = <span class="synConstant">false</span>, ThrowOnUnmappableChar = <span class="synConstant">true</span>)]
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">extern</span> <span class="synType">int</span> SHLoadIndirectString(<span class="synType">string</span> pszSource, StringBuilder pszOutBuf, <span class="synType">int</span> cchOutBuf, IntPtr ppvReserved);
+<p><span class="synType">private</span> <span class="synType">string</span> GetTextFromResource(<span class="synType">string</span> installedPath, <span class="synType">string</span> name, <span class="synType">string</span> key)
+{
+var pri = Path.Combine(installedPath, <span class="synConstant">&quot;resources.pri&quot;</span>);
+var resourceKey = <span class="synType">string</span>.Empty;</p>
+<p><span class="synStatement">if</span> (key.Contains(name))
+{
+<span class="synComment">// キーにアプリ名が含まれているパターン → そのままリソースキーとして扱う</span>
+<span class="synComment">// ms-resource://Microsoft.SkypeApp/Resources/SkypeVideo_ProductName</span>
+resourceKey = key;
+}
+<span class="synStatement">else</span>
+{
+<span class="synComment">// リソースキーの解析が必要なパターン</span>
+<span class="synComment">// → とりあえずプロトコルを省く</span>
+<span class="synComment">// ms-resource:///Resources/AppStoreName</span>
+<span class="synComment">// ms-resource:/manifest/DisplayName</span>
+<span class="synComment">// ms-resource:PackageDisplayName</span>
+resourceKey = key.Split(<span class="synConstant">&rsquo;:&lsquo;</span>).Last();</p>
+<p><span class="synStatement">if</span> (resourceKey.StartsWith(<span class="synConstant">&quot;/&quot;</span>))
+{
+<span class="synComment">// パスになっているパターン → アプリ名入りのパスに</span>
+<span class="synComment">// :///Resources/AppStoreName</span>
+<span class="synComment">// :/manifest/DisplayName</span>
+resourceKey = resourceKey.TrimStart(<span class="synConstant">&rsquo;/&lsquo;</span>);
+resourceKey = $<span class="synConstant">&quot;ms-resource://{name}/{resourceKey}&quot;</span>;
+}
+<span class="synStatement">else</span>
+{
+<span class="synComment">// リソース名になっているパターン → リソースへのパスに</span>
+<span class="synComment">// :PackageDisplayName</span>
+resourceKey = $<span class="synConstant">&quot;ms-resource://{name}/resources/{resourceKey}&quot;</span>;
+}
+}</p>
+<p>var buffer = <span class="synStatement">new</span> StringBuilder(<span class="synConstant">1024</span>); <span class="synComment">// ← 適当</span></p>
+<p>var result = SHLoadIndirectString(
+$<span class="synConstant">&quot;@{{{pri}? {resourceKey}}}&quot;</span>,
+buffer, buffer.Capacity,
+IntPtr.Zero
+);</p>
+<p><span class="synComment">// 失敗したときはパスをそのまま返しておく</span>
+<span class="synStatement">return</span> result == <span class="synConstant">0</span> ? buffer.ToString() : key;
+}
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170702051825.png" alt="f:id:daruyanagi:20170702051825p:plain" title="f:id:daruyanagi:20170702051825p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>うまくいっているみたい。「ストア」アプリと表記の違うパッケージもあるけど、今のところは気にしないことにする。</p></p>
 
 
     <footer>
@@ -187,7 +174,7 @@ private string GetTextFromResource(string installedPath, string name, string key
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/07/02/052135.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/07/02</time> 
             </p>
         
     </footer>
@@ -239,7 +226,16 @@ private string GetTextFromResource(string installedPath, string name, string key
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

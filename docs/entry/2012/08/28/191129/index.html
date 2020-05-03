@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix でユーザー認証機能（4） ―― ログインとログオフ" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ で無事ユーザー登録ができ、ログインされた。という訳で今回は" />
+    <meta name="og:description"   property="og:description" content="WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;3&#xFF09; &#x2015;&#x2015; &#x306A;&#x306B;&#x306F;&#x3068;&#x3082;&#x3042;&#x308C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x767B;&#x9332;&#x3057;&#x306A;&#x3044;&#x3068;&#x59CB;&#x307E;&#x3089;&#x3093; - &#x3060;&#x308B;&#x308D;&#x3050; で無事ユーザー登録ができ、ログインされた。という訳で今回はログアウトを実装しなければならない。 # Logout.cshtml @{ WebSecurity.Logout(); var returnUrl = Request.QueryString[&quot;ReturnUrl&quot;]; Response.Redirect(returnUrl.IsEmpty() ? &quot;~/&quot; : returnUrl); } おわり" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/28/191129/" />
@@ -86,82 +88,72 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/25/003421">WebMatrix でユーザー認証機能（3） ―― なにはともあれユーザー登録しないと始まらん - だるろぐ</a> で無事ユーザー登録ができ、ログインされた。という訳で今回はログアウトを実装しなければならない。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">#</span> Logout.cshtml
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/08/25/003421">WebMatrix &#x3067;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x8A8D;&#x8A3C;&#x6A5F;&#x80FD;&#xFF08;3&#xFF09; &#x2015;&#x2015; &#x306A;&#x306B;&#x306F;&#x3068;&#x3082;&#x3042;&#x308C;&#x30E6;&#x30FC;&#x30B6;&#x30FC;&#x767B;&#x9332;&#x3057;&#x306A;&#x3044;&#x3068;&#x59CB;&#x307E;&#x3089;&#x3093; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で無事ユーザー登録ができ、ログインされた。という訳で今回はログアウトを実装しなければならない。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Logout.cshtml
+<p>@{
+WebSecurity.Logout();</p>
+<p>var returnUrl = Request.QueryString[<span class="synConstant">&quot;ReturnUrl&quot;</span>];
+Response.Redirect(returnUrl.IsEmpty() ? <span class="synConstant">&quot;~/&quot;</span> : returnUrl);
+}
+</pre><p>おわり！　ほんとにこれだけだよ……。一応、 Logout?ReturnUrl=~/Account/Login なんかで ~/Account/Login へリダイレクトされるようにしてみたけど。</p><p>ちなみに、ログイン処理は少し長くなった。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Login.cshtml
 
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    WebSecurity.Logout();
+@{
+var name = <span class="synConstant">&quot;&quot;</span>;
+var password = <span class="synConstant">&quot;&quot;</span>;
+var rememberMe = <span class="synConstant">true</span>;
 
-    <span style="color:#66d9ef">var</span> returnUrl = Request.QueryString[<span style="color:#e6db74">&#34;ReturnUrl&#34;</span>];
-    Response.Redirect(returnUrl.IsEmpty() ? <span style="color:#e6db74">&#34;~/&#34;</span> : returnUrl);
+Validation.RequireField(
+<span class="synConstant">&quot;name&quot;</span>, <span class="synConstant">&quot;You must specify an name address.&quot;</span>);
+Validation.RequireField(
+<span class="synConstant">&quot;password&quot;</span>, <span class="synConstant">&quot;You must specify a password.&quot;</span>);
+
+<span class="synStatement">if</span> (IsPost)
+{
+name = Request.Form[<span class="synConstant">&quot;name&quot;</span>];
+password = Request.Form[<span class="synConstant">&quot;password&quot;</span>];
+rememberMe = Request.Form[<span class="synConstant">&quot;rememberMe&quot;</span>].AsBool();
+
+<span class="synStatement">if</span> (Validation.IsValid())
+{
+<span class="synStatement">if</span> (WebSecurity.Login(name, password, rememberMe))
+{
+var returnUrl = Request.QueryString[<span class="synConstant">&quot;ReturnUrl&quot;</span>];
+Response.Redirect(
+returnUrl.IsEmpty() ? <span class="synConstant">&quot;~/&quot;</span> : returnUrl);
+}
+<span class="synStatement">else</span>
+{
+ModelState.AddFormError(
+<span class="synConstant">&quot;The user name or password is incorrect.&quot;</span>);
+}
+}
+}
 }
 
-<span style="color:#960050;background-color:#1e0010">```おわり！</span>　<span style="color:#960050;background-color:#1e0010">ほんとにこれだけだよ……。一応、</span> Logout?ReturnUrl=~/Account/Login <span style="color:#960050;background-color:#1e0010">なんかで</span> ~/Account/Login <span style="color:#960050;background-color:#1e0010">へリダイレクトされるようにしてみたけど。ちなみに、ログイン処理は少し長くなった。</span>
-<span style="color:#960050;background-color:#1e0010">```</span>cs
-<span style="color:#960050;background-color:#1e0010">#</span> Login.cshtml
+&lt;section id=<span class="synConstant">&quot;login&quot;</span>&gt;
+&lt;form method=<span class="synConstant">&quot;post&quot;</span>&gt;
+@Html.ValidationSummary(<span class="synConstant">&quot;Log in was unsuccessful.&quot;</span> +
+<span class="synConstant">&quot;Please correct the errors and try again.&quot;</span>,
+<span class="synStatement">            excludeFieldErrors:</span> <span class="synConstant">true</span>, htmlAttributes: <span class="synConstant">null</span>)
 
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#66d9ef">var</span> name = <span style="color:#e6db74">&#34;&#34;</span>;
-    <span style="color:#66d9ef">var</span> password = <span style="color:#e6db74">&#34;&#34;</span>;
-    <span style="color:#66d9ef">var</span> rememberMe = <span style="color:#66d9ef">true</span>;
-
-    Validation.RequireField(
-        <span style="color:#e6db74">&#34;name&#34;</span>, <span style="color:#e6db74">&#34;You must specify an name address.&#34;</span>);
-    Validation.RequireField(
-        <span style="color:#e6db74">&#34;password&#34;</span>, <span style="color:#e6db74">&#34;You must specify a password.&#34;</span>);
-
-    <span style="color:#66d9ef">if</span> (IsPost)
-    {
-        name = Request.Form[<span style="color:#e6db74">&#34;name&#34;</span>];
-        password = Request.Form[<span style="color:#e6db74">&#34;password&#34;</span>];
-        rememberMe = Request.Form[<span style="color:#e6db74">&#34;rememberMe&#34;</span>].AsBool();
-
-        <span style="color:#66d9ef">if</span> (Validation.IsValid())
-        {
-            <span style="color:#66d9ef">if</span> (WebSecurity.Login(name, password, rememberMe))
-            {
-                <span style="color:#66d9ef">var</span> returnUrl = Request.QueryString[<span style="color:#e6db74">&#34;ReturnUrl&#34;</span>];
-                Response.Redirect(
-                    returnUrl.IsEmpty() ? <span style="color:#e6db74">&#34;~/&#34;</span> : returnUrl);
-            }
-            <span style="color:#66d9ef">else</span>
-            {
-                ModelState.AddFormError(
-                    <span style="color:#e6db74">&#34;The user name or password is incorrect.&#34;</span>);
-            }
-        }
-    }
-}
-
-&amp;lt;section id=<span style="color:#e6db74">&#34;login&#34;</span>&gt;
-    &amp;lt;form method=<span style="color:#e6db74">&#34;post&#34;</span>&gt;
-        @Html.ValidationSummary(<span style="color:#e6db74">&#34;Log in was unsuccessful.&#34;</span> + 
-            <span style="color:#e6db74">&#34;Please correct the errors and try again.&#34;</span>,
-            excludeFieldErrors: <span style="color:#66d9ef">true</span>, htmlAttributes: <span style="color:#66d9ef">null</span>)
-
-        &amp;lt;fieldset&gt;
-            &amp;lt;legend&gt;Log <span style="color:#66d9ef">in</span> to Your Account&amp;lt;/legend&gt;
-            @this.RenderTextWithValidation(<span style="color:#e6db74">&#34;name&#34;</span>)
-            @this.RenderPasswordWithValidation(<span style="color:#e6db74">&#34;password&#34;</span>)
-            @this.RenderCheckBoxWithValidation(<span style="color:#e6db74">&#34;rememberMe&#34;</span>)
-            &amp;lt;input type=<span style="color:#e6db74">&#34;submit&#34;</span> <span style="color:#66d9ef">value</span>=<span style="color:#e6db74">&#34;Log in&#34;</span> /&gt;
-        &amp;lt;/fieldset&gt;
-    &amp;lt;/form&gt;
-    &amp;lt;p&gt;
-        &amp;lt;a href=<span style="color:#e6db74">&#34;~/Account/Register&#34;</span>&gt;Don&amp;<span style="color:#960050;background-color:#1e0010">#</span><span style="color:#ae81ff">39</span>;t have a Account?&amp;lt;/a&gt;
-    &amp;lt;/p&gt;
-&amp;lt;/section&gt;
-
-</code></pre></div><figure>
-    <img src="/images/20120828191313.png"/> 
-</figure>
-
-<p>a href=&quot;https://blog.daruyanagi.jp/entry/2012/08/28/081228&quot;&gt;寄り道: string クラスの拡張 - だるろぐ</a> で作ったコードのお陰で、 RenderTextWithValidation() などがシンプルになっている以外はほとんどユーザー登録の処理と変わらない感じ。次は OAuth でログインできるようになればいいな。</p>
+&lt;fieldset&gt;
+&lt;legend&gt;Log <span class="synStatement">in</span> to Your Account&lt;/legend&gt;
+@<span class="synStatement">this</span>.RenderTextWithValidation(<span class="synConstant">&quot;name&quot;</span>)
+@<span class="synStatement">this</span>.RenderPasswordWithValidation(<span class="synConstant">&quot;password&quot;</span>)
+@<span class="synStatement">this</span>.RenderCheckBoxWithValidation(<span class="synConstant">&quot;rememberMe&quot;</span>)
+&lt;input type=<span class="synConstant">&quot;submit&quot;</span> <span class="synStatement">value</span>=<span class="synConstant">&quot;Log in&quot;</span> /&gt;
+&lt;/fieldset&gt;
+&lt;/form&gt;
+&lt;p&gt;
+&lt;a href=<span class="synConstant">&quot;~/Account/Register&quot;</span>&gt;Don't have a Account?&lt;/a&gt;
+&lt;/p&gt;
+&lt;/section&gt;
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120828191313.png" alt="f:id:daruyanagi:20120828191313p:plain" title="f:id:daruyanagi:20120828191313p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2012/08/28/081228">&#x5BC4;&#x308A;&#x9053;: string &#x30AF;&#x30E9;&#x30B9;&#x306E;&#x62E1;&#x5F35; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で作ったコードのお陰で、 RenderTextWithValidation() などがシンプルになっている以外はほとんどユーザー登録の処理と変わらない感じ。</p><p>次は OAuth でログインできるようになればいいな。</p>
 <div class="section">
-    ### ちなみに
-    string.AsBool や string.IsEmpty は ASP.NET Web Pages に含まれているのかな？ このあたりの関数については、 <a href="http://msdn.microsoft.com/ja-jp/asp.net/hh180209.aspx">ASP.NET | The ASP.NET Site</a> でコンパクトに纏められているので、一度目を通しておくとわしみたいに車輪の再発明をせずに済むぞ！
+<h3>ちなみに</h3>
+<p>string.AsBool や string.IsEmpty は ASP.NET Web Pages に含まれているのかな？ このあたりの関数については、 <a href="http://msdn.microsoft.com/ja-jp/asp.net/hh180209.aspx">ASP.NET | The ASP.NET Site</a> でコンパクトに纏められているので、一度目を通しておくとわしみたいに車輪の再発明をせずに済むぞ！</p>
 </div>
-
 
     <footer>
         
@@ -175,7 +167,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/28/191129.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/28</time> 
             </p>
         
     </footer>
@@ -227,7 +219,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

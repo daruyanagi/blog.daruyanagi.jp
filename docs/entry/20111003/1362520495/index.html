@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="NuGet の作成に挑戦してみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="NuGet を4つほど作ってみた。NuGet galleryやり方のほとんどは [NuGet パッケージを作って公開する](http://d.hatena.ne.jp" />
+    <meta name="og:description"   property="og:description" content="NuGet を4つほど作ってみた。 NuGet gallery やり方のほとんどは [NuGet パッケージを作って公開する](http://d.hatena.ne.jp/shiba-yan" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20111003/1362520495/" />
@@ -86,19 +88,15 @@
         </time>        
     </p>
 
-    <p><a href="http://blog.daruyanagi.net/archives/256/sshot-2" rel="attachment wp-att-257"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-2-500x408.png" alt="" title="sshot-2" width="500" height="408" class="alignnone size-medium wp-image-257"/></a>NuGet を4つほど作ってみた。<a href="http://nuget.org/List/Search?searchTerm=author:%20daruyanagi">NuGet gallery</a>やり方のほとんどは [NuGet パッケージを作って公開する](<a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776"><a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776">http://d.hatena.ne.jp/shiba-yan/20110306/1299422776</a></a>) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。</p>
+    <p><a href="http://blog.daruyanagi.net/archives/256/sshot-2" rel="attachment wp-att-257"><img src="http://blog.daruyanagi.net/wp-content/uploads/2011/10/sshot-2-500x408.png" alt="" title="sshot-2" width="500" height="408" class="alignnone size-medium wp-image-257" /></a></p><p>NuGet を4つほど作ってみた。</p><p><a href="http://nuget.org/List/Search?searchTerm=author:%20daruyanagi">NuGet gallery</a></p><p>やり方のほとんどは [NuGet パッケージを作って公開する](<a href="http://d.hatena.ne.jp/shiba-yan/20110306/1299422776">http://d.hatena.ne.jp/shiba-yan/20110306/1299422776</a>) を参照した。しばやん、ありがとう。来世は美人メイドに生まれ変わるわ。</p><p>4つ作ったけど、そのうち2つは依存関係のテストを兼ねて自分で使う便利関数を切りわけただけのもので、実質的に役に立つのは2つだけだ。</p>
 <ul>
 <li>[Flickr2Html](<a href="http://nuget.org/List/Packages/Flickr2Html">http://nuget.org/List/Packages/Flickr2Html</a>)</li>
-</ul>    Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。
-```
-        @Flickr2Html.GetHtml("http://www.flickr.com/photos/daruyanagi/6171600135/")
-```    GetHtml5() で figure タグを使った埋め込みタグを出力することも可能。引数（size:）に Flickr2Html.Size を与えれば、写真の大きさを指定することもできます。
+</ul><p>    Flickr にアップロードした写真の個別ページのURLを、埋め込みタグへ変換します。</p>
+<pre class="code" data-unlink>        @Flickr2Html.GetHtml(&#34;http://www.flickr.com/photos/daruyanagi/6171600135/&#34;)</pre><p>    GetHtml5() で figure タグを使った埋め込みタグを出力することも可能。引数（size:）に Flickr2Html.Size を与えれば、写真の大きさを指定することもできます。</p>
 <ul>
 <li>[BlackbirdPie](<a href="http://nuget.org/List/Packages/BlackbirdPie">http://nuget.org/List/Packages/BlackbirdPie</a>)</li>
-</ul>    Twitter のつぶやきを簡単に引用することができます。
-```
-        @BlackbirdPie.GetHtml("http://twitter.com/#!/daruyanagi/status/120962210225852417")
-```    スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。
+</ul><p>    Twitter のつぶやきを簡単に引用することができます。</p>
+<pre class="code" data-unlink>        @BlackbirdPie.GetHtml(&#34;http://twitter.com/#!/daruyanagi/status/120962210225852417&#34;)</pre><p>    スタイルシートの埋め込みをON/OFFすることもできます。背景だけはタグに直接埋めこんであるため制御できませんが。</p><p>ちなみに、DateTimeSupport はRFC2822形式への変換など、StringSupport にはURLのリンク化などの拡張メソッドが入っていて、BlackbirdPie を使うとき勝手にインストールされる。もちろん、単体で使うことも可能。あくまでも自分用のものを公開しているだけなので、たぶんほかのライブラリ使うほうが幸せになれると思う。</p><p>どちらにしろ、いずれも少しずつ改善していくつもりなので、たまに NuGet のパッケージマネージャーでアップデートを確かめてみてほしい。</p>
 
 
     <footer>
@@ -113,7 +111,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20111003/1362520495.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/10/03</time> 
             </p>
         
     </footer>
@@ -165,7 +163,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="特定条件下で OneDrive が同期されなくなる" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="こ最近、OneDrive をしばらく使っているとファイルが同期されなくなる問題に悩まされていた。当初は発生条件がわからず、困っていた。 OS の起動" />
+    <meta name="og:description"   property="og:description" content="ここ最近、OneDrive をしばらく使っているとファイルが同期されなくなる問題に悩まされていた。当初は発生条件がわからず、困っていた。 OS の起" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2019/03/12/112530/20190312111259_hu04addefa351a1f0a9d5145972a9a6ddb_186354_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2019/03/12/112530/20190312111259_hu04addefa351a1f0a9d5145972a9a6ddb_186354_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2019/03/12/112530/" />
@@ -86,37 +92,26 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20190312111259.png"/> 
-</figure>
-
-<p>こ最近、OneDrive をしばらく使っているとファイルが同期されなくなる問題に悩まされていた。当初は発生条件がわからず、困っていた。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20190312111259.png" alt="f:id:daruyanagi:20190312111259p:plain" title="f:id:daruyanagi:20190312111259p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ここ最近、OneDrive をしばらく使っているとファイルが同期されなくなる問題に悩まされていた。当初は発生条件がわからず、困っていた。</p>
 <ul>
 <li>OS の起動後、ある程度時間が経過すると発生するようだが、発生するまでに要する時間に一定性はない（経過時間ではなく、特定の操作がトリガーになってる？）</li>
 <li>問題が発生した後も、他のフォルダーでは問題なく同期できたりする（OneDrive デスクトップクライアントそのものが落ちているわけではない）</li>
 <li>同期の停止、再開をしても問題は解消しない</li>
 <li>OS を再起動すると問題は解消される</li>
-</ul>ちなみに、ファイルが同期されなくなるとインジケーターアイコンは“同期中”のままになる。エクスプローラーのステータスバーには“同期保留中”と表示される。
-<figure>
-    <img src="/images/20190312111524.png"/> 
-</figure>
-
-<p>neDrive デスクトップクライアントでは変更が検出されない（よって、アップロードもダウンロードも行われない）。数日、いろいろ試してみたが、どうやらファイルをリネームすると</p>
+</ul><p>ちなみに、ファイルが同期されなくなるとインジケーターアイコンは“同期中”のままになる。エクスプローラーのステータスバーには“同期保留中”と表示される。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20190312111524.png" alt="f:id:daruyanagi:20190312111524p:plain" title="f:id:daruyanagi:20190312111524p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>OneDrive デスクトップクライアントでは変更が検出されない（よって、アップロードもダウンロードも行われない）。</p><p>数日、いろいろ試してみたが、どうやらファイルをリネームすると</p>
 <ul>
 <li>リネームファイルのあるフォルダー</li>
 <li>およびそのサブフォルダー</li>
-</ul>の変更が追跡されなくなるようだ。うちの環境では特定のフォルダーをほかのユーザーと共有してファイルをやり取りしているが、その共有フォルダーで変更の追跡が行われなくなる≒同期が行われなくなると、先方と当方で異なるバージョンのファイルを見ていて話がかみ合わなくなったり、いろいろ弊害が多い。とりあえず「共有フォルダーではリネーム処理を行わない」という運用で回避している。フィードバックはしたけれど、日本語が不自由で、Microsoft にちゃんと伝わっているかわからない。まぁ、自分以外にも報告者はいるだろうから、そのうち直るとは思う。手元のバージョンは以下の通り。
-<pre><code>&gt;
-    **Version 19.012.0121.0011 (Released March 1, 2019)**
-</code></pre>
-<p>Bug fix to improve reliability of the client.</p>
-<pre><code>    OneDrive release notes - Office Support
-</code></pre>
+</ul><p>の変更が追跡されなくなるようだ。</p><p>うちの環境では特定のフォルダーをほかのユーザーと共有してファイルをやり取りしているが、その共有フォルダーで変更の追跡が行われなくなる≒同期が行われなくなると、先方と当方で異なるバージョンのファイルを見ていて話がかみ合わなくなったり、いろいろ弊害が多い。とりあえず「共有フォルダーではリネーム処理を行わない」という運用で回避している。</p><p>フィードバックはしたけれど、日本語が不自由で、Microsoft にちゃんと伝わっているかわからない。まぁ、自分以外にも報告者はいるだろうから、そのうち直るとは思う。手元のバージョンは以下の通り。</p>
+<blockquote cite="https://support.office.com/en-us/article/New-OneDrive-sync-client-release-notes-845dcf18-f921-435e-bf28-4e24b95e5fc0?ui=en-US&rs=en-US&ad=US&fromAR=1">
+<p><b>Version 19.012.0121.0011 (Released March 1, 2019)</b><br />
+Bug fix to improve reliability of the client.</p>
+<p><cite><a href="https://support.office.com/en-us/article/New-OneDrive-sync-client-release-notes-845dcf18-f921-435e-bf28-4e24b95e5fc0?ui=en-US&rs=en-US&ad=US&fromAR=1">OneDrive release notes - Office Support</a></cite></p>
+</blockquote>
 <div class="section">
-    ### 2019/02/23 追記
-    直ってる気がする。
+<h3>2019/02/23 追記</h3>
+<p>直ってる気がする。</p>
 </div>
-
 
     <footer>
         
@@ -130,7 +125,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2019/03/12/112530.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2019/03/12</time> 
             </p>
         
     </footer>
@@ -182,7 +177,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

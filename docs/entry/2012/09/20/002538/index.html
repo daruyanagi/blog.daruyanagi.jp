@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WinRT/XAML のお勉強 ―― データを視覚化したいなぁ" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="燃費記録用の Windows ストアアプリを作ってみた - だるろぐ&lt;/a を作っていてふと思った。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src =" />
+    <meta name="og:description"   property="og:description" content="&#x71C3;&#x8CBB;&#x8A18;&#x9332;&#x7528;&#x306E; Windows &#x30B9;&#x30C8;&#x30A2;&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050; を作っていてふと思った。 window.twttr = (function(d, s, id) { var js, fjs = d.getElementsByTagName(s)[0], t = window.twttr || {}; if (d.getElementById(id)) return t; js = d.createElement(s); js.id = id; js.src = &#34;https://platform.twitter.com/widgets.js&#34;; fjs.parentNode.insertBefore(js, fjs); t._e = []; t.ready = function(f) { t._e.push(f); }; return t; }(document, &#34;script&#34;, &#34;twitter-wjs&#34;)); twttr.ready(function (twttr) { var el = document.getElementsByClassName(&#39;twitter-syntax-tweet-id-247909564761112576&#39;); for" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/09/20/002538/" />
@@ -86,53 +88,24 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920">燃費記録用の Windows ストアアプリを作ってみた - だるろぐ&lt;/a</p>
-<blockquote>
-<p>を作っていてふと思った。<script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &ldquo;<a href="https://platform.twitter.com/widgets.js%22;">https://platform.twitter.com/widgets.js&quot;;</a>        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;));</script></p>
-</blockquote>
-<script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-247909564761112576');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('247909564761112576',el[i],{});        }    });</script>
-<div class="twitter-syntax-tweet-id-247909564761112576"></div
-<blockquote>
-<p>そうなんだ、それがあれば完璧になるんだ！　すると、すかさずナイスな情報を教えてもらえた。<script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = &ldquo;<a href="https://platform.twitter.com/widgets.js%22;">https://platform.twitter.com/widgets.js&quot;;</a>        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, &ldquo;script&rdquo;, &ldquo;twitter-wjs&rdquo;));</script></p>
-</blockquote>
-<script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-247911268567101440');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('247911268567101440',el[i],{});        }    });</script>
-<div class="twitter-syntax-tweet-id-247911268567101440"></div>さすが左の翼！（<a href="https://blog.daruyanagi.jp/entry/2012/04/26/050929">WWD いってきたよ！ - だるろぐ</a> での内輪ネタです、ゴメンナサイ）
-<figure>
-    <img src="/images/20120920000508.png"/> 
-</figure>
-
-<p>、実際にちょっと試したのだけれど、チャートはなんだかうまくいかなかった。チュートリアル通りにコードを書いたんだけど、なんでだろう。サンプルアプリもあるし、動くはずなんだけれど。もう少し頑張ってみるべきだろうけれど、正式版は有償となるとどうもモチベーションが上がらない。</p>
-<figure>
-    <img src="/images/20120920000619.png"/> 
-</figure>
-
-<p>だ、これに付属している DatePicker はイケてる。Windows Phone みたいだ。ただ、こういうのは標準で搭載していてほしい気もするんだ。WinRT には NumericUpDown すらない。まぁ、Silverlight Toolkit みたいなプロジェクトがすでにあるみたいだけれど。<a href="http://jupitertoolkit.codeplex.com/"><a href="http://jupitertoolkit.codeplex.com/">http://jupitertoolkit.codeplex.com/</a></a>まだそこまで手が出せるほどの知識がないのが悲しい。</p>
-<figure>
-    <img src="/images/20120920001434.png"/> 
-</figure>
-
-<p>もあれ、自分で何とかできないかなぁ、と思って Line や Polyline を使ったサンプルを作って勉強している。XAML は比較的こういうのが得意みたいで、データをグラフ表現するのはそんなに難しくない。たとえば、左のしょぼい棒グラフ付きの ListBox ならこんな感じだ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">protected</span> <span style="color:#66d9ef">override</span> <span style="color:#66d9ef">void</span> OnNavigatedTo(NavigationEventArgs e)
+    <p><a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920">&#x71C3;&#x8CBB;&#x8A18;&#x9332;&#x7528;&#x306E; Windows &#x30B9;&#x30C8;&#x30A2;&#x30A2;&#x30D7;&#x30EA;&#x3092;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x305F; - &#x3060;&#x308B;&#x308D;&#x3050;</a> を作っていてふと思った。</p><p><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-247909564761112576');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('247909564761112576',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-247909564761112576"></div></p><p>そうなんだ、それがあれば完璧になるんだ！　すると、すかさずナイスな情報を教えてもらえた。</p><p><script>    window.twttr = (function(d, s, id) {        var js, fjs = d.getElementsByTagName(s)[0],            t = window.twttr || {};        if (d.getElementById(id)) return t;        js = d.createElement(s);        js.id = id;        js.src = "https://platform.twitter.com/widgets.js";        fjs.parentNode.insertBefore(js, fjs);        t._e = [];        t.ready = function(f) {            t._e.push(f);        };        return t;    }(document, "script", "twitter-wjs"));</script><script>    twttr.ready(function (twttr) {        var el = document.getElementsByClassName('twitter-syntax-tweet-id-247911268567101440');        for (var i=0;i<el.length;i++) {            if (!!el[i].getAttribute('data-is-tweet-loaded')){                continue;            }            el[i].setAttribute('data-is-tweet-loaded', '1');            twttr.widgets.createTweet('247911268567101440',el[i],{});        }    });</script><div class="twitter-syntax-tweet-id-247911268567101440"></div></p><p>さすが左の翼！（<a href="https://blog.daruyanagi.jp/entry/2012/04/26/050929">WWD &#x3044;&#x3063;&#x3066;&#x304D;&#x305F;&#x3088;&#xFF01; - &#x3060;&#x308B;&#x308D;&#x3050;</a> での内輪ネタです、ゴメンナサイ）</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120920000508.png" alt="f:id:daruyanagi:20120920000508p:plain" title="f:id:daruyanagi:20120920000508p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>で、実際にちょっと試したのだけれど、チャートはなんだかうまくいかなかった。チュートリアル通りにコードを書いたんだけど、なんでだろう。サンプルアプリもあるし、動くはずなんだけれど。もう少し頑張ってみるべきだろうけれど、正式版は有償となるとどうもモチベーションが上がらない。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120920000619.png" alt="f:id:daruyanagi:20120920000619p:plain" title="f:id:daruyanagi:20120920000619p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ただ、これに付属している DatePicker はイケてる。Windows Phone みたいだ。ただ、こういうのは標準で搭載していてほしい気もするんだ。WinRT には NumericUpDown すらない。まぁ、Silverlight Toolkit みたいなプロジェクトがすでにあるみたいだけれど。</p><p><a href="http://jupitertoolkit.codeplex.com/">http://jupitertoolkit.codeplex.com/</a></p><p>まだそこまで手が出せるほどの知識がないのが悲しい。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120920001434.png" alt="f:id:daruyanagi:20120920001434p:plain" title="f:id:daruyanagi:20120920001434p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ともあれ、自分で何とかできないかなぁ、と思って Line や Polyline を使ったサンプルを作って勉強している。XAML は比較的こういうのが得意みたいで、データをグラフ表現するのはそんなに難しくない。</p><p>たとえば、左のしょぼい棒グラフ付きの ListBox ならこんな感じだ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">protected</span> <span class="synType">override</span> <span class="synType">void</span> OnNavigatedTo(NavigationEventArgs e)
 {
-    <span style="color:#66d9ef">var</span> r = <span style="color:#66d9ef">new</span> Random();
-    DataContext = Enumerable.Range(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">10</span>).Select(_ =&gt; r.Next(<span style="color:#ae81ff">1</span>, <span style="color:#ae81ff">100</span>));
+var r = <span class="synStatement">new</span> Random();
+DataContext = Enumerable.Range(<span class="synConstant">1</span>, <span class="synConstant">10</span>).Select(_ =&gt; r.Next(<span class="synConstant">1</span>, <span class="synConstant">100</span>));
 }
+<p>&lt;ListView ItemsSource=<span class="synConstant">&quot;{Binding}&quot;</span>&gt;
+&lt;ListView.ItemTemplate&gt;
+&lt;DataTemplate&gt;
+&lt;StackPanel&gt;
+&lt;TextBlock Text=<span class="synConstant">&quot;{Binding}&quot;</span> /&gt;
+&lt;Line X1=<span class="synConstant">&quot;0&quot;</span> Y1=<span class="synConstant">&quot;0&quot;</span> X2=<span class="synConstant">&quot;{Binding}&quot;</span> Y2=<span class="synConstant">&quot;0&quot;</span> Stroke=<span class="synConstant">&quot;RoyalBlue&quot;</span> StrokeThickness=<span class="synConstant">&quot;5&quot;</span>/&gt;
+&lt;/StackPanel&gt;
+&lt;/DataTemplate&gt;
+&lt;/ListView.ItemTemplate&gt;
+&lt;/ListView&gt;
+</pre><p>けれど、入力データに対して柔軟に対応できて（拡大・縮小、任意のスケール）、それなりにカッコいいのを作ろうと思うとやっぱり大変そうだ。初心者に産毛が生えたような自分には少し難しい。でも、決してステマではないんだけれど、<a href="https://blog.daruyanagi.jp/entry/2012/09/08/062322">『「.NET開発者」のためのSilverlight入門』 - だるろぐ</a> のおかげか、これぐらいのことはササッと書けるようになったのはちょっとうれしい。</p></p>
 
-&amp;lt;ListView ItemsSource=<span style="color:#e6db74">&#34;{Binding}&#34;</span>&gt;
-    &amp;lt;ListView.ItemTemplate&gt;
-        &amp;lt;DataTemplate&gt;
-            &amp;lt;StackPanel&gt;
-                &amp;lt;TextBlock Text=<span style="color:#e6db74">&#34;{Binding}&#34;</span> /&gt;
-                &amp;lt;Line X1=<span style="color:#e6db74">&#34;0&#34;</span> Y1=<span style="color:#e6db74">&#34;0&#34;</span> X2=<span style="color:#e6db74">&#34;{Binding}&#34;</span> Y2=<span style="color:#e6db74">&#34;0&#34;</span> Stroke=<span style="color:#e6db74">&#34;RoyalBlue&#34;</span> StrokeThickness=<span style="color:#e6db74">&#34;5&#34;</span>/&gt;
-            &amp;lt;/StackPanel&gt;
-        &amp;lt;/DataTemplate&gt;
-    &amp;lt;/ListView.ItemTemplate&gt;
-&amp;lt;/ListView&gt;
-
-<span style="color:#960050;background-color:#1e0010">```けれど、入力データに対して柔軟に対応できて（拡大・縮小、任意のスケール）、それなりにカッコいいのを作ろうと思うとやっぱり大変そうだ。初心者に産毛が生えたような自分には少し難しい。でも、決してステマではないんだけれど、</span>&lt;a href=<span style="color:#e6db74">&#34;https://blog.daruyanagi.jp/entry/2012/09/08/062322&#34;</span>&gt;<span style="color:#960050;background-color:#1e0010">『「</span>.NET開発者<span style="color:#960050;background-color:#1e0010">」のための</span>Silverlight入門<span style="color:#960050;background-color:#1e0010">』</span> - <span style="color:#960050;background-color:#1e0010">だるろぐ</span>&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">のおかげか、これぐらいのことはササッと書けるようになったのはちょっとうれしい。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -146,7 +119,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/20/002538.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/09/20</time> 
             </p>
         
     </footer>
@@ -198,7 +171,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

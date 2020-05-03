@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix のルーティング" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="### 保護されたファイル・フォルダ 一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセ" />
+    <meta name="og:description"   property="og:description" content="保護されたファイル・フォルダ 一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセス" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/07/06/174414/" />
@@ -87,79 +89,69 @@
     </p>
 
     <div class="section">
-    ### 保護されたファイル・フォルダ
-    一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセスされては困るファイルやフォルダは、特定のフォルダに格納したり、ファイル名を規約に従ってつければいい。
+<h3>保護されたファイル・フォルダ</h3>
+<p>一部の特殊な意味を持つファイルやフォルダには、Webブラウザーからアクセスできない。逆に言えば、外部からアクセスされては困るファイルやフォルダは、特定のフォルダに格納したり、ファイル名を規約に従ってつければいい。</p>
 <div class="section">
-    #### bin にはアクセスできない
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706163939.png" alt="f:id:daruyanagi:20120706163939p:plain" title="f:id:daruyanagi:20120706163939p:plain" class="hatena-fotolife"/>bin にはコンパイルされたアセンブリが格納されているので、当然アクセスが禁止されている。
+<h4>bin にはアクセスできない</h4>
+<p><img src="20120706163939.png" alt="f:id:daruyanagi:20120706163939p:plain" title="f:id:daruyanagi:20120706163939p:plain" class="hatena-fotolife"></p><p>bin にはコンパイルされたアセンブリが格納されているので、当然アクセスが禁止されている。</p>
 </div>
 <div class="section">
-    #### App_Data / App_Code にはアクセスできない
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706164032.png" alt="f:id:daruyanagi:20120706164032p:plain" title="f:id:daruyanagi:20120706164032p:plain" class="hatena-fotolife"/>
+<h4>App_Data / App_Code にはアクセスできない</h4>
+<p><img src="20120706164032.png" alt="f:id:daruyanagi:20120706164032p:plain" title="f:id:daruyanagi:20120706164032p:plain" class="hatena-fotolife"></p>
 <ul>
-<li>**App_Data**：アプリケーションのデータを格納（データベースなど）</li>
-<li>**App_Code**：アプリケーションのソースコードを格納（ヘルパーなど）</li>
-</ul>外からみえたら困るので、やっぱりアクセスが禁止されている。
+<li><b>App_Data</b>：アプリケーションのデータを格納（データベースなど）</li>
+<li><b>App_Code</b>：アプリケーションの<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%BD%A1%BC%A5%B9%A5%B3%A1%BC%A5%C9">ソースコード</a>を格納（ヘルパーなど）</li>
+</ul><p>外からみえたら困るので、やっぱりアクセスが禁止されている。</p>
 </div>
 <div class="section">
-    #### 名前が「_」から始まるファイルにはアクセスできない
-    <img src="http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706164127.png" alt="f:id:daruyanagi:20120706164127p:plain" title="f:id:daruyanagi:20120706164127p:plain" class="hatena-fotolife"/>
+<h4>名前が「_」から始まるファイルにはアクセスできない</h4>
+<p><img src="20120706164127.png" alt="f:id:daruyanagi:20120706164127p:plain" title="f:id:daruyanagi:20120706164127p:plain" class="hatena-fotolife"></p>
 <ul>
-<li>**_AppStart.cshcml**：アプリケーションが起動するとき一度だけ実行される（グローバル変数の初期化、Web サービスの API キー格納など）</li>
-<li>**_PageStart.cshtml**：配置されたフォルダ以下にあるページが表示されるごとに実行される（レイアウトの指定やキャッシュコントロール、アクセス制御など）</li>
-</ul>正直なところ _PageStart.cshtml でアクセス制御ができるのは知らなかったかも。今度使っちゃおう。
-```cs
-@{
-    Response.CacheControl = "no-cache";
-<pre><code>if (!WebSecurity.IsAuthenticated) {
-    Response.Redirect(&quot;~/Account/Login&quot;);
+<li><b>_AppStart.cshcml</b>：アプリケーションが起動するとき一度だけ実行される（<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B0%A5%ED%A1%BC%A5%D0%A5%EB%CA%D1%BF%F4">グローバル変数</a>の初期化、Web サービスの <a class="keyword" href="http://d.hatena.ne.jp/keyword/API">API</a> キー格納など）</li>
+<li><b>_PageStart.cshtml</b>：配置されたフォルダ以下にあるページが表示されるごとに実行される（レイアウトの指定やキャッシュコントロール、アクセス制御など）</li>
+</ul><p>正直なところ _PageStart.cshtml でアクセス制御ができるのは知らなかったかも。今度使っちゃおう。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+Response.CacheControl = <span class="synConstant">&quot;no-cache&quot;</span>;
+<p><span class="synStatement">if</span> (!WebSecurity.IsAuthenticated) {
+Response.Redirect(<span class="synConstant">&quot;~/Account/Login&quot;</span>);
 }
-</code></pre>
-<p>}</p>
-<pre><code>&lt;ul&gt;
-&lt;li&gt;&lt;a href=&quot;http://msdn.microsoft.com/ja-jp/asp.net/hh180208.aspx&quot;&gt;第 18 章 サイト全体の動作をカスタマイズする | Razor 構文と ASP.NET Web ページ&lt;/a&gt;&lt;/li&gt;
-&lt;/ul&gt;そのほか、レイアウトファイル（たとえば“_Layout.cshtml”）や部分ビュー（たとえば“_Partial.cshtml”）も、外部に公開する必要はないので名前の先頭に「_」をつけることが多い。また、一時的に Web ページを非公開にする場合にも、リネームだけで対応できるので便利。ちなみに、コードからはちゃんとアクセスできるのでご安心を。
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 名前の解決
-    いくつかのルールはあるが、あまり難しくはない。工夫次第では URL をクール＆クリーンに保つことができる。
-
-&lt;div class=&quot;section&quot;&gt;
-    #### 静的な解決
-    まずは、存在するファイル・フォルダへのアクセスの規則を確認する。
-
-&lt;div class=&quot;section&quot;&gt;
-    ##### 拡張子ありのファイルアクセス
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706170046.png&quot; alt=&quot;f:id:daruyanagi:20120706170046p:plain&quot; title=&quot;f:id:daruyanagi:20120706170046p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;あまり使わないが CSHTML (Razor C#) ファイルも“index.html”のように拡張子まで指定してアクセスできる。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ##### 拡張子なしのファイルアクセス
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706170439.png&quot; alt=&quot;f:id:daruyanagi:20120706170439p:plain&quot; title=&quot;f:id:daruyanagi:20120706170439p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;CSHTML (Razor C#) ファイルは拡張子を省くことも可能&lt;a href=&quot;#f1&quot; name=&quot;fn1&quot; title=&quot;HTML ファイルなどは、拡張子を省くことができないようだ&quot;&gt;*1&lt;/a&gt;。こっちのほうがモダンかつクールかもしれない。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ##### ディレクトリへのアクセス
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706170656.png&quot; alt=&quot;f:id:daruyanagi:20120706170656p:plain&quot; title=&quot;f:id:daruyanagi:20120706170656p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;“index.html”などが表示される。優先順位は［サイト］－［設定］で変更できる。
-
-&lt;/div&gt;
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### 動的な解決 ―― UrlData[]
-    &lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120706/20120706171307.png&quot; alt=&quot;f:id:daruyanagi:20120706171307p:plain&quot; title=&quot;f:id:daruyanagi:20120706171307p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;
-</code></pre><p>/あ.cshtml/い/う/え/お
-→ UrlData[] { &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; }</p>
-<pre><code class="language-の「あ.cshtml」以降のパラメータを、" data-lang="の「あ.cshtml」以降のパラメータを、"></code></pre><p>/あ/い/う/え/お
-→ UrlData[] { &ldquo;い&rdquo;, &ldquo;う&rdquo;, &ldquo;え&rdquo;, &ldquo;お&rdquo; }</p>
-<pre><code class="language-が得られる。これを利用すれば、" data-lang="が得られる。これを利用すれば、">
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;HTML ファイルなどは、拡張子を省くことができないようだ&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}
+</pre></p>
+<ul>
+<li><a href="http://msdn.microsoft.com/ja-jp/asp.net/hh180208.aspx">&#x7B2C; 18 &#x7AE0; &#x30B5;&#x30A4;&#x30C8;&#x5168;&#x4F53;&#x306E;&#x52D5;&#x4F5C;&#x3092;&#x30AB;&#x30B9;&#x30BF;&#x30DE;&#x30A4;&#x30BA;&#x3059;&#x308B; | Razor &#x69CB;&#x6587;&#x3068; ASP.NET Web &#x30DA;&#x30FC;&#x30B8;</a></li>
+</ul><p>そのほか、レイアウトファイル（たとえば“_Layout.cshtml”）や部分ビュー（たとえば“_Partial.cshtml”）も、外部に公開する必要はないので名前の先頭に「_」をつけることが多い。また、一時的に Web ページを非公開にする場合にも、リネームだけで対応できるので便利。ちなみに、コードからはちゃんとアクセスできるのでご安心を。</p>
+</div>
+</div>
+<div class="section">
+<h3>名前の解決</h3>
+<p>いくつかのルールはあるが、あまり難しくはない。工夫次第では URL をクール＆クリーンに保つことができる。</p>
+<div class="section">
+<h4>静的な解決</h4>
+<p>まずは、存在するファイル・フォルダへのアクセスの規則を確認する。</p>
+<div class="section">
+<h5>拡張子ありのファイルアクセス</h5>
+<p><img src="20120706170046.png" alt="f:id:daruyanagi:20120706170046p:plain" title="f:id:daruyanagi:20120706170046p:plain" class="hatena-fotolife"></p><p>あまり使わないが CSHTML (Razor <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%23">C#</a>) ファイルも“index.html”のように拡張子まで指定してアクセスできる。</p>
+</div>
+<div class="section">
+<h5>拡張子なしのファイルアクセス</h5>
+<p><img src="20120706170439.png" alt="f:id:daruyanagi:20120706170439p:plain" title="f:id:daruyanagi:20120706170439p:plain" class="hatena-fotolife"></p><p>CSHTML (Razor <a class="keyword" href="http://d.hatena.ne.jp/keyword/C%23">C#</a>) ファイルは拡張子を省くことも可能<a href="#f1" name="fn1" title="HTML ファイルなどは、拡張子を省くことができないようだ">*1</a>。こっちのほうがモダンかつクールかもしれない。</p>
+</div>
+<div class="section">
+<h5>ディレクトリへのアクセス</h5>
+<p><img src="20120706170656.png" alt="f:id:daruyanagi:20120706170656p:plain" title="f:id:daruyanagi:20120706170656p:plain" class="hatena-fotolife"></p><p>“index.html”などが表示される。優先順位は［サイト］－［設定］で変更できる。</p>
+</div>
+</div>
+<div class="section">
+<h4>動的な解決 ―― UrlData[]</h4>
+<p><img src="20120706171307.png" alt="f:id:daruyanagi:20120706171307p:plain" title="f:id:daruyanagi:20120706171307p:plain" class="hatena-fotolife"></p>
+<pre class="code lang-" data-lang="" data-unlink>/あ.cshtml/い/う/え/お
+→ UrlData[] { &#34;い&#34;, &#34;う&#34;, &#34;え&#34;, &#34;お&#34; }</pre><p>の「あ.cshtml」以降のパラメータを、 UrlDate[] 配列で受け取ることができる。</p><p><img src="20120706171708.png" alt="f:id:daruyanagi:20120706171708p:plain" title="f:id:daruyanagi:20120706171708p:plain" class="hatena-fotolife"></p><p>さらに、「お.cshtml」をリネームして「/あ/い/う/え/お.cshtml」による名前解決を無効にすれば、「あ.cshtml」の拡張子を省略することも可能。つまり、</p>
+<pre class="code lang-" data-lang="" data-unlink>/あ/い/う/え/お
+→ UrlData[] { &#34;い&#34;, &#34;う&#34;, &#34;え&#34;, &#34;お&#34; }</pre><p>が得られる。これを利用すれば、 WebMatrix でも URL を動的に扱える。ちなみに、クエリ文字列（ /?foo=bar&hoge=hauhau など）は Request.QueryString で受け取ることができる。</p>
+</div>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">HTML ファイルなどは、拡張子を省くことができないようだ</span></p>
+</div>
 
     <footer>
         
@@ -173,7 +165,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/07/06/174414.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/07/06</time> 
             </p>
         
     </footer>
@@ -225,7 +217,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

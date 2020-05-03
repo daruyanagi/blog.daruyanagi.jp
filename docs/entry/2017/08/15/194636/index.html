@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="ASP.NET Core：特定のリクエストをミドルウェアでリダイレクトする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。URL" />
+    <meta name="og:description"   property="og:description" content="旧ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。 docs.microsoft.com 具" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/08/15/194636/" />
@@ -86,45 +88,33 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170816021356.png"/> 
-</figure>
-
-<p>ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。<a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting" alt="URL Rewriting Middleware in ASP.NET Core">
-  URL Rewriting Middleware in ASP.NET Core
-</a>具体的には、こんな感じ。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">class</span> <span style="color:#a6e22e">Startup</span>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170816021356.png" alt="f:id:daruyanagi:20170816021356p:plain" title="f:id:daruyanagi:20170816021356p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>旧ドメインから新ドメインへのリダイレクトを Controller でやっていたのだけど、実はミドルウェアでできることを今日知った……。情報弱者にもほどがある。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fdocs.microsoft.com%2Fen-us%2Faspnet%2Fcore%2Ffundamentals%2Furl-rewriting" title="URL Rewriting Middleware in ASP.NET Core" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://docs.microsoft.com/en-us/aspnet/core/fundamentals/url-rewriting">docs.microsoft.com</a></cite></p><p>具体的には、こんな感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">class</span> Startup
 {
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> ConfigureServices(IServiceCollection services)
-    {
-        services.AddMvc();
-    }
-        
-    <span style="color:#66d9ef">public</span> <span style="color:#66d9ef">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env)
-    {
-        <span style="color:#66d9ef">if</span> (env.IsDevelopment())
-        {
-            app.UseDeveloperExceptionPage();
-        }
-
-        <span style="color:#66d9ef">var</span> options = <span style="color:#66d9ef">new</span> RewriteOptions()
-            .AddRedirect(<span style="color:#e6db74">&#34;entry/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/entry/$1&#34;</span>)
-            .AddRedirect(<span style="color:#e6db74">&#34;category/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/category/$1&#34;</span>)
-            .AddRedirect(<span style="color:#e6db74">&#34;entries/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/entries/$1&#34;</span>)
-            .AddRedirect(<span style="color:#e6db74">&#34;search/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/search/$1&#34;</span>)
-            .AddRedirect(<span style="color:#e6db74">&#34;touch/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/touch/$1&#34;</span>)
-            .AddRedirect(<span style="color:#e6db74">&#34;embed/(.*)&#34;</span>, <span style="color:#e6db74">&#34;http://blog.daruyanagi.jp/embed/$1&#34;</span>);
-        app.UseRewriter(options);
-
-        app.UseStaticFiles();
-        app.UseMvc();
-    }
+<span class="synType">public</span> <span class="synType">void</span> ConfigureServices(IServiceCollection services)
+{
+services.AddMvc();
 }
+<p><span class="synType">public</span> <span class="synType">void</span> Configure(IApplicationBuilder app, IHostingEnvironment env)
+{
+<span class="synStatement">if</span> (env.IsDevelopment())
+{
+app.UseDeveloperExceptionPage();
+}</p>
+<p>var options = <span class="synStatement">new</span> RewriteOptions()
+.AddRedirect(<span class="synConstant">&quot;entry/(.<em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/entry/$1&quot;</span>)
+.AddRedirect(<span class="synConstant">&quot;category/(.</em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/category/$1&quot;</span>)
+.AddRedirect(<span class="synConstant">&quot;entries/(.<em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/entries/$1&quot;</span>)
+.AddRedirect(<span class="synConstant">&quot;search/(.</em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/search/$1&quot;</span>)
+.AddRedirect(<span class="synConstant">&quot;touch/(.<em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/touch/$1&quot;</span>)
+.AddRedirect(<span class="synConstant">&quot;embed/(.</em>)&quot;</span>, <span class="synConstant">&quot;http://blog.daruyanagi.jp/embed/$1&quot;</span>);
+app.UseRewriter(options);</p>
+<p>app.UseStaticFiles();
+app.UseMvc();
+}
+}
+</pre><p>今まで自分がやってきたやり方はクソなので、もう忘れようと思う。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F07%2F17%2F143323" title="ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/07/17/143323">blog.daruyanagi.jp</a></cite></p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F07%2F17%2F143323" title="ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/07/17/143323">blog.daruyanagi.jp</a></cite></p><p>そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　</p></p>
 
-<span style="color:#960050;background-color:#1e0010">```今まで自分がやってきたやり方はクソなので、もう忘れようと思う。</span>[ASP.NET Core MVC<span style="color:#960050;background-color:#1e0010">：特定のリクエストを他のサイトにリダイレクトする</span> - <span style="color:#960050;background-color:#1e0010">だるろぐ</span>](http:<span style="color:#75715e">//blog.daruyanagi.jp/entry/2017/07/17/143323)[ASP.NET Core MVC：特定のリクエストを他のサイトにリダイレクトする - だるろぐ](http://blog.daruyanagi.jp/entry/2017/07/17/143323)そのほかにも URL リライトを行ったり、IIS や Apache のリライトルールを読み込んで利用したり、ルールをメソッドで記述したり、IRule インターフェースでリライトを定義したりできるみたいですね。　
-</span><span style="color:#75715e"></span>
-
-</code></pre></div>
 
     <footer>
         
@@ -138,7 +128,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/08/15/194636.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/08/15</time> 
             </p>
         
     </footer>
@@ -190,7 +180,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

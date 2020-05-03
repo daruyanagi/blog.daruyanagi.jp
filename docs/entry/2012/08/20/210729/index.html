@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix でファイルのアップロード（2） の補足" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; &gt; デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけ" />
+    <meta name="og:description"   property="og:description" content="デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/20/210729/" />
@@ -86,67 +88,31 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20120820014842.png"/> 
-</figure>
-
-<p>br/&gt;</p>
-<pre><code>&gt;
-    デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。
-
-    WebMatrix でファイルのアップロード（2） - だるろぐ
-</code></pre>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120820014842.png" alt="f:id:daruyanagi:20120820014842p:plain" title="f:id:daruyanagi:20120820014842p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
+<blockquote cite="https://blog.daruyanagi.jp/entry/2012/08/20/020355">
+<p>デカいファイルをアップロードしようとすると発生するのだけれど、この例外をトラップするのが面倒……。無理やり頑張ってトラップしてみたのだけれど、 try 文がやたらネストするし、 Request に少しでもアクセスしようものなら発生するので IsAjax が取れずに少し困っている。</p>
+<p><cite><a href="https://blog.daruyanagi.jp/entry/2012/08/20/020355">WebMatrix でファイルのアップロード（2） - だるろぐ</a></cite></p>
+</blockquote>
 <p>思いついたのだけれど、無理してビューまたは Json を返そうとしなくてもステータスコードだけ返せばいいな。最初にわざとエラーを発生させるコードを書いてそこで return してしまえば、 try……catch 文のネストを減らせるし。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#66d9ef">try</span> <span style="color:#75715e">// Catch Request-too-long Error
-</span><span style="color:#75715e"></span>    {
-        <span style="color:#66d9ef">var</span> dummy = Request.Files;
-    }
-    <span style="color:#66d9ef">catch</span> (Exception e)
-    {
-        Response.StatusCode = 
-            (<span style="color:#66d9ef">int</span>) HttpStatusCode.InternalServerError;
-        Response.Write(e.Message);
-        <span style="color:#66d9ef">return</span>;
-    }
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+<span class="synStatement">try</span> <span class="synComment">// Catch Request-too-long Error</span>
+{
+var dummy = Request.Files;
+}
+<span class="synStatement">catch</span> (Exception e)
+{
+Response.StatusCode =
+(<span class="synType">int</span>) HttpStatusCode.InternalServerError;
+Response.Write(e.Message);
+<span class="synStatement">return</span>;
+}
+<p><span class="synStatement">if</span> (IsPost)
+{
+：
+：
+</pre><p>これをするとどうなるのかというと、</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120820210027.png" alt="f:id:daruyanagi:20120820210027p:plain" title="f:id:daruyanagi:20120820210027p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まず、デカいファイルを投げる（既定では約4MB以上）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120820210114.png" alt="f:id:daruyanagi:20120820210114p:plain" title="f:id:daruyanagi:20120820210114p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>サーバーでエラーが発生し、ステータスコード（よくわからんけど5**）を返す。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120820210207.png" alt="f:id:daruyanagi:20120820210207p:plain" title="f:id:daruyanagi:20120820210207p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>$.ajax() の error プロパティでそれを拾って……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120820014842.png" alt="f:id:daruyanagi:20120820014842p:plain" title="f:id:daruyanagi:20120820014842p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>HTML を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。</p></p>
 
-    <span style="color:#66d9ef">if</span> (IsPost)
-    {
-        <span style="color:#960050;background-color:#1e0010">：</span>
-        <span style="color:#960050;background-color:#1e0010">：</span>
-
-<span style="color:#960050;background-color:#1e0010">```これをするとどうなるのかというと、</span>
-
-<figure>
-    <img src="/images/20120820210027.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">ず、デカいファイルを投げる（既定では約</span><span style="color:#ae81ff">4</span>MB以上<span style="color:#960050;background-color:#1e0010">）。</span>
-
-<figure>
-    <img src="/images/20120820210114.png"/> 
-</figure>
-
-
-<span style="color:#960050;background-color:#1e0010">ーバーでエラーが発生し、ステータスコード（よくわからんけど</span><span style="color:#ae81ff">5</span>**<span style="color:#960050;background-color:#1e0010">）を返す。</span>
-
-<figure>
-    <img src="/images/20120820210207.png"/> 
-</figure>
-
-
-.ajax() <span style="color:#960050;background-color:#1e0010">の</span> error <span style="color:#960050;background-color:#1e0010">プロパティでそれを拾って……</span>
-
-<figure>
-    <img src="/images/20120820014842.png"/> 
-</figure>
-
-
-TML <span style="color:#960050;background-color:#1e0010">を更新する。ブラウザーからアクセスしたときは、まぁ、なんかエラー画面が表示されるのだろう。とりあえずこれでいいか。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -160,7 +126,7 @@ TML <span style="color:#960050;background-color:#1e0010">を更新する。ブ�
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/20/210729.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/20</time> 
             </p>
         
     </footer>
@@ -212,7 +178,16 @@ TML <span style="color:#960050;background-color:#1e0010">を更新する。ブ�
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

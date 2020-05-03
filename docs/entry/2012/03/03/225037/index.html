@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/03/03/225037/" />
@@ -86,101 +88,93 @@
         </time>        
     </p>
 
-    <blockquote>
-</blockquote>
-<pre><code>    eEmbedというのは、あるリソースのURL(例えばFlickrの特定の写真のページのURL)を
-</code></pre>
-<p>サードパーティ上で、写真自体の埋め込みに変換したいときに、
+    <blockquote cite="http://d.hatena.ne.jp/lyokato/20080815/1218767965">
+<p>eEmbedというのは、あるリソースのURL(例えば<a class="keyword" href="http://d.hatena.ne.jp/keyword/Flickr">Flickr</a>の特定の写真のページのURL)を<br />
+<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B5%A1%BC%A5%C9%A5%D1%A1%BC%A5%C6%A5%A3">サードパーティ</a>上で、写真自体の埋め込みに変換したいときに、<br />
 埋め込みに必要なパラメータを取得するためのプロトコルみたいです。</p>
-<pre><code>     URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World
-</code></pre>
-<p>前にやったときは API を使って実装したのだけど、こっちだと API キーや秘密鍵を取得しないで同じことができそう。</p>
-<pre><code>```
-</code></pre>
-<p>using System;
+<p><cite><a href="http://d.hatena.ne.jp/lyokato/20080815/1218767965"> URLを埋め込みコンテンツに変換するoEmbedの仕様 - Codin’ In The Free World</a></cite></p>
+</blockquote>
+<p>前にやったときは <a class="keyword" href="http://d.hatena.ne.jp/keyword/API">API</a> を使って実装したのだけど、こっちだと <a class="keyword" href="http://d.hatena.ne.jp/keyword/API">API</a> キーや秘密鍵を取得しないで同じことができそう。</p>
+<pre class="code" data-unlink>using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;</p>
-<p>using Codeplex.Data;
-using System.Net;</p>
-<p>public static class FlickrHelper
+using System.Web;
+
+using Codeplex.Data;
+using System.Net;
+
+public static class FlickrHelper
 {
-private static readonly string Endpoint = 
-@&ldquo;<a href="http://www.flickr.com/services/oembed%22;">http://www.flickr.com/services/oembed&quot;;</a>
-public static string FORMAT_URL = 
-@&quot;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&quot;;
-public static string FORMAT_HTML_TAG = @&rdquo;
+private static readonly string Endpoint =
+@&#34;http://www.flickr.com/services/oembed&#34;;
+public static string FORMAT_URL =
+@&#34;{0}?url={1}&amp;maxwidth={2}&amp;maxheight={3}&amp;format={4}&#34;;
+public static string FORMAT_HTML_TAG = @&#34;
 &lt;blockquote&gt;
-&lt;p&gt;&lt;img src='{0}' alt='{1}' /&gt;&lt;p&gt;
-&lt;p&gt;&lt;small&gt;{1} by &lt;a href='{3}'&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
+&lt;p&gt;&lt;img src=&#39;{0}&#39; alt=&#39;{1}&#39; /&gt;&lt;p&gt;
+&lt;p&gt;&lt;small&gt;{1} by &lt;a href=&#39;{3}&#39;&gt;{2}&lt;/a&gt;&lt;/small&gt;&lt;p&gt;
 &lt;/blockquote&gt;
-&ldquo;;
-public static string FORMAT_ERROR = 
-@&quot;&lt;p class='error'&gt;{0}&lt;/p&gt;&rdquo;;</p>
-<pre><code>public static string GetHtml(string url,
-    string max_width = &quot;500&quot;, string max_height = &quot;500&quot;)
+&#34;;
+public static string FORMAT_ERROR =
+@&#34;&lt;p class=&#39;error&#39;&gt;{0}&lt;/p&gt;&#34;;
+
+public static string GetHtml(string url,
+string max_width = &#34;500&#34;, string max_height = &#34;500&#34;)
 {
-    try
-    {
-        return GetHtml(url, 
-            int.Parse(max_width), int.Parse(max_height));
-    }
-    catch (Exception e)
-    {
-        return string.Format(FORMAT_ERROR, e.Message);
-    }
+try
+{
+return GetHtml(url,
+int.Parse(max_width), int.Parse(max_height));
+}
+catch (Exception e)
+{
+return string.Format(FORMAT_ERROR, e.Message);
+}
 }
 
 public static string GetHtml(
-    string url, int max_width, int max_height)
+string url, int max_width, int max_height)
 {
-    var format = &quot;json&quot;;
+var format = &#34;json&#34;;
 
-    var address = string.Format(FORMAT_URL,
-        Endpoint, url, max_width, max_height, format);
+var address = string.Format(FORMAT_URL,
+Endpoint, url, max_width, max_height, format);
 
-    using (var client = new WebClient())
-    {
-        try
-        {
-            var response = client.DownloadString(address);
-            var info = DynamicJson.Parse(response);
-
-            return string.Format(FORMAT_HTML_TAG,
-                info.url, info.title,
-                info.author_name, info.author_url);
-        }
-        catch (Exception e)
-        {
-            return string.Format(FORMAT_ERROR, e.Message);
-        }
-    }
-}
-</code></pre>
-<p>}</p>
-<pre><code>&lt;br/&gt;
-&lt;img src=&quot;http://cdn-ak.f.st-hatena.com/images/fotolife/d/daruyanagi/20120303/20120303222856.png&quot; alt=&quot;f:id:daruyanagi:20120303222856p:plain&quot; title=&quot;f:id:daruyanagi:20120303222856p:plain&quot; class=&quot;hatena-fotolife&quot;/&gt;できた。けど、これだと短縮URL（flic.kr）は使えないみたい。自分で Base58 のデコード処理&lt;a href=&quot;#f1&quot; name=&quot;fn1&quot; title=&quot;短縮URLはPhoto IDをBase58でエンコードしてある&quot;&gt;*1&lt;/a&gt;なり、URLを展開する処理なりを追加する必要がある。 Base58 のデコード処理では Photo ID しか取得できず、結局 API が必要になるので、今回は汎用の短縮URL展開処理を使った。
-
-    ```
-public static Uri ExpandUrl(this Uri input)
+using (var client = new WebClient())
 {
-    var req = (HttpWebRequest)WebRequest.Create(input);
-    WebResponse res = req.GetResponse();
-    return res.ResponseUri;
+try
+{
+var response = client.DownloadString(address);
+var info = DynamicJson.Parse(response);
+
+return string.Format(FORMAT_HTML_TAG,
+info.url, info.title,
+info.author_name, info.author_url);
 }
-</code></pre><p>みたいな拡張メソッドを用意して、</p>
-<pre><code>```
-</code></pre>
-<p>if (url.StartsWith(&ldquo;<a href="http://flic.kr/p/%22">http://flic.kr/p/&quot;</a>))
+catch (Exception e)
+{
+return string.Format(FORMAT_ERROR, e.Message);
+}
+}
+}
+}</pre>
+<p><br />
+<img src="20120303222856.png" alt="f:id:daruyanagi:20120303222856p:plain" title="f:id:daruyanagi:20120303222856p:plain" class="hatena-fotolife"></p><p>できた。けど、これだと短縮URL（flic.kr）は使えないみたい。自分で Base58 のデコード処理<a href="#f1" name="fn1" title="短縮URLはPhoto IDをBase58でエンコードしてある">*1</a>なり、URLを展開する処理なりを追加する必要がある。 Base58 のデコード処理では Photo ID しか取得できず、結局 API が必要になるので、今回は汎用の短縮URL展開処理を使った。</p>
+<pre class="code" data-unlink>public static Uri ExpandUrl(this Uri input)
+{
+var req = (HttpWebRequest)WebRequest.Create(input);
+WebResponse res = req.GetResponse();
+return res.ResponseUri;
+}</pre>
+<p>みたいな拡張メソッドを用意して、</p>
+<pre class="code" data-unlink>if (url.StartsWith(&#34;http://flic.kr/p/&#34;))
 {
 url = new Uri(url).ExpandUrl().ToString();
-}</p>
-<pre><code>短縮URLを展開してあげる。
-&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn1&quot; name=&quot;f1&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;短縮URLはPhoto IDをBase58でエンコードしてある&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+}</pre>
+<p>短縮URLを展開してあげる。</p>
+<div class="footnote">
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">短縮URLはPhoto IDをBase58でエンコードしてある</span></p>
+</div>
 
     <footer>
         
@@ -194,7 +188,7 @@ url = new Uri(url).ExpandUrl().ToString();
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/03/225037.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2012/03/03</time> 
             </p>
         
     </footer>
@@ -246,7 +240,16 @@ url = new Uri(url).ExpandUrl().ToString();
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

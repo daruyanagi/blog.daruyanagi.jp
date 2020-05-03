@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="XAML：オブジェクト参照がオブジェクト インスタンスに設定されていません。" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="AML をガリガリ書いてビルドすると、こんなエラーが出た。 &gt; オブジェクト参照がオブジェクト インスタンスに設定されていません。 エラーの説明がふんわり" />
+    <meta name="og:description"   property="og:description" content="XAML をガリガリ書いてビルドすると、こんなエラーが出た。 オブジェクト参照がオブジェクト インスタンスに設定されていません。 エラーの説明がふんわりし" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/06/24/232557/" />
@@ -86,25 +88,11 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170624231314.png"/> 
-</figure>
-
-<p>AML をガリガリ書いてビルドすると、こんなエラーが出た。</p>
-<pre><code>&gt;
-    オブジェクト参照がオブジェクト インスタンスに設定されていません。
-</code></pre>
-<p>エラーの説明がふんわりし過ぎていて、場所すら特定できない。ソースコードはコンパイルされているみたいなので、XAML の実行時エラーっぽいが……しょうがないのであちこちコメントアウトしながら、がんばって場所を特定した。</p>
-<figure>
-    <img src="/images/20170624232247.png"/> 
-</figure>
-
-<p>うやら、このコメント部分が原因らしい。ぱっと見、問題はなさそうにも見えるが――</p>
-<figure>
-    <img src="/images/20170624232355.png"/> 
-</figure>
-
-<p>インディングしていた Checked の定義を見て悟った。イベントにプロパティをバインドしている……orzChecked イベントを IsChecked プロパティに書き換えることで問題は解消されました＼(＾o＾)／</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170624231314.png" alt="f:id:daruyanagi:20170624231314p:plain" title="f:id:daruyanagi:20170624231314p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>XAML をガリガリ書いてビルドすると、こんなエラーが出た。</p>
+<blockquote>
+<p>オブジェクト参照がオブジェクト インスタンスに設定されていません。</p>
+</blockquote>
+<p>エラーの説明がふんわりし過ぎていて、場所すら特定できない。ソースコードはコンパイルされているみたいなので、XAML の実行時エラーっぽいが……しょうがないのであちこちコメントアウトしながら、がんばって場所を特定した。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170624232247.png" alt="f:id:daruyanagi:20170624232247p:plain" title="f:id:daruyanagi:20170624232247p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>どうやら、このコメント部分が原因らしい。ぱっと見、問題はなさそうにも見えるが――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170624232355.png" alt="f:id:daruyanagi:20170624232355p:plain" title="f:id:daruyanagi:20170624232355p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>バインディングしていた Checked の定義を見て悟った。イベントにプロパティをバインドしている……orz</p><p>Checked イベントを IsChecked プロパティに書き換えることで問題は解消されました＼(＾o＾)／</p>
 
 
     <footer>
@@ -119,7 +107,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/06/24/232557.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/06/24</time> 
             </p>
         
     </footer>
@@ -171,7 +159,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

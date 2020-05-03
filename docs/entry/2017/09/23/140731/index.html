@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Omawari 1.2.0.0：いわゆる Web 更新チェッカーだけど、細かいところを改善した" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; メインリストビューに Last Update 欄を設ける それに伴うコード整理 Refresh ボタンは不要になったので廃止 通知トレイで DEBUG モードなのがわかるように ファイル操作の非" />
+    <meta name="og:description"   property="og:description" content="メインリストビューに Last Update 欄を設ける それに伴うコード整理 Refresh ボタンは不要になったので廃止 通知トレイで DEBUG モードなのがわかるように ファイル操作の非同" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2017/09/23/140731/20170923135951_hu729c3edab049de173e81b54de4425fc7_122855_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2017/09/23/140731/20170923135951_hu729c3edab049de173e81b54de4425fc7_122855_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/09/23/140731/" />
@@ -86,11 +92,8 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170923135951.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170923135951.png" alt="f:id:daruyanagi:20170923135951p:plain" title="f:id:daruyanagi:20170923135951p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li>メインリストビューに Last Update 欄を設ける
 <ul>
@@ -105,45 +108,25 @@
 </ul></li>
 <li>リファクタリング</li>
 <li>Click Once がめんどいのでやめた（ごめんなさい！）</li>
-</ul>
-<div class="github-card" data-user="daruyanagi/Omawari" data-repo="releases" data-width="400" data-height="" data-theme="default"></div
-<blockquote>
-</blockquote>
-<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-<br/>
+</ul><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FOmawari%2Freleases" title="daruyanagi/Omawari" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/daruyanagi/Omawari/releases">github.com</a></cite><br />
+</p>
 <div class="section">
-    ### リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした
-<figure>
-    <img src="/images/20170923140119.png"/> 
-</figure>
-
-<p>lickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1"><span style="color:#75715e"># 起点となる bin フォルダー</span>
-$root = Join-Path $PSScriptRoot <span style="color:#e6db74">&#34;Omawari\bin&#34;</span>
-
-<span style="color:#75715e"># 入力フォルダー</span>
-$src = Join-Path $root <span style="color:#e6db74">&#34;Release&#34;</span>
-
-<span style="color:#75715e"># 出力フォルダー</span>
-$version = (Get-ItemProperty (Join-Path $src <span style="color:#e6db74">&#34;Omawari.exe&#34;</span>)).VersionInfo.FileVersion
-$dest = Join-Path $root Omawari-$version.zip
-
-<span style="color:#75715e"># ZIP で圧縮</span>
-Compress-Archive -Path $src/* -DestinationPath $dest
-
-<span style="color:#75715e"># フォルダーを開く</span>
-Invoke-Item $root
-
-```リリースビルドの実行ファイルのバージョンを読んで Omawari-*.*.*.*.zip という名前の ZIP アーカイブに圧縮するだけ<span style="color:#960050;background-color:#1e0010">。</span>この程度の&lt;br/&gt;
- PowerShell なら割と書けるようになってきた<span style="color:#960050;background-color:#1e0010">！（</span>バージョンの取得の仕方はググったけど<span style="color:#960050;background-color:#1e0010">……）</span>コレでもアップデートは面倒なので<span style="color:#960050;background-color:#1e0010">、</span>Chocolatey パッケージにすることも画策してる<span style="color:#960050;background-color:#1e0010">。</span>
-
-<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>&mdash; #だるやなぎ40 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736?ref_src=twsrc%5Etfw">September 22, 2017</a></blockquote>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-
-
-&lt;/div&gt;
-
-</code></pre></div>
+<h3>リリースアーカイブを毎回手で作るの面倒くさくなったので PowerShell にした</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170923140119.png" alt="f:id:daruyanagi:20170923140119p:plain" title="f:id:daruyanagi:20170923140119p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ClickOnce って Web サーバーでホストしない場合、更新するのにいちいち古いバージョンのアンインストールが必要になって大変面倒くさいので、単に ZIP アーカイブでまとめて配布するようにした。そのパッケージを毎回手で作るのは面倒なので、PowerShell でアーカイブを作るスクリプトを描いた。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synComment"># 起点となる bin フォルダー</span>
+<span class="synIdentifier">$root</span> = <span class="synStatement">Join-Path</span> <span class="synIdentifier">$PSScriptRoot</span> <span class="synConstant">&quot;Omawari\bin&quot;</span>
+<p><span class="synComment"># 入力フォルダー</span>
+<span class="synIdentifier">$src</span> = <span class="synStatement">Join-Path</span> <span class="synIdentifier">$root</span> <span class="synConstant">&quot;Release&quot;</span></p>
+<p><span class="synComment"># 出力フォルダー</span>
+<span class="synIdentifier">$version</span> = (<span class="synStatement">Get-ItemProperty</span> (<span class="synStatement">Join-Path</span> <span class="synIdentifier">$src</span> <span class="synConstant">&quot;Omawari.exe&quot;</span>)).VersionInfo.FileVersion
+<span class="synIdentifier">$dest</span> = <span class="synStatement">Join-Path</span> <span class="synIdentifier">$root</span> Omawari-<span class="synIdentifier">$version</span>.zip</p>
+<p><span class="synComment"># ZIP で圧縮</span>
+<span class="synStatement">Compress-Archive</span> -Path <span class="synIdentifier">$src</span>/* -DestinationPath <span class="synIdentifier">$dest</span></p>
+<p><span class="synComment"># フォルダーを開く</span>
+<span class="synStatement">Invoke-Item</span> <span class="synIdentifier">$root</span>
+</pre><p>リリースビルドの実行ファイルのバージョンを読んで Omawari-<em>.</em>.<em>.</em>.zip という名前の ZIP アーカイブに圧縮するだけ。この程度の<br />
+PowerShell なら割と書けるようになってきた！（バージョンの取得の仕方はググったけど……）</p><p>コレでもアップデートは面倒なので、Chocolatey パッケージにすることも画策してる。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Chocolatey パッケージリジェクトされました……</p>— だるたにゃん (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/911375028125556736">2017年9月22日</a></blockquote><script async src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p></p>
+</div>
 
     <footer>
         
@@ -157,7 +140,7 @@ Invoke-Item $root
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/09/23/140731.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/09/23</time> 
             </p>
         
     </footer>
@@ -209,7 +192,16 @@ Invoke-Item $root
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

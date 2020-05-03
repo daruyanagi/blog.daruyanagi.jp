@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Tonjiru v1.2.0 ＋ WPF での起動オプション、ジャンプリスト、トースト" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="br/&gt; 起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形" />
+    <meta name="og:description"   property="og:description" content="起動オプションの追加（/g で GUI 付きの起動） ジャンプリストへの対応（GUI 付きの起動を追加） ウィンドウ情報のクリップボードコピー（JSON 形式" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2017/06/08/195054/" />
@@ -86,11 +88,8 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20170608192727.png"/> 
-</figure>
-
-<p>br/&gt;</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170608192727.png" alt="f:id:daruyanagi:20170608192727p:plain" title="f:id:daruyanagi:20170608192727p:plain" class="hatena-fotolife" itemprop="image"></span><br />
+</p>
 <ul>
 <li>起動オプションの追加（/g で GUI 付きの起動）</li>
 <li>ジャンプリストへの対応（GUI 付きの起動を追加）</li>
@@ -98,109 +97,79 @@
 <li>ウィンドウ情報のファイル保存（JSON 形式）</li>
 <li>通知機能</li>
 <li>安定性の向上</li>
-</ul>
-<div class="github-card" data-user="daruyanagi/Tonjiru/releases/tag" data-repo="v1.2.0" data-width="400" data-height="" data-theme="default"></div
-<blockquote>
-</blockquote>
-<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-<br/>
+</ul><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FTonjiru%2Freleases%2Ftag%2Fv1.2.0" title="daruyanagi/Tonjiru" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/daruyanagi/Tonjiru/releases/tag/v1.2.0">github.com</a></cite><br />
+</p>
 <div class="section">
-    ### WPF と起動オプション
-    起動時に［Shift］キーが押されていたら GUI を起動するという挙動は
+<h3>WPF と起動オプション</h3>
+<p>起動時に［Shift］キーが押されていたら GUI を起動するという挙動は</p>
 <ul>
 <li>App.xaml の StartupUri を削除</li>
 <li>App.Startup でキーの押し下げ確認と MainWindow の自前生成</li>
-</ul>という感じで実現していたんだけど、起動オプションを付けたら破綻したので、
+</ul><p>という感じで実現していたんだけど、起動オプションを付けたら破綻したので、</p>
 <ul>
 <li>App.xaml の StartupUri を元に戻す</li>
 <li>App.xaml のビルドアクションを Page にして、main 関数を自分で書く</li>
-</ul>という感じに変えた。
-```cs
-[System.STAThreadAttribute()]
-public static void Main()
+</ul><p>という感じに変えた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>[System.STAThreadAttribute()]
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">void</span> Main()
 {
-    var args = Environment.GetCommandLineArgs();
-<pre><code>if (args.Contains(&quot;/g&quot;) || (Control.ModifierKeys &amp;amp; Keys.Shift) == Keys.Shift)
+var args = Environment.GetCommandLineArgs();
+<p><span class="synStatement">if</span> (args.Contains(<span class="synConstant">&quot;/g&quot;</span>) || (Control.ModifierKeys &amp; Keys.Shift) == Keys.Shift)
 {
-    var app = new Tonjiru.App();
-    app.InitializeComponent();
-    app.Run();
+var app = <span class="synStatement">new</span> Tonjiru.App();
+app.InitializeComponent();
+app.Run();
 }
-else // UI less mode
+<span class="synStatement">else</span> <span class="synComment">// UI less mode</span>
 {
-    CloseAllWindowsAndExit();
+CloseAllWindowsAndExit();
 }
-</code></pre>
-<p>}</p>
-<pre><code class="language-/h" data-lang="/h">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ジャンプリスト
-    起動オプションを付けた副産物として、ジャンプリストへの対応が簡単になった。App.xaml に以下のように記述。
-```xml
-x:Class=&quot;Tonjiru.App&quot;
-             xmlns=&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;
-             xmlns:x=&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;
-             xmlns:local=&quot;clr-namespace:Tonjiru&quot;
-             StartupUri=&quot;Views\MainWindow.xaml&quot;&gt;
-    .Resources&gt;
-         
-    .Resources&gt;
-
-    .JumpList&gt;
-        &lt;jumplist&gt;&lt;/jumplist&gt;
-            Title=&quot;Launch with GUI&quot;
-                Description=&quot;Launch with GUI&quot; 
-                Arguments=&quot;/g&quot; /&gt;
-        
-    .JumpList&gt;
-
-
-```ジャンプリストは最近忘れられてる気がするけど、割かし便利だと思う。対応アプリが増えるといいな。なお、ジャンプリストから起動するとワーキングディレクトリが System フォルダーになった気がする。設定ファイルなどをロードするとき、パス検索をいい加減にしていると痛い目にあう（あった）。
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ValueTupple と DataContractJsonSerializer
-    ウィンドウ情報の保存は手抜きで DataContractJsonSerializer を使ったんだけど、Model をそのままシリアライズするとサイズがすごく大きくなってしまった。そこで情報を間引いたんだが、ここでタプルが使えるのではないかと気づいた。
-```cs
-list.Select(_ =&gt; (title: _.Title, process: _.ProcessName)); // これをシリアライズ
-
-```試しにこれを
-```cs
-DataContractJsonSerializer(typeof(ValueTupple&amp;lt;string, string&gt;));
-
-DataContractJsonSerializer(typeof((string title, string process)));
-
-```みたいに使ってみたところ――とりあえずコンパイルは通り、普通に使えた。けれど、出力される JSON がどっちも
-</code></pre><p>[{ &ldquo;Item1&rdquo;: &ldquo;hoge&rdquo;, &ldquo;Item2&rdquo;: &ldquo;fuga&rdquo; }]</p>
-<pre><code class="language-みたいな感じになる（ほんとは" data-lang="みたいな感じになる（ほんとは">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### 通知
-    WPF でトーストを出そうと思うと WindowsRuntime を使わなくちゃーってなりがちだけど、ただ出したいだけであれば NotifyIcon で ShowBalloonTip() するのが楽でいい。Windows 7 だとバルーンだが、Windows 10 ではトーストになる。
-```cs
-using (var notify_icon = new System.Windows.Forms.NotifyIcon())
+}
+</pre><p>/h スイッチで CUI ヘルプを出そうかなーと思ったけど、そっちはちょっと面倒くさいのでやめた。AttachConsole() などを使えば行けるのだけど、ちょっと挙動が変。ちゃんとやろうとすると CUI と GUI で EXE を分けないといけないみたいだが、そこまでやる気はないかな。</p></p>
+</div>
+<div class="section">
+<h3>ジャンプリスト</h3>
+<p>起動オプションを付けた副産物として、ジャンプリストへの対応が簡単になった。App.xaml に以下のように記述。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synIdentifier">&lt;Application </span><span class="synType">x</span><span class="synComment">:</span><span class="synType">Class</span>=<span class="synConstant">&quot;Tonjiru.App&quot;</span>
+<span class="synIdentifier">             </span><span class="synType">xmlns</span>=<span class="synConstant">&quot;http://schemas.microsoft.com/winfx/2006/xaml/presentation&quot;</span>
+<span class="synIdentifier">             </span><span class="synType">xmlns</span><span class="synComment">:</span><span class="synType">x</span>=<span class="synConstant">&quot;http://schemas.microsoft.com/winfx/2006/xaml&quot;</span>
+<span class="synIdentifier">             </span><span class="synType">xmlns</span><span class="synComment">:</span><span class="synType">local</span>=<span class="synConstant">&quot;clr-namespace:Tonjiru&quot;</span>
+<span class="synIdentifier">             </span><span class="synType">StartupUri</span>=<span class="synConstant">&quot;Views\MainWindow.xaml&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;Application</span><span class="synComment">.</span><span class="synIdentifier">Resources&gt;</span>
+<p><span class="synIdentifier">&lt;/Application</span><span class="synComment">.</span><span class="synIdentifier">Resources&gt;</span></p>
+<p><span class="synIdentifier">&lt;JumpList</span><span class="synComment">.</span><span class="synIdentifier">JumpList&gt;</span>
+<span class="synIdentifier">&lt;JumpList&gt;</span>
+<span class="synIdentifier">&lt;JumpTask </span><span class="synType">Title</span>=<span class="synConstant">&quot;Launch with GUI&quot;</span>
+<span class="synIdentifier">                </span><span class="synType">Description</span>=<span class="synConstant">&quot;Launch with GUI&quot;</span><span class="synIdentifier"> </span>
+<span class="synIdentifier">                </span><span class="synType">Arguments</span>=<span class="synConstant">&quot;/g&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/JumpList&gt;</span>
+<span class="synIdentifier">&lt;/JumpList</span><span class="synComment">.</span><span class="synIdentifier">JumpList&gt;</span>
+<span class="synIdentifier">&lt;/Application&gt;</span>
+</pre><p>ジャンプリストは最近忘れられてる気がするけど、割かし便利だと思う。対応アプリが増えるといいな。</p><p>なお、ジャンプリストから起動するとワーキングディレクトリが System フォルダーになった気がする。設定ファイルなどをロードするとき、パス検索をいい加減にしていると痛い目にあう（あった）。</p></p>
+</div>
+<div class="section">
+<h3>ValueTupple と DataContractJsonSerializer</h3>
+<p>ウィンドウ情報の保存は手抜きで DataContractJsonSerializer を使ったんだけど、Model をそのままシリアライズするとサイズがすごく大きくなってしまった。そこで情報を間引いたんだが、ここでタプルが使えるのではないかと気づいた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>list.Select(_ =&gt; (title: _.Title, process: _.ProcessName)); <span class="synComment">// これをシリアライズ</span>
+</pre><p>試しにこれを</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>DataContractJsonSerializer(<span class="synStatement">typeof</span>(ValueTupple&lt;<span class="synType">string</span>, <span class="synType">string</span>&gt;));
+<p>DataContractJsonSerializer(<span class="synStatement">typeof</span>((<span class="synType">string</span> title, <span class="synType">string</span> process)));
+</pre><p>みたいに使ってみたところ――とりあえずコンパイルは通り、普通に使えた。けれど、出力される JSON がどっちも</p></p>
+<pre class="code" data-lang="" data-unlink>[{ &#34;Item1&#34;: &#34;hoge&#34;, &#34;Item2&#34;: &#34;fuga&#34; }]</pre><p>みたいな感じになる（ほんとは Item1 のところが title や process になってほしいよね）ので、これを使うのはあきらめた。JSON.net のシリアライズだったら対応していた（or 対応してくれる）かもしれない？</p>
+</div>
+<div class="section">
+<h3>通知</h3>
+<p>WPF でトーストを出そうと思うと WindowsRuntime を使わなくちゃーってなりがちだけど、ただ出したいだけであれば NotifyIcon で ShowBalloonTip() するのが楽でいい。Windows 7 だとバルーンだが、Windows 10 ではトーストになる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> (var notify_icon = <span class="synStatement">new</span> System.Windows.Forms.NotifyIcon())
 {
-    notify_icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().Location);
-    notify_icon.Visible = true;
-
-    notify_icon.BalloonTipTitle = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
-    notify_icon.BalloonTipText = message;
-    notify_icon.ShowBalloonTip(3000);
+notify_icon.Icon = System.Drawing.Icon.ExtractAssociatedIcon(System.Reflection.Assembly.GetEntryAssembly().Location);
+notify_icon.Visible = <span class="synConstant">true</span>;
+<p>notify_icon.BalloonTipTitle = System.Reflection.Assembly.GetExecutingAssembly().GetName().Name;
+notify_icon.BalloonTipText = message;
+notify_icon.ShowBalloonTip(<span class="synConstant">3000</span>);
 }
-
-```簡単だね！
-
-<figure>
-    <img src="/images/20170608194803.png"/> 
-</figure>
-
-
-イントは Visible を true にしておくこと（じゃないとトーストが出てこない）、最後に Visible を False にするか Dispose() すること（でないとトレイにアイコンがゾンビ）ぐらい。
-
-&lt;/div&gt;
-
-</code></pre>
+</pre><p>簡単だね！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170608194803.png" alt="f:id:daruyanagi:20170608194803p:plain" title="f:id:daruyanagi:20170608194803p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ポイントは Visible を true にしておくこと（じゃないとトーストが出てこない）、最後に Visible を False にするか Dispose() すること（でないとトレイにアイコンがゾンビ）ぐらい。</p></p>
+</div>
 
     <footer>
         
@@ -214,7 +183,7 @@ using (var notify_icon = new System.Windows.Forms.NotifyIcon())
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/06/08/195054.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2017/06/08</time> 
             </p>
         
     </footer>
@@ -266,7 +235,16 @@ using (var notify_icon = new System.Windows.Forms.NotifyIcon())
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -1,0 +1,8 @@
+---
+date: 2015-11-23T22:22:48.0000000
+draft: false
+title: "福岡行って、ひよ子（大）を買った。"
+tags: ["食べ物"]
+eyecatch: 20151122191548.jpg
+---
+<p>プロ生に参加するために、なぜか船で大分を経由して福岡へ。帰りは小倉から船に乗って松山へ帰ってきました。とりあえず生きて帰ってこれてよかった。今日はそのことを書きたかったんだけど、寝るのと艦これのイベントで忙しかったので、今日は別の話。</p><p>博多駅から小倉駅まで新幹線に乗ったのだけど、お土産屋さんで見つけて衝動買いしたのがこれ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20151122191548.jpg" alt="f:id:daruyanagi:20151122191548j:plain" title="f:id:daruyanagi:20151122191548j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>通常の5倍の大きさなんだそうだ。お値段は648円（本体600円）。『名菓ひよ子　角5個入』が 605円(本体 561円) らしいので、お値段もちょうど5匹分って感じ。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fhiyoko-onlineshop.com%2FSHOP%2F33656%2F33665%2Flist.html" title="大きなひよ子にびっくり「大ひよ子」〜公式ひよ子オンラインショップ" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20151123214343.jpg" alt="f:id:daruyanagi:20151123214343j:plain" title="f:id:daruyanagi:20151123214343j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>デカい、重いｗ</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20151123214354.jpg" alt="f:id:daruyanagi:20151123214354j:plain" title="f:id:daruyanagi:20151123214354j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ひよ子は頭から食う派とお尻から食う派がいるらしいのだけど、自分は断然、頭派だ。頭からかぶりついてみたけど、大口開けて食べたにもかかわらず、胴体のほとんどが残った。ノーマルひよ子だったら一口で食べれる（たぶん）のに。</p><p>お味は――ふつうのひよ子。</p><p>正直、半分食べたところで飽きたので、ラップに包んで冷蔵庫に入れた。面白い商品だけど、さすがに二度目は買わないかなーって感じ。</p>

@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Polytechnic Ehime に参加してコードラボっていうのをやってみた" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="oogle Developers Groups Shikoku（GDG四国）開催のお勉強会、Polytechnic Ehime に参加してきました。Polytechnic Ehime (2015/04/25 13:00〜)土曜日" />
+    <meta name="og:description"   property="og:description" content="Google Developers Groups Shikoku（GDG四国）開催のお勉強会、Polytechnic Ehime に参加してきました。 Polytechnic Ehime (2015/04/25 13:00〜) 土曜日のお昼から、愛媛大学" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2015/04/27/031048/20150425130156_hu80d227b08f0ce527634871adbd7cac92_291823_640x480_fit_q75_box.jpg"            content="https://blog.daruyanagi.jp/entry/2015/04/27/031048/20150425130156_hu80d227b08f0ce527634871adbd7cac92_291823_640x480_fit_q75_box.jpg"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2015/04/27/031048/" />
@@ -86,68 +92,33 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20150425130156.jpg"/> 
-</figure>
-
-<p>oogle Developers Groups Shikoku（GDG四国）開催のお勉強会、Polytechnic Ehime に参加してきました。<iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fgdgshikoku.connpass.com%2Fevent%2F13838%2F" title="Polytechnic Ehime (2015/04/25 13:00〜)" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="http://gdgshikoku.connpass.com/event/13838/">Polytechnic Ehime (2015/04/25 13:00〜)</a></iframe>土曜日のお昼から、愛媛大学の情報メディアセンターで。当日は11時半ごろに家を出て、途中、なか卯で英気を養いました。歩いて行っても30分ぐらいかな？　電車乗ろうかとも思ったけど、最近運動不足なのでネ。集まったのは10人ぐらいだろうか。@ramsara さん以外は知らない人ばかりだった。講師は Google Developer Expert（GDE）の吉川 徹さん。<a href="http://html5j.org/">html5j ― 「つながる」「学べる」「盛り上がる」</a> の方だそうで。温和な感じの方でした。今回のお題は、Polymer（<a href="https://www.polymer-project.org/">Welcome - Polymer</a>）。Web Components を使いやすくするためのライブラリなのだそうだ。自分は「名前は聞いたことある」程度で、中身についての知識はほとんどない。こいつのなにがうれしいのかというと、たとえば Polymer 化された Google Map をこんなふうに扱える。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-html" data-lang="html"><span style="color:#75715e">&lt;!-- Polyfill Web Components support for older browsers --&gt;</span>
-&amp;lt;script src=&#34;components/webcomponentsjs/webcomponents.min.js&#34;&gt;&amp;lt;/script&gt;
-
-<span style="color:#75715e">&lt;!-- Import element --&gt;</span>
-&amp;lt;link rel=&#34;import&#34; href=&#34;google-map.html&#34;&gt;
-
-<span style="color:#75715e">&lt;!-- Use element --&gt;</span>
-&amp;lt;google-map lat=&#34;37.790&#34; long=&#34;-122.390&#34;&gt;&amp;lt;/google-map&gt;
-
-```ぐちゃぐちゃとタグやスクリプトを書きなぐらなくても、シンプルに &lt;<span style="color:#f92672">google-map</span>&gt; って感じで使える。カッケー。&lt;/<span style="color:#f92672">google-map</span>&gt;さらに地図にマーカーをたてたい場合はこんな感じ（あくまでもこんな“感じ”）でいいようだ。
-```html
-&amp;lt;google-map lat=&#34;37.790&#34; long=&#34;-122.390&#34;&gt;
-  &amp;lt;google-map-marker lat=&#34;37.790&#34; long=&#34;-122.390&#34; /&gt;
-&amp;lt;/google-map&gt;
-
-```いいね！　こうやって自分だけのタグが作れるのが Polymer なんですな。ちなみにタグの名前に“-”を入れるのは、将来 HTML でタグが追加された時に名前が衝突するのを避けるためなんだって。&amp;lt;x-hoge&gt; とつけたりするらしいのだけど、個人的には“ベンダー名・ライブラリ名-名前”っぽくつけるのがよさそうだと思う。さて、Polymer というのは4つの HTML5 技術から成るのだそうだ。
-
-&lt;<span style="color:#f92672">ul</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;HTML Import（&amp;lt;link rel=&#34;import&#34; href=&#34;google-map.html&#34;&gt;）&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;Custom Element（&amp;lt;google-map&gt;）&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;HTML Template&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;<span style="color:#f92672">li</span>&gt;Shadow DOM&lt;/<span style="color:#f92672">li</span>&gt;
-&lt;/<span style="color:#f92672">ul</span>&gt;HTML Template というのは、今までタグをスクリプトで組み立てていたやり方&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f-9f703d9a&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fn-9f703d9a&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;CSRF だかなんだかしらんけど、そういう変なバグ作るの怖い！&#34;</span>&gt;*1&lt;/<span style="color:#f92672">a</span>&gt;や、ユーザーが見えない位置にタグを用意しておくやり方&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f-a15caa4f&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fn-a15caa4f&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;ハックされて見えちゃうとダサいし、ページがロードされると同時に活性化しちゃうのでオンデマンドに使えない&#34;</span>&gt;*2&lt;/<span style="color:#f92672">a</span>&gt;に代わる方法。&amp;lt;templete&gt; のなかへ宣言的に HTML の切れ端を書いておける感じ。DOM に組み込まれるまで活性化されない&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f-e360b515&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fn-e360b515&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;「使うやでー」って言うまで黙って待ってくれる&#34;</span>&gt;*3&lt;/<span style="color:#f92672">a</span>&gt;ので、実際に“使われない”なら副作用も一切ない。Shadow DOM は……今までもうっすら知ってたけど、他人に説明するのは面倒な技術だったのだけど、&amp;lt;video&gt; のコントロールを実装するためにユーザーエージェントが使ってるアレって教えてもらって、あぁ、それは分かりやすいなーと思った。
-
-<figure>
-    <img src="/images/20150427025017.png"/> 
-</figure>
-
-
-開発者ツールでオプションを有効化すると Shadow DOM が見える）ダイレクトに外から見えたりアクセスされるとあんまりよくないときに使える感じ。Custom Element だって中身までユーザーに見せる必要ないもんねー。
-
-<figure>
-    <img src="/images/20150425164135.jpg"/> 
-</figure>
-
-
-ードラボという形式の勉強会は初めてだったのだけど、基本的に教材をもとにコードをコピペしていくだけだった。JavaScript 力の低いおれ様でもまったく大丈夫！&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#f-0679af33&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;fn-0679af33&#34;</span> <span style="color:#a6e22e">title</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;でも、基本的な文法はマスターして、配列のカンマが足りねーとか、コピペミスをすぐに発見できる程度には習得しておくべきだと思う&#34;</span>&gt;*4&lt;/<span style="color:#f92672">a</span>&gt;　&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=ja&#34;</span>&gt;Chrome Dev Editor (developer preview) - Chrome ウェブストア&lt;/<span style="color:#f92672">a</span>&gt; でプチプチとコードを入力していく。コピペしていくだけでお勉強になるんかいな、とちょっと思わないでもなかったけれど、手を動かすというのは大事らしい。コピペミスで動かない！　なんでだ！　とかやってるうちに自分がハマりやすいポイントというのが分かってきて、だんだん要領がよくなってくる。時間が余ったらデベロッパーツールで DOM ツリーを眺めたり、コンソールでログを確認したり。とりあえず動いたけど何で動いてるのかわかんねーところは、質問してもいい。個人的には Bower に触れたのも収穫だった。お勉強しなきゃなーと思っていたけれど、必要に迫られないとなかなかやらないわけで（ぉあと、なんといっても、何か動くものが自分の手で作れるというのは楽しいということ。レベル的には BB 戦士のガンダム組んでいるだけなのだろうけれど、ちゃんとモノが完成するとやっぱりうれしくて、それがモチベーションになる感じ。次はあれやりたいなーってね。こういうの、独りでは絶対めんどくさがってやらない。あと、独りでやるのと、他の人に説明してもらうのを耳で聞くのとでは効率も違う。あと、終わったら呑み会もあるしね。機会があればまた参加したいと思ったかも。
-
-&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;section&#34;</span>&gt;
-    #### 追伸
-    
-
-<figure>
-    <img src="/images/20150425164612.jpg"/> 
-</figure>
-
-
-ード書くのに夢中になりすぎて、艦これの遠征を忘れていた。危うくデイリー任務を消化しきれないところだった。
-
-&lt;/<span style="color:#f92672">div</span>&gt;&lt;<span style="color:#f92672">div</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote&#34;</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-9f703d9a&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-9f703d9a&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*1&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;CSRF だかなんだかしらんけど、そういう変なバグ作るの怖い！&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-a15caa4f&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-a15caa4f&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*2&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;ハックされて見えちゃうとダサいし、ページがロードされると同時に活性化しちゃうのでオンデマンドに使えない&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-e360b515&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-e360b515&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*3&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;「使うやでー」って言うまで黙って待ってくれる&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;<span style="color:#f92672">a</span> <span style="color:#a6e22e">href</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;#fn-0679af33&#34;</span> <span style="color:#a6e22e">name</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;f-0679af33&#34;</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-number&#34;</span>&gt;*4&lt;/<span style="color:#f92672">a</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-delimiter&#34;</span>&gt;:&lt;/<span style="color:#f92672">span</span>&gt;&lt;<span style="color:#f92672">span</span> <span style="color:#a6e22e">class</span><span style="color:#f92672">=</span><span style="color:#e6db74">&#34;footnote-text&#34;</span>&gt;でも、基本的な文法はマスターして、配列のカンマが足りねーとか、コピペミスをすぐに発見できる程度には習得しておくべきだと思う&lt;/<span style="color:#f92672">span</span>&gt;
-&lt;/<span style="color:#f92672">div</span>&gt;
-
-</code></pre></div>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150425130156.jpg" alt="f:id:daruyanagi:20150425130156j:plain" title="f:id:daruyanagi:20150425130156j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Google Developers Groups Shikoku（GDG四国）開催のお勉強会、Polytechnic Ehime に参加してきました。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fgdgshikoku.connpass.com%2Fevent%2F13838%2F" title="Polytechnic Ehime (2015/04/25 13:00〜)" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"><a href="http://gdgshikoku.connpass.com/event/13838/">Polytechnic Ehime (2015/04/25 13:00〜)</a></iframe></p><p>土曜日のお昼から、愛媛大学の情報メディアセンターで。当日は11時半ごろに家を出て、途中、なか卯で英気を養いました。歩いて行っても30分ぐらいかな？　電車乗ろうかとも思ったけど、最近運動不足なのでネ。集まったのは10人ぐらいだろうか。@ramsara さん以外は知らない人ばかりだった。</p><p>講師は Google Developer Expert（GDE）の吉川 徹さん。<a href="http://html5j.org/">html5j &#x2015; &#x300C;&#x3064;&#x306A;&#x304C;&#x308B;&#x300D;&#x300C;&#x5B66;&#x3079;&#x308B;&#x300D;&#x300C;&#x76DB;&#x308A;&#x4E0A;&#x304C;&#x308B;&#x300D;</a> の方だそうで。温和な感じの方でした。</p><p>今回のお題は、Polymer（<a href="https://www.polymer-project.org/">Welcome - Polymer</a>）。Web Components を使いやすくするためのライブラリなのだそうだ。自分は「名前は聞いたことある」程度で、中身についての知識はほとんどない。</p><p>こいつのなにがうれしいのかというと、たとえば Polymer 化された Google Map をこんなふうに扱える。</p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synComment">&lt;!-- Polyfill Web Components support for older browsers --&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">src</span><span class="synIdentifier">=</span><span class="synConstant">&quot;components/webcomponentsjs/webcomponents.min.js&quot;</span><span class="synIdentifier">&gt;&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
+<p><span class="synComment">&lt;!&ndash; Import element &ndash;&gt;</span>
+<span class="synIdentifier">&lt;</span><span class="synStatement">link</span><span class="synIdentifier"> </span><span class="synType">rel</span><span class="synIdentifier">=</span><span class="synConstant">&quot;import&quot;</span><span class="synIdentifier"> </span><span class="synType">href</span><span class="synIdentifier">=</span><span class="synConstant">&quot;google-map.html&quot;</span><span class="synIdentifier">&gt;</span></p>
+<p><span class="synComment">&lt;!&ndash; Use element &ndash;&gt;</span>
+<span class="synIdentifier">&lt;</span>google-<span class="synStatement">map</span><span class="synIdentifier"> lat=</span><span class="synConstant">&quot;37.790&quot;</span><span class="synIdentifier"> long=</span><span class="synConstant">&quot;-122.390&quot;</span><span class="synIdentifier">&gt;&lt;/</span>google-<span class="synStatement">map</span><span class="synIdentifier">&gt;</span>
+</pre><p>ぐちゃぐちゃとタグやスクリプトを書きなぐらなくても、シンプルに <google-map> って感じで使える。カッケー。</p><p>さらに地図にマーカーをたてたい場合はこんな感じ（あくまでもこんな“感じ”）でいいようだ。</p></p>
+<pre class="code lang-html" data-lang="html" data-unlink><span class="synIdentifier">&lt;</span>google-<span class="synStatement">map</span><span class="synIdentifier"> lat=</span><span class="synConstant">&quot;37.790&quot;</span><span class="synIdentifier"> long=</span><span class="synConstant">&quot;-122.390&quot;</span><span class="synIdentifier">&gt;</span>
+<span class="synIdentifier">&lt;</span>google-<span class="synStatement">map</span>-marker<span class="synIdentifier"> lat=</span><span class="synConstant">&quot;37.790&quot;</span><span class="synIdentifier"> long=</span><span class="synConstant">&quot;-122.390&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/</span>google-<span class="synStatement">map</span><span class="synIdentifier">&gt;</span>
+</pre><p>いいね！　こうやって自分だけのタグが作れるのが Polymer なんですな。ちなみにタグの名前に“-”を入れるのは、将来 HTML でタグが追加された時に名前が衝突するのを避けるためなんだって。&lt;x-hoge&gt; とつけたりするらしいのだけど、個人的には“ベンダー名・ライブラリ名-名前”っぽくつけるのがよさそうだと思う。</p><p>さて、Polymer というのは4つの HTML5 技術から成るのだそうだ。</p>
+<ul>
+<li>HTML Import（&lt;link rel="import" href="google-map.html"&gt;）</li>
+<li>Custom Element（&lt;google-map&gt;）</li>
+<li>HTML Template</li>
+<li>Shadow DOM</li>
+</ul><p>HTML Template というのは、今までタグをスクリプトで組み立てていたやり方<a href="#f-9f703d9a" name="fn-9f703d9a" title="CSRF だかなんだかしらんけど、そういう変なバグ作るの怖い！">*1</a>や、ユーザーが見えない位置にタグを用意しておくやり方<a href="#f-a15caa4f" name="fn-a15caa4f" title="ハックされて見えちゃうとダサいし、ページがロードされると同時に活性化しちゃうのでオンデマンドに使えない">*2</a>に代わる方法。&lt;templete&gt; のなかへ宣言的に HTML の切れ端を書いておける感じ。DOM に組み込まれるまで活性化されない<a href="#f-e360b515" name="fn-e360b515" title="「使うやでー」って言うまで黙って待ってくれる">*3</a>ので、実際に“使われない”なら副作用も一切ない。</p><p>Shadow DOM は……今までもうっすら知ってたけど、他人に説明するのは面倒な技術だったのだけど、&lt;video&gt; のコントロールを実装するためにユーザーエージェントが使ってるアレって教えてもらって、あぁ、それは分かりやすいなーと思った。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150427025017.png" alt="f:id:daruyanagi:20150427025017p:plain" title="f:id:daruyanagi:20150427025017p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（開発者ツールでオプションを有効化すると Shadow DOM が見える）</p><p>ダイレクトに外から見えたりアクセスされるとあんまりよくないときに使える感じ。Custom Element だって中身までユーザーに見せる必要ないもんねー。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150425164135.jpg" alt="f:id:daruyanagi:20150425164135j:plain" title="f:id:daruyanagi:20150425164135j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>コードラボという形式の勉強会は初めてだったのだけど、基本的に教材をもとにコードをコピペしていくだけだった。JavaScript 力の低いおれ様でもまったく大丈夫！<a href="#f-0679af33" name="fn-0679af33" title="でも、基本的な文法はマスターして、配列のカンマが足りねーとか、コピペミスをすぐに発見できる程度には習得しておくべきだと思う">*4</a>　<a href="https://chrome.google.com/webstore/detail/chrome-dev-editor-develop/pnoffddplpippgcfjdhbmhkofpnaalpg?hl=ja">Chrome Dev Editor (developer preview) - Chrome &#x30A6;&#x30A7;&#x30D6;&#x30B9;&#x30C8;&#x30A2;</a> でプチプチとコードを入力していく。</p><p>コピペしていくだけでお勉強になるんかいな、とちょっと思わないでもなかったけれど、手を動かすというのは大事らしい。コピペミスで動かない！　なんでだ！　とかやってるうちに自分がハマりやすいポイントというのが分かってきて、だんだん要領がよくなってくる。時間が余ったらデベロッパーツールで DOM ツリーを眺めたり、コンソールでログを確認したり。とりあえず動いたけど何で動いてるのかわかんねーところは、質問してもいい。個人的には Bower に触れたのも収穫だった。お勉強しなきゃなーと思っていたけれど、必要に迫られないとなかなかやらないわけで（ぉ</p><p>あと、なんといっても、何か動くものが自分の手で作れるというのは楽しいということ。レベル的には BB 戦士のガンダム組んでいるだけなのだろうけれど、ちゃんとモノが完成するとやっぱりうれしくて、それがモチベーションになる感じ。次はあれやりたいなーってね。</p><p>こういうの、独りでは絶対めんどくさがってやらない。あと、独りでやるのと、他の人に説明してもらうのを耳で聞くのとでは効率も違う。あと、終わったら呑み会もあるしね。機会があればまた参加したいと思ったかも。</p>
+<div class="section">
+<h4>追伸</h4>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150425164612.jpg" alt="f:id:daruyanagi:20150425164612j:plain" title="f:id:daruyanagi:20150425164612j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>コード書くのに夢中になりすぎて、艦これの遠征を忘れていた。危うくデイリー任務を消化しきれないところだった。</p>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-9f703d9a" name="f-9f703d9a" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">CSRF だかなんだかしらんけど、そういう変なバグ作るの怖い！</span></p>
+<p class="footnote"><a href="#fn-a15caa4f" name="f-a15caa4f" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">ハックされて見えちゃうとダサいし、ページがロードされると同時に活性化しちゃうのでオンデマンドに使えない</span></p>
+<p class="footnote"><a href="#fn-e360b515" name="f-e360b515" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">「使うやでー」って言うまで黙って待ってくれる</span></p>
+<p class="footnote"><a href="#fn-0679af33" name="f-0679af33" class="footnote-number">*4</a><span class="footnote-delimiter">:</span><span class="footnote-text">でも、基本的な文法はマスターして、配列のカンマが足りねーとか、コピペミスをすぐに発見できる程度には習得しておくべきだと思う</span></p>
+</div>
 
     <footer>
         
@@ -161,7 +132,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2015/04/27/031048.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2015/04/27</time> 
             </p>
         
     </footer>
@@ -213,7 +184,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix 2：RESTful？な Web アプリケーション （4）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/11/060424&quot;&gt;WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、 https://addons.mozilla.org/ja/firefox/addon/poster/" />
+    <meta name="og:description"   property="og:description" content="WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; &#xFF08;3&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、 https://addons.mozilla.org/ja/firefox/addon/poster/ という Firefox 拡張機能が簡単でよかった。ただ、最近は" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/01/13/094453/" />
@@ -86,62 +88,35 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130113093131.png"/> 
-</figure>
-
-<p>a href=&quot;https://blog.daruyanagi.jp/entry/2013/01/11/060424&quot;&gt;WebMatrix 2：RESTful？な Web アプリケーション （3） - だるろぐ</a> の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130113093131.png" alt="f:id:daruyanagi:20130113093131p:plain" title="f:id:daruyanagi:20130113093131p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2013/01/11/060424">WebMatrix 2&#xFF1A;RESTful&#xFF1F;&#x306A; Web &#x30A2;&#x30D7;&#x30EA;&#x30B1;&#x30FC;&#x30B7;&#x30E7;&#x30F3; &#xFF08;3&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。サーバーへ手軽に PUT/DELETE できる方法はないかなぁ、と思って探していたのだけど、</p>
 <ul>
 <li><a href="https://addons.mozilla.org/ja/firefox/addon/poster/">https://addons.mozilla.org/ja/firefox/addon/poster/</a></li>
-</ul>という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで
-<figure>
-    <img src="/images/20130113093440.png"/> 
-</figure>
+</ul><p>という Firefox 拡張機能が簡単でよかった。ただ、最近はあんまりメンテナンスされていないようで</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130113093440.png" alt="f:id:daruyanagi:20130113093440p:plain" title="f:id:daruyanagi:20130113093440p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>わざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。</p><p>それはともかく。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130113093755.png" alt="f:id:daruyanagi:20130113093755p:plain" title="f:id:daruyanagi:20130113093755p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>IIS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。</p>
+<pre class="code lang-xml" data-lang="xml" data-unlink><span class="synComment">&lt;?</span><span class="synType">xml version</span>=<span class="synConstant">&quot;1.0&quot;</span><span class="synType"> encoding</span>=<span class="synConstant">&quot;utf-8&quot;</span><span class="synComment">?&gt;</span>
+<p><span class="synIdentifier">&lt;configuration&gt;</span>
+<span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span>
+<span class="synIdentifier">&lt;compilation </span><span class="synType">debug</span>=<span class="synConstant">&quot;true&quot;</span><span class="synIdentifier"> </span><span class="synType">targetFramework</span>=<span class="synConstant">&quot;4.0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">web&gt;</span></p>
+<p><span class="synIdentifier">&lt;system</span><span class="synComment">.</span><span class="synIdentifier">webServer&gt;</span>
+<span class="synIdentifier">&lt;handlers&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">name</span>=<span class="synConstant">&quot;WebDAV&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-Integrated-4.0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-ISAPI-4.0_32bit&quot;</span><span class="synIdentifier"> </span><span class="synType">path</span>=<span class="synConstant">&quot;<em>.&quot;</span><span class="synIdentifier"> </span><span class="synType">verb</span>=<span class="synConstant">&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot;</span><span class="synIdentifier"> </span><span class="synType">modules</span>=<span class="synConstant">&quot;IsapiModule&quot;</span><span class="synIdentifier"> </span><span class="synType">scriptProcessor</span>=<span class="synConstant">&quot;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&quot;</span><span class="synIdentifier"> </span><span class="synType">preCondition</span>=<span class="synConstant">&quot;classicMode,runtimeVersionv4.0,bitness32&quot;</span><span class="synIdentifier"> </span><span class="synType">responseBufferLimit</span>=<span class="synConstant">&quot;0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-ISAPI-4.0_64bit&quot;</span><span class="synIdentifier"> </span><span class="synType">path</span>=<span class="synConstant">&quot;</em>.&quot;</span><span class="synIdentifier"> </span><span class="synType">verb</span>=<span class="synConstant">&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot;</span><span class="synIdentifier"> </span><span class="synType">modules</span>=<span class="synConstant">&quot;IsapiModule&quot;</span><span class="synIdentifier"> </span><span class="synType">scriptProcessor</span>=<span class="synConstant">&quot;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&quot;</span><span class="synIdentifier"> </span><span class="synType">preCondition</span>=<span class="synConstant">&quot;classicMode,runtimeVersionv4.0,bitness64&quot;</span><span class="synIdentifier"> </span><span class="synType">responseBufferLimit</span>=<span class="synConstant">&quot;0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;add </span><span class="synType">name</span>=<span class="synConstant">&quot;ExtensionlessUrlHandler-Integrated-4.0&quot;</span><span class="synIdentifier"> </span><span class="synType">path</span>=<span class="synConstant">&quot;*.&quot;</span><span class="synIdentifier"> </span><span class="synType">verb</span>=<span class="synConstant">&quot;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&quot;</span><span class="synIdentifier"> </span><span class="synType">type</span>=<span class="synConstant">&quot;System.Web.Handlers.TransferRequestHandler&quot;</span><span class="synIdentifier"> </span><span class="synType">preCondition</span>=<span class="synConstant">&quot;integratedMode,runtimeVersionv4.0&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/handlers&gt;</span>
+<span class="synIdentifier">&lt;modules&gt;</span>
+<span class="synIdentifier">&lt;remove </span><span class="synType">name</span>=<span class="synConstant">&quot;WebDAVModule&quot;</span><span class="synIdentifier"> /&gt;</span>
+<span class="synIdentifier">&lt;/modules&gt;</span>
+<span class="synIdentifier">&lt;/system</span><span class="synComment">.</span><span class="synIdentifier">webServer&gt;</span>
+<span class="synIdentifier">&lt;/configuration&gt;</span>
+</pre><p>さっぱりわかんないけど、WebDAV モジュールを切っておくのがコツみたい。</p></p>
+<ul>
+<li><a href="http://bradkingsley.com/putpostdelete-verb-errors-on-site/">PUT/POST/DELETE Verb Errors On Site | ASPNetFAQ.com: What is ASP.NET?</a></li>
+</ul><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130113094219.png" alt="f:id:daruyanagi:20130113094219p:plain" title="f:id:daruyanagi:20130113094219p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>手元の環境では、ちゃんと動いたっぽい。</p>
 
-<p>ざわざアドオンバーを表示して、このクソちっちゃいボタンをポチッとしなきゃいけないのだけど。それはともかく。</p>
-<figure>
-    <img src="/images/20130113093755.png"/> 
-</figure>
-
-<p>IS（Express）は標準で PUT や DELETE を認識してくれないみたいで、リクエストを投げても 404 が返ってきてしまう。Web.config を書き換えて、PUT や DELETE をハンドリングできるようにする必要があるみたい。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-xml" data-lang="xml"><span style="color:#75715e">&lt;!--?--&gt;</span>xml version=&#34;1.0&#34; encoding=&#34;utf-8&#34;?&gt;
-
-<span style="color:#f92672">&lt;configuration&gt;&lt;/configuration&gt;</span>
-  .web&gt;
-    debug=&#34;true&#34; targetFramework=&#34;4.0&#34; /&gt;
-  .web&gt;
-
-  .webServer&gt;
-    <span style="color:#f92672">&lt;handlers&gt;&lt;/handlers&gt;</span>
-      name=&#34;WebDAV&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_32bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness32&#34; responseBufferLimit=&#34;0&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-ISAPI-4.0_64bit&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; modules=&#34;IsapiModule&#34; scriptProcessor=&#34;%windir%\Microsoft.NET\Framework64\v4.0.30319\aspnet_isapi.dll&#34; preCondition=&#34;classicMode,runtimeVersionv4.0,bitness64&#34; responseBufferLimit=&#34;0&#34; /&gt;
-      name=&#34;ExtensionlessUrlHandler-Integrated-4.0&#34; path=&#34;*.&#34; verb=&#34;GET,HEAD,POST,DEBUG,PUT,DELETE,PATCH,OPTIONS&#34; type=&#34;System.Web.Handlers.TransferRequestHandler&#34; preCondition=&#34;integratedMode,runtimeVersionv4.0&#34; /&gt;
-    
-    <span style="color:#f92672">&lt;modules&gt;&lt;/modules&gt;</span>
-      name=&#34;WebDAVModule&#34; /&gt;
-    
-  .webServer&gt;
-
-
-```さっぱりわかんないけど、WebDAV モジュールを切っておくのがコツみたい。
-
-<span style="color:#f92672">&lt;ul&gt;</span>
-<span style="color:#f92672">&lt;li&gt;&lt;a</span> <span style="color:#a6e22e">href=</span><span style="color:#e6db74">&#34;http://bradkingsley.com/putpostdelete-verb-errors-on-site/&#34;</span><span style="color:#f92672">&gt;</span>PUT/POST/DELETE Verb Errors On Site | ASPNetFAQ.com: What is ASP.NET?<span style="color:#f92672">&lt;/a&gt;&lt;/li&gt;</span>
-<span style="color:#f92672">&lt;/ul&gt;</span>
-
-<figure>
-    <img src="/images/20130113094219.png"/> 
-</figure>
-
-
-元の環境では、ちゃんと動いたっぽい。
-
-
-</code></pre></div>
 
     <footer>
         
@@ -155,7 +130,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/01/13/094453.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/01/13</time> 
             </p>
         
     </footer>
@@ -207,7 +182,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

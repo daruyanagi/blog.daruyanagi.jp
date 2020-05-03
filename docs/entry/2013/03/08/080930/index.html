@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Java のアップデーターがクソ過ぎる #イマサラ" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="に今に始まったことじゃないのだけれど。Java Runtime にアップデートがあると、Windows の起動時に UAC が表示される（Windows Vista 以降）。普通" />
+    <meta name="og:description"   property="og:description" content="別に今に始まったことじゃないのだけれど。 Java Runtime にアップデートがあると、Windows の起動時に UAC が表示される（Windows Vista 以降）。普通、こ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/03/08/080930/" />
@@ -86,16 +88,7 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130305134151.jpg"/> 
-</figure>
-
-<p>に今に始まったことじゃないのだけれど。Java Runtime にアップデートがあると、Windows の起動時に UAC が表示される（Windows Vista 以降）。普通、これを許可するとアップデート処理が始まると思うじゃない？</p>
-<figure>
-    <img src="/images/20130308075912.png"/> 
-</figure>
-
-<p>ころがどっこい、タスクトレイに通知を出すだけなんだ。<em>「Java の最新版のインストール準備完了？」</em>「？」じゃねーよクソが。Windows Vista が出たのは2006年11月だ。それから6年以上なにもしていないわけだ。ビックリだよな。下手したらこいつらの開発環境、いまだに Windows XP だぜ。セキュリティ更新プログラムをリリースしても、実際に適用されなかったら意味ないわけで。ほかのベンダーがいかに一般のユーザーにパッチを適用してもらうかに腐心してきたのに、まったくのマイペースで恐れ入る。とはいえ、最近はさすがにゼロデイ脆弱性がボロボロ出てきて、セキュリティへの姿勢が問われる場面が増えてきた。そのうち改善されるんだろうって期待しているのだけれど。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130305134151.jpg" alt="f:id:daruyanagi:20130305134151j:plain" title="f:id:daruyanagi:20130305134151j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>別に今に始まったことじゃないのだけれど。</p><p>Java Runtime にアップデートがあると、Windows の起動時に UAC が表示される（Windows Vista 以降）。普通、これを許可するとアップデート処理が始まると思うじゃない？</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130308075912.png" alt="f:id:daruyanagi:20130308075912p:plain" title="f:id:daruyanagi:20130308075912p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ところがどっこい、タスクトレイに通知を出すだけなんだ。<i>「Java の最新版のインストール準備完了？」</i>「？」じゃねーよクソが。Windows Vista が出たのは2006年11月だ。それから6年以上なにもしていないわけだ。ビックリだよな。下手したらこいつらの開発環境、いまだに Windows XP だぜ。</p><p>セキュリティ更新プログラムをリリースしても、実際に適用されなかったら意味ないわけで。ほかのベンダーがいかに一般のユーザーにパッチを適用してもらうかに腐心してきたのに、まったくのマイペースで恐れ入る。</p><p>とはいえ、最近はさすがにゼロデイ脆弱性がボロボロ出てきて、セキュリティへの姿勢が問われる場面が増えてきた。そのうち改善されるんだろうって期待しているのだけれど。</p>
 
 
     <footer>
@@ -110,7 +103,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/08/080930.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/03/08</time> 
             </p>
         
     </footer>
@@ -162,7 +155,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="WebMatrix で Markdown を使おう！" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="**Markdown** は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装" />
+    <meta name="og:description"   property="og:description" content="Markdown は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2012/08/16/043012/" />
@@ -87,170 +89,123 @@
     </p>
 
     <blockquote>
+<p><b>Markdown</b> は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装飾がヒントになっており、変換元テキストから変換したあとの HTML マークアップの見当がつけやすく、覚えるのが比較的容易です<a href="#f-731aff19" name="fn-731aff19" title="弱点は若干機能不足なこと。これを補う派生版が幾つかあります">*1</a>。最近では GitHub などで Wiki 記法として用いられることが多くなっているので、覚えておいて損はないです。</p>
 </blockquote>
-<pre><code>    **Markdown** は軽量マークアップ言語で、 テキストを HTML へ変換する記法および変換ツール（パーサー）を指します。 Markdown の記法は英文メールでよく利用されるテキスト装飾がヒントになっており、変換元テキストから変換したあとの HTML マークアップの見当がつけやすく、覚えるのが比較的容易です*1。最近では GitHub などで Wiki 記法として用いられることが多くなっているので、覚えておいて損はないです。
-</code></pre>
-<p>この Markdown パーサーを「WebMatrix 2」で使ってみましょう（<strong>所要時間5分</strong>）。</p>
+<p>この Markdown パーサーを「WebMatrix 2」で使ってみましょう（<b>所要時間5分</b>）。</p>
 <div class="section">
-    ### 準備
-    まず、 Empty Site テンプレートから新規サイトを作成し<a href="#f-a24137a6" name="fn-a24137a6" title="簡便のため。好きなテンプレートを利用してもよい">*2</a>、適当にフォルダーを作って Markdown テキストのサンプルを配置します。
-<figure>
-    <img src="/images/20120816030739.png"/> 
-</figure>
-
-<p>回、サンプルは <a href="http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text"><a href="http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text">http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text</a></a> （テキスト形式、UTF-8エンコード）をお借りしました。ちなみに、 “.md” や “.markdown” といった拡張子<a href="#f-6c0192e4" name="fn-6c0192e4" title="べつにこれである必要はないが、 Markdown 書式のテキストであることを示すためにたびたび用いられる">*3</a>のファイルを「WebMatrix 2」で開くには、コンテキストメニューから［WebMatrix で開く］を選択します。つぎに、パーサーをインストール。 NuGet で「MarkdownSharp」パッケージを選択しましょう。</p>
-<figure>
-    <img src="/images/20120816031246.png"/> 
-</figure>
-
-<p>a href=&quot;https://blog.daruyanagi.jp/entry/2012/02/12/213437&quot;&gt;C# の Markdown エンジン - だるろぐ</a> にはいくつかあるのですが、「MarkdownSharp」がもっとも無難だと思います。</p>
-<figure>
-    <img src="/images/20120816031256.png"/> 
-</figure>
-
-<p>ンストールはとっても簡単。勝手にレポジトリからダウンロード・セットアップされます。ほかのパッケージが必要であれば<a href="#f-0c9c2c17" name="fn-0c9c2c17" title="依存関係があるといいます">*4</a>、そのパッケージも自動でセットアップされます。パッケージは自分でも作れるので、やってみると面白いですネ。これで準備は完了。</p>
+<h3>準備</h3>
+<p>まず、 Empty Site テンプレートから新規サイトを作成し<a href="#f-a24137a6" name="fn-a24137a6" title="簡便のため。好きなテンプレートを利用してもよい">*2</a>、適当にフォルダーを作って Markdown テキストのサンプルを配置します。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816030739.png" alt="f:id:daruyanagi:20120816030739p:plain" title="f:id:daruyanagi:20120816030739p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>今回、サンプルは <a href="http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text">http://tkns.homelinux.net/modules/manual/ja/data/markdown-sample.text</a> （テキスト形式、UTF-8エンコード）をお借りしました。ちなみに、 “.md” や “.markdown” といった拡張子<a href="#f-6c0192e4" name="fn-6c0192e4" title="べつにこれである必要はないが、 Markdown 書式のテキストであることを示すためにたびたび用いられる">*3</a>のファイルを「WebMatrix 2」で開くには、コンテキストメニューから［WebMatrix で開く］を選択します。</p><p>つぎに、パーサーをインストール。 NuGet で「MarkdownSharp」パッケージを選択しましょう。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816031246.png" alt="f:id:daruyanagi:20120816031246p:plain" title="f:id:daruyanagi:20120816031246p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2012/02/12/213437">C# &#x306E; Markdown &#x30A8;&#x30F3;&#x30B8;&#x30F3; - &#x3060;&#x308B;&#x308D;&#x3050;</a> にはいくつかあるのですが、「MarkdownSharp」がもっとも無難だと思います。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816031256.png" alt="f:id:daruyanagi:20120816031256p:plain" title="f:id:daruyanagi:20120816031256p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>インストールはとっても簡単。勝手にレポジトリからダウンロード・セットアップされます。ほかのパッケージが必要であれば<a href="#f-0c9c2c17" name="fn-0c9c2c17" title="依存関係があるといいます">*4</a>、そのパッケージも自動でセットアップされます。パッケージは自分でも作れるので、やってみると面白いですネ。</p><p>これで準備は完了。</p>
 </div>
 <div class="section">
-    ### コーディング
-    Default.cshtml を開いて、以下のように記述します。 Markdown テキストのサンプルへのパスは適当に環境に合わせて変えてください<a href="#f-e01fe3ef" name="fn-e01fe3ef" title="ほんとは App_Data フォルダに Markdown テキストを格納したかったのだけれど、なんかいろいろファイルが入っていてヤダ">*5</a>。
-```cs
-@{
-    var markdown = new MarkdownSharp.Markdown();
-    var path = Server.MapPath("~/App_Documents/Sample.markdown");
-    var encoding = System.Text.Encoding.UTF8;
-    var text = System.IO.File.ReadAllText(path, encoding);
+<h3>コーディング</h3>
+<p>Default.cshtml を開いて、以下のように記述します。 Markdown テキストのサンプルへのパスは適当に環境に合わせて変えてください<a href="#f-e01fe3ef" name="fn-e01fe3ef" title="ほんとは App_Data フォルダに Markdown テキストを格納したかったのだけれど、なんかいろいろファイルが入っていてヤダ">*5</a>。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var markdown = <span class="synStatement">new</span> MarkdownSharp.Markdown();
+var path = Server.MapPath(<span class="synConstant">&quot;~/App_Documents/Sample.markdown&quot;</span>);
+var encoding = System.Text.Encoding.UTF8;
+var text = System.IO.File.ReadAllText(path, encoding);
 }
 <p>&lt;!DOCTYPE html&gt;</p>
-<p>&lt;html lang=&quot;ja&quot;&gt;
+<p>&lt;html lang=<span class="synConstant">&quot;ja&quot;</span>&gt;
 &lt;head&gt;
-&lt;meta charset=&quot;utf-8&rdquo; /&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
 &lt;title&gt;マイ サイトのタイトル&lt;/title&gt;
 &lt;/head&gt;
 &lt;body&gt;
-@Html.Raw(markdown.Transform(text)) &lt;!&ndash; Add this ! &ndash;&gt;
+@Html.Raw(markdown.Transform(text)) &lt;!&ndash; Add <span class="synStatement">this</span> ! &ndash;&gt;
 &lt;/body&gt;
-&lt;/html&gt;</p>
-<pre><code class="language-これで終わり！　あとは［実行］ボタンを押せば" data-lang="これで終わり！　あとは［実行］ボタンを押せば">
-<figure>
-    <img src="/images/20120816032025.png"/> 
-</figure>
-
-
-ew MarkdownSharp.Markdown() でパーサーのインスタンスを生成し、 Transform() で変換します。ただし、結果をそのまま利用しても HTML エンコードされた状態で表示されてしまう&lt;a href=&quot;#f-52e7b3cd&quot; name=&quot;fn-52e7b3cd&quot; title=&quot;セキュリティ上の理由です&quot;&gt;*6&lt;/a&gt;ので、 Html.Raw() でそれを抑止します。 Server.MapPath() を利用すれば、ディスク上の物理パスを取得できます。ファイルを扱うときはよく利用するので覚えておくといいかも。あとは .NET Framework ではおなじみの処理ですね。おしまい！
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### ステップアップ
-    
-&lt;div class=&quot;section&quot;&gt;
-    #### ルーティング
-    これだけだと面白くないので、ルーティングを利用してみました。
-```cs
-# Page.cshtml
-
-@{
-    var markdown = new MarkdownSharp.Markdown();
-
-    var path = Server.MapPath(
-        string.Format(&quot;{0}{1}.markdown&quot;,
-            &quot;~/App_Documents/&quot;,
-            UrlData.Count == 0
-                ? &quot;Default&quot;
-                : string.Join(&quot;/&quot;, UrlData)
-    ));
-
-    var encoding = System.Text.Encoding.UTF8;
-    var text = System.IO.File.ReadAllText(path, encoding);
-}
-
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=&quot;en&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @Html.Raw(markdown.Transform(text))
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```これで ~/Page/サンプル/Sample などというパスも扱えます。 ~/Page.cshtml で受け取った UrlData には  [&quot;サンプル&quot;, &quot;Sample&quot;] という配列が格納されているので、それを適当に加工してください（&lt;a href=&quot;https://blog.daruyanagi.jp/entry/2012/07/06/174414&quot;&gt;WebMatrix のルーティング - だるろぐ&lt;/a&gt; も参考にしてみてください）。
-
-<figure>
-    <img src="/images/20120816035052.png"/> 
-</figure>
-
-
-br/&gt;
-
-
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    #### もう少しキレイに
-    ページを表示するごとに MarkdownSharp.Markdown を new したり、 @Html.Raw( markdown.Transform(text) ) を呼び出すのはあまりかっこうがよくない気がしますね。そこで試しに、 ~/App_Code/Markdown.cs というコードを書いてみました。
-```cs
-using System;
-using System.IO;
-using System.Text;
-using System.Web;
-
-/// &amp;lt;summary&gt;
-/// Summary description for ClassName
-/// &amp;lt;/summary&gt;
-public static class Markdown
+&lt;/html&gt;
+</pre><p>これで終わり！　あとは［実行］ボタンを押せば Markdown テキストが HTML へ変換されて表示されるはずです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816032025.png" alt="f:id:daruyanagi:20120816032025p:plain" title="f:id:daruyanagi:20120816032025p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>new MarkdownSharp.Markdown() でパーサーのインスタンスを生成し、 Transform() で変換します。ただし、結果をそのまま利用しても HTML エンコードされた状態で表示されてしまう<a href="#f-52e7b3cd" name="fn-52e7b3cd" title="セキュリティ上の理由です">*6</a>ので、 Html.Raw() でそれを抑止します。 Server.MapPath() を利用すれば、ディスク上の物理パスを取得できます。ファイルを扱うときはよく利用するので覚えておくといいかも。あとは .NET Framework ではおなじみの処理ですね。</p><p>おしまい！</p></p>
+</div>
+<div class="section">
+<h3>ステップアップ</h3>
+<div class="section">
+<h4>ルーティング</h4>
+<p>これだけだと面白くないので、ルーティングを利用してみました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink># Page.cshtml
+<p>@{
+var markdown = <span class="synStatement">new</span> MarkdownSharp.Markdown();</p>
+<dl>
+<dt>var path = Server.MapPath(</dt>
+<dt><span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}{1}.markdown&quot;</span>,</dt>
+<dt><span class="synConstant">&quot;~/App_Documents/&quot;</span>,</dt>
+<dt>UrlData.Count == <span class="synConstant">0</span></dt>
+<dt>? <span class="synConstant">&quot;Default&quot;</span></dt>
+<dd><span class="synType">string</span>.Join(<span class="synConstant">&quot;/&quot;</span>, UrlData)
+));</dd>
+</dl>
+<p>var encoding = System.Text.Encoding.UTF8;
+var text = System.IO.File.ReadAllText(path, encoding);
+}</p>
+<p>&lt;!DOCTYPE html&gt;</p>
+<p>&lt;html lang=<span class="synConstant">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@Html.Raw(markdown.Transform(text))
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>これで ~/Page/サンプル/Sample などというパスも扱えます。 ~/Page.cshtml で受け取った UrlData には  [&ldquo;サンプル&rdquo;, &ldquo;Sample&rdquo;] という配列が格納されているので、それを適当に加工してください（<a href="https://blog.daruyanagi.jp/entry/2012/07/06/174414">WebMatrix のルーティング - だるろぐ</a> も参考にしてみてください）。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120816035052.png" alt="f:id:daruyanagi:20120816035052p:plain" title="f:id:daruyanagi:20120816035052p:plain" class="hatena-fotolife" itemprop="image"></span><br /></p>
+</p>
+</div>
+<div class="section">
+<h4>もう少しキレイに</h4>
+<p>ページを表示するごとに MarkdownSharp.Markdown を new したり、 @Html.Raw( markdown.Transform(text) ) を呼び出すのはあまりかっこうがよくない気がしますね。</p><p>そこで試しに、 ~/App_Code/Markdown.cs というコードを書いてみました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synStatement">using</span> System;
+<span class="synStatement">using</span> System.IO;
+<span class="synStatement">using</span> System.Text;
+<span class="synStatement">using</span> System.Web;
+<p><span class="synComment">/// </span><span class="synIdentifier">&lt;</span><span class="synStatement">summary</span><span class="synIdentifier">&gt;</span>
+<span class="synComment">/// Summary description for ClassName</span>
+<span class="synComment">/// </span><span class="synIdentifier">&lt;/</span><span class="synStatement">summary</span><span class="synIdentifier">&gt;</span>
+<span class="synType">public</span> <span class="synType">static</span> <span class="synType">class</span> Markdown
 {
-    private static readonly MarkdownSharp.Markdown md =
-        new MarkdownSharp.Markdown();
-    private static readonly Encoding encoding = Encoding.UTF8;
-
-    public static HtmlString Load(string path)
-    {
-        return new HtmlString(
-            md.Transform(
-                File.ReadAllText(path, encoding)
-            )
-        );
-    }
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">readonly</span> MarkdownSharp.Markdown md =
+<span class="synStatement">new</span> MarkdownSharp.Markdown();
+<span class="synType">private</span> <span class="synType">static</span> <span class="synType">readonly</span> Encoding encoding = Encoding.UTF8;</p>
+<p><span class="synType">public</span> <span class="synType">static</span> HtmlString Load(<span class="synType">string</span> path)
+{
+<span class="synStatement">return</span> <span class="synStatement">new</span> HtmlString(
+md.Transform(
+File.ReadAllText(path, encoding)
+)
+);
+}
+}
+</pre><p>これで Page.cshtml がちょっとシンプルになりました。</p></p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@{
+var path = Server.MapPath(
+<span class="synType">string</span>.Format(<span class="synConstant">&quot;{0}/{1}.markdown&quot;</span>,
+<span class="synConstant">&quot;~/App_Documents/&quot;</span>,
+UrlData.Count == <span class="synConstant">0</span>
+? <span class="synConstant">&quot;Default&quot;</span>
+: <span class="synType">string</span>.Join(<span class="synConstant">&quot;/&quot;</span>, UrlData)
+));
 }
 
-```これで Page.cshtml がちょっとシンプルになりました。
-```cs
-@{
-    var path = Server.MapPath(
-        string.Format(&quot;{0}/{1}.markdown&quot;,
-            &quot;~/App_Documents/&quot;,
-            UrlData.Count == 0
-                ? &quot;Default&quot;
-                : string.Join(&quot;/&quot;, UrlData)
-    ));
-}
+&lt;!DOCTYPE html&gt;
 
-&amp;lt;!DOCTYPE html&gt;
-
-&amp;lt;html lang=&quot;en&quot;&gt;
-    &amp;lt;head&gt;
-        &amp;lt;meta charset=&quot;utf-8&quot; /&gt;
-        &amp;lt;title&gt;&amp;lt;/title&gt;
-    &amp;lt;/head&gt;
-    &amp;lt;body&gt;
-        @Markdown.Load(path)
-    &amp;lt;/body&gt;
-&amp;lt;/html&gt;
-
-```HtmlString 型で返せば、ビューで @Html.Raw() が要りません。あとは、 Url Rewrite を使って /Page/ なしで利用できるようにするとか、 ファイルの作成日時から RSS を吐いてみるとか（キャッシュを使わないとエラいことになりそうですね！）まだまだ改善の余地がありそう。
-
-&lt;/div&gt;
-&lt;/div&gt;&lt;div class=&quot;footnote&quot;&gt;
-&lt;a href=&quot;#fn-731aff19&quot; name=&quot;f-731aff19&quot; class=&quot;footnote-number&quot;&gt;*1&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;弱点は若干機能不足なこと。これを補う派生版が幾つかあります&lt;/span&gt;
-&lt;a href=&quot;#fn-a24137a6&quot; name=&quot;f-a24137a6&quot; class=&quot;footnote-number&quot;&gt;*2&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;簡便のため。好きなテンプレートを利用してもよい&lt;/span&gt;
-&lt;a href=&quot;#fn-6c0192e4&quot; name=&quot;f-6c0192e4&quot; class=&quot;footnote-number&quot;&gt;*3&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;べつにこれである必要はないが、 Markdown 書式のテキストであることを示すためにたびたび用いられる&lt;/span&gt;
-&lt;a href=&quot;#fn-0c9c2c17&quot; name=&quot;f-0c9c2c17&quot; class=&quot;footnote-number&quot;&gt;*4&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;依存関係があるといいます&lt;/span&gt;
-&lt;a href=&quot;#fn-e01fe3ef&quot; name=&quot;f-e01fe3ef&quot; class=&quot;footnote-number&quot;&gt;*5&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;ほんとは App_Data フォルダに Markdown テキストを格納したかったのだけれど、なんかいろいろファイルが入っていてヤダ&lt;/span&gt;
-&lt;a href=&quot;#fn-52e7b3cd&quot; name=&quot;f-52e7b3cd&quot; class=&quot;footnote-number&quot;&gt;*6&lt;/a&gt;&lt;span class=&quot;footnote-delimiter&quot;&gt;:&lt;/span&gt;&lt;span class=&quot;footnote-text&quot;&gt;セキュリティ上の理由です&lt;/span&gt;
-&lt;/div&gt;
-
-</code></pre>
+&lt;html lang=<span class="synConstant">&quot;en&quot;</span>&gt;
+&lt;head&gt;
+&lt;meta charset=<span class="synConstant">&quot;utf-8&quot;</span> /&gt;
+&lt;title&gt;&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+@Markdown.Load(path)
+&lt;/body&gt;
+&lt;/html&gt;
+</pre><p>HtmlString 型で返せば、ビューで @Html.Raw() が要りません。あとは、 Url Rewrite を使って /Page/ なしで利用できるようにするとか、 ファイルの作成日時から RSS を吐いてみるとか（キャッシュを使わないとエラいことになりそうですね！）まだまだ改善の余地がありそう。</p>
+</div>
+</div><div class="footnote">
+<p class="footnote"><a href="#fn-731aff19" name="f-731aff19" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">弱点は若干機能不足なこと。これを補う派生版が幾つかあります</span></p>
+<p class="footnote"><a href="#fn-a24137a6" name="f-a24137a6" class="footnote-number">*2</a><span class="footnote-delimiter">:</span><span class="footnote-text">簡便のため。好きなテンプレートを利用してもよい</span></p>
+<p class="footnote"><a href="#fn-6c0192e4" name="f-6c0192e4" class="footnote-number">*3</a><span class="footnote-delimiter">:</span><span class="footnote-text">べつにこれである必要はないが、 Markdown 書式のテキストであることを示すためにたびたび用いられる</span></p>
+<p class="footnote"><a href="#fn-0c9c2c17" name="f-0c9c2c17" class="footnote-number">*4</a><span class="footnote-delimiter">:</span><span class="footnote-text">依存関係があるといいます</span></p>
+<p class="footnote"><a href="#fn-e01fe3ef" name="f-e01fe3ef" class="footnote-number">*5</a><span class="footnote-delimiter">:</span><span class="footnote-text">ほんとは App_Data フォルダに Markdown テキストを格納したかったのだけれど、なんかいろいろファイルが入っていてヤダ</span></p>
+<p class="footnote"><a href="#fn-52e7b3cd" name="f-52e7b3cd" class="footnote-number">*6</a><span class="footnote-delimiter">:</span><span class="footnote-text">セキュリティ上の理由です</span></p>
+</div>
 
     <footer>
         
@@ -264,7 +219,7 @@ public static class Markdown
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/16/043012.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2012/08/16</time> 
             </p>
         
     </footer>
@@ -316,7 +271,16 @@ public static class Markdown
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

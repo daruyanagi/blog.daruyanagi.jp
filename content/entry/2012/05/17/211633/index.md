@@ -1,0 +1,15 @@
+---
+date: 2012-05-17T21:16:33.0000000
+draft: false
+title: "ヘッドフォンが退院！"
+tags: []
+eyecatch: 
+---
+<p><img src="20120517103038.jpg" alt="f:id:daruyanagi:20120517103038j:plain" title="f:id:daruyanagi:20120517103038j:plain" class="hatena-fotolife"></p>
+
+<blockquote cite="http://daruyanagi.hatenablog.com/entry/2012/05/02/083431">
+<p>愛用のノイズキャンセル・ヘッドフォンの耳をニコニコ超会議でなくしたので、これを購入したヨドバシ錦糸町までいって代替品の注文をしてきた。</p>
+
+<cite><a href="http://daruyanagi.hatenablog.com/entry/2012/05/02/083431">&#x9023;&#x4F11;4&#x65E5;&#x76EE;&#x3002;PC&#x3092;&#x81EA;&#x4F5C;&#x3057;&#x305F;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a></cite>
+</blockquote>
+<p>ヨドバシから電話がかかってきて、入荷したとの由。あいにくGWと重なったため、いつもより時間がかかったけれど、それは前もってわかっていたことなのでキニシナイ。片耳ではなく両耳セットでしか売ってくれなかったのもキニシナイ。もう1年半ほどほとんど毎日使っていて、それなりにへたってきていたし、これを機会に両方取り替えたいと思っていたところだった。ちなみにお値段は4,000円弱。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B003V89W52/bestylesnet-22/"><img src="http://ecx.images-amazon.com/images/I/31hW%2BCjwFYL._SL160_.jpg" class="hatena-asin-detail-image" alt="DENON ノイズキャンセリングヘッドホン ブラック AHNC800K" title="DENON ノイズキャンセリングヘッドホン ブラック AHNC800K"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B003V89W52/bestylesnet-22/">DENON ノイズキャンセリングヘッドホン ブラック AHNC800K</a></p><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> デノン</li><li><span class="hatena-asin-detail-label">発売日:</span> 2010/08/10</li><li><span class="hatena-asin-detail-label">メディア:</span> エレクトロニクス</li><li> <span class="hatena-asin-detail-label">クリック</span>: 3回</li><li><a href="http://d.hatena.ne.jp/asin/B003V89W52/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>買ったときは4万円弱だったかな。<a class="keyword" href="http://d.hatena.ne.jp/keyword/Twitter">Twitter</a>を掘り起こしたら、2010年の暮れに買ったらしい。ボーナスで衝動買いしたんだろうな。</p><p><blockquote class="twitter-tweet" lang="ja"><p>ヤバい、Denonのノイズキャンセルヘッドフォン買ったまった…諭吉が4人も討ち死に… (@ <a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%E8%A5%C9%A5%D0%A5%B7%A5%AB%A5%E1%A5%E9">ヨドバシカメラ</a> マルチメディア錦糸町) <a href="http://4sq.com/8ZZvUc">http://4sq.com/8ZZvUc</a></p>&mdash; だるやなぎさん (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/11328347304886272" data-datetime="2010-12-05T07:57:43+00:00">12月 5, 2010</a></blockquote><script src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>付け心地はすごく気に入っている。耳がすっぽりふわっとおおわれて、長時間かけててもどこかが痛くなることはない。僕は音痴なのでよくわからないけど、音にも不満はない。あと、ケーブルを引っ張っても本体との接続部分にダメージがないのがいい。ジャック＆プラグになっていて、引っ張ると抜ける。</p><p>ただ、ノイズ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AD%A5%E3%A5%F3%A5%BB%A5%EB%B5%A1%C7%BD">キャンセル機能</a>はそれほどでもなくて、音量が少し大きくなり、周りの雑音が少し遠くなる感じ。電車の中でも雑音がシャットアウトされるわけではないけれど、気を付けていないと車掌の案内は聞き逃してしまうし、本を読むときの集中力は増すように感じる。あと、音量がほかのヘッドフォンより小さく感じる。ノイズ<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%AD%A5%E3%A5%F3%A5%BB%A5%EB%B5%A1%C7%BD">キャンセル機能</a>をOFFにすると、さらに小さく感じる。</p><p>なにはともあれ、全体的にはとても気に入っている。これからも末永くよろしくお願いします！</p>

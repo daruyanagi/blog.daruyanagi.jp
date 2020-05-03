@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Surface Go LTE で Surface Pen が機能しない現象のトラブルシューティング" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="### 症状 Surface Go LTE に Surface Pen を接続したところ、ボタンショートカットは動作するものの、書くことができなかった。Pen から電池を抜いたり、Bluetoot" />
+    <meta name="og:description"   property="og:description" content="症状 Surface Go LTE に Surface Pen を接続したところ、ボタンショートカットは動作するものの、書くことができなかった。 Pen から電池を抜いたり、Bluetooth のペ" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/12/01/202501/" />
@@ -87,32 +89,31 @@
     </p>
 
     <div class="section">
-    ### 症状
-    Surface Go LTE に Surface Pen を接続したところ、ボタンショートカットは動作するものの、書くことができなかった。Pen から電池を抜いたり、Bluetooth のペアリングをやり直したりしたところ、書けるようになったが、今度はボタンショートカットが動かなくなった。
+<h3>症状</h3>
+<p>Surface Go LTE に Surface Pen を接続したところ、ボタンショートカットは動作するものの、書くことができなかった。</p><p>Pen から電池を抜いたり、Bluetooth のペアリングをやり直したりしたところ、書けるようになったが、今度はボタンショートカットが動かなくなった。</p>
 </div>
 <div class="section">
-    ### トラブルシューティング
+<h3>トラブルシューティング</h3>
 <div class="section">
-    #### Surface Pen の初期不良？（→ 否定）
-    問題の生じた Pen を Surface Book 2 に接続したところ、正常に動作した。Surface Pen の側に問題はないようだ。
-</div>
-<div class="section">
-    #### Surface Go LTE 側の問題？
-    ヨドバシカメラで展示品の Surface Pen を借り（Pen はヨドバシで買ったものだし、ちゃんと店員さんに断りもいれたぞ！）て自分の Surface Go LTE に接続したところ、書けるが、ボタンショートカットは動作しなかった（同じ症状が発生した）。
-<div class="section">
-    ##### OS の問題？
-    OS の初期化を試してみる（現在実行中）。Insider Preview にしちゃってるので（症状自体は Insider Preview にする前から発生していた）、初期化でも治らない場合は Insider Preview もやめてみる。
-<pre><code>&gt;
-    追記：問題は解消された。Insider Preview をやめる必要はなかった。
-</code></pre>
+<h4>Surface Pen の初期不良？（→ 否定）</h4>
+<p>問題の生じた Pen を Surface Book 2 に接続したところ、正常に動作した。Surface Pen の側に問題はないようだ。</p>
 </div>
 <div class="section">
-    ##### ハードウェアの問題？
-    OS の初期化でも治らなければ、Microsoft に問い合わせてみる。
+<h4>Surface Go LTE 側の問題？</h4>
+<p>ヨドバシカメラで展示品の Surface Pen を借り（Pen はヨドバシで買ったものだし、ちゃんと店員さんに断りもいれたぞ！）て自分の Surface Go LTE に接続したところ、書けるが、ボタンショートカットは動作しなかった（同じ症状が発生した）。</p>
+<div class="section">
+<h5>OS の問題？</h5>
+<p>OS の初期化を試してみる（現在実行中）。Insider Preview にしちゃってるので（症状自体は Insider Preview にする前から発生していた）、初期化でも治らない場合は Insider Preview もやめてみる。</p>
+<blockquote>
+<p>追記：問題は解消された。Insider Preview をやめる必要はなかった。</p>
+</blockquote>
+</div>
+<div class="section">
+<h5>ハードウェアの問題？</h5>
+<p>OS の初期化でも治らなければ、Microsoft に問い合わせてみる。</p>
 </div>
 </div>
 </div>
-
 
     <footer>
         
@@ -126,7 +127,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/12/01/202501.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2018/12/01</time> 
             </p>
         
     </footer>
@@ -178,7 +179,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

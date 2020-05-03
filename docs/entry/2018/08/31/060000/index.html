@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="Amaguri v1.1.0.0：保存時の効果音" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="んか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど―― 像をコピーすると、ファイルリストと一緒にイメージもクリップボードに格納" />
+    <meta name="og:description"   property="og:description" content="なんか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど―― 画像をコピーすると、ファイルリストと一緒にイメージもクリップボードに" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2018/08/31/060000/20180830200841_hu74eb7dfd10602b6f56cf9e90465abb41_60942_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2018/08/31/060000/20180830200841_hu74eb7dfd10602b6f56cf9e90465abb41_60942_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/08/31/060000/" />
@@ -86,29 +92,10 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20180830200841.png"/> 
-</figure>
-
-<p>んか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど――</p>
-<figure>
-    <img src="/images/20180830201012.png"/> 
-</figure>
-
-<figure>
-    <img src="/images/20180830201108.png"/> 
-</figure>
-
-<p>像をコピーすると、ファイルリストと一緒にイメージもクリップボードに格納してくれるみたい<a href="#f-384b75a0" name="fn-384b75a0" title="クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML">*1</a>。「ペイント」で張り付ければイメージに、「エクスプローラー」で張り付けると画像ファイルになって便利なんだけど、そのあたりをちゃんと考えてなかった。ちゃんと条件分岐を増やして不要な処理を減らす。あと、高速に［Ctrl］＋［C］キーを押しまくったりするとたまにエラーが発生するので、それもちゃんとトラップしてバルーンで警告するようにした。他にも少しエラー処理を足したので、アプリのクラッシュは減ったはず。それでもデカいファイルを扱う場合などに連続処理が発生するとあまりよろしくないので、ファイルの保存時に警告音を再生するオプションを付けた。音が鳴るまでは次のコピーを控えてもらえると、余計なエラーが発生しない。</p>
-<div class="github-card" data-user="daruyanagi/Amaguri/releases/tag" data-repo="v1.1.0.0" data-width="400" data-height="" data-theme="default"></div
-<blockquote>
-</blockquote>
-<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
-<p>もう少し使って、まぁまぁ、だいじょうぶになったらストア向けのパッケージも作る。前回の経験でいえば、申請から公開まで1カ月以上はかかると思う。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830200841.png" alt="f:id:daruyanagi:20180830200841p:plain" title="f:id:daruyanagi:20180830200841p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830201012.png" alt="f:id:daruyanagi:20180830201012p:plain" title="f:id:daruyanagi:20180830201012p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830201108.png" alt="f:id:daruyanagi:20180830201108p:plain" title="f:id:daruyanagi:20180830201108p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>画像をコピーすると、ファイルリストと一緒にイメージもクリップボードに格納してくれるみたい<a href="#f-384b75a0" name="fn-384b75a0" title="クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML">*1</a>。「ペイント」で張り付ければイメージに、「エクスプローラー」で張り付けると画像ファイルになって便利なんだけど、そのあたりをちゃんと考えてなかった。ちゃんと条件分岐を増やして不要な処理を減らす。</p><p>あと、高速に［Ctrl］＋［C］キーを押しまくったりするとたまにエラーが発生するので、それもちゃんとトラップしてバルーンで警告するようにした。他にも少しエラー処理を足したので、アプリのクラッシュは減ったはず。</p><p>それでもデカいファイルを扱う場合などに連続処理が発生するとあまりよろしくないので、ファイルの保存時に警告音を再生するオプションを付けた。音が鳴るまでは次のコピーを控えてもらえると、余計なエラーが発生しない。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAmaguri%2Freleases%2Ftag%2Fv1.1.0.0" title="daruyanagi/Amaguri" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/daruyanagi/Amaguri/releases/tag/v1.1.0.0">github.com</a></cite></p><p>もう少し使って、まぁまぁ、だいじょうぶになったらストア向けのパッケージも作る。前回の経験でいえば、申請から公開まで1カ月以上はかかると思う。</p>
 <div class="footnote">
-<a href="#fn-384b75a0" name="f-384b75a0" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML</span>
+<p class="footnote"><a href="#fn-384b75a0" name="f-384b75a0" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML</span></p>
 </div>
-
 
     <footer>
         
@@ -122,7 +109,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/08/31/060000.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2018/08/31</time> 
             </p>
         
     </footer>
@@ -174,7 +161,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

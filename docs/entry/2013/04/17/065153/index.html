@@ -6,7 +6,7 @@
 <meta name="description" content="いわゆる「だるろぐ」">
 <meta name="author" content="daruyanagi">
 <meta name="generator" content="Hugo">
-<title>WebMatrix 3 - blog.daruyanagi.jp</title>
+<title>WebMatrix 3: RSS フィードを出力する - blog.daruyanagi.jp</title>
 
 
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
@@ -31,15 +31,17 @@
         gtag('config', 'UA-53152247-5');
         </script>
     
-<meta name="og:title"         property="og:title" content="WebMatrix 3" />
+<meta name="og:title"         property="og:title" content="WebMatrix 3: RSS フィードを出力する" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（RSS 2.0 を実装する - だるろぐ）をコピペしてみたのだけれど、" />
+    <meta name="og:description"   property="og:description" content="とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（RSS 2.0 &#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/04/17/065153/" />
@@ -78,7 +80,7 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 3</h1>
+    <h1>WebMatrix 3: RSS フィードを出力する</h1>
     
     <p class="published text-right">
         公開日：<time>
@@ -86,54 +88,38 @@
         </time>        
     </p>
 
-    <p>とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（<a href="https://blog.daruyanagi.jp/entry/2012/02/02/225759">RSS 2.0 を実装する - だるろぐ</a>）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs">@using System.IO
-@using System.Xml
-@using System.ServiceModel.Syndication
-
-<span style="color:#960050;background-color:#1e0010">@</span>{
-    <span style="color:#66d9ef">var</span> url = <span style="color:#66d9ef">new</span> Uri(Request.Url.Scheme + <span style="color:#e6db74">&#34;://&#34;</span> + Request.Url.Authority);
-
-    <span style="color:#75715e">// ココらへんはあんまり気にしないで
-</span><span style="color:#75715e"></span>    <span style="color:#66d9ef">var</span> files = Directory.GetFiles(Server.MapPath(<span style="color:#e6db74">&#34;~/App_Text/&#34;</span>))
-        .Select(_ =&gt; <span style="color:#66d9ef">new</span> FileInfo(_))
-        .Where(_ =&gt; !_.Name.StartsWith(<span style="color:#e6db74">&#34;_&#34;</span>))
-        .OrderByDescending(_ =&gt; _.LastWriteTime)
-        .Take(<span style="color:#ae81ff">10</span>);
-
-    <span style="color:#66d9ef">var</span> feed = <span style="color:#66d9ef">new</span> SyndicationFeed(App.Title, App.Description, <span style="color:#66d9ef">new</span> Uri(url, <span style="color:#e6db74">&#34;Feed&#34;</span>))
-        {
-            Copyright = <span style="color:#66d9ef">new</span> TextSyndicationContent(App.Copyright.ToString()),
-            Items = files.Select(file =&gt;
-            {
-                <span style="color:#66d9ef">var</span> name = Path.GetFileNameWithoutExtension(file.FullName);
-                
-                <span style="color:#75715e">// ファイルの内容を読み込んで自作の Markdown エンジンにかけている
-</span><span style="color:#75715e"></span>                <span style="color:#66d9ef">var</span> content = TextFormatEngine.Transform(File.ReadAllText(file.FullName));
-                
-                <span style="color:#66d9ef">return</span> <span style="color:#66d9ef">new</span> SyndicationItem(
-                    name, content.ToString(), <span style="color:#66d9ef">new</span> Uri(url, name), name, file.LastWriteTime
-                );
-            }),
-        };
-
-    Response.Clear();
-    Response.ContentType = <span style="color:#e6db74">&#34;application/xml&#34;</span>;
-    <span style="color:#66d9ef">var</span> writer = XmlWriter.Create(Response.Output);
-    feed.SaveAsRss20(writer);
-    Response.End();
+    <p>とあるフォルダー内のファイルのリストを RSS で出力したいなぁ、と思って昔に書いた記事（<a href="https://blog.daruyanagi.jp/entry/2012/02/02/225759">RSS 2.0 &#x3092;&#x5B9F;&#x88C5;&#x3059;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）をコピペしてみたのだけれど、ちゃんと動かなかった……なぜだ。まぁ、原因を追求するのも面倒だったので、SyndicationFeed クラスを利用して書きなおしてみました。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>@<span class="synStatement">using</span> System.IO
+@<span class="synStatement">using</span> System.Xml
+@<span class="synStatement">using</span> System.ServiceModel.Syndication
+<p>@{
+var url = <span class="synStatement">new</span> Uri(Request.Url.Scheme + <span class="synConstant">&quot;://&quot;</span> + Request.Url.Authority);</p>
+<p><span class="synComment">// ココらへんはあんまり気にしないで</span>
+var files = Directory.GetFiles(Server.MapPath(<span class="synConstant">&quot;~/App_Text/&quot;</span>))
+.Select(_ =&gt; <span class="synStatement">new</span> FileInfo(_))
+.Where(_ =&gt; !_.Name.StartsWith(<span class="synConstant">&quot;_&quot;</span>))
+.OrderByDescending(_ =&gt; _.LastWriteTime)
+.Take(<span class="synConstant">10</span>);</p>
+<p>var feed = <span class="synStatement">new</span> SyndicationFeed(App.Title, App.Description, <span class="synStatement">new</span> Uri(url, <span class="synConstant">&quot;Feed&quot;</span>))
+{
+Copyright = <span class="synStatement">new</span> TextSyndicationContent(App.Copyright.ToString()),
+Items = files.Select(file =&gt;
+{
+var name = Path.GetFileNameWithoutExtension(file.FullName);</p>
+<p><span class="synComment">// ファイルの内容を読み込んで自作の Markdown エンジンにかけている</span>
+var content = TextFormatEngine.Transform(File.ReadAllText(file.FullName));</p>
+<p><span class="synStatement">return</span> <span class="synStatement">new</span> SyndicationItem(
+name, content.ToString(), <span class="synStatement">new</span> Uri(url, name), name, file.LastWriteTime
+);
+}),
+};</p>
+<p>Response.Clear();
+Response.ContentType = <span class="synConstant">&quot;application/xml&quot;</span>;
+var writer = XmlWriter.Create(Response.Output);
+feed.SaveAsRss20(writer);
+Response.End();
 }
-
-</code></pre></div><figure>
-    <img src="/images/20130417064514.png"/> 
-</figure>
-
-<p>きた！</p>
-<figure>
-    <img src="/images/20130417064526.png"/> 
-</figure>
-
-<p>思ったけど、Internet Explorer ではちゃんと表示できない。なんか XML が尻切れトンボで出力されておる……</p>
+</pre><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130417064514.png" alt="f:id:daruyanagi:20130417064514p:plain" title="f:id:daruyanagi:20130417064514p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>できた！</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130417064526.png" alt="f:id:daruyanagi:20130417064526p:plain" title="f:id:daruyanagi:20130417064526p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>と思ったけど、Internet Explorer ではちゃんと表示できない。なんか XML が尻切れトンボで出力されておる……</p></p>
 
 
     <footer>
@@ -148,7 +134,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/04/17/065153.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/04/17</time> 
             </p>
         
     </footer>
@@ -200,7 +186,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

@@ -37,9 +37,11 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/20111111/1362520875/" />
@@ -90,69 +92,56 @@
 <ul>
 <li>.md/.markdown という拡張子だったらプレーンテキストを表示する機能</li>
 <li>フォルダ階層への対応</li>
-</ul>の2機能を追加した。
-```
-	@using System.IO
-<pre><code>@functions {
-    string ReadTextFile(string path)
-    {
-        path = string.Format(&quot;/Pages/{0}.txt&quot;, path);
-        path = Server.MapPath(path);
-
-        if (!File.Exists(path))
-        {
-            throw new HttpException(404, path + &quot;is not found.&quot;);
-        }
-
-        return File.ReadAllText(path);
-    }
+</ul><p>の2機能を追加した。</p>
+<pre class="code" data-unlink>	@using System.IO
+<p>@functions {
+string ReadTextFile(string path)
+{
+path = string.Format(&quot;/Pages/{0}.txt&quot;, path);
+path = Server.MapPath(path);</p>
+<p>if (!File.Exists(path))
+{
+throw new HttpException(404, path + &quot;is not found.&quot;);
+}</p>
+<p>return File.ReadAllText(path);
 }
-
-@{
-    var url = UrlData.Count &gt; 0
-        ? string.Join(&quot;/&quot;, UrlData)
-        : &quot;Home&quot;;
-    url = url.TrimEnd(&amp;#39;/&amp;#39;); 
-
-    var extension = Path.GetExtension(url);
-
-    var content = string.Empty;
-
-    switch (extension)
-    {
-        case &quot;.markdown&quot;:
-        case &quot;.md&quot;: 
-            // Remove extension
-            url = url.Replace(extension, &quot;&quot;);
-
-            content = ReadTextFile(url);
-            Response.ContentType = &quot;text/plain&quot;;
-            Response.Write(content);
-            return;
-
-        default:
-            // Prepare Layout
-            Layout = &quot;_SiteLayout.cshtml&quot;;
-            Page.Title = url;
-
-            // Process by Markdown Deep
-            var markdown = new MarkdownDeep.Markdown()
-            {
-                ExtraMode = true,
-            };
-
-            content = ReadTextFile(url);
-            content = markdown.Transform(content);
-            // content = Daruboard.Transform(content);
-            break;
-    }
+}</p>
+<dl>
+<dt>@{</dt>
+<dt>var url = UrlData.Count &gt; 0</dt>
+<dt>? string.Join(&quot;/&quot;, UrlData)</dt>
+<dd>&quot;Home&quot;;
+url = url.TrimEnd('/');</dd>
+</dl>
+<p>var extension = Path.GetExtension(url);</p>
+<p>var content = string.Empty;</p>
+<p>switch (extension)
+{
+case &quot;.markdown&quot;:
+case &quot;.md&quot;:
+// Remove extension
+url = url.Replace(extension, &quot;&quot;);</p>
+<p>content = ReadTextFile(url);
+Response.ContentType = &quot;text/plain&quot;;
+Response.Write(content);
+return;</p>
+<p>default:
+// Prepare Layout
+Layout = &quot;_SiteLayout.cshtml&quot;;
+Page.Title = url;</p>
+<p>// Process by Markdown Deep
+var markdown = new MarkdownDeep.Markdown()
+{
+ExtraMode = true,
+};</p>
+<p>content = ReadTextFile(url);
+content = markdown.Transform(content);
+// content = Daruboard.Transform(content);
+break;
 }
+}</p>
+<p>@Html.Raw(content) </pre><p><code>Daruboard.Transform(content);</code> は、あらかじめ登録したヘルパーを利用してテキストを整形する仕組みを呼び出している。これについては、また今度。まだちょっとイケてない部分がある。</p></p>
 
-@Html.Raw(content) 
-</code></pre>
-<pre><code class="language-<code>Daruboard.Transform(content);</code>" data-lang="<code>Daruboard.Transform(content);</code>">
-
-</code></pre>
 
     <footer>
         
@@ -166,7 +155,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/20111111/1362520875.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2011/11/11</time> 
             </p>
         
     </footer>
@@ -218,7 +207,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

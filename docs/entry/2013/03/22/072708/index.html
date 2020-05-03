@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="Google リーダーにフィードが登録できなくなった……" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="格的に終わらせる気か…… りあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「iG" />
+    <meta name="og:description"   property="og:description" content="本格的に終わらせる気か…… とりあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/03/22/072708/" />
@@ -86,27 +88,13 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20130322071849.png"/> 
-</figure>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130322071849.png" alt="f:id:daruyanagi:20130322071849p:plain" title="f:id:daruyanagi:20130322071849p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>本格的に終わらせる気か……</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130322071907.png" alt="f:id:daruyanagi:20130322071907p:plain" title="f:id:daruyanagi:20130322071907p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「iGoogle」か「Google リーダー」かを選択するあのおなじみの画面からリンクをコピって編集した。</p>
+<pre class="code" data-unlink>http://www.google.com/ig/addtoreader?&amp;feedurl=%s</pre><p>そのうちこの URL もなくなってしまうのかな。</p><p>とりあえず、本当に死ぬまで Google リーダーは使い続けるつもり。代替サービスを見極めたいし、もしかしたら気が変わって存続してくれるとも限らない。</p>
+<blockquote cite="http://internet.watch.impress.co.jp/docs/news/20130314_591732.html">
+<p>米Googleは13日、RSSリーダーサービス「Google Reader」を7月1日に終了すると発表した。サービス終了の理由についてGoogleは、利用が減少していることに加えて、同社のエネルギーを選択したプロダクトに注ぐためだと説明している。</p>
+<p><cite><a href="http://internet.watch.impress.co.jp/docs/news/20130314_591732.html">RSSリーダー「Google Reader」が7月1日に終了 -INTERNET Watch</a></cite></p>
+</blockquote>
 
-<p>格的に終わらせる気か……</p>
-<figure>
-    <img src="/images/20130322071907.png"/> 
-</figure>
-
-<p>りあえず、“フィードリーダーの編集”画面にフィード購読用の URL を追加して対処。フィードを登録するときに出てくる、「iGoogle」か「Google リーダー」かを選択するあのおなじみの画面からリンクをコピって編集した。</p>
-<pre><code>http://www.google.com/ig/addtoreader?&amp;amp;feedurl=%s
-```そのうちこの URL もなくなってしまうのかな。とりあえず、本当に死ぬまで Google リーダーは使い続けるつもり。代替サービスを見極めたいし、もしかしたら気が変わって存続してくれるとも限らない。
-
-    &gt;
-        米Googleは13日、RSSリーダーサービス「Google Reader」を7月1日に終了すると発表した。サービス終了の理由についてGoogleは、利用が減少していることに加えて、同社のエネルギーを選択したプロダクトに注ぐためだと説明している。
-
-        RSSリーダー「Google Reader」が7月1日に終了 -INTERNET Watch
-    
-
-
-</code></pre>
 
     <footer>
         
@@ -120,7 +108,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/22/072708.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/03/22</time> 
             </p>
         
     </footer>
@@ -172,7 +160,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

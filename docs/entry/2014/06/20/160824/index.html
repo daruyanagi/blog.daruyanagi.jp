@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="オープン拡張辞書を Windows Runtime アプリで読み書きする（2）" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="オープン拡張辞書を Windows Runtime アプリで読み書きする（1） - だるろぐ の続き。まずは第一の手段「XmlDocument を使う」で実装してみた。 public static async void Load(string" />
+    <meta name="og:description"   property="og:description" content="&#x30AA;&#x30FC;&#x30D7;&#x30F3;&#x62E1;&#x5F35;&#x8F9E;&#x66F8;&#x3092; Windows Runtime &#x30A2;&#x30D7;&#x30EA;&#x3067;&#x8AAD;&#x307F;&#x66F8;&#x304D;&#x3059;&#x308B;&#xFF08;1&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050; の続き。まずは第一の手段「XmlDocument を使う」で実装してみた。 public static async void Load(string path) { var file = await Package.Current.InstalledLocation.GetFileAsync(path); var text = await Windows.Storage.FileIO.ReadTextAsync(file); var xml = new XmlDocument(); var settings = new XmlLoadSettings(); xml.LoadXml(text," />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2014/06/20/160824/" />
@@ -86,55 +88,45 @@
         </time>        
     </p>
 
-    <p><a href="https://blog.daruyanagi.jp/entry/2014/06/19/210043">オープン拡張辞書を Windows Runtime アプリで読み書きする（1） - だるろぐ</a> の続き。まずは第一の手段「XmlDocument を使う」で実装してみた。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">public</span> <span style="color:#66d9ef">static</span> <span style="color:#66d9ef">async</span> <span style="color:#66d9ef">void</span> Load(<span style="color:#66d9ef">string</span> path)
+    <p><a href="https://blog.daruyanagi.jp/entry/2014/06/19/210043">&#x30AA;&#x30FC;&#x30D7;&#x30F3;&#x62E1;&#x5F35;&#x8F9E;&#x66F8;&#x3092; Windows Runtime &#x30A2;&#x30D7;&#x30EA;&#x3067;&#x8AAD;&#x307F;&#x66F8;&#x304D;&#x3059;&#x308B;&#xFF08;1&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の続き。まずは第一の手段「XmlDocument を使う」で実装してみた。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synType">public</span> <span class="synType">static</span> async <span class="synType">void</span> Load(<span class="synType">string</span> path)
 {
-    <span style="color:#66d9ef">var</span> file = <span style="color:#66d9ef">await</span> Package.Current.InstalledLocation.GetFileAsync(path);
-    <span style="color:#66d9ef">var</span> text = <span style="color:#66d9ef">await</span> Windows.Storage.FileIO.ReadTextAsync(file);
-
-    <span style="color:#66d9ef">var</span> xml = <span style="color:#66d9ef">new</span> XmlDocument();
-    <span style="color:#66d9ef">var</span> settings = <span style="color:#66d9ef">new</span> XmlLoadSettings();
-    xml.LoadXml(text, settings);
-
-    <span style="color:#66d9ef">var</span> dictionary = <span style="color:#66d9ef">new</span> OpenExtendedDictionary();
-
-    dictionary.DictionaryGuid = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:DictionaryGUID&#34;</span>).First().InnerText;
-    dictionary.DictionaryLanguage = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:DictionaryLanguage&#34;</span>).First().InnerText;
-    dictionary.DictionaryVersion = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:DictionaryVersion&#34;</span>).First().InnerText;
-
-    dictionary.DictionaryInfo.Language = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:DictionaryInfo&#34;</span>)[<span style="color:#ae81ff">0</span>].Attributes[<span style="color:#ae81ff">0</span>].NodeValue.AsString();
-    dictionary.DictionaryInfo.ShortName = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:ShortName&#34;</span>).First().InnerText;
-    dictionary.DictionaryInfo.LongName = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:LongName&#34;</span>).First().InnerText;
-    dictionary.DictionaryInfo.Description = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:Description&#34;</span>).First().InnerText;
-    dictionary.DictionaryInfo.Copyright = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:Copyright&#34;</span>).First().InnerText;
-
-    dictionary.DictionaryEntries = xml.GetElementsByTagName(<span style="color:#e6db74">&#34;ns1:DictionaryEntry&#34;</span>)
-        .Select(entry =&gt; <span style="color:#66d9ef">new</span> OpenExtendedDictionaryEntry
-        {
-            PartOfSpeech = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:PartOfSpeech&#34;</span>).First().InnerText,
-            OutputString = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:OutputString&#34;</span>).First().InnerText,
-            InputString = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:InputString&#34;</span>).First().InnerText,
-            Priority = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:Priority&#34;</span>).First().InnerText.AsInt(),
-            ReverseConversion = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:ReverseConversion&#34;</span>).First().InnerText.AsBool(),
-            CommonWord = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:CommonWord&#34;</span>).First().InnerText.AsBool(),
-        })
-        .ToObservableCollection();
+var file = await Package.Current.InstalledLocation.GetFileAsync(path);
+var text = await Windows.Storage.FileIO.ReadTextAsync(file);
+<p>var xml = <span class="synStatement">new</span> XmlDocument();
+var settings = <span class="synStatement">new</span> XmlLoadSettings();
+xml.LoadXml(text, settings);</p>
+<p>var dictionary = <span class="synStatement">new</span> OpenExtendedDictionary();</p>
+<p>dictionary.DictionaryGuid = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:DictionaryGUID&quot;</span>).First().InnerText;
+dictionary.DictionaryLanguage = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:DictionaryLanguage&quot;</span>).First().InnerText;
+dictionary.DictionaryVersion = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:DictionaryVersion&quot;</span>).First().InnerText;</p>
+<p>dictionary.DictionaryInfo.Language = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:DictionaryInfo&quot;</span>)[<span class="synConstant">0</span>].Attributes[<span class="synConstant">0</span>].NodeValue.AsString();
+dictionary.DictionaryInfo.ShortName = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:ShortName&quot;</span>).First().InnerText;
+dictionary.DictionaryInfo.LongName = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:LongName&quot;</span>).First().InnerText;
+dictionary.DictionaryInfo.Description = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:Description&quot;</span>).First().InnerText;
+dictionary.DictionaryInfo.Copyright = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:Copyright&quot;</span>).First().InnerText;</p>
+<p>dictionary.DictionaryEntries = xml.GetElementsByTagName(<span class="synConstant">&quot;ns1:DictionaryEntry&quot;</span>)
+.Select(entry =&gt; <span class="synStatement">new</span> OpenExtendedDictionaryEntry
+{
+PartOfSpeech = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:PartOfSpeech&quot;</span>).First().InnerText,
+OutputString = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:OutputString&quot;</span>).First().InnerText,
+InputString = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:InputString&quot;</span>).First().InnerText,
+Priority = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:Priority&quot;</span>).First().InnerText.AsInt(),
+ReverseConversion = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:ReverseConversion&quot;</span>).First().InnerText.AsBool(),
+CommonWord = entry.ChildNodes.Where(_ =&gt; _.NodeName == <span class="synConstant">&quot;ns1:CommonWord&quot;</span>).First().InnerText.AsBool(),
+})
+.ToObservableCollection();
 }
+</pre><p><br />
+書いてて辛かった。<a href="http://msdn.microsoft.com/ja-jp/library/system.xml.nametable(v=vs.110).aspx">NameTable Class (System.Xml) | Microsoft Docs</a> が IntelliSense で出てこないのはサポートされていないということだろうか。 <code>GetElementsByTagName()</code> とか <code>ChildNodes.Where(_ =&gt; _.NodeName == &ldquo;ns1:PartOfSpeech&rdquo;)</code> とか、割とひどい感じだと思った。</p></p>
+<blockquote cite="http://ufcpp.net/study/csharp/ap_modern.html">
+<p><b>過去の書き方</b><br />
+.NET 3.0 以前では、XmlDocument クラス（System.Xml 名前空間）を使っていました。</p><p><b>今の書き方</b><br />
+.NET 3.5 で、XDocument クラスが追加されました。 IEnumerable<XElement> で要素一覧を読み出せるので、LINQ to Objects が使えます。</p>
+<p><cite><a href="http://ufcpp.net/study/csharp/ap_modern.html">使わなくなった機能・新しい機能 - C# によるプログラミング入門 | ++C++; // 未確認飛行 C</a></cite></p>
+</blockquote>
+<p>おとなしく XDocument を使うことにしよう。</p>
 
-<span style="color:#960050;background-color:#1e0010">```</span>&lt;br/&gt;
-<span style="color:#960050;background-color:#1e0010">書いてて辛かった。</span>&lt;a href=<span style="color:#e6db74">&#34;http://msdn.microsoft.com/ja-jp/library/system.xml.nametable(v=vs.110).aspx&#34;</span>&gt;NameTable Class (System.Xml) | Microsoft Docs&lt;/a&gt; <span style="color:#960050;background-color:#1e0010">が</span> IntelliSense <span style="color:#960050;background-color:#1e0010">で出てこないのはサポートされていないということだろうか。</span> &lt;code&gt;GetElementsByTagName()&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">とか</span> &lt;code&gt;ChildNodes.Where(_ =&gt; _.NodeName == <span style="color:#e6db74">&#34;ns1:PartOfSpeech&#34;</span>)&lt;/code&gt; <span style="color:#960050;background-color:#1e0010">とか、割とひどい感じだと思った。</span>
-
-    &gt;
-        **<span style="color:#960050;background-color:#1e0010">過去の書き方</span>**
-.NET <span style="color:#ae81ff">3.0</span> <span style="color:#960050;background-color:#1e0010">以前では、</span>XmlDocument <span style="color:#960050;background-color:#1e0010">クラス（</span>System.Xml <span style="color:#960050;background-color:#1e0010">名前空間）を使っていました。</span>**<span style="color:#960050;background-color:#1e0010">今の書き方</span>**
-.NET <span style="color:#ae81ff">3.5</span> <span style="color:#960050;background-color:#1e0010">で、</span>XDocument <span style="color:#960050;background-color:#1e0010">クラスが追加されました。</span> IEnumerable <span style="color:#960050;background-color:#1e0010">で要素一覧を読み出せるので、</span>LINQ to Objects <span style="color:#960050;background-color:#1e0010">が使えます。</span>
-
-        <span style="color:#960050;background-color:#1e0010">使わなくなった機能・新しい機能</span> - C<span style="color:#960050;background-color:#1e0010">#</span> <span style="color:#960050;background-color:#1e0010">によるプログラミング入門</span> | ++C++; <span style="color:#75715e">// 未確認飛行 C
-</span><span style="color:#75715e"></span>    
-<span style="color:#960050;background-color:#1e0010">おとなしく</span> XDocument <span style="color:#960050;background-color:#1e0010">を使うことにしよう。</span>
-
-
-</code></pre></div>
 
     <footer>
         
@@ -148,7 +140,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/06/20/160824.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/03/29</time> 
+                最終更新日：<time>2014/06/20</time> 
             </p>
         
     </footer>
@@ -200,7 +192,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

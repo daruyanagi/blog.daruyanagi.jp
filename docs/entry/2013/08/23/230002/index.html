@@ -37,9 +37,15 @@
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2013/08/23/230002/20130823225537_hufde83d0d1000d021d923d03e64f3ac60_23916_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2013/08/23/230002/20130823225537_hufde83d0d1000d021d923d03e64f3ac60_23916_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2013/08/23/230002/" />
@@ -86,45 +92,33 @@
         </time>        
     </p>
 
-    <blockquote>
+    <blockquote cite="http://pronama.azurewebsites.net/2013/08/23/kurei-kei-voice/">
+<p>というわけで、この度、IT系コミュニティ「プログラミング生放送」のキャラクター、プロ生ちゃんこと暮井 慧（くれい けい）のシステムボイスを無償公開します！　PC やスマホの一般的なサウンド設定、そして Visual Studio など開発用ツールのサウンド設定としても使える内容です。</p>
+<p><cite><a href="http://pronama.azurewebsites.net/2013/08/23/kurei-kei-voice/">プロ生ちゃんこと暮井 慧（CV 上坂すみれ）のシステムボイス無償公開のお知らせ！ | プログラミング生放送</a></cite></p>
 </blockquote>
-<pre><code>    というわけで、この度、IT系コミュニティ「プログラミング生放送」のキャラクター、プロ生ちゃんこと暮井 慧（くれい けい）のシステムボイスを無償公開します！　PC やスマホの一般的なサウンド設定、そして Visual Studio など開発用ツールのサウンド設定としても使える内容です。
-
-    プロ生ちゃんこと暮井 慧（CV 上坂すみれ）のシステムボイス無償公開のお知らせ！ | プログラミング生放送
-</code></pre>
-<p>プロ生ちゃん（CV: 上坂すみれ（<a href="https://twitter.com/Uesakasumire"><a href="https://twitter.com/Uesakasumire">https://twitter.com/Uesakasumire</a></a>）さん）のシステムボイスが公開されました！　個人的にちょっと面白いなぁと思ったのは、「Visual Studio」用のサウンドが用意されていること。これを使うと、プロ生ちゃんがビルド通知してくれるようになるっぽい。</p>
+<p>プロ生ちゃん（CV: 上坂すみれ（<a href="https://twitter.com/Uesakasumire">https://twitter.com/Uesakasumire</a>）さん）のシステムボイスが公開されました！　個人的にちょっと面白いなぁと思ったのは、「Visual Studio」用のサウンドが用意されていること。これを使うと、プロ生ちゃんがビルド通知してくれるようになるっぽい。</p>
 <div class="section">
-    ### 使い方
-    「Visual Studio 2012」<a href="#f1" name="fn1" title="「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証">*1</a>がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。
-<figure>
-    <img src="/images/20130823225537.png"/> 
-</figure>
-
-<p>xpress エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では</p>
+<h3>使い方</h3>
+<p>「Visual Studio 2012」<a href="#f1" name="fn1" title="「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証">*1</a>がインストールされている環境で［サウンド］プロパティ画面の［サウンド］タブを開くと、“プログラム イベント”リストの下の方に Visual Studio のイベントが登録されているはず。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130823225537.png" alt="f:id:daruyanagi:20130823225537p:plain" title="f:id:daruyanagi:20130823225537p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Express エディションでもいいみたい。ここにサウンド（WAVファイル）を割り当てるだけ。うちの環境では</p>
 <ul>
 <li>ビルドが取り消されました</li>
 <li>ビルド失敗</li>
 <li>ビルド正常終了</li>
-</ul>という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。
+</ul><p>という3つのイベントが登録されてた。これはエディションによって少し差異があるみたい。たとえば、上位エディションではブレークポイントでもイベントが発生する。</p>
 </div>
 <div class="section">
-    ### 注意
-<figure>
-    <img src="/images/20130823225909.png"/> 
-</figure>
-
-<p>布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。</p>
+<h3>注意</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130823225909.png" alt="f:id:daruyanagi:20130823225909p:plain" title="f:id:daruyanagi:20130823225909p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>配布されているシステムサウンドは長すぎるのかな？　うちの環境ではそのままでは使えなかった。なので“cut”フォルダに収められた短いセリフ（MP3形式）を「foober2000」で WAV 形式に変換して使っています（追記：現在は“cut”フォルダ内のサウンドも WAV 形式になっています）。</p><p>あと Visual Studio はシステムサウンドを設定した後に起動しなきゃいけないみたい。起動したままサウンド設定を行ったのだけど、ビルドしても音声が再生されず「なんでや」と思った次第。</p>
 </div>
 <div class="section">
-    ### 最後に
-    WebMatrix にもプログラム イベントがほしい！
+<h3>最後に</h3>
+<p>WebMatrix にもプログラム イベントがほしい！</p>
 <ul>
-<li><a href="http://www.forest.impress.co.jp/docs/news/20130823_612340.html">上坂すみれが声を務める“プロ生ちゃん”のシステムボイスが無償公開 - 窓の杜</a></li>
+<li><a href="http://www.forest.impress.co.jp/docs/news/20130823_612340.html">&#x4E0A;&#x5742;&#x3059;&#x307F;&#x308C;&#x304C;&#x58F0;&#x3092;&#x52D9;&#x3081;&#x308B;&ldquo;&#x30D7;&#x30ED;&#x751F;&#x3061;&#x3083;&#x3093;&rdquo;&#x306E;&#x30B7;&#x30B9;&#x30C6;&#x30E0;&#x30DC;&#x30A4;&#x30B9;&#x304C;&#x7121;&#x511F;&#x516C;&#x958B; - &#x7A93;&#x306E;&#x675C;</a></li>
 </ul>
 </div><div class="footnote">
-<a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証</span>
+<p class="footnote"><a href="#fn1" name="f1" class="footnote-number">*1</a><span class="footnote-delimiter">:</span><span class="footnote-text">「Visual Studio 2008」まではおそらくないと思う。「Visual Studio 2010」は未検証</span></p>
 </div>
-
 
     <footer>
         
@@ -138,7 +132,7 @@
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/08/23/230002.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2013/08/23</time> 
             </p>
         
     </footer>
@@ -190,7 +184,16 @@
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

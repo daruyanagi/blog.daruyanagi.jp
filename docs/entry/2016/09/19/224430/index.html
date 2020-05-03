@@ -33,13 +33,15 @@
     
 <meta name="og:title"         property="og:title" content="UWP：はてなの oAuth 認証" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="ログラミングの秋……なのかな？ 最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して" />
+    <meta name="og:description"   property="og:description" content="プログラミングの秋……なのかな？ 最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出し" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
     <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2016/09/19/224430/" />
@@ -86,121 +88,94 @@
         </time>        
     </p>
 
-    <figure>
-    <img src="/images/20160919220838.png"/> 
-</figure>
-
-<p>ログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。</p>
+    <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160919220838.png" alt="f:id:daruyanagi:20160919220838p:plain" title="f:id:daruyanagi:20160919220838p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>プログラミングの秋……なのかな？　最近、またプログラミングをちょろちょろとやっています。今回は、UWP。一つ新しいのができたのでストアに提出して、今はむかし作りかけて放置中のはてブをつけるアプリを完成させようと四苦八苦してる途中。</p><p>実はこのアプリ、ほぼ完成していて、Windows 10 Mobile ではてブみたりはてブつけるのに使っているのだけど、セットアップに AtomPub の APIキー を使うタイプなんだよね。自分で使う分にはこれでもいいんだけど、ちょっとダサいので oAuth でやりたかった。</p>
 <div class="section">
-    ### AsyncOAuth を導入する
-    さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。
+<h3>AsyncOAuth を導入する</h3>
+<p>さて、oAuth はトークンのやり取りとかハッシュとかヘッダーの生成とか、いろいろややこしい処理がある。自分でも組んでみたけど、どこかちょっと間違ってるみたいで、なかなか認証が通らない。というわけで、ライブラリさまのお力を借りた。</p><p>いろいろ探してみたんだけど、AsyncOAuth が一番気に入ったかも。</p>
 <ul>
-<li><a href="http://neue.cc/2013/02/27_398.html">neue cc - AsyncOAuth - C#用の全プラットフォーム対応の非同期OAuthライブラリ</a></li>
-</ul>UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。<iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fneuecc%2FAsyncOAuth%2Fissues%2F23" title="Cannot add nuget to UWP project · Issue #23 · neuecc/AsyncOAuth" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe>AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。
-```cs
-var authorizer = new OAuthAuthorizer(ConsumerKey, ConsumerSecret);
-var callbackUri = "http://localhost/";
+<li><a href="http://neue.cc/2013/02/27_398.html">neue cc - AsyncOAuth - C#&#x7528;&#x306E;&#x5168;&#x30D7;&#x30E9;&#x30C3;&#x30C8;&#x30D5;&#x30A9;&#x30FC;&#x30E0;&#x5BFE;&#x5FDC;&#x306E;&#x975E;&#x540C;&#x671F;OAuth&#x30E9;&#x30A4;&#x30D6;&#x30E9;&#x30EA;</a></li>
+</ul><p>UWP プロジェクトに NuGet でインストールできなかったんだけど、手動で加えたら問題なく動いた。もうメンテナンスされていないのかもしれないけど、せっかくいいものなので UWP でもサクッと使えるようにしてほしいな（賛同してくれるヒトは、みんなで のいえっち にサイレントプレッシャーをかけよう！）。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fneuecc%2FAsyncOAuth%2Fissues%2F23" title="Cannot add nuget to UWP project · Issue #23 · neuecc/AsyncOAuth" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>AsyncOAuth にはコンソールアプリだけど はてな 認証のサンプルもついてる。これを UWP 向けにチョロチョロと改造すればおっけ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>var authorizer = <span class="synStatement">new</span> OAuthAuthorizer(ConsumerKey, ConsumerSecret);
+var callbackUri = <span class="synConstant">&quot;http://localhost/&quot;</span>;
 <p>var requestTokenResponse = await authorizer.GetRequestToken(
-&ldquo;<a href="https://www.hatena.com/oauth/initiate%22,">https://www.hatena.com/oauth/initiate&quot;,</a>
-new[]
-{ 
-new KeyValuePair&lt;string, string&gt;(
-&ldquo;oauth_callback&rdquo;,
+<span class="synConstant">&quot;https://www.hatena.com/oauth/initiate&quot;</span>,
+<span class="synStatement">new</span>[]
+{
+<span class="synStatement">new</span> KeyValuePair&lt;<span class="synType">string</span>, <span class="synType">string</span>&gt;(
+<span class="synConstant">&quot;oauth_callback&quot;</span>,
 callbackUri
 )
 },
-new FormUrlEncodedContent(new[] {
-new KeyValuePair&lt;string, string&gt;(
-&ldquo;scope&rdquo;, 
-&ldquo;read_public,write_public,read_private,write_private&rdquo;
+<span class="synStatement">new</span> FormUrlEncodedContent(<span class="synStatement">new</span>[] {
+<span class="synStatement">new</span> KeyValuePair&lt;<span class="synType">string</span>, <span class="synType">string</span>&gt;(
+<span class="synConstant">&quot;scope&quot;</span>,
+<span class="synConstant">&quot;read_public,write_public,read_private,write_private&quot;</span>
 )
 }));</p>
 <p>var requestToken = requestTokenResponse.Token;</p>
 <p>var authorizeUrl = authorizer.BuildAuthorizeUrl(
-&ldquo;<a href="https://www.hatena.ne.jp/touch/oauth/authorize%22,">https://www.hatena.ne.jp/touch/oauth/authorize&quot;,</a> 
-requestToken);</p>
-<pre><code class="language-たとえば、リクエストトークンをとるまでのところはこんな感じ。めんどくさいところは全部やってくれるので楽ちんだー。callbackUri" data-lang="たとえば、リクエストトークンをとるまでのところはこんな感じ。めんどくさいところは全部やってくれるので楽ちんだー。callbackUri">
-&lt;/div&gt;
-&lt;div class=&quot;section&quot;&gt;
-    ### WebAuthenticationBroker を使って認証する
-    
-
-<figure>
-    <img src="/images/20160919223009.png"/> 
-</figure>
-
-
-は Web へアクセスして認証。UWP には WebAuthenticationBroker っていうダイアログを出す仕組み（それだけじゃないけど）が用意されているので、それを使うといい感じ。
-```cs
-// さっき取得したリクエストトークンを使って認証 URI を取得
-var authorizeUrl = authorizer.BuildAuthorizeUrl(
-    &quot;https://www.hatena.ne.jp/touch/oauth/authorize&quot;,
-     requestToken);
-
-// ダイアログを開いて結果を取得
-var webAuthenticationResult = await WebAuthenticationBroker
-    .AuthenticateAsync(
-        WebAuthenticationOptions.None,
-        new Uri(authorizeUrl), new Uri(callbackUri)
-    );
-
-// 結果をみていろいろ分岐処理
-switch (webAuthenticationResult.ResponseStatus)
-{
-    case WebAuthenticationStatus.Success:
-        try
-        {
-            // http://localhost?...=...&amp;amp;...=... っていうのが
-            // 返るのでテキトーに千切って verifier だけ取得
-            var verifier = webAuthenticationResult.ResponseData
-                .Split(&amp;#39;?&amp;#39;).Last()
-                .Split(&amp;#39;&amp;amp;&amp;#39;).Last()
-                .Split(&amp;#39;=&amp;#39;).Last();
-            // リクエストトークンと verifier で
-            // アクセストークンをゲット
-            // これでいろいろし放題だ！
-            var accessTokenTokenResponse = await authorizer
-                .GetAccessToken(
-                    &quot;https://www.hatena.com/oauth/token&quot;,
-                    requestToken, verifier);
-
-            AccessToken = accessTokenTokenResponse.Token;
-
-            result = true;
-        }
-        catch (Exception exception)
-        {
-            // エラー処理するんやで
-        }
-        break;
-
-    case WebAuthenticationStatus.ErrorHttp:
-    case WebAuthenticationStatus.UserCancel:
-    default:
-        break;
-}
-
-</code></pre></div>
+<span class="synConstant">&quot;https://www.hatena.ne.jp/touch/oauth/authorize&quot;</span>,
+requestToken);
+</pre><p>たとえば、リクエストトークンをとるまでのところはこんな感じ。めんどくさいところは全部やってくれるので楽ちんだー。</p><p>callbackUri を“oob”にしたら PIN を使った認証になる。WebAuthenticationBroker.GetCurrentApplicationCallbackUri() で取得した URL は はてな では使えないみたいなので、今回は“<a href="http://localhost/">http://localhost/</a>”をセットしておく（これはあとで認証するときに必要になる）。</p></p>
+</div>
 <div class="section">
-    ### ユーザー情報を取得
-<figure>
-    <img src="/images/20160919223808.png"/> 
-</figure>
-
-<p>とは OAuthUtility.CreateOAuthClient() でクライアントを取得してごにょごにょするだけ。このクライアントは AsyncOAuth が HttpClient にフィルター（？）をかましているだけなので、HttpClient みたいに GetAsync() とかできる。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-cs" data-lang="cs"><span style="color:#66d9ef">var</span> client = OAuthUtility.CreateOAuthClient(
-    ConsumerKey, ConsumerSecret, AccessToken
+<h3>WebAuthenticationBroker を使って認証する</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160919223009.png" alt="f:id:daruyanagi:20160919223009p:plain" title="f:id:daruyanagi:20160919223009p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>次は Web へアクセスして認証。UWP には WebAuthenticationBroker っていうダイアログを出す仕組み（それだけじゃないけど）が用意されているので、それを使うといい感じ。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink><span class="synComment">// さっき取得したリクエストトークンを使って認証 URI を取得</span>
+var authorizeUrl = authorizer.BuildAuthorizeUrl(
+<span class="synConstant">&quot;https://www.hatena.ne.jp/touch/oauth/authorize&quot;</span>,
+requestToken);
+<p><span class="synComment">// ダイアログを開いて結果を取得</span>
+var webAuthenticationResult = await WebAuthenticationBroker
+.AuthenticateAsync(
+WebAuthenticationOptions.None,
+<span class="synStatement">new</span> Uri(authorizeUrl), <span class="synStatement">new</span> Uri(callbackUri)
+);</p>
+<p><span class="synComment">// 結果をみていろいろ分岐処理</span>
+<span class="synStatement">switch</span> (webAuthenticationResult.ResponseStatus)
+{
+<span class="synStatement">case</span> WebAuthenticationStatus.Success:
+<span class="synStatement">try</span>
+{
+<span class="synComment">// http://localhost?&hellip;=&hellip;&amp;&hellip;=&hellip; っていうのが</span>
+<span class="synComment">// 返るのでテキトーに千切って verifier だけ取得</span>
+var verifier = webAuthenticationResult.ResponseData
+.Split(<span class="synConstant">&rsquo;?&lsquo;</span>).Last()
+.Split(<span class="synConstant">&rsquo;&amp;&lsquo;</span>).Last()
+.Split(<span class="synConstant">'='</span>).Last();
+<span class="synComment">// リクエストトークンと verifier で</span>
+<span class="synComment">// アクセストークンをゲット</span>
+<span class="synComment">// これでいろいろし放題だ！</span>
+var accessTokenTokenResponse = await authorizer
+.GetAccessToken(
+<span class="synConstant">&quot;https://www.hatena.com/oauth/token&quot;</span>,
+requestToken, verifier);</p>
+<p>AccessToken = accessTokenTokenResponse.Token;</p>
+<p>result = <span class="synConstant">true</span>;
+}
+<span class="synStatement">catch</span> (Exception exception)
+{
+<span class="synComment">// エラー処理するんやで</span>
+}
+<span class="synStatement">break</span>;</p>
+<p><span class="synStatement">case</span> WebAuthenticationStatus.ErrorHttp:
+<span class="synStatement">case</span> WebAuthenticationStatus.UserCancel:
+<span class="synStatement">default</span>:
+<span class="synStatement">break</span>;
+}
+</pre></p>
+</div>
+<div class="section">
+<h3>ユーザー情報を取得</h3>
+<p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160919223808.png" alt="f:id:daruyanagi:20160919223808p:plain" title="f:id:daruyanagi:20160919223808p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あとは OAuthUtility.CreateOAuthClient() でクライアントを取得してごにょごにょするだけ。このクライアントは AsyncOAuth が HttpClient にフィルター（？）をかましているだけなので、HttpClient みたいに GetAsync() とかできる。</p>
+<pre class="code lang-cs" data-lang="cs" data-unlink>var client = OAuthUtility.CreateOAuthClient(
+ConsumerKey, ConsumerSecret, AccessToken
 );
-
-<span style="color:#66d9ef">var</span> json = <span style="color:#66d9ef">await</span> client.GetStringAsync(
-    <span style="color:#e6db74">&#34;http://n.hatena.com/applications/my.json&#34;</span>
+<p>var json = await client.GetStringAsync(
+<span class="synConstant">&quot;http://n.hatena.com/applications/my.json&quot;</span>
 );
-
-<span style="color:#960050;background-color:#1e0010">```これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。</span>
-
-&lt;/div&gt;
-
-</code></pre></div>
+</pre><p>これでディスプレイネームやプロフィールイメージなんかが取得できるので、テキトーにバインディングしてあげればおっけ。楽ちんでいいわー。</p></p>
+</div>
 
     <footer>
         
@@ -214,7 +189,7 @@ switch (webAuthenticationResult.ResponseStatus)
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/09/19/224430.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2016/09/19</time> 
             </p>
         
     </footer>
@@ -266,7 +241,16 @@ switch (webAuthenticationResult.ResponseStatus)
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

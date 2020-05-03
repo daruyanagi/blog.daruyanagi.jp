@@ -33,13 +33,19 @@
     
 <meta name="og:title"         property="og:title" content="PowerShall：VPN 接続をセットアップする" />
     <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
-    <meta name="og:description"   property="og:description" content="OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。Pow" />
+    <meta name="og:description"   property="og:description" content="OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。 nasunoblog.blogspot.com 必要" />
     
     <meta name="og:type"          property="og:type" content="article" />
     
+
     
-    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
     
+    
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/entry/2018/11/03/202417/20181103201605_hu6556fd0ac81d5e11d91a17c4b52c0f1d_48810_640x480_fit_box_2.png"            content="https://blog.daruyanagi.jp/entry/2018/11/03/202417/20181103201605_hu6556fd0ac81d5e11d91a17c4b52c0f1d_48810_640x480_fit_box_2.png"            alt="">
+    
+    
+
     <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
     <meta name="twitter:card"     property="twitter:card" content="summary" />
     <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2018/11/03/202417/" />
@@ -86,73 +92,38 @@
         </time>        
     </p>
 
-    <p>OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。<a href="https://nasunoblog.blogspot.com/2016/03/howto-add-vpn-adaptor-using-powershell.html" alt="PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記">
-  PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記
-</a>必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、<code>AuthenticationMethod</code> に <code>Maximum</code> を指定。</p>
-<div class="highlight"><pre style="color:#f8f8f2;background-color:#272822;-moz-tab-size:4;-o-tab-size:4;tab-size:4"><code class="language-ps1" data-lang="ps1">$PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
+    <p>OS をクリーンアップするたびに GUI で VPN をセットアップするのが面倒くさくなったので、PowerShell でできないかなーと思って少し調べた。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fnasunoblog.blogspot.com%2F2016%2F03%2Fhowto-add-vpn-adaptor-using-powershell.html" title="PowerShell を使ってVPN接続を追加する～Add-VpnConnection | 元「なんでもエンジニ屋」のダメ日記" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://nasunoblog.blogspot.com/2016/03/howto-add-vpn-adaptor-using-powershell.html">nasunoblog.blogspot.com</a></cite></p><p>必要な部分だけ、上記のサイトから拝借、うちの場合［データの暗号化］を“最強の暗号化”にしなきゃいけないので、`AuthenticationMethod` に `Maximum` を指定。</p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$PreKey</span> = <span class="synConstant">&quot;***&quot;</span>
+<p><span class="synIdentifier">$VpnUrl</span> = <span class="synConstant">&quot;<em><strong>&quot;</span>
+<span class="synIdentifier">$VpnName</span> = <span class="synConstant">&quot;</strong></em>&quot;</span></p>
+<p><span class="synStatement">Add-VpnConnection</span> -Name <span class="synIdentifier">$VpnName</span> <code>-ServerAddress &lt;span class=&quot;synIdentifier&quot;&gt;$VpnUrl&lt;/span&gt; </code>
+-RememberCredential -L2tpPsk <span class="synIdentifier">$PreKey</span> <code>-AuthenticationMethod MSChapv2 </code>
+-EncryptionLevel Maximum <code>-TunnelType L2tp </code>
+-Force
+</pre><p>これであっさり VPN を追加できたのだけど、うちの環境では <code>CHAP</code> プロトコルも有効化しないと繋がらないらしい。ここのチェックボックスね。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20181103200617.png" alt="f:id:daruyanagi:20181103200617p:plain" title="f:id:daruyanagi:20181103200617p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>GUI ではできないのかなぁ、と思い設定後に <code>C:\Windows\system32\ncpa.cpl</code> を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど、どうにもかっこ悪いので Twitter で聞いてみたら、幸い返事がいただけた。</p><p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">もうお試しかもしれませんが、-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます。 <a href="https://t.co/4LsYAR7Ulv">pic.twitter.com/4LsYAR7Ulv</a></p>— のらねこ！ C95 12/30日曜 東ト27a (@ragemax) <a href="https://twitter.com/ragemax/status/1058674732021645312?ref_src=twsrc%5Etfw">November 3, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p><p>ぉ、<code>AuthenticationMethod</code> って複数設定できるのか！　ってことでちょい修正。</p></p>
+<pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$PreKey</span> = <span class="synConstant">&quot;***&quot;</span>
 
-$VpnUrl = <span style="color:#e6db74">&#34;***&#34;</span>
-$VpnName = <span style="color:#e6db74">&#34;***&#34;</span>
+<span class="synIdentifier">$VpnUrl</span> = <span class="synConstant">&quot;***&quot;</span>
+<span class="synIdentifier">$VpnName</span> = <span class="synConstant">&quot;テスト&quot;</span>
 
-Add-VpnConnection -Name $VpnName `
-                  -ServerAddress $VpnUrl `
-                  -RememberCredential -L2tpPsk $PreKey `
-                  -AuthenticationMethod MSChapv2 `
-                  -EncryptionLevel Maximum `
-                  -TunnelType L2tp `
-                  -Force
+<span class="synStatement">Add-VpnConnection</span> -Name <span class="synIdentifier">$VpnName</span> `
+-ServerAddress <span class="synIdentifier">$VpnUrl</span> `
+-RememberCredential -L2tpPsk <span class="synIdentifier">$PreKey</span> `
+-AuthenticationMethod Chap,MSChapv2 ` <span class="synComment"># ここ</span>
+-EncryptionLevel Maximum `
+-TunnelType L2tp `
+-Force
+</pre><p>確かめてみたところ、意図したとおりにチェックボックスがオンになっていた。やったねー！</p><p>ちなみに ID とパスワードを設定するコマンドレットはないとのこと。</p>
+<pre class="code" data-lang="" data-unlink>$RasExec = &#34;C:\windows\system32\rasdial.exe&#34;
+$VpnUser  = &#34;***&#34;
+$VpnPass = &#34;***&#34;
 
-```これであっさり VPN を追加できたのだけど<span style="color:#960050;background-color:#1e0010">、</span>うちの環境では `CHAP` プロトコルも有効化しないと繋がらないらしい<span style="color:#960050;background-color:#1e0010">。</span>ここのチェックボックスね<span style="color:#960050;background-color:#1e0010">。</span>
-
-<figure>
-    <img src="/images/20181103200617.png"/> 
-</figure>
-
-
-UI ではできないのかなぁ<span style="color:#960050;background-color:#1e0010">、</span>と思い設定後に `C:\Windows\system32\ncpa.cpl` を開いて手動でチェックを入れるスクリプトにしてみたりもしたけど<span style="color:#960050;background-color:#1e0010">、</span>どうにもかっこ悪いので Twitter で聞いてみたら<span style="color:#960050;background-color:#1e0010">、</span>幸い返事がいただけた<span style="color:#960050;background-color:#1e0010">。</span>
-
-&gt;もうお試しかもしれませんが<span style="color:#960050;background-color:#1e0010">、</span>-AuthenticationMethod で複数の認証方法をカンマ使って指定したらうまくできます<span style="color:#960050;background-color:#1e0010">。</span> pic.twitter.com/4LsYAR7Ulv<span style="color:#960050;background-color:#1e0010">—</span> のらねこ<span style="color:#960050;background-color:#1e0010">！</span> C95 12/30日曜 東ト27a (@ragemax) November 3, 2018 &lt;script async=<span style="color:#e6db74">&#34;&#34;</span> src=<span style="color:#e6db74">&#34;https://platform.twitter.com/widgets.js&#34;</span> charset=<span style="color:#e6db74">&#34;utf-8&#34;</span>&gt;&lt;/script&gt;
-
- ぉ<span style="color:#960050;background-color:#1e0010">、</span>`AuthenticationMethod` って複数設定できるのか<span style="color:#960050;background-color:#1e0010">！</span>　ってことでちょい修正<span style="color:#960050;background-color:#1e0010">。</span>
-```ps1
-$PreKey = <span style="color:#e6db74">&#34;***&#34;</span>
-
-$VpnUrl = <span style="color:#e6db74">&#34;***&#34;</span>
-$VpnName = <span style="color:#e6db74">&#34;テスト&#34;</span>
-
-Add-VpnConnection -Name $VpnName `
-                  -ServerAddress $VpnUrl `
-                  -RememberCredential -L2tpPsk $PreKey `
-                  -AuthenticationMethod Chap,MSChapv2 ` <span style="color:#75715e"># ここ</span>
-                  -EncryptionLevel Maximum `
-                  -TunnelType L2tp `
-                  -Force
-
-```確かめてみたところ<span style="color:#960050;background-color:#1e0010">、</span>意図したとおりにチェックボックスがオンになっていた<span style="color:#960050;background-color:#1e0010">。</span>やったねー<span style="color:#960050;background-color:#1e0010">！</span>ちなみに ID とパスワードを設定するコマンドレットはないとのこと<span style="color:#960050;background-color:#1e0010">。</span>
-</code></pre></div><p>$RasExec = &ldquo;C:\windows\system32\rasdial.exe&rdquo;
-$VpnUser  = &ldquo;<em><strong>&rdquo;
-$VpnPass = &ldquo;</strong></em>&rdquo;</p>
-<p>#Add User &amp; Pass
-cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
-<pre><code class="language-上記サイトでは" data-lang="上記サイトでは">
-<figure>
-    <img src="/images/20181103201605.png"/> 
-</figure>
-
-
-の認証ダイアログで［資格情報を記憶する］とかいうチェックボックスがあれば便利なんだがな―って思ってたけど、1度繋ぐと保存されるのかな？　2回目は聞かれなかった気がする。とりあえずテストは完了したので、これを初期化スクリプトに追記して今日のお仕事は終わり。また便利になってしまった。
-
-&lt;div class=&quot;section&quot;&gt;
-    ### 追伸
-    
-
-&gt;（もうめんどいからいいや）— だるやなぎ准将 (@daruyanagi) November 3, 2018 &lt;script async=&quot;&quot; src=&quot;https://platform.twitter.com/widgets.js&quot; charset=&quot;utf-8&quot;&gt;&lt;/script&gt;
-
- 
-
-&lt;/div&gt;
-
-</code></pre>
+#Add User &amp; Pass
+cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</pre><p>上記サイトでは rasdial.exe を使った解決策が示されていたけど、うちは定期的なパスワード変更が義務付けられている & 1Password で資格情報を生成・管理しているので、バッチファイルにパスワードを書くのはやめた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20181103201605.png" alt="f:id:daruyanagi:20181103201605p:plain" title="f:id:daruyanagi:20181103201605p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>この認証ダイアログで［資格情報を記憶する］とかいうチェックボックスがあれば便利なんだがな―って思ってたけど、1度繋ぐと保存されるのかな？　2回目は聞かれなかった気がする。</p><p>とりあえずテストは完了したので、これを初期化スクリプトに追記して今日のお仕事は終わり。また便利になってしまった。</p>
+<div class="section">
+<h3>追伸</h3>
+<p><blockquote class="twitter-tweet"><p lang="ja" dir="ltr">（もうめんどいからいいや）</p>&mdash; だるやなぎ准将 (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1058687649286746112?ref_src=twsrc%5Etfw">November 3, 2018</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> </p>
+</div>
 
     <footer>
         
@@ -166,7 +137,7 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
             <p class="text-right">
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/11/03/202417.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
                 / 
-                最終更新日：<time>2020/04/20</time> 
+                最終更新日：<time>2018/11/03</time> 
             </p>
         
     </footer>
@@ -218,7 +189,16 @@ cmd.exe /c $RasExec $VpnName $VpnUser $VpnPass</p>
     <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
     <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
 
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
     <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
       const tables = document.getElementsByTagName("table");
       for (var i = 0; i < tables.length; i++)
       {

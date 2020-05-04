@@ -46,7 +46,9 @@ chart.draw(data, options);
 </div>
 <div class="section">
 <h3>結果</h3>
-<p>マウスオーバーしてみるといいやで。</p><p><script type="text/javascript" src="https://www.google.com/jsapi"></script><br />
+<p>マウスオーバーしてみるといいやで。</p>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.load("visualization", "1.1", {packages:["bar"]});
 google.setOnLoadCallback(drawChart);
@@ -76,7 +78,8 @@ subtitle: '2006-2014',
 var chart = new google.charts.Bar(document.getElementById('chart_div'));
 chart.draw(data, options);
 }
-</script><br />
-<div id="chart_div" style="width: 540px; height: 360px;"></div></p>
+</script>
+
+<div id="chart_div" style="width: 540px; height: 360px;"></div>
 
 </div>

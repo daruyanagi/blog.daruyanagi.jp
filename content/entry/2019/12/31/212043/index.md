@@ -42,7 +42,9 @@ Sans lesquels je ne peux pas vivre.</p><p>理解のある妻がいて<br />
 そんな家に、わたしは住みたい。</p>
 
 </blockquote>
-<p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2012%2F09%2F04%2F033606" title="ネコについて - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2012/09/04/033606">blog.daruyanagi.jp</a></cite></p><p>半面、仕事がちょっとしんどくて、ブログを書き続けられなくなったり、読む本の量が激減したり、プログラミング的なことをしなくなるなど、活動面では充実したとはいいがたい年になりました。休める時間があれば、お酒飲んで、ゴロゴロとマンガを読んだり、ゲームで憂さを晴らす感じ。精神の回復がむかしほどうまくいかなくなって、だるいなぁ、切り替えができなくなったなぁっていう実感があります。歳を食うってこういうことなのかねぇ……つらたん。</p><p>懸念の Amazon 依存は酷くなる一方で、今年はとうとう 100 万円を突破したらしいです。引っ越しに合わせていろいろ買ったのと、モニターを新調したのが大きかったのかな？　来年はだいぶ減りそうな気がしています。</p><p><script type="text/javascript" src="https://www.google.com/jsapi"></script><br />
+<p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2012%2F09%2F04%2F033606" title="ネコについて - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2012/09/04/033606">blog.daruyanagi.jp</a></cite></p><p>半面、仕事がちょっとしんどくて、ブログを書き続けられなくなったり、読む本の量が激減したり、プログラミング的なことをしなくなるなど、活動面では充実したとはいいがたい年になりました。休める時間があれば、お酒飲んで、ゴロゴロとマンガを読んだり、ゲームで憂さを晴らす感じ。精神の回復がむかしほどうまくいかなくなって、だるいなぁ、切り替えができなくなったなぁっていう実感があります。歳を食うってこういうことなのかねぇ……つらたん。</p><p>懸念の Amazon 依存は酷くなる一方で、今年はとうとう 100 万円を突破したらしいです。引っ越しに合わせていろいろ買ったのと、モニターを新調したのが大きかったのかな？　来年はだいぶ減りそうな気がしています。</p>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.load("visualization", "1.1", {packages:["bar"]});
 google.setOnLoadCallback(drawChart);
@@ -64,17 +66,20 @@ var data = google.visualization.arrayToDataTable([
 ['2016', 705851 ],
 ['2017', 962104],
 ['2018', 1068734],
+['2019', 1164853],
 ]);
 
 var options = {
 chart: {
 title: 'Amazon 年間消費金額',
-subtitle: '2006-2018',
+subtitle: '2006-2019',
 }
 };
 
 var chart = new google.charts.Bar(document.getElementById('chart_div'));
 chart.draw(data, options);
 }
-</script><br />
-<div id="chart_div" style="width: 540px; height: 360px;"></div></p><p>それでは、よいお年を。</p>
+</script>
+<div id="chart_div" style="width: 540px; height: 360px;"></div>
+
+<p>それでは、よいお年を。</p>

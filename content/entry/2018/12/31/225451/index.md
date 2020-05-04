@@ -78,7 +78,9 @@ eyecatch:
 </div>
 <div class="section">
 <h3>おまけ：Amazon に貢いだ額</h3>
-<p>とうとう100万円を突破……着実に依存度が上がっている。</p><p><script type="text/javascript" src="https://www.google.com/jsapi"></script><br />
+<p>とうとう100万円を突破……着実に依存度が上がっている。</p>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 google.load("visualization", "1.1", {packages:["bar"]});
 google.setOnLoadCallback(drawChart);
@@ -112,7 +114,7 @@ subtitle: '2006-2017',
 var chart = new google.charts.Bar(document.getElementById('chart_div'));
 chart.draw(data, options);
 }
-</script><br />
-<div id="chart_div" style="width: 540px; height: 360px;"></div></p>
+</script>
+<div id="chart_div" style="width: 540px; height: 360px;"></div>
 
 </div>

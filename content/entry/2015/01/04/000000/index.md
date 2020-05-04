@@ -13,38 +13,40 @@ eyecatch: 20150103093252.png
 
 <ul>
 <li><a href="https://gist.githubusercontent.com/polamjag/866a8af775c44b3c1a6d/raw/9607877660bd04ea06d65328e2eb53d0134b6572/amazon-calc.js">https://gist.githubusercontent.com/polamjag/866a8af775c44b3c1a6d/raw/9607877660bd04ea06d65328e2eb53d0134b6572/amazon-calc.js</a></li>
-</ul><p>に掲載されているコードをコピーして、［コンソール］タブ下部のテキストボックスへペースト。［Enter］キーで実行すると、以下のようなダイアログが表示される。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150103093252.png" alt="f:id:daruyanagi:20150103093252p:plain" title="f:id:daruyanagi:20150103093252p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>調べたい年を入力して処理を継続すると、最後にその年に Amazon で使った金額の合計が出力される。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150103093344.png" alt="f:id:daruyanagi:20150103093344p:plain" title="f:id:daruyanagi:20150103093344p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんかエラーたくさん出たけど気にしないことにした。</p><p><script type="text/javascript" src="https://www.google.com/jsapi"></script><br />
+</ul><p>に掲載されているコードをコピーして、［コンソール］タブ下部のテキストボックスへペースト。［Enter］キーで実行すると、以下のようなダイアログが表示される。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150103093252.png" alt="f:id:daruyanagi:20150103093252p:plain" title="f:id:daruyanagi:20150103093252p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>調べたい年を入力して処理を継続すると、最後にその年に Amazon で使った金額の合計が出力される。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20150103093344.png" alt="f:id:daruyanagi:20150103093344p:plain" title="f:id:daruyanagi:20150103093344p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんかエラーたくさん出たけど気にしないことにした。</p>
+
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
-google.load("visualization", "1.1", {packages:["bar"]});
-google.setOnLoadCallback(drawChart);
+	google.load("visualization", "1.1", {packages:["bar"]});
+	google.setOnLoadCallback(drawChart);
 
-function drawChart() {
-var data = google.visualization.arrayToDataTable([
-['Year', '合計金額'],
-['2006', 71180 ],
-['2007', 283066 ],
-['2008', 66638 ],
-['2009', 35289 ],
-['2010', 93949 ],
-['2010', 93949 ],
-['2011', 258747 ],
-['2012', 277831 ],
-['2013', 186103  ],
-['2014', 258747 ],
-]);
+	function drawChart() {
+		var data = google.visualization.arrayToDataTable([
+			['Year', '合計金額'],
+			['2006', 71180 ],
+			['2007', 283066 ],
+			['2008', 66638 ],
+			['2009', 35289 ],
+			['2010', 93949 ],
+			['2010', 93949 ],
+			['2011', 258747 ],
+			['2012', 277831 ],
+			['2013', 186103  ],
+			['2014', 258747 ],
+		]);
 
-var options = {
-chart: {
-title: 'Amazon 年間消費金額',
-subtitle: '2006-2014',
-}
-};
+		var options = {
+			chart: {
+				title: 'Amazon 年間消費金額',
+				subtitle: '2006-2014',
+			}
+		};
 
-var chart = new google.charts.Bar(document.getElementById('chart_div'));
-chart.draw(data, options);
-}
-</script><br />
-<div id="chart_div" style="width: 540px; height: 360px;"></div></p>
+		var chart = new google.charts.Bar(document.getElementById('chart_div'));
+		chart.draw(data, options);
+	}
+</script>
+<div id="chart_div" style="width: 540px; height: 360px;"></div>
 
 <table>
 <tr>

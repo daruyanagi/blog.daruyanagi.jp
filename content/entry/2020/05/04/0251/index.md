@@ -56,8 +56,12 @@ Windows 10＋.NET Core 3.1 で開発し、Windows 10 で動作を確認しまし
 
 以下のライブラリを提供してくださった開発者に感謝します。
 
-- https://github.com/Cysharp/ConsoleAppFramework 
+- [Cysharp/ConsoleAppFramework: Micro\-framework for console applications to building CLI tools/Daemon/Batch for \.NET Core, C\#\.](https://github.com/Cysharp/ConsoleAppFramework)
 
+## 追記
 
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">-fotolife &lt;String&gt;なのにDefault: trueなのか…<br><br>.Net Coreでコンソールアプリを素直に作るとそうなる感じなのかな</p>&mdash; じょーさん@人生何度でもやり直し (@elf) <a href="https://twitter.com/elf/status/1257031083922604033?ref_src=twsrc%5Etfw">May 3, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
+
+たぶん僕がちゃんと [ConsoleAppFramework](https://github.com/Cysharp/ConsoleAppFramework)  を理解せずに使っているせいだと思います。そのうちちゃんと使いこなせるようになりたいですね！
 
 

@@ -1,0 +1,191 @@
+
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="いわゆる「だるろぐ」">
+<meta name="author" content="daruyanagi">
+<meta name="generator" content="Hugo">
+<title>Hugo に Amazon の商品リンクを貼る - blog.daruyanagi.jp</title>
+
+
+<link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<link rel="manifest" href="/manifest.json">
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/favicon.ico">
+<meta name="theme-color" content="#563d7c">
+
+
+    
+        
+        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+        <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag(){dataLayer.push(arguments);}
+        gtag('js', new Date());
+
+        gtag('config', 'UA-53152247-5');
+        </script>
+    
+<meta name="og:title"         property="og:title" content="Hugo に Amazon の商品リンクを貼る" />
+    <meta name="og:site_name"     property="og:site_name" content="blog.daruyanagi.jp" />
+    <meta name="og:description"   property="og:description" content="Hogo に Amazon の商品リンクを貼る方法はいくつかあるようだが、どれも一長一短のようだ。 ブックマークレットで紹介リンクを取得する（一番手軽。Markdo" />
+    
+    <meta name="og:type"          property="og:type" content="article" />
+    
+
+    
+    <meta name="og:image"         property="og:image" src="https://blog.daruyanagi.jp/no-image.png"  content="https://blog.daruyanagi.jp/no-image.png"  alt="">
+    
+
+    <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
+    <meta name="twitter:card"     property="twitter:card" content="summary" />
+    <meta name="twitter:url"      property="twitter:card" content="https://blog.daruyanagi.jp/entry/2020/05/05/1049/" />
+    <meta name="twitter:site"     property="twitter:card" content="@daruyanagi" />
+
+    
+    <link href="/css/styles.css" rel="stylesheet">
+  
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container">
+            <a href="/" class="navbar-brand"><img src="/logo.png" height="30" alt=""> blog.daruyanagi.jp</a>
+
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item active">
+                        <span  class="navbar-text">いわゆる「だるろぐ」</span>
+                    </li>
+                </ul>
+
+            <form class="form-inline" action="/search">
+                <div class="input-group">
+                  <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
+                  <div class="input-group-append">
+                    <button type="submit" class="btn btn-primary">Find</button>
+                  </div>
+                </div>
+            </form>
+            </div>   
+        </div>
+    </nav>
+
+    <main role="main">
+<article class="container" style="margin-top: 3rem;">
+    <h1>Hugo に Amazon の商品リンクを貼る</h1>
+    
+    <p class="published text-right">
+        公開日：<time>
+            2020/05/05
+        </time>        
+    </p>
+
+    <p>Hogo に Amazon の商品リンクを貼る方法はいくつかあるようだが、どれも一長一短のようだ。</p>
+<ul>
+<li>ブックマークレットで紹介リンクを取得する（一番手軽。Markdown に HTML が混じる。移植性が低下する）</li>
+<li>ショートコードで紹介リンクを貼る
+<ul>
+<li>API サーバーを自前で用意して、リンクを生成する（いろんな情報が取れるが、サーバーのメンテナンスが面倒）</li>
+<li><a href="https://github.com/ikemo3/hugo-amazon-jp" alt="hugo-amazon-jp">
+  hugo-amazon-jp
+</a> などのテーマコンポーネントを用いる（データ管理がめんどくさそう）</li>
+</ul>
+</li>
+</ul>
+<p>結局、当面の間は一番手軽なブックマークレットを用いることにした。</p>
+<pre><code>javascript: (function() { const tag = 'bestylesnet-22'; const name = document.getElementById('productTitle').textContent.trim(); const asin = document.URL.match(/([0-9A-Z]{10})/)[0]; const image = `https://images-na.ssl-images-amazon.com/images/P/dp/${asin}.09.MZZZZZZZ.jpg`; const message = `&lt;div class='amazon-item'&gt;&lt;img src='${image}' alt='${name}' /&gt; &lt;span class='amazon-item-title'&gt;${name}&lt;/span&gt; &lt;span class='amazon-item-link'&gt;&lt;a href='https://www.amazon.co.jp/dp/${asin}/?tag=${tag}'&gt;Amazon.co.jp でみる&lt;/a&gt;&lt;/span&gt;&lt;/div&gt;`; const title = window.prompt('コピーしてください', message); })(); 
+</code></pre><p><a href="javascript: (function() { const tag = 'bestylesnet-22'; const name = document.getElementById('productTitle').textContent.trim(); const asin = document.URL.match(/([0-9A-Z]{10})/)[0]; const image = `https://images-na.ssl-images-amazon.com/images/P/dp/${asin}.09.MZZZZZZZ.jpg`; const message = `<div class='amazon-item'><img src='${image}' alt='${name}' /> <span class='amazon-item-title'>${name}</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/${asin}/?tag=${tag}'>Amazon.co.jp でみる</a></span></div>`; const title = window.prompt('コピーしてください', message); })();">Amazon リンクを取得</a>（ブックマークバーにドラッグ＆ドロップして登録する）</p>
+<h2 id="テスト">テスト</h2>
+<p>発売日や出版社のデータも欲しいところだけど、スクレイピングで対応するのは結構面倒くさいようだ。メタタグか何か埋め込んでくれていたら楽なのにな。</p>
+<div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/4422210963.09.MZZZZZZZ.jpg' alt='古代ギリシア発掘史 (「知の再発見」双書)' /> <span class='amazon-item-title'>古代ギリシア発掘史 (「知の再発見」双書)</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/4422210963/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
+<div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/B0854VKPFN.09.MZZZZZZZ.jpg' alt='トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA' /> <span class='amazon-item-title'>トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/B0854VKPFN/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
+
+    <footer>
+        
+        
+
+        
+        <p class="text-right">
+            <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/05/05/1049/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
+            / 
+            最終更新日：<time>2020/05/05</time> 
+        </p>
+        
+    </footer>
+</article>
+
+<section class="container text-center"> 
+
+    <p>
+        
+        <a href="https://blog.daruyanagi.jp/entry/2020/05/04/0251/">&laquo; Older</a>
+        
+        <span > - </span>
+            <a href="/">🏠 Home</a>
+        <span > - </span>
+        
+    </p>    
+    
+</section>
+
+
+    </main>
+
+    <footer class="text-muted"></footer><div class="container">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-0944887782985208"
+         data-ad-slot="1125180844"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div class="spacer" style="height: 3rem;"></div>
+
+    <p class="float-right">
+    <a href="#">Back to top</a>
+    </p>
+    <p>
+        &copy; <a href="//daruyanagi.jp">daruyanagi</a> 2007-2020. </p>
+</div>
+
+</footer>
+
+    <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
+
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+    <script>
+      const pres = document.getElementsByTagName("pre");
+      for (var i = 0; i < pres.length; i++)
+      {
+        pres[i].classList.add("prettyprint");
+        
+      }
+
+      const tables = document.getElementsByTagName("table");
+      for (var i = 0; i < tables.length; i++)
+      {
+        tables[i].classList.add("table");
+      }
+
+      const blockquotes = document.getElementsByTagName("blockquote");
+      for (var i = 0; i < blockquotes.length; i++)
+      {
+        blockquotes[i].classList.add("blockquote");
+      }
+    </script>
+</html>

@@ -24,26 +24,11 @@
 
         <div class="hatena-bookmark-marker"><a href="https://blog.daruyanagi.jp{{ .RelPermalink }}"></a></div>
 
-        {{ $path := trim .RelPermalink "/" }}
-        {{ if and (.Date.Before (time "2020-02-19")) (.Lastmod.Before (time "2020-04-21")) }}
-            <div class="alert alert-warning" role="alert">
-                <strong>注意</strong> この記事は はてなブログ からのインポートしましたが、まだメンテナンスが終わっていないため、デザインが崩れている可能性があります。読みにくい場合やテキストに欠損がある場合は <a href="https://daruyanagi.hatenablog.com/{{ $path }}">こちら</a> を参照してください。
-            </div>
-        {{ end }}
-
-        {{ if .Date.Before (time "2020-02-19") }}
-            <p class="text-right">
-                <a href="{{ .Site.Params.GitHub }}tree/master/content/{{ $path }}.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-                / 
-                最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
-            </p>
-        {{ else }}
         <p class="text-right">
             <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
             / 
             最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
         </p>
-        {{ end }}
     </footer>
 </article>
 

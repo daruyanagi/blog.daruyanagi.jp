@@ -13,37 +13,71 @@
     <footer>
 
         <!-- Hatena bookmark comment -->
-        <script type="text/javascript" charset="utf-8" src="http://b.hatena.ne.jp/js/bookmark_blogparts.js"></script>
+        <style>
+            .hatena-bookmark header {
+            }
+
+            .hatena-bookmark dt {
+            }
+
+            .hatena-bookmark dd {
+            }
+
+            .hatena-bookmark time {
+                color: #999;
+            }
+        </style>
+
         <script type="text/javascript">
-        HBBlogParts.commentInsertSelector = [ 'div.hatena-bookmark-marker', 'div.article-body-inner', 'div.blogbody div.mainmore', 'div.blogbody div.main', 'div.entry-body-main'];
-        HBBlogParts.insertPosition = 'after';
-        HBBlogParts.permalinkSelector = [ 'div.hatena-bookmark-marker a', 'div h3 a', 'h2.title a', 'h2.entry-title a', '.posted a' ];
-        HBBlogParts.permalinkPathRegexp = /\/entry\/.+/
-        HBBlogParts.permalinkAttribute = 'href';
+        function HatenaBookmarkCallback(data)
+        {
+            if (data === null)
+            {
+                document.write(`
+                <section class='card hatena-bookmark'>
+                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/{{ .Permalink | safeURL }}'>0 user</a></header>
+                    <p class='card-body'>この記事にはまだコメントがついていません。
+                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url={{ .Permalink | safeURL }}'>コメントを残す</a>
+                    </p>
+                </section>`);
+                return;
+            }
+
+            let comments = "";
+
+            for (const bookmark of data.bookmarks) {
+                comments += `
+                    <li class='list-group-item hatena-bookmark-item'>
+                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
+                        <span class='hatena-bookmark-item-user'><a href='https://b.hatena.ne.jp/{ bookmark.user }/'>${ bookmark.user }</a></span>
+                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
+                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
+                    </li>
+                `;
+            }
+
+            const html = `
+            <section class='card hatena-bookmark'>
+                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/{{ .Permalink | safeURL }}'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
+                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
+                ${ comments }
+                </ul>
+                <footer class='card-body'><a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url={{ .Permalink | safeURL }}'>コメントを残す</a></footer>
+            </section>`;
+
+            document.write(html);            
+        }
         </script>
-
-        <div class="hatena-bookmark-marker"><a href="https://blog.daruyanagi.jp{{ .RelPermalink }}"></a></div>
-
-        {{ $path := trim .RelPermalink "/" }}
-        {{ if and (.Date.Before (time "2020-02-19")) (.Lastmod.Before (time "2020-04-21")) }}
-            <div class="alert alert-warning" role="alert">
-                <strong>注意</strong> この記事は はてなブログ からのインポートしましたが、まだメンテナンスが終わっていないため、デザインが崩れている可能性があります。読みにくい場合やテキストに欠損がある場合は <a href="https://daruyanagi.hatenablog.com/{{ $path }}">こちら</a> を参照してください。
-            </div>
-        {{ end }}
-
-        {{ if .Date.Before (time "2020-02-19") }}
-            <p class="text-right">
-                <a href="{{ .Site.Params.GitHub }}tree/master/content/{{ $path }}.md"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-                / 
-                最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
-            </p>
-        {{ else }}
+        
+        <script type="text/javascript"
+            src="//b.hatena.ne.jp/entry/jsonlite/?url={{ .Permalink | safeURL }}&callback=HatenaBookmarkCallback">
+        </script>
+        
         <p class="text-right">
             <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
             / 
             最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
         </p>
-        {{ end }}
     </footer>
 </article>
 

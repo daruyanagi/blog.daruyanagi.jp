@@ -13,21 +13,6 @@
     <footer>
 
         <!-- Hatena bookmark comment -->
-        <style>
-            .hatena-bookmark header {
-            }
-
-            .hatena-bookmark dt {
-            }
-
-            .hatena-bookmark dd {
-            }
-
-            .hatena-bookmark time {
-                color: #999;
-            }
-        </style>
-
         <script type="text/javascript">
         function HatenaBookmarkCallback(data)
         {
@@ -44,7 +29,7 @@
             }
 
             let comments = "";
-
+          
             for (const bookmark of data.bookmarks) {
                 comments += `
                     <li class='list-group-item hatena-bookmark-item'>
@@ -72,7 +57,7 @@
         <script type="text/javascript"
             src="//b.hatena.ne.jp/entry/jsonlite/?url={{ .Permalink | safeURL }}&callback=HatenaBookmarkCallback">
         </script>
-        
+      
         <p class="text-right">
             <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
             / 

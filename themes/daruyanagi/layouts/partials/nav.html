@@ -1,0 +1,23 @@
+<div class="container">
+    <a href="/" class="navbar-brand"><img src="{{ .Site.Params.logo_image }}" height="30" alt=""> {{ .Site.Title }}</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <span  class="navbar-text">{{ .Site.Params.Description }}</span>
+            </li>
+        </ul>
+
+    <form class="form-inline" action="/search">
+        <div class="input-group">
+            <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
+            <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Find</button>
+            </div>
+        </div>
+    </form>
+    </div>   
+</div>

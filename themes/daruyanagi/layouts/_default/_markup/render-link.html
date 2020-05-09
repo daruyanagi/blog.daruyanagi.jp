@@ -1,3 +1,55 @@
-<a href="{{ .Destination | safeURL }}" alt="{{ .Text }}">
-  {{ .Text }}
-</a>
+{{- if strings.HasSuffix .Destination "#embed" -}}
+  {{- $url := trim .Destination "#embed" -}}
+  {{- $domain := index (split .Destination "/")  2 -}}
+
+  {{- if strings.HasPrefix .Destination "https://twitter.com/" -}}
+    {{- $el := split $url "/" -}}
+    {{- $index := len $el -}}
+    {{- $index = sub $index 1 -}}
+    {{- $id := index $el $index -}}
+    {{- $endpoint := printf "https://api.twitter.com/1/statuses/oembed.json?id=%s" $id -}}
+    {{- $json := getJSON $endpoint -}}
+    {{ $json.html | safeHTML }}
+  {{- else if strings.HasPrefix .Destination "https://www.amazon.co.jp/" -}}
+    {{- $asins := findRE "[0-9A-Z]{10}" $url -}}
+    {{- $asin := index $asins 0 -}}
+    {{- $tag := "bestylesnet-22" -}}
+    <div class="card mb-3" style="max-width: 500px;">
+      <div class="row no-gutters">
+        <div class="col-md-4" style="display: flex;
+        justify-content: center;
+        align-items: center;">
+          <img style="margin: 1rem;" src="http://images-jp.amazon.com/images/P/{{ $asin }}.09.MZZZZZZZ.jpg" />
+        </div>
+        <div class="col-md-8">
+          <div class="card-body">
+            <p class="card-text"><a href="http://images-jp.amazon.com/dp/{{ $asin }}/?tag={{ $tag }}" alt="{{ .Text }}">{{ .Text }}</a></p>
+            <p class="card-text"><small class="text-muted">{{ $domain }}</small></p>
+          </div>
+        </div>
+      </div>
+    </div>
+  {{ else }}
+      <div class="card mb-3" style="max-width: 500px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+              <title>Placeholder</title>
+              <rect x="0" y="0" width="100%" height="100%" fill="#868e96" stroke-width="3px" fill="white"/>
+              <text x="50%" y="50%" fill="#dee2e6" dominant-baseline="middle" text-anchor="middle">No Image</text>   
+            </svg>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><a href="{{ $url | safeURL }}" alt="{{ .Text }}">{{ .Text }}</a></p>
+              <p class="card-text"><small class="text-muted">{{ $domain }}</small></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  {{ end }}
+{{ else }}
+  <a href="{{ .Destination | safeURL }}" alt="{{ .Text }}">
+    {{ .Text }}
+  </a>
+{{ end }}

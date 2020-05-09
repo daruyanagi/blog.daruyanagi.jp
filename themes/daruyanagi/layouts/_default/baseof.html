@@ -1,62 +1,14 @@
-
 <!doctype html>
 <html lang="en">
   <head>
     {{- partial "head.html" . -}}
 
-    <meta name="og:title"         property="og:title" content="{{ .Title }}" />
-    <meta name="og:site_name"     property="og:site_name" content="{{ .Site.Title }}" />
-    <meta name="og:description"   property="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-    {{ if .IsHome }}
-    <meta name="og:type"          property="og:type" content="website" />
-    {{ else }}
-    <meta name="og:type"          property="og:type" content="article" />
-    {{ end }}
-
-    {{ if .Params.eyecatch }}
-    {{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
-    {{ if ne $resource nil }}
-    {{ $thumbnail :=  $resource.Fit "640x480" }}
-    <meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}"            content="{{ $thumbnail.Permalink }}"            alt="">
-    {{ end }}
-    {{ else }}
-    <meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}"  content="{{ .Site.Params.og_image | absURL }}"  alt="">
-    {{ end }}
-
-    <meta name="fb:admins"        property="fb:admins" content="2150442315382" />
-    <meta name="twitter:card"     property="twitter:card" content="summary" />
-    <meta name="twitter:url"      property="twitter:card" content="{{ .Permalink }}" />
-    <meta name="twitter:site"     property="twitter:card" content="@daruyanagi" />
-
-    <!-- Custom styles for this template -->
-    <link href="/css/styles.css" rel="stylesheet">
-  
+    <!-- Custom styles for this template　$HUGO_HOME/static/custom.css / -->
+    <link href="/custom.css" rel="stylesheet">
   </head>
   <body>
     <nav class="navbar navbar-expand-lg navbar-light bg-light">
-        <div class="container">
-            <a href="/" class="navbar-brand"><img src="/logo.png" height="30" alt=""> {{ .Site.Title }}</a>
-
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
-            <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarText">
-                <ul class="navbar-nav mr-auto">
-                    <li class="nav-item active">
-                        <span  class="navbar-text">{{ .Site.Params.Description }}</span>
-                    </li>
-                </ul>
-
-            <form class="form-inline" action="/search">
-                <div class="input-group">
-                  <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
-                  <div class="input-group-append">
-                    <button type="submit" class="btn btn-primary">Find</button>
-                  </div>
-                </div>
-            </form>
-            </div>   
-        </div>
+      {{- partial "nav.html" . -}}
     </nav>
 
     <main role="main">
@@ -73,23 +25,19 @@
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
 
     <script>
-      const pres = document.getElementsByTagName("pre");
-      for (var i = 0; i < pres.length; i++)
+      for (const pre of document.getElementsByTagName("pre"))
       {
-        pres[i].classList.add("prettyprint");
-        // pres[i].classList.add("linenums");
+        pre.classList.add("prettyprint");
+      }
+      
+      for (const table of document.getElementsByTagName("table"))
+      {
+        table.classList.add("table");
       }
 
-      const tables = document.getElementsByTagName("table");
-      for (var i = 0; i < tables.length; i++)
+      for (const blockquote of document.getElementsByTagName("blockquote"))
       {
-        tables[i].classList.add("table");
-      }
-
-      const blockquotes = document.getElementsByTagName("blockquote");
-      for (var i = 0; i < blockquotes.length; i++)
-      {
-        blockquotes[i].classList.add("blockquote");
+        blockquote.classList.add("blockquote");
       }
     </script>
 </html>

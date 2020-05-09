@@ -10,15 +10,19 @@
     {{- $endpoint := printf "https://api.twitter.com/1/statuses/oembed.json?id=%s" $id -}}
     {{- $json := getJSON $endpoint -}}
     {{ $json.html | safeHTML }}
+
+  {{- else if strings.HasPrefix .Destination "https://www.youtube.com/" -}}
+    {{- $endpoint := printf "http://www.youtube.com/oembed?url=%s" $url -}}
+    {{- $json := getJSON $endpoint -}}
+    {{ $json.html | safeHTML }}
+
   {{- else if strings.HasPrefix .Destination "https://www.amazon.co.jp/" -}}
     {{- $asins := findRE "[0-9A-Z]{10}" $url -}}
     {{- $asin := index $asins 0 -}}
     {{- $tag := "bestylesnet-22" -}}
     <div class="card mb-3" style="max-width: 500px;">
       <div class="row no-gutters">
-        <div class="col-md-4" style="display: flex;
-        justify-content: center;
-        align-items: center;">
+        <div class="col-md-4" style="display: flex; justify-content: center; align-items: center;">
           <img style="margin: 1rem;" src="http://images-jp.amazon.com/images/P/{{ $asin }}.09.MZZZZZZZ.jpg" />
         </div>
         <div class="col-md-8">

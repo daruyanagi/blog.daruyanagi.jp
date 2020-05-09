@@ -11,6 +11,16 @@
     {{ .Content }}
 
     <footer>
+        <!-- metadata -->
+        <p class="text-right">
+            <span>
+                最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
+            </span>
+            -
+            <span>
+                <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
+            </span>
+        </p>
 
         <!-- Hatena bookmark comment -->
         <script type="text/javascript">
@@ -57,12 +67,6 @@
         <script type="text/javascript"
             src="//b.hatena.ne.jp/entry/jsonlite/?url={{ .Permalink | safeURL }}&callback=HatenaBookmarkCallback">
         </script>
-      
-        <p class="text-right">
-            <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            / 
-            最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
-        </p>
     </footer>
 </article>
 

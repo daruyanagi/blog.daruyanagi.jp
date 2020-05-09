@@ -3,53 +3,34 @@
 <meta name="description" content="{{ .Site.Params.Description }}">
 <meta name="author" content="{{ .Site.Params.Author }}">
 <meta name="generator" content="Hugo">
+<meta name="theme-color" content="#563d7c">
+    
 <title>{{ .Title }} - {{ .Site.Title }}</title>
 
 <!-- Bootstrap core CSS -->
 <link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
 
 <!-- Favicons -->
-<link rel="manifest" href="/manifest.json">
-<link rel="apple-touch-icon" href="/apple-touch-icon.png" sizes="180x180">
-<link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png">
-<link rel="icon" href="/favicon-16x16.png" sizes="16x16" type="image/png">
-<link rel="icon" href="/favicon.ico">
-<meta name="theme-color" content="#563d7c">
+<link rel="manifest" href="/favicon/manifest.json">
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/favicon/favicon.ico">
 
-{{ if not .Site.IsServer }}
-    {{ with .Site.GoogleAnalytics }}
-        <!-- Global site tag (gtag.js) - Google Analytics -->
-        <script async src="https://www.googletagmanager.com/gtag/js?id={{ . }}"></script>
-        <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
+<!-- Open Graph -->
+{{- template "_internal/opengraph.html" . -}}
 
-        gtag('config', '{{ . }}');
-        </script>
-    {{ end }}
-{{ end }}
+{{- if .Params.eyecatch -}}
+    {{- $resource := .Page.Resources.GetMatch (.Params.eyecatch) -}}
+    {{- if ne $resource nil -}}
+        {{- $thumbnail :=  $resource.Fit "640x480" -}}
+        <meta property="og:image" content="{{ $thumbnail.Permalink }}">
+        {{- end -}}
+    {{- else -}}
+    <meta property="og:image" content="{{ .Site.Params.og_image | absURL }}">
+{{- end -}}
 
-<meta name="og:title"         property="og:title" content="{{ .Title }}" />
-<meta name="og:site_name"     property="og:site_name" content="{{ .Site.Title }}" />
-<meta name="og:description"   property="og:description" content="{{ if .IsPage }}{{ .Summary }}{{ else }}{{ .Site.Params.description }}{{ end }}" />
-{{ if .IsHome }}
-<meta name="og:type"          property="og:type" content="website" />
-{{ else }}
-<meta name="og:type"          property="og:type" content="article" />
-{{ end }}
-
-{{ if .Params.eyecatch }}
-{{ $resource := .Page.Resources.GetMatch (.Params.eyecatch) }}
-{{ if ne $resource nil }}
-{{ $thumbnail :=  $resource.Fit "640x480" }}
-<meta name="og:image"         property="og:image" src="{{ $thumbnail.Permalink }}"            content="{{ $thumbnail.Permalink }}"            alt="">
-{{ end }}
-{{ else }}
-<meta name="og:image"         property="og:image" src="{{ .Site.Params.og_image | absURL }}"  content="{{ .Site.Params.og_image | absURL }}"  alt="">
-{{ end }}
-
-<meta name="fb:admins"        property="fb:admins" content="2150442315382" />
-<meta name="twitter:card"     property="twitter:card" content="summary" />
-<meta name="twitter:url"      property="twitter:card" content="{{ .Permalink }}" />
-<meta name="twitter:site"     property="twitter:card" content="@daruyanagi" />
+<meta property="fb:admins" content="2150442315382" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:url" content="{{ .Permalink }}" />
+<meta property="twitter:site" content="@daruyanagi" />

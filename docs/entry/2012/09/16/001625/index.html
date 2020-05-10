@@ -73,7 +73,7 @@
     <header>
         <h1>Windows ストアアプリ開発に挑戦してみたけど難しい……</h1>
         
-        <p class="published text-right">公開日：<time datetime='2012-09-16'> 2012年9月16日</time></p>
+        <p class="published text-right">公開日：<time datetime='Sun, 16 Sep 2012 00:16:25 UTC'> 2012年9月16日 00時16分</time></p>
     </header>
 
     <p><img src="20120915234152.png" alt="f:id:daruyanagi:20120915234152p:plain" title="f:id:daruyanagi:20120915234152p:plain" class="hatena-fotolife"></p><p>「Markdown エディターがあれば便利かなぁ」と思って少し挑戦してみたけれど、だいぶめんどくさい。</p><p>まず、MarkdownSharp が動かない。これは30分ぐらいかけて手直ししたら動くようになった。HashTable 使っているのを Dictionary に、ArrayList を List に……といった感じ。MD5 の計算ルーチンも動かなかったので、これも WinRT 向けに書き直した。RegexOption.Compiled がないっぽいんだけど、どういうことなんだろうか。まぁ、適当に消しといたけど。</p><p>そこまではいいんだ。</p><p>とりあえずデザインなんかを考えずに、エディターとプレビュー用の WebView を同じ画面に置いて、エディターの内容を NavigateToString() で WebView に表示するというのを作った。</p><p>そしたら、 NavigateToString() するたびにフォーカスが WebView にとられてしまう。これは困った。WPF/Silverlight でも似たようなのを作ってあるのだけれど<a href="#f1" name="fn1" title="途中で飽きて放置してある">*1</a>、そっちはそんな挙動じゃなかったのだけど。</p>
@@ -102,24 +102,26 @@ editor.Focus(Windows.UI.Xaml.FocusState.Programmatic));
         <div class="card" style="width: 100%;">
             
             <div class="card-header">
-                Windows ストアアプリ開発に挑戦してみたけど難しい…… <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+                記事「Windows ストアアプリ開発に挑戦してみたけど難しい…… 」について
             </div>
 
             <div class="card-body">
-                この記事は <time datetime='2012-09-16'> 2012年9月16日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/15/093030/">CSS / Javascript の Bunlde と Minify を WebMatrix で利用する（2）</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920/">燃費記録用の Windows ストアアプリを作ってみた</a>」です。</div>
-
-            <div class="card-body">
-                タグ：[<a href="/tags/windows-%E3%82%B9%E3%83%88%E3%82%A2-%E3%82%A2%E3%83%97%E3%83%AA">Windows ストア アプリ</a>] 
-            </div>
-
-            <div class="card-body">
-                最終更新日：<time datetime='2012-09-16'> 2020年5月4日</time>
+                <p>
+                この記事は <time datetime='2012-09-16'> 2012年9月16日</time> に、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら、
+                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/16/001625/">GitHub.com</a> で
+                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2012%2f09%2f16%2f001625%2f">isuue を作成</a>していただけると、
+                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2012/09/16/001625//index.md">GitHub.com</a> 
+                で確認できます。
+                </p>
+                <p>タグ：[<a href="/tags/windows-%E3%82%B9%E3%83%88%E3%82%A2-%E3%82%A2%E3%83%97%E3%83%AA">Windows ストア アプリ</a>] </p>
+                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日 01時50分</time></p>
+                <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/15/093030/">CSS / Javascript の Bunlde と Minify を WebMatrix で利用する（2）</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/17/222920/">燃費記録用の Windows ストアアプリを作ってみた</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/09/16/001625/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
                 <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/09/16/001625/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/16/001625/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                
             </div>
           </div>
 

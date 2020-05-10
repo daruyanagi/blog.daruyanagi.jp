@@ -6,9 +6,9 @@ function HatenaBookmarkCallback(data)
     {
         document.write(`
         <section class='card hatena-bookmark'>
-            <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='${ data.entry_url }'>0 user</a></header>
+            <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：0 user</header>
             <p class='card-body'>この記事にはまだコメントがついていません。
-            <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=${ data.url }'>コメントを残す</a>
+            <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=${ encodeURI(document.URL) }'>コメントを残す</a>
             </p>
         </section>`);
         return;

@@ -1,19 +1,18 @@
-{{ $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) }}
-{{ $small := $image.Fit  "480x360 jpg" }}
-{{ $medium := $image.Fit  "800x600 jpg" }}
-{{ $large := $image.Fit  "1024x768 jpg" }}
-{{ $exlarge := $image.Fit  "1800x1600 jpg" }}
-{{ $alt := .PlainText | safeHTML }}
+{{- $image := .Page.Resources.GetMatch (printf "%s" (.Destination | safeURL)) -}}
+{{- $s := $image.Fit  "480x360 jpg" -}}
+{{- $m := $image.Fit  "800x600 jpg" -}}
+{{- $l := $image.Fit  "1024x768 jpg" -}}
+{{- $alt := .PlainText | safeHTML -}}
 
 <figure class="figure text-center">
-    <picture>
-    <source media="(max-width: 480px)" srcset="{{ $small.RelPermalink }} 480w">
-    <source media="(max-width: 800px)" srcset="{{ $medium.RelPermalink }} 800w">
-    <source media="(max-width: 1024px)" srcset="{{ $large.RelPermalink }} 1024w">
-    <source media="(max-width: 1800px)" srcset="{{ $exlarge.RelPermalink }} 1800w">
-    
-    <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" decoding="async" loading="lazy">
-    </picture>
+    <a href="{{ $image.RelPermalink }}">
+        <picture>
+            <source media="(max-width: 480px)" srcset="{{ $s.RelPermalink }} 480w">
+            <source media="(max-width: 800px)" srcset="{{ $m.RelPermalink }} 800w">
+            <source media="(max-width: 1024px)" srcset="{{ $l.RelPermalink }} 1024w">
+            <img src="{{ $image.RelPermalink }}" alt="{{ $alt }}" decoding="async" loading="lazy">
+        </picture>        
+    </a>
 
     <figcaption class="figure-caption">{{ $alt }}</figcaption>
 </figure>

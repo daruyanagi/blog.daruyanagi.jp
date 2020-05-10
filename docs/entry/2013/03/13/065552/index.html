@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2013/03/13
-        </time>        
-    </p>
+    <header>
+        <h1>WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2013-03-13'> 2013年3月13日</time></p>
+    </header>
 
     <p>緑タイツの中の人が Facebook で、昨日の記事（<a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613">WebMatrix 2: SignalR &#x3092;&#x52D5;&#x304B;&#x3059; &#xFF08; 1.0.1 &#x5BFE;&#x5FDC;&#x7248;&#xFF09; - &#x3060;&#x308B;&#x308D;&#x3050;</a>）に<i>「SignalRのサンプル作るときは、「今何人接続」表示があるともっと便利ですよー」</i>とコメントを付けてくれました。これは要するに、<i>「そのやり方をブログに書け」</i>ということですよね！（違</p><p>幸い、しばやんが偶然たまたま <a href="http://shiba-yan.hatenablog.jp/entry/20130312/1363090277">ASP.NET SignalR &#x3067;&#x63A5;&#x7D9A;&#x4E2D;&#x306E;&#x30AF;&#x30E9;&#x30A4;&#x30A2;&#x30F3;&#x30C8;&#x3092;&#x6570;&#x3048;&#x3066;&#x307F;&#x308B; - &#x3057;&#x3070;&#x3084;&#x3093;&#x96D1;&#x8A18;</a> という記事を書いてくれましたので、それを<del>コピペ</del>参考にして、昨日のサンプルに追加してみました。</p>
 <div class="section">
@@ -181,80 +179,40 @@ _connections.TryAdd(Context.ConnectionId, <span class="synConstant">true</span>)
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/13/065552/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2013\/03\/13\/065552\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2013\/03\/13\/065552\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                WebMatrix 2: SignalR を動かす （ 1.0.1 対応版） ※同時接続者数の追加 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2013-03-13'> 2013年3月13日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613/">WebMatrix 2: SignalR を動かす （ 1.0.1 対応版）</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/03/13/102121/">方法論的性悪説</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2013/03/13/065552/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/webmatrix">WebMatrix</a>] [<a href="/tags/signalr">SignalR</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2013-03-13'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2013/03/13/065552/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2013/03/13/065552/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/13/065552/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/03/13/065552/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/03/13/065552/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2013/03/12/093613/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2013/03/13/102121/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

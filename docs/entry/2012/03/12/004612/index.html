@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>なんでフック、すぐに死んでまうん……</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2012/03/12
-        </time>        
-    </p>
+    <header>
+        <h1>なんでフック、すぐに死んでまうん……</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2012-03-12'> 2012年3月12日</time></p>
+    </header>
 
     <p><img src="20120312003952.png" alt="f:id:daruyanagi:20120312003952p:plain" title="f:id:daruyanagi:20120312003952p:plain" class="hatena-fotolife"></p><p>せっかく公開した SoundKeyboard 2012 なのだけど、ちょっとしたバグがある。長い間放置してると、音が鳴らなくなり、サウンドパックを切り替えようとするとエラーで落ちる。どうも、フックが勝手に外れてしまうらしい。</p><p><blockquote class="twitter-tweet" data-in-reply-to="178803300433530880" lang="ja"><p>@<a href="https://twitter.com/daruyanagi">daruyanagi</a> GC に回収されてるだけじゃないんですかね。GC.KeepAlive とか参照</p>&mdash; しばやんさん (@shibayan) <a href="https://twitter.com/shibayan/status/178804269456171008" data-datetime="2012-03-11T11:27:14+00:00">3月 11, 2012</a></blockquote><script src="//platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>きっとミラクルしばやんのいう通りなのだろうと思うけど、あんまり GC 周りをよく理解していないのと、問題が<a class="keyword" href="http://d.hatena.ne.jp/keyword/%A5%B5%A1%BC%A5%C9%A5%D1%A1%BC%A5%C6%A5%A3">サードパーティ</a>の DLL 側にあるらしいこともあって、対策がうまくいかない。結局<b>タイマーで定期的にフックが生きているかどうかチェックする</b>という、若干美しくない手段を取らざるを得なかった。数日これで試して問題がなければ、このままリリースするつもり。</p>
 <ul>
@@ -84,80 +82,40 @@
 </ul>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/12/004612/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/12\/004612\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/12\/004612\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                なんでフック、すぐに死んでまうん…… <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2012-03-12'> 2012年3月12日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/12/003836/">WPFでバージョン情報ダイアログをつくる</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/12/012754/">政治家を好き嫌いで選ぶことの是非について</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2012/03/12/004612/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/c">C#</a>] [<a href="/tags/win32">Win32</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2012-03-12'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/03/12/004612/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/03/12/004612/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/12/004612/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/12/004612/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/12/004612/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2012/03/12/003836/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2012/03/12/012754/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

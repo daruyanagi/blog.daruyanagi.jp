@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>わんくま同盟 大阪勉強会 #50</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2012/08/05
-        </time>        
-    </p>
+    <header>
+        <h1>わんくま同盟 大阪勉強会 #50</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2012-08-05'> 2012年8月5日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120804162234.jpg" alt="f:id:daruyanagi:20120804162234j:plain" title="f:id:daruyanagi:20120804162234j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>わんくま同盟 大阪勉強会 #50 （<a href="http://www.wankuma.com/seminar/20120804osaka50/">http://www.wankuma.com/seminar/20120804osaka50/</a>） に参加してきました。</p><p>まぁ、ほとんど尾上さんを見に行ったようなものですねｗ<br />
 しかも、あんまり理解していないという。ただ、自分が囚われていた先入観を知ることができた点に関しては、行った価値があったかな。</p><p>別にプログラミングに限りませんが、モノゴトの把握には大きく分けて二つの方法があります。</p><p>ひとつは観念的な方法。この方法は、つねに「理想（モデル）」から出発し、それに即した「現実（実装）」を導き出します（演繹）。この場合、「現実（である）」は常に「理想（べきだ）」の影です。</p><p>もうひとつは実践的な方法。この方法は、つねに「現実（である）」が出発点です。まず、それに即した「ひな形（モデル）」を作ります。それに改良を加えて、漸進的に「理想（べきだ）」へ近づこうとします（帰納とテスト）。</p><p>前者の利点は、演繹、つまり“理論”に拠っているということ。数学の“定理”のように、前提さえ共有できるならば、さまざまなケースへ応用することが可能です。</p><p>ただ、“定理”には必ず前提となる“公理”がある。この“公理”についてコンセンサスがとれていなかったり、疑わしかったり、定義できない場合は、前者のアプローチは使えない。そんな場合、後者の実践的なアプローチが有用になります。</p><p>しかし、後者にも欠点はある。たとえば、“帰納”つまり“経験”に拠っている点。「昨日正しかったから、明日も正しい」？　そう仮定しても大方問題がないとしても、それは決して“理論”的ではない。多分、万人を説得することは不可能でしょう。実践的アプローチは常にテストにさらされ、完成することがない。</p><p>とはいえ、ソフトウェアを作るということは常に“実践”的であるはず。ならば、そのアプローチに関する主張は、誰かが絵に描いた“理想”ではなく、あくまでも自分の“経験”に根付いているべきだし、そうであってこそ実りの多いモノになるんだろうなと思いますね。無論、ほかのひとの“理想（モデル）”を学ぶのも大切。自分の“ひな形（モデル）”としてレパートリーに加えておけば、“現実（である）”を認識・把握し、実装するのに役立つ。そういう意味では、この2つのアプローチはまさしく「車の両輪」なのだなと。</p><p>まぁ、そんなあまり関係のないことを考えながら聞いていました。何が言いたいのかというと「モデル（Model）っていう言葉の意味多すぎだし、みんな適当に使いすぎ」ってことですかねｗ</p>
@@ -85,80 +83,40 @@
 </ul>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/05/231844/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2012\/08\/05\/231844\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2012\/08\/05\/231844\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                わんくま同盟 大阪勉強会 #50 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2012-08-05'> 2012年8月5日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/08/01/214002/">『貨幣の日本史』</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/08/05/233442/">ニコイチのレンズキャップ</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2012/08/05/231844/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2012-08-05'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/08/05/231844/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/08/05/231844/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/08/05/231844/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/08/05/231844/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/08/05/231844/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2012/08/01/214002/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2012/08/05/233442/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

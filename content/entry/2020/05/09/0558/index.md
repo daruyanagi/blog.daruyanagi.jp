@@ -2,7 +2,7 @@
 title: "Hatena2Hugo v1.1.0"
 date: 2020-05-09T05:58:18+09:00
 draft: false
-tags: ["Hatena2Hugo", "Announce"]
+tags: ["Hatena2Hugo", "告知"]
 eyecatch: image1.png
 ---
 ![Hatena2Hugo v1.1.0](image1.png)

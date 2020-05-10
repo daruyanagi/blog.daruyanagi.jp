@@ -70,92 +70,50 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>SoundKeyboard 2012 が WPF 製に、v2.0.0 を公開しました</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2012/03/15
-        </time>        
-    </p>
+    <header>
+        <h1>SoundKeyboard 2012 が WPF 製に、v2.0.0 を公開しました</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2012-03-15'> 2012年3月15日</time></p>
+    </header>
 
     <p><img src="20120315233735.png" alt="f:id:daruyanagi:20120315233735p:plain" title="f:id:daruyanagi:20120315233735p:plain" class="hatena-fotolife"></p><p>設定が多くなるにつれてコードがこんがらがってきたので、新規に <a class="keyword" href="http://d.hatena.ne.jp/keyword/WPF">WPF</a> で作り直しました。キーの入力表示にドロップシャドウエフェクトが付いたり、設定をウィンドウのユーザーインターフェイスがカッコよくなっています。</p><p><img src="20120315233928.png" alt="f:id:daruyanagi:20120315233928p:plain" title="f:id:daruyanagi:20120315233928p:plain" class="hatena-fotolife"></p><p><img src="20120315233933.png" alt="f:id:daruyanagi:20120315233933p:plain" title="f:id:daruyanagi:20120315233933p:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/WPF">WPF</a> は最初は面倒くさいし難しいなって思っていましたが、慣れてみるとそうでもないですね。データとユーザーインターフェイスの分離が WinForm よりも進んでいるので、WinForm ではあとから設定をひとつ加えるごとにコードが加速度的に増えていくのに対し、 <a class="keyword" href="http://d.hatena.ne.jp/keyword/WPF">WPF</a> はその点複雑性が増すのが抑えられている感じ。</p><p><img src="20120315234443.png" alt="f:id:daruyanagi:20120315234443p:plain" title="f:id:daruyanagi:20120315234443p:plain" class="hatena-fotolife"></p><p>初期投資はちょっと多めだけど、それなりにメリットはある。何より許せない INotifyPropertyChanged の実装のめんどくささも解決できたし。これに関しては、もう眠いので明日にでも。</p><p><a href="http://daruyanagi.net/SoundKeyboard%202012">SoundKeyboard 2012 - Daruboard</a></p>
 
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/15/234726/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/15\/234726\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/15\/234726\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                SoundKeyboard 2012 が WPF 製に、v2.0.0 を公開しました <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2012-03-15'> 2012年3月15日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/12/235246/">純粋贈与について</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/16/002534/">Notify Property Weaver で楽ちんに INotifyPropertyChanged を実装する</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2012/03/15/234726/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2012-03-15'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/03/15/234726/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/03/15/234726/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/15/234726/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/15/234726/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/15/234726/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2012/03/12/235246/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2012/03/16/002534/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

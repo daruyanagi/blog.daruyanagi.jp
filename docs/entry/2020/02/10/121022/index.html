@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>Shriken 1.1</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2020/02/10
-        </time>        
-    </p>
+    <header>
+        <h1>Shriken 1.1</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2020-02-10'> 2020年2月10日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200210115719.png" alt="f:id:daruyanagi:20200210115719p:plain" title="f:id:daruyanagi:20200210115719p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ショートカットキーやアクセラレーター（［Alt］キーを押すと、コマンドを実行するためのキーが表示されます）への対応を行いました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200210122602.png" alt="f:id:daruyanagi:20200210122602p:plain" title="f:id:daruyanagi:20200210122602p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、他のアプリから［共有］コマンドで「Shriken」を呼んだときだけ、［コピー］［保存］処理の終了後にウィンドウを自動で閉じるようにしていたのですが、うまく動かないことがあるようなので一時的に停止しています。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.microsoft.com%2Fja-jp%2Fp%2Fshriken%2F9nwsxb0bxg1j%3Frtc%3D1%26activetab%3Dpivot%3Aoverviewtab" title="Shriken を入手 - Microsoft Store ja-JP" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://www.microsoft.com/ja-jp/p/shriken/9nwsxb0bxg1j?rtc=1&activetab=pivot:overviewtab">www.microsoft.com</a></cite></p><p><a href="https://github.com/daruyanagi/Shriken/releases/tag/v1.1">Release v1.1 &middot; daruyanagi/Shriken &middot; GitHub</a></p><p>次のバージョンは Windows UI library を少し試して、Crop 処理を入れられたらいいなーって思っています<a href="#f-a73ecabd" name="fn-a73ecabd" title="[https://docs.microsoft.com/en-us/windows/communitytoolkit/controls/imagecropper:title=ImageCropper ]っていう素敵なコントロールがもうあるみたいなので！">*1</a>。それか、Undo/Redo かな……すでに履歴リストを保持する設計になってるんで、UI をくっつけるだけだしね。</p>
 <div class="footnote">
@@ -84,80 +82,40 @@
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/02/10/121022/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2020\/02\/10\/121022\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2020\/02\/10\/121022\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                Shriken 1.1 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2020-02-10'> 2020年2月10日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/02/08/112537/">ご褒美にマッサージ器を買った</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/02/10/195344/">2月9日：確定申告終わりました（去年より1週間早く！</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2020/02/10/121022/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] [<a href="/tags/shriken">Shriken</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2020-02-10'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2020/02/10/121022/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2020/02/10/121022/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/02/10/121022/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2020/02/10/121022/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2020/02/10/121022/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2020/02/08/112537/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2020/02/10/195344/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

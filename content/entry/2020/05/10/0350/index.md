@@ -2,7 +2,7 @@
 title: "幼稚園の頃の思い出"
 date: 2020-05-10T03:50:45+09:00
 draft: false
-tags: []
+tags: ["昔話"]
 eyecatch: image1.jpg
 ---
 <div class="alert alert-info" role="alert">

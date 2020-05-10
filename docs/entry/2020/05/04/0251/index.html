@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2020/05/04
-        </time>        
-    </p>
+    <header>
+        <h1>はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2020-05-04'> 2020年5月4日</time></p>
+    </header>
 
     <p>はてなブログから Hugo へ移行するにあたり、よその開発者さんが Go で開発されているツールを使ったのですが、ちょっといろいろ問題があり……それを直すのに正規表現で置換したのですが、そこでもちょっとやらかした関係で、いろいろ不具合が発生していました。</p>
 <blockquote class="twitter-tweet"><p lang="ja" dir="ltr"><a href="https://twitter.com/daruyanagi?ref_src=twsrc%5Etfw">@daruyanagi</a> だるログ、移行した時に「画像の次の文字が削れてる」みたいな挙動になってる？</p>&mdash; (＃＾ω＾)らむさら＠二次会禁止 (@ramusara) <a href="https://twitter.com/ramusara/status/1256774385517473793?ref_src=twsrc%5Etfw">May 3, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 
@@ -168,80 +166,40 @@ Options:
 
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/05/04/0251/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2020\/05\/04\/0251\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2020\/05\/04\/0251\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                はてなブログから Hugo へ移行するツール Hatena2Hugo を作りました <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2020-05-04'> 2020年5月4日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/05/03/">GitHub でプルリクエストをいただきました！</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/05/05/1049/">Hugo に Amazon の商品リンクを貼る</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2020/05/04/0251/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] [<a href="/tags/hatena2hugo">Hatena2Hugo</a>] [<a href="/tags/.net-core">.NET Core</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2020-05-04'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2020/05/04/0251/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2020/05/04/0251/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/05/04/0251/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2020/05/04/0251/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2020/05/04/0251/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2020/05/03/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2020/05/05/1049/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

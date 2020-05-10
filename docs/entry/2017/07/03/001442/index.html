@@ -70,92 +70,50 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>［共有］機能で「はてブ」を見るアプリ「Hateboo」を作ってみました。</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2017/07/03
-        </time>        
-    </p>
+    <header>
+        <h1>［共有］機能で「はてブ」を見るアプリ「Hateboo」を作ってみました。</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2017-07-03'> 2017年7月3日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170703000615.png" alt="f:id:daruyanagi:20170703000615p:plain" title="f:id:daruyanagi:20170703000615p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>OSの［共有］機能でシェアした URL につけられている「はてなブックマーク」を閲覧したり、「はてなブックマーク」を付けることができるアプリを“ストア”でリリースしてみました。</p><p>よくログインに失敗したり、Windows 10 Mobile だと設定が見切れていて表示できない（プロ生ちゃんアプリでも同じミスやらかしたなー）など、自分で使っていてもポツポツ不具合が見つかるダメアプリですが、おいおいよくしていきたいと思います。<b>とくにログインがよく失敗します……エラーが表示されたら、何とかリトライしてみてください</b>（ごめんなさい！！）。デザインもダメダメだしなー（XAML 力が低い）、今度、その筋の人に相談させてもらおうと思う。</p><p>なんせ、“ストア”で名前をキープして一年近く放置していたもんで……完成度はともかく、初版を出しておきたかったのだ！</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fwww.microsoft.com%2Fstore%2Fapps%2F9nblggh4n948" title="Hateboo を購入 - Microsoft ストア 日本" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>「+アプリ内購入が含まれています」と書かれていますが、別にないです。むかしサンプルとして“ストア”でアプリ内購入を作ったのをそのままにしちゃってた。あー、でも、どうせだから今度なにか追加してみようかな。</p>
 
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/07/03/001442/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2017\/07\/03\/001442\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2017\/07\/03\/001442\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                ［共有］機能で「はてブ」を見るアプリ「Hateboo」を作ってみました。 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2017-07-03'> 2017年7月3日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/07/02/052135/">WinRT：システムにインストールされた Windows ストア アプリを列挙する（3）</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/07/04/004728/">iPad Pro 10.5 インチにカバーと SIM を追加</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2017/07/03/001442/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/hateboo">Hateboo</a>] [<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2017-07-03'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2017/07/03/001442/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2017/07/03/001442/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/07/03/001442/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2017/07/03/001442/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2017/07/03/001442/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2017/07/02/052135/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2017/07/04/004728/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

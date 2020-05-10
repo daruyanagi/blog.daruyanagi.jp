@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>Windows Home Server 2011 をプリンターサーバとして利用する → 諸事情あってやめた</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2012/03/27
-        </time>        
-    </p>
+    <header>
+        <h1>Windows Home Server 2011 をプリンターサーバとして利用する → 諸事情あってやめた</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2012-03-27'> 2012年3月27日</time></p>
+    </header>
 
     <p><img src="20120327011258.jpg" alt="f:id:daruyanagi:20120327011258j:plain" title="f:id:daruyanagi:20120327011258j:plain" class="hatena-fotolife"></p><p><a class="keyword" href="http://d.hatena.ne.jp/keyword/%CC%B5%C0%FELAN">無線LAN</a>も安定稼働するようになった<a href="#f1" name="fn1" title="とはいえ、リモートデスクトップ接続がちょっと切れやすいけれど">*1</a>ので、今度はホコリをカブっていたプリンタ複合機を引っ張り出して、Windows Home Server に繋いだ。ふとした縁でタダでもらったものだ。</p><p>これまではメインマシンに直結して使っていたけれど、常時起動が前提のホームサーバーをプリンターサーバとして使えば、メインマシンに電源を入れなくてもいろんなデバイスからアクセスできて便利だろう。</p><p><img src="20120327011912.png" alt="f:id:daruyanagi:20120327011912p:plain" title="f:id:daruyanagi:20120327011912p:plain" class="hatena-fotolife"></p><p>ドライバーのインストールに成功<a href="#f2" name="fn2" title="ただし、Windows 7版">*2</a>。リモートからの印刷にも成功した<a href="#f3" name="fn3" title="ただし、インクがないと言われた">*3</a>。ただ、どうしても古いドライバーのアンインストールに失敗するので、解凍ソフト「Lhaz」で自動解凍形式の書庫ファイルをバラして、デバイスマネージャーから［ドライバーの更新］を利用してインストールした。</p><p><img src="20120327012033.png" alt="f:id:daruyanagi:20120327012033p:plain" title="f:id:daruyanagi:20120327012033p:plain" class="hatena-fotolife"></p><p>しかし、問題が。プリンター本体のボタンを押しても、スキャン → フォルダへ保存が始まらない。ユーティリティソフトを入れても、症状は同じだった。スキャナードライバーのプロパティ画面ではボタンの挙動を設定できるのだけど、実際には動かないらしい。</p><p>こいつはもともとプリンタとしてよりも、スキャナとしての利用頻度のほうが高い。現に、今はインクがない状態でそのまま半年以上は放置されている。なので、本体の操作でほいほいスキャンできないのはちょっと不便だ。まさかいちいちリモートデスクトップでサーバーにつないでユーティリティソフトを起動してスキャン……なんてことはできない。ちょっと残念だけど、やはりメインマシンに繋ぎ直したほうがよさそう。</p><p>何か対応策があればいいのだけど。</p>
 <div class="footnote">
@@ -86,80 +84,40 @@
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/27/012940/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/27\/012940\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2012\/03\/27\/012940\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                Windows Home Server 2011 をプリンターサーバとして利用する → 諸事情あってやめた <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2012-03-27'> 2012年3月27日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/26/221801/">Buffalo WZR-HP-AG300H の調子がすこぶる悪い</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/03/28/230418/">小岩の夜は長い</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2012/03/27/012940/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/windows-home-serever">Windows Home Serever</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2012-03-27'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/03/27/012940/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/03/27/012940/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/03/27/012940/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/27/012940/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/03/27/012940/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2012/03/26/221801/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2012/03/28/230418/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

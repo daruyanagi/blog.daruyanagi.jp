@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>日記：Trelloについて</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2018/01/27
-        </time>        
-    </p>
+    <header>
+        <h1>日記：Trelloについて</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2018-01-27'> 2018年1月27日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180127070605.png" alt="f:id:daruyanagi:20180127070605p:plain" title="f:id:daruyanagi:20180127070605p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最近、チームでのタスク管理に Trello を利用している。</p><p>以前はメッセンジャーのやりとりでタスクを管理していた。実際とは異なるが例示すると、「緊急」の場合は「！」、「要確認」の場合は「？」を文頭に付与して、あとで検索で探すという原始的な方法だ。けれど、さすがにこれでは管理が及ばなくなっていたし、UWP 版の「Skype」メッセージ検索が用をなさない――そう、「Skype」でやり取りをしていたのだ。この件についてはフィードバック済みだが反応はない――にもかかわらずデスクトップ版からの移行を強いられているという現状から、再三にわたって要望していたものが、ようやく先方にも受け入れられた格好だ。</p><p>これは個人的意見だけど、Trello はタスク管理がボード・リスト・カードのメタファーと親和しているのが長所で、また短所なのだろうと思う。グラフィカルに表現できて、マウスでガチャガチャいじれるのは大変わかりやすい一方、それをタスク管理の本質と見誤りやすい。カードをタスクになぞらえるのは有用だけど、タスクは決してカードではない。</p><p>タスク管理が失敗する要因の一つとして、それが実際の作業フローに合致していないという点がある。その齟齬は「運用」でカバーする必要がある。これが割と面倒で、面倒だからタスク管理をやらなくなる――どこまで厳密にルール化すべきか、イレギュラーなフローをどう扱うべきか、どこまでをレギュラーとし、どこからをイレギュラーとみなすか、ルールを変えたときに以前との互換性をどこまで考慮すべきか、ルールは感覚に任せるべきか、（新規参入メンバーのために）文書化すべきか。</p><p>その点、Trello はボード・リスト・カードというメタファーが「運用」の潤滑油として役立つ。リストの移動を何とみなすか、どういう場合にどういうラベルを付けるか――そういうものを半ば感覚、半ばルールとして体験的に共有できる。ところが、そこがまた曲者で、肌感覚に合わない「運用」をされると少し苛立つ。</p><p>もっとも顕著な例は、「無駄なことをされる」。ラベルを付けときゃ済むところで、わざわざタイトルを画一的に編集する。“今日やること”リストに移動させたカードすべてに、わざわざ期限を設定して回る。別に悪いことではないが、そんなエネルギーがあるなら、もっと肝心なことをすべきではないだろうか――肝心なことというのは無論、タスク管理の向こうにあるリアルな仕事である。タスク管理は仕事を円滑に進めるためにやる手段であり、目的ではない。</p><p>チームのタスク管理における「無駄な儀式」をどうすれば減らせるか、については自分の中では答えが出ていない。無駄な儀式に負のインセンティブを与えるのがもっともよいやり方なのかもしれないが、自分はそういう権限を持たない。自然、ルールの範疇で俺は俺、お前はお前――「そういう無駄なことは好きな奴にやらせて、自分は自分のスタイルでやる」――というやり方になるのだけど、それだとこっちの手間はともかく、チーム全体がよくなることはない。</p><p>ただ、Trello を自動化に組み込むことは一つの解決策だと、最近感じた。作業フローの自動化を行うと、人は自分のやり方を、自らの感性より、システムに合わせることになる。システムが合理的であれば、人のやり方は合理に近づき、統一化されていく。この例えはあまりスマートではないが、「タスクリストをコピペして文書を作る」なんていう無駄をやめて、スクリプトで自動生成するようになると、人は完成された文書を想像しながらタスクリストを管理するようになる。無駄な労力の追加は、スクリプトの想定外な動作を招くから、自然と抑制される。</p><p>もちろんタダでチームのためにスクリプトをこさえてあげる義理はない<a href="#f-2e04ab13" name="fn-2e04ab13" title="チームがうまくいくことは自分の快感ではあるけど、お金にはならない">*1</a>し、ちゃんとお金をもらえるようにしたい<a href="#f-f017ba25" name="fn-f017ba25" title="義理として貸してあげてもよいが">*2</a>――逆に言えば、お金もらえる程度には不自由なくスクリプトやらフローやらを書けるようになりたい。まずは、「無駄な儀式よりも自動化」のメリットをうまく説かないとダメだな。</p><p>――それはともかく。最近、Trello でいい発見をした。</p><p>今まで Trello で URL を共有するとき、わざわざカードを作って、カードの概要に URL を貼っていたのさ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180127075237.png" alt="f:id:daruyanagi:20180127075237p:plain" title="f:id:daruyanagi:20180127075237p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180127074913.png" alt="f:id:daruyanagi:20180127074913p:plain" title="f:id:daruyanagi:20180127074913p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>URL を整形コピーする拡張機能でこんな感じのテキストをつくって、カード編集欄に貼り付けてたこともあるんだけど――例えばこんなの。</p>
 <blockquote>
@@ -94,80 +92,40 @@
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/01/27/080602/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2018\/01\/27\/080602\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2018\/01\/27\/080602\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                日記：Trelloについて <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2018-01-27'> 2018年1月27日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/01/26/215451/">日記：相変わらず眠れない</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/01/29/002724/">日記：Surface Book 2 をクリーンアップした</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2018/01/27/080602/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/%E6%97%A5%E8%A8%98">日記</a>] [<a href="/tags/trello">Trello</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2018-01-27'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2018/01/27/080602/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/01/27/080602/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/01/27/080602/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2018/01/27/080602/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2018/01/27/080602/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2018/01/26/215451/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2018/01/29/002724/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

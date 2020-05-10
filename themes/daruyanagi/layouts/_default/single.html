@@ -1,89 +1,60 @@
 {{ define "main" }}
 <article class="container" style="margin-top: 3rem;">
-    <h1>{{.Title}}</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            {{ .Date.Format "2006/01/02"}}
-        </time>        
-    </p>
+    <header>
+        <h1>{{.Title}}</h1>
+        
+        <p class="published text-right">公開日：<time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Date.Format "2006年1月2日"}}</time></p>
+    </header>
 
     {{ .Content }}
 
     <footer>
+        <hr />
+
         <!-- metadata -->
-        <p class="text-right">
-            <span>
-                最終更新日：<time>{{ .Lastmod.Format "2006/01/02"  }}</time> 
-            </span>
-            -
-            <span>
-                <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                {{ .Title }} <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
+
+            <div class="card-body">
+                この記事は <time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Date.Format "2006年1月2日"}}</time> に公開されました。
+                
+                {{- with .PrevInSection -}}
+                前の記事は「<a href="{{ .Permalink }}">{{ .Title }}</a>」です。
+                {{- end -}}
+
+                {{- with .NextInSection -}}
+                次の記事は「<a href="{{ .Permalink }}">{{ .Title }}</a>」です。
+                {{- end -}}
+            </div>
+
+            <div class="card-body">
+                タグ：{{ with .Params.tags }}{{ range . }}[<a href="/tags/{{ . | urlize }}">{{ . }}</a>] {{ end }}{{ end }}
+            </div>
+
+            <div class="card-body">
+                最終更新日：<time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Lastmod.Format "2006年1月2日"}}</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url={{ .Permalink | safeURL }}&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u={{ .Permalink | safeURL }}"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
 
         <!-- Hatena bookmark comment -->
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/{{ .Permalink | safeURL }}'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url={{ .Permalink | safeURL }}'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
-
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https://b.hatena.ne.jp/{ bookmark.user }/'>${ bookmark.user }</a></span>
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
-
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/{{ .Permalink | safeURL }}'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url={{ .Permalink | safeURL }}'>コメントを残す</a></footer>
-            </section>`;
-
-            document.write(html);            
-        }
-        </script>
-        
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url={{ .Permalink | safeURL }}&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        {{- if not .Site.IsServer }}
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url={{ .Permalink | safeURL }}&callback=HatenaBookmarkCallback"></script>
+        {{- else }}
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2020%2F05%2F05%2F0425%2F&callback=HatenaBookmarkCallback"></script>
+        {{- end }}
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        {{ with .PrevInSection }}
-        <a href="{{ .Permalink }}">&laquo; Older</a>
-        {{ end }}
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        {{ with .NextInSection }}
-            <a href="{{ .Permalink }}">Newer &raquo;</a>
-        {{ end }}
-    </p>    
-    
-</section>
 
 {{end}}

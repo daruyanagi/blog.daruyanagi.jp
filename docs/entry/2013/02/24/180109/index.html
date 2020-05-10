@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>いまだにルビが解釈できないブラウザーがあるだなんて知らなかった</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2013/02/24
-        </time>        
-    </p>
+    <header>
+        <h1>いまだにルビが解釈できないブラウザーがあるだなんて知らなかった</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2013-02-24'> 2013年2月24日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130224174502.png" alt="f:id:daruyanagi:20130224174502p:plain" title="f:id:daruyanagi:20130224174502p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2013/02/24/154553">WebMatrix 2: Markdown &#x3092;&#x6C4E;&#x7528;&#x7684;&#x306B;&#x62E1;&#x5F35;&#x3059;&#x308B;&#x4ED5;&#x7D44;&#x307F;&#x3092;&#x8003;&#x3048;&#x3066;&#x307F;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で気付いたのだけれど、Firefox っていまだにルビも表示できないんだな……。ちょっと笑ったというか、呆れた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130224174549.png" alt="f:id:daruyanagi:20130224174549p:plain" title="f:id:daruyanagi:20130224174549p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://addons.mozilla.org/ja/firefox/addon/html-ruby/">https://addons.mozilla.org/ja/firefox/addon/html-ruby/</a> を入れれば解決するのだけれど、ブラウザーの再起動が必要だ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130224174631.png" alt="f:id:daruyanagi:20130224174631p:plain" title="f:id:daruyanagi:20130224174631p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とはいえ、そのうち実装されるんだろうけど。</p>
 <ul>
@@ -84,80 +82,40 @@
 </ul>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/02/24/180109/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2013\/02\/24\/180109\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2013\/02\/24\/180109\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                いまだにルビが解釈できないブラウザーがあるだなんて知らなかった <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2013-02-24'> 2013年2月24日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/02/24/154553/">WebMatrix 2: Markdown を汎用的に拡張する仕組みを考えてみる</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/02/26/205208/">意図が明確なコード</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2013/02/24/180109/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/firefox">Firefox</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2013-02-24'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2013/02/24/180109/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2013/02/24/180109/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/02/24/180109/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/02/24/180109/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/02/24/180109/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2013/02/24/154553/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2013/02/26/205208/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>AdSense が表示されないので</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2013/03/10
-        </time>        
-    </p>
+    <header>
+        <h1>AdSense が表示されないので</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2013-03-10'> 2013年3月10日</time></p>
+    </header>
 
     <p>サイドバーに広告（Google AdSense）を置いて「はてなブログ」やドメインの料金だけでも稼ごうと画策していたのだけれど、なぜか黄色い背景しか表示されていなかったことに先日気付いた。これではおカネにならないわけで。</p><p>とりあえず、AdSense に問い合わせてみた。すると、1時間ほどで返事が。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130310153452.png" alt="f:id:daruyanagi:20130310153452p:plain" title="f:id:daruyanagi:20130310153452p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><i>「お客様のサイトで使用されている言語は AdSense でサポートされていません」</i>――そんなバカな！　日本語だぞ。もちろん AdSense も対応している言語だ。しかし、だ。もしかしたらタガログ語だのバスク語のサイトと誤判定されているのかもしれない。そこで、念のため <a href="https://www.google.com/webmasters/tools/home?hl=ja">&#x30A6;&#x30A7;&#x30D6;&#x30DE;&#x30B9;&#x30BF;&#x30FC; &#x30C4;&#x30FC;&#x30EB;</a> で確認。ターゲットの言語は……と。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20130310153759.png" alt="f:id:daruyanagi:20130310153759p:plain" title="f:id:daruyanagi:20130310153759p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><i>日本語！！　</i>日本語でしたよ。タガログ語でもバスク語でもなかったよ！　ほんと何が悪いのかな。スクリプトを再取得して張り替えてもダメだし。しょうがないので、広告のサイズを変え、まったく新しくスクリプトを取得して貼り付けてみた。</p><p>――すると、なぜかイケた。</p><p>もうなにがなんだかよくわかんないな。まぁ、そんなこんなでサイドバーの広告が細長くなった。</p>
 <div class="section">
@@ -85,80 +83,40 @@
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/10/154642/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2013\/03\/10\/154642\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2013\/03\/10\/154642\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                AdSense が表示されないので <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2013-03-10'> 2013年3月10日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/03/10/142359/">Eye-Fi ぶっ壊れた？</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2013/03/12/070100/">『孤独な散歩者の夢想』</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2013/03/10/154642/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2013-03-10'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2013/03/10/154642/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2013/03/10/154642/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2013/03/10/154642/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/03/10/154642/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2013/03/10/154642/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2013/03/10/142359/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2013/03/12/070100/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

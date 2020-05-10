@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>ただの日記： HTML5 Canvas に挑戦したった。</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2014/05/27
-        </time>        
-    </p>
+    <header>
+        <h1>ただの日記： HTML5 Canvas に挑戦したった。</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2014-05-27'> 2014年5月27日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140527030620.png" alt="f:id:daruyanagi:20140527030620p:plain" title="f:id:daruyanagi:20140527030620p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>（別に技術的な内容ではない。ただの日記だ。成果をまとめてるといつまでたってもブログが書けないし、それは自分の役割でもない気がする。ただ、近頃はこんなことをして遊んでるというだけの話だ。最近は時間がとれないので、こういう形が増えそうな気がする）</p><p>太平洋戦争期の艦隊編成を年表みたいに表示できたらいいなと思って（<a href="http://www.jyai.net/military/data-08/kuchikutai_00.htm">&#x3053;&#x3093;&#x306A;&#x304B;&#x3093;&#x3058;</a>）、いろいろ頑張ってみた。</p><p>最初は div を position: absolute で配置していく感じにしたのだけど、データが複雑になるにつれて破綻していくように思えたので、Canvas に図を書くことにした。Canvas に書いちゃうとテキストにリンクが貼れないのがちょっとアレだけど、それはそれで仕方ない。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140527031021.png" alt="f:id:daruyanagi:20140527031021p:plain" title="f:id:daruyanagi:20140527031021p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず線を引くとこから始めて、半日後にはこんな感じに成長した。HTML5 Canvas は割りと低レベルな API っぽくて、線を一本引くだけでもダルい。みんなどうやっているんだろう。なんかラッパーを書くのかな？　ライブラリを使うのかな？</p><p>まぁ、それはともかく。</p><p>最初はグラフとデータが一体化していたのだけど（1941年12月8日は x px に、1945年8月15日は y px にマッピングしてそれを線で結ぶ、とかとか）、JavaScript に慣れるにしたがって少しずつ分けていった。そのデータも、最初は</p>
 <pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synIdentifier">var</span> events = <span class="synIdentifier">[]</span>;
@@ -117,80 +115,40 @@ events.push(<span class="synStatement">new</span> Event(<span class="synConstant
 
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/05/27/032655/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2014\/05\/27\/032655\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2014\/05\/27\/032655\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                ただの日記： HTML5 Canvas に挑戦したった。 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2014-05-27'> 2014年5月27日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2014/05/22/025753/">『空母雷撃隊―艦攻搭乗員の太平洋海空戦記』</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2014/06/05/010551/">de:code 参加してきたった</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2014/05/27/032655/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2014-05-27'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2014/05/27/032655/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2014/05/27/032655/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/05/27/032655/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2014/05/27/032655/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2014/05/27/032655/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2014/05/22/025753/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2014/06/05/010551/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

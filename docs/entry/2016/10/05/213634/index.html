@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>Macbook でサクッと Task View が呼べたらいいのになぁ、という話。</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2016/10/05
-        </time>        
-    </p>
+    <header>
+        <h1>Macbook でサクッと Task View が呼べたらいいのになぁ、という話。</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2016-10-05'> 2016年10月5日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20160423132942.jpg" alt="f:id:daruyanagi:20160423132942j:plain" title="f:id:daruyanagi:20160423132942j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>Macbook（macOS）だと三本（指の）スワイプで Mission Control 呼んだりデスクトップ切り替えたりできるじゃないですか。Surface でも Task View が呼べるよね。そういうのを Bootcamp で Windows 10 をいれた Macbook でもやりたいんだけど（Surface で慣れちゃったし！）、Apple のタッチパッドのドライバーはウンコで、三本スワイプをサポートしていない。</p><p>そんなわけで Trackpad++ というのを試してみたんだけど……</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Ftrackpad.powerplan7.com%2F" title="Trackpad++ Driver: alternate Windows driver with multi-touch gesture support for Macbook trackpads in Boot Camp environment. Now with Force Touch trackpads support." class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://trackpad.powerplan7.com/">trackpad.powerplan7.com</a></cite></p><p>こいつ、要らん変なアプリ入れなきゃいけないし（バッテリーセーバーらしいが）、Windows 10 がテストモード（署名なしドライバーを入れるためのモード）になるし、かなりイマイチ。おカネ払ってもいいから、署名付きのドライバーほしいなぁ。</p><p>仕方ないので、次善の策として Autohotkey を試してみた。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fahkscript.org%2F" title="AutoHotkey" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://ahkscript.org/">ahkscript.org</a></cite></p><p>［Fn］＋［→］キーとか［Fn］＋［←］キーで仮想デスクトップを切り替えられれば、まぁ、三本スワイプと大して変わらない使い勝手にはなるかもしれない。ほとんど隣同士だし。</p><p>というわけで、キーコードを調べてみたんだけど</p>
 <ul>
@@ -99,80 +97,40 @@ PgDn::Send, #{Tab}    'Task View</p>
 </ul>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/10/05/213634/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2016\/10\/05\/213634\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2016\/10\/05\/213634\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                Macbook でサクッと Task View が呼べたらいいのになぁ、という話。 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2016-10-05'> 2016年10月5日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2016/10/05/060000/">内子の「ドイツフェスタ 2016」に行ってきたった。ビール最高！</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2016/10/07/172125/">UWP版「プロ生ちゃん時報」アプリを公開しました。モバイルでも使えるよ！ / マスコットアプリ文化祭だるやなぎ賞のお知らせ</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2016/10/05/213634/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/macbook">Macbook</a>] [<a href="/tags/autohotkey">AutoHotkey</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2016-10-05'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2016/10/05/213634/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2016/10/05/213634/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2016/10/05/213634/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2016/10/05/213634/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2016/10/05/213634/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2016/10/05/060000/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2016/10/07/172125/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

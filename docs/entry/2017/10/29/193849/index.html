@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>Surface Laptop で  Acer の MR ヘッドセットを動かすまでの苦労（物理</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2017/10/29
-        </time>        
-    </p>
+    <header>
+        <h1>Surface Laptop で  Acer の MR ヘッドセットを動かすまでの苦労（物理</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2017-10-29'> 2017年10月29日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20171027182718.jpg" alt="f:id:daruyanagi:20171027182718j:plain" title="f:id:daruyanagi:20171027182718j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>手持ちの Surface Laptop で Acer の MR ヘッドセットが動かなかった話の続き。</p><p><iframe src="https://hatenablog-parts.com/embed?url=http%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2017%2F10%2F24%2F180917" title="6万円出して Acer の MR ヘッドセット＋コントローラーを買ったんだけど、残念ながら動かなかった件について（追記 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://blog.daruyanagi.jp/entry/2017/10/24/180917">blog.daruyanagi.jp</a></cite></p><p>今は東京に滞在している関係で手持ちのデバイスが少なく、何が原因か十分に調査するのは半ばあきらめていたのですが、アキバのヨドバシカメラさんのご協力もあっていろいろ調査できました（後述）。ヨドバシカメラさん、ありがとうございます！　Book 2 を買うときはヨドバシにします。みんなもヨドバシでもっと買おうぜ！（回し者</p><p>さて、結論から言うと、Mini DisplayPort → HDMI アダプターを HDMI 2.0 に対応したアダプターに取り換えるのが正解。Surface Laptop でも Acer の MR ヘッドセットが動きました。</p><p>なぜか Surface 純正のアダプターでは動かなかったのですが（後述）、ダメ元で互換リストに載っていた他のアダプター（Club3D）を取り寄せたところ、ちゃんと動きました。今、Amazon のセール中でちょっと安いので、確保しておくといいかもしれない。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017BQCUGW/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/41mclWfSdfL._SL160_.jpg" class="hatena-asin-detail-image" alt="Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)" title="Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/B017BQCUGW/bestylesnet-22/">Club3D Mini Displayport1.2 to HDMI 2.0 UHD / 4K ディスプレイ 変換ケーブル (CAC-1170) (Mini)</a></p><ul><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> CLUB3D</li><li><span class="hatena-asin-detail-label">メディア:</span> Personal Computers</li><li><a href="http://d.hatena.ne.jp/asin/B017BQCUGW/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>ここからは時系列順にグダグダ書くので、興味がない人は読まなくてもいいデス。</p><p><hr></p><p>まずちゃんと復習しておくと、Windows Mixed Reality には2つのスペックがある。</p>
 <ul>
@@ -96,80 +94,40 @@
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/10/29/193849/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2017\/10\/29\/193849\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2017\/10\/29\/193849\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                Surface Laptop で  Acer の MR ヘッドセットを動かすまでの苦労（物理 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2017-10-29'> 2017年10月29日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/10/25/171621/">キーボードを買い換えました</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/11/09/032323/">2週間ちょっと東京行ってきた</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2017/10/29/193849/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/windows-mixed-reality">Windows Mixed Reality</a>] [<a href="/tags/surface-laptop">Surface Laptop</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2017-10-29'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2017/10/29/193849/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2017/10/29/193849/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/10/29/193849/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2017/10/29/193849/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2017/10/29/193849/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2017/10/25/171621/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2017/11/09/032323/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

@@ -70,13 +70,11 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2012/09/21
-        </time>        
-    </p>
+    <header>
+        <h1>WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2012-09-21'> 2012年9月21日</time></p>
+    </header>
 
     <p><img src="20120921221949.png" alt="f:id:daruyanagi:20120921221949p:plain" title="f:id:daruyanagi:20120921221949p:plain" class="hatena-fotolife"></p><p><div class="twitter-detail twitter-detail-left"><div class="twitter-detail-user"><a class="twitter-user-screen-name" href="http://twitter.com/okazuki"><img src="http://a0.twimg.com/profile_images/1279095044/____normal.jpg" alt="okazuki" height="48" width="48"></a></div><div class="twitter-detail-tweet"><p class="twitter-detail-text">      @<a class="twitter-user-screen-name" href="http://twitter.com/xin9le" target="_top">xin9le</a> @<a class="twitter-user-screen-name" href="http://twitter.com/daruyanagi" target="_top">daruyanagi</a> MSが提供している基本構造を理解したうえで無視るのはありだと思います！知らないで無視るのは、大変だと思います。個人的に。</p><p class="twitter-detail-info"><a href="http://twitter.com/okazuki/status/248781444867035136" class="twitter-detail-info-permalink"><span class="twitter-detail-info-date">2012-09-20</span> <span class="twitter-detail-info-time">22:51:33</span></a> <span class="twitter-detail-info-source">via <a href="http://krile2.starwing.net/" rel="nofollow">Krile2</a></span> to @<a href="http://twitter.com/xin9le/status/248781270149128193"  class="twitter-user-screen-name">xin9le</a></p></div></div></p><p>昨日、@okazuki さんにいろいろ教えてもらったのだけど、ちょっとチンプンカンプンなところもあったので、今日は「標準テンプレート縛り」で燃費管理アプリを一から開発してみた。</p><p>使ったのは 「分割アプリケーション」。2階層のデータ表示が可能なのかな。List<Group> を表示する ItemsPage.xaml と、そこで Group を選択して List<Group.Items> を表示する SplitPage.xaml が用意されている。</p><p><img src="20120921222935.jpg" alt="f:id:daruyanagi:20120921222935j:plain" title="f:id:daruyanagi:20120921222935j:plain" class="hatena-fotolife"></p><p>いろいろ考えてみたんだけれど、キモはこのテンプレートが要求する仕様に沿ったデータを用意することかな。</p><p>じゃぁ、仕様に沿ったデータ構造って？　DataModel/SampleDataSource.cs を読むと、データは</p>
 <pre class="code lang-cs" data-lang="cs" data-unlink>SampleDataSource
@@ -129,80 +127,40 @@ ITemplateGridViewItem Parent { get; } <span class="synComment">// &lt;- なく�
 </div>
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/21/230552/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2012\/09\/21\/230552\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2012\/09\/21\/230552\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                WinRT/XAML のお勉強 ―― 「分割アプリケーション」テンプレートを活かす <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2012-09-21'> 2012年9月21日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">WinRT/XAML のお勉強 ―― 4つの表示状態</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/23/145821/">Windowsデベロッパーカンファレンス in 東京 に参加してきました</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2012/09/21/230552/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/winrt">WinRT</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2012-09-21'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/09/21/230552/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/09/21/230552/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/21/230552/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/09/21/230552/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2012/09/21/230552/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2012/09/20/233052/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2012/09/23/145821/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

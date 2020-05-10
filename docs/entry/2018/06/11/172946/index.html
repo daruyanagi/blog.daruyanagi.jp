@@ -70,92 +70,50 @@
 
     <main role="main">
 <article class="container" style="margin-top: 3rem;">
-    <h1>万歳＼(^o^)／　独自ドメインのはてなブログが HTTPS になりました。</h1>
-    
-    <p class="published text-right">
-        公開日：<time>
-            2018/06/11
-        </time>        
-    </p>
+    <header>
+        <h1>万歳＼(^o^)／　独自ドメインのはてなブログが HTTPS になりました。</h1>
+        
+        <p class="published text-right">公開日：<time datetime='2018-06-11'> 2018年6月11日</time></p>
+    </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180611171417.jpg" alt="f:id:daruyanagi:20180611171417j:plain" title="f:id:daruyanagi:20180611171417j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>いつからなのかよくわからないのですが、独自ドメインで運用しているはてなブログ（blog.daruyanagi.jp）でも HTTPS 化のボタンが押せるようになっていたので、ノリでプチっと押してみました。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">ちょっとした好奇心が<br>だるろぐを<br>傷つけた <a href="https://t.co/DIwS9zrxG8">pic.twitter.com/DIwS9zrxG8</a></p>&mdash; だる☆やなぎ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1006078119805980672?ref_src=twsrc%5Etfw">2018年6月11日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>みごと死にました……が、よくわかんないけどじきに直ったのでよし。でも、混在コンテンツ（mixed contents）があるみたいで、ページの一部が欠けている。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">いろいろ手をくわえなきゃだめだなぁ、めんど（ <a href="https://t.co/5WINwMJpxA">pic.twitter.com/5WINwMJpxA</a></p>&mdash; だる☆やなぎ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1006078756623020032?ref_src=twsrc%5Etfw">2018年6月11日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>どうやら AdSense のスクリプトを HTTP で読み込んでいるみたいなので、<b>http://</b> というところを探して <b>//</b> に書き換えました。これで将来的に httpsx:// みたいな謎プロトコルが爆誕してもコードを修正せずに済むような気がする。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">AdSense はサクッと直したけど、画像はめんどいな？ <a href="https://t.co/O7m3VoFnt5">pic.twitter.com/O7m3VoFnt5</a></p>&mdash; だる☆やなぎ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1006080086905217025?ref_src=twsrc%5Etfw">2018年6月11日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>これで広告は表示されるようになったのですが、まだどこか HTTP なリソースを読み込んでいるところがあるみたい。しょうがないので Google Chrome で［F12］キーを押して開発者ツールを起動。コンソールを眺めてみました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180611172131.png" alt="f:id:daruyanagi:20180611172131p:plain" title="f:id:daruyanagi:20180611172131p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最初の行に Mixed Contents の警告が出ていたので、リンクをクリックしてみます。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180611172201.png" alt="f:id:daruyanagi:20180611172201p:plain" title="f:id:daruyanagi:20180611172201p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>原因はお前か！！</p><p>この画像は自分でコードを追加したのではなく、はてなブログのデザイン機能で背景に指定しているものです。自分ではいじれないので、もはやこれまでか……と思ったのですが、ふと一度削除して再登録してみると、HTTP じゃなくて HTTPS で読み込まれるようになりました。</p><p>ただし、もとの画像は再登録で透過部分が黒くなってしまいます。まぁ、なにもなくてもいいのですが、それはそれで寂しいので、手持ちのしょぼい だるやなぎ 画像を登録しておきました。まぁ、枯れ木も山の賑わいってやつで。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">できたー！画像しょっぱくなったけどｗｗｗ <a href="https://t.co/0L6vSXiT1V">pic.twitter.com/0L6vSXiT1V</a></p>&mdash; だる☆やなぎ (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1006086636436766720?ref_src=twsrc%5Etfw">2018年6月11日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>個別ページではまだエラーが出るかもしれませんが、それはおいおい修正していくことにして、今回の任務はこれで完了。これでセキュアなだるろぐになった！</p><p>――なお、メインページ（daruyanagi.jp：Azure Web Sites 製）は放置の模様。こっちもそのうち何とかしよう……Let's encrypt は触ったことないけど、こういうのも勉強になるはず。</p>
 
 
     <footer>
-        
-        <p class="text-right">
-            <span>
-                最終更新日：<time>2020/05/04</time> 
-            </span>
-            -
-            <span>
-                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/11/172946/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> View on GitHub.com</a>
-            </span>
-        </p>
+        <hr />
 
         
-        <script type="text/javascript">
-        function HatenaBookmarkCallback(data)
-        {
-            if (data === null)
-            {
-                document.write(`
-                <section class='card hatena-bookmark'>
-                    <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/https:\/\/blog.daruyanagi.jp\/entry\/2018\/06\/11\/172946\/'>0 user</a></header>
-                    <p class='card-body'>この記事にはまだコメントがついていません。
-                    <a class='btn btn-primary float-right' href='https://b.hatena.ne.jp/my/add.confirm?url=https:\/\/blog.daruyanagi.jp\/entry\/2018\/06\/11\/172946\/'>コメントを残す</a>
-                    </p>
-                </section>`);
-                return;
-            }
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                万歳＼(^o^)／　独自ドメインのはてなブログが HTTPS になりました。 <span class="float-right">by <a href="/about">@daruyanagi</a></span>
+            </div>
 
-            let comments = "";
-          
-            for (const bookmark of data.bookmarks) {
-                comments += `
-                    <li class='list-group-item hatena-bookmark-item'>
-                        <img class='hatena-bookmark-item-image' src='http://cdn1.www.st-hatena.com/users/${ bookmark.user.substring(0, 2) }/${ bookmark.user }/profile_s.gif'>
-                        <span class='hatena-bookmark-item-user'><a href='https:
-                        <span class='hatena-bookmark-item-comment'>${ bookmark.comment }</span>
-                        <time class='hatena-bookmark-item-timestamp'>${ bookmark.timestamp }</time>
-                    </li>
-                `;
-            }
+            <div class="card-body">
+                この記事は <time datetime='2018-06-11'> 2018年6月11日</time> に公開されました。前の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/06/10/125225/">Tonjiru 1.4.0.0</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/06/14/192708/">日記：6月8日 ～ 14日</a>」です。</div>
 
-            const html = `
-            <section class='card hatena-bookmark'>
-                <header class="card-header hatena-bookmark-header">はてなブックマークのコメント：<a href='https://b.hatena.ne.jp/entry/"https://blog.daruyanagi.jp/entry/2018/06/11/172946/"'>${ data.count } user${ data.count === 0 ? '' : 's' }</a></header>
-                <ui class='list-group list-group-flush hatena-bookmark-comments-list'>
-                ${ comments }
-                </ul>
-                <footer class='card-body'><a class='btn btn-primary float-right' href='https:
-            </section>`;
+            <div class="card-body">
+                タグ：[<a href="/tags/%E3%81%AF%E3%81%A6%E3%81%AA%E3%83%96%E3%83%AD%E3%82%B0">はてなブログ</a>] 
+            </div>
 
-            document.write(html);            
-        }
-        </script>
+            <div class="card-body">
+                最終更新日：<time datetime='2018-06-11'> 2020年5月4日</time>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2018/06/11/172946/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/06/11/172946/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
+                <a class="card-link" href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/11/172946/"><img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+            </div>
+          </div>
+
+        <hr />
+
         
-        <script type="text/javascript"
-            src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2018/06/11/172946/&callback=HatenaBookmarkCallback">
-        </script>
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2018/06/11/172946/&callback=HatenaBookmarkCallback"></script>
     </footer>
 </article>
-
-<section class="container text-center"> 
-
-    <p>
-        
-        <a href="https://blog.daruyanagi.jp/entry/2018/06/10/125225/">&laquo; Older</a>
-        
-        <span > - </span>
-            <a href="/">🏠 Home</a>
-        <span > - </span>
-        
-            <a href="https://blog.daruyanagi.jp/entry/2018/06/14/192708/">Newer &raquo;</a>
-        
-    </p>    
-    
-</section>
 
 
     </main>

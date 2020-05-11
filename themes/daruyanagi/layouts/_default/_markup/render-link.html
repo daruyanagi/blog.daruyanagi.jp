@@ -19,12 +19,16 @@
   {{- else if strings.HasPrefix .Destination "https://www.amazon.co.jp/" -}}
     {{- $asins := findRE "/dp/[0-9A-Z]{10}" $url -}}
     {{- if eq $asins nil  -}}
+      {{- $url = replace $url "ASIN" "asin" -}}
       {{- $asins = findRE "/product/[0-9A-Z]{10}" $url -}}
     {{- end -}}
+    {{- if eq $asins nil  -}}
+      {{- $asins = findRE "/asin/[0-9A-Z]{10}" $url -}}
+    {{- end -}}
     {{- $asin := index $asins 0 -}}
-    {{- $asin = trim $asin "/dp" -}}
+    {{- $asin = trim $asin "/dproductasin" -}}
     {{- $tag := "bestylesnet-22" -}}
-    <div class="card mb-3" style="max-width: 500px;">
+    <div class="card mb-3" style="max-width: 640px;">
       <div class="row no-gutters">
         <div class="col-md-4" style="display: flex; justify-content: center; align-items: center;">
           <img style="margin: 1rem;" src="http://images-jp.amazon.com/images/P/{{ $asin }}.09.MZZZZZZZ.jpg" />

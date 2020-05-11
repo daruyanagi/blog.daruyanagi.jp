@@ -23,7 +23,7 @@
 <meta property="og:description" content="いわゆる「だるろぐ」" />
 <meta property="og:type" content="website" />
 <meta property="og:url" content="https://blog.daruyanagi.jp/tags/microsoft/" />
-<meta property="og:updated_time" content="2019-06-11T17:26:10+00:00" />
+<meta property="og:updated_time" content="2020-05-12T05:55:58+09:00" />
 <meta property="og:image" content="https://blog.daruyanagi.jp/no-image.png"><meta property="fb:admins" content="2150442315382" />
 <meta property="twitter:card" content="summary" />
 <meta property="twitter:url" content="https://blog.daruyanagi.jp/tags/microsoft/" />
@@ -116,19 +116,28 @@
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
 
     <script>
-      for (const pre of document.getElementsByTagName("pre"))
-      {
-        pre.classList.add("prettyprint");
-      }
-      
-      for (const table of document.getElementsByTagName("table"))
-      {
-        table.classList.add("table");
-      }
+    for (const pre of document.getElementsByTagName("pre"))
+    {
+      pre.classList.add("prettyprint");
+    }
+    
+    for (const table of document.getElementsByTagName("table"))
+    {
+      table.classList.add("table");
+    }
 
-      for (const blockquote of document.getElementsByTagName("blockquote"))
-      {
-        blockquote.classList.add("blockquote");
-      }
+    for (const blockquote of document.getElementsByTagName("blockquote"))
+    {
+      blockquote.classList.add("blockquote");
+    }
+
+    for (const link of document.getElementsByTagName("a"))
+    {
+        if (!link.href.startsWith("/") || !link.href.startsWith("https:\/\/blog.daruyanagi.jp\/"))
+        {
+          link.target = "_blank";
+          link.rel = "noopener";
+        }
+    }
     </script>
 </html>

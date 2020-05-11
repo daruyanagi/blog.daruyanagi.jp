@@ -217,19 +217,28 @@ element.text(json.total || 0);
     <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
 
     <script>
-      for (const pre of document.getElementsByTagName("pre"))
-      {
-        pre.classList.add("prettyprint");
-      }
-      
-      for (const table of document.getElementsByTagName("table"))
-      {
-        table.classList.add("table");
-      }
+    for (const pre of document.getElementsByTagName("pre"))
+    {
+      pre.classList.add("prettyprint");
+    }
+    
+    for (const table of document.getElementsByTagName("table"))
+    {
+      table.classList.add("table");
+    }
 
-      for (const blockquote of document.getElementsByTagName("blockquote"))
-      {
-        blockquote.classList.add("blockquote");
-      }
+    for (const blockquote of document.getElementsByTagName("blockquote"))
+    {
+      blockquote.classList.add("blockquote");
+    }
+
+    for (const link of document.getElementsByTagName("a"))
+    {
+        if (!link.href.startsWith("/") || !link.href.startsWith("https:\/\/blog.daruyanagi.jp\/"))
+        {
+          link.target = "_blank";
+          link.rel = "noopener";
+        }
+    }
     </script>
 </html>

@@ -19,10 +19,10 @@
   {{- else if strings.HasPrefix .Destination "https://www.amazon.co.jp/" -}}
     {{- $asins := findRE "/dp/[0-9A-Z]{10}" $url -}}
     {{- if eq $asins nil  -}}
-      {{- $url = replace $url "ASIN" "asin" -}}
       {{- $asins = findRE "/product/[0-9A-Z]{10}" $url -}}
     {{- end -}}
     {{- if eq $asins nil  -}}
+      {{- $url = replace $url "ASIN" "asin" -}}
       {{- $asins = findRE "/asin/[0-9A-Z]{10}" $url -}}
     {{- end -}}
     {{- $asin := index $asins 0 -}}

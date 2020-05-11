@@ -17,8 +17,12 @@
     {{ $json.html | safeHTML }}
 
   {{- else if strings.HasPrefix .Destination "https://www.amazon.co.jp/" -}}
-    {{- $asins := findRE "[0-9A-Z]{10}" $url -}}
+    {{- $asins := findRE "/dp/[0-9A-Z]{10}" $url -}}
+    {{- if eq $asins nil  -}}
+      {{- $asins = findRE "/product/[0-9A-Z]{10}" $url -}}
+    {{- end -}}
     {{- $asin := index $asins 0 -}}
+    {{- $asin = trim $asin "/dp" -}}
     {{- $tag := "bestylesnet-22" -}}
     <div class="card mb-3" style="max-width: 500px;">
       <div class="row no-gutters">
@@ -27,7 +31,7 @@
         </div>
         <div class="col-md-8">
           <div class="card-body">
-            <p class="card-text"><a href="http://images-jp.amazon.com/dp/{{ $asin }}/?tag={{ $tag }}" alt="{{ .Text }}">{{ .Text }}</a></p>
+            <p class="card-text"><a href="http://www.amazon.co.jp/dp/{{ $asin }}/?tag={{ $tag }}" alt="{{ .Text }}">{{ .Text }}</a></p>
             <p class="card-text"><small class="text-muted">{{ $domain }}</small></p>
           </div>
         </div>

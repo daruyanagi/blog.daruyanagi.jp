@@ -68,9 +68,10 @@ CPU クーラーの背が高すぎて、サイドカバーが閉まらない。�
 |              | 先代                              | →   | 新作                       |
 | ------------ | ------------------------------- | --- | ------------------------ |
 | CPU          | Intel Core i5 3570T             | →   | AMD Ryzen 9 3900X        |
-| Chipset      | Intel B75                       | →   | AMD B450                 |
 | CPU Cooler   | Thermaltake Silent 1156 CLP0552 | →   | DEEPCOOL GAMMAXX L240 V2 |
+| Chipset      | Intel B75 (ATX)                 | →   | AMD B450 (Mini-ITX)      |
 | RAM          | DDR3 PC3-10600 8GB×2            | →   | DDR4 PC4-21300 16GB×2    |
 | GPU          | (→ GeForce GTX 680)             | →   | GeForce RTX 2060         |
 | Storage      | SATA SSD 240GB (→ 500GB)        | →   | M.2 SSD 512GB            |
 | Power Supply | 700W 80 PLUS                    | →   | 750W 80PLUS PLATINUM     |
+| Others       | DVD-R Drive                     | →   | -                        |

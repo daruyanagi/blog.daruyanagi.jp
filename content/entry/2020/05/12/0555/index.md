@@ -1,5 +1,5 @@
 ---
-title: "Microsoft 365 Personal 1年分を 4,467 円で購入する"
+title: "最長5年分？　Microsoft 365 Personal を年額 4,467 円で購入する"
 date: 2020-05-12T05:55:58+09:00
 draft: false
 tags: ["Office 365", "Microsoft 365"]
@@ -35,8 +35,8 @@ Microsoft 365 の方にも入手したコードを入力し、ライセンスが
 
 ## 追記
 
-マジでｗｗｗ
-
 >   おっ…　おおっ　　5年分いけたわ〜　6年目は無理だった
 >
 >   [tamtam3 のブックマーク / はてなブックマーク](https://b.hatena.ne.jp/entry/4685561333218014658/comment/tamtam3)
+
+マジでｗｗｗ

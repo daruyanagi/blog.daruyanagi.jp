@@ -76,7 +76,7 @@
     <header>
         <h1>デスクトップのウィンドウを全部閉じるツール「Tonjiru」を作った</h1>
         
-        <p class="published text-right">公開日：<time datetime='Tue, 06 Jun 2017 22:02:56 UTC'> 2017年6月6日 22時02分</time></p>
+        <p class="published text-right">公開日：<time datetime='Tue, 06 Jun 2017 22:02:56 UTC'> 2017年6月6日22時02分</time></p>
     </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170606214904.png" alt="f:id:daruyanagi:20170606214904p:plain" title="f:id:daruyanagi:20170606214904p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>開いてるウィンドウを全部閉じてデスクトップをキレイにするアプリ「Tonjiru」を作った。似たようなアプリ「CloseAll」の仕様が少し変わっていて、あまり使い勝手がよくないなと思ったので、「これぐらい簡単に作れるだろう」と思ったのだが、作りこむといろいろ面倒だった（とくにストアアプリへの対応）。</p><p><iframe src="//hatenablog-parts.com/embed?url=http%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1063435.html" title="開いているウィンドウをまとめて閉じてデスクトップをスッキリさせる「CloseAll」v2.1／最新版ではWindows 10をサポート。UWPアプリのウィンドウ列挙も可能に" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="http://forest.watch.impress.co.jp/docs/news/1063435.html">forest.watch.impress.co.jp</a></cite></p><p>名前は<b>「閉じる……閉じる……」</b>と悩みながら晩御飯を作っていたら、いつの間にか<b>豚汁</b>ができていたので、それにあやかってつけた。松山は麦味噌が多いのかな、結構適当に作ってもおいしいのができる。</p><p><iframe src="//hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FTonjiru%2Freleases%2Ftag%2Fv1.0.0" title="daruyanagi/Tonjiru" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe></p><p>仕様的にはシンプルで。起動すると GUI なしに開いてるウィンドウを全部閉じて終了するだけ（これが欲しかったんだよ！）。［Shift］キーを押しながら起動すると GUI が現れ、終了するアプリをチェックで選べる。 </p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20170606214302.png" alt="f:id:daruyanagi:20170606214302p:plain" title="f:id:daruyanagi:20170606214302p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>一応除外リストを作ったけど、プロセス名ベースなのがあまりイケてない気がする。</p><p>あと、終了メッセージを送ってもアプリによって挙動が異なるので、WM_CLOSE と SC_CLOSE の両方を送っている。なので、未保存のドキュメントがある場合に「保存しますか？」と確認ダイアログを出すアプリでは、キャンセルして終了をスキップしても、もう一回同じダイアログが表示される（計2回）。あまりイケてないから、将来バージョンではどっちのコマンドを送るかを選択できるようにするかなーと思っている。</p>
@@ -117,14 +117,14 @@ GetWindowThreadProcessId(handle, <span class="synStatement">out</span> processId
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2017-06-06'> 2017年6月6日</time> に、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら、
+                この記事は <time datetime='2017-06-06'> 2017年6月6日22時02分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
                 <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2017/06/06/220256/">GitHub.com</a> で
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2017%2f06%2f06%2f220256%2f">isuue を作成</a>していただけると、
                 気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2017/06/06/220256//index.md">GitHub.com</a> 
-                で確認できます。
+                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2017%2f06%2f06%2f220256%2f">こちら</a>から。
                 </p>
                 <p>タグ：[<a href="/tags/tonjiru">Tonjiru</a>] [<a href="/tags/wpf">WPF</a>] [<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日 01時50分</time></p>
+                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/06/02/093913/">『日本語全史』</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2017/06/07/191844/">Tonjiru v1.1.0 ＋ GitHub Flow × GitHub for Windows</a>」です。</p>
             </div>
             

@@ -3,7 +3,7 @@
     <header>
         <h1>{{.Title}}</h1>
         
-        <p class="published text-right">公開日：<time datetime='{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" }}'> {{ .Date.Format "2006年1月2日 15時04分"}}</time></p>
+        <p class="published text-right">公開日：<time datetime='{{ .Date.Format "Mon, 02 Jan 2006 15:04:05 MST" }}'> {{ .Date.Format "2006年1月2日15時04分"}}</time></p>
     </header>
 
     {{ .Content }}
@@ -20,14 +20,14 @@
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Date.Format "2006年1月2日"}}</time> に、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら、
+                この記事は <time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Date.Format "2006年1月2日15時04分"}}</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
                 <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}">GitHub.com</a> で
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title={{ .RelPermalink }}">isuue を作成</a>していただけると、
                 気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="{{ .Site.Params.GitHub }}commits/master/content{{ .RelPermalink }}/index.md">GitHub.com</a> 
-                で確認できます。
+                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q={{ .Permalink }}">こちら</a>から。
                 </p>
                 <p>タグ：{{ with .Params.tags }}{{ range . }}[<a href="/tags/{{ . | urlize }}">{{ . }}</a>] {{ end }}{{ end }}</p>
-                <p>最終更新日：<time datetime='{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 MST" }}'> {{ .Lastmod.Format "2006年1月2日 15時04分"}}</time></p>
+                <p>最終更新日：<time datetime='{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 MST" }}'> {{ .Lastmod.Format "2006年1月2日15時04分"}}</time></p>
                 <p>ちなみに、
                 {{- with .PrevInSection -}}
                 前の記事は「<a href="{{ .Permalink }}">{{ .Title }}</a>」です。

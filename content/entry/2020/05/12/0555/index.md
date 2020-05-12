@@ -40,3 +40,7 @@ Microsoft 365 の方にも入手したコードを入力し、ライセンスが
 >   [tamtam3 のブックマーク / はてなブックマーク](https://b.hatena.ne.jp/entry/4685561333218014658/comment/tamtam3)
 
 マジでｗｗｗ
+
+## 追記（2020年5月12日14時03分）
+
+<blockquote class="twitter-tweet"><p lang="ja" dir="ltr">【悲報】残念ながらきょう正午で、Microsoft 365 4,467円祭りは終了したようです。 <a href="https://t.co/z5Q3ZFHZAk">pic.twitter.com/z5Q3ZFHZAk</a></p>&mdash; 激安★超特価商店街 (@gekiyasu) <a href="https://twitter.com/gekiyasu/status/1260043768251596800?ref_src=twsrc%5Etfw">May 12, 2020</a></blockquote> <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script> 

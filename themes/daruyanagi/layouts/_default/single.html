@@ -22,23 +22,19 @@
             <div class="card-body">
                 <p>
                 この記事は <time datetime='{{ .Date.Format "2006-01-02"}}'> {{ .Date.Format "2006年1月2日15時04分"}}</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
-                リソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}">GitHub.com</a> から入手できます。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="{{ .Site.Params.GitHub }}tree/master/content{{ .RelPermalink }}">GitHub.com</a> から入手できます。
                 誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title={{ .RelPermalink }}">isuue を作成</a>していただけると、
                 気が向いたときに直すかもしれません。
                 </p>
 
-                <p>変更履歴：<img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="{{ .Site.Params.GitHub }}commits/master/content{{ .RelPermalink }}/index.md">GitHub.com でみる</a></p>
+                <p><b>最終更新日時：</b><time datetime='{{ .Lastmod.Format "Mon, 02 Jan 2006 15:04:05 MST" }}'> {{ .Lastmod.Local.Format "2006年1月2日15時04分"}}</time>
+                    （  
+                    <a href="{{ .Site.Params.GitHub }}commits/master/content{{ .RelPermalink }}/index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
 
-                {{- $endpoint := printf "https://api.github.com/repos/daruyanagi/blog.daruyanagi.jp/commits?path=/content%sindex.md" .RelPermalink -}}
-                {{- $json := getJSON $endpoint -}}
-                <ul class="list-group  list-group-flush">
-                    {{ range $json }}
-                        <li class="list-group-item"><a href="{{ .html_url | safeURL }}"><time class="text-mute" datetime="{{ .commit.author.date }}">{{ (time .commit.author.date).Local.Format "2006年1月2日15時04分" }}</time></a></li>
-                    {{ end }}
-                </ul>
-
-                <p>タグ：{{ with .Params.tags }}{{ range . }}[<a href="/tags/{{ . | urlize }}">{{ . }}</a>] {{ end }}{{ end }}</p>
+                <p><b>タグ：</b>{{ with .Params.tags }}{{ range . }}[<a href="/tags/{{ . | urlize }}">{{ . }}</a>] {{ end }}{{ end }}</p>
 
                 <p>ちなみに、
                 {{- with .PrevInSection -}}

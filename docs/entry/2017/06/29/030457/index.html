@@ -221,7 +221,7 @@ var link = <span class="synConstant">&quot;https://blog.daruyanagi.jp/&quot;</sp
 
     for (const link of document.getElementsByTagName("a"))
     {
-        if (!link.href.startsWith("/") || !link.href.startsWith("https:\/\/blog.daruyanagi.jp\/"))
+        if (!link.href.startsWith("/") && !link.href.startsWith("https:\/\/blog.daruyanagi.jp\/"))
         {
           link.target = "_blank";
           link.rel = "noopener";

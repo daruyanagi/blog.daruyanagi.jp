@@ -76,7 +76,7 @@
     <header>
         <h1>初めての Windows ストアアプリを提出してみました</h1>
         
-        <p class="published text-right">公開日：<time datetime='Tue, 18 Sep 2012 07:52:42 UTC'> 2012年9月18日07時52分</time></p>
+        <p class="published text-right">執筆日時：<time datetime='Tue, 18 Sep 2012 07:52:42 UTC'> 2012年9月18日16時52分</time></p>
     </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074041.png" alt="f:id:daruyanagi:20120918074041p:plain" title="f:id:daruyanagi:20120918074041p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><a href="https://blog.daruyanagi.jp/entry/2012/09/18/002231">&#x30E1;&#x30C8;&#x30ED;&#x3063;&#x307D;&#x3044;&#x30AB;&#x30B9;&#x30BF;&#x30E0;&#x30DC;&#x30BF;&#x30F3;&#x3092; XAML &#x3067;&#x4F5C;&#x308B; - &#x3060;&#x308B;&#x308D;&#x3050;</a> の記事を書くためのサンプルを作ろうと、 StandardStyles.xaml をパースしてバインディングして……ということをしていたのですが、<b>だったらアプリにしてしまえばええやん</b>、と思いついたのでサクッと作ってみました。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074053.png" alt="f:id:daruyanagi:20120918074053p:plain" title="f:id:daruyanagi:20120918074053p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074056.png" alt="f:id:daruyanagi:20120918074056p:plain" title="f:id:daruyanagi:20120918074056p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>AppBarButtonStyle のボタンを一覧表示できます。XAML コードを AppBar からクリップボードへコピー可能。また、一応、習作として検索コントラクト・共有コントラクトにも対応してみました。ところどころ満足が行っていない部分もあるし、そもそもあんまり実用性がない気がするのが残念ですけど、まぁ、ほかのアプリ開発に役立てていきたいです。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074408.png" alt="f:id:daruyanagi:20120918074408p:plain" title="f:id:daruyanagi:20120918074408p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074413.png" alt="f:id:daruyanagi:20120918074413p:plain" title="f:id:daruyanagi:20120918074413p:plain" class="hatena-fotolife" itemprop="image"></span><span itemscope itemtype="http://schema.org/Photograph"><img src="20120918074053.png" alt="f:id:daruyanagi:20120918074053p:plain" title="f:id:daruyanagi:20120918074053p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>最初は XElement をそのままバインディングしていたのですが、ちゃんと Model と ViewModel を作るとあとあとのデザインが楽に。Windows フォームの時はどちらかというと見た目を作ってからイベントハンドラを足しながら機能が増えていくという感じだけれども、WinRT はちっぽけでもいいからまず Model をキッチリ作って、それを表現するために ViewModel を作り、バインドすれば見栄えは完成！　といった感じに作るのがいいみたい。まだよくわかってなくてデザイン用のデータの作り方を知らず、必然的にデザインではなくデータから作っていくしかないというのもあるんですけど。 </p><p>ふぅ、とりあえずこれで「9月中に1本」という目標は達成。本命のアプリにゆっくりとりかかれる。</p>
@@ -90,25 +90,32 @@
             
             <div class="card-header">
                 記事「初めての Windows ストアアプリを提出してみました 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2012%2f09%2f18%2f075242%2f">Twitter.com で反応を見る</a></span>
             </div>
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2012-09-18'> 2012年9月18日07時52分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
-                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/18/075242/">GitHub.com</a> で
+                この記事は <time datetime='2012-09-18'> 2012年9月18日07時52分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2012/09/18/075242/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2012%2f09%2f18%2f075242%2f">isuue を作成</a>していただけると、
-                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2012/09/18/075242//index.md">GitHub.com</a> 
-                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2012%2f09%2f18%2f075242%2f">こちら</a>から。
+                気が向いたときに直すかもしれません。
                 </p>
-                <p>タグ：[<a href="/tags/windows-%E3%82%B9%E3%83%88%E3%82%A2-%E3%82%A2%E3%83%97%E3%83%AA">Windows ストア アプリ</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
+
+                <p><b>最終更新日時：</b><time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2012/09/18/075242//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b>[<a href="/tags/windows-%E3%82%B9%E3%83%88%E3%82%A2-%E3%82%A2%E3%83%97%E3%83%AA">Windows ストア アプリ</a>] </p>
+
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/18/002231/">メトロっぽいカスタムボタンを XAML で作る</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2012/09/19/062135/">水道橋で蒸し鶏食べてきた</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2012/09/18/075242/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
-                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/09/18/075242/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2012/09/18/075242/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
             </div>
           </div>
 

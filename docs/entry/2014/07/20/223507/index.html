@@ -76,7 +76,7 @@
     <header>
         <h1>WebMatrix：IHttpModule で定期実行を実装する</h1>
         
-        <p class="published text-right">公開日：<time datetime='Sun, 20 Jul 2014 22:35:07 UTC'> 2014年7月20日22時35分</time></p>
+        <p class="published text-right">執筆日時：<time datetime='Sun, 20 Jul 2014 22:35:07 UTC'> 2014年7月21日07時35分</time></p>
     </header>
 
     <p><a href="https://blog.daruyanagi.jp/entry/2013/10/14/141550">WebMatrix 3: Twitter Bot &#xFF08;&#xFF0B;&#x30EA;&#x30A2;&#x30EB;&#x30BF;&#x30A4;&#x30E0;&#x30ED;&#x30B0;&#x8868;&#x793A;&#x4ED8;&#x304D;&#xFF09;&#x3067;&#x3082;&#x4F5C;&#x3063;&#x3066;&#x307F;&#x308B;&#x3002; - &#x3060;&#x308B;&#x308D;&#x3050;</a> で System.Timers.Timer を使って ASP.NET の定期処理を実装したのだけど、のいえ先生の <a href="http://neue.cc/2013/07/20_416.html">neue cc - ASP.NET&#x3067;&#x306E;&#x5B9A;&#x671F;&#x7684;&#x306A;&#x30E2;&#x30CB;&#x30BF;&#x30EA;&#x30F3;&#x30B0;&#x624B;&#x6CD5;</a> でもう一度実装しなおしてみた。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20140720222501.png" alt="f:id:daruyanagi:20140720222501p:plain" title="f:id:daruyanagi:20140720222501p:plain" class="hatena-fotolife" itemprop="image"></span><br />
@@ -140,25 +140,32 @@ var count = Interlocked.Decrement(<span class="synStatement">ref</span> initiali
             
             <div class="card-header">
                 記事「WebMatrix：IHttpModule で定期実行を実装する 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2014%2f07%2f20%2f223507%2f">Twitter.com で反応を見る</a></span>
             </div>
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2014-07-20'> 2014年7月20日22時35分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
-                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/20/223507/">GitHub.com</a> で
+                この記事は <time datetime='2014-07-20'> 2014年7月20日22時35分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2014/07/20/223507/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2014%2f07%2f20%2f223507%2f">isuue を作成</a>していただけると、
-                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2014/07/20/223507//index.md">GitHub.com</a> 
-                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2014%2f07%2f20%2f223507%2f">こちら</a>から。
+                気が向いたときに直すかもしれません。
                 </p>
-                <p>タグ：[<a href="/tags/webmatrix">WebMatrix</a>] [<a href="/tags/asp.net">ASP.net</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
+
+                <p><b>最終更新日時：</b><time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2014/07/20/223507//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b>[<a href="/tags/webmatrix">WebMatrix</a>] [<a href="/tags/asp.net">ASP.net</a>] </p>
+
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2014/07/20/023328/">Surface Pro 3 気になるところ【発熱編】</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2014/07/21/001046/">Surface Pro 3 気になるところ【ネットワーク編】</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2014/07/20/223507/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
-                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2014/07/20/223507/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2014/07/20/223507/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
             </div>
           </div>
 

@@ -76,7 +76,7 @@
     <header>
         <h1>6月23日：貝殻本で PowerShell のお勉強をした</h1>
         
-        <p class="published text-right">公開日：<time datetime='Fri, 29 Jun 2018 18:55:04 UTC'> 2018年6月29日18時55分</time></p>
+        <p class="published text-right">執筆日時：<time datetime='Fri, 29 Jun 2018 18:55:04 UTC'> 2018年6月30日03時55分</time></p>
     </header>
 
     <p>第1章だけ読んで、ちょっと手を動かしてみた。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fblog.daruyanagi.jp%2Fentry%2F2018%2F06%2F05%2F030249" title="6月5日：『PowerShell実践ガイドブック』 - だるろぐ" class="embed-card embed-blogcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 190px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://blog.daruyanagi.jp/entry/2018/06/05/030249">blog.daruyanagi.jp</a></cite></p><p>今回の目標は PowerShell ISE から Visual Studio Code への移行がメイン。Visual Studio Code は知らないでもないし、使いやすいのは知ってるし、PowerShell ISE はそのうちディスコンになるだろうし、早晩移行はしなければならないのだけど、おっさんになるとほんとダメだね……なんとなくクセで ISE を起動してしまう。めんどくさいけれどちゃんと環境を作って、Visual Studio Code を使う癖を付けなければならない。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629182933.png" alt="f:id:daruyanagi:20180629182933p:plain" title="f:id:daruyanagi:20180629182933p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>本では丁寧に拡張機能の導入方法が書いてあるけど、Visual Studio Code は結構賢いので、PS1 ファイルを開くと「推奨する拡張機能」を教えてくれる。案内に従ってインストールして、リロードするだけで PowerShell 環境が完成するのでらくちんだね。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629183159.png" alt="f:id:daruyanagi:20180629183159p:plain" title="f:id:daruyanagi:20180629183159p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>ちなみに PowerShell は Windows PowerShell 5.x のままにしてる。PowerShell Core 6.0 への移行は、そのうちやろうかなって感じ。あと、Visual Studio Code は <code>code</code>で起動できるので覚えておくとよい。cmd や explorer で <code>code .\</code> ってやれば、カレントフォルダーを Visual Studio Code で開けると思う。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629183240.png" alt="f:id:daruyanagi:20180629183240p:plain" title="f:id:daruyanagi:20180629183240p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>まずは手始めにフォルダーの作成や移動を PowerShell だけでやる。統合ターミナルが使えるので、わざわざ cmd なんかを立ち上げる必要はない。PowerShell におけるファイルシステムの操作は ***-Item だけど、エイリアスがいい感じに振ってあるので、cd や ls、pwd が普通に使えていい（どんなエイリアスが降ってあるかは Get-Alias でみられる）。ただ、touch はないみたい。<code>"" > sample.ps1</code> みたいなイディオムを覚えておくといい。これは本に書いてあった。</p><p>Visual Studio Code の PowerShell 拡張は大変良くできていて、PowerShell ISE よりもだいぶ強力に感じる。さっさと移行すればよかったな。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629184309.png" alt="f:id:daruyanagi:20180629184309p:plain" title="f:id:daruyanagi:20180629184309p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>とりあえず自動補完。PowerShell はコマンド名が 動詞-目的語 なのでわかりやすいのだけど、その分入力はちょっとめんどいので補完があると楽。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629184425.png" alt="f:id:daruyanagi:20180629184425p:plain" title="f:id:daruyanagi:20180629184425p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>デバッグ機能も ISE より使いやすいと思う。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629184504.png" alt="f:id:daruyanagi:20180629184504p:plain" title="f:id:daruyanagi:20180629184504p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>あと、個人的に気に入ったのが Expand Alias 機能。エイリアスを使ってあるコードって、それを知らなかったらぱっと見わかんないんだけど、これで展開してやると馬鹿正直に書いたコードに直してくれる。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180629184628.png" alt="f:id:daruyanagi:20180629184628p:plain" title="f:id:daruyanagi:20180629184628p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>? って PowerShell の習いたてだと何のことかわかんないんだけど、展開して Where-Object にすればマニュアルを調べなくても意味は分かる。結構よくない？</p><p>とりあえず第1章のサンプルコードをぷちぷち打ったりして、概要をもう一度学んだ。UNIX はファイル（データ）指向、Windows は API（機能）指向。それぞれに向いた場面があるので、使い分けられるようになろう。</p><p>2章以降は一回斜め読みして、必要そうなところを脳みそにインデックスしようかなって思ってる。</p><p><div class="hatena-asin-detail"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4839965986/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/61pLrWCOvdL._SL160_.jpg" class="hatena-asin-detail-image" alt="PowerShell実践ガイドブック ~クロスプラットフォーム対応の次世代シェルを徹底解説~" title="PowerShell実践ガイドブック ~クロスプラットフォーム対応の次世代シェルを徹底解説~"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="http://www.amazon.co.jp/exec/obidos/ASIN/4839965986/bestylesnet-22/">PowerShell実践ガイドブック ~クロスプラットフォーム対応の次世代シェルを徹底解説~</a></p><ul><li><span class="hatena-asin-detail-label">作者:</span> 吉崎生</li><li><span class="hatena-asin-detail-label">出版社/メーカー:</span> マイナビ出版</li><li><span class="hatena-asin-detail-label">発売日:</span> 2018/05/30</li><li><span class="hatena-asin-detail-label">メディア:</span> 単行本（ソフトカバー）</li><li><a href="http://d.hatena.ne.jp/asin/4839965986/bestylesnet-22" target="_blank">この商品を含むブログを見る</a></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p>
@@ -90,25 +90,32 @@
             
             <div class="card-header">
                 記事「6月23日：貝殻本で PowerShell のお勉強をした 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2018%2f06%2f29%2f185504%2f">Twitter.com で反応を見る</a></span>
             </div>
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2018-06-29'> 2018年6月29日18時55分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
-                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/29/185504/">GitHub.com</a> で
+                この記事は <time datetime='2018-06-29'> 2018年6月29日18時55分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/06/29/185504/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2018%2f06%2f29%2f185504%2f">isuue を作成</a>していただけると、
-                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2018/06/29/185504//index.md">GitHub.com</a> 
-                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2018%2f06%2f29%2f185504%2f">こちら</a>から。
+                気が向いたときに直すかもしれません。
                 </p>
-                <p>タグ：[<a href="/tags/%E8%AA%AD%E6%9B%B8">読書</a>] [<a href="/tags/powershell">PowerShell</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
+
+                <p><b>最終更新日時：</b><time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2018/06/29/185504//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b>[<a href="/tags/%E8%AA%AD%E6%9B%B8">読書</a>] [<a href="/tags/powershell">PowerShell</a>] </p>
+
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/06/28/202440/">6月22日：DENON AH-GC20 と 映画『バーフバリ 王の凱旋』完全版</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/06/30/213134/">あの試合に関して思ったことを整理しておこう</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2018/06/29/185504/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
-                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/06/29/185504/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/06/29/185504/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
             </div>
           </div>
 

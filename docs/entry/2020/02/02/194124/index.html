@@ -76,7 +76,7 @@
     <header>
         <h1>Surface Pro X が文鎮になりかけたけど、事なきを得た話</h1>
         
-        <p class="published text-right">公開日：<time datetime='Sun, 02 Feb 2020 19:41:24 UTC'> 2020年2月2日19時41分</time></p>
+        <p class="published text-right">執筆日時：<time datetime='Sun, 02 Feb 2020 19:41:24 UTC'> 2020年2月3日04時41分</time></p>
     </header>
 
     <p>ARM64 の検証機として Surface Pro X を購入。さっそく、Windows Insider Program の Fast リングに加えた<a href="#f-b5611386" name="fn-b5611386" title="最初はなかなか新しいビルドが降ってこなくて、ARM64 端末は Windows Insider Preview に参加できないのかと思ったけど、そんなことはなかった">*1</a>。</p><p><div class="hatena-asin-detail"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B082WWKYCY/bestylesnet-22/"><img src="https://images-fe.ssl-images-amazon.com/images/I/31NdbVmupgL._SL160_.jpg" class="hatena-asin-detail-image" alt="マイクロソフト Surface Pro X / Microsoft SQ1 / Office H&amp;B 2019搭載 / 13インチ / SQ1 /16GB / 256GB / LTE / ブラック QFM-00011" title="マイクロソフト Surface Pro X / Microsoft SQ1 / Office H&amp;B 2019搭載 / 13インチ / SQ1 /16GB / 256GB / LTE / ブラック QFM-00011"></a><div class="hatena-asin-detail-info"><p class="hatena-asin-detail-title"><a href="https://www.amazon.co.jp/exec/obidos/ASIN/B082WWKYCY/bestylesnet-22/">マイクロソフト Surface Pro X / Microsoft SQ1 / Office H&amp;B 2019搭載 / 13インチ / SQ1 /16GB / 256GB / LTE / ブラック QFM-00011</a></p><ul><li><span class="hatena-asin-detail-label">発売日:</span> 2020/01/14</li><li><span class="hatena-asin-detail-label">メディア:</span></li></ul></div><div class="hatena-asin-detail-foot"></div></div></p><p>というのも、Windows 10 の最新プレビュー版では「タスク マネージャー」がいい感じにアップデートされていて、プロセスのアーキテクチャーを簡単に確認できるのだ。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Windows Insider にしたらプロセスが x86 か ARM64 か一発で分かって便利だぜー <a href="https://t.co/N8xb8BOHw4">pic.twitter.com/N8xb8BOHw4</a></p>&mdash; 新型だるやなぎウイルス (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1219465127793061889?ref_src=twsrc%5Etfw">2020年1月21日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fforest.watch.impress.co.jp%2Fdocs%2Fnews%2F1228222.html" title="「タスク マネージャー」にプロセスアーキテクチャーを表示する機能 ～ Windows 10 Build 19541が“Fast”リングに／今年も「Windows 10 Insider Preview」が始動。開発ブランチの試験機能をいち早く試せる" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://forest.watch.impress.co.jp/docs/news/1228222.html">forest.watch.impress.co.jp</a></cite></p><p>Google Chrome はともかく、DAX3API <a href="#f-95ea7f17" name="fn-95ea7f17" title="Dolby Atmos 関連のプロセスらしい">*2</a>なんかも x86 で動いてるんだな。こういうのが ARM64 ネイティブになれば、バッテリーライフはもっと伸びると思う。</p><p>――それはさておき。</p><p>Build 19546 は無事に適用されたのだが、そこから Build 19551 へアップグレードするとき、それは起こった。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">Windows Insider のアップデートなう <a href="https://t.co/y3sg9nVpH4">pic.twitter.com/y3sg9nVpH4</a></p>&mdash; 新型だるやなぎウイルス (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1220458197464551424?ref_src=twsrc%5Etfw">2020年1月23日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>なぜか更新画面で文字化けが発生する。それだけならまだいいのだけど、アップグレードの完了後、PC を起動しても Windows ロゴから先に進めず、フリーズしてしまうようになった。</p><p>まぁ、Windows Insider Program は不具合上等のプレビュービルド。こういうこともあるよね、と思い、リカバリーを始めた。起動ディスクはまだ作ってなかったので、Microsoft のサポートページにアクセスして、Surface Pro X のイメージをもらわなければならない。しかし――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200202193248.jpg" alt="f:id:daruyanagi:20200202193248j:plain" title="f:id:daruyanagi:20200202193248j:plain" class="hatena-fotolife" itemprop="image"></span></p><p>おーまいがー、ふぁっきんしっと！　もう一度再起動を試みるが、やはり起動しない。<i>「まさかの文鎮というやつでは？」</i>と一瞬焦ったが、ハードリセットを何回か繰り返すうちに、ロールバック処理が始まった。そう、<b>最近の Windows 10 は Windows Update が原因で起動しなくなったことを検知すると、それをアンインストールして、元の環境を（できるだけ）復旧してくれるのだ</b>。賢くなったよね、Windows 7 から乗り換える気になったよね！</p><p>この問題を「フィードバック Hub」に投げて、Twitter でも軽く言及すると、米国の Windows 10 チームのなかの人と思しき人からコンタクトがあり、「見たことないエラーだから詳細を教えてくれ」という。すでに「フィードバック Hub」へ投稿済みのリンクを教えてあげると、次の Build 19555 ではしっかり対処された。</p><p><blockquote class="twitter-tweet" data-lang="ja"><p lang="ja" dir="ltr">“We fixed an issue resulting in ARM64 devices not being able to upgrade to the previous build” あざっす！ / “Announcing Windows 10 Insider Preview Build 19555 | Windows Experience Blog” <a href="https://t.co/PH87ig8qIh">https://t.co/PH87ig8qIh</a></p>&mdash; 新型だるやなぎウイルス (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1223042873005789186?ref_src=twsrc%5Etfw">2020年1月31日</a></blockquote><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script></p><p>教訓、教訓。</p><p>フィードバックはちゃんとしよう。結構直してくれるぞ！　自分の場合、「Bluetooth 機器のバッテリー残量を見れるようにしてほしい」とフィードバックしたところ、ちゃんとなかの人から「いいアイデアだな、そのうち付けるぜ！」と返事があって、実際に実装された。日本語 IME などのトラブルはとくに、日本人ユーザーが言わなければ改善されることはないので、積極的に文句を付けに行きたいところだ。</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20200202193942.png" alt="f:id:daruyanagi:20200202193942p:plain" title="f:id:daruyanagi:20200202193942p:plain" class="hatena-fotolife" itemprop="image"></span></p>
@@ -93,25 +93,32 @@
             
             <div class="card-header">
                 記事「Surface Pro X が文鎮になりかけたけど、事なきを得た話 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2020%2f02%2f02%2f194124%2f">Twitter.com で反応を見る</a></span>
             </div>
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2020-02-02'> 2020年2月2日19時41分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
-                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/02/02/194124/">GitHub.com</a> で
+                この記事は <time datetime='2020-02-02'> 2020年2月2日19時41分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2020/02/02/194124/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2020%2f02%2f02%2f194124%2f">isuue を作成</a>していただけると、
-                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2020/02/02/194124//index.md">GitHub.com</a> 
-                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2020%2f02%2f02%2f194124%2f">こちら</a>から。
+                気が向いたときに直すかもしれません。
                 </p>
-                <p>タグ：[<a href="/tags/surface-pro-x">Surface Pro X</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
+
+                <p><b>最終更新日時：</b><time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2020/02/02/194124//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b>[<a href="/tags/surface-pro-x">Surface Pro X</a>] </p>
+
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/02/01/233128/">食器棚を建設した</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/02/03/170910/">アマゾニストならダンボールストッカーは必須だと思った</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2020/02/02/194124/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
-                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2020/02/02/194124/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2020/02/02/194124/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
             </div>
           </div>
 

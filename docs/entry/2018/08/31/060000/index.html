@@ -76,7 +76,7 @@
     <header>
         <h1>Amaguri v1.1.0.0：保存時の効果音</h1>
         
-        <p class="published text-right">公開日：<time datetime='Fri, 31 Aug 2018 06:00:00 UTC'> 2018年8月31日06時00分</time></p>
+        <p class="published text-right">執筆日時：<time datetime='Fri, 31 Aug 2018 06:00:00 UTC'> 2018年8月31日15時00分</time></p>
     </header>
 
     <p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830200841.png" alt="f:id:daruyanagi:20180830200841p:plain" title="f:id:daruyanagi:20180830200841p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>なんか「フォト」でコピーすると OutOfMemory エラーが発生するので調査したんだけど――</p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830201012.png" alt="f:id:daruyanagi:20180830201012p:plain" title="f:id:daruyanagi:20180830201012p:plain" class="hatena-fotolife" itemprop="image"></span></p><p><span itemscope itemtype="http://schema.org/Photograph"><img src="20180830201108.png" alt="f:id:daruyanagi:20180830201108p:plain" title="f:id:daruyanagi:20180830201108p:plain" class="hatena-fotolife" itemprop="image"></span></p><p>画像をコピーすると、ファイルリストと一緒にイメージもクリップボードに格納してくれるみたい<a href="#f-384b75a0" name="fn-384b75a0" title="クリップボードのデータは複数の形式を同時に持てる。例：プレーンテキストと書式付きテキスト、HTML">*1</a>。「ペイント」で張り付ければイメージに、「エクスプローラー」で張り付けると画像ファイルになって便利なんだけど、そのあたりをちゃんと考えてなかった。ちゃんと条件分岐を増やして不要な処理を減らす。</p><p>あと、高速に［Ctrl］＋［C］キーを押しまくったりするとたまにエラーが発生するので、それもちゃんとトラップしてバルーンで警告するようにした。他にも少しエラー処理を足したので、アプリのクラッシュは減ったはず。</p><p>それでもデカいファイルを扱う場合などに連続処理が発生するとあまりよろしくないので、ファイルの保存時に警告音を再生するオプションを付けた。音が鳴るまでは次のコピーを控えてもらえると、余計なエラーが発生しない。</p><p><iframe src="https://hatenablog-parts.com/embed?url=https%3A%2F%2Fgithub.com%2Fdaruyanagi%2FAmaguri%2Freleases%2Ftag%2Fv1.1.0.0" title="daruyanagi/Amaguri" class="embed-card embed-webcard" scrolling="no" frameborder="0" style="display: block; width: 100%; height: 155px; max-width: 500px; margin: 10px 0px;"></iframe><cite class="hatena-citation"><a href="https://github.com/daruyanagi/Amaguri/releases/tag/v1.1.0.0">github.com</a></cite></p><p>もう少し使って、まぁまぁ、だいじょうぶになったらストア向けのパッケージも作る。前回の経験でいえば、申請から公開まで1カ月以上はかかると思う。</p>
@@ -92,25 +92,32 @@
             
             <div class="card-header">
                 記事「Amaguri v1.1.0.0：保存時の効果音 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2018%2f08%2f31%2f060000%2f">Twitter.com で反応を見る</a></span>
             </div>
 
             <div class="card-body">
                 <p>
-                この記事は <time datetime='2018-08-31'> 2018年8月31日06時00分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。誤植などがありましたら
-                <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/08/31/060000/">GitHub.com</a> で
+                この記事は <time datetime='2018-08-31'> 2018年8月31日06時00分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2018/08/31/060000/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
                 <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2018%2f08%2f31%2f060000%2f">isuue を作成</a>していただけると、
-                気が向いたときに直すかもしれません。編集履歴も <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2018/08/31/060000//index.md">GitHub.com</a> 
-                で確認できます。この記事に関する <img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;">  Twitter.com での言及は<a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2018%2f08%2f31%2f060000%2f">こちら</a>から。
+                気が向いたときに直すかもしれません。
                 </p>
-                <p>タグ：[<a href="/tags/amaguri">Amaguri</a>] [<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] </p>
-                <p>最終更新日：<time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time></p>
+
+                <p><b>最終更新日時：</b><time datetime='Mon, 04 May 2020 01:50:32 JST'> 2020年5月4日01時50分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2018/08/31/060000//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b>[<a href="/tags/amaguri">Amaguri</a>] [<a href="/tags/%E5%91%8A%E7%9F%A5">告知</a>] </p>
+
                 <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/08/30/192006/">8月23日：親方と道後で飲んだ</a>」です。次の記事は「<a href="https://blog.daruyanagi.jp/entry/2018/09/05/023013/">Kindle for PC 1.24.3</a>」です。</p>
             </div>
             
             <div class="card-footer">
                 <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2018/08/31/060000/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
-                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/08/31/060000/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>
-                
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2018/08/31/060000/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
             </div>
           </div>
 

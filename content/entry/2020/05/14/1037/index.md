@@ -27,3 +27,9 @@ eyecatch: image1.jpg
 
 サービスの設計に問題があるのも確かだが、国民はもっと IT リテラシーを高めていくべきだ。多少の負担にはなるが、役人を雑務から解放して、より重要な職務にリソースを集中することができるかもしれない。それは国民にとっても望ましいことだ。自分も手の届く範囲でそれに協力していこうと思った。
 
+## 追記
+
+<blockquote class="twitter-tweet" data-partner="tweetdeck"><p lang="ja" dir="ltr">「国から10万円振り込まれたぜ～」<br><br>軽自動車税 納税通知書<br><br>「おうふｗ（吐血」</p>&mdash; BLゲームの破滅フラグしかない だるやなぎ に転生してしまった… (@daruyanagi) <a href="https://twitter.com/daruyanagi/status/1260770234635411456?ref_src=twsrc%5Etfw">May 14, 2020</a></blockquote>
+<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+
+

@@ -1,5 +1,5 @@
 {{- if strings.HasSuffix .Destination "#embed" -}}
-  {{- $url := trim .Destination "#embed" -}}
+  {{- $url := index (split .Destination "#embed") 0 -}}
   {{- $domain := index (split .Destination "/")  2 -}}
 
   {{- if strings.HasPrefix .Destination "https://twitter.com/" -}}

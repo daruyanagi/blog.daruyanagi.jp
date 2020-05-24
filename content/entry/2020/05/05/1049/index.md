@@ -27,3 +27,81 @@ javascript: (function() { const tag = 'bestylesnet-22'; const name = document.ge
 <div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/4422210963.09.MZZZZZZZ.jpg' alt='古代ギリシア発掘史 (「知の再発見」双書)' /> <span class='amazon-item-title'>古代ギリシア発掘史 (「知の再発見」双書)</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/4422210963/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
 
 <div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/B0854VKPFN.09.MZZZZZZZ.jpg' alt='トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA' /> <span class='amazon-item-title'>トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/B0854VKPFN/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
+
+## 追記（2020年5月24日）
+
+他のリンクも含め Render-Hook でブログカード形式によるレンダリングを行うようにしたので、この方式はやめた。このページの表記崩れ対策のために、スタイルシートをこの記事に埋め込んでおく。
+
+```
+.amazon-item {
+  border: 1px solid #e4e4e4;
+  position: relative;
+  margin: 2rem;
+  overflow: hidden;
+}
+
+.amazon-item img {
+  display: block;
+  float: left;
+  margin: 2rem;
+}
+
+.amazon-item-title {
+  display: inline-block;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.amazon-item-link {
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem;
+  color: white;
+  background-color: #007bff;
+}
+
+.amazon-item-link a {
+  color: white;
+}
+```
+
+<style>
+.amazon-item {
+  border: 1px solid #e4e4e4;
+  position: relative;
+  margin: 2rem;
+  overflow: hidden;
+}
+
+.amazon-item img {
+  display: block;
+  float: left;
+  margin: 2rem;
+}
+
+.amazon-item-title {
+  display: inline-block;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.amazon-item-link {
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem;
+  color: white;
+  background-color: #007bff;
+}
+
+.amazon-item-link a {
+  color: white;
+}
+</style>

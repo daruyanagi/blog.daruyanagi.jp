@@ -27,7 +27,7 @@
 <meta property="og:type" content="article" />
 <meta property="og:url" content="https://blog.daruyanagi.jp/entry/2020/05/05/1049/" />
 <meta property="article:published_time" content="2020-05-05T10:49:40+09:00" />
-<meta property="article:modified_time" content="2020-05-05T11:47:16+09:00" />
+<meta property="article:modified_time" content="2020-05-24T11:07:12+09:00" />
 <meta property="og:image" content="https://blog.daruyanagi.jp/no-image.png"><meta property="fb:admins" content="2150442315382" />
 <meta property="twitter:card" content="summary" />
 <meta property="twitter:url" content="https://blog.daruyanagi.jp/entry/2020/05/05/1049/" />
@@ -100,6 +100,79 @@
 <p>発売日や出版社のデータも欲しいところだけど、スクレイピングで対応するのは結構面倒くさいようだ。メタタグか何か埋め込んでくれていたら楽なのにな。</p>
 <div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/4422210963.09.MZZZZZZZ.jpg' alt='古代ギリシア発掘史 (「知の再発見」双書)' /> <span class='amazon-item-title'>古代ギリシア発掘史 (「知の再発見」双書)</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/4422210963/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
 <div class='amazon-item'><img src='https://images-na.ssl-images-amazon.com/images/P/dp/B0854VKPFN.09.MZZZZZZZ.jpg' alt='トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA' /> <span class='amazon-item-title'>トミカ Honda シビック TYPE R トミカ50周年記念仕様 designed by HONDA</span> <span class='amazon-item-link'><a href='https://www.amazon.co.jp/dp/B0854VKPFN/?tag=bestylesnet-22'>Amazon.co.jp でみる</a></span></div>
+<h2 id="追記2020年5月24日">追記（2020年5月24日）</h2>
+<p>他のリンクも含め Render-Hook でブログカード形式によるレンダリングを行うようにしたので、この方式はやめた。このページの表記崩れ対策のために、スタイルシートをこの記事に埋め込んでおく。</p>
+<pre><code>.amazon-item {
+  border: 1px solid #e4e4e4;
+  position: relative;
+  margin: 2rem;
+  overflow: hidden;
+}
+
+.amazon-item img {
+  display: block;
+  float: left;
+  margin: 2rem;
+}
+
+.amazon-item-title {
+  display: inline-block;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.amazon-item-link {
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem;
+  color: white;
+  background-color: #007bff;
+}
+
+.amazon-item-link a {
+  color: white;
+}
+</code></pre><style>
+.amazon-item {
+  border: 1px solid #e4e4e4;
+  position: relative;
+  margin: 2rem;
+  overflow: hidden;
+}
+
+.amazon-item img {
+  display: block;
+  float: left;
+  margin: 2rem;
+}
+
+.amazon-item-title {
+  display: inline-block;
+  margin: 2rem;
+  padding: 1rem;
+  font-weight: bold;
+}
+
+.amazon-item-link {
+  display: inline-block;
+  text-align: right;
+  position: absolute;
+  right: 2rem;
+  bottom: 2rem;
+  padding: 1rem;
+  color: white;
+  background-color: #007bff;
+}
+
+.amazon-item-link a {
+  color: white;
+}
+</style>
+
 
     <footer>
         <hr />
@@ -121,7 +194,7 @@
                 気が向いたときに直すかもしれません。
                 </p>
 
-                <p><b>最終更新日時：</b><time datetime='Tue, 05 May 2020 11:47:16 JST'> 2020年5月5日11時47分</time>
+                <p><b>最終更新日時：</b><time datetime='Sun, 24 May 2020 11:07:12 JST'> 2020年5月24日11時07分</time>
                     （  
                     <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2020/05/05/1049//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
                     ）

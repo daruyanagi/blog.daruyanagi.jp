@@ -48,7 +48,6 @@ var data = google.visualization.arrayToDataTable([
 ['2017', 962104],
 ['2018', 1068734],
 ['2019', 1164853],
-['2020', 1902126],
 ]);
 
 var options = {

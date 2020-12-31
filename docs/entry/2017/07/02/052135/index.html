@@ -125,13 +125,13 @@ resourceKey = key;
 <span class="synComment">// ms-resource:///Resources/AppStoreName</span>
 <span class="synComment">// ms-resource:/manifest/DisplayName</span>
 <span class="synComment">// ms-resource:PackageDisplayName</span>
-resourceKey = key.Split(<span class="synConstant">&rsquo;:&lsquo;</span>).Last();</p>
+resourceKey = key.Split(<span class="synConstant">':'</span>).Last();</p>
 <p><span class="synStatement">if</span> (resourceKey.StartsWith(<span class="synConstant">&quot;/&quot;</span>))
 {
 <span class="synComment">// パスになっているパターン → アプリ名入りのパスに</span>
 <span class="synComment">// :///Resources/AppStoreName</span>
 <span class="synComment">// :/manifest/DisplayName</span>
-resourceKey = resourceKey.TrimStart(<span class="synConstant">&rsquo;/&lsquo;</span>);
+resourceKey = resourceKey.TrimStart(<span class="synConstant">'/'</span>);
 resourceKey = $<span class="synConstant">&quot;ms-resource://{name}/{resourceKey}&quot;</span>;
 }
 <span class="synStatement">else</span>

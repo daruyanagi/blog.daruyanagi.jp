@@ -96,10 +96,10 @@ e.Handled = <span class="synConstant">true</span>; <span class="synComment">// æ
 FormulaText.SelectionLength = <span class="synConstant">0</span>;</p>
 <p><span class="synStatement">if</span> ((Keyboard.Modifiers &amp; ModifierKeys.Shift) != ModifierKeys.Shift)
 {
-start = text.IndexOf(<span class="synConstant">&rsquo;{&lsquo;</span>, start);
+start = text.IndexOf(<span class="synConstant">'{'</span>, start);
 <span class="synStatement">if</span> (start &lt; <span class="synConstant">0</span>) <span class="synStatement">return</span>;
 FormulaText.SelectionStart = start + <span class="synConstant">1</span>;</p>
-<p>end = text.IndexOf(<span class="synConstant">&rsquo;}&lsquo;</span>, FormulaText.SelectionStart);
+<p>end = text.IndexOf(<span class="synConstant">'}'</span>, FormulaText.SelectionStart);
 <span class="synStatement">if</span> (end &lt; <span class="synConstant">0</span>) <span class="synStatement">return</span>;
 FormulaText.SelectionLength = end - start - <span class="synConstant">1</span>;
 }

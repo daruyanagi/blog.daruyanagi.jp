@@ -176,7 +176,7 @@ result.DisplayName = doc.Descendants(ns + <span class="synConstant">&quot;Displa
 <span class="synStatement">if</span> ((result.DisplayName <span class="synStatement">as</span> <span class="synType">string</span>).StartsWith(<span class="synConstant">&quot;ms-resource&quot;</span>))
 {
 var pri = Path.Combine(path, <span class="synConstant">&quot;resources.pri&quot;</span>);
-var resourceKey = (result.DisplayName <span class="synStatement">as</span> <span class="synType">string</span>).Split(<span class="synConstant">&rsquo;:&lsquo;</span>).Last();
+var resourceKey = (result.DisplayName <span class="synStatement">as</span> <span class="synType">string</span>).Split(<span class="synConstant">':'</span>).Last();
 var resourcePath = <span class="synType">string</span>.Format(<span class="synConstant">&quot;@{{{0}? ms-resource://{1}/resources/{2}}}&quot;</span>, pri, _.Id.Name, resourceKey);
 var buffer = <span class="synStatement">new</span> StringBuilder(<span class="synConstant">1024</span>);
 SHLoadIndirectString(resourcePath, buffer, buffer.Capacity, IntPtr.Zero);

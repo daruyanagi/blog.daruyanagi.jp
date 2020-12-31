@@ -106,7 +106,7 @@ feed.load(<span class="synIdentifier">function</span> (result) <span class="synI
 <span class="synStatement">if</span> (!result.error) <span class="synIdentifier">{</span>
 <span class="synIdentifier">var</span> container = <span class="synStatement">document</span>.getElementById(target);
 <span class="synIdentifier">var</span> feed = result.feed.entries<span class="synIdentifier">[</span>0<span class="synIdentifier">]</span>;
-<span class="synIdentifier">var</span> html = <span class="synConstant">&quot;&lt;a href=&rsquo;&quot;</span> + feed.link + <span class="synConstant">&quot;'&gt;&quot;</span> + feed.title + <span class="synConstant">&quot;&lt;/a&gt;&quot;</span>;
+<span class="synIdentifier">var</span> html = <span class="synConstant">&quot;&lt;a href='&quot;</span> + feed.link + <span class="synConstant">&quot;'&gt;&quot;</span> + feed.title + <span class="synConstant">&quot;&lt;/a&gt;&quot;</span>;
 container.innerHTML = html;
 <span class="synIdentifier">}</span> <span class="synStatement">else</span> <span class="synIdentifier">{</span>
 console.log(result.error.code + <span class="synConstant">&quot;:&quot;</span> + result.error.message);

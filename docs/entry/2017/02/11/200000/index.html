@@ -475,11 +475,11 @@ var node = doc.DocumentNode
 <span class="synStatement">do</span> { node = node.NextSibling; } <span class="synStatement">while</span> (node.Name != <span class="synConstant">&quot;ul&quot;</span>);
 node = node.ChildNodes.First(_ =&gt; _.Name == <span class="synConstant">&quot;li&quot;</span>);</p>
 <p>var text = node.InnerText;</p>
-<p>var year = text.Split(<span class="synConstant">&rsquo;、&lsquo;</span>).First().Split(<span class="synConstant">&rsquo;-&lsquo;</span>)
-.First().Split(<span class="synConstant">&rsquo;（&lsquo;</span>).First().Trim();
-var name = text.Split(<span class="synConstant">&rsquo;、&lsquo;</span>).First().Split(<span class="synConstant">&rsquo;-&lsquo;</span>)
+<p>var year = text.Split(<span class="synConstant">'、'</span>).First().Split(<span class="synConstant">'-'</span>)
+.First().Split(<span class="synConstant">'（'</span>).First().Trim();
+var name = text.Split(<span class="synConstant">'、'</span>).First().Split(<span class="synConstant">'-'</span>)
 .Last().Trim();
-var description = text.Split(<span class="synConstant">&rsquo;、&lsquo;</span>).Last();</p>
+var description = text.Split(<span class="synConstant">'、'</span>).Last();</p>
 <p>result.Add(<span class="synStatement">new</span>
 {
 Date = date.ToString(<span class="synConstant">&quot;M月d日&quot;</span>),

@@ -131,8 +131,8 @@ WebAuthenticationOptions.None,
 <span class="synComment">// http://localhost?&hellip;=&hellip;&amp;&hellip;=&hellip; っていうのが</span>
 <span class="synComment">// 返るのでテキトーに千切って verifier だけ取得</span>
 var verifier = webAuthenticationResult.ResponseData
-.Split(<span class="synConstant">&rsquo;?&lsquo;</span>).Last()
-.Split(<span class="synConstant">&rsquo;&amp;&lsquo;</span>).Last()
+.Split(<span class="synConstant">'?'</span>).Last()
+.Split(<span class="synConstant">'&amp;'</span>).Last()
 .Split(<span class="synConstant">'='</span>).Last();
 <span class="synComment">// リクエストトークンと verifier で</span>
 <span class="synComment">// アクセストークンをゲット</span>

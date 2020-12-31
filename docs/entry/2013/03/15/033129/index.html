@@ -142,7 +142,7 @@ var lines = Html.Encode(text).Split(new_line, StringSplitOptions.None);
 var width = lines.Max(_ =&gt; _.Length);</p>
 <p>var vertical_text = lines
 .Reverse()
-.Select(_ =&gt; _.PadRight(width, <span class="synConstant">&rsquo;　&lsquo;</span>).ToCharArray().AsEnumerable())
+.Select(_ =&gt; _.PadRight(width, <span class="synConstant">'　&lsquo;</span>).ToCharArray().AsEnumerable())
 .Transpose()
 .Select(_ =&gt; _.Join(<span class="synConstant">&quot; &quot;</span>.Times(s)).TrimEnd())
 .Join(<span class="synConstant">&quot;</span><span class="synSpecial">\n</span><span class="synConstant">&quot;</span>) + <span class="synConstant">&quot;</span><span class="synSpecial">\n\n</span><span class="synConstant">&quot;</span>;

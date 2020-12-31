@@ -196,10 +196,10 @@ context.Clients.All.log(
 <span class="synSpecial">            $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
 <span class="synSpecial">                </span><span class="synIdentifier">var</span><span class="synSpecial"> message = $.connection.message;</span></p>
 <p><span class="synSpecial">                message.client.log = </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">log</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                    $</span>(<span class="synConstant">&rsquo;#log'</span>)<span class="synSpecial">.append</span>(<span class="synConstant">&rsquo;&lt;li&gt;&lsquo;</span><span class="synSpecial"> + log + </span><span class="synConstant">&rsquo;&lt;/li&gt;&lsquo;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                    $</span>(<span class="synConstant">'#log'</span>)<span class="synSpecial">.append</span>(<span class="synConstant">'&lt;li&gt;'</span><span class="synSpecial"> + log + </span><span class="synConstant">'&lt;/li&gt;'</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">                </span><span class="synIdentifier">}</span><span class="synSpecial">;</span></p>
 <p><span class="synSpecial">                message.client.notify = </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">count</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                    $</span>(<span class="synConstant">&rsquo;#count'</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">count</span>)
+<span class="synSpecial">                    $</span>(<span class="synConstant">'#count'</span>)<span class="synSpecial">.html</span>(<span class="synSpecial">count</span>)
 <span class="synSpecial">                </span><span class="synIdentifier">}</span><span class="synSpecial">;</span></p>
 <p><span class="synSpecial">                $.connection.hub.start</span>()<span class="synSpecial">;</span>
 <span class="synSpecial">            </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>

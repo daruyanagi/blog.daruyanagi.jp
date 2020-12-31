@@ -81,7 +81,7 @@
 
     <p>まだまだ PowerShell がカタコトしかしゃべれないチンカスですが、皆様はいかがお過ごしでしょうか。</p><p>さて、この間こんな感じのコードを書いたんですよ。</p>
 <pre class="code lang-ps1" data-lang="ps1" data-unlink><span class="synIdentifier">$text</span> = <span class="synConstant">'Microsoft Edge on Windows 10 Version 1511 for x64-based Systems'</span>
-<p><span class="synIdentifier">$text</span>.Split(<span class="synConstant">&rsquo; on &lsquo;</span>)[-<span class="synConstant">1</span>]
+<p><span class="synIdentifier">$text</span>.Split(<span class="synConstant">' on &lsquo;</span>)[-<span class="synConstant">1</span>]
 </pre><p>意図としては、文字列を“ on ”で分割して後ろ部分“Windows 10 Version 1511 for x64-based Systems”を取り出したい、みたいな感じだったのですが……結果はこうでした</p></p>
 <pre class="code" data-lang="" data-unlink>Systems</pre><p>そもそも <code>String.Split()</code> のシグネチャを間違えて雰囲気で書いてしまっているので正しく動作するはずはないのですが、一瞬なんでこんな結果になるのかわからず ( ；´Д｀)？ となってしまいました。</p><p>ちょっと考えたらわかるのですが、<code>' on '</code> が <code>char</code> の配列として解釈され、.NET でいうところの</p>
 <pre class="code lang-cs" data-lang="cs" data-unlink>text.Split(<span class="synStatement">new</span> <span class="synType">char</span>[] { <span class="synConstant">' '</span>, <span class="synConstant">'o'</span>, <span class="synConstant">'n'</span>, <span class="synConstant">' '</span> })

@@ -129,8 +129,8 @@
 <span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">function</span><span class="synSpecial"> get_social_count_facebook</span>(<span class="synSpecial">url, selcter</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
 <span class="synSpecial">  jQuery.ajax</span>(<span class="synIdentifier">{</span>
-<span class="synSpecial">    url:</span><span class="synConstant">'https://graph.facebook.com/&lsquo;</span><span class="synSpecial">,</span>
-<span class="synSpecial">    dataType:</span><span class="synConstant">'jsonp'</span><span class="synSpecial">,</span>
+<span class="synSpecial">    url:</span><span class="synConstant">&lsquo;https://graph.facebook.com/'</span><span class="synSpecial">,</span>
+<span class="synSpecial">    dataType:</span><span class="synConstant">&lsquo;jsonp&rsquo;</span><span class="synSpecial">,</span>
 <span class="synSpecial">    data:</span><span class="synIdentifier">{</span>
 <span class="synSpecial">      id:url</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
@@ -138,14 +138,14 @@
 <span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synSpecial"> res.share.share_count || </span>0<span class="synSpecial"> </span>)<span class="synSpecial">;</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">    error:</span><span class="synIdentifier">function</span>()<span class="synIdentifier">{</span>
-<span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synConstant">'0'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synConstant">&lsquo;0&rsquo;</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span>
 <span class="synSpecial">  </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
 <span class="synIdentifier">}</span></p>
 <p><span class="synIdentifier">function</span><span class="synSpecial"> get_social_count_hatenabookmark</span>(<span class="synSpecial">url, selcter</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
 <span class="synSpecial">  jQuery.ajax</span>(<span class="synIdentifier">{</span>
-<span class="synSpecial">    url:</span><span class="synConstant">'http://api.b.st-hatena.com/entry.count?callback=?&lsquo;</span><span class="synSpecial">,</span>
-<span class="synSpecial">    dataType:</span><span class="synConstant">'jsonp'</span><span class="synSpecial">,</span>
+<span class="synSpecial">    url:</span><span class="synConstant">&lsquo;http://api.b.st-hatena.com/entry.count?callback=?'</span><span class="synSpecial">,</span>
+<span class="synSpecial">    dataType:</span><span class="synConstant">&lsquo;jsonp&rsquo;</span><span class="synSpecial">,</span>
 <span class="synSpecial">    data:</span><span class="synIdentifier">{</span>
 <span class="synSpecial">      url:url</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
@@ -153,13 +153,13 @@
 <span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synSpecial"> res || </span>0<span class="synSpecial"> </span>)<span class="synSpecial">;</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">    error:</span><span class="synIdentifier">function</span>()<span class="synIdentifier">{</span>
-<span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synConstant">'0'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">      jQuery</span>(<span class="synSpecial"> selcter </span>)<span class="synSpecial">.text</span>(<span class="synConstant">&lsquo;0&rsquo;</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">    </span><span class="synIdentifier">}</span>
 <span class="synSpecial">  </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
 <span class="synIdentifier">}</span></p>
 <p><span class="synSpecial">jQuery</span>(<span class="synIdentifier">function</span>()<span class="synIdentifier">{</span>
-<span class="synSpecial">  get_social_count_facebook</span>(<span class="synConstant">&rsquo;{Permalink}&lsquo;</span><span class="synSpecial">, </span><span class="synConstant">&rsquo;.facebook-count'</span>)<span class="synSpecial">;</span>
-<span class="synSpecial">  get_social_count_hatenabookmark</span>(<span class="synConstant">&rsquo;{Permalink}&lsquo;</span><span class="synSpecial">, </span><span class="synConstant">&rsquo;.hatenabookmark-count'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">  get_social_count_facebook</span>(<span class="synConstant">'{Permalink}'</span><span class="synSpecial">, </span><span class="synConstant">'.facebook-count&rsquo;</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">  get_social_count_hatenabookmark</span>(<span class="synConstant">'{Permalink}'</span><span class="synSpecial">, </span><span class="synConstant">'.hatenabookmark-count&rsquo;</span>)<span class="synSpecial">;</span>
 <span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
 <span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span></p>
 <p><span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;share&quot;</span><span class="synIdentifier">&gt;</span>

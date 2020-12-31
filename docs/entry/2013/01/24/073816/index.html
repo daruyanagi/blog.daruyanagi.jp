@@ -360,21 +360,21 @@ Layout = &quot;~/_SiteLayout.cshtml&quot;;
 <span class="synIdentifier">&lt;</span>aside<span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;EditDocument&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal&quot;</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span><span class="synIdentifier">&gt;</span>
 <span class="synSpecial">        $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">            $</span>(<span class="synConstant">&rsquo;#edit-document'</span>)<span class="synSpecial">.click</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">            $</span>(<span class="synConstant">'#edit-document'</span>)<span class="synSpecial">.click</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
 <span class="synSpecial">                $.ajax</span>(<span class="synIdentifier">{</span>
 <span class="synSpecial">                    url: </span><span class="synConstant">&quot;@Request.Url.AbsolutePath&quot;</span><span class="synSpecial">,</span>
-<span class="synSpecial">                    type: </span><span class="synConstant">'POST'</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    type: </span><span class="synConstant">&lsquo;POST&rsquo;</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    data: </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synConstant">&rsquo;_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;PUT&quot;</span><span class="synSpecial">,</span>
-<span class="synSpecial">                        </span><span class="synConstant">'Title'</span><span class="synSpecial">: $</span>(<span class="synConstant">&rsquo;#Edit-Title'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
-<span class="synSpecial">                        </span><span class="synConstant">'Body'</span><span class="synSpecial">: $</span>(<span class="synConstant">&rsquo;#Edit-Body'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">'_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;PUT&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">&lsquo;Title&rsquo;</span><span class="synSpecial">: $</span>(<span class="synConstant">'#Edit-Title'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">&lsquo;Body&rsquo;</span><span class="synSpecial">: $</span>(<span class="synConstant">'#Edit-Body'</span>)<span class="synSpecial">.val</span>()<span class="synSpecial">,</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    success: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">&rsquo;@Request.Url.GetRoot()/Posts/&lsquo;</span><span class="synSpecial"> + data.Id;</span>
+<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">'@Request.Url.GetRoot()/Posts/'</span><span class="synSpecial"> + data.Id;</span>
 <span class="synSpecial">                        </span><span class="synStatement">window</span><span class="synSpecial">.</span><span class="synStatement">location</span><span class="synSpecial">.replace</span>(<span class="synSpecial">uri</span>)<span class="synSpecial">; </span><span class="synComment">// リダイレクト</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    error: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">'failure'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">&lsquo;failure&rsquo;</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">            </span><span class="synIdentifier">}</span>)
@@ -396,19 +396,19 @@ Layout = &quot;~/_SiteLayout.cshtml&quot;;
 <p><span class="synIdentifier">&lt;</span>aside<span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;RemoveDocument&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;modal&quot;</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier"> </span><span class="synType">type</span><span class="synIdentifier">=</span><span class="synConstant">&quot;text/javascript&quot;</span><span class="synIdentifier">&gt;</span>
 <span class="synSpecial">        $</span>(<span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">            $</span>(<span class="synConstant">&rsquo;#remove-document'</span>)<span class="synSpecial">.click</span>(<span class="synSpecial"> </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
+<span class="synSpecial">            $</span>(<span class="synConstant">'#remove-document'</span>)<span class="synSpecial">.click</span>(<span class="synSpecial"> </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>()<span class="synSpecial"> </span><span class="synIdentifier">{</span>
 <span class="synSpecial">                $.ajax</span>(<span class="synIdentifier">{</span>
 <span class="synSpecial">                    url: </span><span class="synConstant">&quot;@Request.Url.AbsolutePath&quot;</span><span class="synSpecial">,</span>
-<span class="synSpecial">                    type: </span><span class="synConstant">'POST'</span><span class="synSpecial">,</span>
+<span class="synSpecial">                    type: </span><span class="synConstant">&lsquo;POST&rsquo;</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    data: </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synConstant">&rsquo;_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;DELETE&quot;</span><span class="synSpecial">,</span>
+<span class="synSpecial">                        </span><span class="synConstant">'_method'</span><span class="synSpecial">: </span><span class="synConstant">&quot;DELETE&quot;</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    success: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">&rsquo;@Request.Url.GetRoot()/Posts/&lsquo;</span><span class="synSpecial">;</span>
+<span class="synSpecial">                        </span><span class="synIdentifier">var</span><span class="synSpecial"> uri = </span><span class="synConstant">'@Request.Url.GetRoot()/Posts/'</span><span class="synSpecial">;</span>
 <span class="synSpecial">                        </span><span class="synStatement">window</span><span class="synSpecial">.</span><span class="synStatement">location</span><span class="synSpecial">.replace</span>(<span class="synSpecial">uri</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                    error: </span><span class="synIdentifier">function</span><span class="synSpecial"> </span>(<span class="synSpecial">data</span>)<span class="synSpecial"> </span><span class="synIdentifier">{</span>
-<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">'failure'</span>)<span class="synSpecial">;</span>
+<span class="synSpecial">                        </span><span class="synStatement">alert</span>(<span class="synConstant">&lsquo;failure&rsquo;</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">                    </span><span class="synIdentifier">}</span><span class="synSpecial">,</span>
 <span class="synSpecial">                </span><span class="synIdentifier">}</span>)<span class="synSpecial">;</span>
 <span class="synSpecial">            </span><span class="synIdentifier">}</span>)

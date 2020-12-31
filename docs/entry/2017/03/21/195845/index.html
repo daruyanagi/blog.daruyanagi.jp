@@ -132,30 +132,30 @@ var result = ProcessScript(<span class="synConstant">&quot;hello.js&quot;</span>
 <p>System.Diagnostics.Debug.WriteLine(result);
 }
 </pre><pre class="code lang-javascript" data-lang="javascript" data-unlink><span class="synComment">// hello.js</span></p>
-<p><span class="synIdentifier">var</span> system = require(<span class="synConstant">'system'</span>);</p>
+<p><span class="synIdentifier">var</span> system = require(<span class="synConstant">&lsquo;system&rsquo;</span>);</p>
 <p><span class="synComment">// 引数のチェック</span>
 <span class="synStatement">switch</span>(system.args.length) <span class="synIdentifier">{</span>
 <span class="synStatement">case</span> 2:
 <span class="synIdentifier">var</span> url = system.args<span class="synIdentifier">[</span>1<span class="synIdentifier">]</span>;
 <span class="synStatement">break</span>;
 <span class="synStatement">default</span>:
-console.log(<span class="synConstant">'error: invalid argument'</span>);
+console.log(<span class="synConstant">&lsquo;error: invalid argument&rsquo;</span>);
 phantom.exit(1);
 <span class="synStatement">break</span>;
 <span class="synIdentifier">}</span></p>
-<p><span class="synIdentifier">var</span> page = require(<span class="synConstant">'webpage'</span>).create();</p>
+<p><span class="synIdentifier">var</span> page = require(<span class="synConstant">&lsquo;webpage&rsquo;</span>).create();</p>
 <p><span class="synComment">// Web Page を開く</span>
 page.open(url, <span class="synIdentifier">function</span> (<span class="synStatement">status</span>) <span class="synIdentifier">{</span>
 <span class="synStatement">switch</span> (<span class="synStatement">status</span>) <span class="synIdentifier">{</span>
-<span class="synStatement">case</span> <span class="synConstant">'success'</span>:
+<span class="synStatement">case</span> <span class="synConstant">&lsquo;success&rsquo;</span>:
 <span class="synIdentifier">var</span> links = page.evaluate(<span class="synIdentifier">function</span> () <span class="synIdentifier">{</span>
-<span class="synStatement">return</span> <span class="synIdentifier">[]</span>.map.call(<span class="synStatement">document</span>.querySelectorAll(<span class="synConstant">'a'</span>), <span class="synIdentifier">function</span> (link) <span class="synIdentifier">{</span> <span class="synStatement">return</span> link.getAttribute(<span class="synConstant">'href'</span>); <span class="synIdentifier">}</span>);
+<span class="synStatement">return</span> <span class="synIdentifier">[]</span>.map.call(<span class="synStatement">document</span>.querySelectorAll(<span class="synConstant">&lsquo;a&rsquo;</span>), <span class="synIdentifier">function</span> (link) <span class="synIdentifier">{</span> <span class="synStatement">return</span> link.getAttribute(<span class="synConstant">&lsquo;href&rsquo;</span>); <span class="synIdentifier">}</span>);
 <span class="synIdentifier">}</span>);
 console.log(JSON.stringify(links));
 phantom.exit(0);
 <span class="synStatement">break</span>;
 <span class="synStatement">default</span>:
-console.log(<span class="synConstant">'error: page.open() &lsquo;</span> + <span class="synStatement">status</span>);
+console.log(<span class="synConstant">&lsquo;error: page.open() &lsquo;</span> + <span class="synStatement">status</span>);
 phantom.exit(1);
 <span class="synStatement">break</span>;
 <span class="synIdentifier">}</span>

@@ -102,54 +102,54 @@ element.text(json.count || 0);
 <span class="synIdentifier">}</span>);
 <span class="synIdentifier">}</span>
 <p><span class="synIdentifier">function</span> get_facebook_button(url, dest, text) <span class="synIdentifier">{</span>
-<span class="synIdentifier">var</span> share = <span class="synConstant">'http://www.facebook.com/sharer.php?u='</span> + url + <span class="synConstant">&rsquo;&amp;t='</span> + text;
-<span class="synIdentifier">var</span> comment = <span class="synConstant">'&lsquo;</span>;
-<span class="synIdentifier">var</span> span = $(<span class="synConstant">&rsquo;&lt;span&gt;&lsquo;</span>).addClass(<span class="synConstant">'facebook'</span>);
-$(<span class="synConstant">&rsquo;#&lsquo;</span> + dest).append(span);
+<span class="synIdentifier">var</span> share = <span class="synConstant">&lsquo;http://www.facebook.com/sharer.php?u='</span> + url + <span class="synConstant">'&amp;t='</span> + text;
+<span class="synIdentifier">var</span> comment = <span class="synConstant">''</span>;
+<span class="synIdentifier">var</span> span = $(<span class="synConstant">'&lt;span&gt;'</span>).addClass(<span class="synConstant">&lsquo;facebook&rsquo;</span>);
+$(<span class="synConstant">'#'</span> + dest).append(span);
 <span class="synIdentifier">var</span> element;
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).text(<span class="synConstant">'facebook'</span>).addClass(<span class="synConstant">'service-name'</span>).attr(<span class="synConstant">'href'</span>, share);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).text(<span class="synConstant">&lsquo;facebook&rsquo;</span>).addClass(<span class="synConstant">&lsquo;service-name&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, share);
 span.append(element);
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).addClass(<span class="synConstant">'count'</span>).attr(<span class="synConstant">'href'</span>, comment);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).addClass(<span class="synConstant">&lsquo;count&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, comment);
 span.append(element);
 $.ajax(<span class="synIdentifier">{</span>
-url: <span class="synConstant">'https://graph.facebook.com/&lsquo;</span> + url,
-dataType: <span class="synConstant">'jsonp'</span>,
+url: <span class="synConstant">&lsquo;https://graph.facebook.com/'</span> + url,
+dataType: <span class="synConstant">&lsquo;jsonp&rsquo;</span>,
 success: <span class="synIdentifier">function</span> (json) <span class="synIdentifier">{</span>
 element.text(json.shares || 0);
 <span class="synIdentifier">}</span>
 <span class="synIdentifier">}</span>);
 <span class="synIdentifier">}</span></p>
 <p><span class="synIdentifier">function</span> get_hatena_button(url, dest, text) <span class="synIdentifier">{</span>
-<span class="synIdentifier">var</span> share = <span class="synConstant">'http://b.hatena.ne.jp/add?mode=confirm&amp;url='</span> + url + <span class="synConstant">&rsquo;&amp;title='</span> + text;
-<span class="synIdentifier">var</span> comment = <span class="synConstant">'http://b.hatena.ne.jp/entry/&lsquo;</span> + url;
-<span class="synIdentifier">var</span> span = $(<span class="synConstant">&rsquo;&lt;span&gt;&lsquo;</span>).addClass(<span class="synConstant">'hatena'</span>);
-$(<span class="synConstant">&rsquo;#&lsquo;</span> + dest).append(span);
+<span class="synIdentifier">var</span> share = <span class="synConstant">&lsquo;http://b.hatena.ne.jp/add?mode=confirm&amp;url='</span> + url + <span class="synConstant">'&amp;title='</span> + text;
+<span class="synIdentifier">var</span> comment = <span class="synConstant">&lsquo;http://b.hatena.ne.jp/entry/'</span> + url;
+<span class="synIdentifier">var</span> span = $(<span class="synConstant">'&lt;span&gt;'</span>).addClass(<span class="synConstant">&lsquo;hatena&rsquo;</span>);
+$(<span class="synConstant">'#'</span> + dest).append(span);
 <span class="synIdentifier">var</span> element;
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).text(<span class="synConstant">'hatena'</span>).addClass(<span class="synConstant">'service-name'</span>).attr(<span class="synConstant">'href'</span>, share);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).text(<span class="synConstant">&lsquo;hatena&rsquo;</span>).addClass(<span class="synConstant">&lsquo;service-name&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, share);
 span.append(element);
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).addClass(<span class="synConstant">'count'</span>).attr(<span class="synConstant">'href'</span>, comment);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).addClass(<span class="synConstant">&lsquo;count&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, comment);
 span.append(element);
 $.ajax(<span class="synIdentifier">{</span>
-url: <span class="synConstant">'http://api.b.st-hatena.com/entry.count?url='</span> + url,
-dataType: <span class="synConstant">'jsonp'</span>,
+url: <span class="synConstant">&lsquo;http://api.b.st-hatena.com/entry.count?url='</span> + url,
+dataType: <span class="synConstant">&lsquo;jsonp&rsquo;</span>,
 success: <span class="synIdentifier">function</span> (json) <span class="synIdentifier">{</span>
 element.text(json || 0);
 <span class="synIdentifier">}</span>
 <span class="synIdentifier">}</span>);
 <span class="synIdentifier">}</span></p>
 <p><span class="synIdentifier">function</span> get_feed_button(url, dest, text) <span class="synIdentifier">{</span>
-<span class="synIdentifier">var</span> share = url + <span class="synConstant">'feed'</span>;
+<span class="synIdentifier">var</span> share = url + <span class="synConstant">&lsquo;feed&rsquo;</span>;
 <span class="synIdentifier">var</span> comment = url;
-<span class="synIdentifier">var</span> span = $(<span class="synConstant">&rsquo;&lt;span&gt;&lsquo;</span>).addClass(<span class="synConstant">'feed'</span>);
-$(<span class="synConstant">&rsquo;#&lsquo;</span> + dest).append(span);
+<span class="synIdentifier">var</span> span = $(<span class="synConstant">'&lt;span&gt;'</span>).addClass(<span class="synConstant">&lsquo;feed&rsquo;</span>);
+$(<span class="synConstant">'#'</span> + dest).append(span);
 <span class="synIdentifier">var</span> element;
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).text(<span class="synConstant">'feed'</span>).addClass(<span class="synConstant">'service-name'</span>).attr(<span class="synConstant">'href'</span>, share);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).text(<span class="synConstant">&lsquo;feed&rsquo;</span>).addClass(<span class="synConstant">&lsquo;service-name&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, share);
 span.append(element);
-element = $(<span class="synConstant">&rsquo;&lt;a&gt;&lsquo;</span>).addClass(<span class="synConstant">'count'</span>).attr(<span class="synConstant">'href'</span>, comment);
+element = $(<span class="synConstant">'&lt;a&gt;'</span>).addClass(<span class="synConstant">&lsquo;count&rsquo;</span>).attr(<span class="synConstant">&lsquo;href&rsquo;</span>, comment);
 span.append(element);
 $.ajax(<span class="synIdentifier">{</span>
-url: <span class="synConstant">&rsquo;/FeedCount/&lsquo;</span> + url,
-dataType: <span class="synConstant">'json'</span>,
+url: <span class="synConstant">'/FeedCount/'</span> + url,
+dataType: <span class="synConstant">&lsquo;json&rsquo;</span>,
 success: <span class="synIdentifier">function</span> (json) <span class="synIdentifier">{</span>
 element.text(json.total || 0);
 <span class="synIdentifier">}</span>
@@ -184,7 +184,7 @@ var page_title = &quot;マイ サイトのタイトル&quot;;
 <span class="synIdentifier">&lt;</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;</span><span class="synStatement">div</span><span class="synIdentifier"> </span><span class="synType">id</span><span class="synIdentifier">=</span><span class="synConstant">&quot;social-buttons&quot;</span><span class="synIdentifier"> </span><span class="synType">class</span><span class="synIdentifier">=</span><span class="synConstant">&quot;social-button&quot;</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
-<span class="synSpecial">                get_social_button</span>(<span class="synConstant">'https://blog.daruyanagi.jp/&lsquo;</span><span class="synSpecial">, </span><span class="synConstant">'social-buttons'</span><span class="synSpecial">, </span><span class="synConstant">&rsquo;@page_title'</span>)
+<span class="synSpecial">                get_social_button</span>(<span class="synConstant">&lsquo;https://blog.daruyanagi.jp/'</span><span class="synSpecial">, </span><span class="synConstant">&lsquo;social-buttons&rsquo;</span><span class="synSpecial">, </span><span class="synConstant">'@page_title&rsquo;</span>)
 <span class="synSpecial">            </span><span class="synIdentifier">&lt;/</span><span class="synStatement">script</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;/</span><span class="synStatement">div</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>

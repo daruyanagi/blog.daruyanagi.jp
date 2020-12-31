@@ -155,7 +155,7 @@ Page.Title = Page.Title ?? &quot;Untitled Page&quot;;
 <span class="synIdentifier">&lt;/</span>footer<span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;/</span><span class="synStatement">body</span><span class="synIdentifier">&gt;</span>
 <span class="synIdentifier">&lt;/</span><span class="synStatement">html</span><span class="synIdentifier">&gt;</span>
-</pre><p>冒頭は、“_AppStart.cshtml”で Title などを指定し忘れたときに、最低限のパラメータを指定しておくコード。今まで気づかなかったのだけれど、&lt;meta name=&quot;author&rdquo; content=&rdquo;@App.Author&rdquo;&gt; で @App.Author が null だと、 content 属性は出力されず、 &lt;meta name=&quot;author&rdquo;&gt; だけが出力されるんだね。なかなか頭いいな。</p><p><img src="20120807042822.png" alt="f:id:daruyanagi:20120807042822p:plain" title="f:id:daruyanagi:20120807042822p:plain" class="hatena-fotolife"></p><p>ヘッダーやナビゲーション、サイドバー、フッターは外部ファイルに追い出した。ここらへんは「分割し、統治せよ（divide et impera）」<a href="#f2" name="fn2" title="http://www.kitashirakawa.jp/taro/2011/05/divide-et-impera/">*2</a>ってやつですな。</p></p>
+</pre><p>冒頭は、“_AppStart.cshtml”で Title などを指定し忘れたときに、最低限のパラメータを指定しておくコード。今まで気づかなかったのだけれど、&lt;meta name=&ldquo;author&rdquo; content=&quot;@App.Author&quot;&gt; で @App.Author が null だと、 content 属性は出力されず、 &lt;meta name=&ldquo;author&rdquo;&gt; だけが出力されるんだね。なかなか頭いいな。</p><p><img src="20120807042822.png" alt="f:id:daruyanagi:20120807042822p:plain" title="f:id:daruyanagi:20120807042822p:plain" class="hatena-fotolife"></p><p>ヘッダーやナビゲーション、サイドバー、フッターは外部ファイルに追い出した。ここらへんは「分割し、統治せよ（divide et impera）」<a href="#f2" name="fn2" title="http://www.kitashirakawa.jp/taro/2011/05/divide-et-impera/">*2</a>ってやつですな。</p></p>
 <pre class="code lang-html" data-lang="html" data-unlink>@{
 Layout = &quot;~/Views/Shared/_Layout.cshtml&quot;;
 

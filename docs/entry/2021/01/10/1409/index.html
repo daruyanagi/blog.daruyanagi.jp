@@ -1,0 +1,307 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="description" content="いわゆる「だるろぐ」">
+<meta name="author" content="daruyanagi">
+<meta name="generator" content="Hugo">
+<meta name="theme-color" content="#563d7c">
+    
+<title>Microsoft Edge：スリープタブでリソースを節約する - blog.daruyanagi.jp</title>
+
+
+<link href="/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<link href="/css/daruyanagi.css" rel="stylesheet" crossorigin="anonymous">
+
+
+<link rel="manifest" href="/favicon/manifest.json">
+<link rel="apple-touch-icon" href="/favicon/apple-touch-icon.png" sizes="180x180">
+<link rel="icon" href="/favicon/favicon-32x32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/favicon/favicon-16x16.png" sizes="16x16" type="image/png">
+<link rel="icon" href="/favicon/favicon.ico">
+
+<meta property="og:title" content="Microsoft Edge：スリープタブでリソースを節約する" />
+<meta property="og:description" content="［設定］―［システム］―［リソース節約］に［スリープタブでリソースを保存する］というオプションが追加されていた。 Microsoft Edge バージョン 89.0.752.1 (公式ビルド" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://blog.daruyanagi.jp/entry/2021/01/10/1409/" />
+<meta property="article:published_time" content="2021-01-10T14:09:53+09:00" />
+<meta property="article:modified_time" content="2021-01-10T14:29:31+09:00" />
+<meta property="og:image" content="https://blog.daruyanagi.jp/entry/2021/01/10/1409/image1_huec7b9eca0cd3e644fec8c737b68464dd_125834_640x480_fit_q75_box.jpg"><meta property="fb:admins" content="2150442315382" />
+<meta property="twitter:card" content="summary" />
+<meta property="twitter:url" content="https://blog.daruyanagi.jp/entry/2021/01/10/1409/" />
+<meta property="twitter:site" content="@daruyanagi" />
+
+
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-53152247-5"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-53152247-5');
+</script>
+
+
+    <link href="/custom.css" rel="stylesheet">
+  </head>
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-light bg-light"><div class="container">
+    <a href="/" class="navbar-brand"><img src="/logo.png" height="30" alt=""> blog.daruyanagi.jp</a>
+
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+        <ul class="navbar-nav mr-auto">
+            <li class="nav-item active">
+                <span  class="navbar-text">いわゆる「だるろぐ」</span>
+            </li>
+        </ul>
+
+    <form class="form-inline" action="/search">
+        <div class="input-group">
+            <input name="q" id="q" type="text" class="form-control" spellcheck="false" data-ms-editor="true">
+            <div class="input-group-append">
+            <button type="submit" class="btn btn-primary">Find</button>
+            </div>
+        </div>
+    </form>
+    </div>   
+</div></nav>
+
+    <main role="main">
+<article class="container" style="margin-top: 3rem;">
+    <header>
+        <h1>Microsoft Edge：スリープタブでリソースを節約する</h1>
+        
+        <p class="published text-right">執筆日時：<time datetime='Sun, 10 Jan 2021 14:09:53 JST'> 2021年1月10日14時09分</time></p>
+    </header>
+
+    <p>［設定］―［システム］―［リソース節約］に［スリープタブでリソースを保存する］というオプションが追加されていた。</p>
+<p><figure class="figure text-center">
+    <a href="/entry/2021/01/10/1409/image1.jpg">
+        <picture>
+            <source media="(max-width: 480px)" srcset="/entry/2021/01/10/1409/image1_huec7b9eca0cd3e644fec8c737b68464dd_125834_480x360_fit_q75_box.jpg 480w">
+            <source media="(max-width: 800px)" srcset="/entry/2021/01/10/1409/image1_huec7b9eca0cd3e644fec8c737b68464dd_125834_800x600_fit_q75_box.jpg 800w">
+            <source media="(max-width: 1024px)" srcset="/entry/2021/01/10/1409/image1_huec7b9eca0cd3e644fec8c737b68464dd_125834_1024x768_fit_q75_box.jpg 1024w">
+            <img src="/entry/2021/01/10/1409/image1.jpg" alt="Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)" decoding="async" loading="lazy">
+        </picture>        
+    </a>
+
+    <figcaption class="figure-caption">Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)</figcaption>
+</figure>
+</p>
+<blockquote>
+<p>オンになっている場合、アクティブでないタブは、システム リソースを節約するため、指定した時間を経過するとスリープ状態になります。</p>
+</blockquote>
+<p>指定した時間が経過すると、非アクティブなタブを自動でスリープ状態に移行させ、リソースを解放する機能のようだ。タブをスリープ状態にするまでの時間と、スリープタブを行わない除外サイトの指定も行える。バックグラウンドで自動更新するタイプの Web ページなんかは、除外指定しておいた方がいいのかもしれない。</p>
+<p><figure class="figure text-center">
+    <a href="/entry/2021/01/10/1409/image4.jpg">
+        <picture>
+            <source media="(max-width: 480px)" srcset="/entry/2021/01/10/1409/image4_hu0404389450a2c12aa5ff4efd45819782_86686_480x360_fit_q75_box.jpg 480w">
+            <source media="(max-width: 800px)" srcset="/entry/2021/01/10/1409/image4_hu0404389450a2c12aa5ff4efd45819782_86686_800x600_fit_q75_box.jpg 800w">
+            <source media="(max-width: 1024px)" srcset="/entry/2021/01/10/1409/image4_hu0404389450a2c12aa5ff4efd45819782_86686_1024x768_fit_q75_box.jpg 1024w">
+            <img src="/entry/2021/01/10/1409/image4.jpg" alt="Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)" decoding="async" loading="lazy">
+        </picture>        
+    </a>
+
+    <figcaption class="figure-caption">Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)</figcaption>
+</figure>
+</p>
+<p>地味なところだが、このバージョンでは［F12］キーを押したときに DevTools を開くオプションも追加された。旧 Edge は［F12］キーで開発者ツールが起動可能で、「F12 ツール」などとも呼ばれていたと思う。自分も［F12］キーで開発者ツールにアクセスするのに慣れているが、これが煩わしいと思う人は無効化できる（既定で有効）。ちなみに、［Ctrl］＋［Shift］＋［I］キー（Inspector の I だろう）でもアクセスできるので覚えておくとよいかも。Apple M1 対応も、デバイスを持ってる人にとってはうれしいのかな。うちの M1 Mac も常用は Canary → Dev に切り替えておいた。</p>
+<p>
+      <div class="card mb-3" style="max-width: 640px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="//www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+              <title>Placeholder</title>
+              <rect x="0" y="0" width="100%" height="100%" fill="#868e96" stroke-width="3px" fill="white"/>
+              <text x="50%" y="50%" fill="#dee2e6" dominant-baseline="middle" text-anchor="middle">No Image</text>   
+            </svg>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><a href="https://forest.watch.impress.co.jp/docs/news/1298889.html" alt="Apple Siliconネイティブの「Microsoft Edge」がDev版に ～Mac向けの独自機能も - 窓の杜">Apple Siliconネイティブの「Microsoft Edge」がDev版に ～Mac向けの独自機能も - 窓の杜</a></p>
+              <p class="card-text"><small class="text-muted">forest.watch.impress.co.jp</small></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+</p>
+<p>あと、edge://settings/help に従量制課金接続に関するオプションも生えていた。旧 Edge は OS 側で制御する仕組みだったと思うけれど、新 Edge はここでコントロールしなきゃいけないようだ（既定は無効）。</p>
+<p><figure class="figure text-center">
+    <a href="/entry/2021/01/10/1409/image3.jpg">
+        <picture>
+            <source media="(max-width: 480px)" srcset="/entry/2021/01/10/1409/image3_hua9e87ef8e1f951514936ba538a9036c4_68805_480x360_fit_q75_box.jpg 480w">
+            <source media="(max-width: 800px)" srcset="/entry/2021/01/10/1409/image3_hua9e87ef8e1f951514936ba538a9036c4_68805_800x600_fit_q75_box.jpg 800w">
+            <source media="(max-width: 1024px)" srcset="/entry/2021/01/10/1409/image3_hua9e87ef8e1f951514936ba538a9036c4_68805_1024x768_fit_q75_box.jpg 1024w">
+            <img src="/entry/2021/01/10/1409/image3.jpg" alt="Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)" decoding="async" loading="lazy">
+        </picture>        
+    </a>
+
+    <figcaption class="figure-caption">Microsoft Edge バージョン 89.0.752.1 (公式ビルド) dev (64 ビット)</figcaption>
+</figure>
+</p>
+<p>
+      <div class="card mb-3" style="max-width: 640px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="//www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+              <title>Placeholder</title>
+              <rect x="0" y="0" width="100%" height="100%" fill="#868e96" stroke-width="3px" fill="white"/>
+              <text x="50%" y="50%" fill="#dee2e6" dominant-baseline="middle" text-anchor="middle">No Image</text>   
+            </svg>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><a href="https://techcommunity.microsoft.com/t5/discussions/dev-channel-update-to-89-0-752-1-is-live/m-p/2037953" alt="Dev channel update to 89.0.752.1 is live - Microsoft Tech Community">Dev channel update to 89.0.752.1 is live - Microsoft Tech Community</a></p>
+              <p class="card-text"><small class="text-muted">techcommunity.microsoft.com</small></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+</p>
+<p>
+      <div class="card mb-3" style="max-width: 640px;">
+        <div class="row no-gutters">
+          <div class="col-md-4">
+            <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="//www.w3.org/2000/svg" preserveAspectRatio="xMidYMid slice" focusable="false" role="img" aria-label="Placeholder: Image">
+              <title>Placeholder</title>
+              <rect x="0" y="0" width="100%" height="100%" fill="#868e96" stroke-width="3px" fill="white"/>
+              <text x="50%" y="50%" fill="#dee2e6" dominant-baseline="middle" text-anchor="middle">No Image</text>   
+            </svg>
+          </div>
+          <div class="col-md-8">
+            <div class="card-body">
+              <p class="card-text"><a href="https://techcommunity.microsoft.com/t5/articles/turn-off-f12-opening-devtools-with-new-edge-setting/m-p/2034433" alt="Turn off F12 opening DevTools with new Edge setting - Microsoft Tech Community">Turn off F12 opening DevTools with new Edge setting - Microsoft Tech Community</a></p>
+              <p class="card-text"><small class="text-muted">techcommunity.microsoft.com</small></p>
+            </div>
+          </div>
+        </div>
+    </div>
+  
+</p>
+<h2 id="参考">参考</h2>
+<p><figure class="figure text-center">
+    <a href="/entry/2021/01/10/1409/image2.jpg">
+        <picture>
+            <source media="(max-width: 480px)" srcset="/entry/2021/01/10/1409/image2_hud9f6db55a2cced4addf1409e0c091e61_87170_480x360_fit_q75_box.jpg 480w">
+            <source media="(max-width: 800px)" srcset="/entry/2021/01/10/1409/image2_hud9f6db55a2cced4addf1409e0c091e61_87170_800x600_fit_q75_box.jpg 800w">
+            <source media="(max-width: 1024px)" srcset="/entry/2021/01/10/1409/image2_hud9f6db55a2cced4addf1409e0c091e61_87170_1024x768_fit_q75_box.jpg 1024w">
+            <img src="/entry/2021/01/10/1409/image2.jpg" alt="Microsoft Edge バージョン 88.0.705.29 (公式ビルド) beta (64 ビット)" decoding="async" loading="lazy">
+        </picture>        
+    </a>
+
+    <figcaption class="figure-caption">Microsoft Edge バージョン 88.0.705.29 (公式ビルド) beta (64 ビット)</figcaption>
+</figure>
+</p>
+
+
+    <footer>
+        <hr />
+
+        
+        <div class="card" style="width: 100%;">
+            
+            <div class="card-header">
+                記事「Microsoft Edge：スリープタブでリソースを節約する 」について
+                <span class="float-right"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"><a href="https://twitter.com/search?q=https%3a%2f%2fblog.daruyanagi.jp%2fentry%2f2021%2f01%2f10%2f1409%2f">Twitter.com で反応を見る</a></span>
+            </div>
+
+            <div class="card-body">
+                <p>
+                この記事は <time datetime='2021-01-10'> 2021年1月10日14時09分</time>、<a href="/about">@daruyanagi</a>  によって執筆されました。
+                記事のリソース一式は <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/tree/master/content/entry/2021/01/10/1409/">GitHub.com</a> から入手できます。
+                誤植などがありましたら               
+                <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/issues/new?labels=bug&title=%2fentry%2f2021%2f01%2f10%2f1409%2f">isuue を作成</a>していただけると、
+                気が向いたときに直すかもしれません。
+                </p>
+
+                <p><b>最終更新日時：</b><time datetime='Sun, 10 Jan 2021 14:29:31 JST'> 2021年1月10日14時29分</time>
+                    （  
+                    <a href="https://github.com/daruyanagi/blog.daruyanagi.jp/commits/master/content/entry/2021/01/10/1409//index.md">変更履歴を <img src="https://github.com/favicon.ico" style="height: 16px; vertical-align: middle;"> GitHub.com でみる</a>
+                    ）
+                </p>
+
+                <p><b>タグ：</b></p>
+
+                <p>ちなみに、前の記事は「<a href="https://blog.daruyanagi.jp/entry/2020/12/31/1033/">だるろぐ PV ランキングで振り返る、わいの 2020 年</a>」です。</p>
+            </div>
+            
+            <div class="card-footer">
+                <a class="card-link" href="https://twitter.com/intent/tweet?url=https://blog.daruyanagi.jp/entry/2021/01/10/1409/&hashtags=%E3%81%A0%E3%82%8B%E3%82%8D%E3%81%90&related=YanagiHidetoshi%2Cdaruyanagi"><img src="https://twitter.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Twitter.com に投稿する</a>
+                <a class="card-link" href="https://www.facebook.com/sharer/sharer.php?u=https://blog.daruyanagi.jp/entry/2021/01/10/1409/"><img src="https://www.facebook.com/favicon.ico" style="height: 16px; vertical-align: middle;"> Facebook.com に投稿する</a>             
+            </div>
+          </div>
+
+        <hr />
+
+        
+        <script type="text/javascript" src="/js/hatena-bookmark.js"></script>
+        <script type="text/javascript" src="//b.hatena.ne.jp/entry/jsonlite/?url=https://blog.daruyanagi.jp/entry/2021/01/10/1409/&callback=HatenaBookmarkCallback"></script>
+    </footer>
+</article>
+
+
+    </main>
+
+    <footer class="text-muted"></footer><div class="container">
+
+    <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+    <ins class="adsbygoogle"
+         style="display:block; text-align:center;"
+         data-ad-layout="in-article"
+         data-ad-format="fluid"
+         data-ad-client="ca-pub-0944887782985208"
+         data-ad-slot="1125180844"></ins>
+    <script>
+         (adsbygoogle = window.adsbygoogle || []).push({});
+    </script>
+
+    <div class="spacer" style="height: 3rem;"></div>
+
+    <p class="float-right">
+    <a href="#">Back to top</a>
+    </p>
+    <p>
+        &copy; <a href="//daruyanagi.jp">daruyanagi</a> 2007-2020. </p>
+</div>
+
+</footer>
+
+    
+
+    <script src="//code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
+    <script src="/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script></body>
+    <script src="https://cdn.rawgit.com/google/code-prettify/master/loader/run_prettify.js?skin=sunburst"></script>
+
+    <script>
+    for (const pre of document.getElementsByTagName("pre"))
+    {
+      pre.classList.add("prettyprint");
+    }
+    
+    for (const table of document.getElementsByTagName("table"))
+    {
+      table.classList.add("table");
+    }
+
+    for (const blockquote of document.getElementsByTagName("blockquote"))
+    {
+      blockquote.classList.add("blockquote");
+    }
+
+    for (const link of document.getElementsByTagName("a"))
+    {
+        if (!link.href.startsWith("/") && !link.href.startsWith("https:\/\/blog.daruyanagi.jp\/"))
+        {
+          link.target = "_blank";
+          link.rel = "noopener";
+        }
+    }
+    </script>
+</html>
